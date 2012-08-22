@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.js.model.feature/src/gen/java" editDirectory="/org.js.model.feature.edit/src/gen/java"
+    editorDirectory="/org.js.model.feature.editor/src/gen/java" modelPluginID="org.js.model.feature"
+    modelName="Feature" testsDirectory="/org.js.model.feature.tests/src/gen/java"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>feature.ecore</foreignModel>
+  <genPackages prefix="Feature" basePackage="org.js.model" disposableProviderFactory="true"
+      presentationPackageSuffix="editor" ecorePackage="feature.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="feature.ecore#//SelectedState">
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/selected"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/deselected"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/undetermined"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="feature.ecore#//AttributeComparisonOperator">
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/unequal"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/greaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/greaterThanOrEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/lessThan"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/lessThanOrEqual"/>
+    </genEnums>
+    <genClasses ecoreClass="feature.ecore#//FeatureModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//FeatureModel/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/parent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/children"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/selected"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/groups"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Feature/parentGroup"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/annotations"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//Group">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Group/parentFeature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Group/childFeatures"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Group/minCardinality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Group/maxCardinality"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//Constraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Constraint/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Attribute/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Attribute/domain"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//Annotation">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Annotation/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//EnumDomain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//EnumDomain/values"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//ContinuousDomain">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//ContinuousDomain/intervals"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="feature.ecore#//Domain"/>
+    <genClasses ecoreClass="feature.ecore#//Interval">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Interval/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Interval/upperBound"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="feature.ecore#//Expression"/>
+    <genClasses image="false" ecoreClass="feature.ecore#//UnaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//UnaryExpression/operand"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="feature.ecore#//BinaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//BinaryExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//BinaryExpression/operand2"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="feature.ecore#//AtomicExpression"/>
+    <genClasses ecoreClass="feature.ecore#//FeatureReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureReference/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//NotExpression"/>
+    <genClasses ecoreClass="feature.ecore#//AndExpression"/>
+    <genClasses ecoreClass="feature.ecore#//OrExpression"/>
+    <genClasses ecoreClass="feature.ecore#//ImpliesExpression"/>
+    <genClasses ecoreClass="feature.ecore#//NestedExpression"/>
+    <genClasses image="false" ecoreClass="feature.ecore#//Identifiable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Identifiable/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="feature.ecore#//AttributeComparisonExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeComparisonExpression/attribute1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeComparisonExpression/attribute2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//AttributeComparisonExpression/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//ExcludesExpression"/>
+    <genClasses ecoreClass="feature.ecore#//AttributeReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeReference/attribute"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="feature.ecore#//AttributeOperand"/>
+    <genClasses ecoreClass="feature.ecore#//AttributeValueLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//AttributeValueLiteral/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

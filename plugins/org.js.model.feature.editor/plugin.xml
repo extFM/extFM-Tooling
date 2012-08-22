@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.js.model.feature.editor.FeatureModelWizardID"
+            name="%_UI_FeatureModelWizard_label"
+            class="org.js.model.feature.editor.FeatureModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeatureModelFile.gif">
+         <description>%_UI_FeatureModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.js.model.feature.editor.FeatureEditorID"
+            name="%_UI_FeatureEditor_label"
+            icon="icons/full/obj16/FeatureModelFile.gif"
+            extensions="feature"
+            class="org.js.model.feature.editor.FeatureEditor"
+            contributorClass="org.js.model.feature.editor.FeatureActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
