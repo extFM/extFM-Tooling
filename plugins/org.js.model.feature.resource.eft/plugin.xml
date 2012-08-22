@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="org.js.model.feature.resource.eft.mopp.EftMetaInformation" id="org.js.model.feature.resource.eft.mopp.EftMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.eclipse.core.resources.problemmarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<super type="org.eclipse.emf.ecore.diagnostic">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.problem.syntax_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.feature.resource.eft.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.problem.print_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.feature.resource.eft.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.problem.unresolved_reference" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.feature.resource.eft.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.problem.analysis_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.feature.resource.eft.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.problem.builder_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.feature.resource.eft.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.nature" name="eft nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="org.js.model.feature.resource.eft.mopp.EftNature">
+			</run>
+		</runtime>
+		<builder id="org.js.model.feature.resource.eft.builder">
+		</builder>
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="org.js.model.feature.resource.eft.builder" name="eft Builder">
+		<builder hasNature="true">
+			<run class="org.js.model.feature.resource.eft.mopp.EftBuilderAdapter">
+			</run>
+		</builder>
+	</extension>
+	
+	<extension-point id="org.js.model.feature.resource.eft.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="org.js.model.feature.resource.eft.mopp.EftResourceFactoryDelegator" type="eft">
+		</parser>
+	</extension>
+	
+	<extension-point id="org.js.model.feature.resource.eft.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.debug.core.breakpoints">
+		<breakpoint class="org.js.model.feature.resource.eft.debug.EftLineBreakpoint" id="org.js.model.feature.resource.eft.debug.breakpoint" markerType="org.js.model.feature.resource.eft.debug.lineBreakpoint.marker" name="eft Breakpoint">
+		</breakpoint>
+	</extension>
+	
+	<extension id="org.js.model.feature.resource.eft.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.debug.core.lineBreakpointMarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<persistent value="true">
+		</persistent>
+	</extension>
+	
+</plugin>
