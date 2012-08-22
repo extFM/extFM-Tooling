@@ -11,8 +11,15 @@ OPTIONS {
 	reloadGeneratorModel = "true";
 	generateCodeFromGeneratorModel = "true";
 	disableLaunchSupport = "true";
-	
 	disableNewProjectWizard = "true";
+	
+	srcFolder = "src/main/java";
+	srcGenFolder = "src/gen/java";
+	
+	uiSrcFolder = "src/main/java";
+	uiSrcGenFolder = "src/gen/java";
+
+
 	//disableTokenSorting = "true";
 	//overrideBracketSet = "false";
 	//overrideChoice = "false";
