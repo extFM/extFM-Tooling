@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="org.js.model.feature.resource.eft.ui.EftUIMetaInformation" id="org.js.model.feature.resource.eft.ui.EftUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.js.model.feature.resource.eft.ui.EftEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="eft" icon="icons/editor_icon.gif" id="org.js.model.feature.resource.eft.ui.EftEditor" name="EMFText eft Editor">
+			<contentTypeBinding contentTypeId="org.js.model.feature.resource.eft">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="org.js.model.feature.resource.eft.ui.EftPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="Eft Text Editor" id="org.js.model.feature.resource.eft.ui.EftPreferencePage" class="org.js.model.feature.resource.eft.ui.EftPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="org.js.model.feature.resource.eft.ui.EftSyntaxColoringPreferencePage" class="org.js.model.feature.resource.eft.ui.EftSyntaxColoringPreferencePage" category="org.js.model.feature.resource.eft.ui.EftPreferencePage">
+		</page>
+		<page name="Brackets" id="org.js.model.feature.resource.eft.ui.EftBracketPreferencePage" class="org.js.model.feature.resource.eft.ui.EftBracketPreferencePage" category="org.js.model.feature.resource.eft.ui.EftPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.js.model.feature.resource.eft.ui.EftNewFileWizard" id="org.js.model.feature.resource.eft.ui.EftNewFileWizard" name="EMFText .eft file">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="org.js.model.feature.resource.eft.ui.EftMarkerResolutionGenerator" markerType="org.js.model.feature.resource.eft.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="org.js.model.feature.resource.eft.ui.EftAnnotationModelFactory" extensions="eft">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="org.js.model.feature.resource.eft" name=".eft File" base-type="org.eclipse.core.runtime.text" file-extensions="eft">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="eft" id="org.js.model.feature.resource.eft.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.js.model.feature.resource.eft.ui.occurences">
+		</type>
+		<type name="org.js.model.feature.resource.eft.ui.occurences.declaration" super="org.js.model.feature.resource.eft.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.js.model.feature.resource.eft.ui.occurences" label="Occurrences (in .eft files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="eft.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="eft.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="eft.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="eft.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="eft.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="eft.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="eft.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="eft.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="eft.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="org.js.model.feature.resource.eft.ui.occurences.declaration" label="Declarations (in .eft files)" textPreferenceKey="eft.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="eft.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="eft.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="eft.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="eft.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="eft.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.js.model.feature.resource.eft.ui.debug.lineBreakpoint" markerType="org.js.model.feature.resource.eft.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.js.model.feature.resource.eft.ui.debug.lineBreakpoint" label="Breakpoints (in .eft files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.js.model.feature.resource.eft.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.js.model.feature.resource.eft.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.js.model.feature.resource.eft.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.js.model.feature.resource.eft.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.js.model.feature.resource.eft.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.js.model.feature.resource.eft.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.js.model.feature.resource.eft.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.js.model.feature.resource.eft.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.js.model.feature.resource.eft.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="org.js.model.feature.resource.eft.ui.EftEditor" class="org.js.model.feature.resource.eft.ui.debug.EftAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.js.model.feature.resource.eft.debug.EftDebugVariable" class="org.js.model.feature.resource.eft.ui.debug.EftAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.js.model.feature.resource.eft.debug.EftDebugVariable" class="org.js.model.feature.resource.eft.ui.debug.EftAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="org.js.model.feature.resource.eft.ui.RulerPopupActions" targetID="org.js.model.feature.resource.eft.EditorRuler">
+			<action id="org.js.model.feature.resource.eft.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="org.js.model.feature.resource.eft.ui.EftEditor" id="org.js.model.feature.resource.eft.ui.BreakpointRulerActions">
+			<action id="org.js.model.feature.resource.eft.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="org.js.model.feature.resource.eft.debugModel" class="org.js.model.feature.resource.eft.ui.debug.EftDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>
