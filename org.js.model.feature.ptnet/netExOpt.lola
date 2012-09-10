@@ -1,0 +1,35 @@
+{
+  input file:
+  invocation:
+  net size:     |P|= 8  |P_in|= 0  |P_out|= 0  |T|= 6  |F|= 18
+}
+
+PLACE     i, o, f1_-f2, f2_-f1, i_f1, o_f1, i_f2, o_f2;
+
+MARKING
+  ;
+
+TRANSITION +root
+  CONSUME i:1;
+  PRODUCE i_f1:1, i_f2:1;
+
+TRANSITION end
+  CONSUME o_f1:1, o_f2:1;
+  PRODUCE o:1;
+
+TRANSITION +f1
+  CONSUME f2_-f1:1, i_f1:1;
+  PRODUCE o_f1:1;
+
+TRANSITION -f1
+  CONSUME i_f1:1;
+  PRODUCE f1_-f2:1, o_f1:1;
+
+TRANSITION +f2
+  CONSUME f1_-f2:1, i_f2:1;
+  PRODUCE o_f2:1;
+
+TRANSITION -f2
+  CONSUME i_f2:1;
+  PRODUCE f2_-f1:1, o_f2:1;
+

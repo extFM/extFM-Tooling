@@ -1,0 +1,35 @@
+{
+  input file:
+  invocation:
+  net size:     |P|= 10  |P_in|= 0  |P_out|= 0  |T|= 6  |F|= 22
+}
+
+PLACE     p1_i, p4_o, p5_f1_+f2, p6_f1_-f2, p7_f2_+f1, p8_f2_-f1, p9_i_f1, p10_o_f1, p13_i_f2, p14_o_f2;
+
+MARKING
+  ;
+
+TRANSITION t2_+root
+  CONSUME p1_i:1;
+  PRODUCE p9_i_f1:1, p13_i_f2:1;
+
+TRANSITION t3_end
+  CONSUME p10_o_f1:1, p14_o_f2:1;
+  PRODUCE p4_o:1;
+
+TRANSITION t11_+f1
+  CONSUME p8_f2_-f1:1, p9_i_f1:1;
+  PRODUCE p5_f1_+f2:1, p10_o_f1:1;
+
+TRANSITION t12_+f1
+  CONSUME p7_f2_+f1:1, p9_i_f1:1;
+  PRODUCE p6_f1_-f2:1, p10_o_f1:1;
+
+TRANSITION t15_+f2
+  CONSUME p6_f1_-f2:1, p13_i_f2:1;
+  PRODUCE p7_f2_+f1:1, p14_o_f2:1;
+
+TRANSITION t16_+f2
+  CONSUME p5_f1_+f2:1, p13_i_f2:1;
+  PRODUCE p8_f2_-f1:1, p14_o_f2:1;
+

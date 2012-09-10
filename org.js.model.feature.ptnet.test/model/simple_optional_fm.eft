@@ -1,0 +1,8 @@
+feature model "simple_optional_fm"
+
+feature "root" <root> {
+	group <gr0> (0..1) {
+		feature "f1" <f1>;
+	}
+}
+	

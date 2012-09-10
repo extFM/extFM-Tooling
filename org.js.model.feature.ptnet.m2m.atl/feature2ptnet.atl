@@ -1,0 +1,220 @@
+-- @path ptnet=/org.js.model.feature.ptnet.m2m.atl/models/ptnetLoLA.ecore
+-- @path featuremodel=/org.js.model.feature.ptnet.m2m.atl/models/feature.ecore
+
+module feature2ptnet;
+create OUT : ptnet from IN : featuremodel;
+
+--helper [context context_type]? def : helper_name(parameters) : return_type = exp;
+-------------------------------------------------------------------------------
+-- ATTRIBUTES
+-------------------------------------------------------------------------------
+helper def : start : ptnet!Place = OclUndefined;
+helper def : end : ptnet!Place = OclUndefined;
+
+-------------------------------------------------------------------------------
+-- HELPER/METHODS
+-------------------------------------------------------------------------------
+
+--0 for mandatory
+--1 for optional
+--2 for alternative
+--3 for inclusive or
+--4 for exclusive optional
+--5 for other
+helper context featuremodel!Group def : groupCardinality() : Integer = 
+	if ((self.minCardinality = self.maxCardinality) and (self.childFeatures->size() = self.maxCardinality))
+	then
+		0 -- mandatory
+	else
+		if ((self.minCardinality = 0) and (self.maxCardinality = 1))
+		then
+			1--optional
+		else
+			if ((self.minCardinality = 1) and (self.childFeatures->size() = self.maxCardinality))
+			then
+				2 --alternative
+			else
+				if ((self.minCardinality = 1) and (self.childFeatures->size() = self.maxCardinality))
+				then
+					3 --inclusive or
+				else
+					if ((self.minCardinality = 0) and (self.childFeatures->size() = self.maxCardinality))
+					then
+						4 --exclusive optional
+					else
+						5 --other	
+					endif
+				endif				
+			endif
+		endif
+	endif;
+
+-- get the ptNet
+helper def: getPtNet(): ptnet!PtNet = ptnet!PtNet->allInstances()->first();
+-------------------------------------------------------------------------------
+-- RULES
+-------------------------------------------------------------------------------
+
+-- Basic Elements of the Petri Net
+rule initPt{
+	from
+		fm : featuremodel!FeatureModel
+	to
+		i : ptnet!Place (name <- 'i',token <- 1),
+		o : ptnet!Place (name <- 'o'),
+		start : ptnet!Transition (name <- 'start'),
+		end : ptnet!Transition (name <- 'end'),
+		i_start : ptnet!ArcToTransition (source <- i, target <- start),
+		end_o : ptnet!ArcToPlace (source <- end, target <- o),
+		pn : ptnet!PtNet (
+			arcs <- ptnet!Arc.allInstances(),
+			places <- ptnet!Place.allInstances(),
+			transitions <- ptnet!Transition.allInstances())
+	do{
+		thisModule.start <- start;
+		thisModule.end <- end;
+--		pn.arcs <- i_start;
+--		pn.arcs <- end_o;
+--		pn.places <- i;
+--		pn.places <- o;
+--		pn.transitions <- start;
+--		pn.transitions <- end;
+	}
+}
+
+-- Choice for every Feature. Connected to start and end transition
+rule feature2ptnet {
+	from f : featuremodel!Feature
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+	}
+	to
+		add : ptnet!Transition (name <- '+' + f.id),
+		rem : ptnet!Transition (name <- '-' + f.id),
+		i : ptnet!Place (name <- 'i' + f.id),
+		o : ptnet!Place (name <- 'o' + f.id),
+		i_add_arc : ptnet!ArcToTransition (source <- i, target <- add),
+		i_rem_arc : ptnet!ArcToTransition (source <- i, target <- rem),
+		add_o_arc : ptnet!ArcToPlace (source <- add, target <- o),
+		rem_o_arc : ptnet!ArcToPlace (source <- rem, target <- o),
+		start_i : ptnet!ArcToPlace (source <- thisModule.start, target <- i),
+		o_end : ptnet!ArcToTransition (source <- o, target <- thisModule.end)
+	do{
+		pn.places <- i;
+		pn.places <- o;
+		pn.transitions <- add;
+		pn.transitions <- rem;
+		pn.arcs <- i_add_arc;
+		pn.arcs <- i_rem_arc;
+		pn.arcs <- add_o_arc;
+		pn.arcs <- rem_o_arc;
+		pn.arcs <- start_i;
+		pn.arcs <- o_end;
+	}
+}
+
+-- Optional Feature groups
+rule optionalGroup2ptnet {
+	from g : featuremodel!Group (if g.groupCardinality() = 1 then
+			true
+		else
+			false
+		endif
+	)
+	using{
+		parent : featuremodel!Feature = g.parentFeature;
+		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+	}
+	do {
+		for(c in childs) {
+			thisModule.optGroup(parent,c);
+		}
+	}
+}
+
+-- Optional feature connection
+-- p parent of child
+-- c child of parent
+rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
+		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
+	}
+	to
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
+		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
+		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem),
+		p_add_c_add : ptnet!Place (name <- p_add.name + 'to:' + c_add.name),
+		paca_arc1 : ptnet!ArcToPlace (source <- p_add, target <- p_add_c_add),
+		paca_arc2 : ptnet!ArcToTransition (source <- p_add_c_add, target <- c_add)
+	do{
+		pn.places <- c_rem_p_rem;
+		pn.places <- p_add_c_add;
+		pn.arcs <- crpr_arc1;
+		pn.arcs <- crpr_arc2;
+		pn.arcs <- paca_arc1;
+		pn.arcs <- paca_arc2;
+	}
+}
+
+-- Mandatory Feature groups
+rule mandatoryGroup2ptnet {
+	from g : featuremodel!Group (if g.groupCardinality() = 0 then
+			true
+		else
+			false
+		endif
+	)
+	using{
+		parent : featuremodel!Feature = g.parentFeature;
+		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+	}
+	do {
+		for(c in childs) {
+			thisModule.mgroup(parent,c);
+		}
+	}
+}
+
+-- Mandatory feature connection
+-- p parent of child
+-- c child of parent
+rule mgroup (p : featuremodel!Feature, c : featuremodel!Feature){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
+		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
+	}
+	to
+		p_add_c_add : ptnet!Place (name <- p_add.name + ' to:' + c_add.name),
+		paca_arc1 : ptnet!ArcToPlace (source <- p_add, target <- p_add_c_add),
+		paca_arc2 : ptnet!ArcToTransition (source <- p_add_c_add, target <- c_add),
+		p_rem_c_rem : ptnet!Place (name <- p_rem.name + ' to:' + c_rem.name),
+		prcr_arc1 : ptnet!ArcToPlace (source <- p_rem, target <- p_rem_c_rem),
+		prcr_arc2 : ptnet!ArcToTransition (source <- p_rem_c_rem, target <- c_rem),
+		c_add_p_add : ptnet!Place (name <- c_add.name + ' to:' + p_add.name),
+		capa_arc1 : ptnet!ArcToPlace (source <- c_add, target <- c_add_p_add),
+		capa_arc2 : ptnet!ArcToTransition (source <- c_add_p_add, target <- p_add),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + ' to:' + p_rem.name),
+		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
+		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
+	do{
+		pn.places <- p_add_c_add;
+		pn.places <- p_rem_c_rem;
+		pn.places <- c_add_p_add;
+		pn.places <- c_rem_p_rem;
+		pn.arcs <- paca_arc1;
+		pn.arcs <- paca_arc2;
+		pn.arcs <- prcr_arc1;
+		pn.arcs <- prcr_arc2;
+		pn.arcs <- capa_arc1;
+		pn.arcs <- capa_arc2;
+		pn.arcs <- crpr_arc1;
+		pn.arcs <- crpr_arc2;
+	}
+}
