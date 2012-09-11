@@ -26,7 +26,7 @@ helper context featuremodel!Group def : groupCardinality() : Integer =
 	then
 		0 -- mandatory
 	else
-		if ((self.minCardinality = 0) and (self.maxCardinality = 1))
+		if ((self.minCardinality = 0) and (self.childFeatures->size() = self.maxCardinality))
 		then
 			1--optional
 		else
@@ -38,7 +38,7 @@ helper context featuremodel!Group def : groupCardinality() : Integer =
 				then
 					3 --inclusive or
 				else
-					if ((self.minCardinality = 0) and (self.childFeatures->size() = self.maxCardinality))
+					if ((self.minCardinality = 0) and (self.maxCardinality = 1))
 					then
 						4 --exclusive optional
 					else
@@ -113,7 +113,7 @@ rule feature2ptnet {
 	}
 }
 
--- Optional Feature groups
+-- optional Feature groups
 rule optionalGroup2ptnet {
 	from g : featuremodel!Group (if g.groupCardinality() = 1 then
 			true
@@ -122,20 +122,162 @@ rule optionalGroup2ptnet {
 		endif
 	)
 	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
 		parent : featuremodel!Feature = g.parentFeature;
 		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
 	}
+	to
+		parent_added : ptnet!Place (name <- 'p_added_' + parent.id),
+		p_added_arc : ptnet!ArcToPlace (source <- thisModule.resolveTemp(parent, 'add'), target <- parent_added)
 	do {
+		pn.places <- parent_added;
+		pn.arcs <- p_added_arc;
 		for(c in childs) {
-			thisModule.optGroup(parent,c);
+			thisModule.optGroup(parent,c,parent_added);
 		}
 	}
 }
 
--- Optional feature connection
+-- optional feature group connection
 -- p parent of child
 -- c child of parent
-rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature){
+rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature, parent_added : ptnet!Place){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
+	}
+	to
+		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
+		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
+		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
+	do{
+		pn.places <- c_rem_p_rem;
+		pn.arcs <- crpr_arc1;
+		pn.arcs <- crpr_arc2;
+		pn.arcs <- par_added_child_add_arc;
+	}
+}
+
+-- inclusive or groups
+rule incOrGroup2ptnet {
+	from g : featuremodel!Group (if g.groupCardinality() = 3 then
+			true
+		else
+			false
+		endif
+		)
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		parent : featuremodel!Feature = g.parentFeature;
+		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
+	}
+	to
+		one_c_added : ptnet!Place (name <- 'incGroupChosen:' + g.id),
+		capa : ptnet!ArcToTransition (source <- one_c_added, target <- p_add)
+	do{
+		pn.places <- one_c_added;
+		pn.arcs <- capa;
+		for(c in childs) {
+			thisModule.exOptGroup(parent,c,one_c_added,childs);
+		}
+	}
+}
+
+-- inclusive or feature group connection
+-- relation between parent and child
+-- p parent feature
+-- c current child
+-- c_added a place that is enabled after one child is added
+-- childs all feature children from parent for this group
+rule incOrGroup (p : featuremodel!Feature, c : featuremodel!Feature, c_added : ptnet!Place, childs :  Sequence(featuremodel!Feature)){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
+		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');	
+	}
+	to
+		caca_arc : ptnet!ArcToPlace (source <- c_add, target <- c_added),
+		p_added : ptnet!Place (name <- '+' + p.id + ':+' + c.id),
+		papa_arc : ptnet!ArcToPlace (source <- p_add, target <- p_added),
+		paca_arc : ptnet!ArcToTransition (source <- p_added, target <- c_add),
+		c_removed : ptnet!Place (name <- c.id + '_removed'),
+		crcr_arc : ptnet!ArcToPlace (source <- c_rem, target <- c_can_removed),
+		crpr_arc : ptnet!ArcToTransition (source <- c_removed, target <- p_rem),
+		c_can_removed : ptnet!Place (name <- c.id + '_can_removed'),
+		ccrcr_arc : ptnet!ArcToTransition (source <- c_can_removed, target <- c_rem),
+		prccr_arc : ptnet!ArcToPlace (source <- p_rem, target <- c_can_removed)
+	do{
+		pn.places <- p_added;
+		pn.places <- p_added;
+		pn.places <- c_removed;
+		pn.places <- c_can_removed;
+		pn.arcs <- caca_arc;
+		pn.arcs <- papa_arc;
+		pn.arcs <- paca_arc;
+		pn.arcs <- crcr_arc;
+		pn.arcs <- crpr_arc;
+		pn.arcs <- ccrcr_arc;
+		pn.arcs <- prccr_arc;
+		for(child in childs) {
+			if (child.id <> c.id)
+				thisModule.incOrGroup2(c_can_removed,child);
+		}
+	}
+}
+
+-- inclusive or group connection
+-- relation between children
+-- c_can_removed place that indicates if a child can be removed
+-- child an other child
+rule incOrGroup2 (c_can_removed : ptnet!Place, child : featuremodel!Feature){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		c_add : ptnet!Transition = thisModule.resolveTemp(child, 'add');
+	}
+	to
+		caccr_arc : ptnet!ArcToPlace (source <- c_add, target <- c_can_removed)
+	do{
+		pn.arcs <- caccr_arc;	
+	}
+}
+
+-- exclusive optional groups
+rule exOptionalGroup2ptnet {
+	from g : featuremodel!Group (if g.groupCardinality() = 4 then
+			true
+		else
+			false
+		endif
+	)
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		parent : featuremodel!Feature = g.parentFeature;
+		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+	}
+	to
+		parent_added : ptnet!Place (name <- 'p_added_' + parent.id),
+		p_added_arc : ptnet!ArcToPlace (source <- thisModule.resolveTemp(parent, 'add'), target <- parent_added)
+	do {
+		pn.places <- parent_added;
+		pn.arcs <- p_added_arc;
+		for(c in childs) {
+			thisModule.exOptGroup(parent,c,parent_added,childs);
+		}
+	}
+}
+
+-- exclusive optional feature group connection
+-- p parent of child
+-- c child of the parent feature of the group
+-- parent_added a Place that indicates that the parent feature is added
+-- childs all children from the parent feature from the group
+rule exOptGroup (p : featuremodel!Feature, c : featuremodel!Feature, parent_added : ptnet!Place, childs :  Sequence(featuremodel!Feature)){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -144,19 +286,33 @@ rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature){
 		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
 	}
 	to
-		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
+		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.id + '_removed'),
 		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
-		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem),
-		p_add_c_add : ptnet!Place (name <- p_add.name + 'to:' + c_add.name),
-		paca_arc1 : ptnet!ArcToPlace (source <- p_add, target <- p_add_c_add),
-		paca_arc2 : ptnet!ArcToTransition (source <- p_add_c_add, target <- c_add)
+		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
 	do{
 		pn.places <- c_rem_p_rem;
-		pn.places <- p_add_c_add;
 		pn.arcs <- crpr_arc1;
 		pn.arcs <- crpr_arc2;
-		pn.arcs <- paca_arc1;
-		pn.arcs <- paca_arc2;
+		pn.arcs <- par_added_child_add_arc;
+		for(child in childs) {
+			if (child.id <> c.id)
+				thisModule.exOptGroup2(c_add,c_rem_p_rem);
+		}
+	}
+}
+
+-- exclusive optional group child to child requirments
+-- place that indicates that the child is removed
+-- c_add enables one possible other child
+rule exOptGroup2(c_add : ptnet!Transition, place : ptnet!Place){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+	}
+	to
+		place_c_add_arc : ptnet!ArcToTransition (source <- place, target <- c_add)
+	do{
+		pn.arcs <- place_c_add_arc;
 	}
 }
 
