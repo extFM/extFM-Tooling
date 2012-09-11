@@ -426,7 +426,7 @@ rule exOptGroup (p : featuremodel!Feature, c : featuremodel!Feature, parent_adde
 	}
 	to
 		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
-		c_rem_p_rem : ptnet!Place (name <- c_rem.id + '_removed'),
+		c_rem_p_rem : ptnet!Place (name <- c.id + '_removed'),
 		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
 		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
 	do{

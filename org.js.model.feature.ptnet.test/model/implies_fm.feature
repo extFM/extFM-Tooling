@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<feature:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:feature="http://www.tudresden.de/extfeature" name="implies_fm">
+<feature:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:feature="feature" name="implies_fm">
   <root id="root" name="root">
     <groups id="gr0" maxCardinality="1">
       <childFeatures id="f1" name="f1"/>
