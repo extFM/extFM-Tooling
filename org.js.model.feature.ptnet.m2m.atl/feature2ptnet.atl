@@ -113,6 +113,65 @@ rule feature2ptnet {
 	}
 }
 
+-- Mandatory Feature groups
+rule mandatoryGroup2ptnet {
+	from g : featuremodel!Group (if g.groupCardinality() = 0 then
+			true
+		else
+			false
+		endif
+	)
+	using{
+		parent : featuremodel!Feature = g.parentFeature;
+		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+	}
+	do {
+		for(c in childs) {
+			thisModule.mgroup(parent,c);
+		}
+	}
+}
+
+-- Mandatory feature connection
+-- p parent of child
+-- c child of parent
+rule mgroup (p : featuremodel!Feature, c : featuremodel!Feature){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
+		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
+	}
+	to
+		p_add_c_add : ptnet!Place (name <- p_add.name + ' to:' + c_add.name),
+		paca_arc1 : ptnet!ArcToPlace (source <- p_add, target <- p_add_c_add),
+		paca_arc2 : ptnet!ArcToTransition (source <- p_add_c_add, target <- c_add),
+		p_rem_c_rem : ptnet!Place (name <- p_rem.name + ' to:' + c_rem.name),
+		prcr_arc1 : ptnet!ArcToPlace (source <- p_rem, target <- p_rem_c_rem),
+		prcr_arc2 : ptnet!ArcToTransition (source <- p_rem_c_rem, target <- c_rem),
+		c_add_p_add : ptnet!Place (name <- c_add.name + ' to:' + p_add.name),
+		capa_arc1 : ptnet!ArcToPlace (source <- c_add, target <- c_add_p_add),
+		capa_arc2 : ptnet!ArcToTransition (source <- c_add_p_add, target <- p_add),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + ' to:' + p_rem.name),
+		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
+		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
+	do{
+		pn.places <- p_add_c_add;
+		pn.places <- p_rem_c_rem;
+		pn.places <- c_add_p_add;
+		pn.places <- c_rem_p_rem;
+		pn.arcs <- paca_arc1;
+		pn.arcs <- paca_arc2;
+		pn.arcs <- prcr_arc1;
+		pn.arcs <- prcr_arc2;
+		pn.arcs <- capa_arc1;
+		pn.arcs <- capa_arc2;
+		pn.arcs <- crpr_arc1;
+		pn.arcs <- crpr_arc2;
+	}
+}
+
 -- optional Feature groups
 rule optionalGroup2ptnet {
 	from g : featuremodel!Group (if g.groupCardinality() = 1 then
@@ -126,14 +185,9 @@ rule optionalGroup2ptnet {
 		parent : featuremodel!Feature = g.parentFeature;
 		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
 	}
-	to
-		parent_added : ptnet!Place (name <- 'p_added_' + parent.id),
-		p_added_arc : ptnet!ArcToPlace (source <- thisModule.resolveTemp(parent, 'add'), target <- parent_added)
 	do {
-		pn.places <- parent_added;
-		pn.arcs <- p_added_arc;
 		for(c in childs) {
-			thisModule.optGroup(parent,c,parent_added);
+			thisModule.optGroup(parent,c);
 		}
 	}
 }
@@ -141,25 +195,110 @@ rule optionalGroup2ptnet {
 -- optional feature group connection
 -- p parent of child
 -- c child of parent
-rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature, parent_added : ptnet!Place){
+rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
 		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
 		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
 		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
 	}
 	to
+		parent_added : ptnet!Place (name <- '+' + p.id + ':+' + c.id),
+		p_added_arc : ptnet!ArcToPlace (source <- p_add, target <- parent_added),
 		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
 		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
 		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
 		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
 	do{
+		pn.places <- parent_added;
+		pn.arcs <- p_added_arc;
 		pn.places <- c_rem_p_rem;
 		pn.arcs <- crpr_arc1;
 		pn.arcs <- crpr_arc2;
 		pn.arcs <- par_added_child_add_arc;
 	}
 }
+
+-- aternative group
+rule alternativeGroup2ptnet{
+	from g : featuremodel!Group (if g.groupCardinality() = 2 then
+			true
+		else
+			false
+		endif
+		)
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		parent : featuremodel!Feature = g.parentFeature;
+		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
+	}
+	to
+		p_added : ptnet!Place (name <- parent.id + 'added'),
+		pa_arc : ptnet!ArcToTransition (source <- p_added, target <- p_add),
+		c_added : ptnet!Place (name <- parent.id + 'c_added'),
+		ca_arc : ptnet!ArcToTransition (source <- c_added, target <- p_add)
+	do{
+		pn.places <- p_added;
+		pn.places <- c_added;
+		pn.arcs <- pa_arc;
+		pn.arcs <- ca_arc;
+		for(c in childs) {
+			thisModule.altGroup(parent,c,c_added,p_added,childs);
+		}
+	}
+}
+
+-- alternative group child parent relation
+-- p parent feature
+-- c child feature
+-- c_added place if a child is added
+-- p_added place if the parent is added
+-- childs all feature children of the current group
+rule altGroup(p : featuremodel!Feature,c : featuremodel!Feature,c_added : ptnet!Place,p_added : ptnet!Place,childs : Sequence(featuremodel!Feature)) {
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
+		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');	
+	}
+	to
+		c_can_removed : ptnet!Place (name <- c.id + '_can_removed'),
+		prccr_arc : ptnet!ArcToTransition (source <- p_rem, target <- c_can_removed),
+		c_removed : ptnet!Place (name <- c.id + '_removed'),
+		crcr_arc : ptnet!ArcToPlace (source <- c_rem, target <- c_removed)
+	do{
+		pn.places <- c_can_removed;
+		pn.places <- c_removed;
+		pn.arcs <- prccr_arc;
+		pn.arcs <- crcr_arc;
+		for(child in childs) {
+			if (child.id <> c.id)
+				thisModule.altGroup2(c_can_removed,c_removed,child);
+		}
+	}
+}
+
+-- alternativ group child to child relations
+-- c_can_removed place that indicates if an child can be removed
+-- c_removed place that enables the adding of a child
+-- c an other child 
+rule altGroup2(c_can_removed : ptnet!Place, c_removed : ptnet!Place, c : featuremodel!Feature){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
+	}
+	to
+		caccr_arc : ptnet!ArcToPlace (source <- c_add, target <- c_can_removed),
+		crca_arc : ptnet!ArcToTransition (source <- c_removed, target <- c_add)
+	do{
+		pn.arcs <- caccr_arc;
+		pn.arcs <- crca_arc;
+	}
+}
+
 
 -- inclusive or groups
 rule incOrGroup2ptnet {
@@ -182,7 +321,7 @@ rule incOrGroup2ptnet {
 		pn.places <- one_c_added;
 		pn.arcs <- capa;
 		for(c in childs) {
-			thisModule.exOptGroup(parent,c,one_c_added,childs);
+			thisModule.incOrGroup(parent,c,one_c_added,childs);
 		}
 	}
 }
@@ -193,7 +332,7 @@ rule incOrGroup2ptnet {
 -- c current child
 -- c_added a place that is enabled after one child is added
 -- childs all feature children from parent for this group
-rule incOrGroup (p : featuremodel!Feature, c : featuremodel!Feature, c_added : ptnet!Place, childs :  Sequence(featuremodel!Feature)){
+rule incOrGroup (p : featuremodel!Feature, c : featuremodel!Feature, c_added : ptnet!Place, childs : Sequence(featuremodel!Feature)){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -316,29 +455,31 @@ rule exOptGroup2(c_add : ptnet!Transition, place : ptnet!Place){
 	}
 }
 
--- Mandatory Feature groups
-rule mandatoryGroup2ptnet {
-	from g : featuremodel!Group (if g.groupCardinality() = 0 then
+-- other groups to ptnet
+-- current rule is like optional features
+rule otherGroups2ptnet {
+	from g : featuremodel!Group (if g.groupCardinality() = 5 then
 			true
 		else
 			false
 		endif
 	)
 	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
 		parent : featuremodel!Feature = g.parentFeature;
 		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
 	}
 	do {
 		for(c in childs) {
-			thisModule.mgroup(parent,c);
+			thisModule.otherGroup(parent,c);
 		}
 	}
 }
 
--- Mandatory feature connection
+-- other feature group connection
 -- p parent of child
 -- c child of parent
-rule mgroup (p : featuremodel!Feature, c : featuremodel!Feature){
+rule otherGroup (p : featuremodel!Feature, c : featuremodel!Feature){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -347,30 +488,18 @@ rule mgroup (p : featuremodel!Feature, c : featuremodel!Feature){
 		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
 	}
 	to
-		p_add_c_add : ptnet!Place (name <- p_add.name + ' to:' + c_add.name),
-		paca_arc1 : ptnet!ArcToPlace (source <- p_add, target <- p_add_c_add),
-		paca_arc2 : ptnet!ArcToTransition (source <- p_add_c_add, target <- c_add),
-		p_rem_c_rem : ptnet!Place (name <- p_rem.name + ' to:' + c_rem.name),
-		prcr_arc1 : ptnet!ArcToPlace (source <- p_rem, target <- p_rem_c_rem),
-		prcr_arc2 : ptnet!ArcToTransition (source <- p_rem_c_rem, target <- c_rem),
-		c_add_p_add : ptnet!Place (name <- c_add.name + ' to:' + p_add.name),
-		capa_arc1 : ptnet!ArcToPlace (source <- c_add, target <- c_add_p_add),
-		capa_arc2 : ptnet!ArcToTransition (source <- c_add_p_add, target <- p_add),
-		c_rem_p_rem : ptnet!Place (name <- c_rem.name + ' to:' + p_rem.name),
+		parent_added : ptnet!Place (name <- '+' + p.id + ':+' + c.id),
+		p_added_arc : ptnet!ArcToPlace (source <- p_add, target <- parent_added),
+		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
 		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
 		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
 	do{
-		pn.places <- p_add_c_add;
-		pn.places <- p_rem_c_rem;
-		pn.places <- c_add_p_add;
+		pn.places <- parent_added;
+		pn.arcs <- p_added_arc;
 		pn.places <- c_rem_p_rem;
-		pn.arcs <- paca_arc1;
-		pn.arcs <- paca_arc2;
-		pn.arcs <- prcr_arc1;
-		pn.arcs <- prcr_arc2;
-		pn.arcs <- capa_arc1;
-		pn.arcs <- capa_arc2;
 		pn.arcs <- crpr_arc1;
 		pn.arcs <- crpr_arc2;
+		pn.arcs <- par_added_child_add_arc;
 	}
 }
