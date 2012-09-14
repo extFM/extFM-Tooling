@@ -8,13 +8,97 @@ create OUT : ptnet from IN : featuremodel;
 -------------------------------------------------------------------------------
 -- ATTRIBUTES
 -------------------------------------------------------------------------------
-helper def : start : ptnet!Place = OclUndefined;
-helper def : end : ptnet!Place = OclUndefined;
+helper def : start : ptnet!Transition = OclUndefined;
+helper def : end : ptnet!Transition = OclUndefined;
 
 -------------------------------------------------------------------------------
 -- HELPER/METHODS
 -------------------------------------------------------------------------------
 
+-- calculates the factorial value from min to max
+--helper def : factoriel (min : Integer, max : Integer) : Integer =
+--		if min = max then
+--			min
+--		else
+--			min * thisModule.factorial(min + 1, max)
+--		endif;
+
+-- calculates the number of combinations for the number of elements in a combination
+-- num number of elements in a combination
+--helper context featuremodel!Group def : getNumberOfCombinations(num : Integer) : Integer =
+--	let max : Integer = self.childFeatures.size() in
+--	let min : Integer = self.childFeatures.size() - num in
+--	let top : Integer = thisModule.factorial(min, max) in
+--	let bot : Integer = thisModule.factoriel(0, num) in top / bot;
+
+-- get the features for the given indizies
+helper def : getFeatureTupel (indizies : Sequence(Integer), features : Sequence(featuremodel!Feature), index : Integer) : Sequence(featuremodel!Feature) =
+	if index = indizies.size() then
+		Sequence(featuremodel!Feature) = features.at(indizies.at(index))
+	else
+		let x : Sequence(featuremodel!Feature) = features.at(indizies.at(index)) in 
+		x.union(thisModule.getFeatureTupel(indizies,features,index +1))
+	endif
+;
+
+-- intializes the indizies with 0
+helper def : initIndizies(start : Integer, end : Integer) : Sequence(Integer) =
+	if start = end then 
+		Sequence(Integer) = Sequence{0}
+	else
+		let x : Sequence(Integer) = Sequence{0} in
+		x.union(thisModule.initIndizies(start+1,end))
+	endif
+;
+
+-- checks if the indizies can be incremented
+helper def : canIncIndex (indizies : Sequence(Integer), max : Integer) : Boolean = 
+	if indizies->exists(i | i <= max - indizies.size()) then
+		true
+	else 
+		false
+	endif
+;
+	
+-- increments the index by one at a suitable position
+-- index the suitable position, init with the last index of indizies. Will be set to the next suitable index automatically
+-- indizies the indizies, one of them is going to be increased
+-- the max value for an index
+helper def : incIndex(indizies : Sequence(Integer), index : Integer, max : Sequence(Integer)) : Sequence(Integer) =
+	if indizies.at(index) < max then
+		indizies.insertAt(index, indizies.at(index) + 1)
+	else
+		thisModule.incIndex(indizies,index-1,max)
+	endif
+;
+
+-- collects the feature tupel and increases the indizies for the next combination until the indizies cant be increased any more
+helper def : calcCombinations(indizies : Sequence(Integer), features : Sequence(featuremodel!Feature)) : Sequence(Sequence(featuremodel!Feature)) =
+	let first : Sequence(featuremodel!Feature) = thisModule.getFeatureTupel(indizies, features, 0) in
+	let x : Sequence(Sequence(featuremodel!Feature)) = Sequence{first} in
+	if thisModule.canIncIndex(indizies,  features.size()-1) then 
+		let indi : Sequence(Integer) = thisModule.incIndex(indizies,indizies.size() -1, features.size()-1) in
+		x.union(thisModule.calcCombinations(indi, features))
+	else 
+		x
+	endif	
+;
+
+-- get all possible combinations of features
+-- start init with min cardinality
+-- end init with max cardinality
+helper context featuremodel!Group def : getFeatureCombinations(start : Integer, end : Integer) : Sequence(Sequence(featuremodel!Feature)) =
+	if start = end then
+		let indizies : Sequence(Integer) = thisModule.initIndizies(0,start) in
+		thisModule.calcCombinations(indizies,self.childFeatures.asSequence())
+	else
+		let indizies : Sequence(Integer) = thisModule.initIndizies(0,start) in
+		let x : Sequence(Sequence(featuremodel!Feature)) = thisModule.calcCombinations(indizies,self.childFeatures.asSequence()) in
+		x.union(thisModule.getFeatureCombinations(start+1,end))
+	endif
+;
+	
+-- Enum for groups
 --0 for mandatory
 --1 for optional
 --2 for alternative
@@ -47,7 +131,28 @@ helper context featuremodel!Group def : groupCardinality() : Integer =
 				endif				
 			endif
 		endif
-	endif;
+	endif
+;
+
+-- combines all feature ids in a string
+helper def : getCombineIDs(features : Sequence(featuremodel!Feature)) : String = 
+	if features.size() = 1 then
+		'[' + features.first().id + ']'
+	else
+		let x : String = features.first().id in
+		'[' + x + ',' + thisModule.getCombineIDs2(features,1) + ']'
+	endif
+;
+	
+-- in case more then one feature are in features of getCombineIDs
+helper def : getCombineIDs2(features : Sequence(featuremodel!Feature), index : Integer) : String =
+	if index + 1 = features.size() then
+		features.at(index).id
+	else
+		let x : String = features.at(index).id + ',' in
+		x + thisModule.getCombineIDs2(features,index + 1)
+	endif
+;
 
 -- get the ptNet
 helper def: getPtNet(): ptnet!PtNet = ptnet!PtNet->allInstances()->first();
@@ -456,7 +561,6 @@ rule exOptGroup2(c_add : ptnet!Transition, place : ptnet!Place){
 }
 
 -- other groups to ptnet
--- current rule is like optional features
 rule otherGroups2ptnet {
 	from g : featuremodel!Group (if g.groupCardinality() = 5 then
 			true
@@ -467,11 +571,47 @@ rule otherGroups2ptnet {
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		parent : featuremodel!Feature = g.parentFeature;
+		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
+		p_rem : ptnet!Transition = thisModule.resolveTemp(parent, 'rem');
 		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
 	}
+	to
+		g_rem : ptnet!Transition (name <- '-' + g.id),
+		i_g : ptnet!Place (name <- 'i' + g.id),
+		start_g_arc : ptnet!ArcToPlace (source <- thisModule.start, target <- i_g),
+		i_g_g_rem_arc : ptnet!ArcToTransition (source <- i_g, target <- g_rem),
+		g_added : ptnet!Place (name <- g.id + 'added'),
+		g_added_p_add_arc : ptnet!ArcToTransition (source <- g_added, target <- p_add),
+		g_removed : ptnet!Place (name <- g.id + 'removed'),
+		g_rem_removed_arc : ptnet!ArcToPlace (source <- g_rem, target <- g_removed),
+		g_removed_p_rem_arc : ptnet!ArcToTransition (source <- g_removed, target <- p_rem),
+		p_removed : ptnet!Place (name <- g.id + 'p_removed'),
+		p_rem_removed_arc : ptnet!ArcToPlace (source <- p_rem, target <- p_removed),
+		p_removed_g_rem_arc : ptnet!ArcToTransition (source <- p_removed, target <- g_rem),
+		p_added : ptnet!Place (name <- g.id + 'p_added'),
+		p_add_added_arc : ptnet!ArcToPlace (source <- p_add, target <- p_added)
+		
 	do {
+		pn.transitions <- g_rem;
+		pn.places <- i_g;
+		pn.places <- g_added;
+		pn.places <- g_removed;
+		pn.places <- p_added;
+		pn.places <- p_removed;
+		pn.arcs <- start_g_arc;
+		pn.arcs <- i_g_g_rem_arc;
+		pn.arcs <- g_added_p_add_arc;
+		pn.arcs <- g_removed_p_rem_arc;
+		pn.arcs <- g_rem_removed_arc;
+		pn.arcs <- p_rem_removed_arc;
+		pn.arcs <- p_removed_g_rem_arc;
+		pn.arcs <- p_add_added_arc;
+		
 		for(c in childs) {
-			thisModule.otherGroup(parent,c);
+			thisModule.otherGroup(parent,c,g_rem);
+		}
+		for (tuple in g.getFeatureCombinations(g.minCardinality, g.maxCardinality)) {
+			thisModule.otherGroup2(g,tuple,g_rem,i_g,p_added,g_added);
 		}
 	}
 }
@@ -479,27 +619,91 @@ rule otherGroups2ptnet {
 -- other feature group connection
 -- p parent of child
 -- c child of parent
-rule otherGroup (p : featuremodel!Feature, c : featuremodel!Feature){
+rule otherGroup (p : featuremodel!Feature, c : featuremodel!Feature, g_rem : ptnet!Transition){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
-		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
 		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
 		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
 	}
 	to
-		parent_added : ptnet!Place (name <- '+' + p.id + ':+' + c.id),
-		p_added_arc : ptnet!ArcToPlace (source <- p_add, target <- parent_added),
-		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
-		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
-		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
-		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
+		c_enable : ptnet!Place (name <- c.id + '_enabled'),
+		c_en_c_add_arc : ptnet!ArcToTransition (source <- c_enable, target <- c_add),
+		c_disable : ptnet!Place (name <- c.id + '_disabled'),
+		c_dis_c_rem_arc : ptnet!ArcToTransition (source <- c_disable, target <- c_rem),
+		g_rem_c_dis_arc : ptnet!ArcToPlace (source <- g_rem, target <- c_disable)
 	do{
-		pn.places <- parent_added;
-		pn.arcs <- p_added_arc;
-		pn.places <- c_rem_p_rem;
-		pn.arcs <- crpr_arc1;
-		pn.arcs <- crpr_arc2;
-		pn.arcs <- par_added_child_add_arc;
+		pn.places <- c_enable;
+		pn.places <- c_disable;
+		pn.arcs <- c_dis_c_rem_arc;
+		pn.arcs <- c_en_c_add_arc;
+		pn.arcs <- g_rem_c_dis_arc;
+	}
+}
+
+-- creates a transition for a possible selektion/deselktion of features
+-- g used to name the transition
+-- tuple used to name the transition and connect it to the features of the group
+-- g_rem used to be disble all features in the group
+-- i_g enables the group
+-- p_added enables the group
+-- g_added indicates that the group is added
+rule otherGroup2(g : featuremodel!Group,
+				 tuple : Sequence(featuremodel!Feature), 
+				 g_rem : ptnet!Transition,
+				 i_g : ptnet!Place,
+				 p_added : ptnet!Place,
+				 g_added : ptnet!Place){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+	}	
+	to
+		enable_features : ptnet!Transition (name <- g.id + thisModule.getCombineIDs(tuple)),
+		i_g_ef_arc : ptnet!ArcToTransition (source <- i_g, target <- enable_features),
+		p_added_ef_arc :  ptnet!ArcToTransition (source <- p_added, target <- enable_features),
+		ef_g_added_arc : ptnet!ArcToPlace (source <- enable_features, target <- g_added)
+	do{
+		pn.transitions <- enable_features;
+		pn.arcs <- i_g_ef_arc;
+		pn.arcs <- p_added_ef_arc;
+		pn.arcs <- ef_g_added_arc;
+		for (f in g.childFeatures) {
+			if (tuple->exists(i | i = f))
+				thisModule.isPartOfCombination(f,enable_features);
+			else
+				thisModule.isNotPartOfCombination(f,enable_features);
+		}
+		for (f in g.childFeatures){
+			thisModule.isNotPartOfCombination(f, g_rem);
+		}
+	}
+}
+
+-- enable enable of a feature by the transition
+-- f the feature
+-- enable_features the transition
+rule isPartOfCombination(f : featuremodel!Feature, enable_features : ptnet!Transition){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		f_enable : ptnet!Place = thisModule.resolveTemp(f, f.id + '_enabled');
+	}
+	to
+		ef_fe_arc : ptnet!ArcToPlace (source <- enable_features, target <- f_enable)
+	do{
+		pn.arcs <- ef_fe_arc;	
+	}
+}
+
+-- enable disable of a feature by the transition
+-- f the feature
+-- enable_features the transition
+rule isNotPartOfCombination(f  : featuremodel!Feature, enable_features : ptnet!Transition){
+	using{
+		pn: ptnet!PtNet = thisModule.getPtNet();
+		f_disbale : ptnet!Place = thisModule.resolveTemp(f, f.id + '_disabled');
+	}
+	to
+		ef_fd_arc : ptnet!ArcToPlace (source <- enable_features, target <- f_disbale)
+	do{
+		pn.arcs <- ef_fd_arc;	
 	}
 }

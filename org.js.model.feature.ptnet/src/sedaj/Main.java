@@ -487,20 +487,26 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		String filename = "simple_optional_fm.ptnetlola";
-		URI uri = URI.createFileURI(filename);
-		PtNet net = PNUtil.loadPtNet(uri);
-		if (net != null) {
-			System.out.println(net);
-		}else{
-			System.out.println("No PtNet found!");
-		}
-		String dot = PNAPI.toDot(net);
-		System.out.println(dot);
-		System.out.println("-----------------------");
-		String lola = PNAPI.toLoLA_ident(dot);
-		System.out.println(lola);
-		persistModel(net, "test.lola");
+//		String filename = "simple_optional_fm.ptnetlola";
+//		URI uri = URI.createFileURI(filename);
+//		PtNet net = PNUtil.loadPtNet(uri);
+//		if (net != null) {
+//			System.out.println(net);
+//		}else{
+//			System.out.println("No PtNet found!");
+//		}
+//		String dot = PNAPI.toDot(net);
+//		System.out.println(dot);
+//		System.out.println("-----------------------");
+//		String lola = PNAPI.toLoLA_ident(dot);
+//		System.out.println(lola);
+//		persistModel(net, "test.ptnet");
+		permut();
+//		for (int i = 1; i < 10; i++) {
+//			System.out.println(calcPossibilities(10, i));
+//		}
+		
+		
 //		FeatureModel fm = createSimpleFM("OnlyRoot");
 //		PetriNet net = createBasePetriNet(fm);
 //
@@ -556,5 +562,105 @@ public class Main {
 //		TransactionalEditingDomain t = TransactionUtil.getEditingDomain(net2);
 //		ConvertFileWizard conFileWizard = c.createConvertFileWizard(modelURI, net2, t);
 //		System.out.println();
+	}
+
+	private static void permut() {
+		int min = 2,
+			max = 3,
+			size = 5,
+			count = 0;
+		int [] f = new int[size];
+		for (int i = 0; i < f.length; i++) {
+			f[i] = i;
+		}
+//		int [] permut1 = new int[min];
+//		for (int i = 0; i < size; i++) {
+//			for (int j = i+1; j < size; j++) {
+//				permut1[0] = f[i];
+//				permut1[1] = f[j];
+//				System.out.print(count++ + ":");
+//				print(permut1);
+//			}
+//		}
+//		int [] permut2 = new int[max];
+//		int [] indi = new int[max];
+//		for (indi[0] = 0; indi[0] < size; indi[0]++) {
+//			for (indi[1] = indi[0]+1; indi[1] < size; indi[1]++) {
+//				for (indi[2] = indi[1]+1; indi[2] < size; indi[2]++) {
+//					permut2[0] = f[indi[0]];
+//					permut2[1] = f[indi[1]];
+//					permut2[2] = f[indi[2]];
+//					System.out.print(count++ + ":");
+//					print(permut2);
+//				}
+//			}
+//		}
+		int[][][] x = new int[(max-min) + 1][][];
+		for (int i = min; i <= max; i++) {
+			x[i-min] = new int[calcPossibilities(size,i)][i];
+		}
+		p (f,x);
+		print(x);
+	}
+	
+	private static void print(int[][][] x) {
+		for (int i = 0; i < x.length; i++) {
+			for (int j = 0; j < x[i].length; j++) {
+				System.out.print("[");
+				for (int k = 0; k < x[i][j].length; k++) {
+					System.out.print(x[i][j][k]);
+					if (k+1 < x[i][j].length) {
+						System.out.print(",");
+					}
+				}
+				System.out.println("]");
+			}
+		}
+		
+	}
+
+	private static int calcPossibilities(int size, int i) {
+		int result = size;
+		for (int j = 1; j < i; j++) {
+			result *= size - j;
+		}
+		int teiler = i;
+		for (int j = 1; j < i; j++) {
+			teiler *= i - j;
+		}
+		return result/teiler;
+	}
+
+	private static int j = 0;
+	private static void p (int[] a, int[][][] x){
+		for (int i = 0; i < x.length; i++) {
+			int[] indizies = new int[x[i][0].length];
+			j=0;
+			f(x,a,i,0,indizies);
+		}
+	}
+	
+	private static void f(int[][][] x,int[] a, int i, int k,int[] indi) {
+		if (k == 0) {
+			for (indi[k] = 0; indi[k] < a.length; indi[k]++) {
+				if (k+1 == indi.length) {
+					x[i][j][k] = a[indi[k]];
+					j++;
+				}else {
+					f(x, a, i, k+1, indi);
+				}
+			}
+		}else{
+			for (indi[k] = indi[k-1]+1; indi[k] < a.length; indi[k]++) {
+				if (k+1 == indi.length) {
+					for (int l = 0; l <= k; l++) {
+						x[i][j][l] = a[indi[l]];
+					}
+					j++;
+				}else {
+					f(x, a, i, k+1, indi);
+				}
+			}
+		}
 	}
 }
