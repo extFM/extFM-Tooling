@@ -634,6 +634,9 @@ rule otherGroups2ptnet {
 		for (tuple in g.getFeatureCombinations(g.minCardinality, g.maxCardinality)) {
 			thisModule.otherGroup2(g,tuple,g_rem,i_g,p_added,g_added);
 		}
+--		for (f in g.childFeatures){
+--			thisModule.isNotPartOfCombination(f, g_rem);
+--		}
 	}
 }
 
@@ -693,9 +696,6 @@ rule otherGroup2(g : featuremodel!Group,
 			else
 				thisModule.isNotPartOfCombination(f,enable_features);
 		}
-		for (f in g.childFeatures){
-			thisModule.isNotPartOfCombination(f, g_rem);
-		}
 	}
 }
 
@@ -705,8 +705,10 @@ rule otherGroup2(g : featuremodel!Group,
 rule isPartOfCombination(f : featuremodel!Feature, enable_features : ptnet!Transition){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		f_enable : ptnet!Place = thisModule.resolveTemp(f, 'f_enable');
---		f_enable : ptnet!Place = pn.places->select(p | p.name <= f.id and p.name <= '_enable').first();
+--		f_enable : ptnet!Place = thisModule.resolveTemp(f, 'f_enable');
+		places_for_f : Sequence(ptnet!Place) = pn.places->select(p | p.name.startsWith(f.id));
+		places_en_f : Sequence(ptnet!Place) = places_for_f->select(p | p.name.endsWith('enabled'));
+		f_enable : ptnet!Place = places_en_f.first();
 	}
 	to
 		ef_fe_arc : ptnet!ArcToPlace (source <- enable_features, target <- f_enable)
@@ -721,8 +723,10 @@ rule isPartOfCombination(f : featuremodel!Feature, enable_features : ptnet!Trans
 rule isNotPartOfCombination(f  : featuremodel!Feature, enable_features : ptnet!Transition){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		f_disable : ptnet!Place = thisModule.resolveTemp(f, 'f_disable');
---		f_disable : ptnet!Place = pn.places->select(p | p.name <= f.id and p.name <= '_disable').first();
+--		f_disable : ptnet!Place = thisModule.resolveTemp(f, 'f_disable');
+		places_for_f : Sequence(ptnet!Place) = pn.places->select(p | p.name.startsWith(f.id));
+		places_dis_f : Sequence(ptnet!Place) = places_for_f->select(p | p.name.endsWith('disabled'));
+		f_disable : ptnet!Place = places_dis_f.first();
 	}
 	to
 		ef_fd_arc : ptnet!ArcToPlace (source <- enable_features, target <- f_disable)
