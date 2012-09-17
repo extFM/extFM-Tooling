@@ -21,3 +21,6 @@ there could not be any longer the dependencies to the projects
 resolved.
 
 Therefore, the seda plugins hub.top.sed.rcp and org.st.seda.rcp report errors.
+Workaround: Install the old bundles from the Eclipse 3.8 update site.
+
+http://download.eclipse.org/eclipse/updates/3.8
