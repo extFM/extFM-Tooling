@@ -1,0 +1,23 @@
+To use feature model to petri net transformation the following plugins are needed:
+
+
+1. Checkout Seda Sources anonymously from SVN in workspace:
+svn://svn.gna.org/svn/service-tech/trunk/Service-Tech-Java/seda
+checkout all sub projects, except extensions not needed)
+
+2. Checkout Pnapi Sources anonymously from SVN in workspace:
+svn://svn.gna.org/svn/service-tech/trunk/Service-Tech-Java/pnapi
+(url points to a plugin project)
+
+3. Install Textual Editing Framework from Update Site in Eclipse:
+http://tef.berlios.de/updatesite
+
+Note: As in Eclipse Juno, the old update manager is removed, 
+there could not be any longer the dependencies to the projects
+ - org.eclipse.update.configurator
+ - org.eclipse.update.core
+ - org.eclipse.update.scheduler
+ - org.eclipse.update.ui
+resolved.
+
+Therefore, the seda plugins hub.top.sed.rcp and org.st.seda.rcp report errors.

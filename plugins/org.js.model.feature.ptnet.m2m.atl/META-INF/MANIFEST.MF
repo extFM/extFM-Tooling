@@ -10,7 +10,6 @@ Require-Bundle: org.eclipse.ui,
  org.junit,
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.emf.workspace;bundle-version="1.5.1",
- org.st.seda.rcp;bundle-version="2.0.0",
  hub.top.editor.ptnetLoLA;bundle-version="1.1.1"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
