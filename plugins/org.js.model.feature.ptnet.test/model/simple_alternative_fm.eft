@@ -1,8 +1,0 @@
-feature model "simple_alternative_fm"
-
-feature "root" <root> {
-	group <gr0> (1..1) {
-		feature "f1" <f1>;
-		feature "f2" <f2>;
-	}
-}
