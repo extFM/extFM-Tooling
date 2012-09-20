@@ -1,6 +1,14 @@
 To use feature model to petri net transformation the following plugins are needed:
 
+1. Checkout EMFText from http://emftext.org/update
+2. Checkout M2M ATL SDK 3.1.1 from http://download.eclipse.org/modeling/m2m/updates/releases/
+3. Checkout Petri Net API/Java, Petri net editors and SEDA Application from http://download.gna.org/service-tech/seda/updates/	
 
+4. Build feature model from feature.genmodel (in org.js.model.feature)
+5. Build feature EMFText from feature.cs (in org.js.model.feature)
+
+
+OLD:
 1. Checkout Seda Sources anonymously from SVN in workspace:
 svn://svn.gna.org/svn/service-tech/trunk/Service-Tech-Java/seda
 checkout all sub projects, except extensions not needed)
