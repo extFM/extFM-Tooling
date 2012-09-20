@@ -2,7 +2,7 @@
 -- @path featuremodel=/org.js.model.feature.ptnet.m2m.atl/models/feature.ecore
 
 module feature2ptnet;
-create OUT : ptnet from IN : featuremodel;
+create OUT : ptnet from IN : fm;
 
 --helper [context context_type]? def : helper_name(parameters) : return_type = exp;
 -------------------------------------------------------------------------------
@@ -25,21 +25,21 @@ helper def : end : ptnet!Transition = OclUndefined;
 
 -- calculates the number of combinations for the number of elements in a combination
 -- num number of elements in a combination
---helper context featuremodel!Group def : getNumberOfCombinations(num : Integer) : Integer =
+--helper context fm!Group def : getNumberOfCombinations(num : Integer) : Integer =
 --	let max : Integer = self.childFeatures.size() in
 --	let min : Integer = self.childFeatures.size() - num in
 --	let top : Integer = thisModule.factorial(min, max) in
 --	let bot : Integer = thisModule.factoriel(0, num) in top / bot;
 
 -- get the features for the given indizies
-helper def : getFeatureTupel (indizies : Sequence(Integer), features : Sequence(featuremodel!Feature), index : Integer) : Sequence(featuremodel!Feature) =
+helper def : getFeatureTupel (indizies : Sequence(Integer), features : Sequence(fm!Feature), index : Integer) : Sequence(fm!Feature) =
 	if index = indizies.size() then
 		let w : Integer = indizies.at(index) in
 		Sequence{features->at(w)}
 	else
 		let w : Integer = indizies->at(index) in
-		let x : Sequence(featuremodel!Feature) = Sequence{features->at(w)} in 
-		let y : Sequence(featuremodel!Feature) = thisModule.getFeatureTupel(indizies,features,index +1) in
+		let x : Sequence(fm!Feature) = Sequence{features->at(w)} in 
+		let y : Sequence(fm!Feature) = thisModule.getFeatureTupel(indizies,features,index +1) in
 		x->union(y)
 	endif
 ;
@@ -91,9 +91,9 @@ helper def : incIndex(indizies : Sequence(Integer), index : Integer, max : Seque
 ;
 
 -- collects the feature tupel and increases the indizies for the next combination until the indizies cant be increased any more
-helper def : calcCombinations(indizies : Sequence(Integer), features : Sequence(featuremodel!Feature)) : Sequence(Sequence(featuremodel!Feature)) =
-	let first : Sequence(featuremodel!Feature) = thisModule.getFeatureTupel(indizies, features, 1) in
-	let x : Sequence(Sequence(featuremodel!Feature)) = Sequence{first} in
+helper def : calcCombinations(indizies : Sequence(Integer), features : Sequence(fm!Feature)) : Sequence(Sequence(fm!Feature)) =
+	let first : Sequence(fm!Feature) = thisModule.getFeatureTupel(indizies, features, 1) in
+	let x : Sequence(Sequence(fm!Feature)) = Sequence{first} in
 	if thisModule.canIncIndex(indizies,  features.size()) then
 		let indi : Sequence(Integer) = thisModule.incIndex(indizies,indizies.size(), features.size()) in
 		x.union(thisModule.calcCombinations(indi, features))
@@ -105,14 +105,14 @@ helper def : calcCombinations(indizies : Sequence(Integer), features : Sequence(
 -- get all possible combinations of features
 -- start init with min cardinality
 -- end init with max cardinality
-helper context featuremodel!Group def : getFeatureCombinations(start : Integer, end : Integer) : Sequence(Sequence(featuremodel!Feature)) =
+helper context fm!Group def : getFeatureCombinations(start : Integer, end : Integer) : Sequence(Sequence(fm!Feature)) =
 	if start = end then
 		let indizies : Sequence(Integer) = thisModule.initIndizies(1,start) in
 		thisModule.calcCombinations(indizies,self.childFeatures.asSequence())
 	else
 		let indizies : Sequence(Integer) = thisModule.initIndizies(1,start) in
-		let x : Sequence(Sequence(featuremodel!Feature)) = thisModule.calcCombinations(indizies,self.childFeatures.asSequence()) in
-		let y : Sequence(Sequence(featuremodel!Feature)) = self.getFeatureCombinations(start+1,end) in
+		let x : Sequence(Sequence(fm!Feature)) = thisModule.calcCombinations(indizies,self.childFeatures.asSequence()) in
+		let y : Sequence(Sequence(fm!Feature)) = self.getFeatureCombinations(start+1,end) in
 		x.union(y)
 	endif
 ;
@@ -124,7 +124,7 @@ helper context featuremodel!Group def : getFeatureCombinations(start : Integer, 
 --3 for inclusive or
 --4 for exclusive optional
 --5 for other
-helper context featuremodel!Group def : groupCardinality() : Integer = 
+helper context fm!Group def : groupCardinality() : Integer = 
 	if ((self.minCardinality = self.maxCardinality) and (self.childFeatures->size() = self.maxCardinality))
 	then
 		0 -- mandatory
@@ -154,7 +154,7 @@ helper context featuremodel!Group def : groupCardinality() : Integer =
 ;
 
 -- combines all feature ids in a string
-helper def : getCombineIDs(features : Sequence(featuremodel!Feature)) : String = 
+helper def : getCombineIDs(features : Sequence(fm!Feature)) : String = 
 	if features.size() = 1 then
 		'[' + features->first().id + ']'
 	else
@@ -164,7 +164,7 @@ helper def : getCombineIDs(features : Sequence(featuremodel!Feature)) : String =
 ;
 	
 -- in case more then one feature are in features of getCombineIDs
-helper def : getCombineIDs2(features : Sequence(featuremodel!Feature), index : Integer) : String =
+helper def : getCombineIDs2(features : Sequence(fm!Feature), index : Integer) : String =
 	if index = features->size() then
 		features->at(index).id
 	else
@@ -173,6 +173,29 @@ helper def : getCombineIDs2(features : Sequence(featuremodel!Feature), index : I
 	endif
 ;
 
+-- checks if an Expression is an implies expression between two features
+helper context fm!Expression def : isImplies() : Boolean =
+	if self->oclIsKindOf(fm!ImpliesExpression) then 
+		let x : fm!ImpliesExpression = self in
+		let left : fm!Expression = x.operand1 in
+		let right : fm!Expresion = x.operand2 in
+		if left.oclIsKindOf(fm!AtomicExpression) and right.oclIsKindOf(fm!AtomicExpression) then
+			true
+		else
+			false
+		endif
+	else 
+		if self.oclIsKindOf(fm!NestedExpression) then
+			let x : fm!NestedExpression = self in
+			let y : fm!Expression = x.operand in
+			x.isImplies()
+		else
+			false
+		endif
+	endif
+;
+		
+	
 -- get the ptNet
 helper def : getPtNet(): ptnet!PtNet = ptnet!PtNet->allInstances()->first();
 
@@ -183,7 +206,7 @@ helper def : getPtNet(): ptnet!PtNet = ptnet!PtNet->allInstances()->first();
 -- Basic Elements of the Petri Net
 rule initPt{
 	from
-		fm : featuremodel!FeatureModel
+		model : fm!FeatureModel
 	to
 		i : ptnet!Place (name <- 'i',token <- 1),
 		o : ptnet!Place (name <- 'o'),
@@ -209,7 +232,7 @@ rule initPt{
 
 -- Choice for every Feature. Connected to start and end transition
 rule feature2ptnet {
-	from f : featuremodel!Feature
+	from f : fm!Feature
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 	}
@@ -241,15 +264,15 @@ rule feature2ptnet {
 
 -- Mandatory Feature groups
 rule mandatoryGroup2ptnet {
-	from g : featuremodel!Group (if g.groupCardinality() = 0 then
+	from g : fm!Group (if g.groupCardinality() = 0 then
 			true
 		else
 			false
 		endif
 	)
 	using{
-		parent : featuremodel!Feature = g.parentFeature;
-		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		parent : fm!Feature = g.parentFeature;
+		childs :  Sequence(fm!Feature) = g.childFeatures;
 	}
 	do {
 		for(c in childs) {
@@ -261,7 +284,7 @@ rule mandatoryGroup2ptnet {
 -- Mandatory feature connection
 -- p parent of child
 -- c child of parent
-rule mgroup (p : featuremodel!Feature, c : featuremodel!Feature){
+rule mgroup (p : fm!Feature, c : fm!Feature){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -300,7 +323,7 @@ rule mgroup (p : featuremodel!Feature, c : featuremodel!Feature){
 
 -- optional Feature groups
 rule optionalGroup2ptnet {
-	from g : featuremodel!Group (if g.groupCardinality() = 1 then
+	from g : fm!Group (if g.groupCardinality() = 1 then
 			true
 		else
 			false
@@ -308,8 +331,8 @@ rule optionalGroup2ptnet {
 	)
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : featuremodel!Feature = g.parentFeature;
-		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		parent : fm!Feature = g.parentFeature;
+		childs :  Sequence(fm!Feature) = g.childFeatures;
 	}
 	do {
 		for(c in childs) {
@@ -321,7 +344,7 @@ rule optionalGroup2ptnet {
 -- optional feature group connection
 -- p parent of child
 -- c child of parent
-rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature){
+rule optGroup (p : fm!Feature, c : fm!Feature){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -348,7 +371,7 @@ rule optGroup (p : featuremodel!Feature, c : featuremodel!Feature){
 
 -- aternative group
 rule alternativeGroup2ptnet{
-	from g : featuremodel!Group (if g.groupCardinality() = 2 then
+	from g : fm!Group (if g.groupCardinality() = 2 then
 			true
 		else
 			false
@@ -356,8 +379,8 @@ rule alternativeGroup2ptnet{
 		)
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : featuremodel!Feature = g.parentFeature;
-		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		parent : fm!Feature = g.parentFeature;
+		childs :  Sequence(fm!Feature) = g.childFeatures;
 		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
 	}
 	to
@@ -382,7 +405,7 @@ rule alternativeGroup2ptnet{
 -- c_added place if a child is added
 -- p_added place if the parent is added
 -- childs all feature children of the current group
-rule altGroup(p : featuremodel!Feature,c : featuremodel!Feature,c_added : ptnet!Place,p_added : ptnet!Place,childs : Sequence(featuremodel!Feature)) {
+rule altGroup(p : fm!Feature,c : fm!Feature,c_added : ptnet!Place,p_added : ptnet!Place,childs : Sequence(fm!Feature)) {
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -411,7 +434,7 @@ rule altGroup(p : featuremodel!Feature,c : featuremodel!Feature,c_added : ptnet!
 -- c_can_removed place that indicates if an child can be removed
 -- c_removed place that enables the adding of a child
 -- c an other child 
-rule altGroup2(c_can_removed : ptnet!Place, c_removed : ptnet!Place, c : featuremodel!Feature){
+rule altGroup2(c_can_removed : ptnet!Place, c_removed : ptnet!Place, c : fm!Feature){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
@@ -428,7 +451,7 @@ rule altGroup2(c_can_removed : ptnet!Place, c_removed : ptnet!Place, c : feature
 
 -- inclusive or groups
 rule incOrGroup2ptnet {
-	from g : featuremodel!Group (if g.groupCardinality() = 3 then
+	from g : fm!Group (if g.groupCardinality() = 3 then
 			true
 		else
 			false
@@ -436,8 +459,8 @@ rule incOrGroup2ptnet {
 		)
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : featuremodel!Feature = g.parentFeature;
-		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		parent : fm!Feature = g.parentFeature;
+		childs :  Sequence(fm!Feature) = g.childFeatures;
 		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
 	}
 	to
@@ -458,7 +481,7 @@ rule incOrGroup2ptnet {
 -- c current child
 -- c_added a place that is enabled after one child is added
 -- childs all feature children from parent for this group
-rule incOrGroup (p : featuremodel!Feature, c : featuremodel!Feature, c_added : ptnet!Place, childs : Sequence(featuremodel!Feature)){
+rule incOrGroup (p : fm!Feature, c : fm!Feature, c_added : ptnet!Place, childs : Sequence(fm!Feature)){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -500,7 +523,7 @@ rule incOrGroup (p : featuremodel!Feature, c : featuremodel!Feature, c_added : p
 -- relation between children
 -- c_can_removed place that indicates if a child can be removed
 -- child an other child
-rule incOrGroup2 (c_can_removed : ptnet!Place, child : featuremodel!Feature){
+rule incOrGroup2 (c_can_removed : ptnet!Place, child : fm!Feature){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		c_add : ptnet!Transition = thisModule.resolveTemp(child, 'add');
@@ -514,7 +537,7 @@ rule incOrGroup2 (c_can_removed : ptnet!Place, child : featuremodel!Feature){
 
 -- exclusive optional groups
 rule exOptionalGroup2ptnet {
-	from g : featuremodel!Group (if g.groupCardinality() = 4 then
+	from g : fm!Group (if g.groupCardinality() = 4 then
 			true
 		else
 			false
@@ -522,8 +545,8 @@ rule exOptionalGroup2ptnet {
 	)
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : featuremodel!Feature = g.parentFeature;
-		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		parent : fm!Feature = g.parentFeature;
+		childs :  Sequence(fm!Feature) = g.childFeatures;
 	}
 	to
 		parent_added : ptnet!Place (name <- 'p_added_' + parent.id),
@@ -542,7 +565,7 @@ rule exOptionalGroup2ptnet {
 -- c child of the parent feature of the group
 -- parent_added a Place that indicates that the parent feature is added
 -- childs all children from the parent feature from the group
-rule exOptGroup (p : featuremodel!Feature, c : featuremodel!Feature, parent_added : ptnet!Place, childs :  Sequence(featuremodel!Feature)){
+rule exOptGroup (p : fm!Feature, c : fm!Feature, parent_added : ptnet!Place, childs :  Sequence(fm!Feature)){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
@@ -583,7 +606,7 @@ rule exOptGroup2(c_add : ptnet!Transition, place : ptnet!Place){
 
 -- other groups to ptnet
 rule otherGroups2ptnet {
-	from g : featuremodel!Group (if g.groupCardinality() = 5 then
+	from g : fm!Group (if g.groupCardinality() = 5 then
 			true
 		else
 			false
@@ -591,10 +614,10 @@ rule otherGroups2ptnet {
 	)
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : featuremodel!Feature = g.parentFeature;
+		parent : fm!Feature = g.parentFeature;
 		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
 		p_rem : ptnet!Transition = thisModule.resolveTemp(parent, 'rem');
-		childs :  Sequence(featuremodel!Feature) = g.childFeatures;
+		childs :  Sequence(fm!Feature) = g.childFeatures;
 	}
 	to
 		g_rem : ptnet!Transition (name <- '-' + g.id),
@@ -643,7 +666,7 @@ rule otherGroups2ptnet {
 -- other feature group connection
 -- p parent of child
 -- c child of parent
-rule otherGroup (p : featuremodel!Feature, c : featuremodel!Feature, g_rem : ptnet!Transition){
+rule otherGroup (p : fm!Feature, c : fm!Feature, g_rem : ptnet!Transition){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 		add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
@@ -671,8 +694,8 @@ rule otherGroup (p : featuremodel!Feature, c : featuremodel!Feature, g_rem : ptn
 -- i_g enables the group
 -- p_added enables the group
 -- g_added indicates that the group is added
-rule otherGroup2(g : featuremodel!Group,
-				 tuple : Sequence(featuremodel!Feature), 
+rule otherGroup2(g : fm!Group,
+				 tuple : Sequence(fm!Feature), 
 				 g_rem : ptnet!Transition,
 				 i_g : ptnet!Place,
 				 p_added : ptnet!Place,
@@ -702,7 +725,7 @@ rule otherGroup2(g : featuremodel!Group,
 -- enable enable of a feature by the transition
 -- f the feature
 -- enable_features the transition
-rule isPartOfCombination(f : featuremodel!Feature, enable_features : ptnet!Transition){
+rule isPartOfCombination(f : fm!Feature, enable_features : ptnet!Transition){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 --		f_enable : ptnet!Place = thisModule.resolveTemp(f, 'f_enable');
@@ -720,7 +743,7 @@ rule isPartOfCombination(f : featuremodel!Feature, enable_features : ptnet!Trans
 -- enable disable of a feature by the transition
 -- f the feature
 -- enable_features the transition
-rule isNotPartOfCombination(f  : featuremodel!Feature, enable_features : ptnet!Transition){
+rule isNotPartOfCombination(f  : fm!Feature, enable_features : ptnet!Transition){
 	using{
 		pn: ptnet!PtNet = thisModule.getPtNet();
 --		f_disable : ptnet!Place = thisModule.resolveTemp(f, 'f_disable');
