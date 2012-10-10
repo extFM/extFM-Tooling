@@ -12,5 +12,4 @@
             class="org.js.model.feature.FeaturePackage"
             genModel="model/feature.genmodel"/>
    </extension>
-
 </plugin>

@@ -22,10 +22,17 @@
     </genEnums>
     <genClasses ecoreClass="feature.ecore#//FeatureModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//FeatureModel/name"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/parent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/children"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/root"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/constraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/domainContainer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/constraintContainer"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//DomainContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//DomainContainer/domains"/>
+      <genFeatures children="true" createChild="true" propertyCategory="" propertyDescription=""
+          propertySortChoices="true" ecoreFeature="ecore:EReference feature.ecore#//DomainContainer/domainValues"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//ConstraintContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//ConstraintContainer/constraints"/>
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/name"/>
@@ -33,7 +40,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/attributes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/groups"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Feature/parentGroup"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/annotations"/>
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Group">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Group/parentFeature"/>
@@ -43,26 +49,33 @@
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Constraint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Constraint/expression"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Constraint/constraintContainer"/>
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/value"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Attribute/feature"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Attribute/domain"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Attribute/value"/>
     </genClasses>
-    <genClasses ecoreClass="feature.ecore#//Annotation">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Annotation/feature"/>
-    </genClasses>
-    <genClasses ecoreClass="feature.ecore#//EnumDomain">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//EnumDomain/values"/>
+    <genClasses ecoreClass="feature.ecore#//DiscreteDomain">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//DiscreteDomain/subDomains"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//DiscreteDomain/parentDomain"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference feature.ecore#//DiscreteDomain/values"/>
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//ContinuousDomain">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//ContinuousDomain/intervals"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference feature.ecore#//ContinuousDomain/subDomains"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference feature.ecore#//ContinuousDomain/parentDomain"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="feature.ecore#//Domain"/>
+    <genClasses image="false" ecoreClass="feature.ecore#//Domain">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Domain/domainContainer"/>
+    </genClasses>
     <genClasses ecoreClass="feature.ecore#//Interval">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Interval/lowerBound"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Interval/upperBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Interval/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Interval/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="feature.ecore#//DomainValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//DomainValue/value"/>
     </genClasses>
     <genClasses image="false" ecoreClass="feature.ecore#//Expression"/>
     <genClasses image="false" ecoreClass="feature.ecore#//UnaryExpression">
@@ -80,6 +93,7 @@
     <genClasses ecoreClass="feature.ecore#//AndExpression"/>
     <genClasses ecoreClass="feature.ecore#//OrExpression"/>
     <genClasses ecoreClass="feature.ecore#//ImpliesExpression"/>
+    <genClasses ecoreClass="feature.ecore#//ExcludesExpression"/>
     <genClasses ecoreClass="feature.ecore#//NestedExpression"/>
     <genClasses image="false" ecoreClass="feature.ecore#//Identifiable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Identifiable/id"/>
@@ -89,7 +103,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeComparisonExpression/attribute2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//AttributeComparisonExpression/operator"/>
     </genClasses>
-    <genClasses ecoreClass="feature.ecore#//ExcludesExpression"/>
     <genClasses ecoreClass="feature.ecore#//AttributeReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeReference/attribute"/>
     </genClasses>
