@@ -1,0 +1,46 @@
+feature model "Automotive Multimedia Software Product Line"
+domain <CoverColor> [red, green, blue]
+domain <BGColor> [black, white, green, blue]
+domain <Boolean> [true, false]
+domain <Interval> [10..20, 30..50]
+domain <Level> [1..10]
+domainValues {black white green blue red true false 1 10 20 30 50}
+
+feature "Automotive Multimedia" <AutomotiveMultimedia>
+	group <AutomotiveMultimediaGroup> (1..4) {
+		feature "Audio Player" <AudioPlayer>
+			group <AudioPlayerGroup> (1..3) {
+				feature "Radio" <Radio>
+				feature "Cassette Player" <CassettePlayer>
+				feature "CD Player" <CDPlayer>
+					#coverColor [CoverColor] := red
+					#hasUSBPort [Boolean]
+					#numberOfTitles [Interval]
+					group <CDPlayerGroup> (1..1)
+					{
+						feature "Audio CD Player" <AudioCDPlayer>
+						feature "MP3 CD Player" <MP3CDPlayer>
+					}
+			}
+	
+		feature "Voice Recognition" <VoiceRecognition>
+		feature "Personal Navigation" <PersonalNavigation>
+			#backgroundColor [BGColor] 
+			group <PersonalNavigationGroup> (1..1) {
+				feature "Maps" <Maps>
+					#levelOfDetail [Level]
+					group <MapsGroup> (1..5) {
+						feature "Europe" <Europe>
+						feature "North America" <NorthAmerica>
+						feature "Central America" <CentralAmerica>
+						feature "South America" <SouthAmerica>
+						feature "Asia" <Asia>
+					}
+			}
+		feature "On-board Computer" <OnBoardComputer>
+	}
+
+constraint <VoiceRecognitionConstraints> VoiceRecognition -> AudioPlayer || PersonalNavigation;
+constraint <ReadableNavigationConstraint> (PersonalNavigation && CDPlayer) -> PersonalNavigation#backgroundColor != CDPlayer#coverColor;
+constraint <ArbitraryConstraint> ((CassettePlayer || Radio) && !CDPlayer) excludes VoiceRecognition;
+constraint <AnotherConstraint> CDPlayer#numberOfTitles < 30 -> hasUSBPort == true;
