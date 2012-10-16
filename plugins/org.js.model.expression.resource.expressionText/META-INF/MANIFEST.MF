@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: expressionText
+Bundle-SymbolicName: org.js.model.expression.resource.expressionText;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.emftext.commons.antlr3_4_0,
+  org.js.model.expression,
+  org.js.model.feature
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.js.model.expression.resource.expressionText,
+  org.js.model.expression.resource.expressionText.analysis,
+  org.js.model.expression.resource.expressionText.mopp,
+  org.js.model.expression.resource.expressionText.debug,
+  org.js.model.expression.resource.expressionText.launch,
+  org.js.model.expression.resource.expressionText.grammar,
+  org.js.model.expression.resource.expressionText.util
+Bundle-Activator: org.js.model.expression.resource.expressionText.mopp.ExpressionTextPlugin
