@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.js.model.expression/src/gen/java" editDirectory="/org.js.model.expression.edit/src/gen/java"
+    editorDirectory="/org.js.model.expression.editor/src/gen/java" modelPluginID="org.js.model.expression"
+    modelName="expression" testsDirectory="/org.js.model.expression.tests/src/gen/java"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature">
+  <foreignModel>Expression.ecore</foreignModel>
+  <genPackages prefix="expression" basePackage="org.js.model" disposableProviderFactory="true"
+      ecorePackage="Expression.ecore#/">
+    <genClasses ecoreClass="Expression.ecore#//ExpressionModel">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/featureModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Expression"/>
+  </genPackages>
+</genmodel:GenModel>
