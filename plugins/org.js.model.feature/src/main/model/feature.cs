@@ -52,29 +52,23 @@ TOKENSTYLES {
 
 RULES {
 	FeatureModel ::= "feature" #1 "model" #1 name['"','"'] !0!0
-						domainContainer? !0 root !0 constraintContainer? !0; 
+						domains* !0 root !0 constraints* !0; 
 						
-	Feature ::= selected[selected : "selected", deselected : "deselected", undetermined : ""] "feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
-//						((!0 #4 ("#" attributes)) (!0 #4 ("#" attributes))*)? 
-						((!0 #4 (attributes))*)? 
-						//Order is mandatory for correct printing!
-//						(";" | (!0 "{" !1 groups+ !0 "}")) !1;
-						((!0 #4 (groups))*)?; 
+	Feature ::= selected[selected : "selected", deselected : "deselected", undetermined : ""] 
+				"feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
+				//Order is mandatory for correct printing!
+				((!0 #4 (attributes))*)? 
+				((!0 #4 (groups))*)?; 
+	
 	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
 						#1 "{" !0 childFeatures+ !0 "}" !1;
 	Attribute ::= "#" name[TEXT] #1 "[" #1 domain[] #1 "]" (#1 ":=" #1 (value[INTEGER] | value[TEXT]))?;
 
-	DomainContainer ::= (!0 domains+ !0)? ("domainValues" #1 "{" domainValues+ "}")?;
-	DomainValue ::= (value[INTEGER] | value[TEXT]);
-	
 	ContinuousDomain ::= "domain" #1 "<" id[TEXT] ">" "[" intervals ("," #1 intervals)* "]";
-
 	Interval ::= lowerBound[INTEGER] ".." upperBound[INTEGER];
 
 	DiscreteDomain ::= "domain"  #1 "<" id[TEXT] ">" "[" values[TEXT] ("," #1 values[TEXT])* "]";
 
-	ConstraintContainer ::= (!0 constraints+ !0)? ;
-		
 	Constraint ::= "constraint" #1 "<" id[TEXT] ">" #1 expression ";" !0;
 	//Expression
 	@Operator(type="primitive", weight="5", superclass="Expression")
@@ -82,10 +76,6 @@ RULES {
 	
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	FeatureReference ::= feature[];
-	
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeComparisonExpression ::= attribute1 operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] attribute2;
-		
 	@Operator(type="unary_prefix", weight="4", superclass="Expression")
 	NotExpression ::= "!" operand;
 	
@@ -101,6 +91,9 @@ RULES {
 	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
 	ExcludesExpression ::= operand1 #1 "excludes" #1 operand2;
 	
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	AttributeComparisonExpression ::= attribute1 operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] attribute2;
+		
 	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
 	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
 }

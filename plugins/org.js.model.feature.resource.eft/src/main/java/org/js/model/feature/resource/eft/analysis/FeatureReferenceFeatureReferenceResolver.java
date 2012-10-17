@@ -11,7 +11,6 @@ public class FeatureReferenceFeatureReferenceResolver implements org.js.model.fe
 	private org.js.model.feature.resource.eft.analysis.EftDefaultResolverDelegate<org.js.model.feature.FeatureReference, org.js.model.feature.Feature> delegate = new org.js.model.feature.resource.eft.analysis.EftDefaultResolverDelegate<org.js.model.feature.FeatureReference, org.js.model.feature.Feature>();
 	
 	public void resolve(String identifier, org.js.model.feature.FeatureReference container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, final org.js.model.feature.resource.eft.IEftReferenceResolveResult<org.js.model.feature.Feature> result) {
-//		System.out.println("trying to resolve: " + identifier);
 		delegate.resolve(identifier, container, reference, position, resolveFuzzy, result);
 	}
 	

@@ -12,7 +12,6 @@ import hub.top.editor.ptnetLoLA.impl.PtnetLoLAFactoryImpl;
 
 import org.eclipse.emf.common.util.EList;
 import org.js.model.feature.Constraint;
-import org.js.model.feature.ConstraintContainer;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.Group;
@@ -188,12 +187,9 @@ public class FmtoPtNetImpl implements FMtoPtNet {
     * @param fm the {@link FeatureModel} with the {@link Constraint}
     */
    private void addConstraints(PtNet net, FeatureModel fm) {
-      ConstraintContainer container = fm.getConstraintContainer();
-      if (container != null){
-         EList<Constraint> constraints = container.getConstraints();
-         for (Constraint constraint : constraints) {
-            // TODO constraint transformation
-         }
+      EList<Constraint> constraints = fm.getConstraints();
+      for (Constraint constraint : constraints) {
+          // TODO constraint transformation
       }
    }
 
