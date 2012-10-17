@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="org.js.model.rbac.resource.rbactext.ui.RbactextUIMetaInformation" id="org.js.model.rbac.resource.rbactext.ui.RbactextUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.js.model.rbac.resource.rbactext.ui.RbactextEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="rbactext" icon="icons/editor_icon.gif" id="org.js.model.rbac.resource.rbactext.ui.RbactextEditor" name="EMFText rbactext Editor">
+			<contentTypeBinding contentTypeId="org.js.model.rbac.resource.rbactext">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="org.js.model.rbac.resource.rbactext.ui.RbactextPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="Rbactext Text Editor" id="org.js.model.rbac.resource.rbactext.ui.RbactextPreferencePage" class="org.js.model.rbac.resource.rbactext.ui.RbactextPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="org.js.model.rbac.resource.rbactext.ui.RbactextSyntaxColoringPreferencePage" class="org.js.model.rbac.resource.rbactext.ui.RbactextSyntaxColoringPreferencePage" category="org.js.model.rbac.resource.rbactext.ui.RbactextPreferencePage">
+		</page>
+		<page name="Brackets" id="org.js.model.rbac.resource.rbactext.ui.RbactextBracketPreferencePage" class="org.js.model.rbac.resource.rbactext.ui.RbactextBracketPreferencePage" category="org.js.model.rbac.resource.rbactext.ui.RbactextPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.js.model.rbac.resource.rbactext.ui.RbactextNewFileWizard" id="org.js.model.rbac.resource.rbactext.ui.RbactextNewFileWizard" name="EMFText .rbactext file">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.js.model.rbac.resource.rbactext.ui.RbactextNewProjectWizard" id="org.js.model.rbac.resource.rbactext.ui.RbactextNewProjectWizard" name="EMFText rbactext project" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="org.js.model.rbac.resource.rbactext.ui.RbactextMarkerResolutionGenerator" markerType="org.js.model.rbac.resource.rbactext.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="org.js.model.rbac.resource.rbactext.ui.RbactextAnnotationModelFactory" extensions="rbactext">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="org.js.model.rbac.resource.rbactext" name=".rbactext File" base-type="org.eclipse.core.runtime.text" file-extensions="rbactext">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="rbactext" id="org.js.model.rbac.resource.rbactext.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.js.model.rbac.resource.rbactext.ui.occurences">
+		</type>
+		<type name="org.js.model.rbac.resource.rbactext.ui.occurences.declaration" super="org.js.model.rbac.resource.rbactext.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.js.model.rbac.resource.rbactext.ui.occurences" label="Occurrences (in .rbactext files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="rbactext.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="rbactext.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="rbactext.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="rbactext.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="rbactext.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="rbactext.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="rbactext.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="rbactext.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="rbactext.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="org.js.model.rbac.resource.rbactext.ui.occurences.declaration" label="Declarations (in .rbactext files)" textPreferenceKey="rbactext.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="rbactext.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="rbactext.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="rbactext.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="rbactext.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="rbactext.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType" id="org.js.model.rbactext.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType" class="org.js.model.rbac.resource.rbactext.ui.launch.RbactextLaunchConfigurationTabGroup" id="org.js.model.rbactext.launchConfigurationTabGroup" helpContextId="org.js.model.rbactext.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug rbactext model.">
+			</launchMode>
+			<launchMode mode="run" description="Run rbactext model.">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="rbactext Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.js.model.rbactext.launch" modes="run,debug" class="org.js.model.rbac.resource.rbactext.ui.launch.RbactextLaunchShortcut" description="Launch a rbactext model" id="org.js.model.rbactext.launchShortcut">
+			<description description="Run rbactext model" mode="run">
+			</description>
+			<description description="Debug rbactext model" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="org.js.model.rbactext.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="org.js.model.rbactext.PropertyTester" type="java.lang.Object" namespace="org.js.model.rbactext" properties="isLaunchable" class="org.js.model.rbac.resource.rbactext.ui.RbactextPropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.js.model.rbac.resource.rbactext.ui.debug.lineBreakpoint" markerType="org.js.model.rbac.resource.rbactext.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.js.model.rbac.resource.rbactext.ui.debug.lineBreakpoint" label="Breakpoints (in .rbactext files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.js.model.rbac.resource.rbactext.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.js.model.rbac.resource.rbactext.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.js.model.rbac.resource.rbactext.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.js.model.rbac.resource.rbactext.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.js.model.rbac.resource.rbactext.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.js.model.rbac.resource.rbactext.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.js.model.rbac.resource.rbactext.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.js.model.rbac.resource.rbactext.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.js.model.rbac.resource.rbactext.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="org.js.model.rbac.resource.rbactext.ui.RbactextEditor" class="org.js.model.rbac.resource.rbactext.ui.debug.RbactextAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.js.model.rbac.resource.rbactext.debug.RbactextDebugVariable" class="org.js.model.rbac.resource.rbactext.ui.debug.RbactextAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.js.model.rbac.resource.rbactext.debug.RbactextDebugVariable" class="org.js.model.rbac.resource.rbactext.ui.debug.RbactextAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="org.js.model.rbac.resource.rbactext.ui.RulerPopupActions" targetID="org.js.model.rbac.resource.rbactext.EditorRuler">
+			<action id="org.js.model.rbac.resource.rbactext.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="org.js.model.rbac.resource.rbactext.ui.RbactextEditor" id="org.js.model.rbac.resource.rbactext.ui.BreakpointRulerActions">
+			<action id="org.js.model.rbac.resource.rbactext.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="org.js.model.rbac.resource.rbactext.debugModel" class="org.js.model.rbac.resource.rbactext.ui.debug.RbactextDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>

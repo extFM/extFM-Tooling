@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="org.js.model.rbac.resource.rbactext.mopp.RbactextMetaInformation" id="org.js.model.rbac.resource.rbactext.mopp.RbactextMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.eclipse.core.resources.problemmarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<super type="org.eclipse.emf.ecore.diagnostic">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.problem.syntax_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.rbac.resource.rbactext.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.problem.print_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.rbac.resource.rbactext.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.problem.unresolved_reference" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.rbac.resource.rbactext.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.problem.analysis_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.rbac.resource.rbactext.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.problem.builder_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.js.model.rbac.resource.rbactext.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.nature" name="rbactext nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="org.js.model.rbac.resource.rbactext.mopp.RbactextNature">
+			</run>
+		</runtime>
+		<builder id="org.js.model.rbac.resource.rbactext.builder">
+		</builder>
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="org.js.model.rbac.resource.rbactext.builder" name="rbactext Builder">
+		<builder hasNature="true">
+			<run class="org.js.model.rbac.resource.rbactext.mopp.RbactextBuilderAdapter">
+			</run>
+		</builder>
+	</extension>
+	
+	<extension-point id="org.js.model.rbac.resource.rbactext.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="org.js.model.rbac.resource.rbactext.mopp.RbactextResourceFactoryDelegator" type="rbactext">
+		</parser>
+	</extension>
+	
+	<extension-point id="org.js.model.rbac.resource.rbactext.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.debug.core.breakpoints">
+		<breakpoint class="org.js.model.rbac.resource.rbactext.debug.RbactextLineBreakpoint" id="org.js.model.rbac.resource.rbactext.debug.breakpoint" markerType="org.js.model.rbac.resource.rbactext.debug.lineBreakpoint.marker" name="rbactext Breakpoint">
+		</breakpoint>
+	</extension>
+	
+	<extension id="org.js.model.rbac.resource.rbactext.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.debug.core.lineBreakpointMarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<persistent value="true">
+		</persistent>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+		<launchConfigurationType id="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType" delegate="org.js.model.rbac.resource.rbactext.launch.RbactextLaunchConfigurationDelegate" modes="run,debug" name="rbactext Application" sourceLocatorId="org.js.model.rbac.resource.rbactext.ui.sourceLocator" sourcePathComputerId="org.js.model.rbac.resource.rbactext.ui.sourcePathComputer" delegateName="rbactext Launch Tooling" delegateDescription="This will run or debug .rbactext files.">
+		</launchConfigurationType>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourcePathComputers">
+		<sourcePathComputer class="org.js.model.rbac.resource.rbactext.debug.RbactextSourcePathComputerDelegate" id="org.js.model.rbac.resource.rbactext.ui.sourcePathComputer">
+		</sourcePathComputer>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourceLocators">
+		<sourceLocator id="org.js.model.rbac.resource.rbactext.ui.sourceLocator" class="org.js.model.rbac.resource.rbactext.debug.RbactextSourceLocator" name="rbactext Source Locator">
+		</sourceLocator>
+	</extension>
+ <extension
+       point="org.js.model.rbac.resource.rbactext.default_load_options">
+    <provider
+          class="org.js.model.rbac.resource.postprocessor.ImplicitElementSetter"
+          id="org.js.model.rbac.resource.rbactext.ImplicitElementSetter">
+    </provider>
+ </extension>
+	
+</plugin>

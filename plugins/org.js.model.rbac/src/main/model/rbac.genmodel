@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.js.model.rbac/src/gen/java" editDirectory="/org.js.model.rbac.edit/src/gen/java"
+    editorDirectory="/org.js.model.rbac.editor/src/gen/java" modelPluginID="org.js.model.rbac"
+    modelName="RBAC" editPluginClass="org.js.model.rbac.provider.RBACEditPlugin" editorPluginClass="org.js.model.rbac.presentation.RBACEditorPlugin"
+    testsDirectory="/org.js.model.rbac.tests/src/gen/java" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.js.model.rbac.edit"
+    editorPluginID="org.js.model.rbac.editor" usedGenPackages="../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature">
+  <foreignModel>rbac.ecore</foreignModel>
+  <genPackages prefix="Rbac" basePackage="org.js.model" disposableProviderFactory="true"
+      ecorePackage="rbac.ecore#/">
+    <genClasses ecoreClass="rbac.ecore#//RbacModel">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/featureModels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/roles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/roleOwners"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//StakeholderGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//StakeholderGroup/stakeholders"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedConfigurationOperations"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//Stakeholder">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Stakeholder/memberOf"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Element/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Element/id"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//RoleOwner">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//RoleOwner/roles"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbac.ecore#//ConfigurationOperation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//ConfigurationOperation/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//SelectFeature"/>
+    <genClasses ecoreClass="rbac.ecore#//DeselectFeature"/>
+    <genClasses image="false" ecoreClass="rbac.ecore#//ConfigureAttribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//ConfigureAttribute/attribute"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

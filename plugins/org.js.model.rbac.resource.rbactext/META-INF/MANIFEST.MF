@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: rbactext
+Bundle-SymbolicName: org.js.model.rbac.resource.rbactext;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.js.model.feature,
+  org.emftext.commons.antlr3_4_0,
+  org.js.model.rbac
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.js.model.rbac.resource.rbactext,
+  org.js.model.rbac.resource.rbactext.analysis,
+  org.js.model.rbac.resource.rbactext.mopp,
+  org.js.model.rbac.resource.rbactext.debug,
+  org.js.model.rbac.resource.rbactext.launch,
+  org.js.model.rbac.resource.rbactext.grammar,
+  org.js.model.rbac.resource.rbactext.util
+Bundle-Activator: org.js.model.rbac.resource.rbactext.mopp.RbactextPlugin
