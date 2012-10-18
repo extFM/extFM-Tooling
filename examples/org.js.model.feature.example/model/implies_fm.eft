@@ -1,0 +1,11 @@
+feature model "implies_fm"
+
+feature "root" <root>{
+	group <gr0> (0..1){
+		feature "f1" <f1>;		
+	}	
+	group <gr1> (0..1){
+		feature "f2" <f2>;
+	}
+}
+	constraint <c0> f2 -> f1;
