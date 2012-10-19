@@ -9,10 +9,21 @@
   <foreignModel>rbac.ecore</foreignModel>
   <genPackages prefix="Rbac" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="rbac.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbac.ecore#//StageType">
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//StageType/Declaration"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//StageType/Integration"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//StageType/Specialization"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//StageType/Separation"/>
+    </genEnums>
     <genClasses ecoreClass="rbac.ecore#//RbacModel">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/featureModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/roles"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/roleOwners"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//RbacModel/stages"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//Stage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Stage/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Stage/roles"/>
     </genClasses>
     <genClasses ecoreClass="rbac.ecore#//StakeholderGroup">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//StakeholderGroup/stakeholders"/>

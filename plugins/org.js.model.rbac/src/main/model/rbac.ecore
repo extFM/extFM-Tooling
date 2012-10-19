@@ -8,6 +8,19 @@
         eType="#//Role" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roleOwners" upperBound="-1"
         eType="#//RoleOwner" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stages" upperBound="-1"
+        eType="#//Stage" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//StageType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" upperBound="-1"
+        eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StageType">
+    <eLiterals name="Declaration"/>
+    <eLiterals name="Integration" value="1"/>
+    <eLiterals name="Specialization" value="2"/>
+    <eLiterals name="Separation" value="3" literal="Separation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StakeholderGroup" eSuperTypes="#//RoleOwner">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholders" upperBound="-1"

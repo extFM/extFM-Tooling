@@ -34,11 +34,14 @@ TOKENSTYLES {
 									"references" #1 (featureModels['<','>'])+ !0
 									//("configuration operations" #1 !0 configurationOperations*)? !0
 									(roles*)? !0 
-									(roleOwners*)? !0; 
+									(roleOwners*)? 
+									(stages*)? !0; 
 	
+	Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
+			#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	
 	Role ::= "role" #1 name['"','"'] #1 id['<','>'] !0 
-			("allows" "{" allowedConfigurationOperations* "}")+ ;
+			("permissions" "{" allowedConfigurationOperations* "}")+ ;
 
 	// syntax definition for configuration operations
 	SelectFeature ::= #4 "+f" #0 feature['(',')'] !0;
@@ -46,10 +49,10 @@ TOKENSTYLES {
 	ConfigureAttribute ::= #4 ("$" feature[IDENTIFIER] "#" attribute[IDENTIFIER] ) ;
 
 	Stakeholder ::= "stakeholder" #1 name['"','"'] #1 id['<','>'] !0 
-			("has" "{" roles[IDENTIFIER]+ "}")?;
+			("roles" "{" roles[IDENTIFIER]+ "}")?;
 
 	StakeholderGroup ::= "group" #1 name['"','"'] #1 id['<','>'] !0 
-			("has" "{" roles[IDENTIFIER]+ "}")?
-			("contains" "{" stakeholders[IDENTIFIER]+ "}")+;
+			("roles" "{" roles[IDENTIFIER]+ "}")?
+			("stakeholders" "{" stakeholders[IDENTIFIER]+ "}")+;
 
 }
