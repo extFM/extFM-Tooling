@@ -4,7 +4,6 @@ domain <BGColor> [black, white, green, blue]
 domain <Boolean> [true, false]
 domain <Interval> [10..20, 30..50]
 domain <Level> [1..10]
-domainValues {black white green blue red true false 1 10 20 30 50}
 
 feature "Automotive Multimedia" <AutomotiveMultimedia>
 	group <AutomotiveMultimediaGroup> (1..4) {
