@@ -33,14 +33,15 @@ TOKENSTYLES {
 RULES {
 	//Syntax definition for class 'StartMetaClass'
 	//ExpressionModel   ::= "expressions" featureModel['<','>'] expressions*;
-	  ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 expressions*;
+	  ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 
+	  						expressions* calculations* comparisons*;
 	
 	//Syntax - Expression
-	Expression ::= "Expression" #1 "::" calculationExpressions* ;
+	Expression ::= "Expression";
 	
-	//Syntax AttributeCalculationExpression 
+	//Syntax - AttributeCalculation
 	@Operator(type="primitive", weight="5", superclass="AtomicExpression")
-	AttributeCalculationExpression ::= "attribute" #1 attribute1calculation
+	AttributeCalculation ::= "attribute" #1 attribute1calculation
 										"operator" #1 operatorCalculation[addition : "+", 
 	                                                       subtraction : "-", 
 	                                                       multiplication : "*", 
@@ -49,5 +50,15 @@ RULES {
 		
 	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
 	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
-
+	
+	//Syntax - AttributeComparison
+	@Operator(type="primitive", weight="6", superclass="AtomicExpression")
+	AttributeComparison ::= "attribute" #1 attribute1comparison 
+									  "operator" #1 operatorComparison [equal : "==", 
+									  								unequal : "!=", 
+									 								greaterThan : ">", 
+									  								greaterThanOrEqual : ">=", 
+									  								lessThan : "<", 
+									  								lessThanOrEqual : "<="]
+									  "attribute" #1 attribute2comparison;							   
 }

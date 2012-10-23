@@ -18,14 +18,19 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/featureModel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/expressions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//ExpressionModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/calculations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/comparisons"/>
     </genClasses>
-    <genClasses ecoreClass="Expression.ecore#//Expression">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//Expression/calculationExpressions"/>
+    <genClasses ecoreClass="Expression.ecore#//Expression"/>
+    <genClasses ecoreClass="Expression.ecore#//AttributeCalculation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeCalculation/attribute1calculation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeCalculation/attribute2calculation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeCalculation/operatorCalculation"/>
     </genClasses>
-    <genClasses ecoreClass="Expression.ecore#//AttributeCalculationExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeCalculationExpression/attribute1calculation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeCalculationExpression/attribute2calculation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeCalculationExpression/operatorCalculation"/>
+    <genClasses ecoreClass="Expression.ecore#//AttributeComparison">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeComparison/attribute1comparison"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeComparison/attribute2comparison"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeComparison/operatorComparison"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
