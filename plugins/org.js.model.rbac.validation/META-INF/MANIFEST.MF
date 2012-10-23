@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Validation
+Bundle-SymbolicName: org.js.model.rbac.validation;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.js.model.rbac.validation.RbacValidationPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.validation;bundle-version="1.4.0",
+ org.js.model.rbac;bundle-version="1.0.0",
+ org.js.model.rbac.resource.rbactext;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

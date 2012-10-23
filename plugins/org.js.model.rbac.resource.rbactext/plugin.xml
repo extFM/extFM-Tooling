@@ -93,26 +93,4 @@
 		</persistent>
 	</extension>
 	
-	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
-		<launchConfigurationType id="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType" delegate="org.js.model.rbac.resource.rbactext.launch.RbactextLaunchConfigurationDelegate" modes="run,debug" name="rbactext Application" sourceLocatorId="org.js.model.rbac.resource.rbactext.ui.sourceLocator" sourcePathComputerId="org.js.model.rbac.resource.rbactext.ui.sourcePathComputer" delegateName="rbactext Launch Tooling" delegateDescription="This will run or debug .rbactext files.">
-		</launchConfigurationType>
-	</extension>
-	
-	<extension point="org.eclipse.debug.core.sourcePathComputers">
-		<sourcePathComputer class="org.js.model.rbac.resource.rbactext.debug.RbactextSourcePathComputerDelegate" id="org.js.model.rbac.resource.rbactext.ui.sourcePathComputer">
-		</sourcePathComputer>
-	</extension>
-	
-	<extension point="org.eclipse.debug.core.sourceLocators">
-		<sourceLocator id="org.js.model.rbac.resource.rbactext.ui.sourceLocator" class="org.js.model.rbac.resource.rbactext.debug.RbactextSourceLocator" name="rbactext Source Locator">
-		</sourceLocator>
-	</extension>
- <extension
-       point="org.js.model.rbac.resource.rbactext.default_load_options">
-    <provider
-          class="org.js.model.rbac.resource.postprocessor.ImplicitElementSetter"
-          id="org.js.model.rbac.resource.rbactext.ImplicitElementSetter">
-    </provider>
- </extension>
-	
 </plugin>

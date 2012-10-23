@@ -32,10 +32,6 @@
 		</category>
 		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.js.model.rbac.resource.rbactext.ui.RbactextNewFileWizard" id="org.js.model.rbac.resource.rbactext.ui.RbactextNewFileWizard" name="EMFText .rbactext file">
 		</wizard>
-		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
-		</category>
-		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.js.model.rbac.resource.rbactext.ui.RbactextNewProjectWizard" id="org.js.model.rbac.resource.rbactext.ui.RbactextNewProjectWizard" name="EMFText rbactext project" project="true">
-		</wizard>
 	</extension>
 	
 	<extension point="org.eclipse.ui.ide.markerResolution">
@@ -70,48 +66,6 @@
 		</specification>
 		<specification annotationType="org.js.model.rbac.resource.rbactext.ui.occurences.declaration" label="Declarations (in .rbactext files)" textPreferenceKey="rbactext.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="rbactext.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="rbactext.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="rbactext.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="rbactext.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="rbactext.declarationTextStyle" textStylePreferenceValue="NONE">
 		</specification>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
-		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType" id="org.js.model.rbactext.launchImage">
-		</launchConfigurationTypeImage>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
-		<launchConfigurationTabGroup type="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType" class="org.js.model.rbac.resource.rbactext.ui.launch.RbactextLaunchConfigurationTabGroup" id="org.js.model.rbactext.launchConfigurationTabGroup" helpContextId="org.js.model.rbactext.launchConfigHelpContext">
-			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug rbactext model.">
-			</launchMode>
-			<launchMode mode="run" description="Run rbactext model.">
-			</launchMode>
-		</launchConfigurationTabGroup>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.launchShortcuts">
-		<shortcut label="rbactext Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.js.model.rbactext.launch" modes="run,debug" class="org.js.model.rbac.resource.rbactext.ui.launch.RbactextLaunchShortcut" description="Launch a rbactext model" id="org.js.model.rbactext.launchShortcut">
-			<description description="Run rbactext model" mode="run">
-			</description>
-			<description description="Debug rbactext model" mode="debug">
-			</description>
-			<contextualLaunch>
-				<enablement>
-					<with variable="selection">
-						<count value="1">
-						</count>
-						<iterate>
-							<test property="org.js.model.rbactext.isLaunchable">
-							</test>
-						</iterate>
-					</with>
-				</enablement>
-			</contextualLaunch>
-			<configurationType id="org.js.model.rbac.resource.rbactext.ui.launchConfigurationType">
-			</configurationType>
-		</shortcut>
-	</extension>
-	
-	<extension point="org.eclipse.core.expressions.propertyTesters">
-		<propertyTester id="org.js.model.rbactext.PropertyTester" type="java.lang.Object" namespace="org.js.model.rbactext" properties="isLaunchable" class="org.js.model.rbac.resource.rbactext.ui.RbactextPropertyTester">
-		</propertyTester>
 	</extension>
 	
 	<extension point="org.eclipse.ui.editors.annotationTypes">

@@ -1,3 +1,4 @@
+@SuppressWarnings(tokenOverlapping)
 SYNTAXDEF rbactext // role based access control for feature models
 FOR <http://www.tudresden.de/rbac>
 START RbacModel
@@ -6,9 +7,8 @@ OPTIONS {
 	additionalDependencies = "org.js.model.feature";
 	reloadGeneratorModel = "true";
 	generateCodeFromGeneratorModel = "true";
-	overrideLaunchConfigurationDelegate = "false";
-    overrideBuilder = "false";
-    overridePluginXML = "false";
+	disableLaunchSupport = "true";
+	disableNewProjectWizard = "true";
 
  	srcFolder = "src/main/java";
 	srcGenFolder = "src/gen/java";
@@ -17,15 +17,16 @@ OPTIONS {
 	uiSrcGenFolder = "src/gen/java";
 }
 
-TOKENS{
-	DEFINE IDENTIFIER $('A'..'Z'|'a'..'z'|'_'|'0'..'9')+('A'..'Z'|'a'..'z'|'_'|'-'|'0'..'9')*$;
+TOKENS {
+	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
+	DEFINE S_DESELECT $'deselect'$;
+	DEFINE S_SELECT $'select'$;
+	DEFINE COMMA $(','|';')$;
 }
 
 TOKENSTYLES {
-	"$" COLOR #000000, BOLD;
-	"#" COLOR #000000, BOLD;
-	"+f" COLOR #800055, BOLD;
-	"-f" COLOR #800055, BOLD;
+	"#" COLOR #800055, BOLD;
+	"COMMENT" COLOR #AAAAAA;
 }	
 	
 	RULES {
@@ -34,25 +35,23 @@ TOKENSTYLES {
 									"references" #1 (featureModels['<','>'])+ !0
 									//("configuration operations" #1 !0 configurationOperations*)? !0
 									(roles*)? !0 
-									(roleOwners*)? 
-									(stages*)? !0; 
+									(individuals*)?; 
 	
-	Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
-			#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
+	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
+	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	
 	Role ::= "role" #1 name['"','"'] #1 id['<','>'] !0 
-			("permissions" "{" allowedConfigurationOperations* "}")+ ;
+			("permissions" "{" allowedOperations* "}")+ ;
 
 	// syntax definition for configuration operations
-	SelectFeature ::= #4 "+f" #0 feature['(',')'] !0;
-	DeselectFeature ::= "-f" #0 feature['(',')'] !0;
-	ConfigureAttribute ::= #4 ("$" feature[IDENTIFIER] "#" attribute[IDENTIFIER] ) ;
+	FeatureConfiguration ::= #4 (feature[] ":" select[S_SELECT]? deselect[S_DESELECT]?) ;
+	AttributeConfiguration ::= #4 (feature[] "#" attribute[] ("(" valueOperations+ ")"));
 
-	Stakeholder ::= "stakeholder" #1 name['"','"'] #1 id['<','>'] !0 
-			("roles" "{" roles[IDENTIFIER]+ "}")?;
+	ValueOperation ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?) | (_[COMMA] value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
 
-	StakeholderGroup ::= "group" #1 name['"','"'] #1 id['<','>'] !0 
-			("roles" "{" roles[IDENTIFIER]+ "}")?
-			("stakeholders" "{" stakeholders[IDENTIFIER]+ "}")+;
+
+	Individual ::= "individual" #1 name['"','"'] #1 id['<','>'] !0 
+			("roles" "{" roles[]+ "}")?;
+
 
 }

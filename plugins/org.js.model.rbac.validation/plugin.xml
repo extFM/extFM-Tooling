@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.js.model.rbac.validation.category1"
+            name="name">
+      </category>
+      <constraintProvider
+            cache="true">
+         <package
+               namespaceUri="http://www.tudresden.de/rbac">
+         </package>
+         <constraints
+               categories="org.js.model.rbac.validation.category1">
+            <constraint
+                  class="org.js.model.rbac.validation.UniqueDomainValueConstraint"
+                  id="org.js.model.rbac.validation.constraint1"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="UniqueDomainValueConstraint"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="ValueOperation">
+                  <event
+                        name="Set">
+                  </event></target>
+            </constraint>
+            <constraint
+                  class="org.js.model.rbac.validation.DefinedDomainValueConstraint"
+                  id="org.js.model.rbac.validation.constraint2"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="DefinedDomainValueConstraint"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="ValueOperation">
+                  <event
+                        name="Set">
+                  </event>
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.js.model.rbac.validation.context">
+            <selector
+                  class="org.js.model.rbac.validation.RbacDelegateClientSelector"/>
+      </clientContext>
+      <binding
+            category="org.js.model.rbac.validation.category1"
+            context="org.js.model.rbac.validation.context">
+      </binding>
+   </extension>
+
+</plugin>
