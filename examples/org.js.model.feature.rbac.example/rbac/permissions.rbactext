@@ -1,0 +1,26 @@
+rbac references <../model/Automotive.eft>
+
+role "Global Engineering" <gEngineer>
+	permissions {
+ 		CDPlayer : select deselect
+ 		CDPlayer#coverColor (
+ 			"blue" : select deselect, 
+ 			"green" : select,
+ 			"red" : deselect
+ 			) 
+	}
+
+role "Application Engineer" <appEngineer> 
+	permissions {
+
+}
+
+individual "Harry Blue" <hb> 
+	roles { gEngineer appEngineer }
+
+individual "James Black" <jb>
+individual "Anna White" <aw>
+individual "Bob Red" <br>
+individual "Amy Green" <ag>
+
+
