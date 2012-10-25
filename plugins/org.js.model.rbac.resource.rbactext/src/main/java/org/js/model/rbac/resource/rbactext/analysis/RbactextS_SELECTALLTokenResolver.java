@@ -6,7 +6,7 @@
  */
 package org.js.model.rbac.resource.rbactext.analysis;
 
-public class RbactextIDENTIFIERTokenResolver implements org.js.model.rbac.resource.rbactext.IRbactextTokenResolver {
+public class RbactextS_SELECTALLTokenResolver implements org.js.model.rbac.resource.rbactext.IRbactextTokenResolver {
 	
 	private org.js.model.rbac.resource.rbactext.analysis.RbactextDefaultTokenResolver defaultTokenResolver = new org.js.model.rbac.resource.rbactext.analysis.RbactextDefaultTokenResolver(true);
 	

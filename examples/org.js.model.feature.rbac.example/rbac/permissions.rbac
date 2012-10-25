@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rbac:AccessControlModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rbac="http://www.tudresden.de/rbac">
+  <featureModels href="../model/Automotive.eft#/"/>
+  <roles id="gEngineer">
+    <allowedConfigOperations xsi:type="rbac:FeatureConfiguration" select="true" deselect="true">
+      <feature href="../model/Automotive.eft#CDPlayer"/>
+    </allowedConfigOperations>
+    <allowedConfigOperations xsi:type="rbac:AttributeConfiguration">
+      <feature href="../model/Automotive.eft#CDPlayer"/>
+      <attribute href="../model/Automotive.eft#coverColor"/>
+      <valueConfigurations select="true" deselect="true" value="blue"/>
+      <valueConfigurations select="true" value="green"/>
+      <valueConfigurations deselect="true" value="red"/>
+    </allowedConfigOperations>
+    <allowedConfigOperations xsi:type="rbac:AttributeConfiguration" select="true" deselect="true">
+      <feature href="../model/Automotive.eft#CDPlayer"/>
+      <attribute href="../model/Automotive.eft#hasUSBPort"/>
+    </allowedConfigOperations>
+  </roles>
+  <roles id="domainEngineer">
+    <allowedEngineeringOperations xsi:type="rbac:CreateFeatureModel"/>
+    <allowedEngineeringOperations xsi:type="rbac:ImportFeatureModel"/>
+  </roles>
+  <subjects name="Harry Blue" id="hb" roles="gEngineer domainEngineer"/>
+  <subjects name="James Black" id="jb"/>
+  <subjects name="Anna White" id="aw"/>
+  <subjects name="Bob Red" id="br"/>
+  <subjects name="Amy Green" id="ag"/>
+</rbac:AccessControlModel>

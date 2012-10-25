@@ -1,26 +1,33 @@
-rbac references <../model/Automotive.eft>
+access control references <../model/Automotive.eft>
 
-role "Global Engineering" <gEngineer>
-	permissions {
- 		CDPlayer : select deselect
- 		CDPlayer#coverColor (
- 			"blue" : select deselect, 
- 			"green" : select,
- 			"red" : deselect
- 			) 
-	}
-
-role "Application Engineer" <appEngineer> 
-	permissions {
-
+role <gEngineer> {
+	// define privilege per feature
+	CDPlayer : select deselect 
+	
+	// define privilege for an attribute's domain values
+	CDPlayer#coverColor (
+		// define privilege per domain value
+		"blue" : select deselect 
+		"green" : select
+		"red" : deselect
+	) 
+	// define privilege for all domain values of an attribute
+	CDPlayer#hasUSBPort : select deselect 
 }
 
-individual "Harry Blue" <hb> 
-	roles { gEngineer appEngineer }
+role <domainEngineer> {
+	// define domain engineering operations
+	$createFM
+}
 
-individual "James Black" <jb>
-individual "Anna White" <aw>
-individual "Bob Red" <br>
-individual "Amy Green" <ag>
+subject "Harry Blue" <hb> {
+ 	gEngineer 
+ 	domainEngineer
+}
+
+subject "James Black" <jb>
+subject "Anna White" <aw>
+subject "Bob Red" <br>
+subject "Amy Green" <ag>
 
 

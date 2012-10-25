@@ -1,7 +1,7 @@
 @SuppressWarnings(tokenOverlapping)
 SYNTAXDEF rbactext // role based access control for feature models
 FOR <http://www.tudresden.de/rbac>
-START RbacModel
+START AccessControlModel
 
 OPTIONS {
 	additionalDependencies = "org.js.model.feature";
@@ -18,10 +18,10 @@ OPTIONS {
 }
 
 TOKENS {
-	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 	DEFINE S_DESELECT $'deselect'$;
 	DEFINE S_SELECT $'select'$;
 	DEFINE COMMA $(','|';')$;
+	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 }
 
 TOKENSTYLES {
@@ -31,27 +31,35 @@ TOKENSTYLES {
 	
 	RULES {
 	// syntax definition for class 'StartMetaClass'
-	RbacModel   ::= "rbac" #1 
+	AccessControlModel   ::= "access control" #1 
 									"references" #1 (featureModels['<','>'])+ !0
 									//("configuration operations" #1 !0 configurationOperations*)? !0
-									(roles*)? !0 
-									(individuals*)?; 
+									roles* !0 
+									subjects*; 
 	
 	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
 	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	
-	Role ::= "role" #1 name['"','"'] #1 id['<','>'] !0 
-			("permissions" "{" allowedOperations* "}")+ ;
+	Role ::= "role" #1 name['"','"']? #1 id['<','>'] !0 
+			("{" allowedConfigOperations*  allowedEngineeringOperations* "}" )? ;
+
+
+	// syntax definition for engineering operations
+	CreateFeatureModel ::= "$createFM";
+	
 
 	// syntax definition for configuration operations
-	FeatureConfiguration ::= #4 (feature[] ":" select[S_SELECT]? deselect[S_DESELECT]?) ;
-	AttributeConfiguration ::= #4 (feature[] "#" attribute[] ("(" valueOperations+ ")"));
+	FeatureConfiguration ::= #4 feature[] ":" select[S_SELECT]? deselect[S_DESELECT]? ;
+	AttributeConfiguration ::= #4 feature[] "#" attribute[] 
+			(( ":" select[S_SELECT]? deselect[S_DESELECT]?)
+			 | ("(" valueConfigurations+ ")")) ;
 
-	ValueOperation ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?) | (_[COMMA] value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
+	DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
+	//DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?) | (_[COMMA] value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
 
 
-	Individual ::= "individual" #1 name['"','"'] #1 id['<','>'] !0 
-			("roles" "{" roles[]+ "}")?;
+	Subject ::= "subject" #1 name['"','"'] #1 id['<','>'] !0 
+			("{" roles[]+ "}")?;
 
 
 }

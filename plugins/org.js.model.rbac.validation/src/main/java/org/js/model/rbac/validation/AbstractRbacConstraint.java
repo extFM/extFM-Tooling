@@ -15,7 +15,7 @@ import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.js.model.rbac.AttributeConfiguration;
-import org.js.model.rbac.ValueOperation;
+import org.js.model.rbac.DomainValueConfiguration;
 
 public abstract class AbstractRbacConstraint extends AbstractModelConstraint implements IModelConstraint {
 
@@ -84,21 +84,13 @@ public abstract class AbstractRbacConstraint extends AbstractModelConstraint imp
 
    @Override
    public IStatus validate(IValidationContext ctx) {
-      String msg = null;
       EObject target = ctx.getTarget();
-      if (target instanceof ValueOperation) {
-         ValueOperation operation = (ValueOperation) target;
-         EObject eContainer = operation.eContainer();
-         if (eContainer instanceof AttributeConfiguration) {
-            AttributeConfiguration attributeConfig = (AttributeConfiguration) eContainer;
-            msg = checkAttributeConfiguration(attributeConfig, operation);
-         }
-      }
+      String msg = validateTarget(target);
       return getReturnStatus(msg, target);
    }
  
-   abstract String checkAttributeConfiguration(AttributeConfiguration attributeConfig, ValueOperation operation);
-
+   abstract String validateTarget(EObject target);
+   
    private IStatus getReturnStatus(String msg, EObject target) {
       IStatus returnStatus;
       if (msg != null && !msg.equals("")) {

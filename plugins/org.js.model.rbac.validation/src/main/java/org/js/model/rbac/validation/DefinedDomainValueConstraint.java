@@ -12,13 +12,13 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
 import org.js.model.rbac.AttributeConfiguration;
-import org.js.model.rbac.ValueOperation;
+import org.js.model.rbac.DomainValueConfiguration;
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
  * 
  */
-public class DefinedDomainValueConstraint extends AbstractRbacConstraint {
+public class DefinedDomainValueConstraint extends AbstractAttributeConstraint {
 
    /**
     * validate if the given domain value is defined in the attribute's domain.
@@ -28,7 +28,7 @@ public class DefinedDomainValueConstraint extends AbstractRbacConstraint {
     * @return
     */
    @Override
-   String checkAttributeConfiguration(AttributeConfiguration attributeConfig, ValueOperation operation) {
+   String checkAttributeConfiguration(AttributeConfiguration attributeConfig, DomainValueConfiguration operation) {
       String msg = null;
       Attribute attribute = attributeConfig.getAttribute();
       String value = operation.getValue();
