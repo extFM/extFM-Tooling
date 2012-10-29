@@ -31,16 +31,14 @@ TOKENSTYLES {
 }
 
 RULES {
-	//Syntax definition for class 'StartMetaClass'
-	//ExpressionModel   ::= "expressions" featureModel['<','>'] expressions*;
-	  ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 
-	  						expressions* calculations* comparisons*;
-	
-	//Syntax - Expression
-	Expression ::= "Expression";
-	
+	//ExpressionModel ::= "expressions" featureModel['<','>'] expressions*;
+	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 
+	  				//	!1	"Feature" #1 "Model" #1 featureModel
+	  				expressions* calculations* comparisons*;
+		
+					
 	//Syntax - AttributeCalculation
-	@Operator(type="primitive", weight="5", superclass="AtomicExpression")
+	@Operator(type="primitive", weight="5", superclass="Expression")
 	AttributeCalculation ::= "attribute" #1 attribute1calculation
 										"operator" #1 operatorCalculation[addition : "+", 
 	                                                       subtraction : "-", 
@@ -52,7 +50,7 @@ RULES {
 	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
 	
 	//Syntax - AttributeComparison
-	@Operator(type="primitive", weight="6", superclass="AtomicExpression")
+	@Operator(type="primitive", weight="6", superclass="Expression")
 	AttributeComparison ::= "attribute" #1 attribute1comparison 
 									  "operator" #1 operatorComparison [equal : "==", 
 									  								unequal : "!=", 
@@ -60,5 +58,31 @@ RULES {
 									  								greaterThanOrEqual : ">=", 
 									  								lessThan : "<", 
 									  								lessThanOrEqual : "<="]
-									  "attribute" #1 attribute2comparison;							   
+									  "attribute" #1 attribute2comparison;	
+									  
+									  
+	//---------------------------------------------------------------------------------	
+	//--------------Feature Model Expressions -----------------------------------------
+	//---------------------------------------------------------------------------------
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	NestedExpression ::= "(" operand ")";
+	
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	FeatureReference ::= feature[];
+	
+	@Operator(type="unary_prefix", weight="4", superclass="Expression")
+	NotExpression ::= "!" operand;
+	
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+	AndExpression ::= operand1 #1 "&&" #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
+	OrExpression ::= operand1 #1 "||" #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	ImpliesExpression ::= operand1 #1 "->" #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	ExcludesExpression ::= operand1 #1 "excludes" #1 operand2;
+	//--------------------------------------------------------------------------------
 }
