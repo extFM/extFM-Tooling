@@ -1,3 +1,4 @@
+@SuppressWarnings(tokenOverlapping)
 SYNTAXDEF expressionText
 FOR <http://www.tudresden.de/extexpression>
 START ExpressionModel
@@ -32,8 +33,8 @@ TOKENSTYLES {
 
 RULES {
 	//ExpressionModel ::= "expressions" featureModel['<','>'] expressions*;
-	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 
-	  				//	!1	"Feature" #1 "Model" #1 featureModel
+	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0
+	 					  "Feature" #1 "Model" #1 (featureModels['<','>'])+ !0
 	  				expressions* calculations* comparisons*;
 		
 					
@@ -59,11 +60,13 @@ RULES {
 									  								lessThan : "<", 
 									  								lessThanOrEqual : "<="]
 									  "attribute" #1 attribute2comparison;	
-									  
-									  
-	//---------------------------------------------------------------------------------	
-	//--------------Feature Model Expressions -----------------------------------------
-	//---------------------------------------------------------------------------------
+						
+	//Syntax - FeatureAttributeRefence							  
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	FeatureAttributeReference ::=  feature[]"."attribute[] ;
+	
+	//-------------------  Expressions from Feature Model  ---------------------------
+	
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	NestedExpression ::= "(" operand ")";
 	

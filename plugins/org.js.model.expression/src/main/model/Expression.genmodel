@@ -15,8 +15,9 @@
       <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//AttributeCalculationOperator/division"/>
     </genEnums>
     <genClasses ecoreClass="Expression.ecore#//ExpressionModel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/expressions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//ExpressionModel/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/featureModels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/expressions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/calculations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/comparisons"/>
     </genClasses>
@@ -29,6 +30,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeComparison/attribute1comparison"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeComparison/attribute2comparison"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeComparison/operatorComparison"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//FeatureAttributeReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeReference/feature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeReference/attribute"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

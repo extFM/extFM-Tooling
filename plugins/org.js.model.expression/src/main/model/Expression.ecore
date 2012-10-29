@@ -2,10 +2,12 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expression" nsURI="http://www.tudresden.de/extexpression" nsPrefix="expression">
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureModels" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="calculations" upperBound="-1"
         eType="#//AttributeCalculation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="comparisons" upperBound="-1"
@@ -36,5 +38,11 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorComparison" lowerBound="1"
         eType="ecore:EEnum ../../../../org.js.model.feature/src/main/model/feature.ecore#//AttributeComparisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureAttributeReference" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
   </eClassifiers>
 </ecore:EPackage>
