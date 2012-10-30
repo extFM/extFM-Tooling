@@ -32,15 +32,15 @@ TOKENSTYLES {
 	RULES {
 	// syntax definition for class 'StartMetaClass'
 	AccessControlModel   ::= "access control" #1 
-									"references" #1 (featureModels['<','>'])+ !0
-									//("configuration operations" #1 !0 configurationOperations*)? !0
+									("on" #1 featureModels['<','>'] (_[COMMA] featureModels['<','>'])*)? !0
+									("references" #1 accessControlModels['<','>'] (_[COMMA] accessControlModels['<','>'])* )? !0
 									roles* !0 
 									subjects*; 
 	
 	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
 	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	
-	Role ::= "role" #1 name['"','"']? #1 id['<','>'] !0 
+	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) (_[COMMA] parentRoles[])*)? !0 
 			("{" allowedConfigOperations*  allowedEngineeringOperations* "}" )? ;
 
 
@@ -51,8 +51,8 @@ TOKENSTYLES {
 	// syntax definition for configuration operations
 	FeatureConfiguration ::= #4 feature[] ":" select[S_SELECT]? deselect[S_DESELECT]? ;
 	AttributeConfiguration ::= #4 feature[] "#" attribute[] 
-			(( ":" select[S_SELECT]? deselect[S_DESELECT]?)
-			 | ("(" valueConfigurations+ ")")) ;
+			( ":" select[S_SELECT]? deselect[S_DESELECT]?)
+		    ("(" valueConfigurations+ ")")* ;
 
 	DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
 	//DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?) | (_[COMMA] value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);

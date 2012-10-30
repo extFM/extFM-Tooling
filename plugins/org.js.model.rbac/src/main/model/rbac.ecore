@@ -8,16 +8,24 @@
         eType="#//Role" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
         eType="#//Subject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessControlModels" upperBound="-1"
+        eType="#//AccessControlModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subject" eSuperTypes="#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
-        eType="#//Role"/>
+        eType="#//Role" eOpposite="#//Role/subjects"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="allowedConfigOperations"
         upperBound="-1" eType="#//ConfigurationOperation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allowedEngineeringOperations"
         upperBound="-1" eType="#//EngineeringOperation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentRoles" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/childRoles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childRoles" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/parentRoles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
+        eType="#//Subject" eOpposite="#//Subject/roles"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -29,15 +37,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deselect" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureConfiguration" eSuperTypes="#//ConfigurationOperation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureConfiguration" eSuperTypes="#//ConfigurationOperation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DomainValueConfiguration" eSuperTypes="#//ConfigurationOperation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeConfiguration" eSuperTypes="#//FeatureConfiguration">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeConfiguration" eSuperTypes="#//ConfigurationOperation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueConfigurations" upperBound="-1"
