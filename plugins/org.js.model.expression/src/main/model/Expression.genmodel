@@ -35,5 +35,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeReference/feature"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeReference/attribute"/>
     </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//FeatureAttributeValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeValue/feature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeValue/attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//FeatureAttributeValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//AttributeRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeRef/attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeRef/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

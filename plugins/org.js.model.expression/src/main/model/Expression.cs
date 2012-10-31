@@ -63,7 +63,17 @@ RULES {
 						
 	//Syntax - FeatureAttributeRefence							  
 	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureAttributeReference ::=  feature[]"."attribute[] ;
+	FeatureAttributeReference ::= feature[]"."attribute[];
+	
+	//Syntax - 	feature.attribute := value					  
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	FeatureAttributeValue ::= feature[]"."attribute[]#1":="value[];
+	
+	//Syntax - 	attribute := value					  
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	AttributeRef ::= attribute[] ":=" value[];
+	
+	
 	
 	//-------------------  Expressions from Feature Model  ---------------------------
 	
@@ -87,5 +97,6 @@ RULES {
 	
 	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
 	ExcludesExpression ::= operand1 #1 "excludes" #1 operand2;
+	
 	//--------------------------------------------------------------------------------
 }
