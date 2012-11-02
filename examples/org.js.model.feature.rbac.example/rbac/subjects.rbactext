@@ -1,0 +1,27 @@
+access control
+	references <permissions.rbactext>
+
+subject "Mary Green" <mary> 
+subject "Tom White" <tom> 
+
+subject "Harry Blue" <hb> {
+ 	cdEngineer 
+ 	domainEngineer
+}
+
+subject "James Black" <jb> {
+	mapsEngineer
+}
+
+	
+subject "Anna White" <aw> {
+	customer
+}
+subject "Bob Red" <br> {
+	customer
+}
+subject "Amy Green" <ag> {
+	specialCustomer
+}
+
+
