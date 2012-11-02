@@ -21,6 +21,7 @@ TOKENS {
 	DEFINE S_DESELECT $'deselect'$;
 	DEFINE S_SELECT $'select'$;
 	DEFINE COMMA $(','|';')$;
+	DEFINE DOT $('.')$;
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 }
 
@@ -50,7 +51,7 @@ TOKENSTYLES {
 
 	// syntax definition for configuration operations
 	FeatureConfiguration ::= #4 feature[] ":" select[S_SELECT]? deselect[S_DESELECT]? ;
-	AttributeConfiguration ::= #4 feature[] "#" attribute[] 
+	AttributeConfiguration ::= #4 feature[] _[DOT] attribute[] 
 			( ":" select[S_SELECT]? deselect[S_DESELECT]?)?
 		    ("(" valueConfigurations+ ")")* ;
 
