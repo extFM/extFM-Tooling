@@ -51,7 +51,7 @@ TOKENSTYLES {
 	// syntax definition for configuration operations
 	FeatureConfiguration ::= #4 feature[] ":" select[S_SELECT]? deselect[S_DESELECT]? ;
 	AttributeConfiguration ::= #4 feature[] "#" attribute[] 
-			( ":" select[S_SELECT]? deselect[S_DESELECT]?)
+			( ":" select[S_SELECT]? deselect[S_DESELECT]?)?
 		    ("(" valueConfigurations+ ")")* ;
 
 	DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);

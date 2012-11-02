@@ -22,8 +22,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedConfigOperations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedEngineeringOperations"/>
       <genFeatures notify="false" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/parentRoles"/>
-      <genFeatures notify="false" createChild="true" propertyCategory="" propertySortChoices="true"
-          ecoreFeature="ecore:EReference rbac.ecore#//Role/childRoles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/childRoles"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/subjects"/>
     </genClasses>
     <genClasses image="false" ecoreClass="rbac.ecore#//Nameable">
