@@ -20,7 +20,7 @@ OPTIONS {
 
 TOKENS {
 	DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
-	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
+	DEFINE DOT $('.')$;
 }
 
 
@@ -55,7 +55,7 @@ RULES {
 	                                                             #1  attribute2calculation;
 		
 	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
-	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
+	
 	
 	//Syntax - AttributeComparison
 	@Operator(type="primitive", weight="5", superclass="Expression")
@@ -70,11 +70,11 @@ RULES {
 	
 	//Syntax - feature.attribute							  
 	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureAttributeReference ::= feature[]"."attribute[];
+	FeatureAttributeReference ::= feature[] _[DOT] attribute[];
 	
 	//Syntax - 	feature.attribute := value					  
 	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureAttributeValue ::= feature[]"."attribute[]#1":="value[];
+	FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];
 	
 	//Syntax - 	attribute := value					  
 	@Operator(type="primitive", weight="5", superclass="Expression")
