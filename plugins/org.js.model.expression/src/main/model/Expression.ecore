@@ -8,10 +8,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="calculations" upperBound="-1"
-        eType="#//AttributeCalculation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="comparisons" upperBound="-1"
-        eType="#//AttributeComparison" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCalculation" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute1calculation"
@@ -56,5 +52,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatheExpressions" abstract="true" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//MatheExpressions">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//AttributeCalculationOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number1" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number2" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

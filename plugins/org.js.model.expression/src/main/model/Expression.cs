@@ -29,39 +29,46 @@ TOKENSTYLES {
 	"-" COLOR #000000, BOLD;
 	"*" COLOR #000000, BOLD;
 	"/" COLOR #000000, BOLD;
+	
+	"==" COLOR #000000, BOLD;
+	"!=" COLOR #000000, BOLD;
+	"<" COLOR #000000, BOLD;
+	"<=" COLOR #000000, BOLD;
+	">" COLOR #000000, BOLD;
+	">=" COLOR #000000, BOLD;
 }
 
 RULES {
 	//ExpressionModel ::= "expressions" featureModel['<','>'] expressions*;
 	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0
 	 					  "Feature" #1 "Model" #1 (featureModels['<','>'])+ !0
-	  				expressions* calculations* comparisons*;
+	  				       expressions*;
 		
 					
 	//Syntax - AttributeCalculation
 	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeCalculation ::= "attribute" #1 attribute1calculation
-										"operator" #1 operatorCalculation[addition : "+", 
+	AttributeCalculation ::= attribute1calculation
+										 #1 operatorCalculation[//addition : "+", 
 	                                                       subtraction : "-", 
 	                                                       multiplication : "*", 
 	                                                       division : "/"] 
-	                                    "attribute" #1  attribute2calculation;
+	                                                             #1  attribute2calculation;
 		
 	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
 	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
 	
 	//Syntax - AttributeComparison
-	@Operator(type="primitive", weight="6", superclass="Expression")
-	AttributeComparison ::= "attribute" #1 attribute1comparison 
-									  "operator" #1 operatorComparison [equal : "==", 
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	AttributeComparison ::= attribute1comparison 
+									#1 operatorComparison [equal : "==", 
 									  								unequal : "!=", 
 									 								greaterThan : ">", 
 									  								greaterThanOrEqual : ">=", 
 									  								lessThan : "<", 
 									  								lessThanOrEqual : "<="]
-									  "attribute" #1 attribute2comparison;	
-						
-	//Syntax - FeatureAttributeRefence							  
+									  					#1 attribute2comparison;	
+	
+	//Syntax - feature.attribute							  
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	FeatureAttributeReference ::= feature[]"."attribute[];
 	
@@ -73,13 +80,25 @@ RULES {
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	AttributeRef ::= attribute[] ":=" value[];
 	
+
+	//Syntax - Expression <= Expression 
+	//@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+	//LessThanOrEqual ::= operand1 #1 "LessThanOrEqual" #1 operand2;
+	//problem: reserved symbols <, >, <= ,>
+	
+	
+	@Operator(type="primitive", weight="5", superclass="Expression")
+	//@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	Add ::= number1[] operator [addition : "+"] number2[];
 	
 	
 	//-------------------  Expressions from Feature Model  ---------------------------
 	
+	//@Operator(type="primitive", weight="5", superclass="Expression") //test
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	NestedExpression ::= "(" operand ")";
 	
+	//@Operator(type="primitive", weight="5", superclass="Expression") //test
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	FeatureReference ::= feature[];
 	
