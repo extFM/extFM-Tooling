@@ -37,14 +37,16 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deselect" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureConfiguration" eSuperTypes="#//ConfigurationOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureConfiguration" eSuperTypes="#//ConfigurationOperation #//FeatureReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="DomainValueConfiguration" eSuperTypes="#//ConfigurationOperation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeConfiguration" eSuperTypes="#//ConfigurationOperation">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeConfiguration" eSuperTypes="#//ConfigurationOperation #//FeatureReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueConfigurations" upperBound="-1"

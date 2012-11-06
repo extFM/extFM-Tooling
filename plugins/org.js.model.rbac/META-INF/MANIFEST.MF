@@ -15,3 +15,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.js.model.feature;visibility:=reexport,
  org.eclipse.ui;bundle-version="3.103.0"
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.js.model.rbac.RBACPlugin

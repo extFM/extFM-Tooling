@@ -10,7 +10,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="feature.ecore#//SelectedState">
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/selected"/>
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/deselected"/>
-      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/undetermined"/>
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/unbound"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="feature.ecore#//AttributeComparisonOperator">
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/equal"/>
@@ -40,8 +40,10 @@
     <genClasses ecoreClass="feature.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/name"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference feature.ecore#//Attribute/feature"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Attribute/domain"/>
+      <genFeatures createChild="false" propertyCategory="" propertyDescription=""
+          ecoreFeature="ecore:EReference feature.ecore#//Attribute/domain"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/value"/>
+      <genFeatures createChild="true" ecoreFeature="ecore:EAttribute feature.ecore#//Attribute/deselectedDomainValues"/>
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//DiscreteDomain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//DiscreteDomain/values"/>

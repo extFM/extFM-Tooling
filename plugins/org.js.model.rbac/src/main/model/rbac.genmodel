@@ -19,8 +19,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Subject/roles"/>
     </genClasses>
     <genClasses ecoreClass="rbac.ecore#//Role">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedConfigOperations"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedEngineeringOperations"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedConfigOperations"/>
+      <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rbac.ecore#//Role/allowedEngineeringOperations"/>
       <genFeatures notify="false" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/parentRoles"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/childRoles"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/subjects"/>
@@ -32,7 +33,9 @@
     <genClasses image="false" ecoreClass="rbac.ecore#//ConfigurationOperation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//ConfigurationOperation/select"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//ConfigurationOperation/deselect"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//ConfigurationOperation/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="rbac.ecore#//FeatureReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//FeatureReference/feature"/>
     </genClasses>
     <genClasses ecoreClass="rbac.ecore#//FeatureConfiguration"/>
     <genClasses ecoreClass="rbac.ecore#//DomainValueConfiguration">

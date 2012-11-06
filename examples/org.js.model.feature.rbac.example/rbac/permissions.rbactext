@@ -1,33 +1,62 @@
-access control references <../model/Automotive.eft>
+access control on <../model/Automotive.eft>
 
-role <gEngineer> {
+role <cdEngineer> {
 	// define privilege per feature
-	CDPlayer : select deselect 
+	CDPlayer : select deselect
+	
 	
 	// define privilege for an attribute's domain values
-	CDPlayer#coverColor (
+	CDPlayer.coverColor (
 		// define privilege per domain value
 		"blue" : select deselect 
-		"green" : select
-		"red" : deselect
+		"green" : select deselect
 	) 
 	// define privilege for all domain values of an attribute
-	CDPlayer#hasUSBPort : select deselect 
+	CDPlayer.hasUSBPort : select deselect 
+	CDPlayer.numberOfTitles : select deselect
+	AudioCDPlayer : select deselect
+	MP3CDPlayer : select deselect
 }
+
+role <test> extends mapsEngineer, cdEngineer {
+	CDPlayer.coverColor : select
+	CDPlayer.coverColor (
+		"blue" : deselect 
+		"green" : deselect
+	)
+}
+
+role <mapsEngineer> {
+    CDPlayer.coverColor : select 
+	Maps : select deselect
+	Maps.levelOfDetail : select
+	Europe : select deselect
+	NorthAmerica : select deselect
+	CentralAmerica : select deselect
+	SouthAmerica : select deselect
+	Asia : select deselect
+}
+
 
 role <domainEngineer> {
 	// define domain engineering operations
 	$createFM
 }
 
-subject "Harry Blue" <hb> {
- 	gEngineer 
- 	domainEngineer
+role <superEngineer> extends domainEngineer, mapsEngineer, cdEngineer {
+	AutomotiveMultimedia : select
 }
 
-subject "James Black" <jb>
-subject "Anna White" <aw>
-subject "Bob Red" <br>
-subject "Amy Green" <ag>
+role <customer> {
+	Radio : select
+	CassettePlayer : select
+	CDPlayer : select
+}
+
+role <specialCustomer> extends customer {
+	PersonalNavigation : select
+}
+
+
 
 
