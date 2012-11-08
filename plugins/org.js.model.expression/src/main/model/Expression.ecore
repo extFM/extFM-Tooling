@@ -53,13 +53,12 @@
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MatheExpressions" abstract="true" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//MatheExpressions">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
-        eType="#//AttributeCalculationOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number1" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number2" lowerBound="1"
+  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

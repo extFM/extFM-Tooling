@@ -42,11 +42,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeRef/attribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeRef/value"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Expression.ecore#//MatheExpressions"/>
-    <genClasses ecoreClass="Expression.ecore#//Add">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Add/operator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Add/number1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Add/number2"/>
+    <genClasses ecoreClass="Expression.ecore#//Addition"/>
+    <genClasses ecoreClass="Expression.ecore#//Subtraction"/>
+    <genClasses ecoreClass="Expression.ecore#//Multiplication"/>
+    <genClasses ecoreClass="Expression.ecore#//Division"/>
+    <genClasses ecoreClass="Expression.ecore#//Number">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/number"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

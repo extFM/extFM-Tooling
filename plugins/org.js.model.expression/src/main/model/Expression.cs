@@ -21,21 +21,26 @@ OPTIONS {
 TOKENS {
 	DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
 	DEFINE DOT $('.')$;
+	
+	DEFINE ADDITION $('+')$;
+	DEFINE SUBTRACTION $('-')$;
+	DEFINE MULTIPLICATION $('*')$;
+	DEFINE DIVISION $('/')$;
 }
 
 
 TOKENSTYLES {
-	"+" COLOR #000000, BOLD;
-	"-" COLOR #000000, BOLD;
-	"*" COLOR #000000, BOLD;
-	"/" COLOR #000000, BOLD;
+	//"+" COLOR #000000, BOLD;
+	//"-" COLOR #000000, BOLD;
+	//"*" COLOR #000000, BOLD;
+	//"/" COLOR #000000, BOLD;
 	
-	"==" COLOR #000000, BOLD;
-	"!=" COLOR #000000, BOLD;
-	"<" COLOR #000000, BOLD;
-	"<=" COLOR #000000, BOLD;
-	">" COLOR #000000, BOLD;
-	">=" COLOR #000000, BOLD;
+	//"==" COLOR #000000, BOLD;
+	//"!=" COLOR #000000, BOLD;
+	//"<" COLOR #000000, BOLD;
+	//"<=" COLOR #000000, BOLD;
+	//">" COLOR #000000, BOLD;
+	//">=" COLOR #000000, BOLD;
 }
 
 RULES {
@@ -46,28 +51,29 @@ RULES {
 		
 					
 	//Syntax - AttributeCalculation
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeCalculation ::= attribute1calculation
-										 #1 operatorCalculation[//addition : "+", 
-	                                                       subtraction : "-", 
-	                                                       multiplication : "*", 
-	                                                       division : "/"] 
-	                                                             #1  attribute2calculation;
+	//@Operator(type="primitive", weight="6", superclass="Expression")  //weight="6"
+	//AttributeCalculation ::= attribute1calculation
+	//									 #1 operatorCalculation[//addition : "+", 
+	   //                                                    subtraction : "-", 
+	        //                                               multiplication : "*", 
+	             //                                          division : "/"] 
+	                //                                             #1  attribute2calculation;
 		
-	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
+	//AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
 	
 	
 	//Syntax - AttributeComparison
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeComparison ::= attribute1comparison 
-									#1 operatorComparison [equal : "==", 
-									  								unequal : "!=", 
-									 								greaterThan : ">", 
-									  								greaterThanOrEqual : ">=", 
-									  								lessThan : "<", 
-									  								lessThanOrEqual : "<="]
-									  					#1 attribute2comparison;	
+	//@Operator(type="primitive", weight="8", superclass="Expression")
+	//AttributeComparison ::= attribute1comparison 
+	//								#1 operatorComparison [equal : "==", 
+	//								  								unequal : "!=", 
+	//								 								greaterThan : ">", 
+	//								  								greaterThanOrEqual : ">=", 
+	//								  								lessThan : "<", 
+	//								  								lessThanOrEqual : "<="]
+	//								  					#1 attribute2comparison;	
 	
+	//-------------------- feature model references------------------------------
 	//Syntax - feature.attribute							  
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	FeatureAttributeReference ::= feature[] _[DOT] attribute[];
@@ -80,26 +86,36 @@ RULES {
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	AttributeRef ::= attribute[] ":=" value[];
 	
-
-	//Syntax - Expression <= Expression 
-	//@Operator(type="binary_left_associative", weight="3", superclass="Expression")
-	//LessThanOrEqual ::= operand1 #1 "LessThanOrEqual" #1 operand2;
-	//problem: reserved symbols <, >, <= ,>
+	// -------------------- mathematical expressions ------------------------------
+	// + 
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+	Addition ::= operand1 #1 _[ADDITION] #1 operand2;
 	
+	// - 
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+	Subtraction ::= operand1 #1 _[SUBTRACTION] #1 operand2;
 	
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	//@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	Add ::= number1[] operator [addition : "+"] number2[];
+	// *
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+	Multiplication ::= operand1 #1 _[MULTIPLICATION] #1 operand2;
 	
+	// /
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+	Division ::= operand1 #1 _[DIVISION] #1 operand2;
 	
-	//-------------------  Expressions from Feature Model  ---------------------------
+	//------------------------expressions ----------------------------------------
+	@Operator(type="primitive", weight="6", superclass="Expression")
+	Number ::= number[];
+	//problem with weight="5": conflict with FeatureReference (weight="5")
 	
-	//@Operator(type="primitive", weight="5", superclass="Expression") //test
-	@Operator(type="primitive", weight="5", superclass="Expression")
+	//-------------------  Expressions from feature model  ---------------------------
+	
+	@Operator(type="primitive", weight="5", superclass="Expression") //test
+	//@Operator(type="primitive", weight="5", superclass="Expression")
 	NestedExpression ::= "(" operand ")";
 	
-	//@Operator(type="primitive", weight="5", superclass="Expression") //test
-	@Operator(type="primitive", weight="5", superclass="Expression")
+	@Operator(type="primitive", weight="5", superclass="Expression") //test
+	//@Operator(type="primitive", weight="5", superclass="Expression")
 	FeatureReference ::= feature[];
 	
 	@Operator(type="unary_prefix", weight="4", superclass="Expression")
