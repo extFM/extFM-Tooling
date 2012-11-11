@@ -46,14 +46,14 @@
     <genClasses ecoreClass="Expression.ecore#//Subtraction"/>
     <genClasses ecoreClass="Expression.ecore#//Multiplication"/>
     <genClasses ecoreClass="Expression.ecore#//Division"/>
-    <genClasses ecoreClass="Expression.ecore#//Number">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/number"/>
-    </genClasses>
     <genClasses ecoreClass="Expression.ecore#//Equal"/>
     <genClasses ecoreClass="Expression.ecore#//Unequal"/>
     <genClasses ecoreClass="Expression.ecore#//GreaterThan"/>
     <genClasses ecoreClass="Expression.ecore#//GreaterThanOrEqual"/>
     <genClasses ecoreClass="Expression.ecore#//LessThan"/>
     <genClasses ecoreClass="Expression.ecore#//LessThanOrEqual"/>
+    <genClasses ecoreClass="Expression.ecore#//Number">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/number"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
