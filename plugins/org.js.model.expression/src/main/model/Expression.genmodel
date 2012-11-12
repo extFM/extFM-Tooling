@@ -8,26 +8,10 @@
   <foreignModel>Expression.ecore</foreignModel>
   <genPackages prefix="expression" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="Expression.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Expression.ecore#//AttributeCalculationOperator">
-      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//AttributeCalculationOperator/addition"/>
-      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//AttributeCalculationOperator/subtraction"/>
-      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//AttributeCalculationOperator/multiplication"/>
-      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//AttributeCalculationOperator/division"/>
-    </genEnums>
     <genClasses ecoreClass="Expression.ecore#//ExpressionModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//ExpressionModel/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/featureModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/expressions"/>
-    </genClasses>
-    <genClasses ecoreClass="Expression.ecore#//AttributeCalculation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeCalculation/attribute1calculation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeCalculation/attribute2calculation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeCalculation/operatorCalculation"/>
-    </genClasses>
-    <genClasses ecoreClass="Expression.ecore#//AttributeComparison">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeComparison/attribute1comparison"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeComparison/attribute2comparison"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeComparison/operatorComparison"/>
     </genClasses>
     <genClasses ecoreClass="Expression.ecore#//FeatureAttributeReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeReference/feature"/>

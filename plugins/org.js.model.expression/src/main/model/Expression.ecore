@@ -9,32 +9,6 @@
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeCalculation" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute1calculation"
-        lowerBound="1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//AttributeOperand"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute2calculation"
-        lowerBound="1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//AttributeOperand"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorCalculation" lowerBound="1"
-        eType="#//AttributeCalculationOperator"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="AttributeCalculationOperator">
-    <eLiterals name="addition"/>
-    <eLiterals name="subtraction" value="1"/>
-    <eLiterals name="multiplication" value="2"/>
-    <eLiterals name="division" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeComparison" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute1comparison" lowerBound="1"
-        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//AttributeOperand"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute2comparison" lowerBound="1"
-        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//AttributeOperand"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorComparison" lowerBound="1"
-        eType="ecore:EEnum ../../../../org.js.model.feature/src/main/model/feature.ecore#//AttributeComparisonOperator"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureAttributeReference" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>

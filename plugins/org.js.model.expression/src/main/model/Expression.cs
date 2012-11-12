@@ -27,8 +27,6 @@ TOKENS {
 	DEFINE MULTIPLICATION $('*')$;
 	DEFINE DIVISION $('/')$;
 	
-	DEFINE FOO $'<>'$; 
-	
 	DEFINE EQUAL $('==')$;
 	DEFINE UNEQUAL $('!=')$; 
 	DEFINE GREATERTHAN $('>')$;         
@@ -59,30 +57,8 @@ TOKENSTYLES {
 RULES {
 
 	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0
-	 					  "Feature" #1 "Model" #1 (featureModels['<','>'])+ !0
+	 					  "Feature" #1 "Model" #1 (featureModels['[',']'])+ !0
 	  				       expressions*;
-		
-					
-	//Syntax - AttributeCalculation
-	//@Operator(type="primitive", weight="6", superclass="Expression")  //weight="6"
-	//AttributeCalculation ::= attribute1calculation
-	//									 #1 operatorCalculation[addition : "+",  subtraction : "-", 
-	                                                     // multiplication : "*", division : "/"] 
-	                                                            //   #1  attribute2calculation;
-		
-	//AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
-	
-	
-	//Syntax - AttributeComparison
-	//@Operator(type="primitive", weight="8", superclass="Expression")
-	//AttributeComparison ::= attribute1comparison 
-	//								#1 operatorComparison [equal : "==", 
-	//								  								unequal : "!=", 
-	//								 								greaterThan : ">", 
-	//								  								greaterThanOrEqual : ">=", 
-	//								  								lessThan : "<", 
-	//								  								lessThanOrEqual : "<="]
-	//								  					#1 attribute2comparison;
 	
     //-------------------  Expressions from feature model  ---------------------------
 	
@@ -151,11 +127,9 @@ RULES {
 	
 	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
 	LessThan ::= operand1 #1 _[LESSTHAN] #1 operand2;                         //<
-				    //PROBLEM = symbol conflict with <>
 				    
 	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
 	LessThanOrEqual ::= operand1 #1 _[LESSTHANOREQUAL] #1 operand2;	          //<=
-					//PROBLEM = symbol conflict with <> 
 					
 	//------------------------expressions ----------------------------------------
 	
