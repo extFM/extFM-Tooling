@@ -63,8 +63,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="GreaterThanOrEqual" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LessThan" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LessThanOrEqual" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

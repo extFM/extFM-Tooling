@@ -27,6 +27,8 @@ TOKENS {
 	DEFINE MULTIPLICATION $('*')$;
 	DEFINE DIVISION $('/')$;
 	
+	DEFINE FOO $'<>'$; 
+	
 	DEFINE EQUAL $('==')$;
 	DEFINE UNEQUAL $('!=')$; 
 	DEFINE GREATERTHAN $('>')$;         
@@ -36,8 +38,7 @@ TOKENS {
 	
 	DEFINE EXCLUDES $'excludes'$ ;
 	DEFINE IMPLIES $'implies'$;
-	
-	DEFINE FOO $'<>'$;  
+	 
 }
 
 
@@ -65,11 +66,9 @@ RULES {
 	//Syntax - AttributeCalculation
 	//@Operator(type="primitive", weight="6", superclass="Expression")  //weight="6"
 	//AttributeCalculation ::= attribute1calculation
-	//									 #1 operatorCalculation[//addition : "+", 
-	   //                                                    subtraction : "-", 
-	        //                                               multiplication : "*", 
-	             //                                          division : "/"] 
-	                //                                             #1  attribute2calculation;
+	//									 #1 operatorCalculation[addition : "+",  subtraction : "-", 
+	                                                     // multiplication : "*", division : "/"] 
+	                                                            //   #1  attribute2calculation;
 		
 	//AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
 	
@@ -160,9 +159,8 @@ RULES {
 					
 	//------------------------expressions ----------------------------------------
 	
-					//@Operator(type="primitive", weight="6", superclass="Expression")
-					//Number ::= number[];
-				    //PROBLEM: the number is undetected
+					@Operator(type="primitive", weight="9", superclass="Expression")
+					Number ::= value[INTEGER] ;
 	   
-	//-------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------
 }

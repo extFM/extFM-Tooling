@@ -53,7 +53,7 @@
     <genClasses ecoreClass="Expression.ecore#//LessThan"/>
     <genClasses ecoreClass="Expression.ecore#//LessThanOrEqual"/>
     <genClasses ecoreClass="Expression.ecore#//Number">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
