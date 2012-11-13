@@ -39,5 +39,7 @@
     <genClasses ecoreClass="Expression.ecore#//Number">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/value"/>
     </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Requires"/>
+    <genClasses ecoreClass="Expression.ecore#//Excludes"/>
   </genPackages>
 </genmodel:GenModel>

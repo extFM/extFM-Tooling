@@ -31,12 +31,11 @@ TOKENS {
 	DEFINE UNEQUAL $('!=')$; 
 	DEFINE GREATERTHAN $('>')$;         
 	DEFINE GREATERTHANOREQUAL $('>=')$; 
-	DEFINE LESSTHAN $'<'$;                //symbol conflict with <> 
-	DEFINE LESSTHANOREQUAL $('<=')$;      //symbol conflict with <>       
+	DEFINE LESSTHAN $'<'$;                
+	DEFINE LESSTHANOREQUAL $('<=')$;         
 	
+	DEFINE REQUIRES $'requires'$;
 	DEFINE EXCLUDES $'excludes'$ ;
-	DEFINE IMPLIES $'implies'$;
-	 
 }
 
 
@@ -77,11 +76,13 @@ RULES {
 	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
 	OrExpression ::= operand1 #1 "||" #1 operand2;
 	
-	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	ImpliesExpression ::= operand1 #1 _[IMPLIES] #1 operand2;
+	//-------------------- cross-tree-relationships ------------------------------
 	
 	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	ExcludesExpression ::= operand1 #1 _[EXCLUDES] #1 operand2;
+	Requires::= operand1 #1 _[REQUIRES] #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	Excludes ::= operand1 #1 _[EXCLUDES] #1 operand2;
 	
 	//-------------------- feature model references------------------------------
 					
