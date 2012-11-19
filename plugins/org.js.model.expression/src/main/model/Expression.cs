@@ -21,101 +21,121 @@ OPTIONS {
 TOKENS {
 	DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
 	DEFINE DOT $('.')$;
+	
+	DEFINE ADDITION $('+')$;
+	DEFINE SUBTRACTION $('-')$;
+	DEFINE MULTIPLICATION $('*')$;
+	DEFINE DIVISION $('/')$;
+	
+	DEFINE EQUAL $('==')$;
+	DEFINE UNEQUAL $('!=')$; 
+	DEFINE GREATERTHAN $('>')$;         
+	DEFINE GREATERTHANOREQUAL $('>=')$; 
+	DEFINE LESSTHAN $'<'$;                
+	DEFINE LESSTHANOREQUAL $('<=')$;         
+	
+	DEFINE REQUIRES $'requires'$;
+	DEFINE EXCLUDES $'excludes'$ ;
 }
 
 
 TOKENSTYLES {
-	"+" COLOR #000000, BOLD;
-	"-" COLOR #000000, BOLD;
-	"*" COLOR #000000, BOLD;
-	"/" COLOR #000000, BOLD;
+	//"+" COLOR #000000, BOLD;
+	//"-" COLOR #000000, BOLD;
+	//"*" COLOR #000000, BOLD;
+	//"/" COLOR #000000, BOLD;
 	
-	"==" COLOR #000000, BOLD;
-	"!=" COLOR #000000, BOLD;
-	"<" COLOR #000000, BOLD;
-	"<=" COLOR #000000, BOLD;
-	">" COLOR #000000, BOLD;
-	">=" COLOR #000000, BOLD;
+	//"==" COLOR #000000, BOLD;
+	//"!=" COLOR #000000, BOLD;
+	//"<" COLOR #000000, BOLD;
+	//"<=" COLOR #000000, BOLD;
+	//">" COLOR #000000, BOLD;
+	//">=" COLOR #000000, BOLD;
 }
 
 RULES {
-	//ExpressionModel ::= "expressions" featureModel['<','>'] expressions*;
-	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0
-	 					  "Feature" #1 "Model" #1 (featureModels['<','>'])+ !0
-	  				       expressions*;
-		
-					
-	//Syntax - AttributeCalculation
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeCalculation ::= attribute1calculation
-										 #1 operatorCalculation[//addition : "+", 
-	                                                       subtraction : "-", 
-	                                                       multiplication : "*", 
-	                                                       division : "/"] 
-	                                                             #1  attribute2calculation;
-		
-	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
-	
-	
-	//Syntax - AttributeComparison
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeComparison ::= attribute1comparison 
-									#1 operatorComparison [equal : "==", 
-									  								unequal : "!=", 
-									 								greaterThan : ">", 
-									  								greaterThanOrEqual : ">=", 
-									  								lessThan : "<", 
-									  								lessThanOrEqual : "<="]
-									  					#1 attribute2comparison;	
-	
-	//Syntax - feature.attribute							  
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureAttributeReference ::= feature[] _[DOT] attribute[];
-	
-	//Syntax - 	feature.attribute := value					  
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];
-	
-	//Syntax - 	attribute := value					  
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeRef ::= attribute[] ":=" value[];
-	
 
-	//Syntax - Expression <= Expression 
-	//@Operator(type="binary_left_associative", weight="3", superclass="Expression")
-	//LessThanOrEqual ::= operand1 #1 "LessThanOrEqual" #1 operand2;
-	//problem: reserved symbols <, >, <= ,>
+	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0
+	 					  "Feature" #1 "Model" #1 (featureModels['[',']'])+ !0
+	  				       expressions*;
 	
+    //-------------------  Expressions from feature model  ---------------------------
 	
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	//@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	Add ::= number1[] operator [addition : "+"] number2[];
+					@Operator(type="primitive", weight="9", superclass="Expression") 
+					NestedExpression ::= "(" operand ")";
 	
+					@Operator(type="primitive", weight="9", superclass="Expression")
+					FeatureReference ::= feature[];
 	
-	//-------------------  Expressions from Feature Model  ---------------------------
-	
-	//@Operator(type="primitive", weight="5", superclass="Expression") //test
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	NestedExpression ::= "(" operand ")";
-	
-	//@Operator(type="primitive", weight="5", superclass="Expression") //test
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureReference ::= feature[];
-	
-	@Operator(type="unary_prefix", weight="4", superclass="Expression")
+	@Operator(type="unary_prefix", weight="8", superclass="Expression") 
 	NotExpression ::= "!" operand;
-	
+							
 	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
 	AndExpression ::= operand1 #1 "&&" #1 operand2;
 	
 	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
 	OrExpression ::= operand1 #1 "||" #1 operand2;
 	
-	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	ImpliesExpression ::= operand1 #1 "->" #1 operand2;
+	//-------------------- cross-tree-relationships ------------------------------
 	
 	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	ExcludesExpression ::= operand1 #1 "excludes" #1 operand2;
+	Requires::= operand1 #1 _[REQUIRES] #1 operand2;
 	
-	//--------------------------------------------------------------------------------
+	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	Excludes ::= operand1 #1 _[EXCLUDES] #1 operand2;
+	
+	//-------------------- feature model references------------------------------
+					
+					//feature.attribute		
+					@Operator(type="primitive", weight="9", superclass="Expression")				  
+					FeatureAttributeReference ::= feature[] _[DOT] attribute[];  		
+					
+					//feature.attribute := value
+					@Operator(type="primitive", weight="9", superclass="Expression") 				  
+					FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[]; 
+	
+					//attribute := value				  
+					@Operator(type="primitive", weight="9", superclass="Expression")
+					AttributeRef ::= attribute[] ":=" value[];
+	
+	// -------------------- mathematical expressions ------------------------------
+	
+	@Operator(type="binary_left_associative", weight="6", superclass="Expression")
+	Addition ::= operand1 #1 _[ADDITION] #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="6", superclass="Expression")
+	Subtraction ::= operand1 #1 _[SUBTRACTION] #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="7", superclass="Expression")
+	Multiplication ::= operand1 #1 _[MULTIPLICATION] #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="7", superclass="Expression")
+	Division ::= operand1 #1 _[DIVISION] #1 operand2;
+	
+	//-------------------  comparison expressions --------------------------------
+				
+	@Operator(type="binary_left_associative", weight="4", superclass="Expression")
+	Equal ::= operand1 #1 _[EQUAL] #1 operand2;
+	
+	@Operator(type="binary_left_associative", weight="4", superclass="Expression")
+	Unequal ::= operand1 #1 _[UNEQUAL] #1 operand2;
+
+	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
+	GreaterThan ::= operand1 #1 _[GREATERTHAN] #1 operand2;                   //>
+	
+	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
+	GreaterThanOrEqual ::= operand1 #1 _[GREATERTHANOREQUAL] #1 operand2;     //>=
+	
+	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
+	LessThan ::= operand1 #1 _[LESSTHAN] #1 operand2;                         //<
+				    
+	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
+	LessThanOrEqual ::= operand1 #1 _[LESSTHANOREQUAL] #1 operand2;	          //<=
+					
+	//------------------------expressions ----------------------------------------
+	
+					@Operator(type="primitive", weight="9", superclass="Expression")
+					Number ::= value[INTEGER] ;
+	   
+	//-----------------------------------------------------------------------------
 }

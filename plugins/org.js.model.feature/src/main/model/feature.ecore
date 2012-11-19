@@ -35,6 +35,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
         eType="#//Domain"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deselectedDomainValues"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiscreteDomain" eSuperTypes="#//Domain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
@@ -84,7 +86,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="SelectedState">
     <eLiterals name="selected"/>
     <eLiterals name="deselected" value="1"/>
-    <eLiterals name="undetermined" value="2"/>
+    <eLiterals name="unbound" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeComparisonExpression" eSuperTypes="#//AtomicExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute1" lowerBound="1"

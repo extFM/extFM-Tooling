@@ -15,6 +15,8 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
+import org.js.model.feature.DiscreteDomain;
+import org.js.model.feature.Domain;
 import org.js.model.feature.Feature;
 
 /**
@@ -104,7 +106,9 @@ public class RBACService {
             }
             copiedConfigOperations.removeAll(featureConfigOperations);
             configOps.add(joinFeatureConfigOperations(featureConfigOperations));
-         } else if (configurationOperation instanceof AttributeConfiguration) {
+         } 
+         
+         else if (configurationOperation instanceof AttributeConfiguration) {
             AttributeConfiguration attributeConfiguration = (AttributeConfiguration) configurationOperation;
             Attribute attribute = attributeConfiguration.getAttribute();
 
@@ -148,10 +152,12 @@ public class RBACService {
                newAttributeConfigOperation.setDeselect(true);
             }
             if (newAttributeConfigOperation.isSelect() && newAttributeConfigOperation.isDeselect()) {
+               newAttributeConfigOperation.getValueConfigurations().clear();
                break;
             }
             // check domain value config operations
             EList<DomainValueConfiguration> valueConfigurations = attributeConfiguration.getValueConfigurations();
+            Domain domain = attributeConfiguration.getAttribute().getDomain();
             for (DomainValueConfiguration domainValueConfiguration : valueConfigurations) {
                String value = domainValueConfiguration.getValue();
                // TODO: check domain values

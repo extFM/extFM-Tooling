@@ -54,7 +54,7 @@ RULES {
 	FeatureModel ::= "feature" #1 "model" #1 name['"','"'] !0!0
 						domains* !0 root !0 constraints* !0; 
 						
-	Feature ::= selected[selected : "selected", deselected : "deselected", undetermined : ""] 
+	Feature ::= selected[selected : "selected", deselected : "deselected", unbound : ""] 
 				"feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
 				//Order is mandatory for correct printing!
 				((!0 #4 (attributes))*)? 
