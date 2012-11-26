@@ -92,11 +92,12 @@ RULES {
 					
 					//feature.attribute := value
 					@Operator(type="primitive", weight="9", superclass="Expression") 				  
-					FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[]; 
+					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];  //original
+					FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":=" #1 value['"','"']; 
 	
-					//attribute := value				  
+					
 					@Operator(type="primitive", weight="9", superclass="Expression")
-					AttributeRef ::= attribute[] ":=" value[];
+					Text ::= value['"','"'] ; 		
 	
 	// -------------------- mathematical expressions ------------------------------
 	

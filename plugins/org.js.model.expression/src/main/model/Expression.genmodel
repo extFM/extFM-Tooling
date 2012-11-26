@@ -22,10 +22,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeValue/attribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//FeatureAttributeValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="Expression.ecore#//AttributeRef">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//AttributeRef/attribute"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//AttributeRef/value"/>
-    </genClasses>
     <genClasses ecoreClass="Expression.ecore#//Addition"/>
     <genClasses ecoreClass="Expression.ecore#//Subtraction"/>
     <genClasses ecoreClass="Expression.ecore#//Multiplication"/>
@@ -41,5 +37,8 @@
     </genClasses>
     <genClasses ecoreClass="Expression.ecore#//Requires"/>
     <genClasses ecoreClass="Expression.ecore#//Excludes"/>
+    <genClasses ecoreClass="Expression.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Text/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
