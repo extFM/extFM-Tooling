@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="ctcr80.feature#/"/>
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f22"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f21"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f20"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f19"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f18"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f17"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f16"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="ctcr80.feature#f15"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f14"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f13"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f12"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f11"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f10"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f9"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f8"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="ctcr80.feature#f7"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#f6"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#f5"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#f4"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#f3"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#f2"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#f1"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="ctcr80.feature#root"/>
+        </operations>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

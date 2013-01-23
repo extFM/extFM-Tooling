@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="or_simple.feature#root"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="or_simple.feature#f3"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="or_simple.feature#f2"/>
+        </operations>
+        <nextStage name="s3">
+          <operations xsi:type="sc:FeatureOperation">
+            <feature href="or_simple.feature#f1"/>
+          </operations>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

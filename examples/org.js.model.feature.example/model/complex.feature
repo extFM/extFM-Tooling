@@ -60,4 +60,16 @@
     <values>Black</values>
     <values>Green</values>
   </domains>
+  <constraints id="c1imp">
+    <expression xsi:type="feature:ImpliesExpression">
+      <operand1 xsi:type="feature:FeatureReference" feature="fa1"/>
+      <operand2 xsi:type="feature:FeatureReference" feature="fb1"/>
+    </expression>
+  </constraints>
+  <constraints id="c2ex">
+    <expression xsi:type="feature:ExcludesExpression">
+      <operand1 xsi:type="feature:FeatureReference" feature="fb2"/>
+      <operand2 xsi:type="feature:FeatureReference" feature="fc1"/>
+    </expression>
+  </constraints>
 </feature:FeatureModel>

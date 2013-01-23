@@ -1,0 +1,863 @@
+module sc2ptnet;
+create OUT : pn from IN : sc, IN2 : fm;
+--create OUT : pn from IN1 : sc, IN2 : pn_in;
+
+-------------------------------------------------------------------------------
+-- ATTRIBUTES
+-------------------------------------------------------------------------------
+helper def : start : pn!Transition = OclUndefined;
+helper def : end : pn!Transition = OclUndefined;
+helper def : cleanPlaces : Sequence(pn!Place) = Sequence{};
+helper def : outgoingStage : Map(pn!Place, sc!Stage) = Map{};
+helper def : incomingStage : Map(pn!Place, sc!Stage) = Map{};
+helper def : incomingStages : Map(pn!Place, Sequence(sc!Stage)) = Map{};
+-------------------------------------------------------------------------------
+-- HELPER/METHODS
+-------------------------------------------------------------------------------
+
+-- get the ptNet
+helper def : getWorkflowNet(): pn!PtNet = pn!PtNet->allInstances()->first();
+
+-- is x before y
+helper def : isBefore(x : sc!Stage, y : sc!Stage) : Boolean =
+	if(x = y)
+	then
+		false
+	else
+		if (y.eContainer().oclIsTypeOf(sc!Stage))
+		then
+			if (x = y.eContainer())
+			then
+				true
+			else
+				thisModule.isBefore(x, y.eContainer())
+			endif
+		else
+			false
+		endif
+	endif
+;
+
+-- get first stage
+helper def : getFirstStage(stages : Sequence(sc!Stage)) : sc!Stage =
+	if (stages->size() = 1) then
+		stages->first()
+	else
+		if (thisModule.isBefore(stages->first(), stages->at(2))) then
+			let x : Sequence(sc!Stages) = stages->excluding(stages->at(2)) in
+			thisModule.getFirstStage(x)
+		else
+			let x : Sequence(sc!Stages) = stages->excluding(stages->first()) in
+			thisModule.getFirstStage(x)
+		endif
+	endif
+;
+		
+-- checks if an Expression is an implies expression between two features
+helper context sc!Expression def : isImplies() : Boolean =
+	if self->oclIsKindOf(sc!ImpliesExpression) then 
+		let x : sc!ImpliesExpression = self in
+		let left : sc!Expression = x.operand1 in
+		let right : sc!Expresion = x.operand2 in
+		if left.oclIsKindOf(sc!FeatureReference) and right.oclIsKindOf(sc!FeatureReference) then
+			true
+		else
+			false
+		endif
+	else 
+		if self.oclIsKindOf(sc!NestedExpression) then
+			let x : sc!NestedExpression = self in
+			let y : sc!Expression = x.operand in
+			x.isImplies()
+		else
+			false
+		endif
+	endif
+;
+	
+-- checks if an Expression is an implies expression between two features
+helper context sc!Expression def : isExclude() : Boolean =
+	if self->oclIsKindOf(sc!ExcludesExpression) then 
+		let x : sc!ExcludesExpression = self in
+		let left : sc!Expression = x.operand1 in
+		let right : sc!Expresion = x.operand2 in
+		if left.oclIsKindOf(sc!FeatureReference) and right.oclIsKindOf(sc!FeatureReference) then
+			true
+		else
+			false
+		endif
+	else 
+		if self.oclIsKindOf(sc!NestedExpression) then
+			let x : sc!NestedExpression = self in
+			let y : sc!Expression = x.operand in
+			x.isImplies()
+		else
+			false
+		endif
+	endif
+;
+
+-- Enum for groups
+--0 for mandatory
+--1 for optional
+--2 for alternative
+--3 for or
+helper context sc!Group def : groupCardinality() : Integer = 
+	if ((self.minCardinality = self.maxCardinality) and (self.childFeatures->size() = self.maxCardinality))
+	then
+		0 -- mandatory
+	else
+		if ((self.minCardinality = 0) and (self.childFeatures->size() = self.maxCardinality))
+		then
+			1--optional
+		else
+			if ((self.minCardinality = 1) and (self.maxCardinality = 1))
+			then
+				2 --alternative|xor
+			else
+				3 --or			
+			endif
+		endif
+	endif
+;
+
+-------------------------------------------------------------------------------
+-- RULES
+-------------------------------------------------------------------------------
+
+-- Basic Elements of the Workflow Petri Net
+entrypoint rule initWorkflowNet() {
+	to
+		i : pn!Place (name <- 'i',token <- 1),
+		o : pn!Place (name <- 'o'),
+		start : pn!Transition (name <- 'start'),
+		end : pn!Transition (name <- 'end'),
+		i_start : pn!ArcToTransition (source <- i, target <- start),
+		end_o : pn!ArcToPlace (source <- end, target <- o),
+		pn : pn!PtNet (
+			arcs <- pn!Arc.allInstances(),
+			places <- pn!Place.allInstances(),
+			transitions <- pn!Transition.allInstances())
+	do{
+		thisModule.start <- start;
+		thisModule.end <- end;
+	}
+}
+
+--basic construct for stages
+rule stages {
+	from s : sc!Stage
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+	}
+	to
+		i : pn!Place (name <- 'i_' + s.name),
+		o : pn!Place (name <- 'o_' + s.name),
+		arc_to_i : pn!ArcToPlace (source <- thisModule.start, target <- i),
+		arc_to_end : pn!ArcToTransition (source <- o, target <- thisModule.end),
+		start : pn!Transition (name <- 'start_' + s.name),
+		end : pn!Transition (name <- 'end_' + s.name)
+	do {
+		wf.places <- i;
+		wf.places <- o;
+		wf.transitions <- start;
+		wf.transitions <- end;
+		wf.arcs <- arc_to_i;
+		wf.arcs <- arc_to_end;
+	}
+}
+-- connects the sequential stages. 
+-- Starts by the reference from the stage model
+rule connectStages{
+	from sm : sc!StageModel
+	using{
+		firstStage : sc!Stage = sm.firstStage;
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		stage_place_i : pn!Place = thisModule.resolveTemp(firstStage, 'i');
+		stage_place_o : pn!Place = thisModule.resolveTemp(firstStage, 'o');
+		level : Integer = 1;
+	}
+	to
+		syncTransition : pn!Transition (name <- 'sync_' + level),
+		arc_to_first_stage : pn!ArcToPlace (source <- thisModule.start, target <- stage_place_i),
+		arc_from_first_stage : pn!ArcToTransition (source <- stage_place_o, target <- syncTransition)
+	do{
+		wf.transitions <- syncTransition;
+		wf.arcs <- arc_to_first_stage;
+		wf.arcs <- arc_from_first_stage;
+		if (firstStage.nextStage.oclIsTypeOf(sc!Stage)){
+			thisModule.connectStages2(firstStage.nextStage,syncTransition,level);
+		} else {
+			thisModule.connectLastStage(firstStage.nextStage,syncTransition,level);		
+		}
+	}
+}
+
+-- connects this stage with the last one and creates a new sync transition.
+rule connectStages2(stage : sc!Stage, syncTransition : pn!Transition, level : Integer){
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		stage_place_i : pn!Place = thisModule.resolveTemp(stage, 'i');
+		stage_place_o : pn!Place = thisModule.resolveTemp(stage, 'o');
+	}
+	to
+		newSyncTransition : pn!Transition (name <- 'sync_' + level),
+		arc_to_this_stage : pn!ArcToPlace (source <- syncTransition, target <- stage_place_i),
+		arc_from_this_stage : pn!ArcToTransition (source <- stage_place_o, target <- syncTransition)	
+	do{
+		wf.transitions <- newSyncTransition;
+		wf.arcs <- arc_to_this_stage;
+		wf.arcs <- arc_from_this_stage;
+		if (stage.nextStage.oclIsTypeOf(sc!Stage)){
+			thisModule.connectStages2(stage.nextStage,newSyncTransition,level + 1);
+		} else {
+			thisModule.connectLastStage(stage.nextStage,newSyncTransition,level + 1);	
+		}
+	}
+}
+
+-- connects the last stage with the stage before that and connects it to the end transition
+rule connectLastStage(stage : sc!Stage, syncTransition : pn!Transition, level : Integer){
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		stage_place_i : pn!Place = thisModule.resolveTemp(stage, 'i');
+		stage_place_o : pn!Place = thisModule.resolveTemp(stage, 'o');
+	}
+	to
+		arc_to_this_stage : pn!ArcToPlace (source <- syncTransition, target <- stage_place_i),
+		arc_from_this_stage : pn!ArcToTransition (source <- stage_place_o, target <- thisModule.end)
+	do{
+		wf.arcs <- arc_to_this_stage;
+		wf.arcs <- arc_from_this_stage;
+	}
+}
+
+--iterates over every feature operation
+rule featureOperations {
+	from op : sc!FeatureOperation
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		feature : sc!Feature = op.feature;
+		stage : sc!Stage = op.eContainer();
+		stage_start : pn!Transition = thisModule.resolveTemp(stage, 'start');
+		stage_end : pn!Transition = thisModule.resolveTemp(stage, 'end');
+	}
+	to
+		add : pn!Transition (name <- 'sel_' + feature.id),
+		rem : pn!Transition (name <- 'des_' + feature.id),
+		i : pn!Place (name <- 'i_' + feature.id),
+		o : pn!Place (name <- 'o_' + feature.id),
+		i_add_arc : pn!ArcToTransition (source <- i, target <- add),
+		i_rem_arc : pn!ArcToTransition (source <- i, target <- rem),
+		add_o_arc : pn!ArcToPlace (source <- add, target <- o),
+		rem_o_arc : pn!ArcToPlace (source <- rem, target <- o),
+		start_i : pn!ArcToPlace (source <- stage_start, target <- i),
+		o_end : pn!ArcToTransition (source <- o, target <- stage_end)
+	do{
+		wf.places <- i;
+		wf.places <- o;
+		wf.transitions <- add;
+		wf.transitions <- rem;
+		wf.arcs <- i_add_arc;
+		wf.arcs <- i_rem_arc;
+		wf.arcs <- add_o_arc;
+		wf.arcs <- rem_o_arc;
+		wf.arcs <- start_i;
+		wf.arcs <- o_end;
+	}
+}
+
+--iterates over every domain value operation
+rule domainValueOperations {
+	from op : sc!DomainValueOperation
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		feature : sc!Feature = op.feature;
+		attribute : sc!Attribute = op.attribute;
+		value : String = op.value;
+		stage : sc!Stage = op.eContainer();
+		stage_start : pn!Transition = thisModule.resolveTemp(stage, 'start');
+		stage_end : pn!Transition = thisModule.resolveTemp(stage, 'end');
+	}
+	to
+		add : pn!Transition (name <- 'sel_' + feature.id + '.' + attribute.name + '.' + value),
+		rem : pn!Transition (name <- 'des_' + feature.id + '.' + attribute.name + '.' + value),
+		i : pn!Place (name <- 'i_' + feature.id + '.' + attribute.name + '.' + value),
+		o : pn!Place (name <- 'o_' + feature.id + '.' + attribute.name + '.' + value),
+		i_add_arc : pn!ArcToTransition (source <- i, target <- add),
+		i_rem_arc : pn!ArcToTransition (source <- i, target <- rem),
+		add_o_arc : pn!ArcToPlace (source <- add, target <- o),
+		rem_o_arc : pn!ArcToPlace (source <- rem, target <- o),
+		start_i : pn!ArcToPlace (source <- stage_start, target <- i),
+		o_end : pn!ArcToTransition (source <- o, target <- stage_end)
+	do{
+		wf.places <- i;
+		wf.places <- o;
+		wf.transitions <- add;
+		wf.transitions <- rem;
+		wf.arcs <- i_add_arc;
+		wf.arcs <- i_rem_arc;
+		wf.arcs <- add_o_arc;
+		wf.arcs <- rem_o_arc;
+		wf.arcs <- start_i;
+		wf.arcs <- o_end;
+	}
+}
+
+rule attribute {
+	from a : sc!Attribute
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		f_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = a.eContainer()).first();
+		dv_ops : Sequence(sc!DomainValueOperation) = sc!DomainValueOperation.allInstances()->select(op | op.attribute = a);
+		sel_f : pn!Transition = thisModule.resolveTemp(f_op, 'add');
+		des_f : pn!Transition = thisModule.resolveTemp(f_op, 'rem');
+	}
+	to
+		sel_f_a_place : pn!Place (name <- a.name + '_to_sel_' + f_op.feature.id),
+		arc_to_sel_f : pn!ArcToTransition (source <- sel_f_a_place, target <- sel_f)
+	do{
+		wf.places <- sel_f_a_place;
+		wf.arcs <- arc_to_sel_f;
+		-- the place that does not need a token collector
+		thisModule.cleanPlaces <- sel_f_a_place;
+		for (domainValue in dv_ops) {
+			thisModule.attributeDomainValue(domainValue,sel_f,des_f,sel_f_a_place,dv_ops,a,f_op);
+		}
+	}
+}
+
+rule attributeDomainValue(domainValue : sc!DomainValueOperation,
+						   sel_f : pn!Transition,
+						   des_f : pn!Transition,
+						   sel_f_a_place : pn!Place,
+						   dv_ops : Sequence(sc!DomainValueOperation),
+						   a : sc!Attribute,
+						   f_op : sc!FeatureOperation){
+	using {
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		sel_dv : pn!Transition = thisModule.resolveTemp(domainValue, 'add');
+		des_dv : pn!Transition = thisModule.resolveTemp(domainValue, 'rem');
+	}
+	to
+		--place from deselektion domain value to deselection feature
+		to_des_f_place : pn!Place (name <- des_dv.name + '_to_' + des_f.name),
+		to_arc_in : pn!ArcToPlace (source <- des_dv, target <- to_des_f_place),
+		to_arc_out : pn!ArcToTransition (source <- to_des_f_place, target <- des_f),
+		
+		--place from deselektion feature to deselection domain value
+		from_des_f_place : pn!Place (name <- des_f.name + '_to_' + des_dv.name),
+		from_arc_in : pn!ArcToPlace (source <- des_f, target <- from_des_f_place),
+		from_arc_out : pn!ArcToTransition (source <- from_des_f_place, target <- des_dv),
+		
+		--place from selection feature to selection domain value
+		from_sel_f_place : pn!Place (name <- sel_f.name + '_to_' + sel_dv.name),
+		arc_in : pn!ArcToPlace (source <- sel_f, target <- from_sel_f_place),
+		arc_out : pn!ArcToTransition (source <- from_sel_f_place, target <- sel_dv),
+		
+		--edge to enable place for selection of feature
+		arc_in_sel_f : pn!ArcToPlace (source <- sel_dv, target <- sel_f_a_place)
+	do{
+		wf.places <- to_des_f_place;
+		wf.places <- from_des_f_place;
+		wf.places <- from_sel_f_place;
+		wf.arcs <- to_arc_in;
+		wf.arcs <- to_arc_out;
+		wf.arcs <- from_arc_in;
+		wf.arcs <- from_arc_out;
+		wf.arcs <- arc_in;
+		wf.arcs <- arc_out;
+		wf.arcs <- arc_in_sel_f;
+		thisModule.incomingStage->union(Map{(to_des_f_place,domainValue.eContainer()),
+			(from_sel_f_place,f_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(to_des_f_place,f_op.eContainer()),
+			(from_sel_f_place,domainValue.eContainer())});
+		-- the place that does not need a token collector
+		thisModule.cleanPlaces <- from_des_f_place;
+		for (otherDomainValue in dv_ops) {
+			if (otherDomainValue <> domainValue) {
+				thisModule.attributeDomainValues(from_des_f_place,des_dv,domainValue,otherDomainValue);
+			}
+		}
+	}
+}
+
+rule attributeDomainValues(from_des_f_place : pn!Place,
+						   des_dv : pn!Transition,
+						   domainValue : sc!DomainValueOperation,
+						   otherDomainValue : sc!DomainValueOperation){
+	using {
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		sel_other_dv : pn!Transition = thisModule.resolveTemp(otherDomainValue, 'add');
+		--des_other_dv : pn!Transition = thisModule.resolveTemp(otherDomainValue, 'rem');
+	}
+	to
+		--exclude relation from deselection domain value to selection other domain value
+		to_sel_other_place : pn!Place (name <- des_dv.name + '_to_' + sel_other_dv.name),
+		arc_in : pn!ArcToPlace (source <- des_dv, target <- to_sel_other_place),
+		arc_out : pn!ArcToTransition (source <- to_sel_other_place, target <- sel_other_dv),
+		--exclude relation from selection other domain value to deselection domain value
+		--merged with the deselection from feature
+		arc_from_sel_other : pn!ArcToPlace (source <- sel_other_dv, target <- from_des_f_place)
+	do {
+		wf.places <- to_sel_other_place;
+		wf.arcs <- arc_in;
+		wf.arcs <- arc_out;
+		wf.arcs <- arc_from_sel_other;
+		thisModule.incomingStage->union(Map{(to_sel_other_place,domainValue.eContainer())});
+		thisModule.outgoingStage->union(Map{(to_sel_other_place,otherDomainValue.eContainer())});
+	}
+}
+
+rule optionalGroup {
+	from group : sc!Group (if group.groupCardinality() = 1 then
+			true
+		else
+			false
+		endif
+	)
+	do {
+		for (child in group.childFeatures) {
+			thisModule.optionalGroup2(group.eContainer(),child);
+		}
+	}
+}
+
+rule optionalGroup2(parent : sc!Feature,
+				   child : sc!Feature) {
+	using {
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(f | f = parent).first();
+		child_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(f | f = parent).first();
+		sel_parent : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_parent : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		sel_child : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_child : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+	}
+	to
+		--place between selection of parent and selection of child
+		from_sel_p_to_sel_c : pn!Place (name <- sel_parent.name + '_to_' + sel_child.name),
+		sel_arc_in : pn!ArcToPlace (source <- sel_parent, target <- from_sel_p_to_sel_c),
+		sel_arc_out :pn!ArcToTransition (source <- from_sel_p_to_sel_c, target <- sel_child),
+		
+		--place between deselection of child and deselection of parent
+		from_des_c_to_des_p : pn!Place (name <- des_child.name + '_to_' + des_parent),
+		des_arc_in : pn!ArcToPlace (source <- des_child, target <- from_des_c_to_des_p),
+		des_arc_out :pn!ArcToTransition (source <- from_des_c_to_des_p, target <- des_parent)
+	do {
+		wf.places <- from_sel_p_to_sel_c;
+		wf.places <- from_des_c_to_des_p;
+		wf.arcs <- sel_arc_in;
+		wf.arcs <- sel_arc_out;
+		wf.arcs <- des_arc_in;
+		wf.arcs <- des_arc_out;
+		thisModule.incomingStage->union(Map{(from_sel_p_to_sel_c,parent_op.eContainer()),
+			(from_des_c_to_des_p,child_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(from_sel_p_to_sel_c,child_op.eContainer()),
+			(from_des_c_to_des_p,parent_op.eContainer())});
+	}
+}
+
+rule mandatoryGroup {
+	from group : sc!Group (if group.groupCardinality() = 0 then
+			true
+		else
+			false
+		endif
+	)
+	do {
+		for (child in group.childFeatures) {
+			thisModule.mandatoryGroup2(group.eContainer(),child);
+		}
+	}
+}
+
+rule mandatoryGroup2(parent : sc!Feature,
+					child : sc!Feature) {
+	using {
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(f | f = parent).first();
+		child_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(f | f = parent).first();
+		sel_parent : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_parent : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		sel_child : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_child : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+	}
+	to
+		--place between selection of parent and selection of child
+		from_sel_p_to_sel_c : pn!Place (name <- sel_parent.name + '_to_' + sel_child.name),
+		sel_c_arc_in : pn!ArcToPlace (source <- sel_parent, target <- from_sel_p_to_sel_c),
+		sel_c_arc_out :pn!ArcToTransition (source <- from_sel_p_to_sel_c, target <- sel_child),
+		
+		--place between selection of child and selection of parent
+		from_sel_c_to_sel_p : pn!Place (name <- sel_child.name + '_to_' + sel_parent.name),
+		sel_p_arc_in : pn!ArcToPlace (source <- sel_child, target <- from_sel_c_to_sel_p),
+		sel_p_arc_out :pn!ArcToTransition (source <- from_sel_c_to_sel_p, target <- sel_parent),
+		
+		--place between deselection of child and deselection of parent
+		from_des_c_to_des_p : pn!Place (name <- des_child.name + '_to_' + des_parent.name),
+		des_p_arc_in : pn!ArcToPlace (source <- des_child, target <- from_des_c_to_des_p),
+		des_p_arc_out :pn!ArcToTransition (source <- from_des_c_to_des_p, target <- des_parent),
+		
+		--place between deselection of parent and deselection of child
+		from_des_p_to_des_c : pn!Place (name <- des_parent.name + '_to_' + des_child.name),
+		des_c_arc_in : pn!ArcToPlace (source <- des_parent, target <- from_des_p_to_des_c),
+		des_c_arc_out :pn!ArcToTransition (source <- from_des_p_to_des_c, target <- des_child)
+	do {
+		wf.places <- from_sel_p_to_sel_c;
+		wf.places <- from_des_c_to_des_p;
+		wf.places <- from_sel_c_to_sel_p;
+		wf.places <- from_des_p_to_des_c;
+		wf.arcs <- sel_c_arc_in;
+		wf.arcs <- sel_c_arc_out;
+		wf.arcs <- sel_p_arc_in;
+		wf.arcs <- sel_p_arc_out;
+		wf.arcs <- des_p_arc_in;
+		wf.arcs <- des_p_arc_out;
+		wf.arcs <- des_c_arc_in;
+		wf.arcs <- des_c_arc_out;
+		thisModule.incomingStage->union(Map{(from_sel_p_to_sel_c,parent_op.eContainer()),
+			(from_sel_c_to_sel_p,child_op.eContainer()),
+			(from_des_c_to_des_p,child_op.eContainer()),
+			(from_des_p_to_des_c,parent_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(from_sel_p_to_sel_c,child_op.eContainer()),
+			(from_sel_c_to_sel_p,parent_op.eContainer()),
+			(from_des_c_to_des_p,parent_op.eContainer()),
+			(from_des_p_to_des_c,child_op.eContainer())});
+	}
+}
+
+rule xorGroup{
+	from group : sc!Group (if group.groupCardinality() = 2 then
+			true
+		else
+			false
+		endif
+	)
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = group.eConainer()).first();
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+	}
+	to
+		sel_c_to_sel_p_place : pn!Place (name <- group.id + '_to_sel_' + group.eConainer().id),
+		arc_to_sel_p : pn!ArcToTransition (source <- sel_c_to_sel_p_place, target <- sel_p)
+	do {
+		wf.places <- sel_c_to_sel_p_place;
+		wf.arcs <- arc_to_sel_p;
+		-- the place that does not need a token collector
+		thisModule.cleanPlaces <- sel_c_to_sel_p_place;
+		for (child in group.childFeatures) {
+			thisModule.xorGroup2(parent_op,child,group.childFeatures,sel_c_to_sel_p_place);
+		}
+	}
+}
+
+rule xorGroup2(parent_op : sc!FeatureOperation,
+					child : sc!Feature,
+					childs : Sequence(sc!Feature),
+					sel_c_to_sel_p_place : pn!Place) {
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		child_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = child).first();
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+	}
+	to
+		--place from deselection child to deselection parent
+		to_des_p_place : pn!Place (name <- des_c.name + '_to_' + des_p.name),
+		to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
+		to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p),
+		
+		--place from deselection parent to deselection child
+		from_des_p_place : pn!Place (name <- des_p.name + '_to_' + des_c.name),
+		from_arc_in : pn!ArcToPlace (source <- des_p, target <- from_des_p_place),
+		from_arc_out : pn!ArcToTransition (source <- from_des_p_place, target <- des_c),
+		
+		--place from selection parent to selection child
+		from_sel_p_place : pn!Place (name <- sel_p.name + '_to_' + sel_c.name),
+		arc_in : pn!ArcToPlace (source <- sel_p, target <- from_sel_p_place),
+		arc_out : pn!ArcToTransition (source <- from_sel_p_place, target <- sel_c),
+		
+		--edge to enable place for selection of parent
+		arc_in_sel_p : pn!ArcToPlace (source <- sel_c, target <- sel_c_to_sel_p_place)
+	do{
+		wf.places <- to_des_p_place;
+		wf.places <- from_des_p_place;
+		wf.places <- from_sel_p_place;
+		wf.arcs <- to_arc_in;
+		wf.arcs <- to_arc_out;
+		wf.arcs <- from_arc_in;
+		wf.arcs <- from_arc_out;
+		wf.arcs <- arc_in;
+		wf.arcs <- arc_out;
+		wf.arcs <- arc_in_sel_p;
+		thisModule.incomingStage->union(Map{(to_des_p_place,child_op.eContainer()),
+			(from_sel_p_place,parent_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(to_des_p_place,parent_op.eContainer()),
+			(from_sel_p_place,child_op.eContainer())});
+		-- the place that does not need a token collector
+		thisModule.cleanPlaces <- from_des_p_place;
+		for (c in childs) {
+			thisModule.xorGroup3(child_op,c,from_des_p_place);
+		}
+	}
+}
+
+rule xorGroup3 (child_op : sc!FeatureOperation,
+				other_child : sc!Feature,
+				from_des_p_place : pn!Place) {
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		other_child_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = other_child).first();
+		sel_oc : pn!Transition = thisModule.resolveTemp(other_child_op, 'add');
+		des_oc : pn!Transition = thisModule.resolveTemp(other_child_op, 'rem');
+	}
+	to
+		--exclude relation from deselection child to selection other child
+		to_sel_oc_place : pn!Place (name <- des_c.name + '_to_' + sel_oc.name),
+		arc_in : pn!ArcToPlace (source <- des_c, target <- to_sel_oc_place),
+		arc_out : pn!ArcToTransition (source <- to_sel_oc_place, target <- sel_oc),
+		--exclude relation from selection other child to deselection child
+		--merged with the deselection from feature
+		arc_from_sel_oc : pn!ArcToPlace (source <- sel_oc, target <- from_des_p_place)
+	do {
+		wf.places <- to_sel_oc_place;
+		wf.arcs <- arc_in;
+		wf.arcs <- arc_out;
+		wf.arcs <- arc_from_sel_oc;
+		thisModule.incomingStage->union(Map{(to_sel_oc_place,child_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(to_sel_oc_place,other_child_op.eContainer())});
+	}
+}
+
+rule orGroup{
+	from group : sc!Group (if group.groupCardinality() = 3 then
+			true
+		else
+			false
+		endif
+	)
+		using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = group.eConainer()).first();
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+	}
+	to
+		sel_c_to_sel_p_place : pn!Place (name <- group.id + '_to_sel_' + group.eConainer().id),
+		arc_to_sel_p : pn!ArcToTransition (source <- sel_c_to_sel_p_place, target <- sel_p)
+	do {
+		wf.places <- sel_c_to_sel_p_place;
+		wf.arcs <- arc_to_sel_p;
+		thisModule.outgoingStage->union(Map{(sel_c_to_sel_p_place,parent_op.eContainer())});
+		for (child in group.childFeatures) {
+			thisModule.orGroup2(parent_op,child,group.childFeatures,sel_c_to_sel_p_place);
+		}
+	}
+}
+
+rule orGroup2(parent_op : sc!FeatureOperation,
+					child : sc!Feature,
+					childs : Sequence(sc!Feature),
+					sel_c_to_sel_p_place : pn!Place) {
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		child_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = child).first();
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+	}
+	to
+		--place from deselection child to deselection parent
+		to_des_p_place : pn!Place (name <- des_c.name + '_to_' + des_p.name),
+		to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
+		to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p),
+		
+		--place from deselection parent to deselection child
+		from_des_p_place : pn!Place (name <- des_p.name + '_to_' + des_c.name),
+		from_arc_in : pn!ArcToPlace (source <- des_p, target <- from_des_p_place),
+		from_arc_out : pn!ArcToTransition (source <- from_des_p_place, target <- des_c),
+		
+		--place from selection parent to selection child
+		from_sel_p_place : pn!Place (name <- sel_p.name + '_to_' + sel_c.name),
+		arc_in : pn!ArcToPlace (source <- sel_p, target <- from_sel_p_place),
+		arc_out : pn!ArcToTransition (source <- from_sel_p_place, target <- sel_c),
+		
+		--edge to enable place for selection of parent
+		arc_in_sel_p : pn!ArcToPlace (source <- sel_c, target <- sel_c_to_sel_p_place)
+	do{
+		wf.places <- to_des_p_place;
+		wf.places <- from_des_p_place;
+		wf.places <- from_sel_p_place;
+		wf.arcs <- to_arc_in;
+		wf.arcs <- to_arc_out;
+		wf.arcs <- from_arc_in;
+		wf.arcs <- from_arc_out;
+		wf.arcs <- arc_in;
+		wf.arcs <- arc_out;
+		wf.arcs <- arc_in_sel_p;
+		if(thisModule.incomingStages->get(sel_c_to_sel_p_place).oclIsUndefined()){
+			thisModule.incomingStages->union(Map{(sel_c_to_sel_p_place, Sequence{child_op.eContainer()})});
+		} else {
+			thisModule.incomingStages->get(sel_c_to_sel_p_place)->union(Sequence{child_op.eContainer()});
+		}
+		thisModule.incomingStages->union(Map{(from_des_p_place, Sequence{child_op.eContainer()})});		
+		thisModule.incomingStage->union(Map{(to_des_p_place,child_op.eContainer()),
+			(from_sel_p_place,parent_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(to_des_p_place,parent_op.eContainer()),
+			(from_sel_p_place,child_op.eContainer()),
+			(from_des_p_place,child_op.eContainer())});
+		for (c in childs) {
+			thisModule.orGroup3(child_op,c,from_des_p_place);
+		}
+	}
+}
+
+rule orGroup3 (child_op : sc!FeatureOperation,
+				other_child : sc!Feature,
+				from_des_p_place : pn!Place) {
+	using{
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		other_child_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = other_child).first();
+		sel_oc : pn!Transition = thisModule.resolveTemp(other_child_op, 'add');
+		des_oc : pn!Transition = thisModule.resolveTemp(other_child_op, 'rem');
+	}
+	to
+		--exclude relation from selection other child to deselection child
+		--merged with the deselection from feature
+		arc_from_sel_oc : pn!ArcToPlace (source <- sel_oc, target <- from_des_p_place)
+	do {
+		wf.arcs <- arc_from_sel_oc;
+		thisModule.incomingStages->get(from_des_p_place)->union(Sequence{other_child.eContainer()});
+	}
+}
+
+--require constraints between two Features
+rule createFeatureRequireConstraint{
+	from c : sc!Constraint (if c.expression.isImplies() then
+			true
+		else
+			false
+		endif
+	)
+	using {
+		pn: pn!PtNet = thisModule.getPtNet();
+		impEx : sc!ImpliesExpression = c.expression;
+		left : sc!FeatureReference = impEx.operand1;
+		right : sc!FeatureReference = impEx.operand2;
+		f1 : sc!Feature = left.feature;
+		f2 : sc!Feature = right.feature;
+		f1_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = f1).first();
+		f2_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = f2).first();
+		a_add : pn!Transition = thisModule.resolveTemp(f1_op, 'add');
+		a_rem : pn!Transition = thisModule.resolveTemp(f1_op, 'rem');
+		b_add : pn!Transition = thisModule.resolveTemp(f2_op, 'add');
+		b_rem : pn!Transition = thisModule.resolveTemp(f2_op, 'rem');		
+	}
+	to
+		arbr : pn!Place (name <- a_rem.name + '_to_' + b_rem.name),
+		arbr_arc1 : pn!ArcToPlace (source <- a_rem, target <- arbr),
+		arbr_arc2 : pn!ArcToTransition (source <- arbr, target <- b_rem),
+		baaa : pn!Place (name <- b_add.name + '_to_' + a_add.name),
+		baaa_arc1 : pn!ArcToPlace (source <- b_add, target <- baaa),
+		baaa_arc2 : pn!ArcToTransition (source <- baaa, target <- a_add)
+	do{
+		pn.places <- arbr;
+		pn.places <- baaa;
+		pn.arcs <- arbr_arc1;
+		pn.arcs <- arbr_arc2;
+		pn.arcs <- baaa_arc1;
+		pn.arcs <- baaa_arc2;
+		thisModule.incomingStage->union(Map{(arbr,f1_op.eContainer()),
+			(baaa,f2_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(arbr,f2_op.eContainer()),
+			(baaa,f1_op.eContainer())});
+	}
+}
+
+--exclude constraints between two Features
+-- a -> not b => -a -- +b, -b -- +a
+rule createFeatureExcludeConstraint{
+	from c : sc!Constraint (if c.expression.isExclude() then
+			true
+		else
+			false
+		endif
+	)
+	using {
+		pn: pn!PtNet = thisModule.getPtNet();
+		exEx : sc!ExcludesExpression = c.expression;
+		left : sc!FeatureReference = exEx.operand1;
+		right : sc!FeatureReference = exEx.operand2;
+		f1 : sc!Feature = left.feature;
+		f2 : sc!Feature = right.feature;
+		f1_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = f1).first();
+		f2_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = f2).first();
+		a_add : pn!Transition = thisModule.resolveTemp(f1_op, 'add');
+		a_rem : pn!Transition = thisModule.resolveTemp(f1_op, 'rem');
+		b_add : pn!Transition = thisModule.resolveTemp(f2_op, 'add');
+		b_rem : pn!Transition = thisModule.resolveTemp(f2_op, 'rem');		
+
+	}
+	to
+		arba : pn!Place (name <- a_rem.name + '_to_' + b_add.name),
+		arba_arc1 : pn!ArcToPlace (source <- a_rem, target <- arba),
+		arba_arc2 : pn!ArcToTransition (source <- arba, target <- b_add),
+		braa : pn!Place (name <- b_rem.name + '_to_' + a_rem.name),
+		braa_arc1 : pn!ArcToPlace (source <- b_rem, target <- braa),
+		braa_arc2 : pn!ArcToTransition (source <- braa, target <- a_add)
+	do{
+		pn.places <- arba;
+		pn.places <- braa;
+		pn.arcs <- arba_arc1;
+		pn.arcs <- arba_arc2;
+		pn.arcs <- braa_arc1;
+		pn.arcs <- braa_arc2;
+		thisModule.incomingStage->union(Map{(arba,f1_op.eContainer()),
+			(braa,f2_op.eContainer())});
+		thisModule.outgoingStage->union(Map{(arba,f2_op.eContainer()),
+			(braa,f1_op.eContainer())});
+	}
+}
+
+endpoint rule clean() {
+	using {
+		wf : pn!PtNet = thisModule.getWorkflowNet();
+	}
+	do {
+		--remove
+		for (place in thisModule.incomingStage.getKeys()) {
+			if (thisModule.isBefore(thisModule.outgoingStage.get(place), thisModule.incomingStage.get(place))) {
+				--remove place
+				wf.places->excluding(place);
+			}
+		}
+		for (place in thisModule.incomingStages.getKeys()) {
+			if (thisModule.isBefore(thisModule.outgoingStage.get(place), thisModule.getFirstStage(thisModule.incomingStages.get(place)))) {
+				--remove place
+				wf.places->excluding(place);			
+			}
+		}
+		--remove arcs with no places
+		for (arc in wf.arcs) {
+			if (arc.oclIsTypeOf(pn!ArcToPlace)) {
+				if (wf.places->excludes(arc.target)) {
+					wf.arcs->excluding(arc);
+				}	
+			} else {
+				if (wf.places->excludes(arc.source)) {
+					wf.arcs->excluding(arc);
+				}
+			}
+		}
+	}
+}

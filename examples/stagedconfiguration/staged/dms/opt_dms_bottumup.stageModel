@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="dms_opt_woctc.feature#/"/>
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_opt_woctc.feature#as"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_opt_woctc.feature#ts"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_opt_woctc.feature#cs"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#pdfocr"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#imageOCR"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#fns"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#gs"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#mds"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#ci"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#ti"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#ai"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#ocr"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#fni"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#search"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#report"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#unicode"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#simple"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#pdf"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#metadataindex"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#gi"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#image"/>
+        </operations>
+        <nextStage name="s3">
+          <operations xsi:type="sc:FeatureOperation">
+            <feature href="dms_opt_woctc.feature#dms"/>
+          </operations>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

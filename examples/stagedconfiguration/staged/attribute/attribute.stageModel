@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="attribute.feature#/"/>
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="attribute.feature#root"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="attribute.feature#f1"/>
+      </operations>
+      <operations xsi:type="sc:DomainValueOperation" value="2">
+        <feature href="attribute.feature#f2"/>
+        <attribute href="attribute.feature#countAttribute"/>
+      </operations>
+      <operations xsi:type="sc:DomainValueOperation" value="3">
+        <feature href="attribute.feature#f2"/>
+        <attribute href="attribute.feature#countAttribute"/>
+      </operations>
+      <operations xsi:type="sc:DomainValueOperation" value="4">
+        <feature href="attribute.feature#f2"/>
+        <attribute href="attribute.feature#countAttribute"/>
+      </operations>
+      <operations xsi:type="sc:DomainValueOperation" value="5">
+        <feature href="attribute.feature#f2"/>
+        <attribute href="attribute.feature#countAttribute"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:DomainValueOperation" value="red">
+          <feature href="attribute.feature#f1"/>
+          <attribute href="attribute.feature#colorAttribute"/>
+        </operations>
+        <nextStage name="s3">
+          <operations xsi:type="sc:DomainValueOperation" value="green">
+            <feature href="attribute.feature#f1"/>
+            <attribute href="attribute.feature#colorAttribute"/>
+          </operations>
+          <nextStage name="s4">
+            <operations xsi:type="sc:DomainValueOperation" value="blue">
+              <feature href="attribute.feature#f1"/>
+              <attribute href="attribute.feature#colorAttribute"/>
+            </operations>
+            <operations xsi:type="sc:FeatureOperation">
+              <feature href="attribute.feature#f2"/>
+            </operations>
+          </nextStage>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

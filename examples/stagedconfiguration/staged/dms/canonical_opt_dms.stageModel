@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_opt_woctc.feature#as"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_opt_woctc.feature#ts"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_opt_woctc.feature#cs"/>
+        </operations>
+        <nextStage name="s3">
+          <operations xsi:type="sc:FeatureOperation">
+            <feature href="dms_opt_woctc.feature#mds"/>
+          </operations>
+          <nextStage name="s4">
+            <operations xsi:type="sc:FeatureOperation">
+              <feature href="dms_opt_woctc.feature#gs"/>
+            </operations>
+            <nextStage name="s5">
+              <operations xsi:type="sc:FeatureOperation">
+                <feature href="dms_opt_woctc.feature#fns"/>
+              </operations>
+              <nextStage name="s6">
+                <operations xsi:type="sc:FeatureOperation">
+                  <feature href="dms_opt_woctc.feature#ai"/>
+                </operations>
+                <nextStage name="s7">
+                  <operations xsi:type="sc:FeatureOperation">
+                    <feature href="dms_opt_woctc.feature#ti"/>
+                  </operations>
+                  <nextStage name="s8">
+                    <operations xsi:type="sc:FeatureOperation">
+                      <feature href="dms_opt_woctc.feature#ci"/>
+                    </operations>
+                    <nextStage name="s9">
+                      <operations xsi:type="sc:FeatureOperation">
+                        <feature href="dms_opt_woctc.feature#imageOCR"/>
+                      </operations>
+                      <nextStage name="s10">
+                        <operations xsi:type="sc:FeatureOperation">
+                          <feature href="dms_opt_woctc.feature#pdfocr"/>
+                        </operations>
+                        <nextStage name="s11">
+                          <operations xsi:type="sc:FeatureOperation">
+                            <feature href="dms_opt_woctc.feature#report"/>
+                          </operations>
+                          <nextStage name="s12">
+                            <operations xsi:type="sc:FeatureOperation">
+                              <feature href="dms_opt_woctc.feature#search"/>
+                            </operations>
+                            <nextStage name="s13">
+                              <operations xsi:type="sc:FeatureOperation">
+                                <feature href="dms_opt_woctc.feature#fni"/>
+                              </operations>
+                              <nextStage name="s14">
+                                <operations xsi:type="sc:FeatureOperation">
+                                  <feature href="dms_opt_woctc.feature#gi"/>
+                                </operations>
+                                <nextStage name="s15">
+                                  <operations xsi:type="sc:FeatureOperation">
+                                    <feature href="dms_opt_woctc.feature#metadataindex"/>
+                                  </operations>
+                                  <nextStage name="s16">
+                                    <operations xsi:type="sc:FeatureOperation">
+                                      <feature href="dms_opt_woctc.feature#pdf"/>
+                                    </operations>
+                                    <nextStage name="s17">
+                                      <operations xsi:type="sc:FeatureOperation">
+                                        <feature href="dms_opt_woctc.feature#image"/>
+                                      </operations>
+                                      <nextStage name="s18">
+                                        <operations xsi:type="sc:FeatureOperation">
+                                          <feature href="dms_opt_woctc.feature#simple"/>
+                                        </operations>
+                                        <nextStage name="s19">
+                                          <operations xsi:type="sc:FeatureOperation">
+                                            <feature href="dms_opt_woctc.feature#unicode"/>
+                                          </operations>
+                                          <nextStage name="s20">
+                                            <operations xsi:type="sc:FeatureOperation">
+                                              <feature href="dms_opt_woctc.feature#ocr"/>
+                                            </operations>
+                                            <nextStage name="s21">
+                                              <operations xsi:type="sc:FeatureOperation">
+                                                <feature href="dms_opt_woctc.feature#dms"/>
+                                              </operations>
+                                            </nextStage>
+                                          </nextStage>
+                                        </nextStage>
+                                      </nextStage>
+                                    </nextStage>
+                                  </nextStage>
+                                </nextStage>
+                              </nextStage>
+                            </nextStage>
+                          </nextStage>
+                        </nextStage>
+                      </nextStage>
+                    </nextStage>
+                  </nextStage>
+                </nextStage>
+              </nextStage>
+            </nextStage>
+          </nextStage>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

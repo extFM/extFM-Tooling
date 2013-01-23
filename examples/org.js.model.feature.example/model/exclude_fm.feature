@@ -9,23 +9,9 @@
     </groups>
   </root>
   <constraints id="c0">
-    <expression xsi:type="feature:AndExpression">
-      <operand1 xsi:type="feature:NestedExpression">
-        <operand xsi:type="feature:ImpliesExpression">
-          <operand1 xsi:type="feature:FeatureReference" feature="f2"/>
-          <operand2 xsi:type="feature:NotExpression">
-            <operand xsi:type="feature:FeatureReference" feature="f1"/>
-          </operand2>
-        </operand>
-      </operand1>
-      <operand2 xsi:type="feature:NestedExpression">
-        <operand xsi:type="feature:ImpliesExpression">
-          <operand1 xsi:type="feature:FeatureReference" feature="f1"/>
-          <operand2 xsi:type="feature:NotExpression">
-            <operand xsi:type="feature:FeatureReference" feature="f2"/>
-          </operand2>
-        </operand>
-      </operand2>
+    <expression xsi:type="feature:ExcludesExpression">
+      <operand1 xsi:type="feature:FeatureReference" feature="f1"/>
+      <operand2 xsi:type="feature:FeatureReference" feature="f2"/>
     </expression>
   </constraints>
 </feature:FeatureModel>

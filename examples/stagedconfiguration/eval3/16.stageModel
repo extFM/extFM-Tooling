@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="16.feature#/"/>
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F22"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F21"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F20"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F19"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F18"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F17"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F16"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="16.feature#F23"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F14"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F13"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F12"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F11"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F10"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F9"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F8"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="16.feature#F15"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F6"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F5"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F4"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F3"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F2"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F1"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#root"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="16.feature#F7"/>
+        </operations>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

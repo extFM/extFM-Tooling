@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sc="stageconfig">
+  <featureModel href="alternative_fm.feature#/"/>
+  <firstStage name="s0">
+    <operations>
+      <feature href="alternative_fm.feature#root"/>
+    </operations>
+    <nextStage name="s1">
+      <operations>
+        <feature href="alternative_fm.feature#f1"/>
+      </operations>
+      <nextStage name="s2">
+        <operations>
+          <feature href="alternative_fm.feature#f2"/>
+        </operations>
+        <nextStage name="s3">
+          <operations>
+            <feature href="alternative_fm.feature#f3"/>
+          </operations>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

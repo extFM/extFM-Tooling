@@ -1,5 +1,7 @@
 package org.js.model.feature.ptnet.sedaj;
 
+import hub.top.editor.ptnetLoLA.PNAPI;
+import hub.top.editor.ptnetLoLA.PtNet;
 import hub.top.petrinet.PetriNet;
 
 import java.io.IOException;
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.js.model.feature.FeatureModel;
+import org.js.model.feature.ptnet.sedaj.util.PNUtil;
 
 /**
  * 
@@ -480,21 +483,22 @@ public class Main {
     */
    public static void main(String[] args) {
 
-      // String filename = "simple_optional_fm.ptnetlola";
-      // URI uri = URI.createFileURI(filename);
-      // PtNet net = PNUtil.loadPtNet(uri);
-      // if (net != null) {
-      // System.out.println(net);
-      // }else{
-      // System.out.println("No PtNet found!");
-      // }
-      // String dot = PNAPI.toDot(net);
-      // System.out.println(dot);
-      // System.out.println("-----------------------");
-      // String lola = PNAPI.toLoLA_ident(dot);
-      // System.out.println(lola);
-      // persistModel(net, "test.ptnet");
-      permut();
+       String filename = "complex.ptnetlola";
+       URI uri = URI.createFileURI(filename);
+       PtNet net = PNUtil.loadPtNet(uri);
+       if (net != null) {
+    	   System.out.println(net);
+       }else{
+    	   System.out.println("No PtNet found!");
+       }
+       
+       String dot = PNAPI.toDot(net);
+//       System.out.println(dot);
+//       System.out.println("-----------------------");
+       String lola = PNAPI.toLoLA_ident(dot);
+       System.out.println(lola);
+//       persistModel(net, "test.ptnet");
+//      permut();
       // for (int i = 1; i < 10; i++) {
       // System.out.println(calcPossibilities(10, i));
       // }

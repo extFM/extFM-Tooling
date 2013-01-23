@@ -153,17 +153,7 @@ helper context fm!Group def : groupCardinality() : Integer =
 			then
 				2 --alternative
 			else
-				--if ((self.minCardinality = 1) and (self.childFeatures->size() = self.maxCardinality))
-				--then
-				--	3 --inclusive or
-				--else
-					if ((self.minCardinality = 0) and (self.maxCardinality = 1))
-					then
-						3 --exclusive optional
-					else
-						4 --other	
-					endif
-				--endif				
+				3 --other			
 			endif
 		endif
 	endif
@@ -195,7 +185,7 @@ helper context fm!Expression def : isImplies() : Boolean =
 		let x : fm!ImpliesExpression = self in
 		let left : fm!Expression = x.operand1 in
 		let right : fm!Expresion = x.operand2 in
-		if left.oclIsKindOf(fm!AtomicExpression) and right.oclIsKindOf(fm!AtomicExpression) then
+		if left.oclIsKindOf(fm!FeatureReference) and right.oclIsKindOf(fm!FeatureReference) then
 			true
 		else
 			false
@@ -210,7 +200,28 @@ helper context fm!Expression def : isImplies() : Boolean =
 		endif
 	endif
 ;
-		
+	
+-- checks if an Expression is an implies expression between two features
+helper context fm!Expression def : isExclude() : Boolean =
+	if self->oclIsKindOf(fm!ExcludesExpression) then 
+		let x : fm!ExcludesExpression = self in
+		let left : fm!Expression = x.operand1 in
+		let right : fm!Expresion = x.operand2 in
+		if left.oclIsKindOf(fm!FeatureReference) and right.oclIsKindOf(fm!FeatureReference) then
+			true
+		else
+			false
+		endif
+	else 
+		if self.oclIsKindOf(fm!NestedExpression) then
+			let x : fm!NestedExpression = self in
+			let y : fm!Expression = x.operand in
+			x.isImplies()
+		else
+			false
+		endif
+	endif
+;
 	
 -- get the ptNet
 helper def : getPtNet(): ptnet!PtNet = ptnet!PtNet->allInstances()->first();
@@ -220,9 +231,7 @@ helper def : getPtNet(): ptnet!PtNet = ptnet!PtNet->allInstances()->first();
 -------------------------------------------------------------------------------
 
 -- Basic Elements of the Workflow Petri Net
-rule initPt{
-	from
-		model : fm!FeatureModel
+entrypoint rule initPt() {
 	to
 		i : ptnet!Place (name <- 'i',token <- 1),
 		o : ptnet!Place (name <- 'o'),
@@ -321,8 +330,8 @@ rule feature2ptnet {
 	to
 		add : ptnet!Transition (name <- '+' + f.id),
 		rem : ptnet!Transition (name <- '-' + f.id),
-		i : ptnet!Place (name <- 'i' + f.id),
-		o : ptnet!Place (name <- 'o' + f.id),
+		i : ptnet!Place (name <- 'i_' + f.id),
+		o : ptnet!Place (name <- 'o_' + f.id),
 		i_add_arc : ptnet!ArcToTransition (source <- i, target <- add),
 		i_rem_arc : ptnet!ArcToTransition (source <- i, target <- rem),
 		add_o_arc : ptnet!ArcToPlace (source <- add, target <- o),
@@ -445,7 +454,7 @@ rule createFeatureDomainValueRelation (feature : fm!Feature,
 		pn.arcs <- rdv_rf_arc2;
 		pn.arcs <- rf_rdv_arc1;
 		pn.arcs <- rf_rdv_arc2;
-		for(otherName in allNames) {
+		for (otherName in allNames) {
 			if (otherName <> name)
 				thisModule.createDomainValueDomainValueRelation(feature, rf_rdv, attribute, name, domainValue_add, domainValue_rem, otherName);
 		}
@@ -518,16 +527,16 @@ rule mgroup (p : fm!Feature, c : fm!Feature){
 		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
 	}
 	to
-		p_add_c_add : ptnet!Place (name <- p_add.name + ' to:' + c_add.name),
+		p_add_c_add : ptnet!Place (name <- p_add.name + '_to_' + c_add.name),
 		paca_arc1 : ptnet!ArcToPlace (source <- p_add, target <- p_add_c_add),
 		paca_arc2 : ptnet!ArcToTransition (source <- p_add_c_add, target <- c_add),
-		p_rem_c_rem : ptnet!Place (name <- p_rem.name + ' to:' + c_rem.name),
+		p_rem_c_rem : ptnet!Place (name <- p_rem.name + '_to_' + c_rem.name),
 		prcr_arc1 : ptnet!ArcToPlace (source <- p_rem, target <- p_rem_c_rem),
 		prcr_arc2 : ptnet!ArcToTransition (source <- p_rem_c_rem, target <- c_rem),
-		c_add_p_add : ptnet!Place (name <- c_add.name + ' to:' + p_add.name),
+		c_add_p_add : ptnet!Place (name <- c_add.name + '_to_' + p_add.name),
 		capa_arc1 : ptnet!ArcToPlace (source <- c_add, target <- c_add_p_add),
 		capa_arc2 : ptnet!ArcToTransition (source <- c_add_p_add, target <- p_add),
-		c_rem_p_rem : ptnet!Place (name <- c_rem.name + ' to:' + p_rem.name),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + '_to_' + p_rem.name),
 		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
 		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
 	do{
@@ -578,19 +587,19 @@ rule optGroup (p : fm!Feature, c : fm!Feature){
 		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
 	}
 	to
-		parent_added : ptnet!Place (name <- '+' + p.id + ':+' + c.id),
+		parent_added : ptnet!Place (name <- p_add.name + '_to_' + c_add.name),
 		p_added_arc : ptnet!ArcToPlace (source <- p_add, target <- parent_added),
 		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
-		c_rem_p_rem : ptnet!Place (name <- c_rem.name + 'to:' + p_rem.name),
+		c_rem_p_rem : ptnet!Place (name <- c_rem.name + '_to_' + p_rem.name),
 		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
 		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
 	do{
 		pn.places <- parent_added;
 		pn.arcs <- p_added_arc;
+		pn.arcs <- par_added_child_add_arc;
 		pn.places <- c_rem_p_rem;
 		pn.arcs <- crpr_arc1;
 		pn.arcs <- crpr_arc2;
-		pn.arcs <- par_added_child_add_arc;
 	}
 }
 
@@ -640,15 +649,15 @@ rule altGroup(p : fm!Feature,
 		-- +c to c added
 		c_add_to_c_added_arc : ptnet!ArcToPlace (source <- c_add, target <- c_added),
 		-- +p to +c
-		apac : ptnet!Place (name <- '+' + p.id + '_to_+' + c.id),
+		apac : ptnet!Place (name <- p_add.name + '_to_' + c_add.name),
 		apac_arc1 : ptnet!ArcToPlace (source <- p_add, target <- apac),
 		apac_arc2 : ptnet!ArcToTransition (source <- apac, target <- c_add),
 		-- -c to -p
-		rcrp : ptnet!Place (name <- '-' + c.id + '_to_-' + p.id),
+		rcrp : ptnet!Place (name <- c_rem.name + '_to_' + p_rem.name),
 		rcrp_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- rcrp),
 		rcrp_arc2 : ptnet!ArcToTransition (source <- rcrp, target <- p_rem),
 		-- -p to -c
-		rprc : ptnet!Place (name <- '-' + p.id + '_to_-' + c.id),
+		rprc : ptnet!Place (name <- p_rem.name + '_to_' + c_rem.name),
 		rprc_arc1 : ptnet!ArcToPlace (source <- p_rem, target <- rprc),
 		rprc_arc2 : ptnet!ArcToTransition (source <- rprc, target <- c_rem)
 		
@@ -683,7 +692,7 @@ rule altGroup2(x : fm!Feature, y: fm!Feature, rprx : ptnet!Place){
 		--y_rem : ptnet!Transition = thisModule.resolveTemp(y, 'rem');
 	}
 	to
-		x_rem_to_y_add : ptnet!Place (name <- '-' + x.id + '_to_+' + y.id),
+		x_rem_to_y_add : ptnet!Place (name <- x_rem.name + '_to_' + y_add.name),
 		x_rem_to_y_add_arc1 : ptnet!ArcToPlace (source <- x_rem, target <- x_rem_to_y_add),
 		x_rem_to_y_add_arc2 : ptnet!ArcToTransition (source <- x_rem_to_y_add, target <- y_add),
 		
@@ -696,231 +705,77 @@ rule altGroup2(x : fm!Feature, y: fm!Feature, rprx : ptnet!Place){
 	}
 }
 
--- exclusive optional groups
-rule exOptionalGroup2ptnet {
-	from g : fm!Group (if g.groupCardinality() = 3 then
+--require constraints between two Features
+rule createFeatureRequireConstraint{
+	from c : fm!Constraint (if c.expression.isImplies() then
 			true
 		else
 			false
 		endif
 	)
-	using{
+	using {
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : fm!Feature = g.eContainer();
-		childs :  Sequence(fm!Feature) = g.childFeatures;
+		impEx : fm!ImpliesExpression = c.expression;
+		left : fm!FeatureReference = impEx.operand1;
+		right : fm!FeatureReference = impEx.operand2;
+		f1 : fm!Feature = left.feature;
+		f2 : fm!Feature = right.feature;
+		a_add : ptnet!Transition = thisModule.resolveTemp(f1, 'add');
+		a_rem : ptnet!Transition = thisModule.resolveTemp(f1, 'rem');
+		b_add : ptnet!Transition = thisModule.resolveTemp(f2, 'add');
+		b_rem : ptnet!Transition = thisModule.resolveTemp(f2, 'rem');		
 	}
 	to
-		parent_added : ptnet!Place (name <- 'p_added_' + parent.id),
-		p_added_arc : ptnet!ArcToPlace (source <- thisModule.resolveTemp(parent, 'add'), target <- parent_added)
-	do {
-		pn.places <- parent_added;
-		pn.arcs <- p_added_arc;
-		for(c in childs) {
-			thisModule.exOptGroup(parent,c,parent_added,childs);
-		}
-	}
-}
-
--- exclusive optional feature group connection
--- p parent of child
--- c child of the parent feature of the group
--- parent_added a Place that indicates that the parent feature is added
--- childs all children from the parent feature from the group
-rule exOptGroup (p : fm!Feature, c : fm!Feature, parent_added : ptnet!Place, childs :  Sequence(fm!Feature)){
-	using{
-		pn: ptnet!PtNet = thisModule.getPtNet();
-		p_add : ptnet!Transition = thisModule.resolveTemp(p, 'add');
-		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
-		c_add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
-		c_rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
-	}
-	to
-		par_added_child_add_arc : ptnet!ArcToTransition (source <- parent_added, target <- c_add),
-		c_rem_p_rem : ptnet!Place (name <- c.id + '_removed'),
-		crpr_arc1 : ptnet!ArcToPlace (source <- c_rem, target <- c_rem_p_rem),
-		crpr_arc2 : ptnet!ArcToTransition (source <- c_rem_p_rem, target <- p_rem)
+		arbr : ptnet!Place (name <- a_rem.name + '_to_' + b_rem.name),
+		arbr_arc1 : ptnet!ArcToPlace (source <- a_rem, target <- arbr),
+		arbr_arc2 : ptnet!ArcToTransition (source <- arbr, target <- b_rem),
+		baaa : ptnet!Place (name <- b_add.name + '_to_' + a_add.name),
+		baaa_arc1 : ptnet!ArcToPlace (source <- b_add, target <- baaa),
+		baaa_arc2 : ptnet!ArcToTransition (source <- baaa, target <- a_add)
 	do{
-		pn.places <- c_rem_p_rem;
-		pn.arcs <- crpr_arc1;
-		pn.arcs <- crpr_arc2;
-		pn.arcs <- par_added_child_add_arc;
-		for(child in childs) {
-			if (child.id <> c.id)
-				thisModule.exOptGroup2(c_add,c_rem_p_rem);
-		}
+		pn.places <- arbr;
+		pn.places <- baaa;
+		pn.arcs <- arbr_arc1;
+		pn.arcs <- arbr_arc2;
+		pn.arcs <- baaa_arc1;
+		pn.arcs <- baaa_arc2;
 	}
 }
 
--- exclusive optional group child to child requirments
--- place that indicates that the child is removed
--- c_add enables one possible other child
-rule exOptGroup2(c_add : ptnet!Transition, place : ptnet!Place){
-	using{
-		pn: ptnet!PtNet = thisModule.getPtNet();
-	}
-	to
-		place_c_add_arc : ptnet!ArcToTransition (source <- place, target <- c_add)
-	do{
-		pn.arcs <- place_c_add_arc;
-	}
-}
-
--- other groups to ptnet
-rule otherGroups2ptnet {
-	from g : fm!Group (if g.groupCardinality() = 4 then
+--exclude constraints between two Features
+-- a -> not b => -a -- +b, -b -- +a
+rule createFeatureExcludeConstraint{
+	from c : fm!Constraint (if c.expression.isExclude() then
 			true
 		else
 			false
 		endif
 	)
-	using{
+	using {
 		pn: ptnet!PtNet = thisModule.getPtNet();
-		parent : fm!Feature = g.eContainer();
-		p_add : ptnet!Transition = thisModule.resolveTemp(parent, 'add');
-		p_rem : ptnet!Transition = thisModule.resolveTemp(parent, 'rem');
-		childs :  Sequence(fm!Feature) = g.childFeatures;
+		exEx : fm!ExcludesExpression = c.expression;
+		left : fm!FeatureReference = exEx.operand1;
+		right : fm!FeatureReference = exEx.operand2;
+		a : fm!Feature = left.feature;
+		b : fm!Feature = right.feature;
+		a_add : ptnet!Transition = thisModule.resolveTemp(a, 'add');
+		a_rem : ptnet!Transition = thisModule.resolveTemp(a, 'rem');
+		b_add : ptnet!Transition = thisModule.resolveTemp(b, 'add');
+		b_rem : ptnet!Transition = thisModule.resolveTemp(b, 'rem');		
 	}
 	to
-		g_rem : ptnet!Transition (name <- '-' + g.id),
-		i_g : ptnet!Place (name <- 'i' + g.id),
-		start_g_arc : ptnet!ArcToPlace (source <- thisModule.start, target <- i_g),
-		i_g_g_rem_arc : ptnet!ArcToTransition (source <- i_g, target <- g_rem),
-		g_added : ptnet!Place (name <- g.id + 'added'),
-		g_added_p_add_arc : ptnet!ArcToTransition (source <- g_added, target <- p_add),
-		--g_removed : ptnet!Place (name <- g.id + 'removed'),
-		--g_rem_removed_arc : ptnet!ArcToPlace (source <- g_rem, target <- g_removed),
-		--g_removed_p_rem_arc : ptnet!ArcToTransition (source <- g_removed, target <- p_rem),
-		p_removed : ptnet!Place (name <- g.id + 'p_removed'),
-		p_rem_removed_arc : ptnet!ArcToPlace (source <- p_rem, target <- p_removed),
-		p_removed_g_rem_arc : ptnet!ArcToTransition (source <- p_removed, target <- g_rem),
-		p_added : ptnet!Place (name <- g.id + 'p_added'),
-		p_add_added_arc : ptnet!ArcToPlace (source <- p_add, target <- p_added)
-		
-	do {
-		pn.transitions <- g_rem;
-		pn.places <- i_g;
-		pn.places <- g_added;
-		--pn.places <- g_removed;
-		pn.places <- p_added;
-		pn.places <- p_removed;
-		pn.arcs <- start_g_arc;
-		pn.arcs <- i_g_g_rem_arc;
-		pn.arcs <- g_added_p_add_arc;
-		--pn.arcs <- g_removed_p_rem_arc;
-		--pn.arcs <- g_rem_removed_arc;
-		pn.arcs <- p_rem_removed_arc;
-		pn.arcs <- p_removed_g_rem_arc;
-		pn.arcs <- p_add_added_arc;
-		
-		for(c in childs) {
-			thisModule.otherGroup(parent,c,g_rem);
-		}
-		for (tuple in g.getFeatureCombinations(g.minCardinality, g.maxCardinality)) {
-			thisModule.otherGroup2(g,tuple,g_rem,i_g,p_added,g_added);
-		}
-	}
-}
-
--- other feature group connection
--- p parent of child
--- c child of parent
-rule otherGroup (p : fm!Feature, c : fm!Feature, g_rem : ptnet!Transition){
-	using{
-		pn: ptnet!PtNet = thisModule.getPtNet();
-		add : ptnet!Transition = thisModule.resolveTemp(c, 'add');
-		rem : ptnet!Transition = thisModule.resolveTemp(c, 'rem');
-		p_rem : ptnet!Transition = thisModule.resolveTemp(p, 'rem');
-	}
-	to
-		f_enable : ptnet!Place (name <- c.id + '_enabled'),
-		f_en_add_arc : ptnet!ArcToTransition (source <- f_enable, target <- add),
-		
-		f_disable : ptnet!Place (name <- c.id + '_disabled'),
-		f_dis_rem_arc : ptnet!ArcToTransition (source <- f_disable, target <- rem),
-		g_rem_c_dis_arc : ptnet!ArcToPlace (source <- g_rem, target <- f_disable),
-		--Feature to Parent remove implication
-		f_removed : ptnet!Place (name <- c.id + '_removed'),
-		f_rem_f_removed_arc : ptnet!ArcToPlace (source <- rem, target <- f_removed),
-		f_removed_p_rem : ptnet!ArcToTransition (source <- f_removed, target <- p_rem)
+		arba : ptnet!Place (name <- a_rem.name + '_to_' + b_add.name),
+		arba_arc1 : ptnet!ArcToPlace (source <- a_rem, target <- arba),
+		arba_arc2 : ptnet!ArcToTransition (source <- arba, target <- b_add),
+		braa : ptnet!Place (name <- b_rem.name + '_to_' + a_rem.name),
+		braa_arc1 : ptnet!ArcToPlace (source <- b_rem, target <- braa),
+		braa_arc2 : ptnet!ArcToTransition (source <- braa, target <- a_add)
 	do{
-		pn.places <- f_enable;
-		pn.places <- f_disable;
-		pn.places <- f_removed;
-		
-		pn.arcs <- f_dis_rem_arc;
-		pn.arcs <- f_en_add_arc;
-		pn.arcs <- g_rem_c_dis_arc;
-		pn.arcs <- f_rem_f_removed_arc;
-		pn.arcs <- f_removed_p_rem;
-	}
-}
-
--- creates a transition for a possible selektion/deselktion of features
--- g used to name the transition
--- tuple used to name the transition and connect it to the features of the group
--- g_rem used to be disble all features in the group
--- i_g enables the group
--- p_added enables the group
--- g_added indicates that the group is added
-rule otherGroup2(g : fm!Group,
-				 tuple : Sequence(fm!Feature), 
-				 g_rem : ptnet!Transition,
-				 i_g : ptnet!Place,
-				 p_added : ptnet!Place,
-				 g_added : ptnet!Place){
-	using{
-		pn: ptnet!PtNet = thisModule.getPtNet();
-	}	
-	to
-		enable_features : ptnet!Transition (name <- g.id + thisModule.getCombineIDs(tuple)),
-		i_g_ef_arc : ptnet!ArcToTransition (source <- i_g, target <- enable_features),
-		p_added_ef_arc :  ptnet!ArcToTransition (source <- p_added, target <- enable_features),
-		ef_g_added_arc : ptnet!ArcToPlace (source <- enable_features, target <- g_added)
-	do{
-		pn.transitions <- enable_features;
-		pn.arcs <- i_g_ef_arc;
-		pn.arcs <- p_added_ef_arc;
-		pn.arcs <- ef_g_added_arc;
-		for (f in g.childFeatures) {
-			if (tuple->exists(i | i = f))
-				thisModule.isPartOfCombination(f,enable_features);
-			else
-				thisModule.isNotPartOfCombination(f,enable_features);
-		}
-	}
-}
-
--- enable enable of a feature by the transition
--- f the feature
--- enable_features the transition
-rule isPartOfCombination(f : fm!Feature, enable_features : ptnet!Transition){
-	using{
-		pn: ptnet!PtNet = thisModule.getPtNet();
---		f_enable : ptnet!Place = thisModule.resolveTemp(f, 'f_enable');
-		places_for_f : Sequence(ptnet!Place) = pn.places->select(p | p.name.startsWith(f.id));
-		places_en_f : Sequence(ptnet!Place) = places_for_f->select(p | p.name.endsWith('enabled'));
-		f_enable : ptnet!Place = places_en_f.first();
-	}
-	to
-		ef_fe_arc : ptnet!ArcToPlace (source <- enable_features, target <- f_enable)
-	do{
-		pn.arcs <- ef_fe_arc;
-	}
-}
-
--- enable disable of a feature by the transition
--- f the feature
--- enable_features the transition
-rule isNotPartOfCombination(f  : fm!Feature, enable_features : ptnet!Transition){
-	using{
-		pn: ptnet!PtNet = thisModule.getPtNet();
-		places_for_f : Sequence(ptnet!Place) = pn.places->select(p | p.name.startsWith(f.id));
-		places_dis_f : Sequence(ptnet!Place) = places_for_f->select(p | p.name.endsWith('disabled'));
-		f_disable : ptnet!Place = places_dis_f.first();
-	}
-	to
-		ef_fd_arc : ptnet!ArcToPlace (source <- enable_features, target <- f_disable)
-	do{
-		pn.arcs <- ef_fd_arc;	
+		pn.places <- arba;
+		pn.places <- braa;
+		pn.arcs <- arba_arc1;
+		pn.arcs <- arba_arc2;
+		pn.arcs <- braa_arc1;
+		pn.arcs <- braa_arc2;
 	}
 }

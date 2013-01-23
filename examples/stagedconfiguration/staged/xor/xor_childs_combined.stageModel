@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="xor.feature#/"/>
+  <firstStage name="s1">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="xor.feature#f1"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="xor.feature#f2"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="xor.feature#f3"/>
+    </operations>
+    <nextStage name="s2">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="xor.feature#parent"/>
+      </operations>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

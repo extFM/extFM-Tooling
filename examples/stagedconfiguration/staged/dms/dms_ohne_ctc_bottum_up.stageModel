@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="dms_ohne_ctc.feature#/"/>
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_ohne_ctc.feature#as"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_ohne_ctc.feature#ts"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="dms_ohne_ctc.feature#cs"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#pdf"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#image"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#ci"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#ti"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#ai"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#fns"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#gs"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#mds"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#searchResults"/>
+      </operations>
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="dms_ohne_ctc.feature#indexUsage"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#ocr"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#tuni"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#tsim"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#timg"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#tpdf"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#mdi"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#gi"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#fni"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#search"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="dms_ohne_ctc.feature#report"/>
+        </operations>
+        <nextStage name="s3">
+          <operations xsi:type="sc:FeatureOperation">
+            <feature href="dms_ohne_ctc.feature#DMS"/>
+          </operations>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

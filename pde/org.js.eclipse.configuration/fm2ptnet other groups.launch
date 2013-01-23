@@ -5,17 +5,17 @@
 <stringAttribute key="ATL_COMPILER" value="atl2006"/>
 <booleanAttribute key="IS_REFINING" value="false"/>
 <mapAttribute key="Input">
-<mapEntry key="IN" value="featuremodel"/>
+<mapEntry key="IN" value="fm"/>
 </mapAttribute>
 <mapAttribute key="Libs"/>
 <mapAttribute key="Model Handler">
-<mapEntry key="featuremodel" value="EMF"/>
+<mapEntry key="fm" value="EMF"/>
 <mapEntry key="ptnet" value="EMF"/>
 </mapAttribute>
 <mapAttribute key="ModelType">
 <mapEntry key="IN" value="MODELINPUT"/>
 <mapEntry key="OUT" value="MODELOUTPUT"/>
-<mapEntry key="featuremodel" value="METAMODELINPUT"/>
+<mapEntry key="fm" value="METAMODELINPUT"/>
 <mapEntry key="ptnet" value="METAMODELOUTPUT"/>
 </mapAttribute>
 <mapAttribute key="Options">
@@ -37,10 +37,10 @@
 <mapEntry key="OUT" value="ptnet"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="IN" value="/org.js.model.feature.ptnet.test/src/main/model/general_fm.feature"/>
-<mapEntry key="OUT" value="/org.js.model.feature.ptnet.test/src/main/model/general_fm.ptnetlola"/>
-<mapEntry key="featuremodel" value="/org.js.model.feature.ptnet.m2m.atl/src/main/model/feature.ecore"/>
-<mapEntry key="ptnet" value="/org.js.model.feature.ptnet.m2m.atl/src/main/model/ptnetLoLA.ecore"/>
+<mapEntry key="IN" value="ext:C:\git\extFM-Tooling\examples\org.js.model.feature.example\model\general_fm.feature"/>
+<mapEntry key="OUT" value="ext:C:\git\extFM-Tooling\examples\org.js.model.feature.example\model\general_fm.ptnetlola"/>
+<mapEntry key="fm" value="/org.js.model.feature.ptnet.m2m.atl/src/main/metamodel/feature.ecore"/>
+<mapEntry key="ptnet" value="/org.js.model.feature.ptnet.m2m.atl/src/main/metamodel/ptnetLoLA.ecore"/>
 </mapAttribute>
 <listAttribute key="Superimpose"/>
 <stringAttribute key="bad_container_name" value="\org.js.eclipse.configuration\fm2"/>

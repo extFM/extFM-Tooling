@@ -25,11 +25,15 @@ public class ATLTransform {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String inputMetaModelFileName = "src/main/metamodel/feature.ecore";
-		String inputModelFileName = "src/main/model/alternative_fm.feature";
+//		String inputMetaModelFileName = "src/main/metamodel/feature.ecore";
+//		String inputMetaModelFileName = "src/main/metamodel/stageconfig.ecore";
+		String inputMetaModelFileName = "../../../../workspace/efm/org.js.model.stageconfig/model/stageconfig.ecore";
+//		String inputModelFileName = "src/main/model/complex.feature";
+		String inputModelFileName = "src/main/model/alternative_fm.stageModel";
 		String outputMetaModelFileName = "src/main/metamodel/ptnetLoLA.ecore";
-		String outputModelFileName = "src/main/model/alternative_fm.ptnetlola";
-		String asmFileName = "src/main/atl/feature2ptnet.asm";
+		String outputModelFileName = "src/main/model/complex.ptnetlola";
+//		String asmFileName = "src/main/atl/feature2ptnet.asm";
+		String asmFileName = "src/main/atl/sc2ptnet.asm";
 		try {
 			/*
 			* Initializations

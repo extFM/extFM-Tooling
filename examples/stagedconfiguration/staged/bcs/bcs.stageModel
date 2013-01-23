@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sc="stageconfig">
+  <featureModel href="bcs.feature#/"/>
+  <firstStage name="s0"/>
+</sc:StageModel>

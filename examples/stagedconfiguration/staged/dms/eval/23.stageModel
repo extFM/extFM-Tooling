@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <featureModel href="../dms.feature#/"/>
+  <firstStage name="s0">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="../dms.feature#as"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="../dms.feature#ts"/>
+    </operations>
+    <nextStage name="s1">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="../dms.feature#cs"/>
+      </operations>
+      <nextStage name="s2">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="../dms.feature#pdf"/>
+        </operations>
+        <nextStage name="s3">
+          <operations xsi:type="sc:FeatureOperation">
+            <feature href="../dms.feature#image"/>
+          </operations>
+          <nextStage name="s4">
+            <operations xsi:type="sc:FeatureOperation">
+              <feature href="../dms.feature#ci"/>
+            </operations>
+            <nextStage name="s5">
+              <operations xsi:type="sc:FeatureOperation">
+                <feature href="../dms.feature#ti"/>
+              </operations>
+              <nextStage name="s6">
+                <operations xsi:type="sc:FeatureOperation">
+                  <feature href="../dms.feature#ai"/>
+                </operations>
+                <nextStage name="s7">
+                  <operations xsi:type="sc:FeatureOperation">
+                    <feature href="../dms.feature#fns"/>
+                  </operations>
+                  <nextStage name="s8">
+                    <operations xsi:type="sc:FeatureOperation">
+                      <feature href="../dms.feature#gs"/>
+                    </operations>
+                    <nextStage name="s9">
+                      <operations xsi:type="sc:FeatureOperation">
+                        <feature href="../dms.feature#mds"/>
+                      </operations>
+                      <nextStage name="s10">
+                        <operations xsi:type="sc:FeatureOperation">
+                          <feature href="../dms.feature#searchResults"/>
+                        </operations>
+                        <nextStage name="s11">
+                          <operations xsi:type="sc:FeatureOperation">
+                            <feature href="../dms.feature#indexUsage"/>
+                          </operations>
+                          <nextStage name="s12">
+                            <operations xsi:type="sc:FeatureOperation">
+                              <feature href="../dms.feature#ocr"/>
+                            </operations>
+                            <nextStage name="s13">
+                              <operations xsi:type="sc:FeatureOperation">
+                                <feature href="../dms.feature#tpdf"/>
+                              </operations>
+                              <nextStage name="s14">
+                                <operations xsi:type="sc:FeatureOperation">
+                                  <feature href="../dms.feature#report"/>
+                                </operations>
+                                <nextStage name="s15">
+                                  <operations xsi:type="sc:FeatureOperation">
+                                    <feature href="../dms.feature#search"/>
+                                  </operations>
+                                  <nextStage name="s16">
+                                    <operations xsi:type="sc:FeatureOperation">
+                                      <feature href="../dms.feature#tsim"/>
+                                    </operations>
+                                    <nextStage name="s17">
+                                      <operations xsi:type="sc:FeatureOperation">
+                                        <feature href="../dms.feature#tuni"/>
+                                      </operations>
+                                      <nextStage name="s18">
+                                        <operations xsi:type="sc:FeatureOperation">
+                                          <feature href="../dms.feature#timg"/>
+                                        </operations>
+                                        <nextStage name="s19">
+                                          <operations xsi:type="sc:FeatureOperation">
+                                            <feature href="../dms.feature#mdi"/>
+                                          </operations>
+                                          <nextStage name="s20">
+                                            <operations xsi:type="sc:FeatureOperation">
+                                              <feature href="../dms.feature#gi"/>
+                                            </operations>
+                                            <nextStage name="s21">
+                                              <operations xsi:type="sc:FeatureOperation">
+                                                <feature href="../dms.feature#fni"/>
+                                              </operations>
+                                              <nextStage name="s22">
+                                                <operations xsi:type="sc:FeatureOperation">
+                                                  <feature href="../dms.feature#DMS"/>
+                                                </operations>
+                                              </nextStage>
+                                            </nextStage>
+                                          </nextStage>
+                                        </nextStage>
+                                      </nextStage>
+                                    </nextStage>
+                                  </nextStage>
+                                </nextStage>
+                              </nextStage>
+                            </nextStage>
+                          </nextStage>
+                        </nextStage>
+                      </nextStage>
+                    </nextStage>
+                  </nextStage>
+                </nextStage>
+              </nextStage>
+            </nextStage>
+          </nextStage>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>

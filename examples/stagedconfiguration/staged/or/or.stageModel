@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
+  <firstStage name="preRoot">
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="or.feature#f1"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="or.feature#f2"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="or.feature#f3"/>
+    </operations>
+    <operations xsi:type="sc:FeatureOperation">
+      <feature href="or.feature#f7"/>
+    </operations>
+    <nextStage name="root">
+      <operations xsi:type="sc:FeatureOperation">
+        <feature href="or.feature#root"/>
+      </operations>
+      <nextStage name="afterRoot1">
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="or.feature#f4"/>
+        </operations>
+        <operations xsi:type="sc:FeatureOperation">
+          <feature href="or.feature#f8"/>
+        </operations>
+        <nextStage name="afterRoot2">
+          <operations xsi:type="sc:FeatureOperation">
+            <feature href="or.feature#f5"/>
+          </operations>
+          <nextStage name="afterRoot3">
+            <operations xsi:type="sc:FeatureOperation">
+              <feature href="or.feature#f6"/>
+            </operations>
+          </nextStage>
+        </nextStage>
+      </nextStage>
+    </nextStage>
+  </firstStage>
+</sc:StageModel>
