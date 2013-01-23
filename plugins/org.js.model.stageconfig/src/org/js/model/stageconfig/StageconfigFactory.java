@@ -14,56 +14,56 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface StageconfigFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+    * The singleton instance of the factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	StageconfigFactory eINSTANCE = org.js.model.stageconfig.impl.StageconfigFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Stage Model</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Stage Model</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Stage Model</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Stage Model</em>'.
+    * @generated
+    */
 	StageModel createStageModel();
 
 	/**
-	 * Returns a new object of class '<em>Stage</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Stage</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Stage</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Stage</em>'.
+    * @generated
+    */
 	Stage createStage();
 
 	/**
-	 * Returns a new object of class '<em>Feature Operation</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Feature Operation</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Operation</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Feature Operation</em>'.
+    * @generated
+    */
 	FeatureOperation createFeatureOperation();
 
 	/**
-	 * Returns a new object of class '<em>Domain Value Operation</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Domain Value Operation</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Domain Value Operation</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Domain Value Operation</em>'.
+    * @generated
+    */
 	DomainValueOperation createDomainValueOperation();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+    * Returns the package supported by this factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+    * @return the package supported by this factory.
+    * @generated
+    */
 	StageconfigPackage getStageconfigPackage();
 
 } //StageconfigFactory

@@ -18,22 +18,22 @@ import org.js.model.stageconfig.StageconfigPackage;
  */
 public class FeatureOperationImpl extends OperationImpl implements FeatureOperation {
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected FeatureOperationImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return StageconfigPackage.Literals.FEATURE_OPERATION;
-	}
+      return StageconfigPackage.Literals.FEATURE_OPERATION;
+   }
 
 } //FeatureOperationImpl

@@ -24,29 +24,29 @@ import org.js.model.feature.Feature;
  */
 public interface Operation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Feature</b></em>' reference.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feature</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(Feature)
-	 * @see org.js.model.stageconfig.StageconfigPackage#getOperation_Feature()
-	 * @model required="true"
-	 * @generated
-	 */
+    * @return the value of the '<em>Feature</em>' reference.
+    * @see #setFeature(Feature)
+    * @see org.js.model.stageconfig.StageconfigPackage#getOperation_Feature()
+    * @model required="true"
+    * @generated
+    */
 	Feature getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.js.model.stageconfig.Operation#getFeature <em>Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * Sets the value of the '{@link org.js.model.stageconfig.Operation#getFeature <em>Feature</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' reference.
-	 * @see #getFeature()
-	 * @generated
-	 */
+    * @param value the new value of the '<em>Feature</em>' reference.
+    * @see #getFeature()
+    * @generated
+    */
 	void setFeature(Feature value);
 
 } // Operation

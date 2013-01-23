@@ -20,109 +20,109 @@ import org.js.model.stageconfig.*;
  */
 public class StageconfigFactoryImpl extends EFactoryImpl implements StageconfigFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+    * Creates the default factory implementation.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public static StageconfigFactory init() {
-		try {
-			StageconfigFactory theStageconfigFactory = (StageconfigFactory)EPackage.Registry.INSTANCE.getEFactory("stageconfig"); 
-			if (theStageconfigFactory != null) {
-				return theStageconfigFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new StageconfigFactoryImpl();
-	}
+      try {
+         StageconfigFactory theStageconfigFactory = (StageconfigFactory)EPackage.Registry.INSTANCE.getEFactory("stageconfig"); 
+         if (theStageconfigFactory != null) {
+            return theStageconfigFactory;
+         }
+      }
+      catch (Exception exception) {
+         EcorePlugin.INSTANCE.log(exception);
+      }
+      return new StageconfigFactoryImpl();
+   }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+    * Creates an instance of the factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public StageconfigFactoryImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case StageconfigPackage.STAGE_MODEL: return createStageModel();
-			case StageconfigPackage.STAGE: return createStage();
-			case StageconfigPackage.FEATURE_OPERATION: return createFeatureOperation();
-			case StageconfigPackage.DOMAIN_VALUE_OPERATION: return createDomainValueOperation();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+      switch (eClass.getClassifierID()) {
+         case StageconfigPackage.STAGE_MODEL: return createStageModel();
+         case StageconfigPackage.STAGE: return createStage();
+         case StageconfigPackage.FEATURE_OPERATION: return createFeatureOperation();
+         case StageconfigPackage.DOMAIN_VALUE_OPERATION: return createDomainValueOperation();
+         default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+      }
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public StageModel createStageModel() {
-		StageModelImpl stageModel = new StageModelImpl();
-		return stageModel;
-	}
+      StageModelImpl stageModel = new StageModelImpl();
+      return stageModel;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Stage createStage() {
-		StageImpl stage = new StageImpl();
-		return stage;
-	}
+      StageImpl stage = new StageImpl();
+      return stage;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public FeatureOperation createFeatureOperation() {
-		FeatureOperationImpl featureOperation = new FeatureOperationImpl();
-		return featureOperation;
-	}
+      FeatureOperationImpl featureOperation = new FeatureOperationImpl();
+      return featureOperation;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public DomainValueOperation createDomainValueOperation() {
-		DomainValueOperationImpl domainValueOperation = new DomainValueOperationImpl();
-		return domainValueOperation;
-	}
+      DomainValueOperationImpl domainValueOperation = new DomainValueOperationImpl();
+      return domainValueOperation;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public StageconfigPackage getStageconfigPackage() {
-		return (StageconfigPackage)getEPackage();
-	}
+      return (StageconfigPackage)getEPackage();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+    * @deprecated
+    * @generated
+    */
 	@Deprecated
 	public static StageconfigPackage getPackage() {
-		return StageconfigPackage.eINSTANCE;
-	}
+      return StageconfigPackage.eINSTANCE;
+   }
 
 } //StageconfigFactoryImpl

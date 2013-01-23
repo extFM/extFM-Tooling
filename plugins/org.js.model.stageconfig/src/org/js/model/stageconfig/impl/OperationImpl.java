@@ -30,129 +30,129 @@ import org.js.model.stageconfig.StageconfigPackage;
  */
 public abstract class OperationImpl extends EObjectImpl implements Operation {
 	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeature()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getFeature()
+    * @generated
+    * @ordered
+    */
 	protected Feature feature;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected OperationImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return StageconfigPackage.Literals.OPERATION;
-	}
+      return StageconfigPackage.Literals.OPERATION;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Feature getFeature() {
-		if (feature != null && feature.eIsProxy()) {
-			InternalEObject oldFeature = (InternalEObject)feature;
-			feature = (Feature)eResolveProxy(oldFeature);
-			if (feature != oldFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StageconfigPackage.OPERATION__FEATURE, oldFeature, feature));
-			}
-		}
-		return feature;
-	}
+      if (feature != null && feature.eIsProxy()) {
+         InternalEObject oldFeature = (InternalEObject)feature;
+         feature = (Feature)eResolveProxy(oldFeature);
+         if (feature != oldFeature) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, StageconfigPackage.OPERATION__FEATURE, oldFeature, feature));
+         }
+      }
+      return feature;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Feature basicGetFeature() {
-		return feature;
-	}
+      return feature;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setFeature(Feature newFeature) {
-		Feature oldFeature = feature;
-		feature = newFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StageconfigPackage.OPERATION__FEATURE, oldFeature, feature));
-	}
+      Feature oldFeature = feature;
+      feature = newFeature;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, StageconfigPackage.OPERATION__FEATURE, oldFeature, feature));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case StageconfigPackage.OPERATION__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case StageconfigPackage.OPERATION__FEATURE:
+            if (resolve) return getFeature();
+            return basicGetFeature();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case StageconfigPackage.OPERATION__FEATURE:
-				setFeature((Feature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case StageconfigPackage.OPERATION__FEATURE:
+            setFeature((Feature)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case StageconfigPackage.OPERATION__FEATURE:
-				setFeature((Feature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case StageconfigPackage.OPERATION__FEATURE:
+            setFeature((Feature)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case StageconfigPackage.OPERATION__FEATURE:
-				return feature != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case StageconfigPackage.OPERATION__FEATURE:
+            return feature != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //OperationImpl
