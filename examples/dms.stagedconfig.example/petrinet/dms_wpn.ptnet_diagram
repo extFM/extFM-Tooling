@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:ptnetLoLA="http://www.informatik.hu-berlin.de/top/tools/editors/petrinets" xmi:id="_9sjBYGV_EeKN6ud1NPWW8w" type="PtnetLoLA" measurementUnit="Pixel">
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_9sjBYWV_EeKN6ud1NPWW8w"/>
+  <element xmi:type="ptnetLoLA:PtNet" href="dms_wpn.ptnet#/"/>
+</notation:Diagram>

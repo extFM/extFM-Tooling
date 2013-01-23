@@ -1,0 +1,301 @@
+place "i" init 1;
+place "o";
+place "i_s0";
+place "o_s0";
+place "i_TC_s0";
+place "empty_TC_s0";
+place "i_s1";
+place "o_s1";
+place "i_TC_s1";
+place "empty_TC_s1";
+place "i_f1";
+place "o_f1";
+place "i_f2";
+place "o_f2";
+place "i_f3";
+place "o_f3";
+place "i_root";
+place "o_root";
+place "orGroup_to_sel_root";
+place "des_f1_to_des_root";
+place "comp_des_f1_to_des_root";
+place "i_TC_des_f1_to_des_root";
+place "o_TC_des_f1_to_des_root";
+place "des_f2_to_des_root";
+place "comp_des_f2_to_des_root";
+place "i_TC_des_f2_to_des_root";
+place "o_TC_des_f2_to_des_root";
+place "des_f3_to_des_root";
+place "comp_des_f3_to_des_root";
+place "i_TC_des_f3_to_des_root";
+place "o_TC_des_f3_to_des_root";
+place "comp_orGroup_to_sel_root";
+place "i_TC_orGroup_to_sel_root";
+place "o_TC_orGroup_to_sel_root";
+
+trans "start"
+in
+    "i"
+
+out
+    "i_s0"
+;
+
+trans "end"
+in
+    "o_s1"
+
+out
+    "o"
+;
+
+trans "start_s0"
+in
+    "i_s0"
+
+out
+    "i_f1"
+    "i_f2"
+    "i_f3"
+    "comp_des_f1_to_des_root"
+    "comp_des_f2_to_des_root"
+    "comp_des_f3_to_des_root"
+    "comp_orGroup_to_sel_root"
+    "comp_orGroup_to_sel_root"
+    "comp_orGroup_to_sel_root"
+;
+
+trans "end_s0"
+in
+    "o_f1"
+    "o_f2"
+    "o_f3"
+
+out
+    "i_TC_s0"
+;
+
+trans "start_TC_s0"
+in
+    "i_TC_s0"
+
+out
+    "empty_TC_s0"
+;
+
+trans "end_TC_s0"
+in
+    "empty_TC_s0"
+
+out
+    "o_s0"
+;
+
+trans "start_s1"
+in
+    "i_s1"
+
+out
+    "i_root"
+;
+
+trans "end_s1"
+in
+    "o_root"
+
+out
+    "i_TC_s1"
+;
+
+trans "start_TC_s1"
+in
+    "i_TC_s1"
+
+out
+    "empty_TC_s1"
+    "i_TC_des_f1_to_des_root"
+    "i_TC_des_f2_to_des_root"
+    "i_TC_des_f3_to_des_root"
+    "i_TC_orGroup_to_sel_root"
+    "i_TC_orGroup_to_sel_root"
+    "i_TC_orGroup_to_sel_root"
+;
+
+trans "end_TC_s1"
+in
+    "empty_TC_s1"
+    "o_TC_des_f1_to_des_root"
+    "o_TC_des_f2_to_des_root"
+    "o_TC_des_f3_to_des_root"
+    "o_TC_orGroup_to_sel_root"
+    "o_TC_orGroup_to_sel_root"
+    "o_TC_orGroup_to_sel_root"
+
+out
+    "o_s1"
+;
+
+trans "sel_f1"
+in
+    "i_f1"
+    "comp_orGroup_to_sel_root"
+
+out
+    "o_f1"
+    "orGroup_to_sel_root"
+;
+
+trans "des_f1"
+in
+    "i_f1"
+    "comp_des_f1_to_des_root"
+
+out
+    "o_f1"
+    "des_f1_to_des_root"
+;
+
+trans "sel_f2"
+in
+    "i_f2"
+    "comp_orGroup_to_sel_root"
+
+out
+    "o_f2"
+    "orGroup_to_sel_root"
+;
+
+trans "des_f2"
+in
+    "i_f2"
+    "comp_des_f2_to_des_root"
+
+out
+    "o_f2"
+    "des_f2_to_des_root"
+;
+
+trans "sel_f3"
+in
+    "i_f3"
+    "comp_orGroup_to_sel_root"
+
+out
+    "o_f3"
+    "orGroup_to_sel_root"
+;
+
+trans "des_f3"
+in
+    "i_f3"
+    "comp_des_f3_to_des_root"
+
+out
+    "o_f3"
+    "des_f3_to_des_root"
+;
+
+trans "sel_root"
+in
+    "i_root"
+    "orGroup_to_sel_root"
+
+out
+    "o_root"
+    "comp_orGroup_to_sel_root"
+;
+
+trans "des_root"
+in
+    "i_root"
+    "des_f1_to_des_root"
+    "des_f2_to_des_root"
+    "des_f3_to_des_root"
+
+out
+    "o_root"
+    "comp_des_f1_to_des_root"
+    "comp_des_f2_to_des_root"
+    "comp_des_f3_to_des_root"
+;
+
+trans "sync_0"
+in
+    "o_s0"
+
+out
+    "i_s1"
+;
+
+trans "TC_des_f1_to_des_root"
+in
+    "i_TC_des_f1_to_des_root"
+    "des_f1_to_des_root"
+
+out
+    "o_TC_des_f1_to_des_root"
+;
+
+trans "comp_TC_des_f1_to_des_root"
+in
+    "i_TC_des_f1_to_des_root"
+    "comp_des_f1_to_des_root"
+
+out
+    "o_TC_des_f1_to_des_root"
+;
+
+trans "TC_des_f2_to_des_root"
+in
+    "i_TC_des_f2_to_des_root"
+    "des_f2_to_des_root"
+
+out
+    "o_TC_des_f2_to_des_root"
+;
+
+trans "comp_TC_des_f2_to_des_root"
+in
+    "i_TC_des_f2_to_des_root"
+    "comp_des_f2_to_des_root"
+
+out
+    "o_TC_des_f2_to_des_root"
+;
+
+trans "TC_des_f3_to_des_root"
+in
+    "i_TC_des_f3_to_des_root"
+    "des_f3_to_des_root"
+
+out
+    "o_TC_des_f3_to_des_root"
+;
+
+trans "comp_TC_des_f3_to_des_root"
+in
+    "i_TC_des_f3_to_des_root"
+    "comp_des_f3_to_des_root"
+
+out
+    "o_TC_des_f3_to_des_root"
+;
+
+trans "TC_orGroup_to_sel_root"
+in
+    "i_TC_orGroup_to_sel_root"
+    "orGroup_to_sel_root"
+
+out
+    "o_TC_orGroup_to_sel_root"
+;
+
+trans "comp_TC_orGroup_to_sel_root"
+in
+    "i_TC_orGroup_to_sel_root"
+    "comp_orGroup_to_sel_root"
+
+out
+    "o_TC_orGroup_to_sel_root"
+;
+

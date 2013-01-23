@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.m2m.atl.adt.launching.atlTransformation">
-<stringAttribute key="ATL File Name" value="/sc2wf/sc2ptnet.atl"/>
+<stringAttribute key="ATL File Name" value="/stagedconfiguration/sc2ptnet.atl"/>
 <stringAttribute key="ATL VM" value="EMF-specific VM"/>
 <stringAttribute key="ATL_COMPILER" value="atl2006"/>
 <booleanAttribute key="IS_REFINING" value="false"/>
@@ -32,8 +32,8 @@
 <mapEntry key="supportUML2Stereotypes" value="false"/>
 </mapAttribute>
 <listAttribute key="OrderedInput">
-<listEntry value="IN2"/>
 <listEntry value="IN1"/>
+<listEntry value="IN2"/>
 </listAttribute>
 <listAttribute key="OrderedOutput">
 <listEntry value="OUT"/>
@@ -42,11 +42,11 @@
 <mapEntry key="OUT" value="pn"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="IN1" value="/sc2wf/staged/attribute/attribute.feature"/>
-<mapEntry key="IN2" value="/sc2wf/staged/attribute/attribute.stageModel"/>
-<mapEntry key="OUT" value="/sc2wf/staged/attribute/attribute.ptnet"/>
+<mapEntry key="IN1" value="/dms.stagedconfig.example/feature/dms.feature"/>
+<mapEntry key="IN2" value="/dms.stagedconfig.example/stagemodel/dms_sound.stageModel"/>
+<mapEntry key="OUT" value="/dms.stagedconfig.example/petrinet/dms_wpn.ptnet"/>
 <mapEntry key="fm" value="uri:http://www.tudresden.de/extfeature"/>
-<mapEntry key="pn" value="ext:C:\git\extFM-Tooling\plugins\org.js.model.feature.ptnet.m2m.atl\src\main\metamodel\ptnetLoLA.ecore"/>
+<mapEntry key="pn" value="ext:C:\Julia\home\git\extFM-Tooling\plugins\org.js.model.feature.ptnet.m2m.atl\src\main\metamodel\ptnetLoLA.ecore"/>
 <mapEntry key="sc" value="uri:stageconfig"/>
 </mapAttribute>
 <listAttribute key="Superimpose"/>
