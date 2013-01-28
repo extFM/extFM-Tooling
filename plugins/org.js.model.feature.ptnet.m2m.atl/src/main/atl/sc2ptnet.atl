@@ -519,7 +519,7 @@ rule optionalGroup {
 	do {
 		for (child in group.childFeatures) {
 			child_op<-sc!FeatureOperation.allInstances()->select(f | f.feature.id = child.id).first();
-			child_op.debug();
+			--child.debug();
 			if(thisModule.isBefore(parent_op.eContainer(), child_op.eContainer()) = thisModule.isBefore(child_op.eContainer(), parent_op.eContainer())) {
 				thisModule.implySel(parent_op,child_op);
 				thisModule.implyDes(parent_op,child_op);
@@ -978,6 +978,8 @@ rule createFeatureExcludeConstraint{
 		f2_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature.id = f2.id).first();
 		f1_before_f2 : Boolean = thisModule.isBefore(f1_op.eContainer(), f2_op.eContainer());
 		f2_before_f1 : Boolean = thisModule.isBefore(f2_op.eContainer(), f1_op.eContainer());
+		des_f1 : pn!Transition = thisModule.resolveTemp(f1_op, 'rem');
+		sel_f2 : pn!Transition = thisModule.resolveTemp(f2_op, 'add');
 	}
 	do{
 		if (f1_before_f2 = f2_before_f1) {
@@ -1049,7 +1051,7 @@ rule exclude(f1_op : sc!FeatureOperation,
 		   f2_op : sc!FeatureOperation){
 	using {
 		des_f1 : pn!Transition = thisModule.resolveTemp(f1_op, 'rem');
-		sel_f2 : pn!Transition = thisModule.resolveTemp(f2_op, 'sel');
+		sel_f2 : pn!Transition = thisModule.resolveTemp(f2_op, 'add');
 	}	
 	to
 		place : pn!Place (name <- des_f1.name + '_to_' + sel_f2.name),
@@ -1063,6 +1065,15 @@ rule exclude(f1_op : sc!FeatureOperation,
 endpoint rule clean() {
 	to
 		wf : pn!PtNet (arcs <- pn!Arc.allInstances(), places <- pn!Place.allInstances(), transitions <- pn!Transition.allInstances())
+	do{
+		('number of features: ' + fm!Feature.allInstances().size()).debug();
+		('number of operations: ' + sc!Operation.allInstances().size()).debug();
+		('number of stages: ' + sc!Stage.allInstances().size()).debug();
+		('number of places: ' + pn!Place.allInstances().size()).debug();
+		('number of transitions: ' + pn!Transition.allInstances().size()).debug();
+		('number of arcs: ' + pn!Arc.allInstances().size()).debug();
+		('arcs place ratio: ' + pn!Arc.allInstances().size() / pn!Place.allInstances().size()).debug();
+	}
 }
 
 rule buildCompPlace(place : pn!Place,
