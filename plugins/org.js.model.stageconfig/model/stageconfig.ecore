@@ -8,7 +8,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stage">
-    <eOperations name="hasNext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
         eType="#//Operation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nextStage" eType="#//Stage"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.js.model.stageconfig.editor.StageconfigModelWizardID"
+            name="%_UI_StageconfigModelWizard_label"
+            class="org.js.model.stageconfig.editor.StageconfigModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StageconfigModelFile.gif">
+         <description>%_UI_StageconfigModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.js.model.stageconfig.editor.StageconfigEditorID"
+            name="%_UI_StageconfigEditor_label"
+            icon="icons/full/obj16/StageconfigModelFile.gif"
+            extensions="stageModel"
+            class="org.js.model.stageconfig.editor.StageconfigEditor"
+            contributorClass="org.js.model.stageconfig.editor.StageconfigActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
