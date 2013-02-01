@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RBAC Test
+Bundle-SymbolicName: org.js.model.rbac.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.js.model.rbac.test.RBACTestPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.js.model.rbac;bundle-version="1.0.0",
+ org.junit,
+ org.eclipse.core.resources;bundle-version="3.8.0",
+ org.js.model.rbac.resource.rbactext;bundle-version="1.0.0",
+ org.js.model.feature.resource.eft;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

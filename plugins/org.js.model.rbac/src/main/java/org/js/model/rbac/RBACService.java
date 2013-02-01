@@ -15,7 +15,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
-import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
 import org.js.model.feature.Feature;
 
@@ -71,7 +70,7 @@ public class RBACService {
 
    }
 
-   private List<ConfigurationOperation> getAllRoleConfigOperations(Role role) {
+   public List<ConfigurationOperation> getAllRoleConfigOperations(Role role) {
       List<ConfigurationOperation> configOps = new ArrayList<ConfigurationOperation>();
       EList<Role> parentRoles = role.getParentRoles();
       for (Role parentRole : parentRoles) {}
@@ -85,6 +84,7 @@ public class RBACService {
 
       EList<ConfigurationOperation> allowedConfigOperations = role.getAllowedConfigOperations();
       List<ConfigurationOperation> copiedConfigOperations = new ArrayList<ConfigurationOperation>(allowedConfigOperations.size());
+      copiedConfigOperations.addAll(allowedConfigOperations);
 
       for (ConfigurationOperation configurationOperation : allowedConfigOperations) {
          copiedConfigOperations.remove(configurationOperation);
@@ -106,8 +106,8 @@ public class RBACService {
             }
             copiedConfigOperations.removeAll(featureConfigOperations);
             configOps.add(joinFeatureConfigOperations(featureConfigOperations));
-         } 
-         
+         }
+
          else if (configurationOperation instanceof AttributeConfiguration) {
             AttributeConfiguration attributeConfiguration = (AttributeConfiguration) configurationOperation;
             Attribute attribute = attributeConfiguration.getAttribute();
@@ -131,7 +131,7 @@ public class RBACService {
          }
       }
 
-      configOps.addAll(allowedConfigOperations);
+     // configOps.addAll(allowedConfigOperations);
       return configOps;
    }
 
@@ -141,7 +141,7 @@ public class RBACService {
          newAttributeConfigOperation = ops.get(0);
       } else {
          newAttributeConfigOperation = RbacFactory.eINSTANCE.createAttributeConfiguration();
-         // if an attribute configuration has select=true and deselect=true it means 
+         // if an attribute configuration has select=true and deselect=true it means
          // that all domain values are allowed to be selected and deselected
          // this is the most general case and no further child value config options need to be considered
          for (AttributeConfiguration attributeConfiguration : ops) {

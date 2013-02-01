@@ -1,0 +1,26 @@
+feature model "Test"
+domain <d1> [v1, v2, v3, v4]
+domain <d2> [10..20, 30..50]
+
+feature "F_Root" <fr>
+	group <g_alt> (0..1) {
+		feature "F2" <f2>
+		feature "F3" <f3>
+	}
+	group <g_opt> (0..1) {
+		feature "F4" <f4>
+		group <g_man1> (1..1) {
+			feature "F9" <f9>
+		}
+	}
+	group <g_man> (0..1) {
+		feature "F5" <f5>
+			#a1 [d1]
+			#a2 [d2]
+	}
+	group <g_or> (1..3) {
+		feature "F6" <f6>
+		feature "F7" <f7>
+		feature "F8" <f8>
+	}
+

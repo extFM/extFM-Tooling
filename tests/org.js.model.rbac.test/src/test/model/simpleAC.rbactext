@@ -1,0 +1,21 @@
+access control on <simpleFM.eft>
+
+role <r1> {
+	f2 : select
+}
+
+role <r2> extends r1 {
+	f2 : select deselect
+}
+
+role <r3> {
+	f2 : select deselect
+}
+
+subject "s1" <s1> {
+ 	r1
+}
+
+subject "s2" <s2> {
+ 	r2
+}
