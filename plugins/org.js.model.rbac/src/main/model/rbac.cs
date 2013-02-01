@@ -42,12 +42,8 @@ TOKENSTYLES {
 	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	
 	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) (_[COMMA] parentRoles[])*)? !0 
-			("{" allowedConfigOperations*  allowedEngineeringOperations* "}" )? ;
+			("{" allowedConfigOperations* tasks* "}" )? ;
 
-
-	// syntax definition for engineering operations
-	CreateFeatureModel ::= "$createFM";
-	
 
 	// syntax definition for configuration operations
 	FeatureConfiguration ::= #4 feature[] ":" select[S_SELECT]? deselect[S_DESELECT]? ;
@@ -62,5 +58,5 @@ TOKENSTYLES {
 	Subject ::= "subject" #1 name['"','"'] #1 id['<','>'] !0 
 			("{" roles[]+ "}")?;
 
-
+	Task ::= "task" name['"','"'];
 }

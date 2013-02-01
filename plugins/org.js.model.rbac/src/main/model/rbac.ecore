@@ -18,14 +18,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="allowedConfigOperations"
         upperBound="-1" eType="#//ConfigurationOperation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="allowedEngineeringOperations"
-        upperBound="-1" eType="#//EngineeringOperation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentRoles" upperBound="-1"
         eType="#//Role" eOpposite="#//Role/childRoles"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="childRoles" upperBound="-1"
         eType="#//Role" eOpposite="#//Role/parentRoles"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
         eType="#//Subject" eOpposite="#//Subject/roles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//Task" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -52,6 +52,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueConfigurations" upperBound="-1"
         eType="#//DomainValueConfiguration" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EngineeringOperation" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CreateFeatureModel" eSuperTypes="#//EngineeringOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Task">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
