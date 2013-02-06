@@ -184,22 +184,38 @@ public class RBACService {
     * @return
     */
    public List<Role> getSubjectRoles(Subject subject) {
+      List<Role> allRoles = new ArrayList<>();
       EList<Role> roles = subject.getRoles();
-      List<Role> parents = new ArrayList<Role>();
+      allRoles.addAll(roles);
       for (Role role : roles) {
-         findParentRoles(role, parents);
+         List<Role> parentRoles = getParentRoles(role);
+         for (Role parent : parentRoles) {
+            if (!allRoles.contains(parent)) {
+               allRoles.add(parent);
+            }
+         }
       }
-      roles.addAll(parents);
-      return roles;
+      return allRoles;
    }
 
    private void findParentRoles(Role role, List<Role> roles) {
       EList<Role> parents = role.getParentRoles();
-      roles.addAll(parents);
       for (Role parent : parents) {
-         findParentRoles(parent, roles);
+         if (!roles.contains(parent)) {
+            roles.add(parent);
+            findParentRoles(parent, roles);
+         }
       }
+   }
 
+   private void findChildRoles(Role role, List<Role> roles) {
+      EList<Role> children = role.getChildRoles();
+      for (Role child : children) {
+         if (!roles.contains(child)) {
+            roles.add(child);
+            findChildRoles(child, roles);
+         }
+      }
    }
 
    /**
@@ -213,4 +229,27 @@ public class RBACService {
       return subjects;
    }
 
+   /**
+    * get all the roles that are direct and indirect children of the specified role.
+    * 
+    * @param role
+    * @return
+    */
+   public List<Role> getChildRoles(Role role) {
+      List<Role> children = new ArrayList<Role>();
+      findChildRoles(role, children);
+      return children;
+   }
+
+   /**
+    * get all the roles that are directly and indirectly assigned parents of the specified role.
+    * 
+    * @param role
+    * @return
+    */
+   public List<Role> getParentRoles(Role role) {
+      List<Role> parents = new ArrayList<Role>();
+      findParentRoles(role, parents);
+      return parents;
+   }
 }

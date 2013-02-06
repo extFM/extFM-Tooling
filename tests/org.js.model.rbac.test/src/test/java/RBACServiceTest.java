@@ -196,11 +196,12 @@ public class RBACServiceTest {
       Role r1 = getRole("r1");
       Role r2 = getRole("r2");
       
-      // r1 -> s1, s4
+      // r1 -> s1, s4, s3
       List<Subject> r1Subjects = rbacService.getRoleDirectSubjects(r1);
-      assertTrue(r1Subjects.size() == 2);
+      assertTrue(r1Subjects.size() == 3);
       assertTrue(r1Subjects.contains(s1));
       assertTrue(r1Subjects.contains(s4));
+      assertTrue(r1Subjects.contains(s3));
       
       // r2 -> s2, s3, s4
       List<Subject> r2Subjects = rbacService.getRoleDirectSubjects(r2);
@@ -245,4 +246,58 @@ public class RBACServiceTest {
       assertTrue(s5Roles.contains(r4));
    }
 
+   
+   @Test
+   public void getChildRolesTest() {
+      Role r1 = getRole("r1");
+      Role r2 = getRole("r2");
+      Role r4 = getRole("r4");
+      Role r5 = getRole("r5");
+      Role r6 = getRole("r6");
+      
+      // r1 -> r2, r4, r6
+      List<Role> cr1 = rbacService.getChildRoles(r1);
+      assertTrue(cr1.size() == 3);
+      assertTrue(cr1.contains(r2));
+      assertTrue(cr1.contains(r4));
+      assertTrue(cr1.contains(r6));
+      
+      // r4 -> r6
+      List<Role> cr4 = rbacService.getChildRoles(r4);
+      assertTrue(cr4.size() == 1);
+      assertTrue(cr4.contains(r6));
+      
+      // r6 -> 0
+      List<Role> cr6 = rbacService.getChildRoles(r6);
+      assertTrue(cr6.size() == 0);
+   }
+
+   @Test
+   public void getParentRolesTest() {
+      Role r1 = getRole("r1");
+      Role r2 = getRole("r2");
+      Role r3 = getRole("r3");
+      Role r4 = getRole("r4");
+      Role r5 = getRole("r5");
+      Role r6 = getRole("r6");
+      
+      // r1 -> 0
+      List<Role> cr1 = rbacService.getParentRoles(r1);
+      assertTrue(cr1.size() == 0);
+      
+      // r4 -> r2, r1
+      List<Role> cr4 = rbacService.getParentRoles(r4);
+      assertTrue(cr4.size() == 2);
+      assertTrue(cr4.contains(r2));
+      assertTrue(cr4.contains(r1));
+      
+      // r6 -> r4, r5, r3, r2, r1 
+      List<Role> cr6 = rbacService.getParentRoles(r6);
+      assertTrue(cr6.size() == 5);
+      assertTrue(cr6.contains(r1));
+      assertTrue(cr6.contains(r2));
+      assertTrue(cr6.contains(r3));
+      assertTrue(cr6.contains(r4));
+      assertTrue(cr6.contains(r5));
+   }
 }

@@ -15,6 +15,15 @@ role <r3> {
 role <r4> extends r2 {
 }
 
+role <r5> extends r3 {
+	f9 : select deselect
+	f4 : select deselect
+}
+
+role <r6> extends r4, r5 {
+	f5 : select deselect
+}
+
 subject "s1" <s1> {
  	r1
 }
@@ -24,7 +33,7 @@ subject "s2" <s2> {
 }
 
 subject "s3" <s3> {
- 	r2
+ 	r2 r1
 }
 
 subject "s4" <s4> {
