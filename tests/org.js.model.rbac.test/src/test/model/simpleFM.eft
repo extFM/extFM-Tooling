@@ -11,6 +11,7 @@ feature "F_Root" <fr>
 		feature "F4" <f4>
 		group <g_man1> (1..1) {
 			feature "F9" <f9>
+			#a1 [d1]
 		}
 	}
 	group <g_man> (0..1) {
