@@ -34,7 +34,7 @@ public class AttributeConfigurationAttributeReferenceResolver
          }
       }
 
-      delegate.resolve(identifier, container, reference, position, resolveFuzzy, result);
+      //delegate.resolve(identifier, container, reference, position, resolveFuzzy, result);
    }
 
    public String deResolve(org.js.model.feature.Attribute element, org.js.model.rbac.AttributeConfiguration container,
