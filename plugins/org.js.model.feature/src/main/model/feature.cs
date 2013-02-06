@@ -33,9 +33,12 @@ TOKENS {
 	
 	//Careful: Using a dot (.) as qualifier character causes problems!
 	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
+	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 }
 
+
 TOKENSTYLES {
+	"COMMENT" COLOR #AAAAAA;
 	"!" COLOR #800055, BOLD;
 	"&&" COLOR #800055, BOLD;
 	"||" COLOR #800055, BOLD;
