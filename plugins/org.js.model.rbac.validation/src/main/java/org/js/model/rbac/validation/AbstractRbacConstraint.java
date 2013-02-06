@@ -14,8 +14,6 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
-import org.js.model.rbac.AttributeConfiguration;
-import org.js.model.rbac.DomainValueConfiguration;
 
 public abstract class AbstractRbacConstraint extends AbstractModelConstraint implements IModelConstraint {
 

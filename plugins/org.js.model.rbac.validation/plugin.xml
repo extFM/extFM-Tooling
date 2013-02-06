@@ -51,6 +51,44 @@
                   </event>
                </target>
             </constraint>
+            <constraint
+                  class="org.js.model.rbac.validation.RoleCycleConstraint"
+                  id="org.js.model.rbac.validation.constraint3"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="RoleCycleConstraint"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="ValueOperation">
+                  <event
+                        name="Set">
+                  </event>
+               </target>
+            </constraint>
+            <constraint
+                  class="org.js.model.rbac.validation.DuplicateElementConstraint"
+                  id="org.js.model.rbac.validation.constraint4"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="DuplicateElementConstraint"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="ValueOperation">
+                  <event
+                        name="Set">
+                  </event>
+               </target>
+            </constraint>
          </constraints>
       </constraintProvider>
    </extension>
