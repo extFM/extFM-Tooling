@@ -27,28 +27,13 @@ import org.js.model.feature.Feature;
  */
 public class RBACService {
 
-   private AccessControlModel model;
 
-   //private Map<Role, List<ConfigurationOperation>> roleCache;
 
-   public RBACService(AccessControlModel model) {
-      this.model = model;
-      //initRoles();
-   }
-   
    // default constructor
    public RBACService() {
-      //initRoles();
    }
 
-   
-//   private void initRoles() {
-//      roleCache = new HashMap<Role, List<ConfigurationOperation>>();
-//      EList<Role> roles = model.getRoles();
-//      for (Role role : roles) {
-//         roleCache.put(role, getAllRoleConfigOperations(role));
-//      }
-//   }
+
 
    /**
     * get all the configuration operations that belong to this role.

@@ -35,7 +35,8 @@ TOKENSTYLES {
 	AccessControlModel   ::= "access control" #1 
 									("on" #1 featureModels['<','>'] (_[COMMA] featureModels['<','>'])*)? !0
 									("references" #1 accessControlModels['<','>'] (_[COMMA] accessControlModels['<','>'])* )? !0
-									roles* !0 
+									roles* !0
+									organizations* !0 
 									subjects*; 
 	
 	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
@@ -57,6 +58,9 @@ TOKENSTYLES {
 
 	Subject ::= "subject" #1 name['"','"'] #1 id['<','>'] !0 
 			("{" roles[]+ "}")?;
+	
+	Organization ::= "organization" #1 name['"','"']? #1 id['<','>']? represents[] !0 
+			("{" groupOf[]+ "}")?;
 
 	Task ::= "task" name['"','"'];
 }

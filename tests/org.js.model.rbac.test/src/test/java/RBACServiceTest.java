@@ -32,7 +32,7 @@ public class RBACServiceTest {
    private void initRBACService() {
       TestModel tm = new TestModel();
       acModelUT = tm.getACTestModel();
-      rbacService = new RBACService(acModelUT);
+      rbacService = new RBACService();
 
    }
 

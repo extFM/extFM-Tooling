@@ -252,6 +252,9 @@ options {
 			if (type.getInstanceClass() == org.js.model.rbac.Subject.class) {
 				return parse_org_js_model_rbac_Subject();
 			}
+			if (type.getInstanceClass() == org.js.model.rbac.Organization.class) {
+				return parse_org_js_model_rbac_Organization();
+			}
 			if (type.getInstanceClass() == org.js.model.rbac.Task.class) {
 				return parse_org_js_model_rbac_Task();
 			}
@@ -349,7 +352,7 @@ options {
 				break;
 			}
 		}
-		int followSetID = 60;
+		int followSetID = 69;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
 			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -549,6 +552,7 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[2]);
 		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[3]);
 		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[4]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[5]);
 	}
 	
 	(
@@ -564,7 +568,7 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[5]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[6]);
 			}
 			
 			(
@@ -604,10 +608,11 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[6]);
 				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[7]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[8]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[8]);
 				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[9]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[10]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[11]);
 			}
 			
 			(
@@ -620,7 +625,7 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[10]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[12]);
 					}
 					
 					(
@@ -660,29 +665,32 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[11]);
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[12]);
-						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[13]);
-						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[14]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[13]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[14]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[15]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[16]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[17]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[15]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[16]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[17]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[18]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[18]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[19]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[20]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[21]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[22]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[19]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[20]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[21]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[23]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[24]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[25]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[26]);
 	}
 	
 	(
@@ -698,7 +706,7 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[22]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[27]);
 			}
 			
 			(
@@ -738,9 +746,10 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[23]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[24]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[25]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[28]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[29]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[30]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[31]);
 			}
 			
 			(
@@ -753,7 +762,7 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[26]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[32]);
 					}
 					
 					(
@@ -793,26 +802,29 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[27]);
-						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[28]);
-						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[29]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[33]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[34]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[35]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[36]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[30]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[31]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[32]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[37]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[38]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[39]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[40]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[33]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[34]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[41]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[42]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[43]);
 	}
 	
 	(
@@ -840,13 +852,14 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[35]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[36]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[44]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[45]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[46]);
 	}
 	
 	(
 		(
-			a10_0 = parse_org_js_model_rbac_Subject			{
+			a10_0 = parse_org_js_model_rbac_Organization			{
 				if (terminateParsing) {
 					throw new org.js.model.rbac.resource.rbactext.mopp.RbactextTerminateParsingException();
 				}
@@ -857,7 +870,7 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 				if (a10_0 != null) {
 					if (a10_0 != null) {
 						Object value = a10_0;
-						addObjectToList(element, org.js.model.rbac.RbacPackage.ACCESS_CONTROL_MODEL__SUBJECTS, value);
+						addObjectToList(element, org.js.model.rbac.RbacPackage.ACCESS_CONTROL_MODEL__ORGANIZATIONS, value);
 						completedElement(value, true);
 					}
 					collectHiddenTokens(element);
@@ -869,7 +882,36 @@ parse_org_js_model_rbac_AccessControlModel returns [org.js.model.rbac.AccessCont
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[37]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[47]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[48]);
+	}
+	
+	(
+		(
+			a11_0 = parse_org_js_model_rbac_Subject			{
+				if (terminateParsing) {
+					throw new org.js.model.rbac.resource.rbactext.mopp.RbactextTerminateParsingException();
+				}
+				if (element == null) {
+					element = org.js.model.rbac.RbacFactory.eINSTANCE.createAccessControlModel();
+					startIncompleteElement(element);
+				}
+				if (a11_0 != null) {
+					if (a11_0 != null) {
+						Object value = a11_0;
+						addObjectToList(element, org.js.model.rbac.RbacPackage.ACCESS_CONTROL_MODEL__SUBJECTS, value);
+						completedElement(value, true);
+					}
+					collectHiddenTokens(element);
+					retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_0_0_0_10, a11_0, true);
+					copyLocalizationInfos(a11_0, element);
+				}
+			}
+		)
+		
+	)*	{
+		// expected elements (follow set)
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[49]);
 	}
 	
 ;
@@ -889,8 +931,8 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[38]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[39]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[50]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[51]);
 	}
 	
 	(
@@ -928,7 +970,7 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[40]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[52]);
 	}
 	
 	(
@@ -964,10 +1006,11 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[41]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[42]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[43]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[44]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[53]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[54]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[55]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[56]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[57]);
 	}
 	
 	(
@@ -983,7 +1026,7 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[45]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[58]);
 			}
 			
 			(
@@ -1024,19 +1067,21 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 				)
 				{
 					// expected elements (follow set)
-					addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[46]);
-					addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[47]);
-					addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[48]);
-					addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[49]);
+					addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[59]);
+					addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[60]);
+					addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[61]);
+					addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[62]);
+					addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[63]);
 				}
 				
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[50]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[51]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[52]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[53]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[64]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[65]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[66]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[67]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[68]);
 			}
 			
 			(
@@ -1049,7 +1094,7 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[54]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[69]);
 					}
 					
 					(
@@ -1089,29 +1134,32 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[55]);
-						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[56]);
-						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[57]);
-						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[58]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[70]);
+						addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[71]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[72]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[73]);
+						addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[74]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[59]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[60]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[61]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[62]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[75]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[76]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[77]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[78]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[79]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[63]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[64]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[65]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[80]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[81]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[82]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[83]);
 	}
 	
 	(
@@ -1127,11 +1175,11 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[66]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[67]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[68]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[69]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[70]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[84]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[85]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[86]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[87]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[88]);
 			}
 			
 			(
@@ -1159,11 +1207,11 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[71]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[72]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[73]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[74]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[75]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[89]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[90]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[91]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[92]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[93]);
 			}
 			
 			(
@@ -1191,8 +1239,8 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[76]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[77]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[94]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[95]);
 			}
 			
 			a10 = '}' {
@@ -1206,16 +1254,18 @@ parse_org_js_model_rbac_Role returns [org.js.model.rbac.Role element = null]
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[78]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[79]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[96]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[97]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[98]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[80]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[81]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[99]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[100]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[101]);
 	}
 	
 ;
@@ -1261,7 +1311,7 @@ parse_org_js_model_rbac_FeatureConfiguration returns [org.js.model.rbac.FeatureC
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[82]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[102]);
 	}
 	
 	a1 = ':' {
@@ -1275,13 +1325,13 @@ parse_org_js_model_rbac_FeatureConfiguration returns [org.js.model.rbac.FeatureC
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[83]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[84]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[85]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[86]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[87]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[88]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[89]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[103]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[104]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[105]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[106]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[107]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[108]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[109]);
 	}
 	
 	(
@@ -1319,12 +1369,12 @@ parse_org_js_model_rbac_FeatureConfiguration returns [org.js.model.rbac.FeatureC
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[90]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[91]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[92]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[93]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[94]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[95]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[110]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[111]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[112]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[113]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[114]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[115]);
 	}
 	
 	(
@@ -1362,11 +1412,11 @@ parse_org_js_model_rbac_FeatureConfiguration returns [org.js.model.rbac.FeatureC
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[96]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[97]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[98]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[99]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[100]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[116]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[117]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[118]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[119]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[120]);
 	}
 	
 ;
@@ -1412,7 +1462,7 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[101]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[121]);
 	}
 	
 	(
@@ -1423,7 +1473,7 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[102]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[122]);
 	}
 	
 	(
@@ -1463,13 +1513,13 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[103]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[104]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[105]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[106]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[107]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[108]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[109]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[123]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[124]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[125]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[126]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[127]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[128]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[129]);
 	}
 	
 	(
@@ -1485,14 +1535,14 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[110]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[111]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[112]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[113]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[114]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[115]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[116]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[117]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[130]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[131]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[132]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[133]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[134]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[135]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[136]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[137]);
 			}
 			
 			(
@@ -1530,13 +1580,13 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 				
 			)?			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[118]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[119]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[120]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[121]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[122]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[123]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[124]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[138]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[139]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[140]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[141]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[142]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[143]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[144]);
 			}
 			
 			(
@@ -1574,24 +1624,24 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 				
 			)?			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[125]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[126]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[127]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[128]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[129]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[130]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[145]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[146]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[147]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[148]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[149]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[150]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[131]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[132]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[133]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[134]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[135]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[136]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[151]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[152]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[153]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[154]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[155]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[156]);
 	}
 	
 	(
@@ -1607,7 +1657,7 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAttributeConfiguration(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[137]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAttributeConfiguration(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[157]);
 			}
 			
 			(
@@ -1635,8 +1685,8 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 				
 			)+			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAttributeConfiguration(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[138]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[139]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAttributeConfiguration(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[158]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[159]);
 			}
 			
 			a8 = ')' {
@@ -1650,24 +1700,24 @@ parse_org_js_model_rbac_AttributeConfiguration returns [org.js.model.rbac.Attrib
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[140]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[141]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[142]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[143]);
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[144]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[145]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[160]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[161]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[162]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[163]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[164]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[165]);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[146]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[147]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[148]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[149]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[150]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[151]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[166]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[167]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[168]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[169]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[170]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[171]);
 	}
 	
 ;
@@ -1710,7 +1760,7 @@ parse_org_js_model_rbac_DomainValueConfiguration returns [org.js.model.rbac.Doma
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[152]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[172]);
 		}
 		
 		a1 = ':' {
@@ -1724,14 +1774,14 @@ parse_org_js_model_rbac_DomainValueConfiguration returns [org.js.model.rbac.Doma
 		}
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[153]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[154]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[155]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[156]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[157]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[158]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[159]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[160]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[173]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[174]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[175]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[176]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[177]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[178]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[179]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[180]);
 		}
 		
 		(
@@ -1769,13 +1819,13 @@ parse_org_js_model_rbac_DomainValueConfiguration returns [org.js.model.rbac.Doma
 			
 		)?		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[161]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[162]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[163]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[164]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[165]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[166]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[167]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[181]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[182]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[183]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[184]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[185]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[186]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[187]);
 		}
 		
 		(
@@ -1813,23 +1863,23 @@ parse_org_js_model_rbac_DomainValueConfiguration returns [org.js.model.rbac.Doma
 			
 		)?		{
 			// expected elements (follow set)
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[168]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[169]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[170]);
-			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[171]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[172]);
-			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[173]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[188]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[189]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[190]);
+			addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[191]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[192]);
+			addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[193]);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[174]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[175]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[176]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[177]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[178]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[179]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[194]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[195]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[196]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[197]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[198]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[199]);
 	}
 	
 ;
@@ -1849,7 +1899,7 @@ parse_org_js_model_rbac_Subject returns [org.js.model.rbac.Subject element = nul
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[180]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[200]);
 	}
 	
 	(
@@ -1885,7 +1935,7 @@ parse_org_js_model_rbac_Subject returns [org.js.model.rbac.Subject element = nul
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[181]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[201]);
 	}
 	
 	(
@@ -1921,8 +1971,8 @@ parse_org_js_model_rbac_Subject returns [org.js.model.rbac.Subject element = nul
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[182]);
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[183]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[202]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[203]);
 	}
 	
 	(
@@ -1938,7 +1988,7 @@ parse_org_js_model_rbac_Subject returns [org.js.model.rbac.Subject element = nul
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[184]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[204]);
 			}
 			
 			(
@@ -1980,8 +2030,8 @@ parse_org_js_model_rbac_Subject returns [org.js.model.rbac.Subject element = nul
 				
 			)+			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[185]);
-				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[186]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[205]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[206]);
 			}
 			
 			a5 = '}' {
@@ -1995,14 +2045,237 @@ parse_org_js_model_rbac_Subject returns [org.js.model.rbac.Subject element = nul
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[187]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[207]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[188]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[208]);
+	}
+	
+;
+
+parse_org_js_model_rbac_Organization returns [org.js.model.rbac.Organization element = null]
+@init{
+}
+:
+	a0 = 'organization' {
+		if (element == null) {
+			element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+			startIncompleteElement(element);
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_0, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[209]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[210]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[211]);
+	}
+	
+	(
+		(
+			a1 = QUOTED_34_34			
+			{
+				if (terminateParsing) {
+					throw new org.js.model.rbac.resource.rbactext.mopp.RbactextTerminateParsingException();
+				}
+				if (element == null) {
+					element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+					startIncompleteElement(element);
+				}
+				if (a1 != null) {
+					org.js.model.rbac.resource.rbactext.IRbactextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
+					tokenResolver.setOptions(getOptions());
+					org.js.model.rbac.resource.rbactext.IRbactextTokenResolveResult result = getFreshTokenResolveResult();
+					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__NAME), result);
+					Object resolvedObject = result.getResolvedToken();
+					if (resolvedObject == null) {
+						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+					}
+					java.lang.String resolved = (java.lang.String) resolvedObject;
+					if (resolved != null) {
+						Object value = resolved;
+						element.eSet(element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__NAME), value);
+						completedElement(value, false);
+					}
+					collectHiddenTokens(element);
+					retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_2, resolved, true);
+					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+				}
+			}
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[212]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[213]);
+	}
+	
+	(
+		(
+			a2 = QUOTED_60_62			
+			{
+				if (terminateParsing) {
+					throw new org.js.model.rbac.resource.rbactext.mopp.RbactextTerminateParsingException();
+				}
+				if (element == null) {
+					element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+					startIncompleteElement(element);
+				}
+				if (a2 != null) {
+					org.js.model.rbac.resource.rbactext.IRbactextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_60_62");
+					tokenResolver.setOptions(getOptions());
+					org.js.model.rbac.resource.rbactext.IRbactextTokenResolveResult result = getFreshTokenResolveResult();
+					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__ID), result);
+					Object resolvedObject = result.getResolvedToken();
+					if (resolvedObject == null) {
+						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+					}
+					java.lang.String resolved = (java.lang.String) resolvedObject;
+					if (resolved != null) {
+						Object value = resolved;
+						element.eSet(element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__ID), value);
+						completedElement(value, false);
+					}
+					collectHiddenTokens(element);
+					retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_4, resolved, true);
+					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+				}
+			}
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[214]);
+	}
+	
+	(
+		a3 = TEXT		
+		{
+			if (terminateParsing) {
+				throw new org.js.model.rbac.resource.rbactext.mopp.RbactextTerminateParsingException();
+			}
+			if (element == null) {
+				element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+				startIncompleteElement(element);
+			}
+			if (a3 != null) {
+				org.js.model.rbac.resource.rbactext.IRbactextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				tokenResolver.setOptions(getOptions());
+				org.js.model.rbac.resource.rbactext.IRbactextTokenResolveResult result = getFreshTokenResolveResult();
+				tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__REPRESENTS), result);
+				Object resolvedObject = result.getResolvedToken();
+				if (resolvedObject == null) {
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+				}
+				String resolved = (String) resolvedObject;
+				org.js.model.rbac.Role proxy = org.js.model.rbac.RbacFactory.eINSTANCE.createRole();
+				collectHiddenTokens(element);
+				registerContextDependentProxy(new org.js.model.rbac.resource.rbactext.mopp.RbactextContextDependentURIFragmentFactory<org.js.model.rbac.Organization, org.js.model.rbac.Role>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrganizationRepresentsReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__REPRESENTS), resolved, proxy);
+				if (proxy != null) {
+					Object value = proxy;
+					element.eSet(element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__REPRESENTS), value);
+					completedElement(value, false);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_5, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[215]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[216]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[217]);
+	}
+	
+	(
+		(
+			a4 = '{' {
+				if (element == null) {
+					element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+					startIncompleteElement(element);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_7_0_0_0, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+			}
+			{
+				// expected elements (follow set)
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[218]);
+			}
+			
+			(
+				(
+					a5 = TEXT					
+					{
+						if (terminateParsing) {
+							throw new org.js.model.rbac.resource.rbactext.mopp.RbactextTerminateParsingException();
+						}
+						if (element == null) {
+							element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+							startIncompleteElement(element);
+						}
+						if (a5 != null) {
+							org.js.model.rbac.resource.rbactext.IRbactextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+							tokenResolver.setOptions(getOptions());
+							org.js.model.rbac.resource.rbactext.IRbactextTokenResolveResult result = getFreshTokenResolveResult();
+							tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__GROUP_OF), result);
+							Object resolvedObject = result.getResolvedToken();
+							if (resolvedObject == null) {
+								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+							}
+							String resolved = (String) resolvedObject;
+							org.js.model.rbac.Role proxy = org.js.model.rbac.RbacFactory.eINSTANCE.createRole();
+							collectHiddenTokens(element);
+							registerContextDependentProxy(new org.js.model.rbac.resource.rbactext.mopp.RbactextContextDependentURIFragmentFactory<org.js.model.rbac.Organization, org.js.model.rbac.Role>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getOrganizationGroupOfReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.js.model.rbac.RbacPackage.ORGANIZATION__GROUP_OF), resolved, proxy);
+							if (proxy != null) {
+								Object value = proxy;
+								addObjectToList(element, org.js.model.rbac.RbacPackage.ORGANIZATION__GROUP_OF, value);
+								completedElement(value, false);
+							}
+							collectHiddenTokens(element);
+							retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_7_0_0_1, proxy, true);
+							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, proxy);
+						}
+					}
+				)
+				
+			)+			{
+				// expected elements (follow set)
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[219]);
+				addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[220]);
+			}
+			
+			a6 = '}' {
+				if (element == null) {
+					element = org.js.model.rbac.RbacFactory.eINSTANCE.createOrganization();
+					startIncompleteElement(element);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_7_0_0_2, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+			}
+			{
+				// expected elements (follow set)
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[221]);
+				addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[222]);
+			}
+			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[223]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getAccessControlModel(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[224]);
 	}
 	
 ;
@@ -2017,12 +2290,12 @@ parse_org_js_model_rbac_Task returns [org.js.model.rbac.Task element = null]
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_7_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[189]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[225]);
 	}
 	
 	(
@@ -2051,15 +2324,15 @@ parse_org_js_model_rbac_Task returns [org.js.model.rbac.Task element = null]
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_6_0_0_1, resolved, true);
+				retrieveLayoutInformation(element, org.js.model.rbac.resource.rbactext.grammar.RbactextGrammarInformationProvider.RBACTEXT_7_0_0_1, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[190]);
-		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[191]);
+		addExpectedElement(org.js.model.rbac.RbacPackage.eINSTANCE.getRole(), org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[226]);
+		addExpectedElement(null, org.js.model.rbac.resource.rbactext.mopp.RbactextExpectationConstants.EXPECTATIONS[227]);
 	}
 	
 ;
