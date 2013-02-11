@@ -947,13 +947,13 @@ rule createFeatureRequireConstraint{
 	}
 	do{
 		if (f1_before_f2 = f2_before_f1) {
-			thisModule.implySel(f1_op,f2_op);
-			thisModule.implyDes(f1_op,f2_op);
+			thisModule.implySel(f2_op,f1_op);
+			thisModule.implyDes(f2_op,f1_op);
 		} else {
 			if (f1_before_f2) {
-				thisModule.implySel(f1_op,f2_op);
+				thisModule.implyDes(f2_op,f1_op);
 			} else {
-				thisModule.implyDes(f1_op,f2_op);
+				thisModule.implySel(f2_op,f1_op);
 			}
 		}
 	}

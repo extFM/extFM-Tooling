@@ -180,50 +180,50 @@ place "o_TC_des_tpdf_to_des_DMS";
 place "comp_Types_to_sel_DMS";
 place "i_TC_Types_to_sel_DMS";
 place "o_TC_Types_to_sel_DMS";
-place "sel_image_to_sel_timg";
-place "comp_sel_image_to_sel_timg";
-place "i_TC_sel_image_to_sel_timg";
-place "o_TC_sel_image_to_sel_timg";
-place "sel_pdf_to_sel_tpdf";
-place "comp_sel_pdf_to_sel_tpdf";
-place "i_TC_sel_pdf_to_sel_tpdf";
-place "o_TC_sel_pdf_to_sel_tpdf";
-place "des_ti_to_des_indexUsage";
-place "comp_des_ti_to_des_indexUsage";
-place "i_TC_des_ti_to_des_indexUsage";
-place "o_TC_des_ti_to_des_indexUsage";
-place "des_ti_to_des_mds";
-place "comp_des_ti_to_des_mds";
-place "i_TC_des_ti_to_des_mds";
-place "o_TC_des_ti_to_des_mds";
-place "sel_as_to_sel_ai";
-place "comp_sel_as_to_sel_ai";
-place "i_TC_sel_as_to_sel_ai";
-place "o_TC_sel_as_to_sel_ai";
-place "des_ai_to_des_as";
-place "comp_des_ai_to_des_as";
-place "i_TC_des_ai_to_des_as";
-place "o_TC_des_ai_to_des_as";
-place "des_ai_to_des_gs";
-place "comp_des_ai_to_des_gs";
-place "i_TC_des_ai_to_des_gs";
-place "o_TC_des_ai_to_des_gs";
-place "sel_fns_to_sel_fni";
-place "comp_sel_fns_to_sel_fni";
-place "i_TC_sel_fns_to_sel_fni";
-place "o_TC_sel_fns_to_sel_fni";
-place "des_fni_to_des_fns";
-place "comp_des_fni_to_des_fns";
-place "i_TC_des_fni_to_des_fns";
-place "o_TC_des_fni_to_des_fns";
-place "sel_searchResults_to_sel_search";
-place "comp_sel_searchResults_to_sel_search";
-place "i_TC_sel_searchResults_to_sel_search";
-place "o_TC_sel_searchResults_to_sel_search";
-place "des_search_to_des_searchResults";
-place "comp_des_search_to_des_searchResults";
-place "i_TC_des_search_to_des_searchResults";
-place "o_TC_des_search_to_des_searchResults";
+place "des_image_to_des_timg";
+place "comp_des_image_to_des_timg";
+place "i_TC_des_image_to_des_timg";
+place "o_TC_des_image_to_des_timg";
+place "des_pdf_to_des_tpdf";
+place "comp_des_pdf_to_des_tpdf";
+place "i_TC_des_pdf_to_des_tpdf";
+place "o_TC_des_pdf_to_des_tpdf";
+place "sel_ti_to_sel_indexUsage";
+place "comp_sel_ti_to_sel_indexUsage";
+place "i_TC_sel_ti_to_sel_indexUsage";
+place "o_TC_sel_ti_to_sel_indexUsage";
+place "sel_ti_to_sel_mds";
+place "comp_sel_ti_to_sel_mds";
+place "i_TC_sel_ti_to_sel_mds";
+place "o_TC_sel_ti_to_sel_mds";
+place "sel_ai_to_sel_as";
+place "comp_sel_ai_to_sel_as";
+place "i_TC_sel_ai_to_sel_as";
+place "o_TC_sel_ai_to_sel_as";
+place "des_as_to_des_ai";
+place "comp_des_as_to_des_ai";
+place "i_TC_des_as_to_des_ai";
+place "o_TC_des_as_to_des_ai";
+place "sel_ai_to_sel_gs";
+place "comp_sel_ai_to_sel_gs";
+place "i_TC_sel_ai_to_sel_gs";
+place "o_TC_sel_ai_to_sel_gs";
+place "sel_fni_to_sel_fns";
+place "comp_sel_fni_to_sel_fns";
+place "i_TC_sel_fni_to_sel_fns";
+place "o_TC_sel_fni_to_sel_fns";
+place "des_fns_to_des_fni";
+place "comp_des_fns_to_des_fni";
+place "i_TC_des_fns_to_des_fni";
+place "o_TC_des_fns_to_des_fni";
+place "sel_search_to_sel_searchResults";
+place "comp_sel_search_to_sel_searchResults";
+place "i_TC_sel_search_to_sel_searchResults";
+place "o_TC_sel_search_to_sel_searchResults";
+place "des_searchResults_to_des_search";
+place "comp_des_searchResults_to_des_search";
+place "i_TC_des_searchResults_to_des_search";
+place "o_TC_des_searchResults_to_des_search";
 place "des_tuni_to_sel_tsim";
 place "comp_des_tuni_to_sel_tsim";
 place "i_TC_des_tuni_to_sel_tsim";
@@ -267,13 +267,13 @@ out
     "comp_des_image_to_des_ocr"
     "comp_oclFormats_to_sel_ocr"
     "comp_oclFormats_to_sel_ocr"
-    "comp_sel_image_to_sel_timg"
-    "comp_sel_pdf_to_sel_tpdf"
-    "comp_des_ti_to_des_indexUsage"
-    "comp_des_ti_to_des_mds"
-    "comp_sel_as_to_sel_ai"
-    "comp_des_ai_to_des_as"
-    "comp_des_ai_to_des_gs"
+    "comp_des_image_to_des_timg"
+    "comp_des_pdf_to_des_tpdf"
+    "comp_sel_ti_to_sel_indexUsage"
+    "comp_sel_ti_to_sel_mds"
+    "comp_sel_ai_to_sel_as"
+    "comp_des_as_to_des_ai"
+    "comp_sel_ai_to_sel_gs"
 ;
 
 trans "end_1"
@@ -296,15 +296,15 @@ in
 
 out
     "empty_TC_1"
-    "i_TC_sel_as_to_sel_ai"
-    "i_TC_des_ai_to_des_as"
+    "i_TC_sel_ai_to_sel_as"
+    "i_TC_des_as_to_des_ai"
 ;
 
 trans "end_TC_1"
 in
     "empty_TC_1"
-    "o_TC_sel_as_to_sel_ai"
-    "o_TC_des_ai_to_des_as"
+    "o_TC_sel_ai_to_sel_as"
+    "o_TC_des_as_to_des_ai"
 
 out
     "o_1"
@@ -352,8 +352,8 @@ out
     "i_TC_des_mds_to_sel_gs"
     "i_TC_des_mdi_to_sel_gi"
     "i_TC_des_gi_to_sel_mdi"
-    "i_TC_des_ti_to_des_mds"
-    "i_TC_des_ai_to_des_gs"
+    "i_TC_sel_ti_to_sel_mds"
+    "i_TC_sel_ai_to_sel_gs"
 ;
 
 trans "end_TC_2"
@@ -365,8 +365,8 @@ in
     "o_TC_des_mds_to_sel_gs"
     "o_TC_des_mdi_to_sel_gi"
     "o_TC_des_gi_to_sel_mdi"
-    "o_TC_des_ti_to_des_mds"
-    "o_TC_des_ai_to_des_gs"
+    "o_TC_sel_ti_to_sel_mds"
+    "o_TC_sel_ai_to_sel_gs"
 
 out
     "o_2"
@@ -388,8 +388,8 @@ out
     "comp_des_indexUsage_to_des_report"
     "comp_reportDetails_to_sel_report"
     "comp_reportDetails_to_sel_report"
-    "comp_sel_searchResults_to_sel_search"
-    "comp_des_search_to_des_searchResults"
+    "comp_sel_search_to_sel_searchResults"
+    "comp_des_searchResults_to_des_search"
 ;
 
 trans "end_3"
@@ -416,9 +416,9 @@ out
     "i_TC_des_image_to_des_ocr"
     "i_TC_oclFormats_to_sel_ocr"
     "i_TC_oclFormats_to_sel_ocr"
-    "i_TC_des_ti_to_des_indexUsage"
-    "i_TC_sel_searchResults_to_sel_search"
-    "i_TC_des_search_to_des_searchResults"
+    "i_TC_sel_ti_to_sel_indexUsage"
+    "i_TC_sel_search_to_sel_searchResults"
+    "i_TC_des_searchResults_to_des_search"
 ;
 
 trans "end_TC_3"
@@ -430,9 +430,9 @@ in
     "o_TC_des_image_to_des_ocr"
     "o_TC_oclFormats_to_sel_ocr"
     "o_TC_oclFormats_to_sel_ocr"
-    "o_TC_des_ti_to_des_indexUsage"
-    "o_TC_sel_searchResults_to_sel_search"
-    "o_TC_des_search_to_des_searchResults"
+    "o_TC_sel_ti_to_sel_indexUsage"
+    "o_TC_sel_search_to_sel_searchResults"
+    "o_TC_des_searchResults_to_des_search"
 
 out
     "o_3"
@@ -460,8 +460,8 @@ out
     "comp_Types_to_sel_DMS"
     "comp_Types_to_sel_DMS"
     "comp_Types_to_sel_DMS"
-    "comp_sel_fns_to_sel_fni"
-    "comp_des_fni_to_des_fns"
+    "comp_sel_fni_to_sel_fns"
+    "comp_des_fns_to_des_fni"
     "comp_des_tuni_to_sel_tsim"
     "comp_des_tsim_to_sel_tuni"
 ;
@@ -490,10 +490,10 @@ out
     "i_TC_des_indexUsage_to_des_report"
     "i_TC_reportDetails_to_sel_report"
     "i_TC_reportDetails_to_sel_report"
-    "i_TC_sel_image_to_sel_timg"
-    "i_TC_sel_pdf_to_sel_tpdf"
-    "i_TC_sel_fns_to_sel_fni"
-    "i_TC_des_fni_to_des_fns"
+    "i_TC_des_image_to_des_timg"
+    "i_TC_des_pdf_to_des_tpdf"
+    "i_TC_sel_fni_to_sel_fns"
+    "i_TC_des_fns_to_des_fni"
     "i_TC_des_tuni_to_sel_tsim"
     "i_TC_des_tsim_to_sel_tuni"
 ;
@@ -505,10 +505,10 @@ in
     "o_TC_des_indexUsage_to_des_report"
     "o_TC_reportDetails_to_sel_report"
     "o_TC_reportDetails_to_sel_report"
-    "o_TC_sel_image_to_sel_timg"
-    "o_TC_sel_pdf_to_sel_tpdf"
-    "o_TC_sel_fns_to_sel_fni"
-    "o_TC_des_fni_to_des_fns"
+    "o_TC_des_image_to_des_timg"
+    "o_TC_des_pdf_to_des_tpdf"
+    "o_TC_sel_fni_to_sel_fns"
+    "o_TC_des_fns_to_des_fni"
     "o_TC_des_tuni_to_sel_tsim"
     "o_TC_des_tsim_to_sel_tuni"
 
@@ -580,66 +580,66 @@ trans "sel_pdf"
 in
     "i_pdf"
     "comp_oclFormats_to_sel_ocr"
-    "comp_sel_pdf_to_sel_tpdf"
 
 out
     "o_pdf"
     "oclFormats_to_sel_ocr"
-    "sel_pdf_to_sel_tpdf"
 ;
 
 trans "des_pdf"
 in
     "i_pdf"
     "comp_des_pdf_to_des_ocr"
+    "comp_des_pdf_to_des_tpdf"
 
 out
     "o_pdf"
     "des_pdf_to_des_ocr"
+    "des_pdf_to_des_tpdf"
 ;
 
 trans "sel_image"
 in
     "i_image"
     "comp_oclFormats_to_sel_ocr"
-    "comp_sel_image_to_sel_timg"
 
 out
     "o_image"
     "oclFormats_to_sel_ocr"
-    "sel_image_to_sel_timg"
 ;
 
 trans "des_image"
 in
     "i_image"
     "comp_des_image_to_des_ocr"
+    "comp_des_image_to_des_timg"
 
 out
     "o_image"
     "des_image_to_des_ocr"
+    "des_image_to_des_timg"
 ;
 
 trans "sel_as"
 in
     "i_as"
-    "comp_sel_as_to_sel_ai"
+    "sel_ai_to_sel_as"
 
 out
     "o_as"
-    "sel_as_to_sel_ai"
+    "comp_sel_ai_to_sel_as"
 ;
 
 trans "des_as"
 in
     "i_as"
     "comp_des_as_to_des_mds"
-    "des_ai_to_des_as"
+    "comp_des_as_to_des_ai"
 
 out
     "o_as"
     "des_as_to_des_mds"
-    "comp_des_ai_to_des_as"
+    "des_as_to_des_ai"
 ;
 
 trans "sel_ts"
@@ -681,58 +681,60 @@ out
 trans "sel_ai"
 in
     "i_ai"
-    "sel_as_to_sel_ai"
+    "comp_sel_ai_to_sel_as"
+    "comp_sel_ai_to_sel_gs"
 
 out
     "o_ai"
-    "comp_sel_as_to_sel_ai"
+    "sel_ai_to_sel_as"
+    "sel_ai_to_sel_gs"
 ;
 
 trans "des_ai"
 in
     "i_ai"
     "comp_des_ai_to_des_mdi"
-    "comp_des_ai_to_des_as"
-    "comp_des_ai_to_des_gs"
+    "des_as_to_des_ai"
 
 out
     "o_ai"
     "des_ai_to_des_mdi"
-    "des_ai_to_des_as"
-    "des_ai_to_des_gs"
+    "comp_des_as_to_des_ai"
 ;
 
 trans "sel_ti"
 in
     "i_ti"
+    "comp_sel_ti_to_sel_indexUsage"
+    "comp_sel_ti_to_sel_mds"
 
 out
     "o_ti"
     "sel_ti_to_sel_mdi"
+    "sel_ti_to_sel_indexUsage"
+    "sel_ti_to_sel_mds"
 ;
 
 trans "des_ti"
 in
     "i_ti"
-    "comp_des_ti_to_des_indexUsage"
-    "comp_des_ti_to_des_mds"
 
 out
     "o_ti"
     "des_ti_to_des_mdi"
-    "des_ti_to_des_indexUsage"
-    "des_ti_to_des_mds"
 ;
 
 trans "sel_gs"
 in
     "i_gs"
     "des_mds_to_sel_gs"
+    "sel_ai_to_sel_gs"
 
 out
     "o_gs"
     "AltSearch_to_sel_search"
     "comp_des_mds_to_sel_gs"
+    "comp_sel_ai_to_sel_gs"
 ;
 
 trans "des_gs"
@@ -740,13 +742,11 @@ in
     "i_gs"
     "comp_des_gs_to_sel_mds"
     "comp_des_gs_to_des_search"
-    "des_ai_to_des_gs"
 
 out
     "o_gs"
     "des_gs_to_des_search"
     "des_gs_to_sel_mds"
-    "comp_des_ai_to_des_gs"
 ;
 
 trans "sel_mds"
@@ -755,11 +755,13 @@ in
     "sel_ts_to_sel_mds"
     "sel_cs_to_sel_mds"
     "des_gs_to_sel_mds"
+    "sel_ti_to_sel_mds"
 
 out
     "o_mds"
     "comp_des_gs_to_sel_mds"
     "AltSearch_to_sel_search"
+    "comp_sel_ti_to_sel_mds"
 ;
 
 trans "des_mds"
@@ -770,14 +772,12 @@ in
     "des_cs_to_des_mds"
     "comp_des_mds_to_sel_gs"
     "comp_des_mds_to_des_search"
-    "des_ti_to_des_mds"
 
 out
     "o_mds"
     "comp_des_as_to_des_mds"
     "des_mds_to_des_search"
     "des_mds_to_sel_gs"
-    "comp_des_ti_to_des_mds"
 ;
 
 trans "sel_gi"
@@ -836,12 +836,12 @@ trans "sel_search"
 in
     "i_search"
     "AltSearch_to_sel_search"
-    "sel_searchResults_to_sel_search"
+    "comp_sel_search_to_sel_searchResults"
 
 out
     "o_search"
     "sel_search_to_sel_fns"
-    "comp_sel_searchResults_to_sel_search"
+    "sel_search_to_sel_searchResults"
 ;
 
 trans "des_search"
@@ -850,7 +850,7 @@ in
     "comp_des_search_to_des_DMS"
     "des_gs_to_des_search"
     "des_mds_to_des_search"
-    "comp_des_search_to_des_searchResults"
+    "des_searchResults_to_des_search"
 
 out
     "o_search"
@@ -858,7 +858,7 @@ out
     "des_search_to_des_fns"
     "comp_des_gs_to_des_search"
     "comp_des_mds_to_des_search"
-    "des_search_to_des_searchResults"
+    "comp_des_searchResults_to_des_search"
 ;
 
 trans "sel_ci"
@@ -907,90 +907,90 @@ trans "sel_searchResults"
 in
     "i_searchResults"
     "comp_reportDetails_to_sel_report"
-    "comp_sel_searchResults_to_sel_search"
+    "sel_search_to_sel_searchResults"
 
 out
     "o_searchResults"
     "reportDetails_to_sel_report"
-    "sel_searchResults_to_sel_search"
+    "comp_sel_search_to_sel_searchResults"
 ;
 
 trans "des_searchResults"
 in
     "i_searchResults"
     "comp_des_searchResults_to_des_report"
-    "des_search_to_des_searchResults"
+    "comp_des_searchResults_to_des_search"
 
 out
     "o_searchResults"
     "des_searchResults_to_des_report"
-    "comp_des_search_to_des_searchResults"
+    "des_searchResults_to_des_search"
 ;
 
 trans "sel_indexUsage"
 in
     "i_indexUsage"
     "comp_reportDetails_to_sel_report"
+    "sel_ti_to_sel_indexUsage"
 
 out
     "o_indexUsage"
     "reportDetails_to_sel_report"
+    "comp_sel_ti_to_sel_indexUsage"
 ;
 
 trans "des_indexUsage"
 in
     "i_indexUsage"
     "comp_des_indexUsage_to_des_report"
-    "des_ti_to_des_indexUsage"
 
 out
     "o_indexUsage"
     "des_indexUsage_to_des_report"
-    "comp_des_ti_to_des_indexUsage"
 ;
 
 trans "sel_fns"
 in
     "i_fns"
     "sel_search_to_sel_fns"
-    "comp_sel_fns_to_sel_fni"
+    "sel_fni_to_sel_fns"
 
 out
     "o_fns"
-    "sel_fns_to_sel_fni"
+    "comp_sel_fni_to_sel_fns"
 ;
 
 trans "des_fns"
 in
     "i_fns"
     "des_search_to_des_fns"
-    "des_fni_to_des_fns"
+    "comp_des_fns_to_des_fni"
 
 out
     "o_fns"
-    "comp_des_fni_to_des_fns"
+    "des_fns_to_des_fni"
 ;
 
 trans "sel_fni"
 in
     "i_fni"
-    "sel_fns_to_sel_fni"
+    "comp_sel_fni_to_sel_fns"
 
 out
     "o_fni"
-    "comp_sel_fns_to_sel_fni"
+    "sel_fni_to_sel_fns"
 ;
 
 trans "des_fni"
 in
     "i_fni"
     "comp_des_fni_to_des_DMS"
-    "comp_des_fni_to_des_fns"
+    "des_fns_to_des_fni"
 
 out
     "o_fni"
     "des_fni_to_des_DMS"
-    "des_fni_to_des_fns"
+    "comp_des_fns_to_des_fni"
 ;
 
 trans "sel_report"
@@ -1021,22 +1021,22 @@ trans "sel_timg"
 in
     "i_timg"
     "comp_Types_to_sel_DMS"
-    "sel_image_to_sel_timg"
 
 out
     "o_timg"
     "Types_to_sel_DMS"
-    "comp_sel_image_to_sel_timg"
 ;
 
 trans "des_timg"
 in
     "i_timg"
     "comp_des_timg_to_des_DMS"
+    "des_image_to_des_timg"
 
 out
     "o_timg"
     "des_timg_to_des_DMS"
+    "comp_des_image_to_des_timg"
 ;
 
 trans "sel_tsim"
@@ -1067,22 +1067,22 @@ trans "sel_tpdf"
 in
     "i_tpdf"
     "comp_Types_to_sel_DMS"
-    "sel_pdf_to_sel_tpdf"
 
 out
     "o_tpdf"
     "Types_to_sel_DMS"
-    "comp_sel_pdf_to_sel_tpdf"
 ;
 
 trans "des_tpdf"
 in
     "i_tpdf"
     "comp_des_tpdf_to_des_DMS"
+    "des_pdf_to_des_tpdf"
 
 out
     "o_tpdf"
     "des_tpdf_to_des_DMS"
+    "comp_des_pdf_to_des_tpdf"
 ;
 
 trans "sel_tuni"
@@ -1630,202 +1630,202 @@ out
     "o_TC_Types_to_sel_DMS"
 ;
 
-trans "TC_sel_image_to_sel_timg"
+trans "TC_des_image_to_des_timg"
 in
-    "i_TC_sel_image_to_sel_timg"
-    "sel_image_to_sel_timg"
+    "i_TC_des_image_to_des_timg"
+    "des_image_to_des_timg"
 
 out
-    "o_TC_sel_image_to_sel_timg"
+    "o_TC_des_image_to_des_timg"
 ;
 
-trans "comp_TC_sel_image_to_sel_timg"
+trans "comp_TC_des_image_to_des_timg"
 in
-    "i_TC_sel_image_to_sel_timg"
-    "comp_sel_image_to_sel_timg"
+    "i_TC_des_image_to_des_timg"
+    "comp_des_image_to_des_timg"
 
 out
-    "o_TC_sel_image_to_sel_timg"
+    "o_TC_des_image_to_des_timg"
 ;
 
-trans "TC_sel_pdf_to_sel_tpdf"
+trans "TC_des_pdf_to_des_tpdf"
 in
-    "i_TC_sel_pdf_to_sel_tpdf"
-    "sel_pdf_to_sel_tpdf"
+    "i_TC_des_pdf_to_des_tpdf"
+    "des_pdf_to_des_tpdf"
 
 out
-    "o_TC_sel_pdf_to_sel_tpdf"
+    "o_TC_des_pdf_to_des_tpdf"
 ;
 
-trans "comp_TC_sel_pdf_to_sel_tpdf"
+trans "comp_TC_des_pdf_to_des_tpdf"
 in
-    "i_TC_sel_pdf_to_sel_tpdf"
-    "comp_sel_pdf_to_sel_tpdf"
+    "i_TC_des_pdf_to_des_tpdf"
+    "comp_des_pdf_to_des_tpdf"
 
 out
-    "o_TC_sel_pdf_to_sel_tpdf"
+    "o_TC_des_pdf_to_des_tpdf"
 ;
 
-trans "TC_des_ti_to_des_indexUsage"
+trans "TC_sel_ti_to_sel_indexUsage"
 in
-    "i_TC_des_ti_to_des_indexUsage"
-    "des_ti_to_des_indexUsage"
+    "i_TC_sel_ti_to_sel_indexUsage"
+    "sel_ti_to_sel_indexUsage"
 
 out
-    "o_TC_des_ti_to_des_indexUsage"
+    "o_TC_sel_ti_to_sel_indexUsage"
 ;
 
-trans "comp_TC_des_ti_to_des_indexUsage"
+trans "comp_TC_sel_ti_to_sel_indexUsage"
 in
-    "i_TC_des_ti_to_des_indexUsage"
-    "comp_des_ti_to_des_indexUsage"
+    "i_TC_sel_ti_to_sel_indexUsage"
+    "comp_sel_ti_to_sel_indexUsage"
 
 out
-    "o_TC_des_ti_to_des_indexUsage"
+    "o_TC_sel_ti_to_sel_indexUsage"
 ;
 
-trans "TC_des_ti_to_des_mds"
+trans "TC_sel_ti_to_sel_mds"
 in
-    "i_TC_des_ti_to_des_mds"
-    "des_ti_to_des_mds"
+    "i_TC_sel_ti_to_sel_mds"
+    "sel_ti_to_sel_mds"
 
 out
-    "o_TC_des_ti_to_des_mds"
+    "o_TC_sel_ti_to_sel_mds"
 ;
 
-trans "comp_TC_des_ti_to_des_mds"
+trans "comp_TC_sel_ti_to_sel_mds"
 in
-    "i_TC_des_ti_to_des_mds"
-    "comp_des_ti_to_des_mds"
+    "i_TC_sel_ti_to_sel_mds"
+    "comp_sel_ti_to_sel_mds"
 
 out
-    "o_TC_des_ti_to_des_mds"
+    "o_TC_sel_ti_to_sel_mds"
 ;
 
-trans "TC_sel_as_to_sel_ai"
+trans "TC_sel_ai_to_sel_as"
 in
-    "i_TC_sel_as_to_sel_ai"
-    "sel_as_to_sel_ai"
+    "i_TC_sel_ai_to_sel_as"
+    "sel_ai_to_sel_as"
 
 out
-    "o_TC_sel_as_to_sel_ai"
+    "o_TC_sel_ai_to_sel_as"
 ;
 
-trans "comp_TC_sel_as_to_sel_ai"
+trans "comp_TC_sel_ai_to_sel_as"
 in
-    "i_TC_sel_as_to_sel_ai"
-    "comp_sel_as_to_sel_ai"
+    "i_TC_sel_ai_to_sel_as"
+    "comp_sel_ai_to_sel_as"
 
 out
-    "o_TC_sel_as_to_sel_ai"
+    "o_TC_sel_ai_to_sel_as"
 ;
 
-trans "TC_des_ai_to_des_as"
+trans "TC_des_as_to_des_ai"
 in
-    "i_TC_des_ai_to_des_as"
-    "des_ai_to_des_as"
+    "i_TC_des_as_to_des_ai"
+    "des_as_to_des_ai"
 
 out
-    "o_TC_des_ai_to_des_as"
+    "o_TC_des_as_to_des_ai"
 ;
 
-trans "comp_TC_des_ai_to_des_as"
+trans "comp_TC_des_as_to_des_ai"
 in
-    "i_TC_des_ai_to_des_as"
-    "comp_des_ai_to_des_as"
+    "i_TC_des_as_to_des_ai"
+    "comp_des_as_to_des_ai"
 
 out
-    "o_TC_des_ai_to_des_as"
+    "o_TC_des_as_to_des_ai"
 ;
 
-trans "TC_des_ai_to_des_gs"
+trans "TC_sel_ai_to_sel_gs"
 in
-    "i_TC_des_ai_to_des_gs"
-    "des_ai_to_des_gs"
+    "i_TC_sel_ai_to_sel_gs"
+    "sel_ai_to_sel_gs"
 
 out
-    "o_TC_des_ai_to_des_gs"
+    "o_TC_sel_ai_to_sel_gs"
 ;
 
-trans "comp_TC_des_ai_to_des_gs"
+trans "comp_TC_sel_ai_to_sel_gs"
 in
-    "i_TC_des_ai_to_des_gs"
-    "comp_des_ai_to_des_gs"
+    "i_TC_sel_ai_to_sel_gs"
+    "comp_sel_ai_to_sel_gs"
 
 out
-    "o_TC_des_ai_to_des_gs"
+    "o_TC_sel_ai_to_sel_gs"
 ;
 
-trans "TC_sel_fns_to_sel_fni"
+trans "TC_sel_fni_to_sel_fns"
 in
-    "i_TC_sel_fns_to_sel_fni"
-    "sel_fns_to_sel_fni"
+    "i_TC_sel_fni_to_sel_fns"
+    "sel_fni_to_sel_fns"
 
 out
-    "o_TC_sel_fns_to_sel_fni"
+    "o_TC_sel_fni_to_sel_fns"
 ;
 
-trans "comp_TC_sel_fns_to_sel_fni"
+trans "comp_TC_sel_fni_to_sel_fns"
 in
-    "i_TC_sel_fns_to_sel_fni"
-    "comp_sel_fns_to_sel_fni"
+    "i_TC_sel_fni_to_sel_fns"
+    "comp_sel_fni_to_sel_fns"
 
 out
-    "o_TC_sel_fns_to_sel_fni"
+    "o_TC_sel_fni_to_sel_fns"
 ;
 
-trans "TC_des_fni_to_des_fns"
+trans "TC_des_fns_to_des_fni"
 in
-    "i_TC_des_fni_to_des_fns"
-    "des_fni_to_des_fns"
+    "i_TC_des_fns_to_des_fni"
+    "des_fns_to_des_fni"
 
 out
-    "o_TC_des_fni_to_des_fns"
+    "o_TC_des_fns_to_des_fni"
 ;
 
-trans "comp_TC_des_fni_to_des_fns"
+trans "comp_TC_des_fns_to_des_fni"
 in
-    "i_TC_des_fni_to_des_fns"
-    "comp_des_fni_to_des_fns"
+    "i_TC_des_fns_to_des_fni"
+    "comp_des_fns_to_des_fni"
 
 out
-    "o_TC_des_fni_to_des_fns"
+    "o_TC_des_fns_to_des_fni"
 ;
 
-trans "TC_sel_searchResults_to_sel_search"
+trans "TC_sel_search_to_sel_searchResults"
 in
-    "i_TC_sel_searchResults_to_sel_search"
-    "sel_searchResults_to_sel_search"
+    "i_TC_sel_search_to_sel_searchResults"
+    "sel_search_to_sel_searchResults"
 
 out
-    "o_TC_sel_searchResults_to_sel_search"
+    "o_TC_sel_search_to_sel_searchResults"
 ;
 
-trans "comp_TC_sel_searchResults_to_sel_search"
+trans "comp_TC_sel_search_to_sel_searchResults"
 in
-    "i_TC_sel_searchResults_to_sel_search"
-    "comp_sel_searchResults_to_sel_search"
+    "i_TC_sel_search_to_sel_searchResults"
+    "comp_sel_search_to_sel_searchResults"
 
 out
-    "o_TC_sel_searchResults_to_sel_search"
+    "o_TC_sel_search_to_sel_searchResults"
 ;
 
-trans "TC_des_search_to_des_searchResults"
+trans "TC_des_searchResults_to_des_search"
 in
-    "i_TC_des_search_to_des_searchResults"
-    "des_search_to_des_searchResults"
+    "i_TC_des_searchResults_to_des_search"
+    "des_searchResults_to_des_search"
 
 out
-    "o_TC_des_search_to_des_searchResults"
+    "o_TC_des_searchResults_to_des_search"
 ;
 
-trans "comp_TC_des_search_to_des_searchResults"
+trans "comp_TC_des_searchResults_to_des_search"
 in
-    "i_TC_des_search_to_des_searchResults"
-    "comp_des_search_to_des_searchResults"
+    "i_TC_des_searchResults_to_des_search"
+    "comp_des_searchResults_to_des_search"
 
 out
-    "o_TC_des_search_to_des_searchResults"
+    "o_TC_des_searchResults_to_des_search"
 ;
 
 trans "TC_des_tuni_to_sel_tsim"

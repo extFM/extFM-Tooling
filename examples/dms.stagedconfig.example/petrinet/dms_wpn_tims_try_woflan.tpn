@@ -1,0 +1,1971 @@
+place "i" init 1;
+place "o";
+place "i_s0_dms";
+place "o_s0_dms";
+place "i_TC_s0_dms";
+place "empty_TC_s0_dms";
+place "i_s1_mdi";
+place "o_s1_mdi";
+place "i_TC_s1_mdi";
+place "empty_TC_s1_mdi";
+place "i_s2_mdi_child";
+place "o_s2_mdi_child";
+place "i_TC_s2_mdi_child";
+place "empty_TC_s2_mdi_child";
+place "i_s3_temp";
+place "o_s3_temp";
+place "i_TC_s3_temp";
+place "empty_TC_s3_temp";
+place "i_s4_authorSearch";
+place "o_s4_authorSearch";
+place "i_TC_s4_authorSearch";
+place "empty_TC_s4_authorSearch";
+place "i_s5_mds";
+place "o_s5_mds";
+place "i_TC_s5_mds";
+place "empty_TC_s5_mds";
+place "i_s6_mds_child";
+place "o_s6_mds_child";
+place "i_TC_s6_mds_child";
+place "empty_TC_s6_mds_child";
+place "i_s7_search";
+place "o_s7_search";
+place "i_TC_s7_search";
+place "empty_TC_s7_search";
+place "i_s8_fns";
+place "o_s8_fns";
+place "i_TC_s8_fns";
+place "empty_TC_s8_fns";
+place "i_s9_fni";
+place "o_s9_fni";
+place "i_TC_s9_fni";
+place "empty_TC_s9_fni";
+place "i_s10_tiu";
+place "o_s10_tiu";
+place "i_TC_s10_tiu";
+place "empty_TC_s10_tiu";
+place "i_s11_report";
+place "o_s11_report";
+place "i_TC_s11_report";
+place "empty_TC_s11_report";
+place "i_DMS";
+place "o_DMS";
+place "i_ocr";
+place "o_ocr";
+place "i_tuni";
+place "o_tuni";
+place "i_mdi";
+place "o_mdi";
+place "i_pdf";
+place "o_pdf";
+place "i_tsim";
+place "o_tsim";
+place "i_gi";
+place "o_gi";
+place "i_ai";
+place "o_ai";
+place "i_ti";
+place "o_ti";
+place "i_image";
+place "o_image";
+place "i_timg";
+place "o_timg";
+place "i_tpdf";
+place "o_tpdf";
+place "i_ci";
+place "o_ci";
+place "i_as";
+place "o_as";
+place "i_mds";
+place "o_mds";
+place "i_ts";
+place "o_ts";
+place "i_cs";
+place "o_cs";
+place "i_gs";
+place "o_gs";
+place "i_search";
+place "o_search";
+place "i_fns";
+place "o_fns";
+place "i_fni";
+place "o_fni";
+place "i_searchResults";
+place "o_searchResults";
+place "i_indexUsage";
+place "o_indexUsage";
+place "i_report";
+place "o_report";
+place "sel_DMS_to_sel_ocr";
+place "comp_sel_DMS_to_sel_ocr";
+place "i_TC_sel_DMS_to_sel_ocr";
+place "o_TC_sel_DMS_to_sel_ocr";
+place "sel_DMS_to_sel_fni";
+place "comp_sel_DMS_to_sel_fni";
+place "i_TC_sel_DMS_to_sel_fni";
+place "o_TC_sel_DMS_to_sel_fni";
+place "sel_DMS_to_sel_search";
+place "comp_sel_DMS_to_sel_search";
+place "i_TC_sel_DMS_to_sel_search";
+place "o_TC_sel_DMS_to_sel_search";
+place "sel_DMS_to_sel_report";
+place "comp_sel_DMS_to_sel_report";
+place "i_TC_sel_DMS_to_sel_report";
+place "o_TC_sel_DMS_to_sel_report";
+place "des_as_to_des_mds";
+place "comp_des_as_to_des_mds";
+place "i_TC_des_as_to_des_mds";
+place "o_TC_des_as_to_des_mds";
+place "sel_mdi_to_sel_ai";
+place "comp_sel_mdi_to_sel_ai";
+place "i_TC_sel_mdi_to_sel_ai";
+place "o_TC_sel_mdi_to_sel_ai";
+place "sel_search_to_sel_fns";
+place "des_search_to_des_fns";
+place "sel_mds_to_sel_ts";
+place "des_mds_to_des_ts";
+place "sel_mds_to_sel_cs";
+place "des_mds_to_des_cs";
+place "sel_mdi_to_sel_ci";
+place "des_mdi_to_des_ci";
+place "sel_mdi_to_sel_ti";
+place "des_mdi_to_des_ti";
+place "AltSearch_to_sel_search";
+place "des_gs_to_des_search";
+place "comp_des_gs_to_des_search";
+place "i_TC_des_gs_to_des_search";
+place "o_TC_des_gs_to_des_search";
+place "des_mds_to_des_search";
+place "des_mds_to_sel_gs";
+place "comp_des_mds_to_sel_gs";
+place "i_TC_des_mds_to_sel_gs";
+place "o_TC_des_mds_to_sel_gs";
+place "comp_des_mds_to_des_search";
+place "i_TC_des_mds_to_des_search";
+place "o_TC_des_mds_to_des_search";
+place "sel_DMS_to_sel_mdi";
+place "des_mdi_to_sel_gi";
+place "comp_des_mdi_to_sel_gi";
+place "i_TC_des_mdi_to_sel_gi";
+place "o_TC_des_mdi_to_sel_gi";
+place "comp_sel_DMS_to_sel_mdi";
+place "i_TC_sel_DMS_to_sel_mdi";
+place "o_TC_sel_DMS_to_sel_mdi";
+place "sel_DMS_to_sel_gi";
+place "des_DMS_to_des_gi";
+place "comp_sel_DMS_to_sel_gi";
+place "i_TC_sel_DMS_to_sel_gi";
+place "o_TC_sel_DMS_to_sel_gi";
+place "sel_ocr_to_sel_pdf";
+place "comp_sel_ocr_to_sel_pdf";
+place "i_TC_sel_ocr_to_sel_pdf";
+place "o_TC_sel_ocr_to_sel_pdf";
+place "sel_ocr_to_sel_image";
+place "des_ocr_to_des_image";
+place "comp_des_ocr_to_des_image";
+place "i_TC_des_ocr_to_des_image";
+place "o_TC_des_ocr_to_des_image";
+place "comp_sel_ocr_to_sel_image";
+place "i_TC_sel_ocr_to_sel_image";
+place "o_TC_sel_ocr_to_sel_image";
+place "reportDetails_to_sel_report";
+place "des_searchResults_to_des_report";
+place "comp_des_searchResults_to_des_report";
+place "i_TC_des_searchResults_to_des_report";
+place "o_TC_des_searchResults_to_des_report";
+place "des_indexUsage_to_des_report";
+place "comp_des_indexUsage_to_des_report";
+place "i_TC_des_indexUsage_to_des_report";
+place "o_TC_des_indexUsage_to_des_report";
+place "comp_reportDetails_to_sel_report";
+place "i_TC_reportDetails_to_sel_report";
+place "o_TC_reportDetails_to_sel_report";
+place "sel_DMS_to_sel_tuni";
+place "comp_sel_DMS_to_sel_tuni";
+place "i_TC_sel_DMS_to_sel_tuni";
+place "o_TC_sel_DMS_to_sel_tuni";
+place "sel_DMS_to_sel_tsim";
+place "comp_sel_DMS_to_sel_tsim";
+place "i_TC_sel_DMS_to_sel_tsim";
+place "o_TC_sel_DMS_to_sel_tsim";
+place "sel_DMS_to_sel_timg";
+place "comp_sel_DMS_to_sel_timg";
+place "i_TC_sel_DMS_to_sel_timg";
+place "o_TC_sel_DMS_to_sel_timg";
+place "sel_DMS_to_sel_tpdf";
+place "comp_sel_DMS_to_sel_tpdf";
+place "i_TC_sel_DMS_to_sel_tpdf";
+place "o_TC_sel_DMS_to_sel_tpdf";
+place "sel_timg_to_sel_image";
+place "comp_sel_timg_to_sel_image";
+place "i_TC_sel_timg_to_sel_image";
+place "o_TC_sel_timg_to_sel_image";
+place "des_image_to_des_timg";
+place "comp_des_image_to_des_timg";
+place "i_TC_des_image_to_des_timg";
+place "o_TC_des_image_to_des_timg";
+place "des_pdf_to_des_tpdf";
+place "comp_des_pdf_to_des_tpdf";
+place "i_TC_des_pdf_to_des_tpdf";
+place "o_TC_des_pdf_to_des_tpdf";
+place "sel_ti_to_sel_indexUsage";
+place "comp_sel_ti_to_sel_indexUsage";
+place "i_TC_sel_ti_to_sel_indexUsage";
+place "o_TC_sel_ti_to_sel_indexUsage";
+place "sel_ti_to_sel_mds";
+place "comp_sel_ti_to_sel_mds";
+place "i_TC_sel_ti_to_sel_mds";
+place "o_TC_sel_ti_to_sel_mds";
+place "sel_ai_to_sel_as";
+place "comp_sel_ai_to_sel_as";
+place "i_TC_sel_ai_to_sel_as";
+place "o_TC_sel_ai_to_sel_as";
+place "sel_ai_to_sel_gs";
+place "comp_sel_ai_to_sel_gs";
+place "i_TC_sel_ai_to_sel_gs";
+place "o_TC_sel_ai_to_sel_gs";
+place "des_fns_to_des_fni";
+place "comp_des_fns_to_des_fni";
+place "i_TC_des_fns_to_des_fni";
+place "o_TC_des_fns_to_des_fni";
+place "sel_search_to_sel_searchResults";
+place "comp_sel_search_to_sel_searchResults";
+place "i_TC_sel_search_to_sel_searchResults";
+place "o_TC_sel_search_to_sel_searchResults";
+place "des_tuni_to_sel_tsim";
+place "comp_des_tuni_to_sel_tsim";
+place "i_TC_des_tuni_to_sel_tsim";
+place "o_TC_des_tuni_to_sel_tsim";
+
+trans "start"
+in
+    "i"
+
+out
+    "i_s0_dms"
+;
+
+trans "end"
+in
+    "o_s11_report"
+
+out
+    "o"
+;
+
+trans "start_s0_dms"
+in
+    "i_s0_dms"
+
+out
+    "i_DMS"
+    "comp_sel_DMS_to_sel_ocr"
+    "comp_sel_DMS_to_sel_fni"
+    "comp_sel_DMS_to_sel_search"
+    "comp_sel_DMS_to_sel_report"
+    "comp_sel_DMS_to_sel_mdi"
+    "comp_sel_DMS_to_sel_gi"
+    "comp_sel_DMS_to_sel_tuni"
+    "comp_sel_DMS_to_sel_tsim"
+    "comp_sel_DMS_to_sel_timg"
+    "comp_sel_DMS_to_sel_tpdf"
+;
+
+trans "end_s0_dms"
+in
+    "o_DMS"
+
+out
+    "i_TC_s0_dms"
+;
+
+trans "start_TC_s0_dms"
+in
+    "i_TC_s0_dms"
+
+out
+    "empty_TC_s0_dms"
+;
+
+trans "end_TC_s0_dms"
+in
+    "empty_TC_s0_dms"
+
+out
+    "o_s0_dms"
+;
+
+trans "start_s1_mdi"
+in
+    "i_s1_mdi"
+
+out
+    "i_ocr"
+    "i_tuni"
+    "i_mdi"
+    "comp_sel_mdi_to_sel_ai"
+    "comp_des_mdi_to_sel_gi"
+    "comp_sel_ocr_to_sel_pdf"
+    "comp_des_ocr_to_des_image"
+    "comp_des_ocr_to_des_image"
+    "comp_sel_ocr_to_sel_image"
+    "comp_des_tuni_to_sel_tsim"
+;
+
+trans "end_s1_mdi"
+in
+    "o_ocr"
+    "o_tuni"
+    "o_mdi"
+
+out
+    "i_TC_s1_mdi"
+;
+
+trans "start_TC_s1_mdi"
+in
+    "i_TC_s1_mdi"
+
+out
+    "empty_TC_s1_mdi"
+    "i_TC_sel_DMS_to_sel_ocr"
+    "i_TC_sel_DMS_to_sel_mdi"
+    "i_TC_sel_DMS_to_sel_tuni"
+;
+
+trans "end_TC_s1_mdi"
+in
+    "empty_TC_s1_mdi"
+    "o_TC_sel_DMS_to_sel_ocr"
+    "o_TC_sel_DMS_to_sel_mdi"
+    "o_TC_sel_DMS_to_sel_tuni"
+
+out
+    "o_s1_mdi"
+;
+
+trans "start_s2_mdi_child"
+in
+    "i_s2_mdi_child"
+
+out
+    "i_pdf"
+    "i_tsim"
+    "i_gi"
+    "i_ai"
+    "i_ti"
+    "comp_des_pdf_to_des_tpdf"
+    "comp_sel_ti_to_sel_indexUsage"
+    "comp_sel_ti_to_sel_mds"
+    "comp_sel_ai_to_sel_as"
+    "comp_sel_ai_to_sel_gs"
+;
+
+trans "end_s2_mdi_child"
+in
+    "o_pdf"
+    "o_tsim"
+    "o_gi"
+    "o_ai"
+    "o_ti"
+
+out
+    "i_TC_s2_mdi_child"
+;
+
+trans "start_TC_s2_mdi_child"
+in
+    "i_TC_s2_mdi_child"
+
+out
+    "empty_TC_s2_mdi_child"
+    "i_TC_sel_mdi_to_sel_ai"
+    "i_TC_des_mdi_to_sel_gi"
+    "i_TC_sel_DMS_to_sel_gi"
+    "i_TC_sel_ocr_to_sel_pdf"
+    "i_TC_sel_DMS_to_sel_tsim"
+    "i_TC_des_tuni_to_sel_tsim"
+;
+
+trans "end_TC_s2_mdi_child"
+in
+    "empty_TC_s2_mdi_child"
+    "o_TC_sel_mdi_to_sel_ai"
+    "o_TC_des_mdi_to_sel_gi"
+    "o_TC_sel_DMS_to_sel_gi"
+    "o_TC_sel_ocr_to_sel_pdf"
+    "o_TC_sel_DMS_to_sel_tsim"
+    "o_TC_des_tuni_to_sel_tsim"
+
+out
+    "o_s2_mdi_child"
+;
+
+trans "start_s3_temp"
+in
+    "i_s3_temp"
+
+out
+    "i_image"
+    "i_timg"
+    "i_tpdf"
+    "i_ci"
+    "comp_sel_timg_to_sel_image"
+    "comp_des_image_to_des_timg"
+;
+
+trans "end_s3_temp"
+in
+    "o_image"
+    "o_timg"
+    "o_tpdf"
+    "o_ci"
+
+out
+    "i_TC_s3_temp"
+;
+
+trans "start_TC_s3_temp"
+in
+    "i_TC_s3_temp"
+
+out
+    "empty_TC_s3_temp"
+    "i_TC_des_ocr_to_des_image"
+    "i_TC_des_ocr_to_des_image"
+    "i_TC_sel_ocr_to_sel_image"
+    "i_TC_sel_DMS_to_sel_timg"
+    "i_TC_sel_DMS_to_sel_tpdf"
+    "i_TC_sel_timg_to_sel_image"
+    "i_TC_des_image_to_des_timg"
+    "i_TC_des_pdf_to_des_tpdf"
+;
+
+trans "end_TC_s3_temp"
+in
+    "empty_TC_s3_temp"
+    "o_TC_des_ocr_to_des_image"
+    "o_TC_des_ocr_to_des_image"
+    "o_TC_sel_ocr_to_sel_image"
+    "o_TC_sel_DMS_to_sel_timg"
+    "o_TC_sel_DMS_to_sel_tpdf"
+    "o_TC_sel_timg_to_sel_image"
+    "o_TC_des_image_to_des_timg"
+    "o_TC_des_pdf_to_des_tpdf"
+
+out
+    "o_s3_temp"
+;
+
+trans "start_s4_authorSearch"
+in
+    "i_s4_authorSearch"
+
+out
+    "i_as"
+    "comp_des_as_to_des_mds"
+;
+
+trans "end_s4_authorSearch"
+in
+    "o_as"
+
+out
+    "i_TC_s4_authorSearch"
+;
+
+trans "start_TC_s4_authorSearch"
+in
+    "i_TC_s4_authorSearch"
+
+out
+    "empty_TC_s4_authorSearch"
+    "i_TC_sel_ai_to_sel_as"
+;
+
+trans "end_TC_s4_authorSearch"
+in
+    "empty_TC_s4_authorSearch"
+    "o_TC_sel_ai_to_sel_as"
+
+out
+    "o_s4_authorSearch"
+;
+
+trans "start_s5_mds"
+in
+    "i_s5_mds"
+
+out
+    "i_mds"
+    "comp_des_mds_to_sel_gs"
+    "comp_des_mds_to_des_search"
+;
+
+trans "end_s5_mds"
+in
+    "o_mds"
+
+out
+    "i_TC_s5_mds"
+;
+
+trans "start_TC_s5_mds"
+in
+    "i_TC_s5_mds"
+
+out
+    "empty_TC_s5_mds"
+    "i_TC_des_as_to_des_mds"
+    "i_TC_sel_ti_to_sel_mds"
+;
+
+trans "end_TC_s5_mds"
+in
+    "empty_TC_s5_mds"
+    "o_TC_des_as_to_des_mds"
+    "o_TC_sel_ti_to_sel_mds"
+
+out
+    "o_s5_mds"
+;
+
+trans "start_s6_mds_child"
+in
+    "i_s6_mds_child"
+
+out
+    "i_ts"
+    "i_cs"
+    "i_gs"
+    "comp_des_gs_to_des_search"
+;
+
+trans "end_s6_mds_child"
+in
+    "o_ts"
+    "o_cs"
+    "o_gs"
+
+out
+    "i_TC_s6_mds_child"
+;
+
+trans "start_TC_s6_mds_child"
+in
+    "i_TC_s6_mds_child"
+
+out
+    "empty_TC_s6_mds_child"
+    "i_TC_des_mds_to_sel_gs"
+    "i_TC_sel_ai_to_sel_gs"
+;
+
+trans "end_TC_s6_mds_child"
+in
+    "empty_TC_s6_mds_child"
+    "o_TC_des_mds_to_sel_gs"
+    "o_TC_sel_ai_to_sel_gs"
+
+out
+    "o_s6_mds_child"
+;
+
+trans "start_s7_search"
+in
+    "i_s7_search"
+
+out
+    "i_search"
+    "comp_sel_search_to_sel_searchResults"
+;
+
+trans "end_s7_search"
+in
+    "o_search"
+
+out
+    "i_TC_s7_search"
+;
+
+trans "start_TC_s7_search"
+in
+    "i_TC_s7_search"
+
+out
+    "empty_TC_s7_search"
+    "i_TC_sel_DMS_to_sel_search"
+    "i_TC_des_gs_to_des_search"
+    "i_TC_des_mds_to_des_search"
+;
+
+trans "end_TC_s7_search"
+in
+    "empty_TC_s7_search"
+    "o_TC_sel_DMS_to_sel_search"
+    "o_TC_des_gs_to_des_search"
+    "o_TC_des_mds_to_des_search"
+
+out
+    "o_s7_search"
+;
+
+trans "start_s8_fns"
+in
+    "i_s8_fns"
+
+out
+    "i_fns"
+    "comp_des_fns_to_des_fni"
+;
+
+trans "end_s8_fns"
+in
+    "o_fns"
+
+out
+    "i_TC_s8_fns"
+;
+
+trans "start_TC_s8_fns"
+in
+    "i_TC_s8_fns"
+
+out
+    "empty_TC_s8_fns"
+;
+
+trans "end_TC_s8_fns"
+in
+    "empty_TC_s8_fns"
+
+out
+    "o_s8_fns"
+;
+
+trans "start_s9_fni"
+in
+    "i_s9_fni"
+
+out
+    "i_fni"
+    "i_searchResults"
+    "comp_des_searchResults_to_des_report"
+    "comp_reportDetails_to_sel_report"
+    "comp_reportDetails_to_sel_report"
+;
+
+trans "end_s9_fni"
+in
+    "o_fni"
+    "o_searchResults"
+
+out
+    "i_TC_s9_fni"
+;
+
+trans "start_TC_s9_fni"
+in
+    "i_TC_s9_fni"
+
+out
+    "empty_TC_s9_fni"
+    "i_TC_sel_DMS_to_sel_fni"
+    "i_TC_des_fns_to_des_fni"
+    "i_TC_sel_search_to_sel_searchResults"
+;
+
+trans "end_TC_s9_fni"
+in
+    "empty_TC_s9_fni"
+    "o_TC_sel_DMS_to_sel_fni"
+    "o_TC_des_fns_to_des_fni"
+    "o_TC_sel_search_to_sel_searchResults"
+
+out
+    "o_s9_fni"
+;
+
+trans "start_s10_tiu"
+in
+    "i_s10_tiu"
+
+out
+    "i_indexUsage"
+    "comp_des_indexUsage_to_des_report"
+;
+
+trans "end_s10_tiu"
+in
+    "o_indexUsage"
+
+out
+    "i_TC_s10_tiu"
+;
+
+trans "start_TC_s10_tiu"
+in
+    "i_TC_s10_tiu"
+
+out
+    "empty_TC_s10_tiu"
+    "i_TC_sel_ti_to_sel_indexUsage"
+;
+
+trans "end_TC_s10_tiu"
+in
+    "empty_TC_s10_tiu"
+    "o_TC_sel_ti_to_sel_indexUsage"
+
+out
+    "o_s10_tiu"
+;
+
+trans "start_s11_report"
+in
+    "i_s11_report"
+
+out
+    "i_report"
+;
+
+trans "end_s11_report"
+in
+    "o_report"
+
+out
+    "i_TC_s11_report"
+;
+
+trans "start_TC_s11_report"
+in
+    "i_TC_s11_report"
+
+out
+    "empty_TC_s11_report"
+    "i_TC_sel_DMS_to_sel_report"
+    "i_TC_des_searchResults_to_des_report"
+    "i_TC_des_indexUsage_to_des_report"
+    "i_TC_reportDetails_to_sel_report"
+    "i_TC_reportDetails_to_sel_report"
+;
+
+trans "end_TC_s11_report"
+in
+    "empty_TC_s11_report"
+    "o_TC_sel_DMS_to_sel_report"
+    "o_TC_des_searchResults_to_des_report"
+    "o_TC_des_indexUsage_to_des_report"
+    "o_TC_reportDetails_to_sel_report"
+    "o_TC_reportDetails_to_sel_report"
+
+out
+    "o_s11_report"
+;
+
+trans "sel_DMS"
+in
+    "i_DMS"
+    "comp_sel_DMS_to_sel_ocr"
+    "comp_sel_DMS_to_sel_fni"
+    "comp_sel_DMS_to_sel_search"
+    "comp_sel_DMS_to_sel_report"
+    "comp_sel_DMS_to_sel_mdi"
+    "comp_sel_DMS_to_sel_gi"
+    "comp_sel_DMS_to_sel_tuni"
+    "comp_sel_DMS_to_sel_tsim"
+    "comp_sel_DMS_to_sel_timg"
+    "comp_sel_DMS_to_sel_tpdf"
+
+out
+    "o_DMS"
+    "sel_DMS_to_sel_ocr"
+    "sel_DMS_to_sel_fni"
+    "sel_DMS_to_sel_search"
+    "sel_DMS_to_sel_report"
+    "sel_DMS_to_sel_mdi"
+    "sel_DMS_to_sel_gi"
+    "sel_DMS_to_sel_tuni"
+    "sel_DMS_to_sel_tsim"
+    "sel_DMS_to_sel_timg"
+    "sel_DMS_to_sel_tpdf"
+;
+
+trans "des_DMS"
+in
+    "i_DMS"
+
+out
+    "o_DMS"
+    "des_DMS_to_des_gi"
+;
+
+trans "sel_ocr"
+in
+    "i_ocr"
+    "sel_DMS_to_sel_ocr"
+    "comp_sel_ocr_to_sel_pdf"
+    "comp_sel_ocr_to_sel_image"
+
+out
+    "o_ocr"
+    "comp_sel_DMS_to_sel_ocr"
+    "sel_ocr_to_sel_pdf"
+    "sel_ocr_to_sel_image"
+;
+
+trans "des_ocr"
+in
+    "i_ocr"
+    "comp_des_ocr_to_des_image"
+
+out
+    "o_ocr"
+    "des_ocr_to_des_image"
+;
+
+trans "sel_tuni"
+in
+    "i_tuni"
+    "sel_DMS_to_sel_tuni"
+
+out
+    "o_tuni"
+    "comp_sel_DMS_to_sel_tuni"
+;
+
+trans "des_tuni"
+in
+    "i_tuni"
+    "comp_des_tuni_to_sel_tsim"
+
+out
+    "o_tuni"
+    "des_tuni_to_sel_tsim"
+;
+
+trans "sel_mdi"
+in
+    "i_mdi"
+    "comp_sel_mdi_to_sel_ai"
+    "sel_DMS_to_sel_mdi"
+
+out
+    "o_mdi"
+    "sel_mdi_to_sel_ai"
+    "sel_mdi_to_sel_ci"
+    "sel_mdi_to_sel_ti"
+    "comp_sel_DMS_to_sel_mdi"
+    "des_DMS_to_des_gi"
+;
+
+trans "des_mdi"
+in
+    "i_mdi"
+    "comp_des_mdi_to_sel_gi"
+
+out
+    "o_mdi"
+    "des_mdi_to_des_ci"
+    "des_mdi_to_des_ti"
+    "des_mdi_to_sel_gi"
+;
+
+trans "sel_pdf"
+in
+    "i_pdf"
+    "sel_ocr_to_sel_pdf"
+    "comp_des_ocr_to_des_image"
+
+out
+    "o_pdf"
+    "comp_sel_ocr_to_sel_pdf"
+    "des_ocr_to_des_image"
+;
+
+trans "des_pdf"
+in
+    "i_pdf"
+    "comp_des_pdf_to_des_tpdf"
+
+out
+    "o_pdf"
+    "des_pdf_to_des_tpdf"
+;
+
+trans "sel_tsim"
+in
+    "i_tsim"
+    "sel_DMS_to_sel_tsim"
+    "des_tuni_to_sel_tsim"
+
+out
+    "o_tsim"
+    "comp_sel_DMS_to_sel_tsim"
+    "comp_des_tuni_to_sel_tsim"
+;
+
+trans "des_tsim"
+in
+    "i_tsim"
+
+out
+    "o_tsim"
+;
+
+trans "sel_gi"
+in
+    "i_gi"
+    "des_mdi_to_sel_gi"
+    "sel_DMS_to_sel_gi"
+
+out
+    "o_gi"
+    "comp_des_mdi_to_sel_gi"
+    "comp_sel_DMS_to_sel_gi"
+;
+
+trans "des_gi"
+in
+    "i_gi"
+    "des_DMS_to_des_gi"
+
+out
+    "o_gi"
+;
+
+trans "sel_ai"
+in
+    "i_ai"
+    "sel_mdi_to_sel_ai"
+    "comp_sel_ai_to_sel_as"
+    "comp_sel_ai_to_sel_gs"
+
+out
+    "o_ai"
+    "comp_sel_mdi_to_sel_ai"
+    "sel_ai_to_sel_as"
+    "sel_ai_to_sel_gs"
+;
+
+trans "des_ai"
+in
+    "i_ai"
+
+out
+    "o_ai"
+;
+
+trans "sel_ti"
+in
+    "i_ti"
+    "sel_mdi_to_sel_ti"
+    "comp_sel_ti_to_sel_indexUsage"
+    "comp_sel_ti_to_sel_mds"
+
+out
+    "o_ti"
+    "sel_ti_to_sel_indexUsage"
+    "sel_ti_to_sel_mds"
+;
+
+trans "des_ti"
+in
+    "i_ti"
+    "des_mdi_to_des_ti"
+
+out
+    "o_ti"
+;
+
+trans "sel_image"
+in
+    "i_image"
+    "sel_ocr_to_sel_image"
+    "sel_timg_to_sel_image"
+
+out
+    "o_image"
+    "comp_sel_ocr_to_sel_image"
+    "comp_sel_timg_to_sel_image"
+;
+
+trans "des_image"
+in
+    "i_image"
+    "des_ocr_to_des_image"
+    "comp_des_image_to_des_timg"
+
+out
+    "o_image"
+    "comp_des_ocr_to_des_image"
+    "des_image_to_des_timg"
+;
+
+trans "sel_timg"
+in
+    "i_timg"
+    "sel_DMS_to_sel_timg"
+    "comp_sel_timg_to_sel_image"
+
+out
+    "o_timg"
+    "comp_sel_DMS_to_sel_timg"
+    "sel_timg_to_sel_image"
+;
+
+trans "des_timg"
+in
+    "i_timg"
+    "des_image_to_des_timg"
+
+out
+    "o_timg"
+    "comp_des_image_to_des_timg"
+;
+
+trans "sel_tpdf"
+in
+    "i_tpdf"
+    "sel_DMS_to_sel_tpdf"
+
+out
+    "o_tpdf"
+    "comp_sel_DMS_to_sel_tpdf"
+;
+
+trans "des_tpdf"
+in
+    "i_tpdf"
+    "des_pdf_to_des_tpdf"
+
+out
+    "o_tpdf"
+    "comp_des_pdf_to_des_tpdf"
+;
+
+trans "sel_ci"
+in
+    "i_ci"
+    "sel_mdi_to_sel_ci"
+
+out
+    "o_ci"
+;
+
+trans "des_ci"
+in
+    "i_ci"
+    "des_mdi_to_des_ci"
+
+out
+    "o_ci"
+;
+
+trans "sel_as"
+in
+    "i_as"
+    "sel_ai_to_sel_as"
+
+out
+    "o_as"
+    "comp_sel_ai_to_sel_as"
+;
+
+trans "des_as"
+in
+    "i_as"
+    "comp_des_as_to_des_mds"
+
+out
+    "o_as"
+    "des_as_to_des_mds"
+;
+
+trans "sel_mds"
+in
+    "i_mds"
+    "sel_ti_to_sel_mds"
+
+out
+    "o_mds"
+    "sel_mds_to_sel_ts"
+    "sel_mds_to_sel_cs"
+    "AltSearch_to_sel_search"
+    "comp_sel_ti_to_sel_mds"
+;
+
+trans "des_mds"
+in
+    "i_mds"
+    "des_as_to_des_mds"
+    "comp_des_mds_to_sel_gs"
+    "comp_des_mds_to_des_search"
+
+out
+    "o_mds"
+    "comp_des_as_to_des_mds"
+    "des_mds_to_des_ts"
+    "des_mds_to_des_cs"
+    "des_mds_to_des_search"
+    "des_mds_to_sel_gs"
+;
+
+trans "sel_ts"
+in
+    "i_ts"
+    "sel_mds_to_sel_ts"
+
+out
+    "o_ts"
+;
+
+trans "des_ts"
+in
+    "i_ts"
+    "des_mds_to_des_ts"
+
+out
+    "o_ts"
+;
+
+trans "sel_cs"
+in
+    "i_cs"
+    "sel_mds_to_sel_cs"
+
+out
+    "o_cs"
+;
+
+trans "des_cs"
+in
+    "i_cs"
+    "des_mds_to_des_cs"
+
+out
+    "o_cs"
+;
+
+trans "sel_gs"
+in
+    "i_gs"
+    "des_mds_to_sel_gs"
+    "sel_ai_to_sel_gs"
+
+out
+    "o_gs"
+    "AltSearch_to_sel_search"
+    "comp_des_mds_to_sel_gs"
+    "comp_sel_ai_to_sel_gs"
+;
+
+trans "des_gs"
+in
+    "i_gs"
+    "comp_des_gs_to_des_search"
+
+out
+    "o_gs"
+    "des_gs_to_des_search"
+;
+
+trans "sel_search"
+in
+    "i_search"
+    "sel_DMS_to_sel_search"
+    "AltSearch_to_sel_search"
+    "comp_sel_search_to_sel_searchResults"
+
+out
+    "o_search"
+    "comp_sel_DMS_to_sel_search"
+    "sel_search_to_sel_fns"
+    "sel_search_to_sel_searchResults"
+;
+
+trans "des_search"
+in
+    "i_search"
+    "des_gs_to_des_search"
+    "des_mds_to_des_search"
+
+out
+    "o_search"
+    "des_search_to_des_fns"
+    "comp_des_gs_to_des_search"
+    "comp_des_mds_to_des_search"
+;
+
+trans "sel_fns"
+in
+    "i_fns"
+    "sel_search_to_sel_fns"
+
+out
+    "o_fns"
+;
+
+trans "des_fns"
+in
+    "i_fns"
+    "des_search_to_des_fns"
+    "comp_des_fns_to_des_fni"
+
+out
+    "o_fns"
+    "des_fns_to_des_fni"
+;
+
+trans "sel_fni"
+in
+    "i_fni"
+    "sel_DMS_to_sel_fni"
+
+out
+    "o_fni"
+    "comp_sel_DMS_to_sel_fni"
+;
+
+trans "des_fni"
+in
+    "i_fni"
+    "des_fns_to_des_fni"
+
+out
+    "o_fni"
+    "comp_des_fns_to_des_fni"
+;
+
+trans "sel_searchResults"
+in
+    "i_searchResults"
+    "comp_reportDetails_to_sel_report"
+    "sel_search_to_sel_searchResults"
+
+out
+    "o_searchResults"
+    "reportDetails_to_sel_report"
+    "comp_sel_search_to_sel_searchResults"
+;
+
+trans "des_searchResults"
+in
+    "i_searchResults"
+    "comp_des_searchResults_to_des_report"
+
+out
+    "o_searchResults"
+    "des_searchResults_to_des_report"
+;
+
+trans "sel_indexUsage"
+in
+    "i_indexUsage"
+    "comp_reportDetails_to_sel_report"
+    "sel_ti_to_sel_indexUsage"
+
+out
+    "o_indexUsage"
+    "reportDetails_to_sel_report"
+    "comp_sel_ti_to_sel_indexUsage"
+;
+
+trans "des_indexUsage"
+in
+    "i_indexUsage"
+    "comp_des_indexUsage_to_des_report"
+
+out
+    "o_indexUsage"
+    "des_indexUsage_to_des_report"
+;
+
+trans "sel_report"
+in
+    "i_report"
+    "sel_DMS_to_sel_report"
+    "reportDetails_to_sel_report"
+
+out
+    "o_report"
+    "comp_sel_DMS_to_sel_report"
+    "comp_reportDetails_to_sel_report"
+;
+
+trans "des_report"
+in
+    "i_report"
+    "des_searchResults_to_des_report"
+    "des_indexUsage_to_des_report"
+
+out
+    "o_report"
+    "comp_des_searchResults_to_des_report"
+    "comp_des_indexUsage_to_des_report"
+;
+
+trans "sync_0"
+in
+    "o_s0_dms"
+
+out
+    "i_s1_mdi"
+;
+
+trans "sync_1"
+in
+    "o_s1_mdi"
+
+out
+    "i_s2_mdi_child"
+;
+
+trans "sync_2"
+in
+    "o_s2_mdi_child"
+
+out
+    "i_s3_temp"
+;
+
+trans "sync_3"
+in
+    "o_s3_temp"
+
+out
+    "i_s4_authorSearch"
+;
+
+trans "sync_4"
+in
+    "o_s4_authorSearch"
+
+out
+    "i_s5_mds"
+;
+
+trans "sync_5"
+in
+    "o_s5_mds"
+
+out
+    "i_s6_mds_child"
+;
+
+trans "sync_6"
+in
+    "o_s6_mds_child"
+
+out
+    "i_s7_search"
+;
+
+trans "sync_7"
+in
+    "o_s7_search"
+
+out
+    "i_s8_fns"
+;
+
+trans "sync_8"
+in
+    "o_s8_fns"
+
+out
+    "i_s9_fni"
+;
+
+trans "sync_9"
+in
+    "o_s9_fni"
+
+out
+    "i_s10_tiu"
+;
+
+trans "sync_10"
+in
+    "o_s10_tiu"
+
+out
+    "i_s11_report"
+;
+
+trans "TC_sel_DMS_to_sel_ocr"
+in
+    "i_TC_sel_DMS_to_sel_ocr"
+    "sel_DMS_to_sel_ocr"
+
+out
+    "o_TC_sel_DMS_to_sel_ocr"
+;
+
+trans "comp_TC_sel_DMS_to_sel_ocr"
+in
+    "i_TC_sel_DMS_to_sel_ocr"
+    "comp_sel_DMS_to_sel_ocr"
+
+out
+    "o_TC_sel_DMS_to_sel_ocr"
+;
+
+trans "TC_sel_DMS_to_sel_fni"
+in
+    "i_TC_sel_DMS_to_sel_fni"
+    "sel_DMS_to_sel_fni"
+
+out
+    "o_TC_sel_DMS_to_sel_fni"
+;
+
+trans "comp_TC_sel_DMS_to_sel_fni"
+in
+    "i_TC_sel_DMS_to_sel_fni"
+    "comp_sel_DMS_to_sel_fni"
+
+out
+    "o_TC_sel_DMS_to_sel_fni"
+;
+
+trans "TC_sel_DMS_to_sel_search"
+in
+    "i_TC_sel_DMS_to_sel_search"
+    "sel_DMS_to_sel_search"
+
+out
+    "o_TC_sel_DMS_to_sel_search"
+;
+
+trans "comp_TC_sel_DMS_to_sel_search"
+in
+    "i_TC_sel_DMS_to_sel_search"
+    "comp_sel_DMS_to_sel_search"
+
+out
+    "o_TC_sel_DMS_to_sel_search"
+;
+
+trans "TC_sel_DMS_to_sel_report"
+in
+    "i_TC_sel_DMS_to_sel_report"
+    "sel_DMS_to_sel_report"
+
+out
+    "o_TC_sel_DMS_to_sel_report"
+;
+
+trans "comp_TC_sel_DMS_to_sel_report"
+in
+    "i_TC_sel_DMS_to_sel_report"
+    "comp_sel_DMS_to_sel_report"
+
+out
+    "o_TC_sel_DMS_to_sel_report"
+;
+
+trans "TC_des_as_to_des_mds"
+in
+    "i_TC_des_as_to_des_mds"
+    "des_as_to_des_mds"
+
+out
+    "o_TC_des_as_to_des_mds"
+;
+
+trans "comp_TC_des_as_to_des_mds"
+in
+    "i_TC_des_as_to_des_mds"
+    "comp_des_as_to_des_mds"
+
+out
+    "o_TC_des_as_to_des_mds"
+;
+
+trans "TC_sel_mdi_to_sel_ai"
+in
+    "i_TC_sel_mdi_to_sel_ai"
+    "sel_mdi_to_sel_ai"
+
+out
+    "o_TC_sel_mdi_to_sel_ai"
+;
+
+trans "comp_TC_sel_mdi_to_sel_ai"
+in
+    "i_TC_sel_mdi_to_sel_ai"
+    "comp_sel_mdi_to_sel_ai"
+
+out
+    "o_TC_sel_mdi_to_sel_ai"
+;
+
+trans "TC_des_gs_to_des_search"
+in
+    "i_TC_des_gs_to_des_search"
+    "des_gs_to_des_search"
+
+out
+    "o_TC_des_gs_to_des_search"
+;
+
+trans "comp_TC_des_gs_to_des_search"
+in
+    "i_TC_des_gs_to_des_search"
+    "comp_des_gs_to_des_search"
+
+out
+    "o_TC_des_gs_to_des_search"
+;
+
+trans "TC_des_mds_to_sel_gs"
+in
+    "i_TC_des_mds_to_sel_gs"
+    "des_mds_to_sel_gs"
+
+out
+    "o_TC_des_mds_to_sel_gs"
+;
+
+trans "comp_TC_des_mds_to_sel_gs"
+in
+    "i_TC_des_mds_to_sel_gs"
+    "comp_des_mds_to_sel_gs"
+
+out
+    "o_TC_des_mds_to_sel_gs"
+;
+
+trans "TC_des_mds_to_des_search"
+in
+    "i_TC_des_mds_to_des_search"
+    "des_mds_to_des_search"
+
+out
+    "o_TC_des_mds_to_des_search"
+;
+
+trans "comp_TC_des_mds_to_des_search"
+in
+    "i_TC_des_mds_to_des_search"
+    "comp_des_mds_to_des_search"
+
+out
+    "o_TC_des_mds_to_des_search"
+;
+
+trans "TC_des_mdi_to_sel_gi"
+in
+    "i_TC_des_mdi_to_sel_gi"
+    "des_mdi_to_sel_gi"
+
+out
+    "o_TC_des_mdi_to_sel_gi"
+;
+
+trans "comp_TC_des_mdi_to_sel_gi"
+in
+    "i_TC_des_mdi_to_sel_gi"
+    "comp_des_mdi_to_sel_gi"
+
+out
+    "o_TC_des_mdi_to_sel_gi"
+;
+
+trans "TC_sel_DMS_to_sel_mdi"
+in
+    "i_TC_sel_DMS_to_sel_mdi"
+    "sel_DMS_to_sel_mdi"
+
+out
+    "o_TC_sel_DMS_to_sel_mdi"
+;
+
+trans "comp_TC_sel_DMS_to_sel_mdi"
+in
+    "i_TC_sel_DMS_to_sel_mdi"
+    "comp_sel_DMS_to_sel_mdi"
+
+out
+    "o_TC_sel_DMS_to_sel_mdi"
+;
+
+trans "TC_sel_DMS_to_sel_gi"
+in
+    "i_TC_sel_DMS_to_sel_gi"
+    "sel_DMS_to_sel_gi"
+
+out
+    "o_TC_sel_DMS_to_sel_gi"
+;
+
+trans "comp_TC_sel_DMS_to_sel_gi"
+in
+    "i_TC_sel_DMS_to_sel_gi"
+    "comp_sel_DMS_to_sel_gi"
+
+out
+    "o_TC_sel_DMS_to_sel_gi"
+;
+
+trans "TC_sel_ocr_to_sel_pdf"
+in
+    "i_TC_sel_ocr_to_sel_pdf"
+    "sel_ocr_to_sel_pdf"
+
+out
+    "o_TC_sel_ocr_to_sel_pdf"
+;
+
+trans "comp_TC_sel_ocr_to_sel_pdf"
+in
+    "i_TC_sel_ocr_to_sel_pdf"
+    "comp_sel_ocr_to_sel_pdf"
+
+out
+    "o_TC_sel_ocr_to_sel_pdf"
+;
+
+trans "TC_des_ocr_to_des_image"
+in
+    "i_TC_des_ocr_to_des_image"
+    "des_ocr_to_des_image"
+
+out
+    "o_TC_des_ocr_to_des_image"
+;
+
+trans "comp_TC_des_ocr_to_des_image"
+in
+    "i_TC_des_ocr_to_des_image"
+    "comp_des_ocr_to_des_image"
+
+out
+    "o_TC_des_ocr_to_des_image"
+;
+
+trans "TC_sel_ocr_to_sel_image"
+in
+    "i_TC_sel_ocr_to_sel_image"
+    "sel_ocr_to_sel_image"
+
+out
+    "o_TC_sel_ocr_to_sel_image"
+;
+
+trans "comp_TC_sel_ocr_to_sel_image"
+in
+    "i_TC_sel_ocr_to_sel_image"
+    "comp_sel_ocr_to_sel_image"
+
+out
+    "o_TC_sel_ocr_to_sel_image"
+;
+
+trans "TC_des_searchResults_to_des_report"
+in
+    "i_TC_des_searchResults_to_des_report"
+    "des_searchResults_to_des_report"
+
+out
+    "o_TC_des_searchResults_to_des_report"
+;
+
+trans "comp_TC_des_searchResults_to_des_report"
+in
+    "i_TC_des_searchResults_to_des_report"
+    "comp_des_searchResults_to_des_report"
+
+out
+    "o_TC_des_searchResults_to_des_report"
+;
+
+trans "TC_des_indexUsage_to_des_report"
+in
+    "i_TC_des_indexUsage_to_des_report"
+    "des_indexUsage_to_des_report"
+
+out
+    "o_TC_des_indexUsage_to_des_report"
+;
+
+trans "comp_TC_des_indexUsage_to_des_report"
+in
+    "i_TC_des_indexUsage_to_des_report"
+    "comp_des_indexUsage_to_des_report"
+
+out
+    "o_TC_des_indexUsage_to_des_report"
+;
+
+trans "TC_reportDetails_to_sel_report"
+in
+    "i_TC_reportDetails_to_sel_report"
+    "reportDetails_to_sel_report"
+
+out
+    "o_TC_reportDetails_to_sel_report"
+;
+
+trans "comp_TC_reportDetails_to_sel_report"
+in
+    "i_TC_reportDetails_to_sel_report"
+    "comp_reportDetails_to_sel_report"
+
+out
+    "o_TC_reportDetails_to_sel_report"
+;
+
+trans "TC_sel_DMS_to_sel_tuni"
+in
+    "i_TC_sel_DMS_to_sel_tuni"
+    "sel_DMS_to_sel_tuni"
+
+out
+    "o_TC_sel_DMS_to_sel_tuni"
+;
+
+trans "comp_TC_sel_DMS_to_sel_tuni"
+in
+    "i_TC_sel_DMS_to_sel_tuni"
+    "comp_sel_DMS_to_sel_tuni"
+
+out
+    "o_TC_sel_DMS_to_sel_tuni"
+;
+
+trans "TC_sel_DMS_to_sel_tsim"
+in
+    "i_TC_sel_DMS_to_sel_tsim"
+    "sel_DMS_to_sel_tsim"
+
+out
+    "o_TC_sel_DMS_to_sel_tsim"
+;
+
+trans "comp_TC_sel_DMS_to_sel_tsim"
+in
+    "i_TC_sel_DMS_to_sel_tsim"
+    "comp_sel_DMS_to_sel_tsim"
+
+out
+    "o_TC_sel_DMS_to_sel_tsim"
+;
+
+trans "TC_sel_DMS_to_sel_timg"
+in
+    "i_TC_sel_DMS_to_sel_timg"
+    "sel_DMS_to_sel_timg"
+
+out
+    "o_TC_sel_DMS_to_sel_timg"
+;
+
+trans "comp_TC_sel_DMS_to_sel_timg"
+in
+    "i_TC_sel_DMS_to_sel_timg"
+    "comp_sel_DMS_to_sel_timg"
+
+out
+    "o_TC_sel_DMS_to_sel_timg"
+;
+
+trans "TC_sel_DMS_to_sel_tpdf"
+in
+    "i_TC_sel_DMS_to_sel_tpdf"
+    "sel_DMS_to_sel_tpdf"
+
+out
+    "o_TC_sel_DMS_to_sel_tpdf"
+;
+
+trans "comp_TC_sel_DMS_to_sel_tpdf"
+in
+    "i_TC_sel_DMS_to_sel_tpdf"
+    "comp_sel_DMS_to_sel_tpdf"
+
+out
+    "o_TC_sel_DMS_to_sel_tpdf"
+;
+
+trans "TC_sel_timg_to_sel_image"
+in
+    "i_TC_sel_timg_to_sel_image"
+    "sel_timg_to_sel_image"
+
+out
+    "o_TC_sel_timg_to_sel_image"
+;
+
+trans "comp_TC_sel_timg_to_sel_image"
+in
+    "i_TC_sel_timg_to_sel_image"
+    "comp_sel_timg_to_sel_image"
+
+out
+    "o_TC_sel_timg_to_sel_image"
+;
+
+trans "TC_des_image_to_des_timg"
+in
+    "i_TC_des_image_to_des_timg"
+    "des_image_to_des_timg"
+
+out
+    "o_TC_des_image_to_des_timg"
+;
+
+trans "comp_TC_des_image_to_des_timg"
+in
+    "i_TC_des_image_to_des_timg"
+    "comp_des_image_to_des_timg"
+
+out
+    "o_TC_des_image_to_des_timg"
+;
+
+trans "TC_des_pdf_to_des_tpdf"
+in
+    "i_TC_des_pdf_to_des_tpdf"
+    "des_pdf_to_des_tpdf"
+
+out
+    "o_TC_des_pdf_to_des_tpdf"
+;
+
+trans "comp_TC_des_pdf_to_des_tpdf"
+in
+    "i_TC_des_pdf_to_des_tpdf"
+    "comp_des_pdf_to_des_tpdf"
+
+out
+    "o_TC_des_pdf_to_des_tpdf"
+;
+
+trans "TC_sel_ti_to_sel_indexUsage"
+in
+    "i_TC_sel_ti_to_sel_indexUsage"
+    "sel_ti_to_sel_indexUsage"
+
+out
+    "o_TC_sel_ti_to_sel_indexUsage"
+;
+
+trans "comp_TC_sel_ti_to_sel_indexUsage"
+in
+    "i_TC_sel_ti_to_sel_indexUsage"
+    "comp_sel_ti_to_sel_indexUsage"
+
+out
+    "o_TC_sel_ti_to_sel_indexUsage"
+;
+
+trans "TC_sel_ti_to_sel_mds"
+in
+    "i_TC_sel_ti_to_sel_mds"
+    "sel_ti_to_sel_mds"
+
+out
+    "o_TC_sel_ti_to_sel_mds"
+;
+
+trans "comp_TC_sel_ti_to_sel_mds"
+in
+    "i_TC_sel_ti_to_sel_mds"
+    "comp_sel_ti_to_sel_mds"
+
+out
+    "o_TC_sel_ti_to_sel_mds"
+;
+
+trans "TC_sel_ai_to_sel_as"
+in
+    "i_TC_sel_ai_to_sel_as"
+    "sel_ai_to_sel_as"
+
+out
+    "o_TC_sel_ai_to_sel_as"
+;
+
+trans "comp_TC_sel_ai_to_sel_as"
+in
+    "i_TC_sel_ai_to_sel_as"
+    "comp_sel_ai_to_sel_as"
+
+out
+    "o_TC_sel_ai_to_sel_as"
+;
+
+trans "TC_sel_ai_to_sel_gs"
+in
+    "i_TC_sel_ai_to_sel_gs"
+    "sel_ai_to_sel_gs"
+
+out
+    "o_TC_sel_ai_to_sel_gs"
+;
+
+trans "comp_TC_sel_ai_to_sel_gs"
+in
+    "i_TC_sel_ai_to_sel_gs"
+    "comp_sel_ai_to_sel_gs"
+
+out
+    "o_TC_sel_ai_to_sel_gs"
+;
+
+trans "TC_des_fns_to_des_fni"
+in
+    "i_TC_des_fns_to_des_fni"
+    "des_fns_to_des_fni"
+
+out
+    "o_TC_des_fns_to_des_fni"
+;
+
+trans "comp_TC_des_fns_to_des_fni"
+in
+    "i_TC_des_fns_to_des_fni"
+    "comp_des_fns_to_des_fni"
+
+out
+    "o_TC_des_fns_to_des_fni"
+;
+
+trans "TC_sel_search_to_sel_searchResults"
+in
+    "i_TC_sel_search_to_sel_searchResults"
+    "sel_search_to_sel_searchResults"
+
+out
+    "o_TC_sel_search_to_sel_searchResults"
+;
+
+trans "comp_TC_sel_search_to_sel_searchResults"
+in
+    "i_TC_sel_search_to_sel_searchResults"
+    "comp_sel_search_to_sel_searchResults"
+
+out
+    "o_TC_sel_search_to_sel_searchResults"
+;
+
+trans "TC_des_tuni_to_sel_tsim"
+in
+    "i_TC_des_tuni_to_sel_tsim"
+    "des_tuni_to_sel_tsim"
+
+out
+    "o_TC_des_tuni_to_sel_tsim"
+;
+
+trans "comp_TC_des_tuni_to_sel_tsim"
+in
+    "i_TC_des_tuni_to_sel_tsim"
+    "comp_des_tuni_to_sel_tsim"
+
+out
+    "o_TC_des_tuni_to_sel_tsim"
+;
+
