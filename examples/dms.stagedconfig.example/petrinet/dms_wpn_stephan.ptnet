@@ -256,9 +256,9 @@
   <transitions name="end_5" incoming="//@arcs.176" outgoing="//@arcs.27"/>
   <transitions name="start_TC_5" incoming="//@arcs.28" outgoing="//@arcs.30 //@arcs.191 //@arcs.204 //@arcs.217 //@arcs.230 //@arcs.359 //@arcs.386 //@arcs.489 //@arcs.503 //@arcs.517 //@arcs.531 //@arcs.547 //@arcs.550 //@arcs.553 //@arcs.556"/>
   <transitions name="end_TC_5" incoming="//@arcs.31 //@arcs.192 //@arcs.205 //@arcs.218 //@arcs.231 //@arcs.360 //@arcs.387 //@arcs.490 //@arcs.504 //@arcs.518 //@arcs.532 //@arcs.548 //@arcs.551 //@arcs.554 //@arcs.557" outgoing="//@arcs.29"/>
-  <transitions name="sel_pdf" incoming="//@arcs.33 //@arcs.437" outgoing="//@arcs.35 //@arcs.397"/>
+  <transitions name="sel_pdf" incoming="//@arcs.33 //@arcs.436" outgoing="//@arcs.35 //@arcs.397"/>
   <transitions name="des_pdf" incoming="//@arcs.34 //@arcs.399 //@arcs.578" outgoing="//@arcs.36 //@arcs.395 //@arcs.575"/>
-  <transitions name="sel_image" incoming="//@arcs.39 //@arcs.436" outgoing="//@arcs.41 //@arcs.411"/>
+  <transitions name="sel_image" incoming="//@arcs.39 //@arcs.437" outgoing="//@arcs.41 //@arcs.411"/>
   <transitions name="des_image" incoming="//@arcs.40 //@arcs.413 //@arcs.565" outgoing="//@arcs.42 //@arcs.409 //@arcs.562"/>
   <transitions name="sel_as" incoming="//@arcs.45 //@arcs.615" outgoing="//@arcs.47 //@arcs.618"/>
   <transitions name="des_as" incoming="//@arcs.46 //@arcs.241 //@arcs.630" outgoing="//@arcs.48 //@arcs.238 //@arcs.627"/>
@@ -294,11 +294,11 @@
   <transitions name="des_fni" incoming="//@arcs.136 //@arcs.202 //@arcs.667" outgoing="//@arcs.138 //@arcs.199 //@arcs.670"/>
   <transitions name="sel_report" incoming="//@arcs.141 //@arcs.438" outgoing="//@arcs.143 //@arcs.467"/>
   <transitions name="des_report" incoming="//@arcs.142 //@arcs.228 //@arcs.440 //@arcs.454" outgoing="//@arcs.144 //@arcs.225 //@arcs.444 //@arcs.458"/>
-  <transitions name="sel_timg" incoming="//@arcs.147 //@arcs.561" outgoing="//@arcs.149 //@arcs.513"/>
+  <transitions name="sel_timg" incoming="//@arcs.147 //@arcs.558" outgoing="//@arcs.149 //@arcs.513"/>
   <transitions name="des_timg" incoming="//@arcs.148 //@arcs.515 //@arcs.563" outgoing="//@arcs.150 //@arcs.511 //@arcs.566"/>
-  <transitions name="sel_tsim" incoming="//@arcs.153 //@arcs.560 //@arcs.706" outgoing="//@arcs.155 //@arcs.499 //@arcs.709"/>
+  <transitions name="sel_tsim" incoming="//@arcs.153 //@arcs.561 //@arcs.706" outgoing="//@arcs.155 //@arcs.499 //@arcs.709"/>
   <transitions name="des_tsim" incoming="//@arcs.154 //@arcs.501 //@arcs.721" outgoing="//@arcs.156 //@arcs.497 //@arcs.718"/>
-  <transitions name="sel_tpdf" incoming="//@arcs.159 //@arcs.558" outgoing="//@arcs.161 //@arcs.527"/>
+  <transitions name="sel_tpdf" incoming="//@arcs.159 //@arcs.560" outgoing="//@arcs.161 //@arcs.527"/>
   <transitions name="des_tpdf" incoming="//@arcs.160 //@arcs.529 //@arcs.576" outgoing="//@arcs.162 //@arcs.525 //@arcs.579"/>
   <transitions name="sel_tuni" incoming="//@arcs.165 //@arcs.559 //@arcs.719" outgoing="//@arcs.167 //@arcs.485 //@arcs.722"/>
   <transitions name="des_tuni" incoming="//@arcs.166 //@arcs.487 //@arcs.708" outgoing="//@arcs.168 //@arcs.483 //@arcs.705"/>
@@ -820,8 +820,8 @@
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.2" target="//@places.147"/>
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.12" target="//@places.148"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.149" target="//@transitions.13"/>
-  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.147" target="//@transitions.24"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.147" target="//@transitions.22"/>
+  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.147" target="//@transitions.24"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.150" target="//@transitions.58"/>
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.51" target="//@places.151"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.151" target="//@transitions.59"/>
@@ -942,10 +942,10 @@
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.14" target="//@places.179"/>
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.20" target="//@places.180"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.181" target="//@transitions.21"/>
-  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.64"/>
-  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.66"/>
-  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.62"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.60"/>
+  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.66"/>
+  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.64"/>
+  <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.179" target="//@transitions.62"/>
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.25" target="//@places.182"/>
   <arcs xsi:type="ptnetLoLA:ArcToTransition" source="//@places.182" target="//@transitions.61"/>
   <arcs xsi:type="ptnetLoLA:ArcToPlace" source="//@transitions.2" target="//@places.183"/>

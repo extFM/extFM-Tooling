@@ -202,6 +202,15 @@ helper context fm!Group def : groupCardinality() : Integer =
 	endif
 ;
 
+
+helper context fm!Feature def : isRoot(): Boolean = 
+	if (self.eContainer().oclIsKindOf(fm!FeatureModel)) then
+		true
+	else
+		false
+	endif
+;
+
 -------------------------------------------------------------------------------
 -- RULES
 -------------------------------------------------------------------------------
@@ -288,9 +297,9 @@ rule connectLastStage(stage : sc!Stage, stage_place_o : pn!Place, level : Intege
 		arc_from_this_stage : pn!ArcToTransition (source <- stage_place_o, target <- thisModule.end)
 }
 
---iterates over every feature operation
+--iterates over every (non root) feature operation
 rule featureOperations {
-	from op : sc!FeatureOperation
+	from op : sc!FeatureOperation (if op.feature.isRoot() then false else true endif)
 	using{
 		feature : sc!Feature = op.feature;
 		stage : sc!Stage = op.eContainer();
@@ -306,6 +315,28 @@ rule featureOperations {
 		i_rem_arc : pn!ArcToTransition (source <- i, target <- rem),
 		add_o_arc : pn!ArcToPlace (source <- add, target <- o),
 		rem_o_arc : pn!ArcToPlace (source <- rem, target <- o),
+		start_i : pn!ArcToPlace (source <- stage_start, target <- i),
+		o_end : pn!ArcToTransition (source <- o, target <- stage_end)
+}
+
+--root feature operation
+rule rootFeatureOperation {
+	from op : sc!FeatureOperation (if op.feature.isRoot() then true else false endif)
+	using{
+		feature : sc!Feature = op.feature;
+		stage : sc!Stage = op.eContainer();
+		stage_start : pn!Transition = thisModule.resolveTemp(stage, 'start');
+		stage_end : pn!Transition = thisModule.resolveTemp(stage, 'end');
+	}
+	to
+		add : pn!Transition (name <- 'sel_' + feature.id),
+		--rem : pn!Transition (name <- 'des_' + feature.id),
+		i : pn!Place (name <- 'i_' + feature.id),
+		o : pn!Place (name <- 'o_' + feature.id),
+		i_add_arc : pn!ArcToTransition (source <- i, target <- add),
+		--i_rem_arc : pn!ArcToTransition (source <- i, target <- rem),
+		add_o_arc : pn!ArcToPlace (source <- add, target <- o),
+		--rem_o_arc : pn!ArcToPlace (source <- rem, target <- o),
 		start_i : pn!ArcToPlace (source <- stage_start, target <- i),
 		o_end : pn!ArcToTransition (source <- o, target <- stage_end)
 }
@@ -333,9 +364,169 @@ rule domainValueOperations {
 		start_i : pn!ArcToPlace (source <- stage_start, target <- i),
 		o_end : pn!ArcToTransition (source <- o, target <- stage_end)
 }
+--root feature attribute
+rule rootattribute {
+	from a : sc!Attribute (if a.feature.isRoot() then false else true endif)
+	using{
+		f_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = a.eContainer()).first();
+		feature_stage : sc!Stage = f_op.eContainer();
+		dv_ops : Sequence(sc!DomainValueOperation) = sc!DomainValueOperation.allInstances()->select(op | op.attribute = a);
+		attribute_stages : Set(sc!Stage) = thisModule.getStages(dv_ops);
+		areAttributesBeforeParent : Boolean = feature_stage.isLast(attribute_stages);
+	}
+	do{
+		if (areAttributesBeforeParent) {
+			thisModule.rootAttributeParentLast(a, f_op, dv_ops);
+		} else {
+			for (dv_op in dv_ops) {
+				if (thisModule.isBefore(dv_op.eContainer(),feature_stage)) {
+					thisModule.rootDomainValueBeforeParent(f_op,dv_op,dv_ops,feature_stage,attribute_stages);			
+				} else {
+					thisModule.rootDomainValueAfterParent(f_op,dv_op,dv_ops,feature_stage,attribute_stages);
+				}
+			}
+		}
+	}
+}
 
+rule rootAttributeParentLast(a : sc!Attribute, 
+						 f_op : sc!DomainValueOperation, 
+						 dv_ops : Sequence(sc!DomainValueOperation)) {
+	using {
+		sel_f : pn!Transition = thisModule.resolveTemp(f_op, 'add');
+	}
+	to
+		sel_c_to_sel_p_place : pn!Place (name <- a.name + '_to_sel_' + f_op.feature.id),
+		arc_to_sel_p : pn!ArcToTransition (source <- sel_c_to_sel_p_place, target <- sel_f)
+	do {
+		for (dv_op in dv_ops) {
+			thisModule.rootAttributeParentLast2(f_op, dv_op, dv_ops, sel_c_to_sel_p_place);
+		}
+	}
+}
+
+rule rootAttributeParentLast2(f_op : sc!FeatureOperation,
+				 		  dv_op : sc!DomainValueOperation,
+						  dv_ops : Sequence(sc!DomainValueOperation),
+						  sel_dv_to_sel_f_place : pn!Place){
+	using {
+		sel_f : pn!Transition = thisModule.resolveTemp(f_op, 'add');
+		--des_f : pn!Transition = thisModule.resolveTemp(f_op, 'rem');
+		sel_dv : pn!Transition = thisModule.resolveTemp(dv_op, 'add');
+		des_dv : pn!Transition = thisModule.resolveTemp(dv_op, 'rem');
+		attribute_stages : Set(sc!Stage) = thisModule.getStages(dv_ops);
+		isAttributeInLastStage : Boolean = dv_op.eContainer().isLast(attribute_stages->excluding(dv_op.eContainer()));
+	}
+	to
+		--place from deselection domain value to deselection feature
+		--to_des_f_place : pn!Place (name <- des_dv.name + '_to_' + des_f.name),
+		--to_arc_in : pn!ArcToPlace (source <- des_dv, target <- to_des_f_place),
+		--to_arc_out : pn!ArcToTransition (source <- to_des_f_place, target <- des_f),
+		--edge to enable place for selection of parent
+		arc_in_sel_p : pn!ArcToPlace (source <- sel_dv, target <- sel_dv_to_sel_f_place)
+	do{
+		for (other_dv_op in dv_ops) {
+			if (other_dv_op <> dv_op) {
+				if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+					thisModule.attributeExcludeEdge(dv_op,other_dv_op);
+				}
+			}
+		}
+		if(isAttributeInLastStage) {
+			--place from all sel to des this
+			thisModule.rootAttributeLastDomainValue(f_op,des_dv,dv_op,dv_ops);
+		}
+		--thisModule.buildCompPlace(to_des_f_place, f_op, f_op.eContainer(), dv_op, dv_op.eContainer());
+	}
+}
+
+rule rootDomainValueAfterParent(f_op : sc!FeatureOperation,
+						   dv_op : sc!DomainValueOperation,
+						   dv_ops : Sequence(sc!DomainValueOperation),
+						   feature_stage : sc!Stage,
+						   attribute_stages : Set(sc!Stage)){
+	using {
+		sel_f : pn!Transition = thisModule.resolveTemp(f_op, 'add');
+		des_f : pn!Transition = thisModule.resolveTemp(f_op, 'rem');
+		sel_dv : pn!Transition = thisModule.resolveTemp(dv_op, 'add');
+		des_dv : pn!Transition = thisModule.resolveTemp(dv_op, 'rem');
+		isLastChild : Boolean = true;
+	}
+	to
+		--place from selection feature to selection domain value
+		from_sel_f_place : pn!Place (name <- sel_f.name + '_to_' + sel_dv.name),
+		arc_in : pn!ArcToPlace (source <- sel_f, target <- from_sel_f_place),
+		arc_out : pn!ArcToTransition (source <- from_sel_f_place, target <- sel_dv)
+	do {
+		for (other_dv_op in dv_ops) {
+			if (other_dv_op <> dv_op) {
+				if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+					thisModule.attributeExcludeEdge(dv_op,other_dv_op);
+					isLastChild <- false;	
+				} 
+			}
+		}
+		if (isLastChild) {
+			thisModule.rootAttributeLastDomainValue(f_op,des_dv,dv_op,dv_ops);
+		}
+		thisModule.buildCompPlace(from_sel_f_place, f_op, feature_stage, dv_op, dv_op.eContainer());
+	}
+}
+
+rule rootAttributeLastDomainValue(f_op : sc!FeatureOperation,
+				  des_dv : pn!Transition,
+				  dv_op : sc!FeatureOperation,
+				  dv_ops : Sequence(sc!FeatureOperation)) {
+	to
+		--place from deselection feature to deselection domain value
+		from_des_f_place : pn!Place (name <- f_op.feature.id + '_to_' + des_dv.name),
+		--from_arc_in : pn!ArcToPlace (source <- des_f, target <- from_des_f_place),
+		from_arc_out : pn!ArcToTransition (source <- from_des_f_place, target <- des_dv)
+	do{
+		for (other_dv_op in dv_ops) {
+			if (other_dv_op <> dv_op) {
+				thisModule.rootAttributeLastDomainValue2(from_des_f_place,other_dv_op);		
+			}
+		}
+	}
+}
+
+rule rootAttributeLastDomainValue2(from_des_f_place : pn!Place,
+				   other_dv_op : sc!FeatureOperation){
+	using {
+		sel_other_dv : pn!Transition = thisModule.resolveTemp(other_dv_op, 'add');
+	}
+	to
+		arc_from_sel_oc : pn!ArcToPlace (source <- sel_other_dv, target <- from_des_f_place)
+}
+
+rule rootDomainValueBeforeParent(f_op : sc!FeatureOperation,
+						       dv_op : sc!DomainValueOperation,
+						   	   dv_ops : Sequence(sc!DomainValueOperation),
+						   	   feature_stage : sc!Stage,
+						   	   dv_stages : Set(sc!Stage)) {
+	using{
+		des_f : pn!Transition = thisModule.resolveTemp(f_op, 'rem');
+		des_dv : pn!Transition = thisModule.resolveTemp(dv_op, 'rem');
+	}
+	--to
+		--place from deselection child to deselection parent
+		--to_des_f_place : pn!Place (name <- des_dv.name + '_to_' + des_f.name),
+		--to_arc_in : pn!ArcToPlace (source <- des_dv, target <- to_des_f_place),
+		--to_arc_out : pn!ArcToTransition (source <- to_des_f_place, target <- des_f)
+	do{
+		for (other_dv_op in dv_ops) {
+			if (other_dv_op <> dv_op) {
+				if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+					thisModule.xorExcludeEdge(dv_op,other_dv_op);
+				}
+			}
+		}
+	}
+}
+-- normal feature attribute
 rule attribute {
-	from a : sc!Attribute
+	from a : sc!Attribute (if a.feature.isRoot() then false else true endif)
 	using{
 		f_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature = a.eContainer()).first();
 		feature_stage : sc!Stage = f_op.eContainer();
@@ -503,10 +694,33 @@ rule domainValueBeforeParent(f_op : sc!FeatureOperation,
 		}
 	}
 }
+--optional Group for root feature
+rule rootOptionalGroup {
+	from group : fm!Group (if group.groupCardinality() = 1 then
+			(if group.eContainer.isRoot() then true else false endif)
+		else
+			false
+		endif
+	)
+	using {
+		parent : fm!Feature = group.eContainer();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(f | f.feature.id = parent.id).first();
+		child_op : sc!FeatureOperation = OclUndefined;--sc!FeatureOperation.allInstances()->select(f | f.feature.id = child.id).first();
+	}
+	do {
+		for (child in group.childFeatures) {
+			child_op<-sc!FeatureOperation.allInstances()->select(f | f.feature.id = child.id).first();
+			if (thisModule.isBefore(parent_op.eContainer(), child_op.eContainer())) {
+					thisModule.implySel(parent_op,child_op);
+			}
+		}
+	}
+}
 
+--optional Group for a feature
 rule optionalGroup {
 	from group : fm!Group (if group.groupCardinality() = 1 then
-			true
+			(if group.eContainer.isRoot() then false else true endif)
 		else
 			false
 		endif
@@ -533,10 +747,23 @@ rule optionalGroup {
 		}
 	}
 }
+-- mandatory groups for root
+rule rootMandatoryGroup {
+	from group : fm!Group (if group.groupCardinality() = 0 then
+			(if group.eContainer.isRoot() then true else false endif)
+		else
+			false
+		endif
+	)
+	do {
+		'mandatory groups for a root feature are not allowed'.debug();
+	}
+}
 
+--mandatory groups for features (non root)
 rule mandatoryGroup {
 	from group : fm!Group (if group.groupCardinality() = 0 then
-			true
+			(if group.eContainer.isRoot() then false else true endif)
 		else
 			false
 		endif
@@ -586,10 +813,180 @@ rule mandatoryGroupParentBeforeChild(parent_op : sc!FeatureOperation,
 	--	thisModule.buildCompPlace(from_des_p_to_des_c, parent_op, parent_op.eContainer(), child_op, child_op.eContainer());
 	--}
 }
+-- xor groups for root
+rule rootXORGroup{
+	from group : fm!Group (if group.groupCardinality() = 2 then
+			(if group.eContainer.isRoot() then false else true endif)
+		else
+			false
+		endif
+	)
+	using{
+		parent : fm!Feature = group.eContainer();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature.id = parent.id).first();
+		child_ops : Sequence(sc!FeatureOperation) = thisModule.getFeatureOperations(group.childFeatures);
+		parent_stage : sc!Stage = parent_op.eContainer();
+		child_stages : Set(sc!Stage) = thisModule.getStages(child_ops);
+		areChildrenBeforeParent : Boolean = parent_stage.isLast(child_stages);
+	}
+	do {
+		if (areChildrenBeforeParent) {
+			thisModule.rootXORGroupRootLast(group, parent_op, child_ops);
+		} else {
+			for (child_op in child_ops) {
+				if (thisModule.isBefore(child_op.eContainer(),parent_stage)) {
+					thisModule.rootXORGroupChildBeforeRoot(parent_op,child_op,child_ops,parent_stage,child_stages);			
+				} else {
+					thisModule.rootXORGroupChildAfterRoot(parent_op,child_op,child_ops,parent_stage,child_stages);
+				}
+			}
+		}
+	}
+}
 
+rule rootXORGroupRootLast(group : fm!Group,
+						parent_op : sc!FeatureOperation,
+						child_ops : Sequence(sc!FeatureOperation)){
+	using {
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+	}
+	to
+		sel_c_to_sel_p_place : pn!Place (name <- group.id + '_to_sel_' + parent_op.feature.id),
+		arc_to_sel_p : pn!ArcToTransition (source <- sel_c_to_sel_p_place, target <- sel_p)
+	do {
+		for (c_op in child_ops) {
+			thisModule.rootXORGroupRootLast2(parent_op, c_op, child_ops, sel_c_to_sel_p_place);
+		}
+	}
+}
+
+rule rootXORGroupRootLast2(parent_op : sc!FeatureOperation,
+						 child_op : sc!FeatureOperation,
+						 child_ops : Sequence(sc!FeatureOperation),
+						 sel_c_to_sel_p_place : pn!Place){
+	using {
+		--sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		--des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		stages : Set(sc!Stage) = thisModule.getStages(child_ops);
+		isFeatureInLastStage : Boolean = child_op.eContainer().isLast(stages->excluding(child_op.eContainer()));
+	}
+	to
+		--place from deselection child to deselection parent
+		--to_des_p_place : pn!Place (name <- des_c.name + '_to_' + des_p.name),
+		--to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
+		--to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p),
+		--edge to enable place for selection of parent
+		arc_in_sel_p : pn!ArcToPlace (source <- sel_c, target <- sel_c_to_sel_p_place)
+	do{
+		for (other_c_op in child_ops) {
+			if (other_c_op <> child_op) {
+				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+					thisModule.xorExcludeEdge(child_op,other_c_op);
+				}
+			}
+		}
+		if(isFeatureInLastStage) {
+			--place from all sel to des this
+			thisModule.rootXORLastChild(parent_op,des_c,child_op,child_ops);
+		}
+		--thisModule.buildCompPlace(to_des_p_place, child_op, child_op.eContainer(), parent_op, parent_op.eContainer());
+	}
+}
+
+rule rootXORGroupChildAfterRoot(parent_op : sc!FeatureOperation,
+						   child_op : sc!FeatureOperation,
+						   child_ops : Sequence(sc!FeatureOperation),
+						   parent_stage : sc!Stage,
+						   child_stages : Set(sc!Stage)){
+	using {
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		--des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		isLastChild : Boolean = true;
+	}
+	to
+		--place from selection parent to selection child
+		from_sel_p_place : pn!Place (name <- sel_p.name + '_to_' + sel_c.name),
+		arc_in : pn!ArcToPlace (source <- sel_p, target <- from_sel_p_place),
+		arc_out : pn!ArcToTransition (source <- from_sel_p_place, target <- sel_c)
+	do {
+		for (other_c_op in child_ops) {
+			if (other_c_op <> child_op) {
+				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+					thisModule.xorExcludeEdge(child_op,other_c_op);
+					isLastChild <- false;	
+				} 
+			}
+		}
+		if (isLastChild) {
+			thisModule.rootXORLastChild(parent_op,des_c,child_op,child_ops);
+		}
+		thisModule.buildCompPlace(from_sel_p_place, parent_op, parent_stage, child_op, child_op.eContainer());
+	}
+}
+
+rule rootXORLastChild(f_op : sc!FeatureOperation,
+				  des_c : pn!Transition,
+				  child_op : sc!FeatureOperation,
+				  child_ops : Sequence(sc!FeatureOperation)) {
+	to
+		--place from deselection parent to deselection child
+		from_des_p_place : pn!Place (name <- f_op.feature.id + '_to_' + des_c.name),
+		--from_arc_in : pn!ArcToPlace (source <- des_p, target <- from_des_p_place),
+		from_arc_out : pn!ArcToTransition (source <- from_des_p_place, target <- des_c)
+	do{
+		for (other_c_op in child_ops) {
+			if (other_c_op <> child_op) {
+				thisModule.rootXORLastChild2(from_des_p_place,other_c_op);		
+			}
+		}
+	}
+}
+
+rule rootXORLastChild2(from_des_p_place : pn!Place,
+				   other_c_op : sc!FeatureOperation){
+	using {
+		sel_other_c : pn!Transition = thisModule.resolveTemp(other_c_op, 'add');
+	}
+	to
+		arc_from_sel_oc : pn!ArcToPlace (source <- sel_other_c, target <- from_des_p_place)
+}
+
+rule rootXORGroupChildBeforeRoot(parent_op : sc!FeatureOperation,
+						       child_op : sc!FeatureOperation,
+						   	   child_ops : Sequence(sc!FeatureOperation),
+						   	   parent_stage : sc!Stage,
+						   	   child_stages : Set(sc!Stage)) {
+	--using{
+		--sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		--des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		--sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		--des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+	--}
+	--to
+		--place from deselection child to deselection parent
+		--to_des_p_place : pn!Place (name <- des_c.name + '_to_' + des_p.name),
+		--to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
+		--to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p)
+	do{
+		for (other_c_op in child_ops) {
+			if (other_c_op <> child_op) {
+				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+					thisModule.xorExcludeEdge(child_op,other_c_op);
+				}
+			}
+		}
+		--thisModule.buildCompPlace(to_des_p_place, child_op, child_op.eContainer(), parent_op, parent_stage);		
+	}
+}
+-- xor groups for features
 rule xorGroup{
 	from group : fm!Group (if group.groupCardinality() = 2 then
-			true
+			(if group.eContainer.isRoot() then false else true endif)
 		else
 			false
 		endif
@@ -768,9 +1165,170 @@ rule xorGroupChildBeforeParent(parent_op : sc!FeatureOperation,
 	}
 }
 
+-- Or groups for root
+rule rootORGroup{
+	from group : fm!Group (if group.groupCardinality() = 3 then
+			(if group.eContainer.isRoot() then false else true endif)
+		else
+			false
+		endif
+	)
+	using{
+		parent : fm!Feature = group.eContainer();
+		parent_op : sc!FeatureOperation = sc!FeatureOperation.allInstances()->select(op | op.feature.id = parent.id).first();
+		child_ops : Sequence(sc!FeatureOperation) = thisModule.getFeatureOperations(group.childFeatures);
+		parent_stage : sc!Stage = parent_op.eContainer();
+		child_stages : Set(sc!Stage) = thisModule.getStages(child_ops);
+		areChildrenBeforeParent : Boolean = parent_stage.isLast(child_stages);
+		
+	}
+	do {
+		if (areChildrenBeforeParent) {
+			thisModule.rootORGroupRootLast(group, parent_op, child_ops);
+		} else {
+			for (child_op in child_ops) {
+				if (thisModule.isBefore(child_op.eContainer(),parent_stage)) {
+					--thisModule.rootORGroupChildBeforeRoot(parent_op,child_op,child_ops,parent_stage,child_stages);			
+				} else {
+					thisModule.rootORGroupChildAfterRoot(parent_op,child_op,child_ops,parent_stage,child_stages);
+				}
+			}
+		}
+	}
+}
+
+--parent last
+rule rootORGroupRootLast(group : fm!Group,
+						parent_op : sc!FeatureOperation,
+						child_ops : Sequence(sc!FeatureOperation)){
+	using {
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+	}
+	to
+		sel_c_to_sel_p_place : pn!Place (name <- group.id + '_to_sel_' + parent_op.feature.id),
+		arc_to_sel_p : pn!ArcToTransition (source <- sel_c_to_sel_p_place, target <- sel_p)
+	do {
+		for (c_op in child_ops) {
+			thisModule.rootORGroupRootLast2(parent_op, c_op, child_ops, sel_c_to_sel_p_place);
+		}
+		thisModule.buildMultiCompPlace(group.childFeatures.size(), sel_c_to_sel_p_place, parent_op, child_ops);
+	}
+}
+
+rule rootORGroupRootLast2(parent_op : sc!FeatureOperation,
+						 child_op : sc!FeatureOperation,
+						 child_ops : Sequence(sc!FeatureOperation),
+						 sel_c_to_sel_p_place : pn!Place){
+	using {
+		--sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		--des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		stages : Set(sc!Stage) = thisModule.getStages(child_ops);
+		isFeatureInLastStage : Boolean = child_op.eContainer().isLast(stages->excluding(child_op.eContainer()));
+	}
+	to
+		--place from deselection child to deselection parent
+		--to_des_p_place : pn!Place (name <- des_c.name + '_to_' + des_p.name),
+		--to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
+		--to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p),
+		--edge to enable place for selection of parent
+		arc_in_sel_p : pn!ArcToPlace (source <- sel_c, target <- sel_c_to_sel_p_place)
+	do{
+	--	thisModule.buildCompPlace(to_des_p_place, child_op, child_op.eContainer(), parent_op, parent_op.eContainer());
+		thisModule.rootORLastChild(parent_op,des_c,child_op,child_ops);
+	}
+}
+
+rule rootORGroupChildAfterRoot(parent_op : sc!FeatureOperation,
+						   child_op : sc!FeatureOperation,
+						   child_ops : Sequence(sc!FeatureOperation),
+						   parent_stage : sc!Stage,
+						   child_stages : Set(sc!Stage)){
+	using {
+		sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+		des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+		sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		isLastChild : Boolean = true;
+	}
+	to
+		--place from selection parent to selection child
+		from_sel_p_place : pn!Place (name <- sel_p.name + '_to_' + sel_c.name),
+		arc_in : pn!ArcToPlace (source <- sel_p, target <- from_sel_p_place),
+		arc_out : pn!ArcToTransition (source <- from_sel_p_place, target <- sel_c)
+	do {
+		for (other_c_op in child_ops) {
+			if (other_c_op <> child_op) {
+				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+					isLastChild <- false;	
+				} 
+			}
+		}
+		if (isLastChild) {
+			thisModule.rootORLastChild(parent_op,des_c,child_op,child_ops);
+		}
+		thisModule.buildCompPlace(from_sel_p_place, parent_op, parent_stage, child_op, child_op.eContainer());
+	}
+}
+
+rule rootORLastChild(parent_op : sc!FeatureOperation,
+				 des_c : pn!Transition,
+				 child_op : sc!FeatureOperation,
+				 child_ops : Sequence(sc!FeatureOperation)) {
+	using {
+		group : fm!Group = child_op.feature.eContainer();
+	}
+	to
+		--place from deselection parent to deselection child
+		from_des_p_place : pn!Place (name <- parent_op.feature.id + '_to_' + des_c.name),
+		--from_arc_in : pn!ArcToPlace (source <- des_p, target <- from_des_p_place),
+		from_arc_out : pn!ArcToTransition (source <- from_des_p_place, target <- des_c)
+	do{
+		for (other_c_op in child_ops) {
+			if (other_c_op <> child_op) {
+				thisModule.rootORLastChild2(from_des_p_place,other_c_op);		
+			}
+		}
+		thisModule.buildMultiCompPlace(group.childFeatures.size(), from_des_p_place, parent_op,child_ops);
+	}
+}
+
+rule rootORLastChild2(from_des_p_place : pn!Place,
+				   other_c_op : sc!FeatureOperation){
+	using {
+		sel_other_c : pn!Transition = thisModule.resolveTemp(other_c_op, 'add');
+	}
+	to
+		arc_from_sel_oc : pn!ArcToPlace (source <- sel_other_c, target <- from_des_p_place)
+}
+
+--rule rootORGroupChildBeforeRoot(parent_op : sc!FeatureOperation,
+--						       child_op : sc!FeatureOperation,
+--						   	   child_ops : Sequence(sc!FeatureOperation),
+--						   	   parent_stage : sc!Stage,
+--						   	   child_stages : Set(sc!Stage)) {
+	--using{
+	--	sel_p : pn!Transition = thisModule.resolveTemp(parent_op, 'add');
+	--	des_p : pn!Transition = thisModule.resolveTemp(parent_op, 'rem');
+	--	sel_c : pn!Transition = thisModule.resolveTemp(child_op, 'add');
+	--	des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+	--}
+	--to
+		--place from deselection child to deselection parent
+	--	to_des_p_place : pn!Place (name <- des_c.name + '_to_' + des_p.name),
+	--	to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
+	--	to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p)
+	--do{
+	--	thisModule.buildCompPlace(to_des_p_place,child_op, child_op.eContainer(), parent_op, parent_stage);
+	--}
+--}
+
+-- OR groups for features
 rule orGroup{
 	from group : fm!Group (if group.groupCardinality() = 3 then
-			true
+			(if group.eContainer.isRoot() then false else true endif)
 		else
 			false
 		endif
@@ -946,14 +1504,20 @@ rule createFeatureRequireConstraint{
 		f2_before_f1 : Boolean = thisModule.isBefore(f2_op.eContainer(), f1_op.eContainer());
 	}
 	do{
+		if (f1_op.feature.isRoot()) {
+			'Constraint contains Root Feature'.debug();
+		}
+		if (f2_op.feature.isRoot()) {
+			'Constraint contains Root Feature'.debug();
+		}
 		if (f1_before_f2 = f2_before_f1) {
-			thisModule.implySel(f1_op,f2_op);
-			thisModule.implyDes(f1_op,f2_op);
+			thisModule.implySel(f2_op,f1_op);
+			thisModule.implyDes(f2_op,f1_op);
 		} else {
 			if (f1_before_f2) {
-				thisModule.implySel(f1_op,f2_op);
+				thisModule.implyDes(f2_op,f1_op);
 			} else {
-				thisModule.implyDes(f1_op,f2_op);
+				thisModule.implySel(f2_op,f1_op);
 			}
 		}
 	}
@@ -982,6 +1546,12 @@ rule createFeatureExcludeConstraint{
 		sel_f2 : pn!Transition = thisModule.resolveTemp(f2_op, 'add');
 	}
 	do{
+		if (f1_op.feature.isRoot()) {
+			'Constraint contains Root Feature'.debug();
+		}
+		if (f2_op.feature.isRoot()) {
+			'Constraint contains Root Feature'.debug();
+		}
 		if (f1_before_f2 = f2_before_f1) {
 			thisModule.exclude(f1_op,f2_op);
 			thisModule.exclude(f2_op,f1_op);
