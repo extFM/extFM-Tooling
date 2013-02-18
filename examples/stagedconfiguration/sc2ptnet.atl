@@ -425,10 +425,20 @@ rule rootAttributeParentLast2(f_op : sc!FeatureOperation,
 		--edge to enable place for selection of parent
 		arc_in_sel_p : pn!ArcToPlace (source <- sel_dv, target <- sel_dv_to_sel_f_place)
 	do{
-		for (other_dv_op in dv_ops) {
-			if (other_dv_op <> dv_op) {
-				if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
-					thisModule.attributeExcludeEdge(dv_op,other_dv_op);
+		if (dv_ops.size() = 2) {
+			for (other_dv_op in dv_ops) {
+				if (other_dv_op <> dv_op) {
+					if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+						thisModule.xorExcludeEdgeWithoutTC(dv_op,other_dv_op);
+					}
+				}
+			}
+		} else {
+			for (other_dv_op in dv_ops) {
+				if (other_dv_op <> dv_op) {
+					if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+						thisModule.xorExcludeEdge(dv_op,other_dv_op);
+					}
 				}
 			}
 		}
@@ -458,12 +468,23 @@ rule rootDomainValueAfterParent(f_op : sc!FeatureOperation,
 		arc_in : pn!ArcToPlace (source <- sel_f, target <- from_sel_f_place),
 		arc_out : pn!ArcToTransition (source <- from_sel_f_place, target <- sel_dv)
 	do {
-		for (other_dv_op in dv_ops) {
-			if (other_dv_op <> dv_op) {
-				if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
-					thisModule.attributeExcludeEdge(dv_op,other_dv_op);
-					isLastChild <- false;	
-				} 
+		if (dv_ops.size() = 2) {
+			for (other_dv_op in dv_ops) {
+				if (other_dv_op <> dv_op) {
+					if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+						thisModule.xorExcludeEdgeWithoutTC(dv_op,other_dv_op);
+						isLastChild <- false;	
+					}
+				}
+			}
+		} else {
+			for (other_dv_op in dv_ops) {
+				if (other_dv_op <> dv_op) {
+					if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+						thisModule.xorExcludeEdge(dv_op,other_dv_op);
+						isLastChild <- false;	
+					}
+				}
 			}
 		}
 		if (isLastChild) {
@@ -515,13 +536,39 @@ rule rootDomainValueBeforeParent(f_op : sc!FeatureOperation,
 		--to_arc_in : pn!ArcToPlace (source <- des_dv, target <- to_des_f_place),
 		--to_arc_out : pn!ArcToTransition (source <- to_des_f_place, target <- des_f)
 	do{
-		for (other_dv_op in dv_ops) {
-			if (other_dv_op <> dv_op) {
-				if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
-					thisModule.xorExcludeEdge(dv_op,other_dv_op);
+		if (dv_ops.size() = 2) {
+			for (other_dv_op in dv_ops) {
+				if (other_dv_op <> dv_op) {
+					if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+						thisModule.xorExcludeEdgeWithoutTC(dv_op,other_dv_op);
+					}
+				}
+			}
+		} else {
+			for (other_dv_op in dv_ops) {
+				if (other_dv_op <> dv_op) {
+					if(not thisModule.isBefore(other_dv_op.eContainer(), dv_op.eContainer())) {
+						thisModule.xorExcludeEdge(dv_op,other_dv_op);
+					}
 				}
 			}
 		}
+	}
+}
+
+rule attributeExcludeEdgeWithoutTC(dv_op : sc!DomainValueOperation,
+						  other_dv_op : sc!DomainValueOperation) {
+	using {
+		des_dv : pn!Transition = thisModule.resolveTemp(dv_op, 'rem');
+		sel_other_dv : pn!Transition = thisModule.resolveTemp(other_dv_op, 'add');
+	}
+	to
+	--exclude relation from deselection domain value to selection other domain value
+		to_sel_odv_place : pn!Place (name <- des_dv.name + '_to_' + sel_other_dv.name),
+		arc_in : pn!ArcToPlace (source <- des_dv, target <- to_sel_odv_place),
+		arc_out : pn!ArcToTransition (source <- to_sel_odv_place, target <- sel_other_dv)
+	do{
+		thisModule.buildCompPlace(to_sel_odv_place, dv_op, dv_op.eContainer(), other_dv_op, other_dv_op.eContainer());
 	}
 }
 -- normal feature attribute
@@ -881,10 +928,21 @@ rule rootXORGroupRootLast2(parent_op : sc!FeatureOperation,
 		--edge to enable place for selection of parent
 		arc_in_sel_p : pn!ArcToPlace (source <- sel_c, target <- sel_c_to_sel_p_place)
 	do{
-		for (other_c_op in child_ops) {
-			if (other_c_op <> child_op) {
-				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
-					thisModule.xorExcludeEdge(child_op,other_c_op);
+		if (child_ops.size() = 2) {
+			for (other_c_op in child_ops) {
+				if (other_c_op <> child_op) {
+					if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+						thisModule.xorExcludeEdgeWithoutTC(child_op,other_c_op);
+					}
+				}
+			}
+			
+		} else {
+			for (other_c_op in child_ops) {
+				if (other_c_op <> child_op) {
+					if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+						thisModule.xorExcludeEdge(child_op,other_c_op);
+					}
 				}
 			}
 		}
@@ -894,6 +952,19 @@ rule rootXORGroupRootLast2(parent_op : sc!FeatureOperation,
 		}
 		--thisModule.buildCompPlace(to_des_p_place, child_op, child_op.eContainer(), parent_op, parent_op.eContainer());
 	}
+}
+
+rule xorExcludeEdgeWithoutTC(child_op : sc!FeatureOperation,
+					other_c_op : sc!FeatureOperation) {
+	using {
+		des_c : pn!Transition = thisModule.resolveTemp(child_op, 'rem');
+		sel_other_c : pn!Transition = thisModule.resolveTemp(other_c_op, 'add');
+	}
+	to
+	--exclude relation from deselection child to selection other child
+		to_sel_oc_place : pn!Place (name <- des_c.name + '_to_' + sel_other_c.name),
+		arc_in : pn!ArcToPlace (source <- des_c, target <- to_sel_oc_place),
+		arc_out : pn!ArcToTransition (source <- to_sel_oc_place, target <- sel_other_c)
 }
 
 rule rootXORGroupChildAfterRoot(parent_op : sc!FeatureOperation,
@@ -914,12 +985,24 @@ rule rootXORGroupChildAfterRoot(parent_op : sc!FeatureOperation,
 		arc_in : pn!ArcToPlace (source <- sel_p, target <- from_sel_p_place),
 		arc_out : pn!ArcToTransition (source <- from_sel_p_place, target <- sel_c)
 	do {
-		for (other_c_op in child_ops) {
-			if (other_c_op <> child_op) {
-				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
-					thisModule.xorExcludeEdge(child_op,other_c_op);
-					isLastChild <- false;	
-				} 
+		if (child_ops.size() = 2) {
+			for (other_c_op in child_ops) {
+				if (other_c_op <> child_op) {
+					if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+						thisModule.xorExcludeEdgeWithoutTC(child_op,other_c_op);
+						isLastChild <- false;	
+					} 
+				}
+			}
+		
+		} else {
+			for (other_c_op in child_ops) {
+				if (other_c_op <> child_op) {
+					if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+						thisModule.xorExcludeEdge(child_op,other_c_op);
+						isLastChild <- false;	
+					} 
+				}
 			}
 		}
 		if (isLastChild) {
@@ -973,10 +1056,21 @@ rule rootXORGroupChildBeforeRoot(parent_op : sc!FeatureOperation,
 		--to_arc_in : pn!ArcToPlace (source <- des_c, target <- to_des_p_place),
 		--to_arc_out : pn!ArcToTransition (source <- to_des_p_place, target <- des_p)
 	do{
-		for (other_c_op in child_ops) {
-			if (other_c_op <> child_op) {
-				if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
-					thisModule.xorExcludeEdge(child_op,other_c_op);
+		if (child_ops.size() = 2) {
+			for (other_c_op in child_ops) {
+				if (other_c_op <> child_op) {
+					if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+						thisModule.xorExcludeEdgeWithoutTC(child_op,other_c_op);
+					}
+				}
+			}
+			
+		} else {
+			for (other_c_op in child_ops) {
+				if (other_c_op <> child_op) {
+					if(not thisModule.isBefore(other_c_op.eContainer(), child_op.eContainer())) {
+						thisModule.xorExcludeEdge(child_op,other_c_op);
+					}
 				}
 			}
 		}
