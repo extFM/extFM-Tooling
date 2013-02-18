@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sc:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sc="stageconfig">
-  <featureModel href="../feature/dms_tr.feature#/"/>
+  <featureModel href="../feature/dms.feature#/"/>
   <firstStage name="s0_dms">
     <operations xsi:type="sc:FeatureOperation">
-      <feature href="../feature/dms_tr.feature#DMS"/>
+      <feature href="../feature/dms.feature#DMS"/>
     </operations>
     <nextStage name="s1_mdi">
       <operations xsi:type="sc:FeatureOperation">
-        <feature href="../feature/dms_tr.feature#ocr"/>
+        <feature href="../feature/dms.feature#ocr"/>
       </operations>
       <operations xsi:type="sc:FeatureOperation">
-        <feature href="../feature/dms_tr.feature#tuni"/>
+        <feature href="../feature/dms.feature#tuni"/>
       </operations>
       <operations xsi:type="sc:FeatureOperation">
-        <feature href="../feature/dms_tr.feature#mdi"/>
+        <feature href="../feature/dms.feature#mdi"/>
       </operations>
       <nextStage name="s2_mdi_child">
         <operations xsi:type="sc:FeatureOperation">
-          <feature href="../feature/dms_tr.feature#pdf"/>
+          <feature href="../feature/dms.feature#pdf"/>
         </operations>
         <operations xsi:type="sc:FeatureOperation">
-          <feature href="../feature/dms_tr.feature#tsim"/>
+          <feature href="../feature/dms.feature#tsim"/>
         </operations>
         <operations xsi:type="sc:FeatureOperation">
-          <feature href="../feature/dms_tr.feature#gi"/>
+          <feature href="../feature/dms.feature#gi"/>
         </operations>
         <operations xsi:type="sc:FeatureOperation">
-          <feature href="../feature/dms_tr.feature#ai"/>
+          <feature href="../feature/dms.feature#ai"/>
         </operations>
         <operations xsi:type="sc:FeatureOperation">
-          <feature href="../feature/dms_tr.feature#ti"/>
+          <feature href="../feature/dms.feature#ti"/>
         </operations>
         <nextStage name="s3_temp">
           <operations xsi:type="sc:FeatureOperation">
-            <feature href="../feature/dms_tr.feature#image"/>
+            <feature href="../feature/dms.feature#image"/>
           </operations>
           <operations xsi:type="sc:FeatureOperation">
-            <feature href="../feature/dms_tr.feature#timg"/>
+            <feature href="../feature/dms.feature#timg"/>
           </operations>
           <operations xsi:type="sc:FeatureOperation">
-            <feature href="../feature/dms_tr.feature#tpdf"/>
+            <feature href="../feature/dms.feature#tpdf"/>
           </operations>
           <operations xsi:type="sc:FeatureOperation">
-            <feature href="../feature/dms_tr.feature#ci"/>
+            <feature href="../feature/dms.feature#ci"/>
           </operations>
           <nextStage name="s4_authorSearch">
             <operations xsi:type="sc:FeatureOperation">
-              <feature href="../feature/dms_tr.feature#as"/>
+              <feature href="../feature/dms.feature#as"/>
             </operations>
             <nextStage name="s5_mds">
               <operations xsi:type="sc:FeatureOperation">
-                <feature href="../feature/dms_tr.feature#mds"/>
+                <feature href="../feature/dms.feature#mds"/>
               </operations>
               <nextStage name="s6_mds_child">
                 <operations xsi:type="sc:FeatureOperation">
-                  <feature href="../feature/dms_tr.feature#ts"/>
+                  <feature href="../feature/dms.feature#ts"/>
                 </operations>
                 <operations xsi:type="sc:FeatureOperation">
-                  <feature href="../feature/dms_tr.feature#cs"/>
+                  <feature href="../feature/dms.feature#cs"/>
                 </operations>
                 <operations xsi:type="sc:FeatureOperation">
-                  <feature href="../feature/dms_tr.feature#gs"/>
+                  <feature href="../feature/dms.feature#gs"/>
                 </operations>
                 <nextStage name="s7_search">
                   <operations xsi:type="sc:FeatureOperation">
-                    <feature href="../feature/dms_tr.feature#search"/>
+                    <feature href="../feature/dms.feature#search"/>
                   </operations>
                   <nextStage name="s8_fns">
                     <operations xsi:type="sc:FeatureOperation">
-                      <feature href="../feature/dms_tr.feature#fns"/>
+                      <feature href="../feature/dms.feature#fns"/>
                     </operations>
                     <nextStage name="s9_fni">
                       <operations xsi:type="sc:FeatureOperation">
-                        <feature href="../feature/dms_tr.feature#fni"/>
+                        <feature href="../feature/dms.feature#fni"/>
                       </operations>
                       <operations xsi:type="sc:FeatureOperation">
-                        <feature href="../feature/dms_tr.feature#searchResults"/>
+                        <feature href="../feature/dms.feature#searchResults"/>
                       </operations>
                       <nextStage name="s10_tiu">
                         <operations xsi:type="sc:FeatureOperation">
-                          <feature href="../feature/dms_tr.feature#indexUsage"/>
+                          <feature href="../feature/dms.feature#indexUsage"/>
                         </operations>
                         <nextStage name="s11_report">
                           <operations xsi:type="sc:FeatureOperation">
-                            <feature href="../feature/dms_tr.feature#report"/>
+                            <feature href="../feature/dms.feature#report"/>
                           </operations>
                         </nextStage>
                       </nextStage>

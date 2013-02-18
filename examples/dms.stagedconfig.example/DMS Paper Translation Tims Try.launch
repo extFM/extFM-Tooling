@@ -23,7 +23,7 @@
 <mapEntry key="sc" value="METAMODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Options">
-<mapEntry key="OPTION_CLEAR" value="true"/>
+<mapEntry key="OPTION_CLEAR" value="false"/>
 <mapEntry key="OPTION_CONTENT_TYPE" value="false"/>
 <mapEntry key="OPTION_DERIVED" value="true"/>
 <mapEntry key="allowInterModelReferences" value="false"/>
@@ -42,9 +42,9 @@
 <mapEntry key="OUT" value="pn"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="IN1" value="/stagedconfiguration/staged/optional/optional.feature"/>
-<mapEntry key="IN2" value="/stagedconfiguration/staged/optional/optional.stageModel"/>
-<mapEntry key="OUT" value="/stagedconfiguration/staged/optional/optional.ptnet"/>
+<mapEntry key="IN1" value="/dms.stagedconfig.example/feature/dms_tr.feature"/>
+<mapEntry key="IN2" value="/dms.stagedconfig.example/stagemodel/dms_paper.stageModel"/>
+<mapEntry key="OUT" value="/dms.stagedconfig.example/petrinet/dms_wpn_paper.ptnet"/>
 <mapEntry key="fm" value="uri:http://www.tudresden.de/extfeature"/>
 <mapEntry key="pn" value="ext:C:\git\extFM-Tooling\plugins\org.js.model.feature.ptnet.m2m.atl\src\main\metamodel\ptnetLoLA.ecore"/>
 <mapEntry key="sc" value="uri:stageconfig"/>
