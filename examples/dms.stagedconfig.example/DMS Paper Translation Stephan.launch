@@ -43,8 +43,8 @@
 </mapAttribute>
 <mapAttribute key="Path">
 <mapEntry key="IN1" value="/dms.stagedconfig.example/feature/dms_tr.feature"/>
-<mapEntry key="IN2" value="/dms.stagedconfig.example/stagemodel/dms_paper.stageModel"/>
-<mapEntry key="OUT" value="/dms.stagedconfig.example/petrinet/dms_wpn_paper.ptnet"/>
+<mapEntry key="IN2" value="/dms.stagedconfig.example/stagemodel/dms_stephan.stageModel"/>
+<mapEntry key="OUT" value="/dms.stagedconfig.example/petrinet/dms_wpn_stephan.ptnet"/>
 <mapEntry key="fm" value="uri:http://www.tudresden.de/extfeature"/>
 <mapEntry key="pn" value="ext:C:\git\extFM-Tooling\plugins\org.js.model.feature.ptnet.m2m.atl\src\main\metamodel\ptnetLoLA.ecore"/>
 <mapEntry key="sc" value="uri:stageconfig"/>
