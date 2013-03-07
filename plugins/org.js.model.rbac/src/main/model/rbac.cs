@@ -26,41 +26,41 @@ TOKENS {
 }
 
 TOKENSTYLES {
-	"#" COLOR #800055, BOLD;
 	"COMMENT" COLOR #AAAAAA;
 }	
 	
 	RULES {
 	// syntax definition for class 'StartMetaClass'
 	AccessControlModel   ::= "access control" #1 
-									("on" #1 featureModels['<','>'] (_[COMMA] featureModels['<','>'])*)? !0
+									("on" #1 featureModels['<','>'] (_[COMMA] featureModels['<','>'])*)+ !0
 									("references" #1 accessControlModels['<','>'] (_[COMMA] accessControlModels['<','>'])* )? !0
-									roles* !0
-									organizations* !0 
-									subjects*; 
+									roles* groups* subjects* ; 
 	
 	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
 	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
-	
+	@SuppressWarnings(nonContainmentOpposite) 
+	@SuppressWarnings(explicitSyntaxChoice) 
 	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) (_[COMMA] parentRoles[])*)? !0 
-			("{" allowedConfigOperations* tasks* "}" )? ;
+			(("{" (permissions | tasks)+ "}") )? ;
+
 
 
 	// syntax definition for configuration operations
-	FeatureConfiguration ::= #4 feature[] ":" select[S_SELECT]? deselect[S_DESELECT]? ;
-	AttributeConfiguration ::= #4 feature[] _[DOT] attribute[] 
-			( ":" select[S_SELECT]? deselect[S_DESELECT]?)?
-		    ("(" valueConfigurations+ ")")* ;
-
-	DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
-	//DomainValueConfiguration ::=  (value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?) | (_[COMMA] value['"','"'] ":" select[S_SELECT]? deselect[S_DESELECT]?);
-
-
-	Subject ::= "subject" #1 name['"','"'] #1 id['<','>'] !0 
-			("{" roles[]+ "}")?;
+	SelectFeature ::= #4 allowed["" : "not"] "select feature" feature[];
+	DeselectFeature ::= #4 allowed["" : "not"] "deselect feature" feature[];
 	
-	Organization ::= "organization" #1 name['"','"']? #1 id['<','>']? represents[] !0 
-			("{" groupOf[]+ "}")?;
+	SetAttribute ::= #4 allowed["" : "not"] "set" feature[] #0 _[DOT] #0 attribute[] 
+						("(" domainValueOperations+ ")")* ;
 
-	Task ::= "task" name['"','"'];
+	SelectDomainValue ::= allowed["" : "not"] #4 "select value" value[];
+	DeselectDomainValue ::= allowed["" : "not"] #4 "deselect value" value[];
+	
+	@SuppressWarnings(nonContainmentOpposite) 
+	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 
+			("{" roles[] "}")?;
+	
+	Group ::= "group" #1 name['"','"']? #1 id['<','>'] role[] !0 
+			("{" contains[]+ "}")?;
+
+	Task ::= "task" name['"','"']? #1 id['<','>'];
 }

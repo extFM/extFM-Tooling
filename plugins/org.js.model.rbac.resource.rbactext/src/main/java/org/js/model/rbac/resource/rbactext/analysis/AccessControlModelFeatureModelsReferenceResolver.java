@@ -6,6 +6,8 @@
  */
 package org.js.model.rbac.resource.rbactext.analysis;
 
+import org.js.model.rbac.RBACResolverUtil;
+
 public class AccessControlModelFeatureModelsReferenceResolver implements org.js.model.rbac.resource.rbactext.IRbactextReferenceResolver<org.js.model.rbac.AccessControlModel, org.js.model.feature.FeatureModel> {
 	
 	private org.js.model.rbac.resource.rbactext.analysis.RbactextDefaultResolverDelegate<org.js.model.rbac.AccessControlModel, org.js.model.feature.FeatureModel> delegate = new org.js.model.rbac.resource.rbactext.analysis.RbactextDefaultResolverDelegate<org.js.model.rbac.AccessControlModel, org.js.model.feature.FeatureModel>();
@@ -15,7 +17,7 @@ public class AccessControlModelFeatureModelsReferenceResolver implements org.js.
 	}
 	
 	public String deResolve(org.js.model.feature.FeatureModel element, org.js.model.rbac.AccessControlModel container, org.eclipse.emf.ecore.EReference reference) {
-		return delegate.deResolve(element, container, reference);
+	   return RBACResolverUtil.getRelativeURI(element, container);
 	}
 	
 	public void setOptions(java.util.Map<?,?> options) {

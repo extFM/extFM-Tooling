@@ -10,13 +10,16 @@
         eType="#//Subject" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accessControlModels" upperBound="-1"
         eType="#//AccessControlModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="organizations" upperBound="-1"
-        eType="#//Organization" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//Group" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Organization" eSuperTypes="#//Nameable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="represents" lowerBound="1"
-        eType="#//Role"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="groupOf" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="Permission" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowed" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1"
         eType="#//Role"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subject" eSuperTypes="#//Nameable">
@@ -24,8 +27,6 @@
         eType="#//Role" eOpposite="#//Role/subjects"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Nameable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="allowedConfigOperations"
-        upperBound="-1" eType="#//ConfigurationOperation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentRoles" upperBound="-1"
         eType="#//Role" eOpposite="#//Role/childRoles"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="childRoles" upperBound="-1"
@@ -34,33 +35,36 @@
         eType="#//Subject" eOpposite="#//Subject/roles"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//Task" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
+        eType="#//Permission" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationOperation" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="select" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deselect" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureReference">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureOperation" abstract="true" eSuperTypes="#//Permission">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureConfiguration" eSuperTypes="#//ConfigurationOperation #//FeatureReference"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainValueConfiguration" eSuperTypes="#//ConfigurationOperation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeConfiguration" eSuperTypes="#//ConfigurationOperation #//FeatureReference">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" abstract="true"
+      eSuperTypes="#//Permission">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueConfigurations" upperBound="-1"
-        eType="#//DomainValueConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Task">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainValueOperation" abstract="true"
+      eSuperTypes="#//Permission">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectFeature" eSuperTypes="#//FeatureOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeselectFeature" eSuperTypes="#//FeatureOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectDomainValue" eSuperTypes="#//DomainValueOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeselectDomainValue" eSuperTypes="#//DomainValueOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetAttribute" eSuperTypes="#//AttributeOperation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domainValueOperations"
+        upperBound="-1" eType="#//DomainValueOperation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Nameable"/>
 </ecore:EPackage>
