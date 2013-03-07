@@ -32,8 +32,8 @@
 <mapEntry key="supportUML2Stereotypes" value="false"/>
 </mapAttribute>
 <listAttribute key="OrderedInput">
-<listEntry value="IN1"/>
 <listEntry value="IN2"/>
+<listEntry value="IN1"/>
 </listAttribute>
 <listAttribute key="OrderedOutput">
 <listEntry value="OUT"/>

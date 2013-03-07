@@ -12,5 +12,53 @@
             class="org.js.model.stageconfig.StageconfigPackage"
             genModel="model/stageconfig.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.js.model.stageconfig.handler.PrepareLolaHandler"
+            id="org.js.model.stageconfig.PrepareLola"
+            name="PrepareLola">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <menu
+               id="lola"
+               label="Create Lola and task files">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false">
+                     <instanceof
+                           value="org.eclipse.core.resources.IResource">
+                     </instanceof>
+                     <test
+                           property="org.eclipse.core.resources.name"
+                           value="*.ptnet">
+                     </test>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </menu>
+         <command
+               commandId="org.js.model.stageconfig.PrepareLola"
+               label="Create Lola and task files"
+               style="push"
+               tooltip="Creates a Lola file and task files in the current folder">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.js.model.stageconfig.handler.PrepareLolaHandler"
+            commandId="org.js.model.stageconfig.PrepareLola">
+      </handler>
+   </extension>
 
 </plugin>
