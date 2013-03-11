@@ -41,26 +41,26 @@ TOKENSTYLES {
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
 	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) (_[COMMA] parentRoles[])*)? !0 
-			(("{" (permissions | tasks)+ "}") )? ;
+			(("{" (permissions | tasks)  (_[COMMA] (permissions | tasks) )* "}") )? ;
 
 
 
 	// syntax definition for configuration operations
-	SelectFeature ::= #4 allowed["" : "not"] "select feature" feature[];
-	DeselectFeature ::= #4 allowed["" : "not"] "deselect feature" feature[];
+	SelectFeature ::= #4 allowed["" : "not"] "select" feature[];
+	DeselectFeature ::= #4 allowed["" : "not"] "deselect" feature[];
 	
 	SetAttribute ::= #4 allowed["" : "not"] "set" feature[] #0 _[DOT] #0 attribute[] 
-						("(" domainValueOperations+ ")")* ;
+						("{" domainValueOperations (_[COMMA] domainValueOperations)* "}")* ;
 
-	SelectDomainValue ::= allowed["" : "not"] #4 "select value" value[];
-	DeselectDomainValue ::= allowed["" : "not"] #4 "deselect value" value[];
+	SelectDomainValue ::= allowed["" : "not"] #4 "select" value[];
+	DeselectDomainValue ::= allowed["" : "not"] #4 "deselect" value[];
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 
 			("{" roles[] "}")?;
 	
 	Group ::= "group" #1 name['"','"']? #1 id['<','>'] role[] !0 
-			("{" contains[]+ "}")?;
+			("{" contains[] (_[COMMA] contains[])* "}")?;
 
 	Task ::= "task" name['"','"']? #1 id['<','>'];
 }
