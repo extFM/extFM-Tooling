@@ -1,3 +1,11 @@
+import static org.junit.Assert.*;
+
+import java.util.List;
+
+import org.js.model.rbac.Permission;
+import org.js.model.rbac.Role;
+import org.junit.Test;
+
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
@@ -6,6 +14,12 @@
 public class RBACServiceTest extends AbstractRBACTest{
 
 
+   @Test
+   public void getAllRolePermissions(){
+      Role r1 = getRole("r1");
+      List<Permission> permissions = rbacService.getAllRolePermissions(r1);
+      assertTrue(permissions.size() == 2);
+   }
 //
 //   @Test
 //   public void getAllRoleConfigOperationsTest() {

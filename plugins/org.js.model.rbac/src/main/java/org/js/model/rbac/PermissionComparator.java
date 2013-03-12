@@ -39,6 +39,16 @@ public class PermissionComparator implements Comparator<Permission> {
             DomainValueOperation o1DomainOp = (DomainValueOperation) o1;
             DomainValueOperation o2DomainOp = (DomainValueOperation) o2;
             return compareDomainValueOperations(o1DomainOp, o2DomainOp);
+         } else if ((o1 instanceof SetAttribute && o2 instanceof SetAttribute)) {
+            // if both are set attribute permissions than check attribute and contained domain value permissions
+          SetAttribute o1SetOp = (SetAttribute) o1;
+          SetAttribute o2SetOp = (SetAttribute) o2;
+          Attribute o1Attribute = o1SetOp.getAttribute();
+          Attribute o2Attribute = o2SetOp.getAttribute();
+          if (EcoreUtil.equals(o1Attribute, o2Attribute) && (o1SetOp.getDomainValueOperations().size()==o2SetOp.getDomainValueOperations().size())){
+             // TODO: check each domainValuePermission
+             return isEqual;
+          }
          }
       } else if (o1 == null && o2 == null) {
          return isEqual;
@@ -49,13 +59,19 @@ public class PermissionComparator implements Comparator<Permission> {
    private int compareFeatureOperations(FeatureOperation o1FeatureOp, FeatureOperation o2FeatureOp) {
       Feature o1Feature = o1FeatureOp.getFeature();
       Feature o2Feature = o2FeatureOp.getFeature();
-      boolean equalFeatures = EcoreUtil.equals(o1Feature, o2Feature);
-      if (equalFeatures) {
+      return compareEObjects(o1Feature, o2Feature);
+   }
+
+   private int compareEObjects(EObject o1, EObject o2){
+      boolean equals = EcoreUtil.equals(o1, o2);
+      if (equals) {
          return isEqual;
       }
       return isNotEqual;
    }
-
+   
+  
+   
    private int compareDomainValueOperations(DomainValueOperation o1DomainOp, DomainValueOperation o2DomainOp) {
       String o1Value = o1DomainOp.getValue();
       String o2Value = o2DomainOp.getValue();
@@ -70,7 +86,7 @@ public class PermissionComparator implements Comparator<Permission> {
                Attribute o1attribute = o1SetAttribute.getAttribute();
                Attribute o2attribute = o2SetAttribute.getAttribute();
                boolean equalAttributes = EcoreUtil.equals(o1attribute, o2attribute);
-               if (equalAttributes) {
+               if (equalAttributes && (o1SetAttribute.isAllowed()==o2SetAttribute.isAllowed())) {
                   return isEqual;
                }
             }

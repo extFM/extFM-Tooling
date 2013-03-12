@@ -1,3 +1,16 @@
+import static org.junit.Assert.assertEquals;
+import java.util.Comparator;
+
+import org.js.model.feature.Attribute;
+import org.js.model.feature.Feature;
+import org.js.model.rbac.DeselectDomainValue;
+import org.js.model.rbac.DeselectFeature;
+import org.js.model.rbac.Permission;
+import org.js.model.rbac.PermissionComparator;
+import org.js.model.rbac.RbacFactory;
+import org.js.model.rbac.SelectDomainValue;
+import org.js.model.rbac.SelectFeature;
+import org.js.model.rbac.SetAttribute;
 import org.junit.Test;
 
 /************************************************************
@@ -14,7 +27,347 @@ import org.junit.Test;
  */
 public class PermissionComparatorTest extends AbstractRBACTest {
 
+   private DeselectDomainValue createDeselectDomainValue(String domainValue, boolean enabled){
+      DeselectDomainValue dsdv1 = RbacFactory.eINSTANCE.createDeselectDomainValue();
+      dsdv1.setAllowed(enabled);
+      dsdv1.setValue(domainValue);
+      return dsdv1;
+   }
+   private SelectDomainValue createSelectDomainValue(String domainValue, boolean enabled){
+      SelectDomainValue dsdv1 = RbacFactory.eINSTANCE.createSelectDomainValue();
+      dsdv1.setAllowed(enabled);
+      dsdv1.setValue(domainValue);
+      return dsdv1;
+   }
+   
+   private SetAttribute createSetAttribute(Feature f, Attribute a, boolean enabled){
+      SetAttribute sa1 = RbacFactory.eINSTANCE.createSetAttribute();
+      sa1.setAllowed(enabled);
+      sa1.setAttribute(a);
+      sa1.setFeature(f);
+      return sa1;
+   }
+   
+   private SelectFeature createSelectFeature(Feature f, boolean enabled){
+      SelectFeature selectFeature = RbacFactory.eINSTANCE.createSelectFeature();
+      selectFeature.setFeature(f);
+      selectFeature.setAllowed(enabled);
+      return selectFeature;
+   }
+   private DeselectFeature createDeselectFeature(Feature f, boolean enabled){
+      DeselectFeature deselectFeature = RbacFactory.eINSTANCE.createDeselectFeature();
+      deselectFeature.setFeature(f);
+      deselectFeature.setAllowed(enabled);
+      return deselectFeature;
+   }
+   
    @Test
-   public void compareTest() {}
+   public void compareDiffDomainValuesofSameSetAttibuteBothEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2", true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      as1.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+ 
+    
+   @Test
+   public void compareSelelectDeselectDomainValuesofSameSetAttibuteBothEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      SelectDomainValue dsdv2 = createSelectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      as1.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+ 
+   @Test
+   public void compareSameDomainValuesofSameSetAttibuteBothEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      as1.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(0, equal);
+   }
+ 
+   @Test
+   public void compareDiffDomainValuesofDifferentSetAttibutesBothEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2" ,true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+
+      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      as2.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+
+   @Test
+   public void compareSameDomainValuesofDifferentSetAttibutesBothEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      
+      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      as2.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(0, equal);
+   }
+  
+   @Test
+   public void compareSameDomainValuesofDifferentFeaturesBothEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Attribute f5a1 = getAttribute(f5, "a1");
+
+      
+      Feature f6 = getFeature("f6");
+      Attribute f6a1 = getAttribute(f6, "a1");
+      
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      
+      SetAttribute as2 = createSetAttribute(f6, f6a1, true);
+      as2.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+
+   
+   @Test
+   public void compareDiffDomainValuesofSameSetAttibuteOneEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2", false);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      as1.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+   
+   @Test
+   public void compareSameDomainValuesofSameSetAttibuteOneEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      as1.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(0, equal);
+   }
+ 
+   @Test
+   public void compareDiffDomainValuesofDifferentSetAttibutesOneEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2" ,false);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+
+      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      as2.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+
+   @Test
+   public void compareSameDomainValuesofDifferentSetAttibutesOneEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature feature = getFeature("f5");
+      Attribute attribute = getAttribute(feature, "a1");
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", false);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      
+      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      as2.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+  
+   @Test
+   public void compareSameDomainValuesofDifferentFeaturesOneEnabled() {
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Attribute f5a1 = getAttribute(f5, "a1");
+      
+      Feature f6 = getFeature("f6");
+      Attribute f6a1 = getAttribute(f6, "a1");
+      
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", false);
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      
+      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      as1.getDomainValueOperations().add(dsdv1);      
+      
+      SetAttribute as2 = createSetAttribute(f6, f6a1, true);
+      as2.getDomainValueOperations().add(dsdv2);      
+      
+      int equal = permissionComparator.compare(dsdv1, dsdv2);
+      assertEquals(-1, equal);
+   }
+
+   @Test
+   public void compareSetAttributesOfDiffFeatures(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Attribute f5a1 = getAttribute(f5, "a1");
+      
+      Feature f6 = getFeature("f6");
+      Attribute f6a1 = getAttribute(f6, "a1");
+      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      SetAttribute as2 = createSetAttribute(f6, f6a1, true);
+      
+      int equal = permissionComparator.compare(as1, as2);
+      assertEquals(-1, equal);
+   }
+   @Test
+   public void compareSetAttributesOfDiffFeaturesOneEnabled(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Attribute f5a1 = getAttribute(f5, "a1");
+      
+      Feature f6 = getFeature("f6");
+      Attribute f6a1 = getAttribute(f6, "a1");
+      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      SetAttribute as2 = createSetAttribute(f6, f6a1, false);
+      
+      int equal = permissionComparator.compare(as1, as2);
+      assertEquals(-1, equal);
+   }
+   
+   @Test
+   public void compareSetAttributesOfSameFeatures(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Attribute f5a1 = getAttribute(f5, "a1");
+      
+      Feature f51 = getFeature("f5");
+      Attribute f51a1 = getAttribute(f51, "a1");
+      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      SetAttribute as2 = createSetAttribute(f51, f51a1, true);
+      
+      int equal = permissionComparator.compare(as1, as2);
+      assertEquals(0, equal);
+   }
+  
+   @Test
+   public void compareSetAttributesOfSameFeaturesOneEnabled(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Attribute f5a1 = getAttribute(f5, "a1");
+      
+      Feature f51 = getFeature("f5");
+      Attribute f51a1 = getAttribute(f51, "a1");
+      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      SetAttribute as2 = createSetAttribute(f51, f51a1, false);
+      
+      int equal = permissionComparator.compare(as1, as2);
+      assertEquals(-1, equal);
+   }
+   
+   
+   @Test
+   public void compareEqualSelectFeature(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      
+      SelectFeature selectF51 = createSelectFeature(f5, true);
+      SelectFeature selectF52 = createSelectFeature(f5, true);
+      
+      int equal = permissionComparator.compare(selectF51, selectF52);
+      assertEquals(0, equal);
+   }
+   
+      @Test
+   public void compareEqualSelectFeatureOneEnabled(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      
+      SelectFeature selectF51 = createSelectFeature(f5, true);
+      SelectFeature selectF52 = createSelectFeature(f5, false);
+      
+      int equal = permissionComparator.compare(selectF51, selectF52);
+      assertEquals(-1, equal);
+   }
+   
+    @Test
+   public void compareUnequalSelectFeature(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Feature f6 = getFeature("f6");
+      
+      SelectFeature selectF5 = createSelectFeature(f5, true);
+      SelectFeature selectF6 = createSelectFeature(f6, true);
+      
+      int equal = permissionComparator.compare(selectF5, selectF6);
+      assertEquals(-1, equal);
+   }
+
+    @Test
+   public void compareSelectDeselectFeature(){
+      Comparator<Permission> permissionComparator = new PermissionComparator();
+      Feature f5 = getFeature("f5");
+      Feature f51 = getFeature("f5");
+      
+      SelectFeature selectF5 = createSelectFeature(f5, true);
+      DeselectFeature selectF51 = createDeselectFeature(f51, true);
+      
+      int equal = permissionComparator.compare(selectF5, selectF51);
+      assertEquals(-1, equal);
+   }
 
 }
