@@ -54,7 +54,7 @@ TOKENSTYLES {
 }
 
 RULES {
-	FeatureModel ::= "feature" #1 "model" #1 name['"','"'] !0!0
+	FeatureModel ::= "feature" #1 "model" #1 !0!0
 						domains* !0 root !0 constraints* !0; 
 						
 	Feature ::= selected[selected : "selected", deselected : "deselected", unbound : ""] 
@@ -65,7 +65,7 @@ RULES {
 	
 	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
 						#1 "{" !0 childFeatures+ !0 "}" !1;
-	Attribute ::= "#" name[TEXT] #1 "[" #1 domain[] #1 "]" (#1 ":=" #1 (value[INTEGER] | value[TEXT]))?;
+	Attribute ::= "#" name[TEXT] #1 "[" #1 domain[] #1 "]" ("\\" "{" deselectedDomainValues[TEXT] "}")? (#1 ":=" #1 (value[TEXT]))?;
 
 	ContinuousDomain ::= "domain" #1 "<" id[TEXT] ">" "[" intervals ("," #1 intervals)* "]";
 	Interval ::= lowerBound[INTEGER] ".." upperBound[INTEGER];
@@ -97,6 +97,6 @@ RULES {
 	@Operator(type="primitive", weight="5", superclass="Expression")
 	AttributeComparisonExpression ::= attribute1 operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] attribute2;
 		
-	AttributeValueLiteral ::= (value[INTEGER] | value[TEXT]);
+	AttributeValueLiteral ::= (value[TEXT]);
 	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
 }
