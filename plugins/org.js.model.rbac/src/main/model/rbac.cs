@@ -49,11 +49,11 @@ TOKENSTYLES {
 	SelectFeature ::= #4 "select" #1 feature[];
 	DeselectFeature ::= #4 "deselect" #1 feature[];
 	
-	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[] 
-						("{" domainValueOperations ("," domainValueOperations)* "}")* ;
+	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[]; 
+				//		("{" domainValueOperations ("," domainValueOperations)* "}")* ;
 
-	SelectDomainValue ::= #4 "select" value[];
-	DeselectDomainValue ::= #4 "deselect" value[];
+	//SelectDomainValue ::= #4 "select" value[];
+	//DeselectDomainValue ::= #4 "deselect" value[];
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 

@@ -14,6 +14,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.js.model.feature.Attribute;
+import org.js.model.feature.Feature;
 
 /**
  * Access information from the RBAC model.
@@ -46,6 +49,7 @@ public class RBACService {
 
    /**
     * returns all permissions defined in the hierarchically referenced access control models.
+    * 
     * @param model
     * @return
     */
@@ -133,6 +137,48 @@ public class RBACService {
       List<Role> parents = new ArrayList<Role>();
       findParentRoles(role, parents);
       return parents;
+   }
+
+   public SelectFeature getSelectFeaturePermission(Feature feature, List<Permission> permissions) {
+      SelectFeature result = null;
+      for (Permission permission : permissions) {
+         if (permission instanceof SelectFeature) {
+            SelectFeature selectFeature = (SelectFeature) permission;
+            Feature permFeature = selectFeature.getFeature();
+            if (EcoreUtil.equals(feature, permFeature)) {
+               result = selectFeature;
+            }
+         }
+      }
+      return result;
+   }
+
+   public DeselectFeature getDeselectFeaturePermission(Feature feature, List<Permission> permissions) {
+      DeselectFeature result = null;
+      for (Permission permission : permissions) {
+         if (permission instanceof DeselectFeature) {
+            DeselectFeature deselectFeature = (DeselectFeature) permission;
+            Feature permFeature = deselectFeature.getFeature();
+            if (EcoreUtil.equals(feature, permFeature)) {
+               result = deselectFeature;
+            }
+         }
+      }
+      return result;
+   }
+
+   public SetAttribute getSetAttributePermission(Attribute attribute, List<Permission> permissions) {
+      SetAttribute result = null;
+      for (Permission permission : permissions) {
+         if (permission instanceof SetAttribute) {
+            SetAttribute setAttribute = (SetAttribute) permission;
+            Attribute permAttribute = setAttribute.getAttribute();
+            if (EcoreUtil.equals(attribute, permAttribute)) {
+               result = setAttribute;
+            }
+         }
+      }
+      return result;
    }
 
 }

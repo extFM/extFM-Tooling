@@ -7,7 +7,6 @@
  ***********************************************************/
 package org.js.model.rbac;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,6 +79,13 @@ public final class RBACResolverUtil {
       return result;
    }
 
+   /**
+    * returns the permission according to the given identifier, which is in the form "select f1" or "set f1.a1".
+    * 
+    * @param model
+    * @param identifier
+    * @return
+    */
    public static Permission findPermission(AccessControlModel model, String identifier) {
       List<Permission> permissions = new RBACService().getAllModelPermissions(model);
       Permission result = null;
@@ -125,15 +131,16 @@ public final class RBACResolverUtil {
       return result;
    }
 
-   public static String[] splitObjectId(String delimiter, String objectId){
+   public static String[] splitObjectId(String delimiter, String objectId) {
       int delimiterPosition = objectId.indexOf(delimiter);
       String objectFeatureId = objectId.substring(0, delimiterPosition);
-      String objectAttributeId = objectId.substring(delimiterPosition+1);
+      String objectAttributeId = objectId.substring(delimiterPosition + 1);
       List<String> objects = new LinkedList<String>();
       objects.add(objectFeatureId);
       objects.add(objectAttributeId);
       return (String[]) objects.toArray(new String[objects.size()]);
    }
+
    public static boolean isAttributeReference(String objectId) {
       boolean isAttribute = false;
       if (objectId.contains(delimiter)) {
@@ -261,4 +268,24 @@ public final class RBACResolverUtil {
       IFile file = WorkspaceSynchronizer.getFile(modelResource);
       return file;
    }
+
+   public static String getPermissionAsString(Permission permission) {
+      String identifier = "";
+      if (permission instanceof SelectFeature) {
+         SelectFeature selectFeature = (SelectFeature) permission;
+         String featureId = selectFeature.getFeature().getId();
+         identifier = select + " " + featureId;
+      } else if (permission instanceof DeselectFeature) {
+         DeselectFeature deselectFeature = (DeselectFeature) permission;
+         String featureId = deselectFeature.getFeature().getId();
+         identifier = deselect + " " + featureId;
+      } else if (permission instanceof SetAttribute) {
+         SetAttribute setAttribute = (SetAttribute) permission;
+         String featureId = setAttribute.getFeature().getId();
+         String attributeId = setAttribute.getAttribute().getName();
+         identifier = set + " " + featureId + delimiter + attributeId;
+      }
+      return identifier;
+   }
+
 }

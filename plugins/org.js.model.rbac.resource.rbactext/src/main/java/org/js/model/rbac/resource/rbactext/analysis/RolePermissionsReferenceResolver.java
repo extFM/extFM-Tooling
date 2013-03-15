@@ -31,12 +31,15 @@ public class RolePermissionsReferenceResolver implements
 
    public String deResolve(org.js.model.rbac.Permission element, org.js.model.rbac.Role container,
                            org.eclipse.emf.ecore.EReference reference) {
-      return delegate.deResolve(element, container, reference);
+      String identifier = RBACResolverUtil.getPermissionAsString(element);
+      if (identifier == null){
+         identifier = delegate.deResolve(element, container, reference);
+      }
+      return identifier;
    }
 
    public void setOptions(java.util.Map< ? , ? > options) {
       // save options in a field or leave method empty if this resolver does not depend
       // on any option
    }
-
 }
