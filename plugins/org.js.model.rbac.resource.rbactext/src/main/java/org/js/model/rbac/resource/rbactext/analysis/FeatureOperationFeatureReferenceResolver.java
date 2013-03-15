@@ -35,7 +35,7 @@ public class FeatureOperationFeatureReferenceResolver implements
 
    public String deResolve(org.js.model.feature.Feature element, org.js.model.rbac.FeatureOperation container,
                            org.eclipse.emf.ecore.EReference reference) {
-      return delegate.deResolve(element, container, reference);
+      return EcoreUtil.getID(element);
    }
 
    public void setOptions(java.util.Map< ? , ? > options) {

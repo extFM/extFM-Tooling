@@ -26,8 +26,8 @@ public class TestModel {
    }
 
    private void loadTestModels() {
-      testModel = (AccessControlModel) loadTestModel("simpleAC.rbactext", "rbactext", new RbactextResourceFactory());
       featureModel = (FeatureModel) loadTestModel("simpleFM.eft", "eft", new EftResourceFactory());
+      testModel = (AccessControlModel) loadTestModel("simpleAC.rbactext", "rbactext", new RbactextResourceFactory());
    }
 
    private EObject loadTestModel(String filename, String suffix, Factory resourceFactory) {

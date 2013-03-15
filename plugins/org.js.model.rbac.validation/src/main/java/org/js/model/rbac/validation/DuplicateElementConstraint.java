@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.rbac.AccessControlModel;
-import org.js.model.rbac.Organization;
+import org.js.model.rbac.Group;
 import org.js.model.rbac.Role;
 import org.js.model.rbac.Subject;
 
@@ -23,8 +23,8 @@ public class DuplicateElementConstraint extends AbstractRbacConstraint {
             objects.addAll(model.getRoles());
          } else if (target instanceof Subject) {
             objects.addAll(model.getSubjects());
-         } else if (target instanceof Organization) {
-            objects.addAll(model.getOrganizations());
+         } else if (target instanceof Group) {
+            objects.addAll(model.getGroups());
          }
          String targetId = EcoreUtil.getID(target);
          if (targetId != null) {

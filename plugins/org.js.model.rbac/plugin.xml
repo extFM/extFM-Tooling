@@ -13,4 +13,31 @@
             genModel="src/main/model/rbac.genmodel"/>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <command
+               commandId="org.js.model.rbac.permissions.init"
+               label="Initialize Permissions"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.js.model.rbac.classification.category1"
+            defaultHandler="org.js.model.rbac.PermissionInitializationHandler"
+            id="org.js.model.rbac.permissions.init"
+            name="initPermissions">
+      </command>
+      
+      <category
+            id="org.js.model.rbac.classification.category1"
+            name="rbacCategory">
+      </category>
+   </extension>	
+
 </plugin>

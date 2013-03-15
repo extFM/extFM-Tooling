@@ -12,6 +12,8 @@
         eType="#//AccessControlModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//Group" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
+        eType="#//Permission" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Permission" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowed" lowerBound="1"
@@ -36,7 +38,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//Task" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
-        eType="#//Permission" containment="true"/>
+        eType="#//Permission"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

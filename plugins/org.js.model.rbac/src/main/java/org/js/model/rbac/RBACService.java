@@ -8,8 +8,10 @@
 package org.js.model.rbac;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -24,21 +26,37 @@ public class RBACService {
    // default constructor
    public RBACService() {}
 
-   public List<Permission> getAllRolePermissions(Role role) {
-      List<Permission> permissions = new ArrayList<Permission>();
+   public Set<Permission> getAllRolePermissions(Role role) {
+      Set<Permission> permissionSet = new TreeSet<Permission>(new PermissionComparator());
+      Set<Permission> permissions = new HashSet<Permission>();
       getAllRolePermissionsRecursively(role, permissions);
-      synchronized (this) { 
-        Collections.sort(permissions, new PermissionComparator());
+      synchronized (this) {
+         permissionSet.addAll(permissions);
       }
-      return permissions;
+      return permissionSet;
    }
 
-   private void getAllRolePermissionsRecursively(Role role, List<Permission> permissions) {
+   private void getAllRolePermissionsRecursively(Role role, Set<Permission> permissions) {
       permissions.addAll(role.getPermissions());
       EList<Role> parentRoles = role.getParentRoles();
       for (Role parentRole : parentRoles) {
          getAllRolePermissionsRecursively(parentRole, permissions);
       }
+   }
+
+   /**
+    * returns all permissions defined in the hierarchically referenced access control models.
+    * @param model
+    * @return
+    */
+   public List<Permission> getAllModelPermissions(AccessControlModel model) {
+      List<Permission> result = new ArrayList<Permission>();
+      result.addAll(model.getPermissions());
+      EList<AccessControlModel> accessControlModels = model.getAccessControlModels();
+      for (AccessControlModel accessControlModel : accessControlModels) {
+         result.addAll(accessControlModel.getPermissions());
+      }
+      return result;
    }
 
    /**
@@ -117,5 +135,4 @@ public class RBACService {
       return parents;
    }
 
- 
 }

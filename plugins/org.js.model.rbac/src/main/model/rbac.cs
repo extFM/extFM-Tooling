@@ -20,8 +20,6 @@ OPTIONS {
 TOKENS {
 	DEFINE S_DESELECT $'deselect'$;
 	DEFINE S_SELECT $'select'$;
-	DEFINE COMMA $(','|';')$;
-	DEFINE DOT $('.')$;
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 }
 
@@ -31,36 +29,38 @@ TOKENSTYLES {
 	
 	RULES {
 	// syntax definition for class 'StartMetaClass'
+	@SuppressWarnings(explicitSyntaxChoice) 
 	AccessControlModel   ::= "access control" #1 
-									("on" #1 featureModels['<','>'] (_[COMMA] featureModels['<','>'])*)+ !0
-									("references" #1 accessControlModels['<','>'] (_[COMMA] accessControlModels['<','>'])* )? !0
-									roles* groups* subjects* ; 
+									("on" #1 featureModels['<','>'] ("," featureModels['<','>'])*)+ !0
+									("references" #1 accessControlModels['<','>'] ("," accessControlModels['<','>'])* )? !0
+									("permissions" #1 "{" !0 permissions ( ","!0 permissions)+ "}")* !0
+									(roles | groups | subjects)* ; 
 	
 	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
 	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
-	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) (_[COMMA] parentRoles[])*)? !0 
-			(("{" (permissions | tasks)  (_[COMMA] (permissions | tasks) )* "}") )? ;
+	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) ("," parentRoles[])*)? !0 
+			(("{" (permissions['"','"'] | tasks)  ("," (permissions['"','"'] | tasks) )* "}") )? ;
 
 
 
 	// syntax definition for configuration operations
-	SelectFeature ::= #4 allowed["" : "not"] "select" feature[];
-	DeselectFeature ::= #4 allowed["" : "not"] "deselect" feature[];
+	SelectFeature ::= #4 allowed["" : "not"] "select" #1 feature[];
+	DeselectFeature ::= #4 allowed["" : "not"] "deselect" #1 feature[];
 	
-	SetAttribute ::= #4 allowed["" : "not"] "set" feature[] #0 _[DOT] #0 attribute[] 
-						("{" domainValueOperations (_[COMMA] domainValueOperations)* "}")* ;
+	SetAttribute ::= #4 allowed["" : "not"] "set" feature[] #0 "." #0 attribute[] 
+						("{" domainValueOperations ("," domainValueOperations)* "}")* ;
 
 	SelectDomainValue ::= allowed["" : "not"] #4 "select" value[];
 	DeselectDomainValue ::= allowed["" : "not"] #4 "deselect" value[];
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 
-			("{" roles[] "}")?;
+			("{" roles[] ("," roles[])* "}")?;
 	
 	Group ::= "group" #1 name['"','"']? #1 id['<','>'] role[] !0 
-			("{" contains[] (_[COMMA] contains[])* "}")?;
+			("{" contains[] ("," contains[])* "}")?;
 
 	Task ::= "task" name['"','"']? #1 id['<','>'];
 }

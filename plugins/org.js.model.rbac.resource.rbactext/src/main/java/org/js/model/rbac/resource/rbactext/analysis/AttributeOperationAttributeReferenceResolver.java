@@ -6,6 +6,7 @@
  */
 package org.js.model.rbac.resource.rbactext.analysis;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
 import org.js.model.rbac.RBACResolverUtil;
@@ -30,7 +31,7 @@ public class AttributeOperationAttributeReferenceResolver implements
 
    public String deResolve(org.js.model.feature.Attribute element, org.js.model.rbac.AttributeOperation container,
                            org.eclipse.emf.ecore.EReference reference) {
-      return delegate.deResolve(element, container, reference);
+      return EcoreUtil.getID(element);
    }
 
    public void setOptions(java.util.Map< ? , ? > options) {

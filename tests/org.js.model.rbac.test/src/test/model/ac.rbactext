@@ -1,0 +1,37 @@
+access control on <simpleFM.eft> 
+
+permissions {
+    select fr,
+    select f2,
+    deselect f2,
+    select f3,
+    deselect f3,
+    select f4,
+    deselect f4,
+    select f9,
+    deselect f9,
+    set f9.a1,
+    select f5,
+    deselect f5,
+    set f5.a1,
+    set f5.a2,
+    select f6,
+    deselect f6,
+    set f6.a1,
+    select f7,
+    deselect f7,
+    select f8,
+    deselect f8
+} 
+
+
+
+
+
+
+
+
+
+
+
+

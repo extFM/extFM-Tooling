@@ -1,16 +1,17 @@
-feature model "Test"
+feature model 
 domain <d1> [v1, v2, v3, v4]
 domain <d2> [10..20, 30..50]
 
-feature "F_Root" <fr>
+selected feature "F_Root" <fr>
 	group <g_alt> (0..1) {
-		feature "F2" <f2>
+		deselected feature "F2" <f2>
 		feature "F3" <f3>
 	}
 	group <g_opt> (0..1) {
 		feature "F4" <f4>
 		group <g_man1> (1..1) {
 			feature "F9" <f9>
+			#a1 [d1]
 		}
 	}
 	group <g_man> (0..1) {
@@ -24,4 +25,3 @@ feature "F_Root" <fr>
 		feature "F7" <f7>
 		feature "F8" <f8>
 	}
-

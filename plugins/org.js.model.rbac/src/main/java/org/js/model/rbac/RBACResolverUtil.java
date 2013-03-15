@@ -7,6 +7,10 @@
  ***********************************************************/
 package org.js.model.rbac;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
@@ -26,6 +30,11 @@ import org.js.model.feature.FeatureModel;
  * 
  */
 public final class RBACResolverUtil {
+
+   static final String select = "select";
+   static final String deselect = "deselect";
+   static final String set = "set";
+   public static final String delimiter = ".";
 
    /**
     * find the feature identified by the given id in any feature model referenced by the given accesscontrol model;
@@ -71,6 +80,129 @@ public final class RBACResolverUtil {
       return result;
    }
 
+   public static Permission findPermission(AccessControlModel model, String identifier) {
+      List<Permission> permissions = new RBACService().getAllModelPermissions(model);
+      Permission result = null;
+      String keyword = getKeyword(identifier);
+      String objectId = getObjectIdentifier(keyword, identifier);
+
+      if (isSelectFeature(keyword, objectId)) {
+         for (Permission permission : permissions) {
+            if (permission instanceof SelectFeature) {
+               SelectFeature selectFeature = (SelectFeature) permission;
+               String featureid = selectFeature.getFeature().getId();
+               if (objectId.equals(featureid)) {
+                  result = permission;
+                  break;
+               }
+            }
+         }
+      } else if (isDeselectFeature(keyword, objectId)) {
+         for (Permission permission : permissions) {
+            if (permission instanceof DeselectFeature) {
+               DeselectFeature deselectFeature = (DeselectFeature) permission;
+               String featureId = deselectFeature.getFeature().getId();
+               if (objectId.equals(featureId)) {
+                  result = permission;
+                  break;
+               }
+            }
+         }
+      } else if (isSetAttribute(keyword, objectId)) {
+         String[] split = splitObjectId(delimiter, objectId);
+         for (Permission permission : permissions) {
+            if (permission instanceof SetAttribute) {
+               SetAttribute setAttribute = (SetAttribute) permission;
+               String featureId = setAttribute.getFeature().getId();
+               String attributeName = setAttribute.getAttribute().getName();
+               if (split[0].equals(featureId) && split[1].equals(attributeName)) {
+                  result = permission;
+                  break;
+               }
+            }
+         }
+      }
+      return result;
+   }
+
+   public static String[] splitObjectId(String delimiter, String objectId){
+      int delimiterPosition = objectId.indexOf(delimiter);
+      String objectFeatureId = objectId.substring(0, delimiterPosition);
+      String objectAttributeId = objectId.substring(delimiterPosition+1);
+      List<String> objects = new LinkedList<String>();
+      objects.add(objectFeatureId);
+      objects.add(objectAttributeId);
+      return (String[]) objects.toArray(new String[objects.size()]);
+   }
+   public static boolean isAttributeReference(String objectId) {
+      boolean isAttribute = false;
+      if (objectId.contains(delimiter)) {
+         int firstPosition = objectId.indexOf(delimiter);
+         int lastPosition = objectId.lastIndexOf(delimiter);
+         isAttribute = (firstPosition == lastPosition);
+      }
+      return isAttribute;
+   }
+
+   public static boolean isSelectFeature(String keyword, String objectId) {
+      return (select.equals(keyword) && !isAttributeReference(objectId));
+   }
+
+   public static boolean isDeselectFeature(String keyword, String objectId) {
+      return (deselect.equals(keyword) && !isAttributeReference(objectId));
+   }
+
+   public static boolean isSetAttribute(String keyword, String objectId) {
+      return (set.equals(keyword) && isAttributeReference(objectId));
+   }
+
+   public static String getKeyword(String permissionId) {
+      String keyword = null;
+      if (permissionId != null) {
+         permissionId = permissionId.trim();
+         if (permissionId.startsWith(select)) {
+            keyword = select;
+         } else if (permissionId.startsWith(deselect)) {
+            keyword = deselect;
+         } else if (permissionId.startsWith(set)) {
+            keyword = set;
+         }
+      }
+      return keyword;
+   }
+
+   public static String getObjectIdentifier(String keyword, String permissionId) {
+      String text = permissionId;
+      String lastSection = null;
+      if (keyword != null && text != null) {
+         text = text.trim();
+         int subStringLength = keyword.length() + 1;
+         if (subStringLength < text.length()) {
+            lastSection = text.substring(subStringLength);
+            if (lastSection != null) {
+               lastSection = lastSection.trim();
+               if (containsWhitespaceOnly(lastSection)) {
+                  lastSection = null;
+               }
+            }
+         }
+      }
+      return lastSection;
+   }
+
+   private static boolean containsWhitespaceOnly(String text) {
+      boolean onlySpace = true;
+      char space = '\u0020';
+      char[] charArray = text.toCharArray();
+      for (char c : charArray) {
+         if (c != space) {
+            onlySpace = false;
+            break;
+         }
+      }
+      return onlySpace;
+   }
+
    /**
     * find the relative uri for the given EObjects.
     * 
@@ -82,6 +214,7 @@ public final class RBACResolverUtil {
       String relative = null;
 
       if (objectToConvert != null && baseObject != null) {
+         String fileName = getFileName(objectToConvert);
          // return relative uri
          java.net.URI objectToConvertUri = getContainerURI(objectToConvert.eResource());
          java.net.URI baseObjectUri = getContainerURI(baseObject.eResource());
@@ -89,14 +222,14 @@ public final class RBACResolverUtil {
             java.net.URI relativeUri = URIUtil.makeRelative(objectToConvertUri, baseObjectUri);
             relative = relativeUri.toString();
             // add filename
-            String fileName = getFileName(objectToConvert);
             relative += "/" + fileName;
+         } else if (objectToConvertUri == null && baseObjectUri == null) {
+            return fileName;
          }
       }
       return relative;
    }
-   
-   
+
    private static String getFileName(EObject eObject) {
       String fileName = null;
       IFile file = getFile(eObject.eResource());
@@ -118,7 +251,6 @@ public final class RBACResolverUtil {
       return parent;
    }
 
-   
    /**
     * get the ifile representation of a resource.
     * 

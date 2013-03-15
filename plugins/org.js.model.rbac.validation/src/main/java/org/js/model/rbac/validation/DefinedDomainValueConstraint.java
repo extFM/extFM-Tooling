@@ -11,8 +11,8 @@ import org.eclipse.emf.common.util.EList;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
-import org.js.model.rbac.AttributeConfiguration;
-import org.js.model.rbac.DomainValueConfiguration;
+import org.js.model.rbac.AttributeOperation;
+import org.js.model.rbac.DomainValueOperation;
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
@@ -28,7 +28,7 @@ public class DefinedDomainValueConstraint extends AbstractAttributeConstraint {
     * @return
     */
    @Override
-   String checkAttributeConfiguration(AttributeConfiguration attributeConfig, DomainValueConfiguration operation) {
+   String checkAttributeConfiguration(AttributeOperation attributeConfig, DomainValueOperation operation) {
       String msg = null;
       Attribute attribute = attributeConfig.getAttribute();
       String value = operation.getValue();
