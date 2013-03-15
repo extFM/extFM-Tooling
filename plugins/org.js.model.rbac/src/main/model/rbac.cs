@@ -46,14 +46,14 @@ TOKENSTYLES {
 
 
 	// syntax definition for configuration operations
-	SelectFeature ::= #4 allowed["" : "not"] "select" #1 feature[];
-	DeselectFeature ::= #4 allowed["" : "not"] "deselect" #1 feature[];
+	SelectFeature ::= #4 "select" #1 feature[];
+	DeselectFeature ::= #4 "deselect" #1 feature[];
 	
-	SetAttribute ::= #4 allowed["" : "not"] "set" feature[] #0 "." #0 attribute[] 
+	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[] 
 						("{" domainValueOperations ("," domainValueOperations)* "}")* ;
 
-	SelectDomainValue ::= allowed["" : "not"] #4 "select" value[];
-	DeselectDomainValue ::= allowed["" : "not"] #4 "deselect" value[];
+	SelectDomainValue ::= #4 "select" value[];
+	DeselectDomainValue ::= #4 "deselect" value[];
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 

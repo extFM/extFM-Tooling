@@ -33,7 +33,7 @@ public class PermissionInitialization {
    }
 
    private void addSelectRootFeaturePermission(Feature root) {
-      SelectFeature selectFeature = RbacHelper.createSelectFeature(root, true);
+      SelectFeature selectFeature = RbacHelper.createSelectFeature(root);
       EList<Permission> permissions = model.getPermissions();
       permissions.add(selectFeature);
    }
@@ -51,14 +51,14 @@ public class PermissionInitialization {
    
    private void createAttributePermissions(Attribute attribute) {
       Feature feature = attribute.getFeature();
-      SetAttribute setAttribute = RbacHelper.createSetAttribute(feature, attribute, true);
+      SetAttribute setAttribute = RbacHelper.createSetAttribute(feature, attribute);
       EList<Permission> permissions = model.getPermissions();
       permissions.add(setAttribute);
    }
 
    private void createFeaturePermissions(Feature feature) {
-      SelectFeature selectFeature = RbacHelper.createSelectFeature(feature, true);
-      DeselectFeature deselectFeature = RbacHelper.createDeselectFeature(feature, true);
+      SelectFeature selectFeature = RbacHelper.createSelectFeature(feature);
+      DeselectFeature deselectFeature = RbacHelper.createDeselectFeature(feature);
       
       EList<Permission> permissions = model.getPermissions();
       permissions.add(selectFeature);

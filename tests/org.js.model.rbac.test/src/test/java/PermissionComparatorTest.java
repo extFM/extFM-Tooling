@@ -32,10 +32,10 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
       as1.getDomainValueOperations().add(dsdv2);
 
@@ -48,10 +48,10 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      SelectDomainValue dsdv2 = createSelectDomainValue("v1", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      SelectDomainValue dsdv2 = createSelectDomainValue("v1");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
       as1.getDomainValueOperations().add(dsdv2);
 
@@ -64,10 +64,10 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
       as1.getDomainValueOperations().add(dsdv2);
 
@@ -80,13 +80,13 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
 
-      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      SetAttribute as2 = createSetAttribute(feature, attribute);
       as2.getDomainValueOperations().add(dsdv2);
 
       int equal = permissionComparator.compare(dsdv1, dsdv2);
@@ -98,13 +98,13 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
 
-      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      SetAttribute as2 = createSetAttribute(feature, attribute);
       as2.getDomainValueOperations().add(dsdv2);
 
       int equal = permissionComparator.compare(dsdv1, dsdv2);
@@ -120,13 +120,13 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Feature f6 = getFeature("f6");
       Attribute f6a1 = getAttribute(f6, "a1");
 
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1");
 
-      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      SetAttribute as1 = createSetAttribute(f5, f5a1);
       as1.getDomainValueOperations().add(dsdv1);
 
-      SetAttribute as2 = createSetAttribute(f6, f6a1, true);
+      SetAttribute as2 = createSetAttribute(f6, f6a1);
       as2.getDomainValueOperations().add(dsdv2);
 
       int equal = permissionComparator.compare(dsdv1, dsdv2);
@@ -138,10 +138,10 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2", false);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
       as1.getDomainValueOperations().add(dsdv2);
 
@@ -154,10 +154,10 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
       as1.getDomainValueOperations().add(dsdv2);
 
@@ -170,37 +170,20 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature feature = getFeature("f5");
       Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", true);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2", false);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v2");
 
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
+      SetAttribute as1 = createSetAttribute(feature, attribute);
       as1.getDomainValueOperations().add(dsdv1);
 
-      SetAttribute as2 = createSetAttribute(feature, attribute, true);
+      SetAttribute as2 = createSetAttribute(feature, attribute);
       as2.getDomainValueOperations().add(dsdv2);
 
       int equal = permissionComparator.compare(dsdv1, dsdv2);
       assertEquals(-1, equal);
    }
 
-   @Test
-   public void compareSameDomainValuesofDifferentSetAttibutesOneEnabled() {
-      Comparator<Permission> permissionComparator = new PermissionComparator();
-      Feature feature = getFeature("f5");
-      Attribute attribute = getAttribute(feature, "a1");
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", false);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
-
-      SetAttribute as1 = createSetAttribute(feature, attribute, true);
-      as1.getDomainValueOperations().add(dsdv1);
-
-      SetAttribute as2 = createSetAttribute(feature, attribute, true);
-      as2.getDomainValueOperations().add(dsdv2);
-
-      int equal = permissionComparator.compare(dsdv1, dsdv2);
-      assertEquals(-1, equal);
-   }
-
+  
    @Test
    public void compareSameDomainValuesofDifferentFeaturesOneEnabled() {
       Comparator<Permission> permissionComparator = new PermissionComparator();
@@ -210,13 +193,13 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Feature f6 = getFeature("f6");
       Attribute f6a1 = getAttribute(f6, "a1");
 
-      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1", false);
-      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1", true);
+      DeselectDomainValue dsdv1 = createDeselectDomainValue("v1");
+      DeselectDomainValue dsdv2 = createDeselectDomainValue("v1");
 
-      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
+      SetAttribute as1 = createSetAttribute(f5, f5a1);
       as1.getDomainValueOperations().add(dsdv1);
 
-      SetAttribute as2 = createSetAttribute(f6, f6a1, true);
+      SetAttribute as2 = createSetAttribute(f6, f6a1);
       as2.getDomainValueOperations().add(dsdv2);
 
       int equal = permissionComparator.compare(dsdv1, dsdv2);
@@ -231,8 +214,8 @@ public class PermissionComparatorTest extends AbstractRBACTest {
 
       Feature f6 = getFeature("f6");
       Attribute f6a1 = getAttribute(f6, "a1");
-      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
-      SetAttribute as2 = createSetAttribute(f6, f6a1, true);
+      SetAttribute as1 = createSetAttribute(f5, f5a1);
+      SetAttribute as2 = createSetAttribute(f6, f6a1);
 
       int equal = permissionComparator.compare(as1, as2);
       assertEquals(-1, equal);
@@ -246,8 +229,8 @@ public class PermissionComparatorTest extends AbstractRBACTest {
 
       Feature f6 = getFeature("f6");
       Attribute f6a1 = getAttribute(f6, "a1");
-      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
-      SetAttribute as2 = createSetAttribute(f6, f6a1, false);
+      SetAttribute as1 = createSetAttribute(f5, f5a1);
+      SetAttribute as2 = createSetAttribute(f6, f6a1);
 
       int equal = permissionComparator.compare(as1, as2);
       assertEquals(-1, equal);
@@ -261,60 +244,35 @@ public class PermissionComparatorTest extends AbstractRBACTest {
 
       Feature f51 = getFeature("f5");
       Attribute f51a1 = getAttribute(f51, "a1");
-      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
-      SetAttribute as2 = createSetAttribute(f51, f51a1, true);
+      SetAttribute as1 = createSetAttribute(f5, f5a1);
+      SetAttribute as2 = createSetAttribute(f51, f51a1);
 
       int equal = permissionComparator.compare(as1, as2);
       assertEquals(0, equal);
    }
 
-   @Test
-   public void compareSetAttributesOfSameFeaturesOneEnabled() {
-      Comparator<Permission> permissionComparator = new PermissionComparator();
-      Feature f5 = getFeature("f5");
-      Attribute f5a1 = getAttribute(f5, "a1");
-
-      Feature f51 = getFeature("f5");
-      Attribute f51a1 = getAttribute(f51, "a1");
-      SetAttribute as1 = createSetAttribute(f5, f5a1, true);
-      SetAttribute as2 = createSetAttribute(f51, f51a1, false);
-
-      int equal = permissionComparator.compare(as1, as2);
-      assertEquals(-1, equal);
-   }
-
+   
    @Test
    public void compareEqualSelectFeature() {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature f5 = getFeature("f5");
 
-      SelectFeature selectF51 = createSelectFeature(f5, true);
-      SelectFeature selectF52 = createSelectFeature(f5, true);
+      SelectFeature selectF51 = createSelectFeature(f5);
+      SelectFeature selectF52 = createSelectFeature(f5);
 
       int equal = permissionComparator.compare(selectF51, selectF52);
       assertEquals(0, equal);
    }
 
-   @Test
-   public void compareEqualSelectFeatureOneEnabled() {
-      Comparator<Permission> permissionComparator = new PermissionComparator();
-      Feature f5 = getFeature("f5");
-
-      SelectFeature selectF51 = createSelectFeature(f5, true);
-      SelectFeature selectF52 = createSelectFeature(f5, false);
-
-      int equal = permissionComparator.compare(selectF51, selectF52);
-      assertEquals(-1, equal);
-   }
-
+  
    @Test
    public void compareUnequalSelectFeature() {
       Comparator<Permission> permissionComparator = new PermissionComparator();
       Feature f5 = getFeature("f5");
       Feature f6 = getFeature("f6");
 
-      SelectFeature selectF5 = createSelectFeature(f5, true);
-      SelectFeature selectF6 = createSelectFeature(f6, true);
+      SelectFeature selectF5 = createSelectFeature(f5);
+      SelectFeature selectF6 = createSelectFeature(f6);
 
       int equal = permissionComparator.compare(selectF5, selectF6);
       assertEquals(-1, equal);
@@ -326,8 +284,8 @@ public class PermissionComparatorTest extends AbstractRBACTest {
       Feature f5 = getFeature("f5");
       Feature f51 = getFeature("f5");
 
-      SelectFeature selectF5 = createSelectFeature(f5, true);
-      DeselectFeature selectF51 = createDeselectFeature(f51, true);
+      SelectFeature selectF5 = createSelectFeature(f5);
+      DeselectFeature selectF51 = createDeselectFeature(f51);
 
       int equal = permissionComparator.compare(selectF5, selectF51);
       assertEquals(-1, equal);

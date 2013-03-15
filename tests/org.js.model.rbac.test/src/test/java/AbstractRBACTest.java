@@ -102,24 +102,24 @@ public abstract class AbstractRBACTest {
       return result;
    }
 
-   protected DeselectDomainValue createDeselectDomainValue(String domainValue, boolean enabled) {
-      return RbacHelper.createDeselectDomainValue(domainValue, enabled);
+   protected DeselectDomainValue createDeselectDomainValue(String domainValue) {
+      return RbacHelper.createDeselectDomainValue(domainValue);
    }
 
-   protected SelectDomainValue createSelectDomainValue(String domainValue, boolean enabled) {
-      return RbacHelper.createSelectDomainValue(domainValue, enabled);
+   protected SelectDomainValue createSelectDomainValue(String domainValue) {
+      return RbacHelper.createSelectDomainValue(domainValue);
    }
 
-   protected SetAttribute createSetAttribute(Feature f, Attribute a, boolean enabled) {
-      return RbacHelper.createSetAttribute(f, a, enabled);
+   protected SetAttribute createSetAttribute(Feature f, Attribute a) {
+      return RbacHelper.createSetAttribute(f, a);
    }
 
-   protected SelectFeature createSelectFeature(Feature f, boolean enabled) {
-      return RbacHelper.createSelectFeature(f, enabled);
+   protected SelectFeature createSelectFeature(Feature f) {
+      return RbacHelper.createSelectFeature(f);
    }
 
-   protected DeselectFeature createDeselectFeature(Feature f, boolean enabled) {
-      return RbacHelper.createDeselectFeature(f, enabled);
+   protected DeselectFeature createDeselectFeature(Feature f) {
+      return RbacHelper.createDeselectFeature(f);
    }
 
 }

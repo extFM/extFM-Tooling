@@ -19,10 +19,6 @@
   <children xmi:type="notation:Node" xmi:id="_4OOgEIymEeKthp8IYna6YA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_4OPHIIymEeKthp8IYna6YA" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_4OPHIYymEeKthp8IYna6YA" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_4OPuMIymEeKthp8IYna6YA" type="2001">
-        <element xmi:type="ecore:EAttribute" href="rbac.ecore#//Permission/allowed"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_4OPuMYymEeKthp8IYna6YA"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_4OPHIoymEeKthp8IYna6YA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_4OPHI4ymEeKthp8IYna6YA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_4OPHJIymEeKthp8IYna6YA"/>

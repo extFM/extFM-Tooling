@@ -17,9 +17,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/groups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/permissions"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="rbac.ecore#//Permission">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Permission/allowed"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="rbac.ecore#//Permission"/>
     <genClasses ecoreClass="rbac.ecore#//Group">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Group/role"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Group/contains"/>

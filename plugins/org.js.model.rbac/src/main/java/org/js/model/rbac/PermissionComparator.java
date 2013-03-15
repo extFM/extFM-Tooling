@@ -25,7 +25,7 @@ public class PermissionComparator implements Comparator<Permission> {
 
    @Override
    public int compare(Permission o1, Permission o2) {
-      if (o1 != null && o2 != null && o1.isAllowed() == o2.isAllowed()) {
+      if (o1 != null && o2 != null ) {
 
          if ((o1 instanceof SelectFeature && o2 instanceof SelectFeature) || o1 instanceof DeselectFeature && o2 instanceof DeselectFeature) {
             // if permission is a FeatureOperation than compare referenced features
@@ -86,7 +86,7 @@ public class PermissionComparator implements Comparator<Permission> {
                Attribute o1attribute = o1SetAttribute.getAttribute();
                Attribute o2attribute = o2SetAttribute.getAttribute();
                boolean equalAttributes = EcoreUtil.equals(o1attribute, o2attribute);
-               if (equalAttributes && (o1SetAttribute.isAllowed()==o2SetAttribute.isAllowed())) {
+               if (equalAttributes) {
                   return isEqual;
                }
             }

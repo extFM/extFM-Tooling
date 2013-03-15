@@ -19,37 +19,32 @@ import org.js.model.feature.Feature;
  */
 public final class RbacHelper {
    
-   public static DeselectDomainValue createDeselectDomainValue(String domainValue, boolean enabled){
+   public static DeselectDomainValue createDeselectDomainValue(String domainValue){
       DeselectDomainValue dsdv1 = RbacFactory.eINSTANCE.createDeselectDomainValue();
-      dsdv1.setAllowed(enabled);
       dsdv1.setValue(domainValue);
       return dsdv1;
    }
-   public static SelectDomainValue createSelectDomainValue(String domainValue, boolean enabled){
+   public static SelectDomainValue createSelectDomainValue(String domainValue){
       SelectDomainValue dsdv1 = RbacFactory.eINSTANCE.createSelectDomainValue();
-      dsdv1.setAllowed(enabled);
       dsdv1.setValue(domainValue);
       return dsdv1;
    }
    
-   public static SetAttribute createSetAttribute(Feature f, Attribute a, boolean enabled){
+   public static SetAttribute createSetAttribute(Feature f, Attribute a){
       SetAttribute sa1 = RbacFactory.eINSTANCE.createSetAttribute();
-      sa1.setAllowed(enabled);
       sa1.setAttribute(a);
       sa1.setFeature(f);
       return sa1;
    }
    
-   public static SelectFeature createSelectFeature(Feature f, boolean enabled){
+   public static SelectFeature createSelectFeature(Feature f){
       SelectFeature selectFeature = RbacFactory.eINSTANCE.createSelectFeature();
       selectFeature.setFeature(f);
-      selectFeature.setAllowed(enabled);
       return selectFeature;
    }
-   public static DeselectFeature createDeselectFeature(Feature f, boolean enabled){
+   public static DeselectFeature createDeselectFeature(Feature f){
       DeselectFeature deselectFeature = RbacFactory.eINSTANCE.createDeselectFeature();
       deselectFeature.setFeature(f);
-      deselectFeature.setAllowed(enabled);
       return deselectFeature;
    }
    
