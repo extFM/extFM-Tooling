@@ -1,11 +1,11 @@
-access control
-	references <permissions.rbactext>
+access control on <../model/Automotive.eft>
+	references <roles.rbactext>
 
 subject "Mary Green" <mary> 
 subject "Tom White" <tom> 
 
 subject "Harry Blue" <hb> {
- 	cdEngineer 
+ 	cdEngineer, 
  	domainEngineer
 }
 

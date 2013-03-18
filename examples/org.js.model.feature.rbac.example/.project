@@ -25,11 +25,35 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.js.model.expression.resource.expressionText.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.js.model.stagemodel.resource.stt.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.js.model.audit.resource.audit.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.js.model.feature.information.featureinformation.resource.info.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.js.model.feature.resource.eft.nature</nature>
 		<nature>org.js.model.stagedconfiguration.resource.scs.nature</nature>
 		<nature>org.js.model.rbac.rbac.resource.rbac.nature</nature>
 		<nature>org.js.model.rbac.resource.rbactext.nature</nature>
+		<nature>org.js.model.expression.resource.expressionText.nature</nature>
+		<nature>org.js.model.stagemodel.resource.stt.nature</nature>
+		<nature>org.js.model.audit.resource.audit.nature</nature>
+		<nature>org.js.model.feature.information.featureinformation.resource.info.nature</nature>
 	</natures>
 </projectDescription>

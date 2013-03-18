@@ -1,62 +1,41 @@
-access control on <../model/Automotive.eft>
+access control on <../model/Automotive.eft> 
 
-role <cdEngineer> {
-	// define privilege per feature
-	CDPlayer : select deselect
-	
-	
-	// define privilege for an attribute's domain values
-	CDPlayer.coverColor (
-		// define privilege per domain value
-		"blue" : select deselect 
-		"green" : select deselect
-	) 
-	// define privilege for all domain values of an attribute
-	CDPlayer.hasUSBPort : select deselect 
-	CDPlayer.numberOfTitles : select deselect
-	AudioCDPlayer : select deselect
-	MP3CDPlayer : select deselect
+permissions {
+    select AutomotiveMultimedia,
+    select AudioPlayer,
+    deselect AudioPlayer,
+    select Radio,
+    deselect Radio,
+    select CassettePlayer,
+    deselect CassettePlayer,
+    select CDPlayer,
+    deselect CDPlayer,
+    set CDPlayer.coverColor,
+    set CDPlayer._select,
+    set CDPlayer.hasUSBPort,
+    select MP3CDPlayer,
+    deselect MP3CDPlayer,
+    select VoiceRecognition,
+    deselect VoiceRecognition,
+    select PersonalNavigation,
+    deselect PersonalNavigation,
+    set PersonalNavigation.backgroundColor,
+    select Maps,
+    deselect Maps,
+    select NorthAmerica,
+    deselect NorthAmerica,
+    select CentralAmerica,
+    deselect CentralAmerica,
+    select SouthAmerica,
+    deselect SouthAmerica,
+    select Asia,
+    deselect Asia,
+    select OnBoardComputer,
+    deselect OnBoardComputer,
+    set CDPlayer.numberOfTitles,
+    select AudioCDPlayer,
+    deselect AudioCDPlayer,
+    set Maps.levelOfDetail,
+    select Europe,
+    deselect Europe
 }
-
-role <test> extends mapsEngineer, cdEngineer {
-	CDPlayer.coverColor : select
-	CDPlayer.coverColor (
-		"blue" : deselect 
-		"green" : deselect
-	)
-}
-
-role <mapsEngineer> {
-    CDPlayer.coverColor : select 
-	Maps : select deselect
-	Maps.levelOfDetail : select
-	Europe : select deselect
-	NorthAmerica : select deselect
-	CentralAmerica : select deselect
-	SouthAmerica : select deselect
-	Asia : select deselect
-}
-
-
-role <domainEngineer> {
-	// define domain engineering operations
-	$createFM
-}
-
-role <superEngineer> extends domainEngineer, mapsEngineer, cdEngineer {
-	AutomotiveMultimedia : select
-}
-
-role <customer> {
-	Radio : select
-	CassettePlayer : select
-	CDPlayer : select
-}
-
-role <specialCustomer> extends customer {
-	PersonalNavigation : select
-}
-
-
-
-

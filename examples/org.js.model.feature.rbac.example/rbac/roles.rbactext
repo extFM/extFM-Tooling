@@ -1,0 +1,61 @@
+access control on <../model/Automotive.eft>
+references <permissions.rbactext>
+
+role <cdEngineer> {
+	// define privilege per feature
+	"select CDPlayer",
+	// define privilege for an attribute's domain values
+	"set CDPlayer.coverColor",
+	
+	// define privilege for all domain values of an attribute
+	"set CDPlayer.hasUSBPort",
+	"set CDPlayer.numberOfTitles",
+	"select AudioCDPlayer",
+	"deselect AudioPlayer",
+	"select MP3CDPlayer",
+	"deselect MP3CDPlayer"
+}
+
+role <test> extends mapsEngineer, cdEngineer {
+	"set CDPlayer.coverColor"
+}
+
+role <mapsEngineer> {
+	"set CDPlayer.coverColor",
+	"select Maps",
+	"deselect Maps",
+	"set Maps.levelOfDetail",
+	"select Europe",
+	"deselect Europe",
+	"select NorthAmerica",
+	"deselect NorthAmerica",
+	"select CentralAmerica",
+	"deselect CentralAmerica",
+	"select SouthAmerica",
+	"deselect SouthAmerica",
+	"select Asia",
+	"deselect Asia"
+}
+
+role <domainEngineer> 
+
+role <superEngineer> extends domainEngineer, mapsEngineer, cdEngineer {
+	"select AutomotiveMultimedia"
+}
+
+role <customer> {
+	"select Radio",
+	"select CassettePlayer",
+	"select CDPlayer"
+}
+
+role <specialCustomer> extends customer {
+	"select PersonalNavigation"
+}
+
+
+
+
+
+
+
