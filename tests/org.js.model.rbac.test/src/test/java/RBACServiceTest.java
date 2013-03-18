@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import org.junit.Test;
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
  * 
  */
-public class RBACServiceTest extends AbstractRBACTest {
+public class RBACServiceTest extends AbstractTestRbac {
 
    @Test
    public void getAllRolePermissions() {

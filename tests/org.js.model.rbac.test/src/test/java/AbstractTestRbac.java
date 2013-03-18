@@ -1,3 +1,5 @@
+
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -27,12 +29,12 @@ import org.js.model.rbac.Subject;
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
  * 
  */
-public abstract class AbstractRBACTest {
+public abstract class AbstractTestRbac {
 
    AccessControlModel acModelUT;
    RBACService rbacService;
 
-   public AbstractRBACTest() {
+   public AbstractTestRbac() {
       initModels();
    }
 

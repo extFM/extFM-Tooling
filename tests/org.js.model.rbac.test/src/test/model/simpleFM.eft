@@ -1,4 +1,4 @@
-feature model 
+feature model "Test"
 domain <d1> [v1, v2, v3, v4]
 domain <d2> [10..20, 30..50]
 

@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.Comparator;
@@ -25,7 +26,7 @@ import org.junit.Test;
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
  * 
  */
-public class PermissionComparatorTest extends AbstractRBACTest {
+public class PermissionComparatorTest extends AbstractTestRbac {
 
    @Test
    public void compareDiffDomainValuesofSameSetAttibuteBothEnabled() {
