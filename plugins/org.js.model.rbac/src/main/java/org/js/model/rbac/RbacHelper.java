@@ -19,15 +19,15 @@ import org.js.model.feature.Feature;
  */
 public final class RbacHelper {
    
-   public static DeselectDomainValue createDeselectDomainValue(String domainValue){
-      DeselectDomainValue dsdv1 = RbacFactory.eINSTANCE.createDeselectDomainValue();
-      dsdv1.setValue(domainValue);
-      return dsdv1;
+   public static DeselectDomainValue createDeselectDomainValue(String value){
+      DeselectDomainValue domainValue = RbacFactory.eINSTANCE.createDeselectDomainValue();
+      domainValue.setValue(value);
+      return domainValue;
    }
-   public static SelectDomainValue createSelectDomainValue(String domainValue){
-      SelectDomainValue dsdv1 = RbacFactory.eINSTANCE.createSelectDomainValue();
-      dsdv1.setValue(domainValue);
-      return dsdv1;
+   public static SelectDomainValue createSelectDomainValue(String value){
+      SelectDomainValue domainValue = RbacFactory.eINSTANCE.createSelectDomainValue();
+      domainValue.setValue(value);
+      return domainValue;
    }
    
    public static SetAttribute createSetAttribute(Feature f, Attribute a){
@@ -42,11 +42,11 @@ public final class RbacHelper {
       selectFeature.setFeature(f);
       return selectFeature;
    }
+  
    public static DeselectFeature createDeselectFeature(Feature f){
       DeselectFeature deselectFeature = RbacFactory.eINSTANCE.createDeselectFeature();
       deselectFeature.setFeature(f);
       return deselectFeature;
    }
    
-
 }

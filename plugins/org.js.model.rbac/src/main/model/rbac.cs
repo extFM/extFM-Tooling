@@ -18,9 +18,7 @@ OPTIONS {
 }
 
 TOKENS {
-	DEFINE S_DESELECT $'deselect'$;
-	DEFINE S_SELECT $'select'$;
-	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
+ 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 }
 
 TOKENSTYLES {
@@ -31,13 +29,11 @@ TOKENSTYLES {
 	// syntax definition for class 'StartMetaClass'
 	@SuppressWarnings(explicitSyntaxChoice) 
 	AccessControlModel   ::= "access control" #1 
-									("on" #1 featureModels['<','>'] ("," featureModels['<','>'])*)+ !0
+									("on" #1 featureModels['<','>'] ("," featureModels['<','>'])*) !0
 									("references" #1 accessControlModels['<','>'] ("," accessControlModels['<','>'])* )? !0
 									("permissions" #1 "{" !0 permissions ( ","!0 permissions)+ "}")* !0
 									(roles | groups | subjects)* ; 
 	
-	//Stage ::= type[Declaration : "declaration", Integration : "integration", Specialization : "specialization", Separation : "separation"] 
-	//		#1 "stage" ("roles" "{" roles[IDENTIFIER]+ "}")?;
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
 	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) ("," parentRoles[])*)? !0 
@@ -49,11 +45,11 @@ TOKENSTYLES {
 	SelectFeature ::= #4 "select" #1 feature[];
 	DeselectFeature ::= #4 "deselect" #1 feature[];
 	
-	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[]; 
-				//		("{" domainValueOperations ("," domainValueOperations)* "}")* ;
+	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[]
+						(#1 "{" #1 domainValueOperations ("," #1 domainValueOperations)* "}")* ;
 
-	//SelectDomainValue ::= #4 "select" value[];
-	//DeselectDomainValue ::= #4 "deselect" value[];
+	SelectDomainValue ::= "+"#0 value[];
+	DeselectDomainValue ::= "-"#0 value[];
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 

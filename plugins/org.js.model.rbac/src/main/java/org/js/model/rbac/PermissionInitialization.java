@@ -1,11 +1,14 @@
 package org.js.model.rbac;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.js.model.feature.Attribute;
+import org.js.model.feature.DiscreteDomain;
+import org.js.model.feature.Domain;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 
@@ -57,10 +60,43 @@ public class PermissionInitialization {
       SetAttribute permission = rbacService.getSetAttributePermission(attribute, allModelPermissions);
       if (permission == null) {
          Feature feature = attribute.getFeature();
-         SetAttribute setAttribute = RbacHelper.createSetAttribute(feature, attribute);
+         permission = RbacHelper.createSetAttribute(feature, attribute);
          EList<Permission> permissions = model.getPermissions();
-         permissions.add(setAttribute);
+         permissions.add(permission);
       }
+      Domain domain = attribute.getDomain();
+      createDomainPermissions(permission, domain);
+   }
+
+   private void createDomainPermissions(SetAttribute setAttribute, Domain domain) {
+      EList<DomainValueOperation> domainValueOperations = setAttribute.getDomainValueOperations();
+      if (domain instanceof DiscreteDomain) {
+         DiscreteDomain discreteDomain = (DiscreteDomain) domain;
+         List<DomainValueOperation> discreteDomainPermissions = createDiscreteDomainPermissions(discreteDomain);
+         domainValueOperations.addAll(discreteDomainPermissions);
+      }
+   }
+
+   private List<DomainValueOperation> createDiscreteDomainPermissions(DiscreteDomain domain) {
+      EList<String> domainValues = domain.getValues();
+      List<DomainValueOperation> operations = new ArrayList<DomainValueOperation>(domainValues.size() * 2);
+      for (String value : domainValues) {
+         SelectDomainValue selectDomainValue = createSelectDomainValueOperation(value);
+         operations.add(selectDomainValue);
+         DeselectDomainValue deselectDomainValue = createDeselectDomainValueOperation(value);
+         operations.add(deselectDomainValue);
+      }
+      return operations;
+   }
+
+   private DeselectDomainValue createDeselectDomainValueOperation(String value) {
+      DeselectDomainValue deselectDomainValue = RbacHelper.createDeselectDomainValue(value);
+      return deselectDomainValue;
+   }
+
+   private SelectDomainValue createSelectDomainValueOperation(String value) {
+      SelectDomainValue selectDomainValue = RbacHelper.createSelectDomainValue(value);
+      return selectDomainValue;
    }
 
    private void createFeaturePermissions(Feature feature) {
