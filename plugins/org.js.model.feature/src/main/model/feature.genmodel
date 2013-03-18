@@ -21,6 +21,7 @@
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/lessThanOrEqual"/>
     </genEnums>
     <genClasses ecoreClass="feature.ecore#//FeatureModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//FeatureModel/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/root"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/domains"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/constraints"/>

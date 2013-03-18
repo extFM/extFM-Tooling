@@ -54,7 +54,7 @@ TOKENSTYLES {
 }
 
 RULES {
-	FeatureModel ::= "feature" #1 "model" #1 !0!0
+	FeatureModel ::= "feature" #1 "model" #1 name['"','"'] !0!0
 						domains* !0 root !0 constraints* !0; 
 						
 	Feature ::= selected[selected : "selected", deselected : "deselected", unbound : ""] 
