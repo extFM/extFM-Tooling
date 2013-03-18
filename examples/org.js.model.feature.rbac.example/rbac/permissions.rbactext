@@ -1,4 +1,4 @@
-access control on <../model/Automotive.eft> 
+access control on <../model/Automotive.eft>
 
 permissions {
     select AutomotiveMultimedia,
@@ -10,18 +10,24 @@ permissions {
     deselect CassettePlayer,
     select CDPlayer,
     deselect CDPlayer,
-    set CDPlayer.coverColor,
-    set CDPlayer._select,
-    set CDPlayer.hasUSBPort,
+    set CDPlayer.coverColor{ +red, - red, +green, - green, +blue, - blue},
+    set CDPlayer._select{ +true, - true, +false, - false},
+    set CDPlayer.hasUSBPort{ +true, - true, +false, - false},
+    set CDPlayer.numberOfTitles,
+    select AudioCDPlayer,
+    deselect AudioCDPlayer,
     select MP3CDPlayer,
     deselect MP3CDPlayer,
     select VoiceRecognition,
     deselect VoiceRecognition,
     select PersonalNavigation,
     deselect PersonalNavigation,
-    set PersonalNavigation.backgroundColor,
+    set PersonalNavigation.backgroundColor{ +black, - black, +white, - white, +green, - green, +blue, - blue},
     select Maps,
     deselect Maps,
+    set Maps.levelOfDetail,
+    select Europe,
+    deselect Europe,
     select NorthAmerica,
     deselect NorthAmerica,
     select CentralAmerica,
@@ -31,11 +37,6 @@ permissions {
     select Asia,
     deselect Asia,
     select OnBoardComputer,
-    deselect OnBoardComputer,
-    set CDPlayer.numberOfTitles,
-    select AudioCDPlayer,
-    deselect AudioCDPlayer,
-    set Maps.levelOfDetail,
-    select Europe,
-    deselect Europe
-}
+    deselect OnBoardComputer
+} 
+
