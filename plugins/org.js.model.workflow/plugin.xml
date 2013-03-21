@@ -20,5 +20,16 @@
             file="conf/workflow.conf">
       </conf>
    </extension>
+   <extension
+         id="org.js.model.workflow.view"
+         name="Views"
+         point="org.eclipse.jwt.we.view">
+      <view
+            displayIcon="icons/Group.gif"
+            displayName="Configuration Workflow View"
+            id="ConfWorkflow"
+            viewFile="src/main/java/org/js/model/worklfow/view/ConfWorkflow.view">
+      </view>
+   </extension>
 
 </plugin>
