@@ -8,9 +8,9 @@
   <genPackages prefix="Feature" basePackage="org.js.model" disposableProviderFactory="true"
       presentationPackageSuffix="editor" ecorePackage="feature.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="feature.ecore#//SelectedState">
+      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/unbound"/>
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/selected"/>
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/deselected"/>
-      <genEnumLiterals ecoreEnumLiteral="feature.ecore#//SelectedState/unbound"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="feature.ecore#//AttributeComparisonOperator">
       <genEnumLiterals ecoreEnumLiteral="feature.ecore#//AttributeComparisonOperator/equal"/>
