@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="org.js.model.workflow"
+            class="org.js.model.workflow.WorkflowPackage"
+            genModel="src/main/model/workflow.genmodel"/>
+   </extension>
+   <extension
+         id="org.js.model.workflow"
+         name="Workflow Aspect"
+         point="org.eclipse.jwt.we.conf.model.conf">
+      <conf
+            file="conf/workflow.conf">
+      </conf>
+   </extension>
+
+</plugin>
