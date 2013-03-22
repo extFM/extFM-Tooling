@@ -31,15 +31,13 @@ TOKENSTYLES {
 	AccessControlModel   ::= "access control" #1 
 									("on" #1 featureModels['<','>'] ("," featureModels['<','>'])*) !0
 									("references" #1 accessControlModels['<','>'] ("," accessControlModels['<','>'])* )? !0
-									("permissions" #1 "{" !0 permissions ( ","!0 permissions)+ "}")* !0
+									("permissions" #1 "{" !0 permissions ( ","!0 permissions)* "}")* !0
 									(roles | groups | subjects)* ; 
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
 	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) ("," parentRoles[])*)? !0 
 			(("{" (permissions['"','"'] | tasks)  ("," (permissions['"','"'] | tasks) )* "}") )? ;
-
-
 
 	// syntax definition for configuration operations
 	SelectFeature ::= #4 "select" #1 feature[];
@@ -50,6 +48,9 @@ TOKENSTYLES {
 
 	SelectDomainValue ::= "+"#0 value[];
 	DeselectDomainValue ::= "-"#0 value[];
+	
+	ViewElement ::= "view" #1 resourceId[]; 
+	ModifyElement ::= "modify" #1 resourceId[];
 	
 	@SuppressWarnings(nonContainmentOpposite) 
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 

@@ -30,10 +30,14 @@ import org.js.model.feature.FeatureModel;
  */
 public final class RBACResolverUtil {
 
+   public static final String delimiter = ".";
+
    static final String select = "select";
    static final String deselect = "deselect";
    static final String set = "set";
-   public static final String delimiter = ".";
+   
+   static final String view = "view";
+   static final String modify = "modify";
 
    /**
     * find the feature identified by the given id in any feature model referenced by the given accesscontrol model;
@@ -127,10 +131,33 @@ public final class RBACResolverUtil {
                }
             }
          }
+      } else if (isViewElement(keyword)){
+         for (Permission permission : permissions) {
+            if (permission instanceof ViewElement) {
+               ViewElement viewElement = (ViewElement) permission;
+               String resourceId = viewElement.getResourceId();
+               if (objectId.equals(resourceId)){
+                  result = viewElement;
+                  break;
+               }
+            }
+         }
+   } else if (isModifyElement(keyword)){
+      for (Permission permission : permissions) {
+         if (permission instanceof ModifyElement) {
+            ModifyElement modifyElement = (ModifyElement) permission;
+            String resourceId = modifyElement.getResourceId();
+            if (objectId.equals(resourceId)){
+               result = modifyElement;
+               break;
+            }
+         }
       }
+   }
       return result;
    }
 
+   
    public static String[] splitObjectId(String delimiter, String objectId) {
       int delimiterPosition = objectId.indexOf(delimiter);
       String objectFeatureId = objectId.substring(0, delimiterPosition);
@@ -155,6 +182,18 @@ public final class RBACResolverUtil {
       return (select.equals(keyword) && !isAttributeReference(objectId));
    }
 
+   public static boolean isModifyElement(String keyword, String objectId) {
+      return (modify.equals(keyword));
+   }
+
+   public static boolean isViewElement(String keyword) {
+      return (view.equals(keyword));
+   }
+   
+   public static boolean isModifyElement(String keyword) {
+      return (modify.equals(keyword));
+   }
+
    public static boolean isDeselectFeature(String keyword, String objectId) {
       return (deselect.equals(keyword) && !isAttributeReference(objectId));
    }
@@ -173,6 +212,10 @@ public final class RBACResolverUtil {
             keyword = deselect;
          } else if (permissionId.startsWith(set)) {
             keyword = set;
+         } else if (permissionId.startsWith(view)) {
+            keyword = view;
+         } else if (permissionId.startsWith(modify)) {
+            keyword = modify;
          }
       }
       return keyword;
