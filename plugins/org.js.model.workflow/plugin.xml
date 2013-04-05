@@ -28,7 +28,7 @@
             displayIcon="icons/Group.gif"
             displayName="Configuration Workflow View"
             id="ConfWorkflow"
-            viewFile="src/main/java/org/js/model/worklfow/view/ConfWorkflow.view">
+            viewFile="conf/ConfWorkflow.view">
       </view>
    </extension>
 
