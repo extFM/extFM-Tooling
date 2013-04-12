@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.js.model.feature.validation.category1"
+            name="name">
+      </category>
+      <constraintProvider
+            cache="true">
+         <package
+               namespaceUri="http://www.tudresden.de/extfeature">
+         </package>
+         <constraints
+               categories="org.js.model.feature.validation.category1">
+            <constraint
+                  class="org.js.model.feature.validation.UniqueIdConstraint"
+                  id="org.js.model.feature.validation.constraint1"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="UniqueIdConstraint"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="EObject">
+                  <event
+                        name="Set">
+                  </event></target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.js.model.feature.validation.context">
+            <selector
+                  class="org.js.model.feature.validation.FeatureDelegateClientSelector"/>
+      </clientContext>
+      <binding
+            category="org.js.model.feature.validation.category1"
+            context="org.js.model.feature.validation.context">
+      </binding>
+   </extension>
+
+</plugin>

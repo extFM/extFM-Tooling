@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Feature Validation
+Bundle-SymbolicName: org.js.model.feature.validation;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.js.model.feature.validation.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.js.model.feature;bundle-version="1.0.0",
+ org.js.model.feature.resource.eft;bundle-version="1.0.0",
+ org.eclipse.emf.validation;bundle-version="1.4.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
