@@ -125,12 +125,12 @@ public class IntervalItemProvider
     * This returns the label text for the adapted class.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
+    * @generated NOT
     */
    @Override
    public String getText(Object object) {
       Interval interval = (Interval)object;
-      return getString("_UI_Interval_type") + " " + interval.getLowerBound();
+      return getString("_UI_Interval_type") + " " + interval.getLowerBound() + ".." + interval.getUpperBound();
    }
 
    /**
