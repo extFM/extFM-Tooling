@@ -65,7 +65,7 @@ RULES {
 	
 	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
 						#1 "{" !0 childFeatures+ !0 "}" !1;
-	Attribute ::= "#" name[TEXT] #1 "[" #1 domain[] #1 "]" ("\\" "{" deselectedDomainValues[TEXT] ("," deselectedDomainValues[TEXT])* "}")? (#1 ":=" #1 (value[TEXT]))?;
+	Attribute ::= name[TEXT] #1 "[" #1 domain[] #1 "]" ("\\" "{" deselectedDomainValues[TEXT] ("," deselectedDomainValues[TEXT])* "}")? (#1 "=" #1 (value[TEXT]))?;
 
 	ContinuousDomain ::= "domain" #1 "<" id[TEXT] ">" "[" intervals ("," #1 intervals)* "]";
 	Interval ::= lowerBound[INTEGER] ".." upperBound[INTEGER];
