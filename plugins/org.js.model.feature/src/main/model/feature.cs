@@ -29,7 +29,7 @@ OPTIONS {
 }
 
 TOKENS {
-	DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
+	//DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
 	
 	//Careful: Using a dot (.) as qualifier character causes problems!
 	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
@@ -63,12 +63,13 @@ RULES {
 				((!0 #4 (attributes))*)? 
 				((!0 #4 (groups))*)?; 
 	
-	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
+	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[TEXT] ".." maxCardinality[TEXT] ")" 
 						#1 "{" !0 childFeatures+ !0 "}" !1;
-	Attribute ::= name[TEXT] #1 "[" #1 domain[] #1 "]" ("\\" "{" deselectedDomainValues[TEXT] ("," deselectedDomainValues[TEXT])* "}")? (#1 "=" #1 (value[TEXT]))?;
+	Attribute ::= name[TEXT] #1 "[" #1 domain[] #1 "]" ("\\" "{" deselectedDomainValues[TEXT] ("," deselectedDomainValues[TEXT])* "}")? 
+	(#1 "=" #1 (value[TEXT]))?;
 
 	ContinuousDomain ::= "domain" #1 "<" id[TEXT] ">" "[" intervals ("," #1 intervals)* "]";
-	Interval ::= lowerBound[INTEGER] ".." upperBound[INTEGER];
+	Interval ::= lowerBound[TEXT] ".." upperBound[TEXT];
 
 	DiscreteDomain ::= "domain"  #1 "<" id[TEXT] ">" "[" values[TEXT] ("," #1 values[TEXT])* "]";
 
