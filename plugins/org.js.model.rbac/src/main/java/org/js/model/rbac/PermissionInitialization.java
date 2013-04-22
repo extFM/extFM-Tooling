@@ -69,17 +69,17 @@ public class PermissionInitialization {
    }
 
    private void createDomainPermissions(SetAttribute setAttribute, Domain domain) {
-      EList<DomainValueOperation> domainValueOperations = setAttribute.getDomainValueOperations();
+      EList<AttributeDecision> domainValueOperations = setAttribute.getAttributeDecisions();
       if (domain instanceof DiscreteDomain) {
          DiscreteDomain discreteDomain = (DiscreteDomain) domain;
-         List<DomainValueOperation> discreteDomainPermissions = createDiscreteDomainPermissions(discreteDomain);
+         List<AttributeDecision> discreteDomainPermissions = createDiscreteDomainPermissions(discreteDomain);
          domainValueOperations.addAll(discreteDomainPermissions);
       }
    }
 
-   private List<DomainValueOperation> createDiscreteDomainPermissions(DiscreteDomain domain) {
+   private List<AttributeDecision> createDiscreteDomainPermissions(DiscreteDomain domain) {
       EList<String> domainValues = domain.getValues();
-      List<DomainValueOperation> operations = new ArrayList<DomainValueOperation>(domainValues.size() * 2);
+      List<AttributeDecision> operations = new ArrayList<AttributeDecision>(domainValues.size() * 2);
       for (String value : domainValues) {
          SelectDomainValue selectDomainValue = createSelectDomainValueOperation(value);
          operations.add(selectDomainValue);

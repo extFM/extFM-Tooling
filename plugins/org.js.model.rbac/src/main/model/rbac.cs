@@ -9,16 +9,22 @@ OPTIONS {
 	generateCodeFromGeneratorModel = "true";
 	disableLaunchSupport = "true";
 	disableNewProjectWizard = "true";
-
+	usePredefinedTokens = "false";
+	disableTokenSorting = "true";
+	
  	srcFolder = "src/main/java";
 	srcGenFolder = "src/gen/java";
 	
 	uiSrcFolder = "src/main/java";
 	uiSrcGenFolder = "src/gen/java";
+	
 }
 
 TOKENS {
  	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
+ 	DEFINE TEXT $('A'..'Z'|'a'..'z'|'0'..'9'|'_')+ $;
+ 	DEFINE LINEBREAK $ ('\r\n'|'\r'|'\n')+ $;
+    DEFINE WHITESPACE $ (' '|'\t'|'\f')+ $ ;
 }
 
 TOKENSTYLES {
@@ -44,7 +50,7 @@ TOKENSTYLES {
 	DeselectFeature ::= #4 "deselect" #1 feature[];
 	
 	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[]
-						(#1 "{" #1 domainValueOperations ("," #1 domainValueOperations)* "}")* ;
+						(#1 "{" #1 attributeDecisions ("," #1 attributeDecisions)* "}")* ;
 
 	SelectDomainValue ::= "+"#0 value[];
 	DeselectDomainValue ::= "-"#0 value[];
@@ -56,7 +62,7 @@ TOKENSTYLES {
 	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 
 			("{" roles[] ("," roles[])* "}")?;
 	
-	Group ::= "group" #1 name['"','"']? #1 id['<','>'] role[] !0 
+	Group ::= "group" #1 name['"','"']? #1 id['<','>'] represents[] !0 
 			("{" contains[] ("," contains[])* "}")?;
 
 	Task ::= "task" name['"','"']? #1 id['<','>'];

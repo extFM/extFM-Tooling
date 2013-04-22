@@ -1,8 +1,7 @@
 package org.js.model.rbac.validation;
 
 import org.eclipse.emf.common.util.EList;
-import org.js.model.rbac.AttributeOperation;
-import org.js.model.rbac.DomainValueOperation;
+import org.js.model.rbac.AttributeDecision;
 import org.js.model.rbac.SetAttribute;
 
 /**
@@ -15,15 +14,15 @@ public class UniqueDomainValueConstraint extends AbstractAttributeConstraint {
     * Validate if an operation for the given domainvalue is already defined.
     */
    @Override
-   String checkAttributeConfiguration(AttributeOperation attributeConfig, DomainValueOperation operation) {
+   String checkAttributeConfiguration(SetAttribute attributeConfig, AttributeDecision operation) {
       String errorMessage = null;
 
       if (attributeConfig instanceof SetAttribute) {
          SetAttribute setAttribute = (SetAttribute) attributeConfig;
 
-         EList<DomainValueOperation> valueOperations = setAttribute.getDomainValueOperations();
+         EList<AttributeDecision> valueOperations = setAttribute.getAttributeDecisions();
          String newValue = operation.getValue();
-         for (DomainValueOperation valueOperation : valueOperations) {
+         for (AttributeDecision valueOperation : valueOperations) {
             if (valueOperation != operation) {
                String value = valueOperation.getValue();
                if (value.equals(newValue)) {

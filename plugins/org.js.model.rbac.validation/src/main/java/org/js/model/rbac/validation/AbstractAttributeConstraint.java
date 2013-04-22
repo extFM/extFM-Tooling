@@ -8,8 +8,7 @@
 package org.js.model.rbac.validation;
 
 import org.eclipse.emf.ecore.EObject;
-import org.js.model.rbac.AttributeOperation;
-import org.js.model.rbac.DomainValueOperation;
+import org.js.model.rbac.AttributeDecision;
 import org.js.model.rbac.SetAttribute;
 
 /**
@@ -21,8 +20,8 @@ public abstract class AbstractAttributeConstraint extends AbstractRbacConstraint
    @Override
    String validateTarget(EObject target) {
       String msg = null;
-      if (target instanceof DomainValueOperation) {
-         DomainValueOperation operation = (DomainValueOperation) target;
+      if (target instanceof AttributeDecision) {
+         AttributeDecision operation = (AttributeDecision) target;
          EObject eContainer = operation.eContainer();
          if (eContainer instanceof SetAttribute) {
             SetAttribute attributeConfig = (SetAttribute) eContainer;
@@ -32,6 +31,6 @@ public abstract class AbstractAttributeConstraint extends AbstractRbacConstraint
       return msg;
    }
 
-   abstract String checkAttributeConfiguration(AttributeOperation attributeConfig, DomainValueOperation operation);
+   abstract String checkAttributeConfiguration(SetAttribute attributeConfig, AttributeDecision operation);
 
 }

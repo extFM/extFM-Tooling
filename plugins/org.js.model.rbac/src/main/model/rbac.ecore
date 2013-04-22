@@ -24,7 +24,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModifyElement" eSuperTypes="#//VisibilityPermission"/>
   <eClassifiers xsi:type="ecore:EClass" name="Permission" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Nameable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="represents" lowerBound="1"
+        eType="#//Role"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1"
         eType="#//Role"/>
   </eClassifiers>
@@ -49,28 +50,25 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureOperation" abstract="true" eSuperTypes="#//Permission">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureDecision" abstract="true" eSuperTypes="#//Permission #//ConfigurationDecision">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeOperation" abstract="true"
-      eSuperTypes="#//Permission">
+  <eClassifiers xsi:type="ecore:EClass" name="SelectFeature" eSuperTypes="#//FeatureDecision"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeselectFeature" eSuperTypes="#//FeatureDecision"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetAttribute" eSuperTypes="#//Permission">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributeDecisions" upperBound="-1"
+        eType="#//AttributeDecision" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainValueOperation" abstract="true"
-      eSuperTypes="#//Permission">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeDecision" abstract="true" eSuperTypes="#//ConfigurationDecision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelectFeature" eSuperTypes="#//FeatureOperation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DeselectFeature" eSuperTypes="#//FeatureOperation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SelectDomainValue" eSuperTypes="#//DomainValueOperation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DeselectDomainValue" eSuperTypes="#//DomainValueOperation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SetAttribute" eSuperTypes="#//AttributeOperation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="domainValueOperations"
-        upperBound="-1" eType="#//DomainValueOperation" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectDomainValue" eSuperTypes="#//AttributeDecision"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeselectDomainValue" eSuperTypes="#//AttributeDecision"/>
   <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Nameable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationDecision" abstract="true"/>
 </ecore:EPackage>
