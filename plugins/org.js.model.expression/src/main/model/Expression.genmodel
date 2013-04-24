@@ -32,13 +32,7 @@
     <genClasses ecoreClass="Expression.ecore#//GreaterThanOrEqual"/>
     <genClasses ecoreClass="Expression.ecore#//LessThan"/>
     <genClasses ecoreClass="Expression.ecore#//LessThanOrEqual"/>
-    <genClasses ecoreClass="Expression.ecore#//Number">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Number/value"/>
-    </genClasses>
     <genClasses ecoreClass="Expression.ecore#//Requires"/>
     <genClasses ecoreClass="Expression.ecore#//Excludes"/>
-    <genClasses ecoreClass="Expression.ecore#//Text">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Text/value"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

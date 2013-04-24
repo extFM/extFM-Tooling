@@ -95,10 +95,6 @@ RULES {
 					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];  //original
 					FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":=" #1 value['"','"']; 
 	
-					
-					@Operator(type="primitive", weight="9", superclass="Expression")
-					Text ::= value['"','"'] ; 		
-	
 	// -------------------- mathematical expressions ------------------------------
 	
 	@Operator(type="binary_left_associative", weight="6", superclass="Expression")
