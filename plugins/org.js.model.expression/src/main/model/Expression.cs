@@ -134,9 +134,5 @@ RULES {
 	LessThanOrEqual ::= operand1 #1 _[LESSTHANOREQUAL] #1 operand2;	          //<=
 					
 	//------------------------expressions ----------------------------------------
-	
-					@Operator(type="primitive", weight="9", superclass="Expression")
-					Number ::= value[INTEGER] ;
-	   
 	//-----------------------------------------------------------------------------
 }
