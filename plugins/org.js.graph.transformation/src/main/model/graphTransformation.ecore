@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graphtransformation" nsURI="http://graphtransformation/1.0"
+    nsPrefix="graphtransformation">
+  <eClassifiers xsi:type="ecore:EClass" name="GraphTransformation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//Rule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftside" lowerBound="1"
+        eType="#//LeftSide" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" eType="#//Roles"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="applicationConditions"
+        lowerBound="1" eType="#//ApplicationConditions" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" lowerBound="1"
+        eType="#//Operations" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LeftSide">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//ActivityNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+        eType="#//ActivityEdge" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Roles">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="existingRoles" upperBound="-1"
+        eType="#//ExistingRole" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivingRole" eType="#//ArrivingRole"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplicationConditions">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+        eType="#//Condition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="changePrimitives" lowerBound="1"
+        upperBound="-1" eType="#//ChangePrimitive" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityNode" abstract="true" interface="true"
+      eSuperTypes="#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="in" upperBound="-1" eType="#//ActivityEdge"
+        eOpposite="#//ActivityEdge/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="out" upperBound="-1" eType="#//ActivityEdge"
+        eOpposite="#//ActivityEdge/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityEdge" eSuperTypes="#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ActivityNode" eOpposite="#//ActivityNode/out"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ActivityNode" eOpposite="#//ActivityNode/in"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistingRole" eSuperTypes="#//VariableRole"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrivingRole" eSuperTypes="#//VariableRole"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" interface="true"
+      eSuperTypes="#//Nameable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ChangePrimitive" abstract="true" interface="true"
+      eSuperTypes="#//Nameable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityFinalNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FlowFinalNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true" interface="true"
+      eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecializationAction" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableRole" lowerBound="1"
+        eType="#//VariableRole" eOpposite="#//VariableRole/acion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdleAction" eSuperTypes="#//Action"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableRole" abstract="true" interface="true"
+      eSuperTypes="#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acion" lowerBound="1" eType="#//SpecializationAction"
+        eOpposite="#//SpecializationAction/variableRole"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InheritsFrom" eSuperTypes="#//Condition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" lowerBound="1"
+        eType="ecore:EClass ../../../../org.js.model.rbac/src/main/model/rbac.ecore#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//VariableRole"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BelongsTo" eSuperTypes="#//Condition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leader" lowerBound="1"
+        eType="#//VariableRole"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" lowerBound="1"
+        eType="#//VariableRole"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RemoveNode" eSuperTypes="#//ChangePrimitive">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" upperBound="-1" eType="#//ActivityNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RemoveEdge" eSuperTypes="#//ChangePrimitive">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edge" upperBound="-1" eType="#//ActivityEdge"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AddEdge" eSuperTypes="#//ChangePrimitive">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edge" upperBound="-1" eType="#//ActivityEdge"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AddNode" eSuperTypes="#//ChangePrimitive">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" upperBound="-1" eType="#//ActivityNode"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Nameable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+</ecore:EPackage>
