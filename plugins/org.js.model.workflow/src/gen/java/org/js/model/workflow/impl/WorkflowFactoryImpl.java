@@ -59,11 +59,10 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
 		switch (eClass.getClassifierID()) {
 			case WorkflowPackage.ACM_CONNECTOR: return createACMConnector();
 			case WorkflowPackage.ROLE_CONNECTOR: return createRoleConnector();
+			case WorkflowPackage.EFM_CONTAINER: return createEFMContainer();
 			case WorkflowPackage.LOG: return createLog();
-			case WorkflowPackage.INSERT_NODES: return createInsertNodes();
-			case WorkflowPackage.INSERT_NODES_CONTAINER: return createInsertNodesContainer();
 			case WorkflowPackage.STATE: return createState();
-			case WorkflowPackage.CONF_SEQUENCE: return createConfSequence();
+			case WorkflowPackage.STAKEHOLDER_TYPES: return createStakeholderTypes();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -124,29 +123,19 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EFMContainer createEFMContainer() {
+		EFMContainerImpl efmContainer = new EFMContainerImpl();
+		return efmContainer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Log createLog() {
 		LogImpl log = new LogImpl();
 		return log;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InsertNodes createInsertNodes() {
-		InsertNodesImpl insertNodes = new InsertNodesImpl();
-		return insertNodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InsertNodesContainer createInsertNodesContainer() {
-		InsertNodesContainerImpl insertNodesContainer = new InsertNodesContainerImpl();
-		return insertNodesContainer;
 	}
 
 	/**
@@ -164,9 +153,9 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConfSequence createConfSequence() {
-		ConfSequenceImpl confSequence = new ConfSequenceImpl();
-		return confSequence;
+	public StakeholderTypes createStakeholderTypes() {
+		StakeholderTypesImpl stakeholderTypes = new StakeholderTypesImpl();
+		return stakeholderTypes;
 	}
 
 	/**

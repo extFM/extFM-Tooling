@@ -7,29 +7,25 @@
   <eClassifiers xsi:type="ecore:EClass" name="RoleConnector" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="roleref" eType="ecore:EClass ../../../../org.js.model.rbac/src/main/model/rbac.ecore#//Role"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EFMContainer" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="efmref" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Log" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
         eType="ecore:EClass ../../../../org.js.model.rbac/src/main/model/rbac.ecore#//Permission"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InsertNodes">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="joinnode" eType="ecore:EClass platform:/plugin/org.eclipse.jwt.meta/src/org/eclipse/jwt/meta/ecore/JWTMetaModel.ecore#//processes/JoinNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forknode" eType="ecore:EClass platform:/plugin/org.eclipse.jwt.meta/src/org/eclipse/jwt/meta/ecore/JWTMetaModel.ecore#//processes/ForkNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="ecore:EClass platform:/plugin/org.eclipse.jwt.meta/src/org/eclipse/jwt/meta/ecore/JWTMetaModel.ecore#//processes/Action"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InsertNodesContainer" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="insertnodes" upperBound="-1"
-        eType="#//InsertNodes" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//StateEnum"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfSequence" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="role" upperBound="-1" eType="ecore:EClass ../../../../org.js.model.rbac/src/main/model/rbac.ecore#//Role"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StateEnum">
-    <eLiterals name="INACTIVE" literal="INACTIVE"/>
-    <eLiterals name="ENABLE" value="1" literal="ENABLE"/>
-    <eLiterals name="RUNNING" value="2"/>
-    <eLiterals name="COMPLETED" value="3"/>
+    <eLiterals name="Inactive" literal="Inactive"/>
+    <eLiterals name="Enabled" value="1" literal="Enabled"/>
+    <eLiterals name="Running" value="2"/>
+    <eLiterals name="Completed" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StakeholderTypes" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholderTypes" upperBound="-1"
+        eType="ecore:EClass ../../../../org.js.model.rbac/src/main/model/rbac.ecore#//Role"/>
   </eClassifiers>
 </ecore:EPackage>

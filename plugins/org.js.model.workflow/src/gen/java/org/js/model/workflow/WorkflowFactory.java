@@ -40,6 +40,15 @@ public interface WorkflowFactory extends EFactory {
 	RoleConnector createRoleConnector();
 
 	/**
+	 * Returns a new object of class '<em>EFM Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EFM Container</em>'.
+	 * @generated
+	 */
+	EFMContainer createEFMContainer();
+
+	/**
 	 * Returns a new object of class '<em>Log</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,24 +56,6 @@ public interface WorkflowFactory extends EFactory {
 	 * @generated
 	 */
 	Log createLog();
-
-	/**
-	 * Returns a new object of class '<em>Insert Nodes</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Insert Nodes</em>'.
-	 * @generated
-	 */
-	InsertNodes createInsertNodes();
-
-	/**
-	 * Returns a new object of class '<em>Insert Nodes Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Insert Nodes Container</em>'.
-	 * @generated
-	 */
-	InsertNodesContainer createInsertNodesContainer();
 
 	/**
 	 * Returns a new object of class '<em>State</em>'.
@@ -76,13 +67,13 @@ public interface WorkflowFactory extends EFactory {
 	State createState();
 
 	/**
-	 * Returns a new object of class '<em>Conf Sequence</em>'.
+	 * Returns a new object of class '<em>Stakeholder Types</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conf Sequence</em>'.
+	 * @return a new object of class '<em>Stakeholder Types</em>'.
 	 * @generated
 	 */
-	ConfSequence createConfSequence();
+	StakeholderTypes createStakeholderTypes();
 
 	/**
 	 * Returns the package supported by this factory.

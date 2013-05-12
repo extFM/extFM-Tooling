@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+
 import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
 
 import org.js.model.rbac.Permission;

@@ -10,32 +10,17 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.jwt.meta.model.application.ApplicationPackage;
-
-import org.eclipse.jwt.meta.model.core.CorePackage;
-
-import org.eclipse.jwt.meta.model.data.DataPackage;
-
-import org.eclipse.jwt.meta.model.events.EventsPackage;
-
-import org.eclipse.jwt.meta.model.functions.FunctionsPackage;
-
-import org.eclipse.jwt.meta.model.organisations.OrganisationsPackage;
-
-import org.eclipse.jwt.meta.model.primitiveTypes.PrimitiveTypesPackage;
-
-import org.eclipse.jwt.meta.model.processes.ProcessesPackage;
-
 import org.eclipse.jwt.we.conf.model.ConfPackage;
+
+import org.js.model.feature.FeaturePackage;
 
 import org.js.model.rbac.RbacPackage;
 
 import org.js.model.workflow.ACMConnector;
-import org.js.model.workflow.ConfSequence;
-import org.js.model.workflow.InsertNodes;
-import org.js.model.workflow.InsertNodesContainer;
+import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
+import org.js.model.workflow.StakeholderTypes;
 import org.js.model.workflow.State;
 import org.js.model.workflow.StateEnum;
 import org.js.model.workflow.WorkflowFactory;
@@ -67,21 +52,14 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass efmContainerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass logEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass insertNodesEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass insertNodesContainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,7 +73,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass confSequenceEClass = null;
+	private EClass stakeholderTypesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,14 +130,6 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
 		// Initialize simple dependencies
 		ConfPackage.eINSTANCE.eClass();
-		CorePackage.eINSTANCE.eClass();
-		ProcessesPackage.eINSTANCE.eClass();
-		EventsPackage.eINSTANCE.eClass();
-		PrimitiveTypesPackage.eINSTANCE.eClass();
-		FunctionsPackage.eINSTANCE.eClass();
-		OrganisationsPackage.eINSTANCE.eClass();
-		ApplicationPackage.eINSTANCE.eClass();
-		DataPackage.eINSTANCE.eClass();
 		RbacPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -218,6 +188,24 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEFMContainer() {
+		return efmContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEFMContainer_Efmref() {
+		return (EReference)efmContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLog() {
 		return logEClass;
 	}
@@ -229,60 +217,6 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 */
 	public EReference getLog_Permissions() {
 		return (EReference)logEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getInsertNodes() {
-		return insertNodesEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInsertNodes_Joinnode() {
-		return (EReference)insertNodesEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInsertNodes_Forknode() {
-		return (EReference)insertNodesEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInsertNodes_Action() {
-		return (EReference)insertNodesEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getInsertNodesContainer() {
-		return insertNodesContainerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInsertNodesContainer_Insertnodes() {
-		return (EReference)insertNodesContainerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -308,8 +242,8 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConfSequence() {
-		return confSequenceEClass;
+	public EClass getStakeholderTypes() {
+		return stakeholderTypesEClass;
 	}
 
 	/**
@@ -317,8 +251,8 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfSequence_Role() {
-		return (EReference)confSequenceEClass.getEStructuralFeatures().get(0);
+	public EReference getStakeholderTypes_StakeholderTypes() {
+		return (EReference)stakeholderTypesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -364,22 +298,17 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		roleConnectorEClass = createEClass(ROLE_CONNECTOR);
 		createEReference(roleConnectorEClass, ROLE_CONNECTOR__ROLEREF);
 
+		efmContainerEClass = createEClass(EFM_CONTAINER);
+		createEReference(efmContainerEClass, EFM_CONTAINER__EFMREF);
+
 		logEClass = createEClass(LOG);
 		createEReference(logEClass, LOG__PERMISSIONS);
-
-		insertNodesEClass = createEClass(INSERT_NODES);
-		createEReference(insertNodesEClass, INSERT_NODES__JOINNODE);
-		createEReference(insertNodesEClass, INSERT_NODES__FORKNODE);
-		createEReference(insertNodesEClass, INSERT_NODES__ACTION);
-
-		insertNodesContainerEClass = createEClass(INSERT_NODES_CONTAINER);
-		createEReference(insertNodesContainerEClass, INSERT_NODES_CONTAINER__INSERTNODES);
 
 		stateEClass = createEClass(STATE);
 		createEAttribute(stateEClass, STATE__STATE);
 
-		confSequenceEClass = createEClass(CONF_SEQUENCE);
-		createEReference(confSequenceEClass, CONF_SEQUENCE__ROLE);
+		stakeholderTypesEClass = createEClass(STAKEHOLDER_TYPES);
+		createEReference(stakeholderTypesEClass, STAKEHOLDER_TYPES__STAKEHOLDER_TYPES);
 
 		// Create enums
 		stateEnumEEnum = createEEnum(STATE_ENUM);
@@ -411,7 +340,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		// Obtain other dependent packages
 		ConfPackage theConfPackage = (ConfPackage)EPackage.Registry.INSTANCE.getEPackage(ConfPackage.eNS_URI);
 		RbacPackage theRbacPackage = (RbacPackage)EPackage.Registry.INSTANCE.getEPackage(RbacPackage.eNS_URI);
-		ProcessesPackage theProcessesPackage = (ProcessesPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessesPackage.eNS_URI);
+		FeaturePackage theFeaturePackage = (FeaturePackage)EPackage.Registry.INSTANCE.getEPackage(FeaturePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -420,10 +349,10 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		// Add supertypes to classes
 		acmConnectorEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 		roleConnectorEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
+		efmContainerEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 		logEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
-		insertNodesContainerEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 		stateEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
-		confSequenceEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
+		stakeholderTypesEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(acmConnectorEClass, ACMConnector.class, "ACMConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -432,27 +361,22 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		initEClass(roleConnectorEClass, RoleConnector.class, "RoleConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRoleConnector_Roleref(), theRbacPackage.getRole(), null, "roleref", null, 0, 1, RoleConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(efmContainerEClass, EFMContainer.class, "EFMContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEFMContainer_Efmref(), theFeaturePackage.getFeatureModel(), null, "efmref", null, 0, 1, EFMContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(logEClass, Log.class, "Log", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLog_Permissions(), theRbacPackage.getPermission(), null, "permissions", null, 0, -1, Log.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(insertNodesEClass, InsertNodes.class, "InsertNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInsertNodes_Joinnode(), theProcessesPackage.getJoinNode(), null, "joinnode", null, 0, 1, InsertNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInsertNodes_Forknode(), theProcessesPackage.getForkNode(), null, "forknode", null, 0, 1, InsertNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInsertNodes_Action(), theProcessesPackage.getAction(), null, "action", null, 0, 1, InsertNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(insertNodesContainerEClass, InsertNodesContainer.class, "InsertNodesContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInsertNodesContainer_Insertnodes(), this.getInsertNodes(), null, "insertnodes", null, 0, -1, InsertNodesContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getState_State(), this.getStateEnum(), "state", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(confSequenceEClass, ConfSequence.class, "ConfSequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfSequence_Role(), theRbacPackage.getRole(), null, "role", null, 0, -1, ConfSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stakeholderTypesEClass, StakeholderTypes.class, "StakeholderTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStakeholderTypes_StakeholderTypes(), theRbacPackage.getRole(), null, "stakeholderTypes", null, 0, -1, StakeholderTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(stateEnumEEnum, StateEnum.class, "StateEnum");
 		addEEnumLiteral(stateEnumEEnum, StateEnum.INACTIVE);
-		addEEnumLiteral(stateEnumEEnum, StateEnum.ENABLE);
+		addEEnumLiteral(stateEnumEEnum, StateEnum.ENABLED);
 		addEEnumLiteral(stateEnumEEnum, StateEnum.RUNNING);
 		addEEnumLiteral(stateEnumEEnum, StateEnum.COMPLETED);
 

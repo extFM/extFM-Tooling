@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+
 import org.eclipse.jwt.we.conf.model.AspectInstance;
 
 import org.js.model.workflow.*;
@@ -78,24 +79,20 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
 				return createRoleConnectorAdapter();
 			}
 			@Override
+			public Adapter caseEFMContainer(EFMContainer object) {
+				return createEFMContainerAdapter();
+			}
+			@Override
 			public Adapter caseLog(Log object) {
 				return createLogAdapter();
-			}
-			@Override
-			public Adapter caseInsertNodes(InsertNodes object) {
-				return createInsertNodesAdapter();
-			}
-			@Override
-			public Adapter caseInsertNodesContainer(InsertNodesContainer object) {
-				return createInsertNodesContainerAdapter();
 			}
 			@Override
 			public Adapter caseState(State object) {
 				return createStateAdapter();
 			}
 			@Override
-			public Adapter caseConfSequence(ConfSequence object) {
-				return createConfSequenceAdapter();
+			public Adapter caseStakeholderTypes(StakeholderTypes object) {
+				return createStakeholderTypesAdapter();
 			}
 			@Override
 			public Adapter caseAspectInstance(AspectInstance object) {
@@ -150,6 +147,20 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.EFMContainer <em>EFM Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.js.model.workflow.EFMContainer
+	 * @generated
+	 */
+	public Adapter createEFMContainerAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.Log <em>Log</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -160,34 +171,6 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLogAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.InsertNodes <em>Insert Nodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.js.model.workflow.InsertNodes
-	 * @generated
-	 */
-	public Adapter createInsertNodesAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.InsertNodesContainer <em>Insert Nodes Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.js.model.workflow.InsertNodesContainer
-	 * @generated
-	 */
-	public Adapter createInsertNodesContainerAdapter() {
 		return null;
 	}
 
@@ -206,27 +189,27 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.ConfSequence <em>Conf Sequence</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.StakeholderTypes <em>Stakeholder Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.js.model.workflow.ConfSequence
+	 * @see org.js.model.workflow.StakeholderTypes
 	 * @generated
 	 */
-	public Adapter createConfSequenceAdapter() {
+	public Adapter createStakeholderTypesAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.jwt.we.conf.model.AspectInstance <em>Aspect Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.jwt.we.conf.AspectInstance <em>Aspect Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.jwt.we.conf.model.AspectInstance
+	 * @see org.eclipse.jwt.we.conf.AspectInstance
 	 * @generated
 	 */
 	public Adapter createAspectInstanceAdapter() {

@@ -19,47 +19,45 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum StateEnum implements Enumerator {
 	/**
-	 * The '<em><b>INACTIVE</b></em>' literal object.
+	 * The '<em><b>Inactive</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #INACTIVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INACTIVE(0, "INACTIVE", "INACTIVE"),
+	INACTIVE(0, "Inactive", "Inactive"),
 
 	/**
-	 * The '<em><b>ENABLE</b></em>' literal object.
+	 * The '<em><b>Enabled</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ENABLE_VALUE
+	 * @see #ENABLED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ENABLE(1, "ENABLE", "ENABLE"),
-
-	/**
-	 * The '<em><b>RUNNING</b></em>' literal object.
+	ENABLED(1, "Enabled", "Enabled"), /**
+	 * The '<em><b>Running</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #RUNNING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RUNNING(2, "RUNNING", "RUNNING"),
+	RUNNING(2, "Running", "Running"),
 
 	/**
-	 * The '<em><b>COMPLETED</b></em>' literal object.
+	 * The '<em><b>Completed</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #COMPLETED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	COMPLETED(3, "COMPLETED", "COMPLETED");
+	COMPLETED(3, "Completed", "Completed");
 
 	/**
-	 * The '<em><b>INACTIVE</b></em>' literal value.
+	 * The '<em><b>Inactive</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>INACTIVE</b></em>' literal object isn't clear,
@@ -67,29 +65,29 @@ public enum StateEnum implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #INACTIVE
-	 * @model
+	 * @model name="Inactive"
 	 * @generated
 	 * @ordered
 	 */
 	public static final int INACTIVE_VALUE = 0;
 
 	/**
-	 * The '<em><b>ENABLE</b></em>' literal value.
+	 * The '<em><b>Enabled</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ENABLE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Enabled</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ENABLE
-	 * @model
+	 * @see #ENABLED
+	 * @model name="Enabled"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ENABLE_VALUE = 1;
+	public static final int ENABLED_VALUE = 1;
 
 	/**
-	 * The '<em><b>RUNNING</b></em>' literal value.
+	 * The '<em><b>Running</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>RUNNING</b></em>' literal object isn't clear,
@@ -97,14 +95,14 @@ public enum StateEnum implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RUNNING
-	 * @model
+	 * @model name="Running"
 	 * @generated
 	 * @ordered
 	 */
 	public static final int RUNNING_VALUE = 2;
 
 	/**
-	 * The '<em><b>COMPLETED</b></em>' literal value.
+	 * The '<em><b>Completed</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>COMPLETED</b></em>' literal object isn't clear,
@@ -112,7 +110,7 @@ public enum StateEnum implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #COMPLETED
-	 * @model
+	 * @model name="Completed"
 	 * @generated
 	 * @ordered
 	 */
@@ -127,7 +125,7 @@ public enum StateEnum implements Enumerator {
 	private static final StateEnum[] VALUES_ARRAY =
 		new StateEnum[] {
 			INACTIVE,
-			ENABLE,
+			ENABLED,
 			RUNNING,
 			COMPLETED,
 		};
@@ -181,7 +179,7 @@ public enum StateEnum implements Enumerator {
 	public static StateEnum get(int value) {
 		switch (value) {
 			case INACTIVE_VALUE: return INACTIVE;
-			case ENABLE_VALUE: return ENABLE;
+			case ENABLED_VALUE: return ENABLED;
 			case RUNNING_VALUE: return RUNNING;
 			case COMPLETED_VALUE: return COMPLETED;
 		}

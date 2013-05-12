@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.js.model.workflow/src/gen/java" editorDirectory="/org.js.model.workflow.editor/src/gen/java"
-    modelPluginID="org.js.model.workflow" modelName="Workflow" testsDirectory="/org.js.model.workflow.tests/src/gen/java"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.genmodel#//conf ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature platform:/plugin/org.eclipse.jwt.meta/src/org/eclipse/jwt/meta/ecore/JWTMetaModel.genmodel#//model ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac">
+    modelPluginID="org.js.model.workflow" forceOverwrite="true" modelName="Workflow"
+    testsDirectory="/org.js.model.workflow.tests/src/gen/java" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="7.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.genmodel#//conf ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac">
   <foreignModel>workflow.ecore</foreignModel>
   <genPackages prefix="Workflow" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="workflow.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="workflow.ecore#//StateEnum">
-      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/INACTIVE"/>
-      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/ENABLE"/>
-      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/RUNNING"/>
-      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/COMPLETED"/>
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/Inactive"/>
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/Enabled"/>
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/Running"/>
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//StateEnum/Completed"/>
     </genEnums>
     <genClasses ecoreClass="workflow.ecore#//ACMConnector">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//ACMConnector/acmref"/>
@@ -19,22 +19,17 @@
     <genClasses ecoreClass="workflow.ecore#//RoleConnector">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//RoleConnector/roleref"/>
     </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//EFMContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//EFMContainer/efmref"/>
+    </genClasses>
     <genClasses ecoreClass="workflow.ecore#//Log">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Log/permissions"/>
-    </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//InsertNodes">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//InsertNodes/joinnode"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//InsertNodes/forknode"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//InsertNodes/action"/>
-    </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//InsertNodesContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//InsertNodesContainer/insertnodes"/>
     </genClasses>
     <genClasses ecoreClass="workflow.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//State/state"/>
     </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//ConfSequence">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//ConfSequence/role"/>
+    <genClasses ecoreClass="workflow.ecore#//StakeholderTypes">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//StakeholderTypes/stakeholderTypes"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

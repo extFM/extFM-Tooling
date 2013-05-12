@@ -151,6 +151,52 @@ public interface WorkflowPackage extends EPackage {
 	int ROLE_CONNECTOR_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.js.model.workflow.impl.EFMContainerImpl <em>EFM Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.js.model.workflow.impl.EFMContainerImpl
+	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getEFMContainer()
+	 * @generated
+	 */
+	int EFM_CONTAINER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EFM_CONTAINER__ID = ConfPackage.ASPECT_INSTANCE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Target Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EFM_CONTAINER__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Efmref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EFM_CONTAINER__EFMREF = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EFM Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EFM_CONTAINER_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.js.model.workflow.impl.LogImpl <em>Log</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,7 +204,7 @@ public interface WorkflowPackage extends EPackage {
 	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getLog()
 	 * @generated
 	 */
-	int LOG = 2;
+	int LOG = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -197,98 +243,6 @@ public interface WorkflowPackage extends EPackage {
 	int LOG_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.js.model.workflow.impl.InsertNodesImpl <em>Insert Nodes</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.js.model.workflow.impl.InsertNodesImpl
-	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getInsertNodes()
-	 * @generated
-	 */
-	int INSERT_NODES = 3;
-
-	/**
-	 * The feature id for the '<em><b>Joinnode</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES__JOINNODE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Forknode</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES__FORKNODE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Action</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES__ACTION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Insert Nodes</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link org.js.model.workflow.impl.InsertNodesContainerImpl <em>Insert Nodes Container</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.js.model.workflow.impl.InsertNodesContainerImpl
-	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getInsertNodesContainer()
-	 * @generated
-	 */
-	int INSERT_NODES_CONTAINER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES_CONTAINER__ID = ConfPackage.ASPECT_INSTANCE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Target Model Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES_CONTAINER__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Insertnodes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES_CONTAINER__INSERTNODES = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Insert Nodes Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSERT_NODES_CONTAINER_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.js.model.workflow.impl.StateImpl <em>State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,7 +250,7 @@ public interface WorkflowPackage extends EPackage {
 	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 5;
+	int STATE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -335,14 +289,14 @@ public interface WorkflowPackage extends EPackage {
 	int STATE_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.js.model.workflow.impl.ConfSequenceImpl <em>Conf Sequence</em>}' class.
+	 * The meta object id for the '{@link org.js.model.workflow.impl.StakeholderTypesImpl <em>Stakeholder Types</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.js.model.workflow.impl.ConfSequenceImpl
-	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getConfSequence()
+	 * @see org.js.model.workflow.impl.StakeholderTypesImpl
+	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStakeholderTypes()
 	 * @generated
 	 */
-	int CONF_SEQUENCE = 6;
+	int STAKEHOLDER_TYPES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -351,7 +305,7 @@ public interface WorkflowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONF_SEQUENCE__ID = ConfPackage.ASPECT_INSTANCE__ID;
+	int STAKEHOLDER_TYPES__ID = ConfPackage.ASPECT_INSTANCE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Target Model Element</b></em>' reference.
@@ -360,25 +314,25 @@ public interface WorkflowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONF_SEQUENCE__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
+	int STAKEHOLDER_TYPES__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Role</b></em>' reference list.
+	 * The feature id for the '<em><b>Stakeholder Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONF_SEQUENCE__ROLE = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
+	int STAKEHOLDER_TYPES__STAKEHOLDER_TYPES = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Conf Sequence</em>' class.
+	 * The number of structural features of the '<em>Stakeholder Types</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONF_SEQUENCE_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
+	int STAKEHOLDER_TYPES_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}' enum.
@@ -388,7 +342,7 @@ public interface WorkflowPackage extends EPackage {
 	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStateEnum()
 	 * @generated
 	 */
-	int STATE_ENUM = 7;
+	int STATE_ENUM = 6;
 
 
 	/**
@@ -434,6 +388,27 @@ public interface WorkflowPackage extends EPackage {
 	EReference getRoleConnector_Roleref();
 
 	/**
+	 * Returns the meta object for class '{@link org.js.model.workflow.EFMContainer <em>EFM Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EFM Container</em>'.
+	 * @see org.js.model.workflow.EFMContainer
+	 * @generated
+	 */
+	EClass getEFMContainer();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.js.model.workflow.EFMContainer#getEfmref <em>Efmref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Efmref</em>'.
+	 * @see org.js.model.workflow.EFMContainer#getEfmref()
+	 * @see #getEFMContainer()
+	 * @generated
+	 */
+	EReference getEFMContainer_Efmref();
+
+	/**
 	 * Returns the meta object for class '{@link org.js.model.workflow.Log <em>Log</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -453,70 +428,6 @@ public interface WorkflowPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLog_Permissions();
-
-	/**
-	 * Returns the meta object for class '{@link org.js.model.workflow.InsertNodes <em>Insert Nodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Insert Nodes</em>'.
-	 * @see org.js.model.workflow.InsertNodes
-	 * @generated
-	 */
-	EClass getInsertNodes();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.js.model.workflow.InsertNodes#getJoinnode <em>Joinnode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Joinnode</em>'.
-	 * @see org.js.model.workflow.InsertNodes#getJoinnode()
-	 * @see #getInsertNodes()
-	 * @generated
-	 */
-	EReference getInsertNodes_Joinnode();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.js.model.workflow.InsertNodes#getForknode <em>Forknode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Forknode</em>'.
-	 * @see org.js.model.workflow.InsertNodes#getForknode()
-	 * @see #getInsertNodes()
-	 * @generated
-	 */
-	EReference getInsertNodes_Forknode();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.js.model.workflow.InsertNodes#getAction <em>Action</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Action</em>'.
-	 * @see org.js.model.workflow.InsertNodes#getAction()
-	 * @see #getInsertNodes()
-	 * @generated
-	 */
-	EReference getInsertNodes_Action();
-
-	/**
-	 * Returns the meta object for class '{@link org.js.model.workflow.InsertNodesContainer <em>Insert Nodes Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Insert Nodes Container</em>'.
-	 * @see org.js.model.workflow.InsertNodesContainer
-	 * @generated
-	 */
-	EClass getInsertNodesContainer();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.js.model.workflow.InsertNodesContainer#getInsertnodes <em>Insertnodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Insertnodes</em>'.
-	 * @see org.js.model.workflow.InsertNodesContainer#getInsertnodes()
-	 * @see #getInsertNodesContainer()
-	 * @generated
-	 */
-	EReference getInsertNodesContainer_Insertnodes();
 
 	/**
 	 * Returns the meta object for class '{@link org.js.model.workflow.State <em>State</em>}'.
@@ -540,25 +451,25 @@ public interface WorkflowPackage extends EPackage {
 	EAttribute getState_State();
 
 	/**
-	 * Returns the meta object for class '{@link org.js.model.workflow.ConfSequence <em>Conf Sequence</em>}'.
+	 * Returns the meta object for class '{@link org.js.model.workflow.StakeholderTypes <em>Stakeholder Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conf Sequence</em>'.
-	 * @see org.js.model.workflow.ConfSequence
+	 * @return the meta object for class '<em>Stakeholder Types</em>'.
+	 * @see org.js.model.workflow.StakeholderTypes
 	 * @generated
 	 */
-	EClass getConfSequence();
+	EClass getStakeholderTypes();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.js.model.workflow.ConfSequence#getRole <em>Role</em>}'.
+	 * Returns the meta object for the reference list '{@link org.js.model.workflow.StakeholderTypes#getStakeholderTypes <em>Stakeholder Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Role</em>'.
-	 * @see org.js.model.workflow.ConfSequence#getRole()
-	 * @see #getConfSequence()
+	 * @return the meta object for the reference list '<em>Stakeholder Types</em>'.
+	 * @see org.js.model.workflow.StakeholderTypes#getStakeholderTypes()
+	 * @see #getStakeholderTypes()
 	 * @generated
 	 */
-	EReference getConfSequence_Role();
+	EReference getStakeholderTypes_StakeholderTypes();
 
 	/**
 	 * Returns the meta object for enum '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}'.
@@ -629,6 +540,24 @@ public interface WorkflowPackage extends EPackage {
 		EReference ROLE_CONNECTOR__ROLEREF = eINSTANCE.getRoleConnector_Roleref();
 
 		/**
+		 * The meta object literal for the '{@link org.js.model.workflow.impl.EFMContainerImpl <em>EFM Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.js.model.workflow.impl.EFMContainerImpl
+		 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getEFMContainer()
+		 * @generated
+		 */
+		EClass EFM_CONTAINER = eINSTANCE.getEFMContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Efmref</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EFM_CONTAINER__EFMREF = eINSTANCE.getEFMContainer_Efmref();
+
+		/**
 		 * The meta object literal for the '{@link org.js.model.workflow.impl.LogImpl <em>Log</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -645,58 +574,6 @@ public interface WorkflowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LOG__PERMISSIONS = eINSTANCE.getLog_Permissions();
-
-		/**
-		 * The meta object literal for the '{@link org.js.model.workflow.impl.InsertNodesImpl <em>Insert Nodes</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.js.model.workflow.impl.InsertNodesImpl
-		 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getInsertNodes()
-		 * @generated
-		 */
-		EClass INSERT_NODES = eINSTANCE.getInsertNodes();
-
-		/**
-		 * The meta object literal for the '<em><b>Joinnode</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSERT_NODES__JOINNODE = eINSTANCE.getInsertNodes_Joinnode();
-
-		/**
-		 * The meta object literal for the '<em><b>Forknode</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSERT_NODES__FORKNODE = eINSTANCE.getInsertNodes_Forknode();
-
-		/**
-		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSERT_NODES__ACTION = eINSTANCE.getInsertNodes_Action();
-
-		/**
-		 * The meta object literal for the '{@link org.js.model.workflow.impl.InsertNodesContainerImpl <em>Insert Nodes Container</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.js.model.workflow.impl.InsertNodesContainerImpl
-		 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getInsertNodesContainer()
-		 * @generated
-		 */
-		EClass INSERT_NODES_CONTAINER = eINSTANCE.getInsertNodesContainer();
-
-		/**
-		 * The meta object literal for the '<em><b>Insertnodes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSERT_NODES_CONTAINER__INSERTNODES = eINSTANCE.getInsertNodesContainer_Insertnodes();
 
 		/**
 		 * The meta object literal for the '{@link org.js.model.workflow.impl.StateImpl <em>State</em>}' class.
@@ -717,22 +594,22 @@ public interface WorkflowPackage extends EPackage {
 		EAttribute STATE__STATE = eINSTANCE.getState_State();
 
 		/**
-		 * The meta object literal for the '{@link org.js.model.workflow.impl.ConfSequenceImpl <em>Conf Sequence</em>}' class.
+		 * The meta object literal for the '{@link org.js.model.workflow.impl.StakeholderTypesImpl <em>Stakeholder Types</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.js.model.workflow.impl.ConfSequenceImpl
-		 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getConfSequence()
+		 * @see org.js.model.workflow.impl.StakeholderTypesImpl
+		 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStakeholderTypes()
 		 * @generated
 		 */
-		EClass CONF_SEQUENCE = eINSTANCE.getConfSequence();
+		EClass STAKEHOLDER_TYPES = eINSTANCE.getStakeholderTypes();
 
 		/**
-		 * The meta object literal for the '<em><b>Role</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Stakeholder Types</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONF_SEQUENCE__ROLE = eINSTANCE.getConfSequence_Role();
+		EReference STAKEHOLDER_TYPES__STAKEHOLDER_TYPES = eINSTANCE.getStakeholderTypes_StakeholderTypes();
 
 		/**
 		 * The meta object literal for the '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}' enum.

@@ -82,23 +82,17 @@ public class WorkflowSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case WorkflowPackage.EFM_CONTAINER: {
+				EFMContainer efmContainer = (EFMContainer)theEObject;
+				T result = caseEFMContainer(efmContainer);
+				if (result == null) result = caseAspectInstance(efmContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case WorkflowPackage.LOG: {
 				Log log = (Log)theEObject;
 				T result = caseLog(log);
 				if (result == null) result = caseAspectInstance(log);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case WorkflowPackage.INSERT_NODES: {
-				InsertNodes insertNodes = (InsertNodes)theEObject;
-				T result = caseInsertNodes(insertNodes);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case WorkflowPackage.INSERT_NODES_CONTAINER: {
-				InsertNodesContainer insertNodesContainer = (InsertNodesContainer)theEObject;
-				T result = caseInsertNodesContainer(insertNodesContainer);
-				if (result == null) result = caseAspectInstance(insertNodesContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -109,10 +103,10 @@ public class WorkflowSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.CONF_SEQUENCE: {
-				ConfSequence confSequence = (ConfSequence)theEObject;
-				T result = caseConfSequence(confSequence);
-				if (result == null) result = caseAspectInstance(confSequence);
+			case WorkflowPackage.STAKEHOLDER_TYPES: {
+				StakeholderTypes stakeholderTypes = (StakeholderTypes)theEObject;
+				T result = caseStakeholderTypes(stakeholderTypes);
+				if (result == null) result = caseAspectInstance(stakeholderTypes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,6 +145,21 @@ public class WorkflowSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EFM Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EFM Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEFMContainer(EFMContainer object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Log</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -162,36 +171,6 @@ public class WorkflowSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLog(Log object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Insert Nodes</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Insert Nodes</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInsertNodes(InsertNodes object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Insert Nodes Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Insert Nodes Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInsertNodesContainer(InsertNodesContainer object) {
 		return null;
 	}
 
@@ -211,17 +190,17 @@ public class WorkflowSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conf Sequence</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Stakeholder Types</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conf Sequence</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Stakeholder Types</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConfSequence(ConfSequence object) {
+	public T caseStakeholderTypes(StakeholderTypes object) {
 		return null;
 	}
 

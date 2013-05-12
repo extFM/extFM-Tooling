@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+
+
 import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
 
 import org.js.model.rbac.Role;
