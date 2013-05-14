@@ -1,7 +1,7 @@
 @SuppressWarnings(tokenOverlapping)
 SYNTAXDEF expressionText
 FOR <http://www.tudresden.de/extexpression>
-START ExpressionModel
+START FeatureModel2
 
 OPTIONS {
 	reloadGeneratorModel = "true";
@@ -19,8 +19,11 @@ OPTIONS {
 }
 
 TOKENS {
-	DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
-	DEFINE DOT $('.')$;
+	//DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
+	//DEFINE DOT $('.')$;
+	
+	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
+	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 	
 	DEFINE ADDITION $('+')$;
 	DEFINE SUBTRACTION $('-')$;
@@ -38,97 +41,114 @@ TOKENS {
 	DEFINE EXCLUDES $'excludes'$ ;
 }
 
+TOKENSTYLES{
+		"EQUAL" COLOR #800055, BOLD;
+		"UNEQUAL" COLOR #800055, BOLD;
+		"GREATERTHAN" COLOR #800055, BOLD;
+		"GREATERTHANOREQUAL" COLOR #800055, BOLD;
+		"LESSTHAN" COLOR #800055, BOLD;
+		"LESSTHANOREQUAL" COLOR #800055, BOLD;
 
-TOKENSTYLES {
-	//"+" COLOR #000000, BOLD;
-	//"-" COLOR #000000, BOLD;
-	//"*" COLOR #000000, BOLD;
-	//"/" COLOR #000000, BOLD;
-	
-	//"==" COLOR #000000, BOLD;
-	//"!=" COLOR #000000, BOLD;
-	//"<" COLOR #000000, BOLD;
-	//"<=" COLOR #000000, BOLD;
-	//">" COLOR #000000, BOLD;
-	//">=" COLOR #000000, BOLD;
+		"REQUIRES" COLOR #800055, BOLD;
+		"EXCLUDES" COLOR #800055, BOLD;
 }
 
 RULES {
+								//FEATURE MODEL
+	FeatureModel2 ::= "Feature" #1 "Model" #1 name['"','"'] !0
+					domains* !0 root !0 constraints* !0; 
+	
+	Feature2 ::= "feature" #1 name['"','"']  #1 "<" id[TEXT] ">"  
+				 ((!0 #4 (attributes))*)? 
+				 ((!0 #4 (groups))*)?; 
+	
+	Group2 ::=  "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[TEXT] ".." maxCardinality[TEXT] ")" 
+						#1 "{" !0 childFeatures+ !0 "}" !1;
+						
+	Attribute2 ::= "attribute" name[TEXT] #1 "[" #1 domain[] #1 "]"
+					(#1 "=" #1 (value[TEXT]))?;
+	
+	DiscreteDomain2 ::= "domain"  #1 "<" id[TEXT] ">" "[" values[TEXT] ("," #1 values[TEXT])* "]";
+	
+	ContinuousDomain2 ::= "domain" #1 "<" id[TEXT] ">" "[" intervals ("," #1 intervals)* "]";
+	
+	Interval2 ::= lowerBound[TEXT] ".." upperBound[TEXT];		
+	
+								//CONSTRAINTS MODEL
+	Constraint2 ::= "constraint" #1 "<" id[TEXT] ">" #1 expression ";" !0;
 
-	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0
-	 					  "Feature" #1 "Model" #1 (featureModels['[',']'])+ !0
-	  				       expressions*;
+	@Operator(type="primitive", weight="4", superclass="Expression2")
+	FeatureReference2 ::= feature[];
+
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression2")
+	GreaterThan ::= operand1 #1 _[GREATERTHAN] #1 operand2;                   
 	
-    //-------------------  Expressions from feature model  ---------------------------
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression2")
+	GreaterThanOrEqual ::= operand1 #1 _[GREATERTHANOREQUAL] #1 operand2;     
 	
-					@Operator(type="primitive", weight="9", superclass="Expression") 
-					NestedExpression ::= "(" operand ")";
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression2")
+	LessThan ::= operand1 #1 _[LESSTHAN] #1 operand2;                         
+				    
+	@Operator(type="binary_left_associative", weight="3", superclass="Expression2")
+	LessThanOrEqual ::= operand1 #1 _[LESSTHANOREQUAL] #1 operand2;	
 	
-					@Operator(type="primitive", weight="9", superclass="Expression")
-					FeatureReference ::= feature[];
+	@Operator(type="binary_left_associative", weight="2", superclass="Expression2")
+	Equal ::= operand1 #1 _[EQUAL] #1 operand2;
 	
-	@Operator(type="unary_prefix", weight="8", superclass="Expression") 
-	NotExpression ::= "!" operand;
-							
-	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
-	AndExpression ::= operand1 #1 "&&" #1 operand2;
-	
-	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
-	OrExpression ::= operand1 #1 "||" #1 operand2;
-	
-	//-------------------- cross-tree-relationships ------------------------------
-	
-	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	@Operator(type="binary_left_associative", weight="2", superclass="Expression2")
+	Unequal ::= operand1 #1 _[UNEQUAL] #1 operand2;
+
+	@Operator(type="binary_left_associative", weight="1", superclass="Expression2")
 	Requires::= operand1 #1 _[REQUIRES] #1 operand2;
 	
-	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
+	@Operator(type="binary_left_associative", weight="1", superclass="Expression2")
 	Excludes ::= operand1 #1 _[EXCLUDES] #1 operand2;
+	}
 	
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+//	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0  
+	 					// "Feature" #1 "Model" #1 (featureModels['[',']'])+ !0
+//	  				       expressions*;	       
+	//--------------------------------------------------------------------------------	       
+    //-------------------  Expressions from feature model  ---------------------------
+//					@Operator(type="primitive", weight="9", superclass="Expression") 
+//					NestedExpression ::= "(" operand ")";
+	
+//	@Operator(type="unary_prefix", weight="8", superclass="Expression") 
+//	NotExpression ::= "!" operand;
+							
+//	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
+//	AndExpression ::= operand1 #1 "&&" #1 operand2;
+	
+//	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
+//	OrExpression ::= operand1 #1 "||" #1 operand2;
+	
+
 	//-------------------- feature model references------------------------------
 					
 					//feature.attribute		
-					@Operator(type="primitive", weight="9", superclass="Expression")				  
-					FeatureAttributeReference ::= feature[] _[DOT] attribute[];  		
-					
-					//feature.attribute := value
-					@Operator(type="primitive", weight="9", superclass="Expression") 				  
-					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];  //original
-					FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":=" #1 value['"','"']; 
+				//	@Operator(type="primitive", weight="9", superclass="Expression")				  
+				//	FeatureAttributeReference ::= feature[] _[DOT] attribute[];  		
 	
+					//feature.attribute := value
+					//@Operator(type="primitive", weight="9", superclass="Expression") 				  
+								//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];  //original
+					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":=" #1 value['"','"']; 
+
 	// -------------------- mathematical expressions ------------------------------
 	
-	@Operator(type="binary_left_associative", weight="6", superclass="Expression")
-	Addition ::= operand1 #1 _[ADDITION] #1 operand2;
+	//@Operator(type="binary_left_associative", weight="6", superclass="Expression")
+	//Addition ::= operand1 #1 _[ADDITION] #1 operand2;
 	
-	@Operator(type="binary_left_associative", weight="6", superclass="Expression")
-	Subtraction ::= operand1 #1 _[SUBTRACTION] #1 operand2;
+	//@Operator(type="binary_left_associative", weight="6", superclass="Expression")
+	//Subtraction ::= operand1 #1 _[SUBTRACTION] #1 operand2;
 	
-	@Operator(type="binary_left_associative", weight="7", superclass="Expression")
-	Multiplication ::= operand1 #1 _[MULTIPLICATION] #1 operand2;
+	//@Operator(type="binary_left_associative", weight="7", superclass="Expression")
+	//Multiplication ::= operand1 #1 _[MULTIPLICATION] #1 operand2;
 	
-	@Operator(type="binary_left_associative", weight="7", superclass="Expression")
-	Division ::= operand1 #1 _[DIVISION] #1 operand2;
-	
-	//-------------------  comparison expressions --------------------------------
-				
-	@Operator(type="binary_left_associative", weight="4", superclass="Expression")
-	Equal ::= operand1 #1 _[EQUAL] #1 operand2;
-	
-	@Operator(type="binary_left_associative", weight="4", superclass="Expression")
-	Unequal ::= operand1 #1 _[UNEQUAL] #1 operand2;
-
-	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
-	GreaterThan ::= operand1 #1 _[GREATERTHAN] #1 operand2;                   //>
-	
-	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
-	GreaterThanOrEqual ::= operand1 #1 _[GREATERTHANOREQUAL] #1 operand2;     //>=
-	
-	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
-	LessThan ::= operand1 #1 _[LESSTHAN] #1 operand2;                         //<
-				    
-	@Operator(type="binary_left_associative", weight="5", superclass="Expression")
-	LessThanOrEqual ::= operand1 #1 _[LESSTHANOREQUAL] #1 operand2;	          //<=
-					
-	//------------------------expressions ----------------------------------------
+	//@Operator(type="binary_left_associative", weight="7", superclass="Expression")
+	//Division ::= operand1 #1 _[DIVISION] #1 operand2;				
 	//-----------------------------------------------------------------------------
-}
+//}

@@ -1,13 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expression" nsURI="http://www.tudresden.de/extexpression" nsPrefix="expression">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureModel2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="#//Feature2"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domains" upperBound="-1"
+        eType="#//Domain2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint2" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature2" eSuperTypes="#//Identifiable2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//Group2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//Attribute2" containment="true" eOpposite="#//Attribute2/feature"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Group2" eSuperTypes="#//Identifiable2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childFeatures" lowerBound="1"
+        upperBound="-1" eType="#//Feature2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCardinality" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCardinality" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Identifiable2" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="#//Feature2" eOpposite="#//Feature2/attributes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
+        eType="#//Domain2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Domain2" abstract="true" eSuperTypes="#//Identifiable2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DiscreteDomain2" eSuperTypes="#//Domain2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContinuousDomain2" eSuperTypes="#//Domain2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intervals" lowerBound="1"
+        upperBound="-1" eType="#//Interval2" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interval2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint2" eSuperTypes="#//Identifiable2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+        eType="#//Expression2" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression2" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression2" abstract="true" eSuperTypes="#//Expression2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
+        eType="#//Expression2" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression2" abstract="true" eSuperTypes="#//Expression2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand1" lowerBound="1"
+        eType="#//Expression2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand2" lowerBound="1"
+        eType="#//Expression2" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicExpression2" abstract="true" eSuperTypes="#//Expression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureReference2" eSuperTypes="#//AtomicExpression2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="#//Feature2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Requires" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Excludes" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Unequal" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanOrEqual" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LessThan" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LessThanOrEqual" eSuperTypes="#//BinaryExpression2"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionModel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="featureModels" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Expression"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureModels" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureAttributeReference" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
@@ -26,12 +108,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Unequal" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanOrEqual" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LessThan" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LessThanOrEqual" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Requires" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Excludes" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureReference" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression"/>
 </ecore:EPackage>

@@ -8,10 +8,69 @@
   <foreignModel>Expression.ecore</foreignModel>
   <genPackages prefix="expression" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="Expression.ecore#/">
+    <genClasses ecoreClass="Expression.ecore#//FeatureModel2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//FeatureModel2/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureModel2/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureModel2/domains"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureModel2/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Feature2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Feature2/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Feature2/groups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Feature2/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Group2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Group2/childFeatures"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Group2/minCardinality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Group2/maxCardinality"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Expression.ecore#//Identifiable2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Identifiable2/id"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Attribute2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Attribute2/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Expression.ecore#//Attribute2/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Attribute2/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//Attribute2/domain"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Expression.ecore#//Domain2"/>
+    <genClasses ecoreClass="Expression.ecore#//DiscreteDomain2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//DiscreteDomain2/values"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//ContinuousDomain2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ContinuousDomain2/intervals"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Interval2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Interval2/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Interval2/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Constraint2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Constraint2/expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Expression.ecore#//Expression2"/>
+    <genClasses image="false" ecoreClass="Expression.ecore#//UnaryExpression2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//UnaryExpression2/operand"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Expression.ecore#//BinaryExpression2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//BinaryExpression2/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//BinaryExpression2/operand2"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Expression.ecore#//AtomicExpression2"/>
+    <genClasses ecoreClass="Expression.ecore#//FeatureReference2">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureReference2/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="Expression.ecore#//Requires"/>
+    <genClasses ecoreClass="Expression.ecore#//Excludes"/>
+    <genClasses ecoreClass="Expression.ecore#//Equal"/>
+    <genClasses ecoreClass="Expression.ecore#//Unequal"/>
+    <genClasses ecoreClass="Expression.ecore#//GreaterThan"/>
+    <genClasses ecoreClass="Expression.ecore#//GreaterThanOrEqual"/>
+    <genClasses ecoreClass="Expression.ecore#//LessThan"/>
+    <genClasses ecoreClass="Expression.ecore#//LessThanOrEqual"/>
     <genClasses ecoreClass="Expression.ecore#//ExpressionModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//ExpressionModel/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/featureModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/expressions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//ExpressionModel/featureModels"/>
     </genClasses>
     <genClasses ecoreClass="Expression.ecore#//FeatureAttributeReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureAttributeReference/feature"/>
@@ -26,13 +85,6 @@
     <genClasses ecoreClass="Expression.ecore#//Subtraction"/>
     <genClasses ecoreClass="Expression.ecore#//Multiplication"/>
     <genClasses ecoreClass="Expression.ecore#//Division"/>
-    <genClasses ecoreClass="Expression.ecore#//Equal"/>
-    <genClasses ecoreClass="Expression.ecore#//Unequal"/>
-    <genClasses ecoreClass="Expression.ecore#//GreaterThan"/>
-    <genClasses ecoreClass="Expression.ecore#//GreaterThanOrEqual"/>
-    <genClasses ecoreClass="Expression.ecore#//LessThan"/>
-    <genClasses ecoreClass="Expression.ecore#//LessThanOrEqual"/>
-    <genClasses ecoreClass="Expression.ecore#//Requires"/>
-    <genClasses ecoreClass="Expression.ecore#//Excludes"/>
+    <genClasses ecoreClass="Expression.ecore#//FeatureReference"/>
   </genPackages>
 </genmodel:GenModel>
