@@ -8,6 +8,11 @@
   <foreignModel>Expression.ecore</foreignModel>
   <genPackages prefix="expression" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="Expression.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Expression.ecore#//SelectedState2">
+      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//SelectedState2/unbound"/>
+      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//SelectedState2/selected"/>
+      <genEnumLiterals ecoreEnumLiteral="Expression.ecore#//SelectedState2/deselected"/>
+    </genEnums>
     <genClasses ecoreClass="Expression.ecore#//FeatureModel2">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//FeatureModel2/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//FeatureModel2/root"/>
@@ -18,6 +23,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Feature2/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Feature2/groups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Feature2/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Feature2/selected"/>
     </genClasses>
     <genClasses ecoreClass="Expression.ecore#//Group2">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Expression.ecore#//Group2/childFeatures"/>

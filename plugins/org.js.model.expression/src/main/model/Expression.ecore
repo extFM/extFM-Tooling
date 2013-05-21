@@ -17,6 +17,13 @@
         eType="#//Group2" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute2" containment="true" eOpposite="#//Attribute2/feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selected" lowerBound="1"
+        eType="#//SelectedState2" defaultValueLiteral="undetermined"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SelectedState2">
+    <eLiterals name="unbound"/>
+    <eLiterals name="selected" value="1" literal="selected"/>
+    <eLiterals name="deselected" value="2" literal="deselected"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Group2" eSuperTypes="#//Identifiable2">
     <eStructuralFeatures xsi:type="ecore:EReference" name="childFeatures" lowerBound="1"

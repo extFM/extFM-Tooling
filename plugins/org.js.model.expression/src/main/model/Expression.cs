@@ -25,17 +25,26 @@ TOKENS {
 	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 	
-	DEFINE ADDITION $('+')$;
-	DEFINE SUBTRACTION $('-')$;
-	DEFINE MULTIPLICATION $('*')$;
-	DEFINE DIVISION $('/')$;
+	//DEFINE ADDITION $('+')$;
+	//DEFINE SUBTRACTION $('-')$;
+	//DEFINE MULTIPLICATION $('*')$;
+	//DEFINE DIVISION $('/')$;
 	
-	DEFINE EQUAL $('==')$;
-	DEFINE UNEQUAL $('!=')$; 
-	DEFINE GREATERTHAN $('>')$;         
-	DEFINE GREATERTHANOREQUAL $('>=')$; 
-	DEFINE LESSTHAN $'<'$;                
-	DEFINE LESSTHANOREQUAL $('<=')$;         
+	//DEFINE EQUAL $('==')$;
+	//DEFINE UNEQUAL $('!=')$; 
+	//DEFINE GREATERTHAN $('>')$;         
+	//DEFINE GREATERTHANOREQUAL $('>=')$; 
+	//DEFINE LESSTHAN $'<'$;                
+	//DEFINE LESSTHANOREQUAL $('<=')$;  
+	
+	DEFINE EQUAL $'equal'$;
+	DEFINE UNEQUAL $'unequal'$; 
+	DEFINE GREATERTHAN $'greaterThan'$;         
+	//DEFINE GREATERTHANOREQUAL $'greaterThanOrEqual$;
+	DEFINE GREATERTHANOREQUAL $('>=')$;
+	DEFINE LESSTHAN $'lessThan'$;                
+	DEFINE LESSTHANOREQUAL $'lessThanOrEqual'$;  
+	       
 	
 	DEFINE REQUIRES $'requires'$;
 	DEFINE EXCLUDES $'excludes'$ ;
@@ -55,10 +64,11 @@ TOKENSTYLES{
 
 RULES {
 								//FEATURE MODEL
-	FeatureModel2 ::= "Feature" #1 "Model" #1 name['"','"'] !0
+	FeatureModel2 ::= "feature" #1 "model" #1 name['"','"'] !0
 					domains* !0 root !0 constraints* !0; 
 	
-	Feature2 ::= "feature" #1 name['"','"']  #1 "<" id[TEXT] ">"  
+	Feature2 ::= selected[selected : "selected", deselected : "deselected", unbound : ""] 
+				"feature" #1 name['"','"']  #1 "<" id[TEXT] ">"  
 				 ((!0 #4 (attributes))*)? 
 				 ((!0 #4 (groups))*)?; 
 	
