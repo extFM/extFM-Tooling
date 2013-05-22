@@ -111,9 +111,5 @@
         eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Subtraction" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//BinaryExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureReference" eSuperTypes="../../../../org.js.model.feature/src/main/model/feature.ecore#//AtomicExpression"/>
 </ecore:EPackage>

@@ -24,12 +24,7 @@ TOKENS {
 	
 	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
-	
-	//DEFINE ADDITION $('+')$;
-	//DEFINE SUBTRACTION $('-')$;
-	//DEFINE MULTIPLICATION $('*')$;
-	//DEFINE DIVISION $('/')$;
-	
+
 	//DEFINE EQUAL $('==')$;
 	//DEFINE UNEQUAL $('!=')$; 
 	//DEFINE GREATERTHAN $('>')$;         
@@ -146,19 +141,4 @@ RULES {
 					//@Operator(type="primitive", weight="9", superclass="Expression") 				  
 								//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];  //original
 					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":=" #1 value['"','"']; 
-
-	// -------------------- mathematical expressions ------------------------------
-	
-	//@Operator(type="binary_left_associative", weight="6", superclass="Expression")
-	//Addition ::= operand1 #1 _[ADDITION] #1 operand2;
-	
-	//@Operator(type="binary_left_associative", weight="6", superclass="Expression")
-	//Subtraction ::= operand1 #1 _[SUBTRACTION] #1 operand2;
-	
-	//@Operator(type="binary_left_associative", weight="7", superclass="Expression")
-	//Multiplication ::= operand1 #1 _[MULTIPLICATION] #1 operand2;
-	
-	//@Operator(type="binary_left_associative", weight="7", superclass="Expression")
-	//Division ::= operand1 #1 _[DIVISION] #1 operand2;				
-	//-----------------------------------------------------------------------------
 //}
