@@ -216,26 +216,6 @@ public class ExpressionModelItemProvider
       newChildDescriptors.add
          (createChildParameter
             (expressionPackage.Literals.EXPRESSION_MODEL__EXPRESSIONS,
-             expressionFactory.eINSTANCE.createAddition()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (expressionPackage.Literals.EXPRESSION_MODEL__EXPRESSIONS,
-             expressionFactory.eINSTANCE.createSubtraction()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (expressionPackage.Literals.EXPRESSION_MODEL__EXPRESSIONS,
-             expressionFactory.eINSTANCE.createMultiplication()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (expressionPackage.Literals.EXPRESSION_MODEL__EXPRESSIONS,
-             expressionFactory.eINSTANCE.createDivision()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (expressionPackage.Literals.EXPRESSION_MODEL__EXPRESSIONS,
              expressionFactory.eINSTANCE.createFeatureReference()));
 
       newChildDescriptors.add

@@ -63,6 +63,7 @@ public class Attribute2ItemProvider
          addNamePropertyDescriptor(object);
          addValuePropertyDescriptor(object);
          addDomainPropertyDescriptor(object);
+         addDeselectedValuesPropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
    }
@@ -134,6 +135,28 @@ public class Attribute2ItemProvider
    }
 
    /**
+    * This adds a property descriptor for the Deselected Values feature.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected void addDeselectedValuesPropertyDescriptor(Object object) {
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_Attribute2_deselectedValues_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_Attribute2_deselectedValues_feature", "_UI_Attribute2_type"),
+             expressionPackage.Literals.ATTRIBUTE2__DESELECTED_VALUES,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+             null,
+             null));
+   }
+
+   /**
     * This returns Attribute2.gif.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
@@ -172,6 +195,7 @@ public class Attribute2ItemProvider
       switch (notification.getFeatureID(Attribute2.class)) {
          case expressionPackage.ATTRIBUTE2__NAME:
          case expressionPackage.ATTRIBUTE2__VALUE:
+         case expressionPackage.ATTRIBUTE2__DESELECTED_VALUES:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
       }

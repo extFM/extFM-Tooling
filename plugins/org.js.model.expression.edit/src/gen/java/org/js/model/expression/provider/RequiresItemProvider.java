@@ -9,8 +9,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -19,11 +17,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.js.model.expression.expressionPackage;
-import org.js.model.expression.expressionFactory;
-
-import org.js.model.feature.FeaturePackage;
-
-import org.js.model.feature.provider.BinaryExpressionItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.js.model.expression.Requires} object.
@@ -32,8 +25,7 @@ import org.js.model.feature.provider.BinaryExpressionItemProvider;
  * @generated
  */
 public class RequiresItemProvider
-   extends 
-BinaryExpression2ItemProvider
+   extends BinaryExpression2ItemProvider
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,

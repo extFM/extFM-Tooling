@@ -38,6 +38,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Expression.ecore#//Attribute2/feature"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Attribute2/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Expression.ecore#//Attribute2/domain"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Expression.ecore#//Attribute2/deselectedValues"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Expression.ecore#//Domain2"/>
     <genClasses ecoreClass="Expression.ecore#//DiscreteDomain2">

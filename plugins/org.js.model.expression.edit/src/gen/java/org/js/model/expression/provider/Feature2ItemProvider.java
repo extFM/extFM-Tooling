@@ -61,6 +61,7 @@ public class Feature2ItemProvider
          super.getPropertyDescriptors(object);
 
          addNamePropertyDescriptor(object);
+         addSelectedPropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
    }
@@ -79,6 +80,28 @@ public class Feature2ItemProvider
              getString("_UI_Feature2_name_feature"),
              getString("_UI_PropertyDescriptor_description", "_UI_Feature2_name_feature", "_UI_Feature2_type"),
              expressionPackage.Literals.FEATURE2__NAME,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+             null,
+             null));
+   }
+
+   /**
+    * This adds a property descriptor for the Selected feature.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected void addSelectedPropertyDescriptor(Object object) {
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_Feature2_selected_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_Feature2_selected_feature", "_UI_Feature2_type"),
+             expressionPackage.Literals.FEATURE2__SELECTED,
              true,
              false,
              false,
@@ -156,6 +179,7 @@ public class Feature2ItemProvider
 
       switch (notification.getFeatureID(Feature2.class)) {
          case expressionPackage.FEATURE2__NAME:
+         case expressionPackage.FEATURE2__SELECTED:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
          case expressionPackage.FEATURE2__GROUPS:

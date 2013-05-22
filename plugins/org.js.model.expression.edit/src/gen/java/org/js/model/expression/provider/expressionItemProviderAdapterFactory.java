@@ -279,187 +279,49 @@ public class expressionItemProviderAdapterFactory extends expressionAdapterFacto
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureReference} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.Requires} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected FeatureReferenceItemProvider featureReferenceItemProvider;
+   protected RequiresItemProvider requiresItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.expression.FeatureReference}.
+    * This creates an adapter for a {@link org.js.model.expression.Requires}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createFeatureReferenceAdapter() {
-      if (featureReferenceItemProvider == null) {
-         featureReferenceItemProvider = new FeatureReferenceItemProvider(this);
+   public Adapter createRequiresAdapter() {
+      if (requiresItemProvider == null) {
+         requiresItemProvider = new RequiresItemProvider(this);
       }
 
-      return featureReferenceItemProvider;
+      return requiresItemProvider;
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.ExpressionModel} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.Excludes} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected ExpressionModelItemProvider expressionModelItemProvider;
+   protected ExcludesItemProvider excludesItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.expression.ExpressionModel}.
+    * This creates an adapter for a {@link org.js.model.expression.Excludes}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createExpressionModelAdapter() {
-      if (expressionModelItemProvider == null) {
-         expressionModelItemProvider = new ExpressionModelItemProvider(this);
+   public Adapter createExcludesAdapter() {
+      if (excludesItemProvider == null) {
+         excludesItemProvider = new ExcludesItemProvider(this);
       }
 
-      return expressionModelItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureAttributeReference} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected FeatureAttributeReferenceItemProvider featureAttributeReferenceItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.expression.FeatureAttributeReference}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createFeatureAttributeReferenceAdapter() {
-      if (featureAttributeReferenceItemProvider == null) {
-         featureAttributeReferenceItemProvider = new FeatureAttributeReferenceItemProvider(this);
-      }
-
-      return featureAttributeReferenceItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureAttributeValue} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected FeatureAttributeValueItemProvider featureAttributeValueItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.expression.FeatureAttributeValue}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createFeatureAttributeValueAdapter() {
-      if (featureAttributeValueItemProvider == null) {
-         featureAttributeValueItemProvider = new FeatureAttributeValueItemProvider(this);
-      }
-
-      return featureAttributeValueItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.Addition} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected AdditionItemProvider additionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.expression.Addition}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createAdditionAdapter() {
-      if (additionItemProvider == null) {
-         additionItemProvider = new AdditionItemProvider(this);
-      }
-
-      return additionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.Subtraction} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected SubtractionItemProvider subtractionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.expression.Subtraction}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createSubtractionAdapter() {
-      if (subtractionItemProvider == null) {
-         subtractionItemProvider = new SubtractionItemProvider(this);
-      }
-
-      return subtractionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.Multiplication} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected MultiplicationItemProvider multiplicationItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.expression.Multiplication}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createMultiplicationAdapter() {
-      if (multiplicationItemProvider == null) {
-         multiplicationItemProvider = new MultiplicationItemProvider(this);
-      }
-
-      return multiplicationItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.Division} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected DivisionItemProvider divisionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.expression.Division}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createDivisionAdapter() {
-      if (divisionItemProvider == null) {
-         divisionItemProvider = new DivisionItemProvider(this);
-      }
-
-      return divisionItemProvider;
+      return excludesItemProvider;
    }
 
    /**
@@ -601,49 +463,95 @@ public class expressionItemProviderAdapterFactory extends expressionAdapterFacto
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.Requires} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.ExpressionModel} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected RequiresItemProvider requiresItemProvider;
+   protected ExpressionModelItemProvider expressionModelItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.expression.Requires}.
+    * This creates an adapter for a {@link org.js.model.expression.ExpressionModel}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createRequiresAdapter() {
-      if (requiresItemProvider == null) {
-         requiresItemProvider = new RequiresItemProvider(this);
+   public Adapter createExpressionModelAdapter() {
+      if (expressionModelItemProvider == null) {
+         expressionModelItemProvider = new ExpressionModelItemProvider(this);
       }
 
-      return requiresItemProvider;
+      return expressionModelItemProvider;
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.expression.Excludes} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureAttributeReference} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected ExcludesItemProvider excludesItemProvider;
+   protected FeatureAttributeReferenceItemProvider featureAttributeReferenceItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.expression.Excludes}.
+    * This creates an adapter for a {@link org.js.model.expression.FeatureAttributeReference}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createExcludesAdapter() {
-      if (excludesItemProvider == null) {
-         excludesItemProvider = new ExcludesItemProvider(this);
+   public Adapter createFeatureAttributeReferenceAdapter() {
+      if (featureAttributeReferenceItemProvider == null) {
+         featureAttributeReferenceItemProvider = new FeatureAttributeReferenceItemProvider(this);
       }
 
-      return excludesItemProvider;
+      return featureAttributeReferenceItemProvider;
+   }
+
+   /**
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureAttributeValue} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected FeatureAttributeValueItemProvider featureAttributeValueItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.expression.FeatureAttributeValue}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createFeatureAttributeValueAdapter() {
+      if (featureAttributeValueItemProvider == null) {
+         featureAttributeValueItemProvider = new FeatureAttributeValueItemProvider(this);
+      }
+
+      return featureAttributeValueItemProvider;
+   }
+
+   /**
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureReference} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected FeatureReferenceItemProvider featureReferenceItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.expression.FeatureReference}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createFeatureReferenceAdapter() {
+      if (featureReferenceItemProvider == null) {
+         featureReferenceItemProvider = new FeatureReferenceItemProvider(this);
+      }
+
+      return featureReferenceItemProvider;
    }
 
    /**
@@ -765,10 +673,6 @@ public class expressionItemProviderAdapterFactory extends expressionAdapterFacto
       if (expressionModelItemProvider != null) expressionModelItemProvider.dispose();
       if (featureAttributeReferenceItemProvider != null) featureAttributeReferenceItemProvider.dispose();
       if (featureAttributeValueItemProvider != null) featureAttributeValueItemProvider.dispose();
-      if (additionItemProvider != null) additionItemProvider.dispose();
-      if (subtractionItemProvider != null) subtractionItemProvider.dispose();
-      if (multiplicationItemProvider != null) multiplicationItemProvider.dispose();
-      if (divisionItemProvider != null) divisionItemProvider.dispose();
       if (featureReferenceItemProvider != null) featureReferenceItemProvider.dispose();
    }
 

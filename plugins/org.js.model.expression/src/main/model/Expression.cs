@@ -71,7 +71,9 @@ RULES {
 						#1 "{" !0 childFeatures+ !0 "}" !1;
 						
 	Attribute2 ::= "attribute" name[TEXT] #1 "[" #1 domain[] #1 "]"
-					(#1 "=" #1 (value[TEXT]))?;
+					//(#1 "=" #1 (value[TEXT]))?;
+					(#1 "selected value =" #1 (value[TEXT]))?
+					(#1 "deselected values =" #1 "{" deselectedValues[TEXT] ("," deselectedValues[TEXT])* "}")?;
 	
 	DiscreteDomain2 ::= "domain"  #1 "<" id[TEXT] ">" "[" values[TEXT] ("," #1 values[TEXT])* "]";
 	
