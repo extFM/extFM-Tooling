@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.js.graph.transformation/src/gen/java" editDirectory="/org.js.graph.transformation.edit/src/gen/java"
+    editorDirectory="/org.js.graph.transformation.editor/src/gen/java" modelPluginID="org.js.graph.transformation"
+    forceOverwrite="true" modelName="GraphTransformation" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/org.js.graph.transformation.tests/src/gen/java" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="7.0" copyrightFields="false" usedGenPackages="../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>graphTransformation.ecore</foreignModel>
+  <genPackages prefix="Transformation" basePackage="org.js.graph" disposableProviderFactory="true"
+      ecorePackage="graphTransformation.ecore#/">
+    <genClasses ecoreClass="graphTransformation.ecore#//GraphTransformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//GraphTransformation/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//Rule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Rule/leftside"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Rule/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Rule/applicationConditions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Rule/operations"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//LeftSide">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//LeftSide/nodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//LeftSide/edges"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//Roles">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Roles/existingRoles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Roles/arrivingRole"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//ApplicationConditions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//ApplicationConditions/conditions"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//Operations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Operations/changePrimitives"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="graphTransformation.ecore#//Node">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Node/in"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Node/out"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//Edge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Edge/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Edge/target"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//ExistingRole"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//ArrivingRole"/>
+    <genClasses image="false" ecoreClass="graphTransformation.ecore#//Condition"/>
+    <genClasses image="false" ecoreClass="graphTransformation.ecore#//ChangePrimitive"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//Initial"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//ActivityFinal"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//FlowFinal"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//Fork"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//SpecializationAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//SpecializationAction/variableRole"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//IdleAction"/>
+    <genClasses image="false" ecoreClass="graphTransformation.ecore#//VariableRole">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//VariableRole/action"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//InheritsFrom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//InheritsFrom/parent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//InheritsFrom/child"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//BelongsTo">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//BelongsTo/leader"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//BelongsTo/member"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//RemoveNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//RemoveNode/node"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//RemoveEdge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//RemoveEdge/edge"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//AddEdge">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//AddEdge/edge"/>
+    </genClasses>
+    <genClasses ecoreClass="graphTransformation.ecore#//AddNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//AddNode/node"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="graphTransformation.ecore#//Nameable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphTransformation.ecore#//Nameable/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

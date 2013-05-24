@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated graphTransformation -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.js.graph.transformation.presentation.TransformationModelWizardID"
+            name="%_UI_TransformationModelWizard_label"
+            class="org.js.graph.transformation.presentation.TransformationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TransformationModelFile.gif">
+         <description>%_UI_TransformationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated graphTransformation -->
+      <editor
+            id="org.js.graph.transformation.presentation.TransformationEditorID"
+            name="%_UI_TransformationEditor_label"
+            icon="icons/full/obj16/TransformationModelFile.gif"
+            extensions="transformation"
+            class="org.js.graph.transformation.presentation.TransformationEditor"
+            contributorClass="org.js.graph.transformation.presentation.TransformationActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
