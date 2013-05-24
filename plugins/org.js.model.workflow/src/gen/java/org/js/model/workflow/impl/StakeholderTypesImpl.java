@@ -3,7 +3,6 @@
 package org.js.model.workflow.impl;
 
 import java.util.Collection;
-import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -12,6 +11,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 
 
+import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
 import org.js.model.rbac.Role;
 
 import org.js.model.workflow.StakeholderTypes;

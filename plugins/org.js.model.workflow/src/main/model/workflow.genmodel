@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.js.model.workflow/src/gen/java" editorDirectory="/org.js.model.workflow.editor/src/gen/java"
     modelPluginID="org.js.model.workflow" forceOverwrite="true" modelName="Workflow"
     testsDirectory="/org.js.model.workflow.tests/src/gen/java" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="7.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.genmodel#//conf ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac">
+    complianceLevel="7.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.genmodel#//conf ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature ../../../../org.js.graph.transformation/src/main/model/graphTransformation.genmodel#//transformation ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac">
   <foreignModel>workflow.ecore</foreignModel>
   <genPackages prefix="Workflow" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="workflow.ecore#/">
@@ -30,6 +30,9 @@
     </genClasses>
     <genClasses ecoreClass="workflow.ecore#//StakeholderTypes">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//StakeholderTypes/stakeholderTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//GraphTransConnector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//GraphTransConnector/graphTransref"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -12,12 +12,14 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.jwt.we.conf.model.ConfPackage;
 
+import org.js.graph.transformation.TransformationPackage;
 import org.js.model.feature.FeaturePackage;
 
 import org.js.model.rbac.RbacPackage;
 
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.EFMContainer;
+import org.js.model.workflow.GraphTransConnector;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
 import org.js.model.workflow.StakeholderTypes;
@@ -80,6 +82,13 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass graphTransConnectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum stateEnumEEnum = null;
 
 	/**
@@ -130,7 +139,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
 		// Initialize simple dependencies
 		ConfPackage.eINSTANCE.eClass();
-		RbacPackage.eINSTANCE.eClass();
+		TransformationPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theWorkflowPackage.createPackageContents();
@@ -260,6 +269,24 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGraphTransConnector() {
+		return graphTransConnectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphTransConnector_GraphTransref() {
+		return (EReference)graphTransConnectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getStateEnum() {
 		return stateEnumEEnum;
 	}
@@ -310,6 +337,9 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		stakeholderTypesEClass = createEClass(STAKEHOLDER_TYPES);
 		createEReference(stakeholderTypesEClass, STAKEHOLDER_TYPES__STAKEHOLDER_TYPES);
 
+		graphTransConnectorEClass = createEClass(GRAPH_TRANS_CONNECTOR);
+		createEReference(graphTransConnectorEClass, GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF);
+
 		// Create enums
 		stateEnumEEnum = createEEnum(STATE_ENUM);
 	}
@@ -341,6 +371,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		ConfPackage theConfPackage = (ConfPackage)EPackage.Registry.INSTANCE.getEPackage(ConfPackage.eNS_URI);
 		RbacPackage theRbacPackage = (RbacPackage)EPackage.Registry.INSTANCE.getEPackage(RbacPackage.eNS_URI);
 		FeaturePackage theFeaturePackage = (FeaturePackage)EPackage.Registry.INSTANCE.getEPackage(FeaturePackage.eNS_URI);
+		TransformationPackage theTransformationPackage = (TransformationPackage)EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -353,6 +384,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		logEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 		stateEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 		stakeholderTypesEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
+		graphTransConnectorEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(acmConnectorEClass, ACMConnector.class, "ACMConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -372,6 +404,9 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
 		initEClass(stakeholderTypesEClass, StakeholderTypes.class, "StakeholderTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStakeholderTypes_StakeholderTypes(), theRbacPackage.getRole(), null, "stakeholderTypes", null, 0, -1, StakeholderTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphTransConnectorEClass, GraphTransConnector.class, "GraphTransConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphTransConnector_GraphTransref(), theTransformationPackage.getGraphTransformation(), null, "graphTransref", null, 0, 1, GraphTransConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(stateEnumEEnum, StateEnum.class, "StateEnum");

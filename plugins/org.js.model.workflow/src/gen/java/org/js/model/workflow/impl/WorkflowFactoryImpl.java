@@ -28,7 +28,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
 	 */
 	public static WorkflowFactory init() {
 		try {
-			WorkflowFactory theWorkflowFactory = (WorkflowFactory)EPackage.Registry.INSTANCE.getEFactory("org.js.model.workflow"); 
+			WorkflowFactory theWorkflowFactory = (WorkflowFactory)EPackage.Registry.INSTANCE.getEFactory(WorkflowPackage.eNS_URI);
 			if (theWorkflowFactory != null) {
 				return theWorkflowFactory;
 			}
@@ -63,6 +63,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
 			case WorkflowPackage.LOG: return createLog();
 			case WorkflowPackage.STATE: return createState();
 			case WorkflowPackage.STAKEHOLDER_TYPES: return createStakeholderTypes();
+			case WorkflowPackage.GRAPH_TRANS_CONNECTOR: return createGraphTransConnector();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -156,6 +157,16 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
 	public StakeholderTypes createStakeholderTypes() {
 		StakeholderTypesImpl stakeholderTypes = new StakeholderTypesImpl();
 		return stakeholderTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GraphTransConnector createGraphTransConnector() {
+		GraphTransConnectorImpl graphTransConnector = new GraphTransConnectorImpl();
+		return graphTransConnector;
 	}
 
 	/**

@@ -10,8 +10,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 
-import org.eclipse.jwt.we.conf.model.AspectInstance;
 
+import org.eclipse.jwt.we.conf.model.AspectInstance;
 import org.js.model.workflow.*;
 
 /**
@@ -93,6 +93,10 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseStakeholderTypes(StakeholderTypes object) {
 				return createStakeholderTypesAdapter();
+			}
+			@Override
+			public Adapter caseGraphTransConnector(GraphTransConnector object) {
+				return createGraphTransConnectorAdapter();
 			}
 			@Override
 			public Adapter caseAspectInstance(AspectInstance object) {
@@ -199,6 +203,20 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStakeholderTypesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.js.model.workflow.GraphTransConnector <em>Graph Trans Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.js.model.workflow.GraphTransConnector
+	 * @generated
+	 */
+	public Adapter createGraphTransConnectorAdapter() {
 		return null;
 	}
 

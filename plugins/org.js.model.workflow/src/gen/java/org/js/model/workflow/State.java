@@ -4,6 +4,7 @@ package org.js.model.workflow;
 
 import org.eclipse.jwt.we.conf.model.AspectInstance;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>State</b></em>'.

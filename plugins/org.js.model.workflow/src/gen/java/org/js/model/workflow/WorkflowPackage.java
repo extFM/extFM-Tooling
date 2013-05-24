@@ -335,6 +335,52 @@ public interface WorkflowPackage extends EPackage {
 	int STAKEHOLDER_TYPES_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.js.model.workflow.impl.GraphTransConnectorImpl <em>Graph Trans Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.js.model.workflow.impl.GraphTransConnectorImpl
+	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getGraphTransConnector()
+	 * @generated
+	 */
+	int GRAPH_TRANS_CONNECTOR = 6;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH_TRANS_CONNECTOR__ID = ConfPackage.ASPECT_INSTANCE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Target Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH_TRANS_CONNECTOR__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Graph Transref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Graph Trans Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH_TRANS_CONNECTOR_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,7 +388,7 @@ public interface WorkflowPackage extends EPackage {
 	 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStateEnum()
 	 * @generated
 	 */
-	int STATE_ENUM = 6;
+	int STATE_ENUM = 7;
 
 
 	/**
@@ -470,6 +516,27 @@ public interface WorkflowPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStakeholderTypes_StakeholderTypes();
+
+	/**
+	 * Returns the meta object for class '{@link org.js.model.workflow.GraphTransConnector <em>Graph Trans Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Graph Trans Connector</em>'.
+	 * @see org.js.model.workflow.GraphTransConnector
+	 * @generated
+	 */
+	EClass getGraphTransConnector();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.js.model.workflow.GraphTransConnector#getGraphTransref <em>Graph Transref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Graph Transref</em>'.
+	 * @see org.js.model.workflow.GraphTransConnector#getGraphTransref()
+	 * @see #getGraphTransConnector()
+	 * @generated
+	 */
+	EReference getGraphTransConnector_GraphTransref();
 
 	/**
 	 * Returns the meta object for enum '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}'.
@@ -610,6 +677,24 @@ public interface WorkflowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STAKEHOLDER_TYPES__STAKEHOLDER_TYPES = eINSTANCE.getStakeholderTypes_StakeholderTypes();
+
+		/**
+		 * The meta object literal for the '{@link org.js.model.workflow.impl.GraphTransConnectorImpl <em>Graph Trans Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.js.model.workflow.impl.GraphTransConnectorImpl
+		 * @see org.js.model.workflow.impl.WorkflowPackageImpl#getGraphTransConnector()
+		 * @generated
+		 */
+		EClass GRAPH_TRANS_CONNECTOR = eINSTANCE.getGraphTransConnector();
+
+		/**
+		 * The meta object literal for the '<em><b>Graph Transref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF = eINSTANCE.getGraphTransConnector_GraphTransref();
 
 		/**
 		 * The meta object literal for the '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}' enum.

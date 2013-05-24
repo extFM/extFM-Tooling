@@ -2,8 +2,8 @@
  */
 package org.js.model.workflow;
 
-import org.eclipse.jwt.we.conf.model.AspectInstance;
 
+import org.eclipse.jwt.we.conf.model.AspectInstance;
 import org.js.model.rbac.Role;
 
 /**

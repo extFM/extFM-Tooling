@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 
-import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
 
+import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
 import org.js.model.workflow.State;
 import org.js.model.workflow.StateEnum;
 import org.js.model.workflow.WorkflowPackage;
