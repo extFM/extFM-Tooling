@@ -31,5 +31,62 @@
             viewFile="conf/ConfWorkflow.view">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.jwt.we.menu">
+      <action
+            class="org.js.model.workflow.actions.ImportModelAction"
+            description="import the rbac model and graph transformation model"
+            forceText="false"
+            name="Import Models"
+            requiresOpenEditor="false"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.actions.SetStakeholerTypes"
+            description="set the stakeholder types"
+            forceText="false"
+            name="Set Stakeholder Types"
+            requiresOpenEditor="false"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.actions.InitialAction"
+            description="initial the configuration workflow"
+            forceText="true"
+            name="Initial Workflow"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.actions.AddStakeholderAction"
+            description="add a new stakeholder"
+            forceText="true"
+            name="Add Stakeholder"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.actions.CleanAction"
+            description="clean the configuration workflow"
+            forceText="true"
+            name="clean"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.test.TestAction"
+            description="initial the configuration workflow"
+            forceText="false"
+            name="test"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+   </extension>
 
 </plugin>
