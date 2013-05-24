@@ -15,12 +15,12 @@ import org.js.graph.transformation.AddNode;
 import org.js.graph.transformation.ApplicationConditions;
 import org.js.graph.transformation.ArrivingRole;
 import org.js.graph.transformation.BelongsTo;
-import org.js.graph.transformation.ChangePrimitive;
 import org.js.graph.transformation.Condition;
 import org.js.graph.transformation.Edge;
 import org.js.graph.transformation.ExistingRole;
 import org.js.graph.transformation.FlowFinal;
 import org.js.graph.transformation.Fork;
+import org.js.graph.transformation.GraphOperation;
 import org.js.graph.transformation.GraphTransformation;
 import org.js.graph.transformation.IdleAction;
 import org.js.graph.transformation.InheritsFrom;
@@ -129,7 +129,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass changePrimitiveEClass = null;
+	private EClass graphOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -442,7 +442,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperations_ChangePrimitives() {
+	public EReference getOperations_GraphOperations() {
 		return (EReference)operationsEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -532,8 +532,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChangePrimitive() {
-		return changePrimitiveEClass;
+	public EClass getGraphOperation() {
+		return graphOperationEClass;
 	}
 
 	/**
@@ -810,7 +810,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		createEReference(applicationConditionsEClass, APPLICATION_CONDITIONS__CONDITIONS);
 
 		operationsEClass = createEClass(OPERATIONS);
-		createEReference(operationsEClass, OPERATIONS__CHANGE_PRIMITIVES);
+		createEReference(operationsEClass, OPERATIONS__GRAPH_OPERATIONS);
 
 		nodeEClass = createEClass(NODE);
 		createEReference(nodeEClass, NODE__IN);
@@ -826,7 +826,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 
 		conditionEClass = createEClass(CONDITION);
 
-		changePrimitiveEClass = createEClass(CHANGE_PRIMITIVE);
+		graphOperationEClass = createEClass(GRAPH_OPERATION);
 
 		initialEClass = createEClass(INITIAL);
 
@@ -905,7 +905,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		existingRoleEClass.getESuperTypes().add(this.getVariableRole());
 		arrivingRoleEClass.getESuperTypes().add(this.getVariableRole());
 		conditionEClass.getESuperTypes().add(this.getNameable());
-		changePrimitiveEClass.getESuperTypes().add(this.getNameable());
+		graphOperationEClass.getESuperTypes().add(this.getNameable());
 		initialEClass.getESuperTypes().add(this.getNode());
 		activityFinalEClass.getESuperTypes().add(this.getNode());
 		flowFinalEClass.getESuperTypes().add(this.getNode());
@@ -915,10 +915,10 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		variableRoleEClass.getESuperTypes().add(this.getNameable());
 		inheritsFromEClass.getESuperTypes().add(this.getCondition());
 		belongsToEClass.getESuperTypes().add(this.getCondition());
-		removeNodeEClass.getESuperTypes().add(this.getChangePrimitive());
-		removeEdgeEClass.getESuperTypes().add(this.getChangePrimitive());
-		addEdgeEClass.getESuperTypes().add(this.getChangePrimitive());
-		addNodeEClass.getESuperTypes().add(this.getChangePrimitive());
+		removeNodeEClass.getESuperTypes().add(this.getGraphOperation());
+		removeEdgeEClass.getESuperTypes().add(this.getGraphOperation());
+		addEdgeEClass.getESuperTypes().add(this.getGraphOperation());
+		addNodeEClass.getESuperTypes().add(this.getGraphOperation());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphTransformationEClass, GraphTransformation.class, "GraphTransformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -942,7 +942,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		initEReference(getApplicationConditions_Conditions(), this.getCondition(), null, "conditions", null, 0, -1, ApplicationConditions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationsEClass, Operations.class, "Operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperations_ChangePrimitives(), this.getChangePrimitive(), null, "changePrimitives", null, 1, -1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperations_GraphOperations(), this.getGraphOperation(), null, "graphOperations", null, 1, -1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNode_In(), this.getEdge(), this.getEdge_Target(), "in", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -958,7 +958,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 
 		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(changePrimitiveEClass, ChangePrimitive.class, "ChangePrimitive", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(graphOperationEClass, GraphOperation.class, "GraphOperation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(initialEClass, Initial.class, "Initial", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

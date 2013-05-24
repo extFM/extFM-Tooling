@@ -112,8 +112,8 @@ public class TransformationAdapterFactory extends AdapterFactoryImpl {
 				return createConditionAdapter();
 			}
 			@Override
-			public Adapter caseChangePrimitive(ChangePrimitive object) {
-				return createChangePrimitiveAdapter();
+			public Adapter caseGraphOperation(GraphOperation object) {
+				return createGraphOperationAdapter();
 			}
 			@Override
 			public Adapter caseInitial(Initial object) {
@@ -346,16 +346,16 @@ public class TransformationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.ChangePrimitive <em>Change Primitive</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.GraphOperation <em>Graph Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.js.graph.transformation.ChangePrimitive
+	 * @see org.js.graph.transformation.GraphOperation
 	 * @generated
 	 */
-	public Adapter createChangePrimitiveAdapter() {
+	public Adapter createGraphOperationAdapter() {
 		return null;
 	}
 

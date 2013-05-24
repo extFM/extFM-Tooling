@@ -77,7 +77,7 @@ public class OperationsItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__CHANGE_PRIMITIVES);
+			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class OperationsItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Operations.class)) {
-			case TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES:
+			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,22 +149,22 @@ public class OperationsItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__CHANGE_PRIMITIVES,
+				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
 				 TransformationFactory.eINSTANCE.createRemoveNode()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__CHANGE_PRIMITIVES,
+				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
 				 TransformationFactory.eINSTANCE.createRemoveEdge()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__CHANGE_PRIMITIVES,
+				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
 				 TransformationFactory.eINSTANCE.createAddEdge()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__CHANGE_PRIMITIVES,
+				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
 				 TransformationFactory.eINSTANCE.createAddNode()));
 	}
 

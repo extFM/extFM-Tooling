@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.js.graph.transformation.ChangePrimitive;
+import org.js.graph.transformation.GraphOperation;
 import org.js.graph.transformation.Operations;
 import org.js.graph.transformation.TransformationPackage;
 
@@ -27,7 +27,7 @@ import org.js.graph.transformation.TransformationPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.js.graph.transformation.impl.OperationsImpl#getChangePrimitives <em>Change Primitives</em>}</li>
+ *   <li>{@link org.js.graph.transformation.impl.OperationsImpl#getGraphOperations <em>Graph Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,14 +35,14 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class OperationsImpl extends MinimalEObjectImpl.Container implements Operations {
 	/**
-	 * The cached value of the '{@link #getChangePrimitives() <em>Change Primitives</em>}' containment reference list.
+	 * The cached value of the '{@link #getGraphOperations() <em>Graph Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getChangePrimitives()
+	 * @see #getGraphOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ChangePrimitive> changePrimitives;
+	protected EList<GraphOperation> graphOperations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,11 +68,11 @@ public class OperationsImpl extends MinimalEObjectImpl.Container implements Oper
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ChangePrimitive> getChangePrimitives() {
-		if (changePrimitives == null) {
-			changePrimitives = new EObjectContainmentEList<ChangePrimitive>(ChangePrimitive.class, this, TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES);
+	public EList<GraphOperation> getGraphOperations() {
+		if (graphOperations == null) {
+			graphOperations = new EObjectContainmentEList<GraphOperation>(GraphOperation.class, this, TransformationPackage.OPERATIONS__GRAPH_OPERATIONS);
 		}
-		return changePrimitives;
+		return graphOperations;
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class OperationsImpl extends MinimalEObjectImpl.Container implements Oper
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES:
-				return ((InternalEList<?>)getChangePrimitives()).basicRemove(otherEnd, msgs);
+			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
+				return ((InternalEList<?>)getGraphOperations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,8 +97,8 @@ public class OperationsImpl extends MinimalEObjectImpl.Container implements Oper
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES:
-				return getChangePrimitives();
+			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
+				return getGraphOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,9 +112,9 @@ public class OperationsImpl extends MinimalEObjectImpl.Container implements Oper
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES:
-				getChangePrimitives().clear();
-				getChangePrimitives().addAll((Collection<? extends ChangePrimitive>)newValue);
+			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
+				getGraphOperations().clear();
+				getGraphOperations().addAll((Collection<? extends GraphOperation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,8 +128,8 @@ public class OperationsImpl extends MinimalEObjectImpl.Container implements Oper
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES:
-				getChangePrimitives().clear();
+			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
+				getGraphOperations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -143,8 +143,8 @@ public class OperationsImpl extends MinimalEObjectImpl.Container implements Oper
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TransformationPackage.OPERATIONS__CHANGE_PRIMITIVES:
-				return changePrimitives != null && !changePrimitives.isEmpty();
+			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
+				return graphOperations != null && !graphOperations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -343,13 +343,13 @@ public interface TransformationPackage extends EPackage {
 	int OPERATIONS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Change Primitives</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Graph Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONS__CHANGE_PRIMITIVES = 0;
+	int OPERATIONS__GRAPH_OPERATIONS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Operations</em>' class.
@@ -655,14 +655,14 @@ public interface TransformationPackage extends EPackage {
 	int CONDITION_OPERATION_COUNT = NAMEABLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.js.graph.transformation.ChangePrimitive <em>Change Primitive</em>}' class.
+	 * The meta object id for the '{@link org.js.graph.transformation.GraphOperation <em>Graph Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.js.graph.transformation.ChangePrimitive
-	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getChangePrimitive()
+	 * @see org.js.graph.transformation.GraphOperation
+	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getGraphOperation()
 	 * @generated
 	 */
-	int CHANGE_PRIMITIVE = 11;
+	int GRAPH_OPERATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -671,25 +671,25 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PRIMITIVE__NAME = NAMEABLE__NAME;
+	int GRAPH_OPERATION__NAME = NAMEABLE__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Change Primitive</em>' class.
+	 * The number of structural features of the '<em>Graph Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PRIMITIVE_FEATURE_COUNT = NAMEABLE_FEATURE_COUNT + 0;
+	int GRAPH_OPERATION_FEATURE_COUNT = NAMEABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Change Primitive</em>' class.
+	 * The number of operations of the '<em>Graph Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PRIMITIVE_OPERATION_COUNT = NAMEABLE_OPERATION_COUNT + 0;
+	int GRAPH_OPERATION_OPERATION_COUNT = NAMEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.js.graph.transformation.impl.InitialImpl <em>Initial</em>}' class.
@@ -1157,7 +1157,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE__NAME = CHANGE_PRIMITIVE__NAME;
+	int REMOVE_NODE__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference list.
@@ -1166,7 +1166,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE__NODE = CHANGE_PRIMITIVE_FEATURE_COUNT + 0;
+	int REMOVE_NODE__NODE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Remove Node</em>' class.
@@ -1175,7 +1175,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE_FEATURE_COUNT = CHANGE_PRIMITIVE_FEATURE_COUNT + 1;
+	int REMOVE_NODE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Remove Node</em>' class.
@@ -1184,7 +1184,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE_OPERATION_COUNT = CHANGE_PRIMITIVE_OPERATION_COUNT + 0;
+	int REMOVE_NODE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.js.graph.transformation.impl.RemoveEdgeImpl <em>Remove Edge</em>}' class.
@@ -1203,7 +1203,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE__NAME = CHANGE_PRIMITIVE__NAME;
+	int REMOVE_EDGE__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Edge</b></em>' reference list.
@@ -1212,7 +1212,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE__EDGE = CHANGE_PRIMITIVE_FEATURE_COUNT + 0;
+	int REMOVE_EDGE__EDGE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Remove Edge</em>' class.
@@ -1221,7 +1221,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE_FEATURE_COUNT = CHANGE_PRIMITIVE_FEATURE_COUNT + 1;
+	int REMOVE_EDGE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Remove Edge</em>' class.
@@ -1230,7 +1230,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE_OPERATION_COUNT = CHANGE_PRIMITIVE_OPERATION_COUNT + 0;
+	int REMOVE_EDGE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.js.graph.transformation.impl.AddEdgeImpl <em>Add Edge</em>}' class.
@@ -1249,7 +1249,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE__NAME = CHANGE_PRIMITIVE__NAME;
+	int ADD_EDGE__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Edge</b></em>' containment reference list.
@@ -1258,7 +1258,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE__EDGE = CHANGE_PRIMITIVE_FEATURE_COUNT + 0;
+	int ADD_EDGE__EDGE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Add Edge</em>' class.
@@ -1267,7 +1267,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE_FEATURE_COUNT = CHANGE_PRIMITIVE_FEATURE_COUNT + 1;
+	int ADD_EDGE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Add Edge</em>' class.
@@ -1276,7 +1276,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE_OPERATION_COUNT = CHANGE_PRIMITIVE_OPERATION_COUNT + 0;
+	int ADD_EDGE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.js.graph.transformation.impl.AddNodeImpl <em>Add Node</em>}' class.
@@ -1295,7 +1295,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE__NAME = CHANGE_PRIMITIVE__NAME;
+	int ADD_NODE__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' containment reference list.
@@ -1304,7 +1304,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE__NODE = CHANGE_PRIMITIVE_FEATURE_COUNT + 0;
+	int ADD_NODE__NODE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Add Node</em>' class.
@@ -1313,7 +1313,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE_FEATURE_COUNT = CHANGE_PRIMITIVE_FEATURE_COUNT + 1;
+	int ADD_NODE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Add Node</em>' class.
@@ -1322,7 +1322,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE_OPERATION_COUNT = CHANGE_PRIMITIVE_OPERATION_COUNT + 0;
+	int ADD_NODE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1496,15 +1496,15 @@ public interface TransformationPackage extends EPackage {
 	EClass getOperations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.Operations#getChangePrimitives <em>Change Primitives</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.Operations#getGraphOperations <em>Graph Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Change Primitives</em>'.
-	 * @see org.js.graph.transformation.Operations#getChangePrimitives()
+	 * @return the meta object for the containment reference list '<em>Graph Operations</em>'.
+	 * @see org.js.graph.transformation.Operations#getGraphOperations()
 	 * @see #getOperations()
 	 * @generated
 	 */
-	EReference getOperations_ChangePrimitives();
+	EReference getOperations_GraphOperations();
 
 	/**
 	 * Returns the meta object for class '{@link org.js.graph.transformation.Node <em>Node</em>}'.
@@ -1601,14 +1601,14 @@ public interface TransformationPackage extends EPackage {
 	EClass getCondition();
 
 	/**
-	 * Returns the meta object for class '{@link org.js.graph.transformation.ChangePrimitive <em>Change Primitive</em>}'.
+	 * Returns the meta object for class '{@link org.js.graph.transformation.GraphOperation <em>Graph Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Change Primitive</em>'.
-	 * @see org.js.graph.transformation.ChangePrimitive
+	 * @return the meta object for class '<em>Graph Operation</em>'.
+	 * @see org.js.graph.transformation.GraphOperation
 	 * @generated
 	 */
-	EClass getChangePrimitive();
+	EClass getGraphOperation();
 
 	/**
 	 * Returns the meta object for class '{@link org.js.graph.transformation.Initial <em>Initial</em>}'.
@@ -2035,12 +2035,12 @@ public interface TransformationPackage extends EPackage {
 		EClass OPERATIONS = eINSTANCE.getOperations();
 
 		/**
-		 * The meta object literal for the '<em><b>Change Primitives</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Graph Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATIONS__CHANGE_PRIMITIVES = eINSTANCE.getOperations_ChangePrimitives();
+		EReference OPERATIONS__GRAPH_OPERATIONS = eINSTANCE.getOperations_GraphOperations();
 
 		/**
 		 * The meta object literal for the '{@link org.js.graph.transformation.Node <em>Node</em>}' class.
@@ -2125,14 +2125,14 @@ public interface TransformationPackage extends EPackage {
 		EClass CONDITION = eINSTANCE.getCondition();
 
 		/**
-		 * The meta object literal for the '{@link org.js.graph.transformation.ChangePrimitive <em>Change Primitive</em>}' class.
+		 * The meta object literal for the '{@link org.js.graph.transformation.GraphOperation <em>Graph Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.js.graph.transformation.ChangePrimitive
-		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getChangePrimitive()
+		 * @see org.js.graph.transformation.GraphOperation
+		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getGraphOperation()
 		 * @generated
 		 */
-		EClass CHANGE_PRIMITIVE = eINSTANCE.getChangePrimitive();
+		EClass GRAPH_OPERATION = eINSTANCE.getGraphOperation();
 
 		/**
 		 * The meta object literal for the '{@link org.js.graph.transformation.impl.InitialImpl <em>Initial</em>}' class.

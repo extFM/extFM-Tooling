@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AddNode extends ChangePrimitive {
+public interface AddNode extends GraphOperation {
 	/**
 	 * Returns the value of the '<em><b>Node</b></em>' containment reference list.
 	 * The list contents are of type {@link org.js.graph.transformation.Node}.

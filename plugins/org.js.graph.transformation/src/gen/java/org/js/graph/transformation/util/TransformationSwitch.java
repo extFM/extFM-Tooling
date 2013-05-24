@@ -140,10 +140,10 @@ public class TransformationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformationPackage.CHANGE_PRIMITIVE: {
-				ChangePrimitive changePrimitive = (ChangePrimitive)theEObject;
-				T result = caseChangePrimitive(changePrimitive);
-				if (result == null) result = caseNameable(changePrimitive);
+			case TransformationPackage.GRAPH_OPERATION: {
+				GraphOperation graphOperation = (GraphOperation)theEObject;
+				T result = caseGraphOperation(graphOperation);
+				if (result == null) result = caseNameable(graphOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -221,7 +221,7 @@ public class TransformationSwitch<T> extends Switch<T> {
 			case TransformationPackage.REMOVE_NODE: {
 				RemoveNode removeNode = (RemoveNode)theEObject;
 				T result = caseRemoveNode(removeNode);
-				if (result == null) result = caseChangePrimitive(removeNode);
+				if (result == null) result = caseGraphOperation(removeNode);
 				if (result == null) result = caseNameable(removeNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -229,7 +229,7 @@ public class TransformationSwitch<T> extends Switch<T> {
 			case TransformationPackage.REMOVE_EDGE: {
 				RemoveEdge removeEdge = (RemoveEdge)theEObject;
 				T result = caseRemoveEdge(removeEdge);
-				if (result == null) result = caseChangePrimitive(removeEdge);
+				if (result == null) result = caseGraphOperation(removeEdge);
 				if (result == null) result = caseNameable(removeEdge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -237,7 +237,7 @@ public class TransformationSwitch<T> extends Switch<T> {
 			case TransformationPackage.ADD_EDGE: {
 				AddEdge addEdge = (AddEdge)theEObject;
 				T result = caseAddEdge(addEdge);
-				if (result == null) result = caseChangePrimitive(addEdge);
+				if (result == null) result = caseGraphOperation(addEdge);
 				if (result == null) result = caseNameable(addEdge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -245,7 +245,7 @@ public class TransformationSwitch<T> extends Switch<T> {
 			case TransformationPackage.ADD_NODE: {
 				AddNode addNode = (AddNode)theEObject;
 				T result = caseAddNode(addNode);
-				if (result == null) result = caseChangePrimitive(addNode);
+				if (result == null) result = caseGraphOperation(addNode);
 				if (result == null) result = caseNameable(addNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -426,17 +426,17 @@ public class TransformationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Change Primitive</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Graph Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Change Primitive</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Graph Operation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChangePrimitive(ChangePrimitive object) {
+	public T caseGraphOperation(GraphOperation object) {
 		return null;
 	}
 
