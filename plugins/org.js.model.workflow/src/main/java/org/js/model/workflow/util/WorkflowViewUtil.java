@@ -51,13 +51,13 @@ public class WorkflowViewUtil {
 	}
 
 	/**
-	 * get the reference for the given role. 
+	 * get the reference edge for the given role.
 	 * 
 	 * @param diagram
 	 * @param role
 	 * @return
 	 */
-	public static Reference getReference(Diagram diagram, Role role) {
+	public static Reference getReferenceEdge(Diagram diagram, Role role) {
 		EList<Reference> refList = diagram.getReferences();
 		ReferenceableElement refELe = null;
 		for (Reference ref : refList) {
@@ -80,7 +80,7 @@ public class WorkflowViewUtil {
 	 * @return layout data
 	 */
 	public static LayoutData getRoleLayout(Diagram diagram, Role role) {
-		Reference ref = getReference(diagram, role);
+		Reference ref = getReferenceEdge(diagram, role);
 		EList<LayoutData> layoutDataList = diagram.getLayoutData();
 		for (LayoutData layoutData : layoutDataList) {
 			GraphicalElement graphEle = layoutData.getDescribesElement();
@@ -105,6 +105,15 @@ public class WorkflowViewUtil {
 		// return null;
 	}
 
+	/**
+	 * set the layout data for the given node.
+	 * 
+	 * @param diagram
+	 * @param gEle
+	 * @param coorX
+	 * @param coorY
+	 * @param viewid
+	 */
 	public static void setNodeLayout(Diagram diagram, GraphicalElement gEle,
 			int coorX, int coorY, String viewid) {
 		LayoutData layoutdata = getNodeLayout(diagram, gEle);
@@ -115,6 +124,14 @@ public class WorkflowViewUtil {
 		layoutdata.setY(coorY);
 	}
 
+	/**
+	 * set the layout data for the given node.
+	 * 
+	 * @param diagram
+	 * @param gEle
+	 * @param coorX
+	 * @param coorY
+	 */
 	public static void setNodeLayout(Diagram diagram, GraphicalElement gEle,
 			int coorX, int coorY) {
 		LayoutData layoutdata = getNodeLayout(diagram, gEle);
@@ -140,6 +157,7 @@ public class WorkflowViewUtil {
 		reference.setReference(role);
 		diagram.getReferences().add(reference);
 
+		// get the property value and print it out
 		LayoutData layoutdata = getRoleLayout(diagram, role);
 		if (layoutdata == null) {
 			layoutdata = viewFactory.createLayoutData();
@@ -165,7 +183,7 @@ public class WorkflowViewUtil {
 	 */
 	public static ReferenceEdge removeReferenceEdge(Diagram diagram, Role role,
 			Action action) {
-		EList<ReferenceEdge> refEdgeList = getReference(diagram, role)
+		EList<ReferenceEdge> refEdgeList = getReferenceEdge(diagram, role)
 				.getReferenceEdges();
 		ReferenceEdge edgeToRemove = null;
 		for (ReferenceEdge refdge : refEdgeList) {
@@ -179,6 +197,12 @@ public class WorkflowViewUtil {
 		return edgeToRemove;
 	}
 
+	/**
+	 * remove the layout data of the given role.
+	 * 
+	 * @param diagram
+	 * @param role
+	 */
 	public static void removeRoleLayout(Diagram diagram, Role role) {
 		LayoutData layoutdata = getRoleLayout(diagram, role);
 		if (layoutdata != null) {
@@ -191,6 +215,12 @@ public class WorkflowViewUtil {
 		}
 	}
 
+	/**
+	 * remove the layout data of the given role.
+	 * 
+	 * @param diagram
+	 * @param gEle
+	 */
 	public static void removeNodeLayout(Diagram diagram, GraphicalElement gEle) {
 		LayoutData layoutdata = getNodeLayout(diagram, gEle);
 		if (layoutdata != null) {
@@ -209,7 +239,7 @@ public class WorkflowViewUtil {
 	 */
 	public static ReferenceEdge setReferenceEdge(Diagram diagram,
 			Activity activity, Role role, Action action) {
-		Reference reference = getReference(diagram, role);
+		Reference reference = getReferenceEdge(diagram, role);
 		ReferenceEdge referenceEdge = viewFactory.createReferenceEdge();
 		referenceEdge.setReference(reference);
 		referenceEdge.setContainedIn(activity);

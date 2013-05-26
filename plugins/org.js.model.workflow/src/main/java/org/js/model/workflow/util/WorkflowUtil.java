@@ -1,9 +1,14 @@
 package org.js.model.workflow.util;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jwt.meta.model.core.Model;
 import org.eclipse.jwt.meta.model.processes.Action;
 import org.eclipse.jwt.meta.model.processes.Activity;
@@ -26,120 +31,62 @@ import org.js.model.workflow.StateEnum;
  */
 public class WorkflowUtil {
 
+	public static final String WORKFLOW_FILE_EXTENSION = "workflow";
+	public static final String WORKFLOW_VIEW_FILE_EXTENSION = "workflow_view";
+	public static final String WORKFLOW_CONF_FILE_EXTENSION = "workflow_conf";
+	
 	public static StakeholderInput SHTempStore = null;
-
+	
 	/**
-	 * set the state of given action.
+	 * get the workflow view resource for the given workflow resource.
 	 * 
-	 * @param action
+	 * @param workflowResource
+	 * @return workflow view resource
 	 */
-	public static void setActionState(Action action) {
-		Action preAction = getPrecedeAction(action);
-		State stateAspect = (State) WorkflowConfUtil.getAspectInstance(action,
-				WorkflowConfUtil.STATE_ASPECT);
-		if (preAction != null) {
-			State preState = (State) WorkflowConfUtil.getAspectInstance(
-					preAction, WorkflowConfUtil.STATE_ASPECT);
-			if (preState.getState() == StateEnum.COMPLETED) {
-				stateAspect.setState(StateEnum.ENABLED);
-			} else {
-				stateAspect.setState(StateEnum.INACTIVE);
-			}
-		} else {
-			stateAspect.setState(StateEnum.INACTIVE);
-		}
+	public static Resource getWorkflowViewReousrce(Resource workflowResource) {
+		URI workflowViewUri = workflowResource.getURI().trimFileExtension()
+				.appendFileExtension(WORKFLOW_VIEW_FILE_EXTENSION);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		return resourceSet.getResource(workflowViewUri, true);
 	}
-
+	
 	/**
-	 * set the state for the given action.
+	 * get the workflow configuration resource for the given workflow resource.
 	 * 
-	 * @param action
-	 * @param state
+	 * @param workflowResource
+	 * @return workflow configration resource
 	 */
-	public static void setActionState(Action action, StateEnum state) {
-		State stateAspect = (State) WorkflowConfUtil.getAspectInstance(action,
-				WorkflowConfUtil.STATE_ASPECT);
-		stateAspect.setState(state);
+	public static Resource getWorkflowConfReousrce(Resource workflowResource) {
+		URI workflowConfUri = workflowResource.getURI().trimFileExtension()
+				.appendFileExtension(WORKFLOW_CONF_FILE_EXTENSION);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		return resourceSet.getResource(workflowConfUri, true);
 	}
-
+	
 	/**
-	 * get the precede action.
-	 * 
-	 * @param actNode
-	 * @return precede action
-	 */
-	public static Action getPrecedeAction(ActivityNode actNode) {
-		Action preAction = null;
-		if (actNode.getIn().size() > 0) {
-			ActivityEdge actEdge = actNode.getIn().get(0);
-			ActivityNode preActNode = actEdge.getSource();
-			if (preActNode instanceof Action) {
-				preAction = (Action) preActNode;
-			} else {
-				preAction = getPrecedeAction(preActNode);
-			}
-		}
-		return preAction;
-	}
-
-	public static Action getNextAction(ActivityNode actNode) {
-		Action preAction = null;
-		if (actNode.getIn().size() > 0) {
-			ActivityEdge actEdge = actNode.getIn().get(0);
-			ActivityNode preActNode = actEdge.getSource();
-			if (preActNode instanceof Action) {
-				preAction = (Action) preActNode;
-			} else {
-				preAction = getPrecedeAction(preActNode);
-			}
-		}
-		return preAction;
-	}
-
-	/**
-	 * get the precede activity node.
-	 * 
-	 * @param actNode
-	 * @return precede activity node
-	 */
-	public static ActivityNode getPriorActNode(ActivityNode actNode) {
-		ActivityEdge actEdge = actNode.getIn().get(0);
-		ActivityNode preActNode = actEdge.getSource();
-		return preActNode;
-	}
-
-	/**
-	 * get the next activity nodes.
-	 * 
-	 * @param actNode
+	 * get the resource for the given uri.
+	 * @param uri
 	 * @return
 	 */
-	public static ArrayList<ActivityNode> getNextActNodes(ActivityNode actNode) {
-		EList<ActivityEdge> actEdges = actNode.getOut();
-		ArrayList<ActivityNode> preActNodes = new ArrayList<ActivityNode>();
-		for (ActivityEdge actEdge : actEdges) {
-			preActNodes.add(actEdge.getTarget());
-		}
-		return preActNodes;
+	public static Resource getResource(URI uri) {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		return resourceSet.getResource(uri, true);
 	}
 
 	/**
-	 * get the precede activity nodes.
-	 * 
-	 * @param actNode
-	 * @return precede activity nodes
+	 * get the resource for the given url.
+	 * @param fileresource
+	 * @return
 	 */
-	public static List<ActivityNode> getPrecedeActNodes(ActivityNode actNode) {
-		EList<ActivityEdge> actEdges = actNode.getIn();
-		ArrayList<ActivityNode> preActNodes = new ArrayList<ActivityNode>();
-		for (ActivityEdge edge : actEdges) {
-			preActNodes.add(edge.getSource());
-		}
-		return preActNodes;
+	public static Resource getResource(URL fileresource) {
+		String path = fileresource.getPath();
+		URI uri = URI.createFileURI(path);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		return resourceSet.getResource(uri, true);
 	}
 
 	/**
-	 * store the stakeholder's inputs temporarily
+	 * store the stakeholder's inputs temporarily.
 	 * 
 	 * @param stakeholderName
 	 * @param stakeholderTypeName
@@ -168,4 +115,21 @@ public class WorkflowUtil {
 		return new StakeholderInput(stakeholderName, stakeholderType,
 				stakeholderGroupLeader);
 	}
+	
+	/**
+	 * get the role in acm with the given name.
+	 * @param acm
+	 * @param name
+	 * @return
+	 */
+	public static org.js.model.rbac.Role getRBACRole(AccessControlModel acm,
+			String name) {
+		EList<org.js.model.rbac.Role> roles = acm.getRoles();
+		for (org.js.model.rbac.Role role : roles) {
+			if (role.getId().equals(name)) {
+				return role;
+			}
+		}
+		return null;
+}
 }

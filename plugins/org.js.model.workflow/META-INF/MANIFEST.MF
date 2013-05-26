@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.js.model.workflow,
+ org.js.model.workflow.actions,
  org.js.model.workflow.impl,
  org.js.model.workflow.util
 Require-Bundle: org.eclipse.core.runtime,

@@ -51,23 +51,22 @@ public class ChangePrimitive {
 		// add aspects for the action
 		if (WorkflowConfUtil.containsProfile(workflowModel,
 				WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
-			// add log aspect
-			WorkflowConfUtil.addAspectInstance(actNode,
-					WorkflowConfUtil.LOG_ASPECT);
+			if (!WorkflowModelUtil.getActionName((Action) actNode).equals(
+					WorkflowModelUtil.IDLE_ACTION)) {
+				// add log aspect
+				WorkflowConfUtil.addAspectInstance(actNode,
+						WorkflowConfUtil.LOG_ASPECT);
+			}
 			// add state aspect
 			State state = (State) WorkflowConfUtil.addAspectInstance(actNode,
 					WorkflowConfUtil.STATE_ASPECT);
 			// WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
-			WorkflowUtil.setActionState((Action) actNode);
+			WorkflowModelUtil.setActionState((Action) actNode);
 
 			// set the name with the state
 			actNode.setName(actNode.getName() + " ("
-					+ state.getState().getName() + ")");
+					+ state.getState().getName() + ") ");
 		}
-
-		// // add role reference edge
-		// addReferenceEdge(workflowModel, activity, diagram, role,
-		// (Action) actNode);
 		return (Action) actNode;
 	}
 
@@ -235,7 +234,7 @@ public class ChangePrimitive {
 							WorkflowConfUtil.ACM_ASPECT);
 			AccessControlModel acm = (AccessControlModel) acmconnector
 					.getAcmref();
-			acm.getRoles().remove(getRBACRole(acm, roleName));
+			// acm.getRoles().remove(getRBACRole(acm, roleName));
 		}
 		// remove role
 		WorkflowViewUtil.removeRoleLayout(diagram, role);
@@ -256,14 +255,4 @@ public class ChangePrimitive {
 		return WorkflowViewUtil.removeReferenceEdge(diagram, role, action);
 	}
 
-	public static org.js.model.rbac.Role getRBACRole(AccessControlModel acm,
-			String name) {
-		EList<org.js.model.rbac.Role> roles = acm.getRoles();
-		for (org.js.model.rbac.Role role : roles) {
-			if (role.getId().equals(name)) {
-				return role;
-			}
-		}
-		return null;
-	}
 }

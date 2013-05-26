@@ -17,6 +17,7 @@ import org.eclipse.jwt.we.editors.actions.external.WEExternalAction;
 import org.eclipse.jwt.we.model.view.Diagram;
 import org.eclipse.jwt.we.model.view.ViewFactory;
 import org.js.model.workflow.util.WorkflowModelUtil;
+import org.js.model.workflow.util.WorkflowUtil;
 
 /**
  * this class is used as a template of customized jwt action.
@@ -26,19 +27,19 @@ import org.js.model.workflow.util.WorkflowModelUtil;
  */
 public class MyAction extends WEExternalAction {
 
-	WEEditor workflowEditor;
-	Model workflowModel;
-	Activity activity;
-	Diagram diagram;
-	ConfModel confModel;
-	Resource workflowResource;
-	Resource workflowViewResource;
-	Resource workflowConfResource;
+	protected WEEditor workflowEditor;
+	protected Model workflowModel;
+	protected Activity activity;
+	protected Diagram diagram;
+	protected ConfModel confModel;
+	protected Resource workflowResource;
+	protected Resource workflowViewResource;
+	protected Resource workflowConfResource;
 
-	ProcessesFactory processFactory = ProcessesFactory.eINSTANCE;
-	ViewFactory viewFactory = ViewFactory.eINSTANCE;
-	EventsFactory eventsFactory = EventsFactory.eINSTANCE;
-	OrganisationsFactory orgFactory = OrganisationsFactory.eINSTANCE;
+	protected ProcessesFactory processFactory = ProcessesFactory.eINSTANCE;
+	protected ViewFactory viewFactory = ViewFactory.eINSTANCE;
+	protected EventsFactory eventsFactory = EventsFactory.eINSTANCE;
+	protected OrganisationsFactory orgFactory = OrganisationsFactory.eINSTANCE;
 
 	public MyAction() {
 
@@ -46,7 +47,6 @@ public class MyAction extends WEExternalAction {
 
 	@Override
 	public ImageDescriptor getImage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -69,9 +69,9 @@ public class MyAction extends WEExternalAction {
 		// activity = getActiveActivitySheet().getActivityModel();
 		// EditingDomain editingDomain = workflowEditor.getEmfEditingDomain();
 
-		workflowViewResource = WorkflowModelUtil
+		workflowViewResource = WorkflowUtil
 				.getWorkflowViewReousrce(workflowResource);
-		workflowConfResource = WorkflowModelUtil
+		workflowConfResource = WorkflowUtil
 				.getWorkflowConfReousrce(workflowResource);
 		confModel = (ConfModel) workflowConfResource.getContents().get(0);
 	}
@@ -80,18 +80,18 @@ public class MyAction extends WEExternalAction {
 	 * save the workflow models.
 	 */
 	public void save() {
-//		Map<String, String> saveOptions = new HashMap<String, String>();
-//		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
-		
+		// Map<String, String> saveOptions = new HashMap<String, String>();
+		// saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
+
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
 				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		
+
 		try {
 			workflowModel.eResource().save(saveOptions);
 			// workflowModel.eResource().save(null);
 			diagram.eResource().save(saveOptions);
-//			 confModel.eResource().save(saveOptions);
+			// confModel.eResource().save(saveOptions);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -105,5 +105,101 @@ public class MyAction extends WEExternalAction {
 		workflowEditor.refreshPages();
 		workflowEditor.refreshProperties();
 		workflowEditor.refreshZoom();
+	}
+
+	public WEEditor getWorkflowEditor() {
+		return workflowEditor;
+	}
+
+	public void setWorkflowEditor(WEEditor workflowEditor) {
+		this.workflowEditor = workflowEditor;
+	}
+
+	public Model getWorkflowModel() {
+		return workflowModel;
+	}
+
+	public void setWorkflowModel(Model workflowModel) {
+		this.workflowModel = workflowModel;
+	}
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+
+	public Diagram getDiagram() {
+		return diagram;
+	}
+
+	public void setDiagram(Diagram diagram) {
+		this.diagram = diagram;
+	}
+
+	public ConfModel getConfModel() {
+		return confModel;
+	}
+
+	public void setConfModel(ConfModel confModel) {
+		this.confModel = confModel;
+	}
+
+	public Resource getWorkflowResource() {
+		return workflowResource;
+	}
+
+	public void setWorkflowResource(Resource workflowResource) {
+		this.workflowResource = workflowResource;
+	}
+
+	public Resource getWorkflowViewResource() {
+		return workflowViewResource;
+	}
+
+	public void setWorkflowViewResource(Resource workflowViewResource) {
+		this.workflowViewResource = workflowViewResource;
+	}
+
+	public Resource getWorkflowConfResource() {
+		return workflowConfResource;
+	}
+
+	public void setWorkflowConfResource(Resource workflowConfResource) {
+		this.workflowConfResource = workflowConfResource;
+	}
+
+	public ProcessesFactory getProcessFactory() {
+		return processFactory;
+	}
+
+	public void setProcessFactory(ProcessesFactory processFactory) {
+		this.processFactory = processFactory;
+	}
+
+	public ViewFactory getViewFactory() {
+		return viewFactory;
+	}
+
+	public void setViewFactory(ViewFactory viewFactory) {
+		this.viewFactory = viewFactory;
+	}
+
+	public EventsFactory getEventsFactory() {
+		return eventsFactory;
+	}
+
+	public void setEventsFactory(EventsFactory eventsFactory) {
+		this.eventsFactory = eventsFactory;
+	}
+
+	public OrganisationsFactory getOrgFactory() {
+		return orgFactory;
+	}
+
+	public void setOrgFactory(OrganisationsFactory orgFactory) {
+		this.orgFactory = orgFactory;
 	}
 }

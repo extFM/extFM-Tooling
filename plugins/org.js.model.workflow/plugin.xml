@@ -78,15 +78,6 @@
             showInMenu="true"
             showInToolbar="true">
       </action>
-      <action
-            class="org.js.model.workflow.test.TestAction"
-            description="initial the configuration workflow"
-            forceText="false"
-            name="test"
-            requiresOpenEditor="true"
-            showInMenu="true"
-            showInToolbar="true">
-      </action>
    </extension>
 
 </plugin>

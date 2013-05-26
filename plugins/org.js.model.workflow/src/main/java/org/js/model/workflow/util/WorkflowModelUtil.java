@@ -3,6 +3,8 @@ package org.js.model.workflow.util;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -23,6 +25,7 @@ import org.eclipse.jwt.meta.model.processes.ForkNode;
 import org.eclipse.jwt.meta.model.processes.InitialNode;
 import org.eclipse.jwt.meta.model.processes.JoinNode;
 import org.eclipse.jwt.meta.model.processes.ProcessesFactory;
+import org.js.model.workflow.State;
 import org.js.model.workflow.StateEnum;
 
 /**
@@ -33,53 +36,15 @@ import org.js.model.workflow.StateEnum;
  */
 public class WorkflowModelUtil {
 
-	public static final String WORKFLOW_EXTENSION = "workflow";
-	public static final String WORKFLOW_VIEW_EXTENSION = "workflow_view";
-	public static final String WORKFLOW_CONF_EXTENSION = "workflow_conf";
 	public static final String SPECIALIZATION_ACTION = "Specialization";
 	public static final String IDLE_ACTION = "Idle";
 	public static final String INITIAL_NODE = "InitialNode";
 	public static final String ACTIVITY_FINAL_NODE = "ActivityFinalNode";
-	// public static final String INITIAL_NODE_NAME = "InitialNode";
-	// public static final String FINAL_NODE_NAME = "FinalNode";
 
 	public static ProcessesFactory processFactory = ProcessesFactory.eINSTANCE;
 	public static EventsFactory eventsFactory = EventsFactory.eINSTANCE;
 	public static OrganisationsFactory organisatoinFactory = OrganisationsFactory.eINSTANCE;
 
-	/**
-	 * get the workflow view resource for the given workflow resource.
-	 * 
-	 * @param workflowResource
-	 * @return workflow view resource
-	 */
-	public static Resource getWorkflowViewReousrce(Resource workflowResource) {
-		URI workflowViewUri = workflowResource.getURI().trimFileExtension()
-				.appendFileExtension(WORKFLOW_VIEW_EXTENSION);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		return resourceSet.getResource(workflowViewUri, true);
-	}
-
-	/**
-	 * get the workflow configuration resource for the given workflow resource.
-	 * 
-	 * @param workflowResource
-	 * @return workflow configration resource
-	 */
-	public static Resource getWorkflowConfReousrce(Resource workflowResource) {
-		URI workflowConfUri = workflowResource.getURI().trimFileExtension()
-				.appendFileExtension(WORKFLOW_CONF_EXTENSION);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		return resourceSet.getResource(workflowConfUri, true);
-	}
-
-	/**
-	 * we use name as the action state value for visualization
-	 * 
-	 * @param activity
-	 * @param name
-	 * @return
-	 */
 	public static Action addAction(Activity activity, String name) {
 		Action action = processFactory.createAction();
 		action.setName(name);
@@ -247,20 +212,8 @@ public class WorkflowModelUtil {
 		return result;
 	}
 
-	public static Resource getResource(URI uri) {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		return resourceSet.getResource(uri, true);
-	}
-
-	public static Resource getResource(URL fileresource) {
-		String path = fileresource.getPath();
-		URI uri = URI.createFileURI(path);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		return resourceSet.getResource(uri, true);
-	}
-
 	/**
-	 * return role if workflow model contains the role with given name
+	 * return role if workflow model contains the role with given name.
 	 * 
 	 * @param activity
 	 * @param name
@@ -276,7 +229,7 @@ public class WorkflowModelUtil {
 	}
 
 	/**
-	 * return node if activity contains the node with given name
+	 * return node if activity contains the node with given name.
 	 * 
 	 * @param activity
 	 * @param name
@@ -298,7 +251,7 @@ public class WorkflowModelUtil {
 
 	/**
 	 * action name is sum of role name and action state value, so this method
-	 * helps us to get the real name of the action
+	 * helps us to get the real name of the action.
 	 * 
 	 * @param action
 	 * @return action name
@@ -344,4 +297,111 @@ public class WorkflowModelUtil {
 		return false;
 	}
 
+	/**
+	 * get the precede action.
+	 * 
+	 * @param actNode
+	 * @return precede action
+	 */
+	public static Action getPrecedeAction(ActivityNode actNode) {
+		Action preAction = null;
+		if (actNode.getIn().size() > 0) {
+			ActivityEdge actEdge = actNode.getIn().get(0);
+			ActivityNode preActNode = actEdge.getSource();
+			if (preActNode instanceof Action) {
+				preAction = (Action) preActNode;
+			} else {
+				preAction = getPrecedeAction(preActNode);
+			}
+		}
+		return preAction;
+	}
+	
+	public static Action getNextAction(ActivityNode actNode) {
+		Action preAction = null;
+		if (actNode.getIn().size() > 0) {
+			ActivityEdge actEdge = actNode.getIn().get(0);
+			ActivityNode preActNode = actEdge.getSource();
+			if (preActNode instanceof Action) {
+				preAction = (Action) preActNode;
+			} else {
+				preAction = getPrecedeAction(preActNode);
+			}
+		}
+		return preAction;
+	}
+
+	/**
+	 * get the precede activity node.
+	 * 
+	 * @param actNode
+	 * @return precede activity node
+	 */
+	public static ActivityNode getPriorActNode(ActivityNode actNode) {
+		ActivityEdge actEdge = actNode.getIn().get(0);
+		ActivityNode preActNode = actEdge.getSource();
+		return preActNode;
+	}
+
+	/**
+	 * get the next activity nodes.
+	 * 
+	 * @param actNode
+	 * @return
+	 */
+	public static ArrayList<ActivityNode> getNextActNodes(ActivityNode actNode) {
+		EList<ActivityEdge> actEdges = actNode.getOut();
+		ArrayList<ActivityNode> preActNodes = new ArrayList<ActivityNode>();
+		for (ActivityEdge actEdge : actEdges) {
+			preActNodes.add(actEdge.getTarget());
+		}
+		return preActNodes;
+	}
+
+	/**
+	 * get the precede activity nodes.
+	 * 
+	 * @param actNode
+	 * @return precede activity nodes
+	 */
+	public static List<ActivityNode> getPrecedeActNodes(ActivityNode actNode) {
+		EList<ActivityEdge> actEdges = actNode.getIn();
+		ArrayList<ActivityNode> preActNodes = new ArrayList<ActivityNode>();
+		for (ActivityEdge edge : actEdges) {
+			preActNodes.add(edge.getSource());
+		}
+		return preActNodes;
+	}
+	/**
+	 * set the state of given action.
+	 * 
+	 * @param action
+	 */
+	public static void setActionState(Action action) {
+		Action preAction = getPrecedeAction(action);
+		State stateAspect = (State) WorkflowConfUtil.getAspectInstance(action,
+				WorkflowConfUtil.STATE_ASPECT);
+		if (preAction != null) {
+			State preState = (State) WorkflowConfUtil.getAspectInstance(
+					preAction, WorkflowConfUtil.STATE_ASPECT);
+			if (preState.getState() == StateEnum.COMPLETED) {
+				stateAspect.setState(StateEnum.ENABLED);
+			} else {
+				stateAspect.setState(StateEnum.INACTIVE);
+			}
+		} else {
+			stateAspect.setState(StateEnum.INACTIVE);
+		}
+	}
+	/**
+	 * set the state for the given action.
+	 * 
+	 * @param action
+	 * @param state
+	 */
+	public static void setActionState(Action action, StateEnum state) {
+		State stateAspect = (State) WorkflowConfUtil.getAspectInstance(action,
+				WorkflowConfUtil.STATE_ASPECT);
+		stateAspect.setState(state);
+	}
 }

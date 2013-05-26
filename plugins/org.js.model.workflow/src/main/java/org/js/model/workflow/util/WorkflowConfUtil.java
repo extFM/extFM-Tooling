@@ -32,17 +32,15 @@ public class WorkflowConfUtil {
 	public static ConfFactory confFactory = ConfFactory.eINSTANCE;
 	public static final String ACM_FILE_EXTENSION_1 = "rbac";
 	public static final String ACM_FILE_EXTENSION_2 = "rbactext";
-	public static final String GT_FILE_EXTENSION_1 = "graphtransformation";
+	public static final String GT_FILE_EXTENSION_1 = "transformation";
 	public static final String WORKFLOW_PROFILE_NAME = "org.js.model.workflow.profile";
 
 	public static final String ACM_ASPECT = "org.js.model.workflow.acmaspect";
-	public static final String GT_ASPECT = "org.js.model.workflow.graphtransaspect";
+	public static final String GT_ASPECT = "org.js.model.workflow.transaspect";
 	public static final String STAKHOLDERTYPES_ASPECT = "org.js.model.workflow.stakeholdertypesaspect";
 	public static final String ROLE_ASPECT = "org.js.model.workflow.roleaspect";
 	public static final String LOG_ASPECT = "org.js.model.workflow.logaspect";
-	public static final String INSERTNODES_ASPECT = "org.js.model.workflow.insertnodesaspect";
 	public static final String STATE_ASPECT = "org.js.model.workflow.stateaspect";
-	public static final String CONFSEQUENCE_ASPECT = "org.js.model.workflow.confsequenceaspect";
 
 	/**
 	 * add the aspect instance for the given model element.
