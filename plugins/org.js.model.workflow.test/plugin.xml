@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.jwt.we.menu">
+      <action
+            class="org.js.model.workflow.test.AddPlatformProvider"
+            description="add a platform provider"
+            forceText="false"
+            name="add platform provider"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.test.AddUser"
+            description="add an user"
+            forceText="false"
+            name="add user"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.test.AddTenant"
+            description="add a tenant"
+            forceText="false"
+            name="add tenant"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
+            class="org.js.model.workflow.test.AddApplicationProvider"
+            description="add an application provider"
+            forceText="false"
+            name="add application provider"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+   </extension>
+
+</plugin>
