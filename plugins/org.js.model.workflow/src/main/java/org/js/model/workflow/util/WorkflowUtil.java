@@ -9,7 +9,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jwt.meta.model.core.Model;
+import org.eclipse.jwt.meta.model.core.ModelElement;
 import org.eclipse.jwt.meta.model.processes.Action;
 import org.eclipse.jwt.meta.model.processes.Activity;
 import org.eclipse.jwt.meta.model.processes.ActivityEdge;
@@ -19,6 +21,8 @@ import org.js.graph.transformation.*;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.Group;
 import org.js.model.rbac.Role;
+import org.js.model.workflow.ACMConnector;
+import org.js.model.workflow.RoleConnector;
 import org.js.model.workflow.State;
 import org.js.model.workflow.StateEnum;
 
@@ -34,9 +38,9 @@ public class WorkflowUtil {
 	public static final String WORKFLOW_FILE_EXTENSION = "workflow";
 	public static final String WORKFLOW_VIEW_FILE_EXTENSION = "workflow_view";
 	public static final String WORKFLOW_CONF_FILE_EXTENSION = "workflow_conf";
-	
+
 	public static StakeholderInput SHTempStore = null;
-	
+
 	/**
 	 * get the workflow view resource for the given workflow resource.
 	 * 
@@ -49,7 +53,7 @@ public class WorkflowUtil {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		return resourceSet.getResource(workflowViewUri, true);
 	}
-	
+
 	/**
 	 * get the workflow configuration resource for the given workflow resource.
 	 * 
@@ -62,9 +66,10 @@ public class WorkflowUtil {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		return resourceSet.getResource(workflowConfUri, true);
 	}
-	
+
 	/**
 	 * get the resource for the given uri.
+	 * 
 	 * @param uri
 	 * @return
 	 */
@@ -75,6 +80,7 @@ public class WorkflowUtil {
 
 	/**
 	 * get the resource for the given url.
+	 * 
 	 * @param fileresource
 	 * @return
 	 */
@@ -115,9 +121,15 @@ public class WorkflowUtil {
 		return new StakeholderInput(stakeholderName, stakeholderType,
 				stakeholderGroupLeader);
 	}
-	
+
+	public static org.js.model.rbac.Role getRBACRole(Model model, String name){
+		ACMConnector acmConnector=(ACMConnector) WorkflowConfUtil.getAspectInstance(model, WorkflowConfUtil.ACM_ASPECT);
+		AccessControlModel acm = acmConnector.getAcmref();
+		return getRBACRole( acm, name);
+	}
 	/**
 	 * get the role in acm with the given name.
+	 * 
 	 * @param acm
 	 * @param name
 	 * @return
@@ -131,5 +143,23 @@ public class WorkflowUtil {
 			}
 		}
 		return null;
-}
+	}
+
+	/**
+	 * get the role referenced by the given action.
+	 * @param action
+	 * @return
+	 */
+	public static org.js.model.rbac.Role getRBACRole(Action action) {
+		RoleConnector roleConnector = null;
+		if( action.getPerformedBy()!=null){
+			roleConnector=((RoleConnector) WorkflowConfUtil
+				.getAspectInstance(((Action) action).getPerformedBy(),
+						WorkflowConfUtil.ROLE_ASPECT));}
+		if (roleConnector != null && roleConnector.getRoleref() != null) {
+			return roleConnector.getRoleref();
+		}
+		return null;
+	}
+
 }

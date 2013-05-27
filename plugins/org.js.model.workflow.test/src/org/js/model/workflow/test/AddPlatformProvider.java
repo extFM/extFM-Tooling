@@ -3,14 +3,19 @@ package org.js.model.workflow.test;
 import org.eclipse.jwt.meta.model.organisations.Role;
 import org.eclipse.jwt.meta.model.processes.*;
 import org.js.model.rbac.AccessControlModel;
+import org.js.model.rbac.RBACService;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.RoleConnector;
 import org.js.model.workflow.actions.MyAction;
 import org.js.model.workflow.util.ChangePrimitive;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowModelUtil;
+import org.js.model.workflow.util.WorkflowUtil;
 
 public class AddPlatformProvider extends MyAction {
+	
+	public org.js.model.rbac.Role platformProvider=null;
+	
 	@Override
 	public void run() {
 		initialRes();
@@ -57,17 +62,16 @@ public class AddPlatformProvider extends MyAction {
 	}
 
 	public boolean hasPlatformProvider(Activity activity) {
+		platformProvider=WorkflowUtil.getRBACRole(workflowModel, "PlatformProvider");
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof Action
 					&& ((Action) actNode).getPerformedBy() != null) {
-				RoleConnector roleConnector = ((RoleConnector) WorkflowConfUtil
-						.getAspectInstance(((Action) actNode).getPerformedBy(),
-								WorkflowConfUtil.ROLE_ASPECT));
-				if (roleConnector != null&&roleConnector.getRoleref()!=null) {
+				org.js.model.rbac.Role role = WorkflowUtil.getRBACRole((Action)actNode);
+				if (role != null&&role.getParentRoles().contains(platformProvider))
 						return true;
-				}
 			}
 		}
+		
 		return false;
 	}
 

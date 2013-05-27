@@ -13,10 +13,10 @@
             showInToolbar="true">
       </action>
       <action
-            class="org.js.model.workflow.test.AddUser"
-            description="add an user"
+            class="org.js.model.workflow.test.AddApplicationProvider"
+            description="add an application provider"
             forceText="false"
-            name="add user"
+            name="add application provider"
             requiresOpenEditor="true"
             showInMenu="true"
             showInToolbar="true">
@@ -31,10 +31,10 @@
             showInToolbar="true">
       </action>
       <action
-            class="org.js.model.workflow.test.AddApplicationProvider"
-            description="add an application provider"
+            class="org.js.model.workflow.test.AddUser"
+            description="add an user"
             forceText="false"
-            name="add application provider"
+            name="add user"
             requiresOpenEditor="true"
             showInMenu="true"
             showInToolbar="true">
