@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.lang.model.element.PackageElement;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -12,6 +13,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jwt.meta.model.core.Model;
 import org.eclipse.jwt.meta.model.core.ModelElement;
+import org.eclipse.jwt.meta.model.core.PackageableElement;
+import org.eclipse.jwt.meta.model.organisations.Role;
 import org.eclipse.jwt.meta.model.processes.Action;
 import org.eclipse.jwt.meta.model.processes.Activity;
 import org.eclipse.jwt.meta.model.processes.ActivityEdge;
@@ -20,7 +23,6 @@ import org.eclipse.jwt.we.model.view.Diagram;
 import org.js.graph.transformation.*;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.Group;
-import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.RoleConnector;
 import org.js.model.workflow.State;
@@ -103,10 +105,10 @@ public class WorkflowUtil {
 	 */
 	public static StakeholderInput analyzeShInput(String stakeholderName,
 			String stakeholderTypeName, String stakeholderGroupName,
-			AccessControlModel acm, EList<Role> shTypes) {
-		Role stakeholderType = null;
-		Role stakeholderGroupLeader = null;
-		for (Role role : shTypes) {
+			AccessControlModel acm, EList<org.js.model.rbac.Role> shTypes) {
+		org.js.model.rbac.Role stakeholderType = null;
+		org.js.model.rbac.Role stakeholderGroupLeader = null;
+		for (org.js.model.rbac.Role role : shTypes) {
 			if (role.getId().equals(stakeholderTypeName)) {
 				stakeholderType = role;
 				break;
@@ -161,5 +163,19 @@ public class WorkflowUtil {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * get the jwt role with the given name.
+	 * @param workflowModel
+	 * @param name
+	 * @return
+	 */
+public static  Role getJWTRole(Model workflowModel, String name){
+	for(PackageableElement packageEle:workflowModel.getElements()){
+		if(packageEle instanceof Role && ((Role)packageEle).getName().equals(name)){
+			return (Role)packageEle;
+		}
+	}
+	return null;
+}
 }

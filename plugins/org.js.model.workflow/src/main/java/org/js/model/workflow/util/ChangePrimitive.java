@@ -187,9 +187,12 @@ public class ChangePrimitive {
 	public static Role addRole(Model workflowModel, Activity activity,
 			Diagram diagram, org.js.model.rbac.Role roleType, String name,
 			int roleCoorX, int roleCoorY) {
+		org.js.model.rbac.Role rbacRole=WorkflowUtil.getRBACRole(workflowModel, name);
+		Role jwtRole=null;
+		if(rbacRole==null){
 		// add role
-		Role role = WorkflowModelUtil.addRole(workflowModel, name);
-		WorkflowViewUtil.setRoleLayout(diagram, activity, role, roleCoorX,
+		jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
+		WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole, roleCoorX,
 				roleCoorY);
 
 		// add role aspect
@@ -202,8 +205,8 @@ public class ChangePrimitive {
 			AccessControlModel acm = (AccessControlModel) acmconnector
 					.getAcmref();
 			RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
-					.addAspectInstance(role, WorkflowConfUtil.ROLE_ASPECT);
-			org.js.model.rbac.Role rbacRole = RbacFactoryImpl.eINSTANCE
+					.addAspectInstance(jwtRole, WorkflowConfUtil.ROLE_ASPECT);
+			rbacRole = RbacFactoryImpl.eINSTANCE
 					.createRole();
 			// rbacService.getParentRoles(rbacRole).add(stageRole);
 			rbacRole.getParentRoles().add(roleType);
@@ -217,7 +220,10 @@ public class ChangePrimitive {
 			}
 			WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
 		}
-		return role;
+		}else{
+			jwtRole=WorkflowUtil.getJWTRole(workflowModel, name);
+		}
+		return jwtRole;
 	}
 
 	public static Role removeRole(Model workflowModel, Activity activity,

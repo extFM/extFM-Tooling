@@ -30,13 +30,13 @@ public class InitialAction extends MyAction {
 	 */
 	public void initialWorkflow() {
 		InitialNode initNode = ChangePrimitive.addInitialNode(activity,
-				diagram, WorkflowModelUtil.INITIAL_NODE, 200, 200);
-		ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram, 400,
+				diagram, WorkflowModelUtil.INITIAL_NODE, 100, 200);
+		ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram, 200,
 				200);
 		Action action = ChangePrimitive.addAction(workflowModel, activity,
-				diagram, WorkflowModelUtil.IDLE_ACTION, 600, 200);
+				diagram, WorkflowModelUtil.IDLE_ACTION, 300, 200);
 		FinalNode finaNode = ChangePrimitive.addActivityFinalNode(activity,
-				diagram, WorkflowModelUtil.ACTIVITY_FINAL_NODE, 800, 200);
+				diagram, WorkflowModelUtil.ACTIVITY_FINAL_NODE, 400, 200);
 		ChangePrimitive.addEdge(activity, initNode, forkNode);
 		ChangePrimitive.addEdge(activity, forkNode, action);
 		ChangePrimitive.addEdge(activity, action, finaNode);

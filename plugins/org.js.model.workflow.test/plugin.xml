@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.jwt.we.menu">
       <action
-            class="org.js.model.workflow.test.AddPlatformProvider"
+            class="org.js.model.workflow.test.action.AddPlatformProvider"
             description="add a platform provider"
             forceText="false"
             name="add platform provider"
@@ -13,7 +13,7 @@
             showInToolbar="true">
       </action>
       <action
-            class="org.js.model.workflow.test.AddApplicationProvider"
+            class="org.js.model.workflow.test.action.AddApplicationProvider"
             description="add an application provider"
             forceText="false"
             name="add application provider"
@@ -22,7 +22,7 @@
             showInToolbar="true">
       </action>
       <action
-            class="org.js.model.workflow.test.AddTenant"
+            class="org.js.model.workflow.test.action.AddTenant"
             description="add a tenant"
             forceText="false"
             name="add tenant"
@@ -31,7 +31,7 @@
             showInToolbar="true">
       </action>
       <action
-            class="org.js.model.workflow.test.AddUser"
+            class="org.js.model.workflow.test.action.AddUser"
             description="add an user"
             forceText="false"
             name="add user"

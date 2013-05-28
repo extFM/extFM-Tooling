@@ -1,4 +1,4 @@
-package org.js.model.workflow.test;
+package org.js.model.workflow.test.action;
 
 import org.eclipse.jwt.meta.model.organisations.Role;
 import org.eclipse.jwt.meta.model.processes.Action;
@@ -16,9 +16,6 @@ import org.js.model.workflow.util.WorkflowUtil;
 
 public class AddApplicationProvider extends MyAction {
 
-	org.js.model.rbac.Role platformProvider = null;
-	org.js.model.rbac.Role applicationProvider = null;
-
 	public AddApplicationProvider() {
 	}
 
@@ -31,26 +28,27 @@ public class AddApplicationProvider extends MyAction {
 	}
 	public void addApplicationProvider() {
 		if (!hasApplicationProvider(activity)) {
+			org.js.model.rbac.Role platformProviderType = 	 WorkflowUtil.getRBACRole(workflowModel, "PlatformProvider");
+			org.js.model.rbac.Role applicationProviderType =  WorkflowUtil.getRBACRole(workflowModel, "ApplicationProvider");
 			ForkNode forkNode = getForkNode(activity);
 			Action idle = getIdleAction(activity);
-			Action platProviderAction = getPlatformProviderAction(activity);
-			applicationProvider = WorkflowUtil.getRBACRole(workflowModel, "ApplicationProvider");
-			
-			if (forkNode != null && platformProvider != null&&platProviderAction!=null) {
+			Action platProviderAction = getPlatformProviderAction(activity,platformProviderType);
+		
+			if (forkNode != null && platformProviderType != null&&platformProviderType!=null&&platProviderAction!=null) {
 				// add an action
 				Action action = ChangePrimitive.addAction(workflowModel,
 						activity, diagram,
-						WorkflowModelUtil.SPECIALIZATION_ACTION, 800, 300);
+						WorkflowModelUtil.SPECIALIZATION_ACTION, 400, 300);
 				
 				// add the action with the reference of the role
 				Role role = ChangePrimitive.addRole(workflowModel, activity,
-						diagram, applicationProvider, "ApplicationProvider1", 800,
+						diagram, applicationProviderType, "ApplicationProviderTest", 400,
 						400);
 				ChangePrimitive.addRoleActionRef(workflowModel, activity,
 						diagram, role, action);
 				
 				// add a fork node
-				ForkNode forkNode1 = ChangePrimitive.addForkNode(activity, diagram, 1000, 300);
+				ForkNode forkNode1 = ChangePrimitive.addForkNode(activity, diagram, 500, 300);
 				
 				// remove the edge 
 				ChangePrimitive.removeEdge(activity, platProviderAction, idle);
@@ -62,7 +60,6 @@ public class AddApplicationProvider extends MyAction {
 		}
 	}
 	public boolean hasApplicationProvider(Activity activity) {
-		applicationProvider = WorkflowUtil.getRBACRole(workflowModel, "ApplicationProvider");
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof Action){
 				org.js.model.rbac.Role role = WorkflowUtil.getRBACRole((Action)actNode);
@@ -78,16 +75,18 @@ public class AddApplicationProvider extends MyAction {
 		return false;
 	}
 
-	public Action getPlatformProviderAction(Activity activity) {
-		platformProvider = WorkflowUtil.getRBACRole(workflowModel, "PlatformProvider");
+	public Action getPlatformProviderAction(Activity activity,org.js.model.rbac.Role platformProvider) {
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof Action
 					&& WorkflowModelUtil.getActionName((Action) actNode)
 							.equals(WorkflowModelUtil.SPECIALIZATION_ACTION)) {
 				org.js.model.rbac.Role role = WorkflowUtil
 						.getRBACRole((Action) actNode);
-				if (role.getParentRoles().contains(platformProvider))
-					return (Action) actNode;
+				for(org.js.model.rbac.Role parent:role.getParentRoles()){
+					if(parent.getId().equals("PlatformProvider")){
+						return (Action)actNode;
+					}
+				}
 			}
 		}
 		return null;
