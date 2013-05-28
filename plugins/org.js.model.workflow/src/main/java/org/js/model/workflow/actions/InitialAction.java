@@ -24,6 +24,7 @@ public class InitialAction extends MyAction {
 	 * initial the workflow.
 	 */
 	public void initialWorkflow() {
+		if(WorkflowModelUtil.getIdleAction(activity)==null){
 		InitialNode initNode = ChangePrimitive.addInitialNode(activity,
 				diagram, WorkflowModelUtil.INITIAL_NODE, 100, 100);
 		ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram, 150,
@@ -35,5 +36,7 @@ public class InitialAction extends MyAction {
 		ChangePrimitive.addEdge(activity, initNode, forkNode);
 		ChangePrimitive.addEdge(activity, forkNode, action);
 		ChangePrimitive.addEdge(activity, action, finaNode);
+		ChangePrimitive.updateActionState(action);
+		}
 	}
 }

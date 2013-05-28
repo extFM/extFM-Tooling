@@ -48,6 +48,7 @@ public class AddPlatformProvider extends MyAction {
 				ChangePrimitive.addEdge(activity, forkNode, action);
 				ChangePrimitive.addEdge(activity, action, idleAction);
 				
+				ChangePrimitive.updateActionState(action);
 //				WorkflowViewUtil.treeLayout(workflowModel, activity, diagram, idleAction, finalNode, action);
 			}
 		}

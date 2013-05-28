@@ -61,7 +61,7 @@ public class ChangePrimitive {
 			State state = (State) WorkflowConfUtil.addAspectInstance(actNode,
 					WorkflowConfUtil.STATE_ASPECT);
 			// WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
-			WorkflowModelUtil.setActionState((Action) actNode);
+//			WorkflowModelUtil.setActionState((Action) actNode);
 
 			// set the name with the state
 			actNode.setName(actNode.getName() + " ("
@@ -70,6 +70,15 @@ public class ChangePrimitive {
 		return (Action) actNode;
 	}
 
+	public static void updateActionState(Action action){
+		// WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
+		WorkflowModelUtil.setActionState( action);
+		State state = (State) WorkflowConfUtil.getAspectInstance(action,
+				WorkflowConfUtil.STATE_ASPECT);
+		// set the name with the state
+		action.setName(WorkflowModelUtil.getActionName(action) + " ("
+				+ state.getState().getName() + ") ");
+	}
 	public static Action removeAction(Model workflowModel, Activity activity,
 			Diagram diagram, String actionName) {
 		ActivityNode actNode = WorkflowModelUtil.getActivityNode(activity,

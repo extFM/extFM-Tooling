@@ -60,6 +60,7 @@ public class AddApplicationProvider extends MyAction {
 				ChangePrimitive.addEdge(activity, action, forkNode1);
 				ChangePrimitive.addEdge(activity,  forkNode1, idleAction);
 				
+				ChangePrimitive.updateActionState(action);
 				WorkflowViewUtil.treeLayout(workflowModel, activity, diagram,
 						idleAction, finalNode, action);
 			}

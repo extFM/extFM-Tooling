@@ -55,6 +55,7 @@ public class AddTenant extends MyAction {
 			ChangePrimitive.addEdge(activity, action, forkNode);
 			ChangePrimitive.addEdge(activity, forkNode, idleAction);
 			
+			ChangePrimitive.updateActionState(action);
 			WorkflowViewUtil.treeLayout(workflowModel, activity, diagram,
 					idleAction, finalNode, action);
 		}

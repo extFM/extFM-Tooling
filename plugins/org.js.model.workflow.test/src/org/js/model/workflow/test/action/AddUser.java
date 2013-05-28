@@ -90,6 +90,7 @@ public class AddUser extends MyAction {
 			ChangePrimitive.addEdge(activity, forNode1, action);
 			ChangePrimitive.addEdge(activity, action, flowFinal);
 
+			ChangePrimitive.updateActionState(action);
 			WorkflowViewUtil.treeLayout(workflowModel, activity, diagram,
 					idleAction, finalNode, action);
 		}

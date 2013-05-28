@@ -388,7 +388,7 @@ public class WorkflowModelUtil {
 				stateAspect.setState(StateEnum.INACTIVE);
 			}
 		} else {
-			stateAspect.setState(StateEnum.INACTIVE);
+			stateAspect.setState(StateEnum.ENABLED);
 		}
 	}
 
