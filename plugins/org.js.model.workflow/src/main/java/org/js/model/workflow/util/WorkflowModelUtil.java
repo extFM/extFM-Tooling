@@ -316,19 +316,16 @@ public class WorkflowModelUtil {
 		}
 		return preAction;
 	}
-	
-	public static Action getNextAction(ActivityNode actNode) {
-		Action preAction = null;
-		if (actNode.getIn().size() > 0) {
-			ActivityEdge actEdge = actNode.getIn().get(0);
-			ActivityNode preActNode = actEdge.getSource();
-			if (preActNode instanceof Action) {
-				preAction = (Action) preActNode;
-			} else {
-				preAction = getPrecedeAction(preActNode);
+
+	public static ArrayList<Action> getNextSpecializationActions(Action action) {
+		ArrayList<Action> nextActions= new ArrayList<Action>();
+		for(ActivityEdge actEdge:action.getOut().get(0).getTarget().getOut()){
+			ActivityNode actNode=actEdge.getTarget();
+			if(actNode instanceof Action&&(WorkflowModelUtil.getActionName((Action)actNode).equals(WorkflowModelUtil.SPECIALIZATION_ACTION))){
+				nextActions.add(action);
 			}
 		}
-		return preAction;
+		return nextActions;
 	}
 
 	/**
@@ -372,6 +369,7 @@ public class WorkflowModelUtil {
 		}
 		return preActNodes;
 	}
+
 	/**
 	 * set the state of given action.
 	 * 
@@ -393,6 +391,7 @@ public class WorkflowModelUtil {
 			stateAspect.setState(StateEnum.INACTIVE);
 		}
 	}
+
 	/**
 	 * set the state for the given action.
 	 * 
@@ -403,5 +402,66 @@ public class WorkflowModelUtil {
 		State stateAspect = (State) WorkflowConfUtil.getAspectInstance(action,
 				WorkflowConfUtil.STATE_ASPECT);
 		stateAspect.setState(state);
+	}
+
+	/**
+	 * all all actions in the stage of the given action.
+	 * 
+	 * @param activity
+	 * @param action
+	 */
+	public static ArrayList<Action> getStagedActions(Activity activity,
+			Action action) {
+		ArrayList<Action> stagedActions = new ArrayList<Action>();
+		org.js.model.rbac.Role role = WorkflowUtil.getRBACRole(action);
+		if (role != null) {
+			for (org.js.model.rbac.Role parent : role.getParentRoles()) {
+				for (org.js.model.rbac.Role child : parent.getChildRoles()) {
+					if (child != null ) {
+						stagedActions.addAll(getActions(activity, child));
+					}
+				}
+			}
+		}
+		return stagedActions;
+	}
+
+	/**
+	 * all actions performed by the given role. these actions should be in the
+	 * same stage.
+	 * 
+	 * @param activity
+	 * @param role
+	 * @return
+	 */
+	public static ArrayList<Action> getActions(Activity activity,
+			org.js.model.rbac.Role role) {
+		ArrayList<Action> actions = new ArrayList<Action>();
+		for (Action action : getActionList(activity)) {
+			org.js.model.rbac.Role tempRole = WorkflowUtil.getRBACRole(action);
+			if (tempRole != null && tempRole.getId().equals(role.getId())) {
+				actions.add(action);
+			}
+		}
+		return actions;
+	}
+	public static Action getIdleAction(Activity activity) {
+		for (ActivityNode actNode : activity.getNodes()) {
+			if (actNode instanceof Action
+					&& WorkflowModelUtil.getActionName((Action) actNode)
+							.equals(WorkflowModelUtil.IDLE_ACTION)) {
+				return (Action) actNode;
+			}
+		}
+		return null;
+	}
+
+	public static FinalNode getFinalNode(Activity activity) {
+		for (ActivityNode actNode : activity.getNodes()) {
+			if (actNode instanceof FinalNode) {
+				return (FinalNode) actNode;
+			}
+		}
+		return null;
 	}
 }

@@ -221,7 +221,7 @@ public class ChangePrimitive {
 			WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
 		}
 		}else{
-			jwtRole=WorkflowUtil.getJWTRole(workflowModel, name);
+			jwtRole=WorkflowModelUtil.getRole(workflowModel, name);
 		}
 		return jwtRole;
 	}

@@ -1,17 +1,22 @@
 package org.js.model.workflow.util;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jwt.meta.model.core.GraphicalElement;
+import org.eclipse.jwt.meta.model.core.Model;
 import org.eclipse.jwt.meta.model.core.ReferenceableElement;
 import org.eclipse.jwt.meta.model.organisations.Role;
 import org.eclipse.jwt.meta.model.processes.Action;
 import org.eclipse.jwt.meta.model.processes.Activity;
+import org.eclipse.jwt.meta.model.processes.ActivityNode;
+import org.eclipse.jwt.meta.model.processes.FinalNode;
 import org.eclipse.jwt.we.model.view.Diagram;
 import org.eclipse.jwt.we.model.view.LayoutData;
 import org.eclipse.jwt.we.model.view.Reference;
 import org.eclipse.jwt.we.model.view.ReferenceEdge;
 import org.eclipse.jwt.we.model.view.ViewFactory;
+import org.js.model.workflow.StakeholderTypes;
 
 /**
  * 
@@ -240,6 +245,11 @@ public class WorkflowViewUtil {
 	public static ReferenceEdge setReferenceEdge(Diagram diagram,
 			Activity activity, Role role, Action action) {
 		Reference reference = getReferenceEdge(diagram, role);
+		// if(reference==null){
+		// reference = viewFactory.createReference();
+		// reference.setReference(role);
+		// reference.setContainedIn(activity);
+		// }
 		ReferenceEdge referenceEdge = viewFactory.createReferenceEdge();
 		referenceEdge.setReference(reference);
 		referenceEdge.setContainedIn(activity);
@@ -249,5 +259,66 @@ public class WorkflowViewUtil {
 		reference.getReferenceEdges().add(referenceEdge);
 		referenceEdge.setReference(reference);
 		return referenceEdge;
+	}
+
+	/**
+	 * set the workflow layout.
+	 * 
+	 * @param workflowModel
+	 * @param activity
+	 * @param idleAction
+	 * @param newAction
+	 */
+	public static void treeLayout(Model workflowModel, Activity activity,
+			Diagram diagram, Action idleAction, FinalNode finalNode,
+			Action newAction) {
+		handleHorizon(workflowModel, diagram, idleAction, finalNode);
+		handleVertical(activity, diagram, newAction);
+	}
+
+	public static void handleHorizon(Model workflowModel, Diagram diagram,
+			Action idleAction, FinalNode finalNode) {
+		EList<org.js.model.rbac.Role> stakeholderTypes = ((StakeholderTypes) WorkflowConfUtil
+				.getAspectInstance(workflowModel,
+						WorkflowConfUtil.STAKHOLDERTYPES_ASPECT))
+				.getStakeholderTypes();
+		int horizontalIndex = 0;
+		for (org.js.model.rbac.Role roleType : stakeholderTypes) {
+			if (roleType.getChildRoles().size() != 0) {
+				horizontalIndex++;
+			}
+		}
+		LayoutData idleActionLayout = WorkflowViewUtil.getNodeLayout(diagram,
+				idleAction);
+		LayoutData finalNodeLayout = WorkflowViewUtil.getNodeLayout(diagram,
+				finalNode);
+		idleActionLayout.setX(250 * horizontalIndex);
+		finalNodeLayout.setX(250 * horizontalIndex + 200);
+	}
+
+	public static void handleVertical(Activity activity, Diagram diagram,
+			Action newAction) {
+		LayoutData newActionLayout = WorkflowViewUtil.getNodeLayout(diagram,
+				newAction);
+		ArrayList<Action> stagedActions = WorkflowModelUtil.getStagedActions(
+				activity, newAction);
+		Action preAction = WorkflowModelUtil.getPrecedeAction(newAction);
+		if(WorkflowModelUtil.getNextSpecializationActions(preAction).size()>1){
+		for (Action action : stagedActions) {
+			LayoutData otherActionLayout = WorkflowViewUtil.getNodeLayout(
+					diagram, action);
+			if (newActionLayout.getY() < otherActionLayout.getY()) {
+				otherActionLayout.setY(otherActionLayout.getY() + 100);
+				LayoutData roleLayout=WorkflowViewUtil.getRoleLayout(diagram, action.getPerformedBy());
+				roleLayout.setY(roleLayout.getY()+100);
+				ActivityNode actNode=action.getOut().get(0).getTarget();
+				LayoutData actNodeLayout=WorkflowViewUtil.getNodeLayout(diagram, actNode);
+				actNodeLayout.setY(actNodeLayout.getY()+100);
+			}
+		}
+		}
+		if (WorkflowModelUtil.getNextSpecializationActions(preAction).size()>1&&WorkflowModelUtil.getStagedActions(activity, preAction).size() > 1) {
+			handleVertical(activity, diagram, preAction);
+		}
 	}
 }

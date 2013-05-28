@@ -11,6 +11,7 @@ import org.js.model.workflow.util.ChangePrimitive;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowModelUtil;
 import org.js.model.workflow.util.WorkflowUtil;
+import org.js.model.workflow.util.WorkflowViewUtil;
 
 public class AddPlatformProvider extends MyAction {
 	
@@ -26,25 +27,28 @@ public class AddPlatformProvider extends MyAction {
 		if (!hasPlatformProvider(activity)) {
 			org.js.model.rbac.Role 	platformProviderType=WorkflowUtil.getRBACRole(workflowModel, "PlatformProvider");
 			
-			ForkNode forkNode = getForkNode(activity);
-			Action idle = getIdleAction(activity);
+			ForkNode forkNode = getFirstForkNode(activity);
+			Action idleAction = WorkflowModelUtil.getIdleAction(activity);
+			FinalNode finalNode = WorkflowModelUtil.getFinalNode(activity);
 			
 			if (forkNode != null && platformProviderType != null) {
 				// add an action
 				Action action = ChangePrimitive.addAction(workflowModel,
 						activity, diagram,
-						WorkflowModelUtil.SPECIALIZATION_ACTION, 300, 300);
+						WorkflowModelUtil.SPECIALIZATION_ACTION, 200, 200);
 
 				// add the action with the reference of the role
 				Role role = ChangePrimitive.addRole(workflowModel, activity,
-						diagram, platformProviderType, "PlatformProviderTest", 300,
-						400);
+						diagram, platformProviderType, "PlatformProviderTest", 200,
+						250);
 				ChangePrimitive.addRoleActionRef(workflowModel, activity,
 						diagram, role, action);
 
 				// add the edge
 				ChangePrimitive.addEdge(activity, forkNode, action);
-				ChangePrimitive.addEdge(activity, action, idle);
+				ChangePrimitive.addEdge(activity, action, idleAction);
+				
+//				WorkflowViewUtil.treeLayout(workflowModel, activity, diagram, idleAction, finalNode, action);
 			}
 		}
 	}
@@ -70,18 +74,8 @@ public class AddPlatformProvider extends MyAction {
 		return false;
 	}
 
-	public Action getIdleAction(Activity activity) {
-		for (ActivityNode actNode : activity.getNodes()) {
-			if (actNode instanceof Action
-					&& WorkflowModelUtil.getActionName((Action) actNode)
-							.equals(WorkflowModelUtil.IDLE_ACTION)) {
-				return (Action) actNode;
-			}
-		}
-		return null;
-	}
 
-	public ForkNode getForkNode(Activity activity) {
+	public ForkNode getFirstForkNode(Activity activity) {
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof ForkNode) {
 				return (ForkNode) actNode;

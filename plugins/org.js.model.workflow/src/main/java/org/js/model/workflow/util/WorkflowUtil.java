@@ -164,18 +164,4 @@ public class WorkflowUtil {
 		return null;
 	}
 	
-	/**
-	 * get the jwt role with the given name.
-	 * @param workflowModel
-	 * @param name
-	 * @return
-	 */
-public static  Role getJWTRole(Model workflowModel, String name){
-	for(PackageableElement packageEle:workflowModel.getElements()){
-		if(packageEle instanceof Role && ((Role)packageEle).getName().equals(name)){
-			return (Role)packageEle;
-		}
-	}
-	return null;
-}
 }

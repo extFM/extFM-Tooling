@@ -5,11 +5,13 @@ import org.eclipse.jwt.meta.model.processes.Action;
 import org.eclipse.jwt.meta.model.processes.Activity;
 import org.eclipse.jwt.meta.model.processes.ActivityEdge;
 import org.eclipse.jwt.meta.model.processes.ActivityNode;
+import org.eclipse.jwt.meta.model.processes.FinalNode;
 import org.eclipse.jwt.meta.model.processes.ForkNode;
 import org.js.model.workflow.actions.MyAction;
 import org.js.model.workflow.util.ChangePrimitive;
 import org.js.model.workflow.util.WorkflowModelUtil;
 import org.js.model.workflow.util.WorkflowUtil;
+import org.js.model.workflow.util.WorkflowViewUtil;
 
 public class AddTenant extends MyAction {
 
@@ -28,29 +30,33 @@ public class AddTenant extends MyAction {
 	public void addTenant(){
 		org.js.model.rbac.Role applicationProviderType = WorkflowUtil.getRBACRole(workflowModel, "ApplicationProvider");
 		org.js.model.rbac.Role tenantType = WorkflowUtil.getRBACRole(workflowModel, "Tenant");
-		Action idle = getIdleAction(activity);
+		Action idleAction = WorkflowModelUtil.getIdleAction(activity);
+		FinalNode finalNode = WorkflowModelUtil.getFinalNode(activity);
 		Action appProviderAction = getAppProviderAction(activity);
 		
-		if(applicationProviderType!=null&&tenantType!=null&&idle!=null&&appProviderAction!=null){
+		if(applicationProviderType!=null&&tenantType!=null&&idleAction!=null&&appProviderAction!=null){
+			int size =tenantType.getChildRoles().size();
 			// add an action
 			Action action = ChangePrimitive.addAction(workflowModel,
 					activity, diagram,
-					WorkflowModelUtil.SPECIALIZATION_ACTION, 600, 300);
+					WorkflowModelUtil.SPECIALIZATION_ACTION, 650, 200+100*size);
 							// add the action with the reference of the role
-			int size =tenantType.getChildRoles().size();
 				Role role = ChangePrimitive.addRole(workflowModel, activity,
-						diagram, tenantType, "TenantTest"+size, 600,
-						400);
+						diagram, tenantType, "TenantTest"+size, 650,
+						250+100*size);
 				ChangePrimitive.addRoleActionRef(workflowModel, activity,
 						diagram, role, action);
 				// add a fork node
-			ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram, 700, 300);
+			ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram, 850, 200+100*size);
 			// add the edge
 			ForkNode forNode1 = (ForkNode) ((ActivityEdge)appProviderAction.getOut().get(0)).getTarget();
 			
 			ChangePrimitive.addEdge(activity, forNode1, action);
 			ChangePrimitive.addEdge(activity, action, forkNode);
-			ChangePrimitive.addEdge(activity, forkNode, idle);
+			ChangePrimitive.addEdge(activity, forkNode, idleAction);
+			
+			WorkflowViewUtil.treeLayout(workflowModel, activity, diagram,
+					idleAction, finalNode, action);
 		}
 	}
 	public Action getIdleAction(Activity activity) {
