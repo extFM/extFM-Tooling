@@ -79,5 +79,11 @@
             showInToolbar="true">
       </action>
    </extension>
+   <extension
+         point="org.eclipse.jwt.we.doubleclick">
+      <doubleclick
+            DoubleClickHandler="org.js.model.workflow.actions.ConfigHandler">
+      </doubleclick>
+   </extension>
 
 </plugin>
