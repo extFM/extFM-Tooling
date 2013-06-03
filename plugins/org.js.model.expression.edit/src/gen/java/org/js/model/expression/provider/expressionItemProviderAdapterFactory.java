@@ -463,6 +463,52 @@ public class expressionItemProviderAdapterFactory extends expressionAdapterFacto
    }
 
    /**
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.NestedExpression2} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected NestedExpression2ItemProvider nestedExpression2ItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.expression.NestedExpression2}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createNestedExpression2Adapter() {
+      if (nestedExpression2ItemProvider == null) {
+         nestedExpression2ItemProvider = new NestedExpression2ItemProvider(this);
+      }
+
+      return nestedExpression2ItemProvider;
+   }
+
+   /**
+    * This keeps track of the one adapter used for all {@link org.js.model.expression.FeatureAttributeReference2} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected FeatureAttributeReference2ItemProvider featureAttributeReference2ItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.expression.FeatureAttributeReference2}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createFeatureAttributeReference2Adapter() {
+      if (featureAttributeReference2ItemProvider == null) {
+         featureAttributeReference2ItemProvider = new FeatureAttributeReference2ItemProvider(this);
+      }
+
+      return featureAttributeReference2ItemProvider;
+   }
+
+   /**
     * This keeps track of the one adapter used for all {@link org.js.model.expression.ExpressionModel} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
@@ -670,6 +716,8 @@ public class expressionItemProviderAdapterFactory extends expressionAdapterFacto
       if (greaterThanOrEqualItemProvider != null) greaterThanOrEqualItemProvider.dispose();
       if (lessThanItemProvider != null) lessThanItemProvider.dispose();
       if (lessThanOrEqualItemProvider != null) lessThanOrEqualItemProvider.dispose();
+      if (nestedExpression2ItemProvider != null) nestedExpression2ItemProvider.dispose();
+      if (featureAttributeReference2ItemProvider != null) featureAttributeReference2ItemProvider.dispose();
       if (expressionModelItemProvider != null) expressionModelItemProvider.dispose();
       if (featureAttributeReferenceItemProvider != null) featureAttributeReferenceItemProvider.dispose();
       if (featureAttributeValueItemProvider != null) featureAttributeValueItemProvider.dispose();

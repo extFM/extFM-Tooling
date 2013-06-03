@@ -182,6 +182,16 @@ public class BinaryExpression2ItemProvider
 
       newChildDescriptors.add
          (createChildParameter
+            (expressionPackage.Literals.BINARY_EXPRESSION2__OPERAND1,
+             expressionFactory.eINSTANCE.createNestedExpression2()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.BINARY_EXPRESSION2__OPERAND1,
+             expressionFactory.eINSTANCE.createFeatureAttributeReference2()));
+
+      newChildDescriptors.add
+         (createChildParameter
             (expressionPackage.Literals.BINARY_EXPRESSION2__OPERAND2,
              expressionFactory.eINSTANCE.createFeatureReference2()));
 
@@ -224,6 +234,16 @@ public class BinaryExpression2ItemProvider
          (createChildParameter
             (expressionPackage.Literals.BINARY_EXPRESSION2__OPERAND2,
              expressionFactory.eINSTANCE.createLessThanOrEqual()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.BINARY_EXPRESSION2__OPERAND2,
+             expressionFactory.eINSTANCE.createNestedExpression2()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.BINARY_EXPRESSION2__OPERAND2,
+             expressionFactory.eINSTANCE.createFeatureAttributeReference2()));
    }
 
    /**

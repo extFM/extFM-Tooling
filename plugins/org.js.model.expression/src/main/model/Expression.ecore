@@ -92,6 +92,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="GreaterThanOrEqual" eSuperTypes="#//BinaryExpression2"/>
   <eClassifiers xsi:type="ecore:EClass" name="LessThan" eSuperTypes="#//BinaryExpression2"/>
   <eClassifiers xsi:type="ecore:EClass" name="LessThanOrEqual" eSuperTypes="#//BinaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NestedExpression2" eSuperTypes="#//UnaryExpression2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureAttributeReference2" eSuperTypes="#//AtomicExpression2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="#//Feature2"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+        eType="#//Attribute2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionModel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
