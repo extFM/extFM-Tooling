@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 
 import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
+import org.js.model.rbac.ConfigurationDecision;
 import org.js.model.rbac.Permission;
 
 import org.js.model.workflow.Log;
@@ -25,7 +26,7 @@ import org.js.model.workflow.WorkflowPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.js.model.workflow.impl.LogImpl#getPermissions <em>Permissions</em>}</li>
+ *   <li>{@link org.js.model.workflow.impl.LogImpl#getConfigurationDecisions <em>Configuration Decisions</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,15 +34,14 @@ import org.js.model.workflow.WorkflowPackage;
  */
 public class LogImpl extends AspectInstanceImpl implements Log {
 	/**
-	 * The cached value of the '{@link #getPermissions() <em>Permissions</em>}' reference list.
+	 * The cached value of the '{@link #getConfigurationDecisions() <em>Configuration Decisions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPermissions()
+	 * @see #getConfigurationDecisions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Permission> permissions;
-
+	protected EList<ConfigurationDecision> configurationDecisions;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,11 +66,11 @@ public class LogImpl extends AspectInstanceImpl implements Log {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Permission> getPermissions() {
-		if (permissions == null) {
-			permissions = new EObjectResolvingEList<Permission>(Permission.class, this, WorkflowPackage.LOG__PERMISSIONS);
+	public EList<ConfigurationDecision> getConfigurationDecisions() {
+		if (configurationDecisions == null) {
+			configurationDecisions = new EObjectResolvingEList<ConfigurationDecision>(ConfigurationDecision.class, this, WorkflowPackage.LOG__CONFIGURATION_DECISIONS);
 		}
-		return permissions;
+		return configurationDecisions;
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class LogImpl extends AspectInstanceImpl implements Log {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case WorkflowPackage.LOG__PERMISSIONS:
-				return getPermissions();
+			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
+				return getConfigurationDecisions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -96,9 +96,9 @@ public class LogImpl extends AspectInstanceImpl implements Log {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case WorkflowPackage.LOG__PERMISSIONS:
-				getPermissions().clear();
-				getPermissions().addAll((Collection<? extends Permission>)newValue);
+			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
+				getConfigurationDecisions().clear();
+				getConfigurationDecisions().addAll((Collection<? extends ConfigurationDecision>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -112,8 +112,8 @@ public class LogImpl extends AspectInstanceImpl implements Log {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case WorkflowPackage.LOG__PERMISSIONS:
-				getPermissions().clear();
+			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
+				getConfigurationDecisions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -127,8 +127,8 @@ public class LogImpl extends AspectInstanceImpl implements Log {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case WorkflowPackage.LOG__PERMISSIONS:
-				return permissions != null && !permissions.isEmpty();
+			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
+				return configurationDecisions != null && !configurationDecisions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

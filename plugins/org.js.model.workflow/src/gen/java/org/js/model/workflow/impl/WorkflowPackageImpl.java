@@ -224,7 +224,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLog_Permissions() {
+	public EReference getLog_ConfigurationDecisions() {
 		return (EReference)logEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -329,7 +329,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		createEReference(efmContainerEClass, EFM_CONTAINER__EFMREF);
 
 		logEClass = createEClass(LOG);
-		createEReference(logEClass, LOG__PERMISSIONS);
+		createEReference(logEClass, LOG__CONFIGURATION_DECISIONS);
 
 		stateEClass = createEClass(STATE);
 		createEAttribute(stateEClass, STATE__STATE);
@@ -397,7 +397,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 		initEReference(getEFMContainer_Efmref(), theFeaturePackage.getFeatureModel(), null, "efmref", null, 0, 1, EFMContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(logEClass, Log.class, "Log", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLog_Permissions(), theRbacPackage.getPermission(), null, "permissions", null, 0, -1, Log.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLog_ConfigurationDecisions(), theRbacPackage.getConfigurationDecision(), null, "configurationDecisions", null, 0, -1, Log.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getState_State(), this.getStateEnum(), "state", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -10,6 +10,8 @@ import org.eclipse.jwt.meta.model.processes.Action;
 import org.eclipse.jwt.we.parts.core.doubleClick.*;
 import org.eclipse.swt.widgets.Display;
 import org.js.model.workflow.RoleConnector;
+import org.js.model.workflow.State;
+import org.js.model.workflow.StateEnum;
 import org.js.model.workflow.ui.StakeholderConfigUIShell;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowModelUtil;
@@ -17,7 +19,6 @@ import org.js.model.workflow.util.WorkflowModelUtil;
 public class ConfigHandler implements DoubleClickHandler {
 
 	public ConfigHandler() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -39,14 +40,16 @@ public class ConfigHandler implements DoubleClickHandler {
 					WorkflowModelUtil.SPECIALIZATION_ACTION)) {
 				handleSpecializationAction((Action)modelElement);
 			} else {
-				handleIdleAction();
+				handleIdleAction((Action)modelElement);
 			}
 		} else if (modelElement instanceof Event) {
-			handleFlowFinal();
+			handleFlowFinal((Event)modelElement);
 		}
 	}
 
 	public void handleSpecializationAction(Action modelElement) {
+		State state = (State)WorkflowConfUtil.getAspectInstance(modelElement, WorkflowConfUtil.STATE_ASPECT);
+		// according to the state value the ui is different
 		RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
 				.getAspectInstance(((Action) modelElement).getPerformedBy(),
 						WorkflowConfUtil.ROLE_ASPECT);
@@ -54,7 +57,7 @@ public class ConfigHandler implements DoubleClickHandler {
 		try {
 			Display display = Display.getDefault();
 			StakeholderConfigUIShell shell = new StakeholderConfigUIShell(
-					display, role);
+					display, role, (Action)modelElement);
 			shell.open();
 			shell.layout();
 			while (!shell.isDisposed()) {
@@ -67,11 +70,15 @@ public class ConfigHandler implements DoubleClickHandler {
 		}
 	}
 
-	public void handleIdleAction() {
+	public void handleIdleAction(Action modelElement) {
 
 	}
 
-	public void handleFlowFinal() {
-
+	public void handleFlowFinal(Event flowFinal) {
+		Action preAction = WorkflowModelUtil.getPrecedeAction(flowFinal);
+		State state = (State)WorkflowConfUtil.getAspectInstance(preAction, WorkflowConfUtil.STATE_ASPECT);
+		if(state.getState().getValue()==3){
+			// open the config file
+		}
 	}
 }

@@ -225,13 +225,13 @@ public interface WorkflowPackage extends EPackage {
 	int LOG__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Permissions</b></em>' reference list.
+	 * The feature id for the '<em><b>Configuration Decisions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOG__PERMISSIONS = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
+	int LOG__CONFIGURATION_DECISIONS = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Log</em>' class.
@@ -465,15 +465,15 @@ public interface WorkflowPackage extends EPackage {
 	EClass getLog();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.js.model.workflow.Log#getPermissions <em>Permissions</em>}'.
+	 * Returns the meta object for the reference list '{@link org.js.model.workflow.Log#getConfigurationDecisions <em>Configuration Decisions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Permissions</em>'.
-	 * @see org.js.model.workflow.Log#getPermissions()
+	 * @return the meta object for the reference list '<em>Configuration Decisions</em>'.
+	 * @see org.js.model.workflow.Log#getConfigurationDecisions()
 	 * @see #getLog()
 	 * @generated
 	 */
-	EReference getLog_Permissions();
+	EReference getLog_ConfigurationDecisions();
 
 	/**
 	 * Returns the meta object for class '{@link org.js.model.workflow.State <em>State</em>}'.
@@ -635,12 +635,12 @@ public interface WorkflowPackage extends EPackage {
 		EClass LOG = eINSTANCE.getLog();
 
 		/**
-		 * The meta object literal for the '<em><b>Permissions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Configuration Decisions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LOG__PERMISSIONS = eINSTANCE.getLog_Permissions();
+		EReference LOG__CONFIGURATION_DECISIONS = eINSTANCE.getLog_ConfigurationDecisions();
 
 		/**
 		 * The meta object literal for the '{@link org.js.model.workflow.impl.StateImpl <em>State</em>}' class.

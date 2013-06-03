@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 
 import org.eclipse.jwt.we.conf.model.AspectInstance;
+import org.js.model.rbac.ConfigurationDecision;
 import org.js.model.rbac.Permission;
 
 /**
@@ -16,7 +17,7 @@ import org.js.model.rbac.Permission;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.js.model.workflow.Log#getPermissions <em>Permissions</em>}</li>
+ *   <li>{@link org.js.model.workflow.Log#getConfigurationDecisions <em>Configuration Decisions</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,19 +27,19 @@ import org.js.model.rbac.Permission;
  */
 public interface Log extends AspectInstance {
 	/**
-	 * Returns the value of the '<em><b>Permissions</b></em>' reference list.
-	 * The list contents are of type {@link org.js.model.rbac.Permission}.
+	 * Returns the value of the '<em><b>Configuration Decisions</b></em>' reference list.
+	 * The list contents are of type {@link org.js.model.rbac.ConfigurationDecision}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Permissions</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Configuration Decisions</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Permissions</em>' reference list.
-	 * @see org.js.model.workflow.WorkflowPackage#getLog_Permissions()
+	 * @return the value of the '<em>Configuration Decisions</em>' reference list.
+	 * @see org.js.model.workflow.WorkflowPackage#getLog_ConfigurationDecisions()
 	 * @model
 	 * @generated
 	 */
-	EList<Permission> getPermissions();
+	EList<ConfigurationDecision> getConfigurationDecisions();
 
 } // Log

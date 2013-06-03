@@ -10,6 +10,7 @@ import org.eclipse.jwt.we.conf.model.Profile;
 import org.eclipse.jwt.we.conf.model.aspects.AspectManager;
 import org.js.graph.transformation.GraphTransformation;
 import org.js.model.rbac.AccessControlModel;
+import org.js.model.rbac.ConfigurationDecision;
 import org.js.model.rbac.Permission;
 import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
@@ -95,21 +96,21 @@ public class WorkflowConfUtil {
 		roleconnector.setRoleref(role);
 	}
 
-	public static void addPermissions(Log log, List<Permission> permissionList) {
-		log.getPermissions().addAll(permissionList);
+	public static void addConfigDecisions(Log log, List<ConfigurationDecision> decisionList) {
+		log.getConfigurationDecisions().addAll(decisionList);
 	}
 
-	public static void addPermission(Log log, Permission permission) {
-		log.getPermissions().add(permission);
+	public static void addConfigPermission(Log log, ConfigurationDecision decisionList) {
+		log.getConfigurationDecisions().add(decisionList);
 	}
 
-	public static void removePermission(Log log, Permission permission) {
-		log.getPermissions().remove(permission);
+	public static void removeConfigPermission(Log log, ConfigurationDecision decisionList) {
+		log.getConfigurationDecisions().remove(decisionList);
 	}
 
-	public static void removePermissions(Log log,
-			List<Permission> permissionList) {
-		log.getPermissions().removeAll(permissionList);
+	public static void removeConfigPermissions(Log log,
+			List<ConfigurationDecision> decisionList) {
+		log.getConfigurationDecisions().removeAll(decisionList);
 	}
 
 	public static void setState(State state, StateEnum stateEnum) {

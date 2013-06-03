@@ -42,6 +42,7 @@ public class ImportModelAction extends MyAction {
 	public void run() {
 		initialRes();
 		loadModel();
+		setSHTypes();
 		save();
 		refresh();
 
@@ -150,5 +151,10 @@ public class ImportModelAction extends MyAction {
 			WorkflowConfUtil.setGraphTrans(gtConnector, graphTrans);
 		}
 		
+	}
+	
+	public void setSHTypes(){
+		SetStakeholerTypes sSHTypes = new SetStakeholerTypes();
+		sSHTypes.run();
 	}
 }
