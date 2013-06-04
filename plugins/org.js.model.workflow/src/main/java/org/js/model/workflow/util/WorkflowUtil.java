@@ -7,6 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collections;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -88,6 +94,20 @@ public class WorkflowUtil {
 		return resourceSet.getResource(uri, true);
 	}
 
+	/**
+	 * get uri for the given file.
+	 * @param file
+	 * @return
+	 */
+	public static URI getURI(File file){
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IPath location = Path.fromOSString(file.getAbsolutePath());
+		IFile newFile = workspace.getRoot()
+				.getFileForLocation(location);
+		URI newFileUri = URI.createPlatformResourceURI(newFile
+				.getFullPath().toOSString(), true);
+		return newFileUri;
+	}
 	/**
 	 * store the stakeholder's inputs temporarily.
 	 * 

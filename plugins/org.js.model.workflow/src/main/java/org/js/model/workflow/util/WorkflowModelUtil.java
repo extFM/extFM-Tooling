@@ -1,15 +1,9 @@
 package org.js.model.workflow.util;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jwt.meta.model.core.Model;
 import org.eclipse.jwt.meta.model.core.PackageableElement;
 import org.eclipse.jwt.meta.model.events.Event;
@@ -271,12 +265,13 @@ public class WorkflowModelUtil {
 		}
 		return tempName.substring(0, nameLength);
 	}
-	
-	public static void setActionName(Action action){
-		State state = (State) WorkflowConfUtil.getAspectInstance(action, WorkflowConfUtil.STATE_ASPECT);
-		String stateName=state.getState().toString();
+
+	public static void setActionName(Action action) {
+		State state = (State) WorkflowConfUtil.getAspectInstance(action,
+				WorkflowConfUtil.STATE_ASPECT);
+		String stateName = state.getState().toString();
 		String actionName = getActionName(action);
-		actionName+=" ("+stateName+") ";
+		actionName += " (" + stateName + ") ";
 		action.setName(actionName);
 	}
 
@@ -326,11 +321,13 @@ public class WorkflowModelUtil {
 	}
 
 	public static ArrayList<Action> getNextSpecializationActions(Action action) {
-		ArrayList<Action> nextActions= new ArrayList<Action>();
-		for(ActivityEdge actEdge:action.getOut().get(0).getTarget().getOut()){
-			ActivityNode actNode=actEdge.getTarget();
-			if(actNode instanceof Action&&(WorkflowModelUtil.getActionName((Action)actNode).equals(WorkflowModelUtil.SPECIALIZATION_ACTION))){
-				nextActions.add((Action)actNode);
+		ArrayList<Action> nextActions = new ArrayList<Action>();
+		for (ActivityEdge actEdge : action.getOut().get(0).getTarget().getOut()) {
+			ActivityNode actNode = actEdge.getTarget();
+			if (actNode instanceof Action
+					&& (WorkflowModelUtil.getActionName((Action) actNode)
+							.equals(WorkflowModelUtil.SPECIALIZATION_ACTION))) {
+				nextActions.add((Action) actNode);
 			}
 		}
 		return nextActions;
@@ -425,7 +422,7 @@ public class WorkflowModelUtil {
 		if (role != null) {
 			for (org.js.model.rbac.Role parent : role.getParentRoles()) {
 				for (org.js.model.rbac.Role child : parent.getChildRoles()) {
-					if (child != null ) {
+					if (child != null) {
 						stagedActions.addAll(getActions(activity, child));
 					}
 				}
@@ -453,6 +450,7 @@ public class WorkflowModelUtil {
 		}
 		return actions;
 	}
+
 	public static Action getIdleAction(Activity activity) {
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof Action

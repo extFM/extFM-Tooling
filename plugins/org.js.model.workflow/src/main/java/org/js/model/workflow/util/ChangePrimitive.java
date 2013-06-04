@@ -3,9 +3,7 @@ package org.js.model.workflow.util;
 import java.io.File;
 import java.io.IOException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -70,6 +68,7 @@ public class ChangePrimitive {
 				AccessControlModel acm = acmConnector.getAcmref();
 				FeatureModel oldFM = acm.getFeatureModels().get(0);
 				URI oldFMUri = oldFM.eResource().getURI();
+				
 				// copy efm file for the added action
 				String oldFileName = oldFMUri.lastSegment();
 				URI resolvedFile = CommonPlugin.resolve(oldFMUri);
@@ -82,12 +81,7 @@ public class ChangePrimitive {
 				File file = WorkflowUtil.copyFile(oldFilePath, newFilePath);
 
 				// get the uri of the added file
-				IWorkspace workspace = ResourcesPlugin.getWorkspace();
-				IPath location = Path.fromOSString(file.getAbsolutePath());
-				IFile newFile = workspace.getRoot()
-						.getFileForLocation(location);
-				URI newFileUri = URI.createPlatformResourceURI(newFile
-						.getFullPath().toOSString(), true);
+				URI newFileUri=WorkflowUtil.getURI(file);
 
 				// add efm reference
 				FeatureModel newFm = WorkflowUtil.getFMMModel(newFileUri);
