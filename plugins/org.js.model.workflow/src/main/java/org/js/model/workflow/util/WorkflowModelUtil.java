@@ -271,6 +271,14 @@ public class WorkflowModelUtil {
 		}
 		return tempName.substring(0, nameLength);
 	}
+	
+	public static void setActionName(Action action){
+		State state = (State) WorkflowConfUtil.getAspectInstance(action, WorkflowConfUtil.STATE_ASPECT);
+		String stateName=state.getState().toString();
+		String actionName = getActionName(action);
+		actionName+=" ("+stateName+") ";
+		action.setName(actionName);
+	}
 
 	public static boolean comparatorForRole(Role role1, Role role2) {
 		return role1.getName().equals(role2.getName());
@@ -322,7 +330,7 @@ public class WorkflowModelUtil {
 		for(ActivityEdge actEdge:action.getOut().get(0).getTarget().getOut()){
 			ActivityNode actNode=actEdge.getTarget();
 			if(actNode instanceof Action&&(WorkflowModelUtil.getActionName((Action)actNode).equals(WorkflowModelUtil.SPECIALIZATION_ACTION))){
-				nextActions.add(action);
+				nextActions.add((Action)actNode);
 			}
 		}
 		return nextActions;
