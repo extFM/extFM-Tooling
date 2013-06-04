@@ -9,11 +9,12 @@ import org.eclipse.jwt.we.conf.model.ConfFactory;
 import org.eclipse.jwt.we.conf.model.Profile;
 import org.eclipse.jwt.we.conf.model.aspects.AspectManager;
 import org.js.graph.transformation.GraphTransformation;
+import org.js.model.feature.FeatureModel;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.ConfigurationDecision;
-import org.js.model.rbac.Permission;
 import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
+import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.GraphTransConnector;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
@@ -42,6 +43,7 @@ public class WorkflowConfUtil {
 	public static final String ROLE_ASPECT = "org.js.model.workflow.roleaspect";
 	public static final String LOG_ASPECT = "org.js.model.workflow.logaspect";
 	public static final String STATE_ASPECT = "org.js.model.workflow.stateaspect";
+	public static final String EFM_ASPECT = "org.js.model.workflow.efmaspect";
 
 	/**
 	 * add the aspect instance for the given model element.
@@ -96,15 +98,18 @@ public class WorkflowConfUtil {
 		roleconnector.setRoleref(role);
 	}
 
-	public static void addConfigDecisions(Log log, List<ConfigurationDecision> decisionList) {
+	public static void addConfigDecisions(Log log,
+			List<ConfigurationDecision> decisionList) {
 		log.getConfigurationDecisions().addAll(decisionList);
 	}
 
-	public static void addConfigPermission(Log log, ConfigurationDecision decisionList) {
+	public static void addConfigPermission(Log log,
+			ConfigurationDecision decisionList) {
 		log.getConfigurationDecisions().add(decisionList);
 	}
 
-	public static void removeConfigPermission(Log log, ConfigurationDecision decisionList) {
+	public static void removeConfigPermission(Log log,
+			ConfigurationDecision decisionList) {
 		log.getConfigurationDecisions().remove(decisionList);
 	}
 
@@ -132,5 +137,9 @@ public class WorkflowConfUtil {
 	public static void setGraphTrans(GraphTransConnector gtConnector,
 			GraphTransformation graphTransformation) {
 		gtConnector.setGraphTransref(graphTransformation);
+	}
+
+	public static void setEFM(EFMContainer efmContainer, FeatureModel fm) {
+		efmContainer.setEfmref(fm);
 	}
 }

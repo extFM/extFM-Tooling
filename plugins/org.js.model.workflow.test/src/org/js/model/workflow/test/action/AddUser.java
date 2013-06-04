@@ -59,25 +59,20 @@ public class AddUser extends MyAction {
 			Action groupLeaderAction = getTenantAction(activity,
 					groupLeaderName);
 			// the vertical position of idle action
-			int groupLeaderY = WorkflowViewUtil.getNodeLayout(diagram, groupLeaderAction)
-					.getY();
+			int groupLeaderY = WorkflowViewUtil.getNodeLayout(diagram,
+					groupLeaderAction).getY();
 			// add the action with the reference of the role
-			int size = groupLeaderAction.getOut().get(0).getTarget().getOut().size()-1;
-//			for (Action action : WorkflowModelUtil.getStagedActions(activity,
-//					groupLeaderAction)) {
-//				if (action.getIn().get(0).getSource()
-//						.equals(groupLeaderAction.getIn().get(0).getSource())) {
-//					index++;
-//				}
-//			}
+			int size = groupLeaderAction.getOut().get(0).getTarget().getOut()
+					.size() - 1;
 			int index = userType.getChildRoles().size();
 			// add an action
+			String roleName = "UserTest" + index;
 			Action action = ChangePrimitive.addAction(workflowModel, activity,
-					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION, 900,
-					groupLeaderY + 100 * size);
+					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION, roleName,
+					900, groupLeaderY + 100 * size);
 			Role role = ChangePrimitive.addRole(workflowModel, activity,
-					diagram, userType, "UserTest" + index, 900, groupLeaderY + 100
-							* size + 50);
+					diagram, userType, roleName, 900, groupLeaderY + 100 * size
+							+ 50);
 			ChangePrimitive.addRoleActionRef(workflowModel, activity, diagram,
 					role, action);
 			// add a flow final node

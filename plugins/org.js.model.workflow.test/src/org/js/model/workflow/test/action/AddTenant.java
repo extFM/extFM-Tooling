@@ -15,11 +15,9 @@ import org.js.model.workflow.util.WorkflowViewUtil;
 
 public class AddTenant extends MyAction {
 
-
-	
 	public AddTenant() {
 	}
-	
+
 	@Override
 	public void run() {
 		initialRes();
@@ -27,39 +25,47 @@ public class AddTenant extends MyAction {
 		save();
 		refresh();
 	}
-	public void addTenant(){
-		org.js.model.rbac.Role applicationProviderType = WorkflowUtil.getRBACRole(workflowModel, "ApplicationProvider");
-		org.js.model.rbac.Role tenantType = WorkflowUtil.getRBACRole(workflowModel, "Tenant");
+
+	public void addTenant() {
+		org.js.model.rbac.Role applicationProviderType = WorkflowUtil
+				.getRBACRole(workflowModel, "ApplicationProvider");
+		org.js.model.rbac.Role tenantType = WorkflowUtil.getRBACRole(
+				workflowModel, "Tenant");
 		Action idleAction = WorkflowModelUtil.getIdleAction(activity);
 		FinalNode finalNode = WorkflowModelUtil.getFinalNode(activity);
 		Action appProviderAction = getAppProviderAction(activity);
-		
-		if(applicationProviderType!=null&&tenantType!=null&&idleAction!=null&&appProviderAction!=null){
-			int size =tenantType.getChildRoles().size();
+
+		if (applicationProviderType != null && tenantType != null
+				&& idleAction != null && appProviderAction != null) {
+			int size = tenantType.getChildRoles().size();
+			String roleName = "TenantTest" + size;
 			// add an action
-			Action action = ChangePrimitive.addAction(workflowModel,
-					activity, diagram,
-					WorkflowModelUtil.SPECIALIZATION_ACTION, 650, 200+100*size);
-							// add the action with the reference of the role
-				Role role = ChangePrimitive.addRole(workflowModel, activity,
-						diagram, tenantType, "TenantTest"+size, 650,
-						250+100*size);
-				ChangePrimitive.addRoleActionRef(workflowModel, activity,
-						diagram, role, action);
-				// add a fork node
-			ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram, 850, 200+100*size);
+			Action action = ChangePrimitive.addAction(workflowModel, activity,
+					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION,roleName, 650,
+					200 + 100 * size);
+			// add the action with the reference of the role
+			Role role = ChangePrimitive.addRole(workflowModel, activity,
+					diagram, tenantType, roleName, 650,
+					250 + 100 * size);
+			ChangePrimitive.addRoleActionRef(workflowModel, activity, diagram,
+					role, action);
+			// add a fork node
+			ForkNode forkNode = ChangePrimitive.addForkNode(activity, diagram,
+					850, 200 + 100 * size);
 			// add the edge
-			ForkNode forNode1 = (ForkNode) ((ActivityEdge)appProviderAction.getOut().get(0)).getTarget();
-			
+			ForkNode forNode1 = (ForkNode) ((ActivityEdge) appProviderAction
+					.getOut().get(0)).getTarget();
+
 			ChangePrimitive.addEdge(activity, forNode1, action);
 			ChangePrimitive.addEdge(activity, action, forkNode);
 			ChangePrimitive.addEdge(activity, forkNode, idleAction);
-			
+
 			ChangePrimitive.updateActionState(action);
 			WorkflowViewUtil.treeLayout(workflowModel, activity, diagram,
 					idleAction, finalNode, action);
 		}
 	}
+
 	public Action getIdleAction(Activity activity) {
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof Action
@@ -70,6 +76,7 @@ public class AddTenant extends MyAction {
 		}
 		return null;
 	}
+
 	public Action getAppProviderAction(Activity activity) {
 		for (ActivityNode actNode : activity.getNodes()) {
 			if (actNode instanceof Action
@@ -77,9 +84,9 @@ public class AddTenant extends MyAction {
 							.equals(WorkflowModelUtil.SPECIALIZATION_ACTION)) {
 				org.js.model.rbac.Role role = WorkflowUtil
 						.getRBACRole((Action) actNode);
-				if(role!=null){
-					for(org.js.model.rbac.Role parent:role.getParentRoles()){
-						if(parent.getId().equals("ApplicationProvider")){
+				if (role != null) {
+					for (org.js.model.rbac.Role parent : role.getParentRoles()) {
+						if (parent.getId().equals("ApplicationProvider")) {
 							return (Action) actNode;
 						}
 					}

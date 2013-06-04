@@ -1,7 +1,14 @@
 package org.js.model.workflow.util;
 
+import java.io.File;
 import java.io.IOException;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jwt.meta.model.core.Model;
 import org.eclipse.jwt.meta.model.events.Event;
 import org.eclipse.jwt.meta.model.organisations.Role;
@@ -15,16 +22,15 @@ import org.eclipse.jwt.meta.model.processes.InitialNode;
 import org.eclipse.jwt.meta.model.processes.JoinNode;
 import org.eclipse.jwt.we.model.view.Diagram;
 import org.eclipse.jwt.we.model.view.ReferenceEdge;
+import org.js.model.feature.FeatureModel;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.RBACService;
 import org.js.model.rbac.impl.RbacFactoryImpl;
 import org.js.model.workflow.ACMConnector;
+import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.RoleConnector;
 import org.js.model.workflow.State;
-import org.js.model.workflow.util.WorkflowConfUtil;
-import org.js.model.workflow.util.WorkflowModelUtil;
-import org.js.model.workflow.util.WorkflowUtil;
-import org.js.model.workflow.util.WorkflowViewUtil;
+import org.js.model.workflow.StateEnum;
 
 /**
  * This class is used as the primitive operations of workflow elements.
@@ -36,13 +42,10 @@ public class ChangePrimitive {
 	public static RBACService rbacService = new RBACService();
 
 	public static Action addAction(Model workflowModel, Activity activity,
-			Diagram diagram, String name, int actionCoorX, int actionCoorY) {
-		// // add related role
-		// Role role = addRole(workflowModel, activity, diagram, stageRole,
-		// roleName, roleCoorX, roleCoorY);
+			Diagram diagram, String actionName, String roleName,
+			int actionCoorX, int actionCoorY) {
 
 		// add action
-		String actionName = name;
 		ActivityNode actNode = WorkflowModelUtil
 				.addAction(activity, actionName);
 		WorkflowViewUtil.setNodeLayout(diagram, actNode, actionCoorX,
@@ -56,12 +59,44 @@ public class ChangePrimitive {
 				// add log aspect
 				WorkflowConfUtil.addAspectInstance(actNode,
 						WorkflowConfUtil.LOG_ASPECT);
+				// add the aspect of efm container
+				EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
+						.addAspectInstance(actNode, WorkflowConfUtil.EFM_ASPECT);
+
+				// get uri of efm
+				ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
+						.getAspectInstance(workflowModel,
+								WorkflowConfUtil.ACM_ASPECT);
+				AccessControlModel acm = acmConnector.getAcmref();
+				FeatureModel oldFM = acm.getFeatureModels().get(0);
+				URI oldFMUri = oldFM.eResource().getURI();
+				// copy efm file for the added action
+				String oldFileName = oldFMUri.lastSegment();
+				URI resolvedFile = CommonPlugin.resolve(oldFMUri);
+				IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
+						.getFile(new Path(resolvedFile.toFileString()));
+				String oldFilePath = oldFile.getFullPath().toString();
+				String newFileName = roleName + "." + oldFMUri.fileExtension();
+				String newFilePath = oldFilePath.replace(oldFileName,
+						newFileName);
+				File file = WorkflowUtil.copyFile(oldFilePath, newFilePath);
+
+				// get the uri of the added file
+				IWorkspace workspace = ResourcesPlugin.getWorkspace();
+				IPath location = Path.fromOSString(file.getAbsolutePath());
+				IFile newFile = workspace.getRoot()
+						.getFileForLocation(location);
+				URI newFileUri = URI.createPlatformResourceURI(newFile
+						.getFullPath().toOSString(), true);
+
+				// add efm reference
+				FeatureModel newFm = WorkflowUtil.getFMMModel(newFileUri);
+				WorkflowConfUtil.setEFM(efmContainer, newFm);
 			}
 			// add state aspect
 			State state = (State) WorkflowConfUtil.addAspectInstance(actNode,
 					WorkflowConfUtil.STATE_ASPECT);
-			// WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
-//			WorkflowModelUtil.setActionState((Action) actNode);
+			WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
 
 			// set the name with the state
 			actNode.setName(actNode.getName() + " ("
@@ -70,15 +105,16 @@ public class ChangePrimitive {
 		return (Action) actNode;
 	}
 
-	public static void updateActionState(Action action){
+	public static void updateActionState(Action action) {
 		// WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
-		WorkflowModelUtil.setActionState( action);
+		WorkflowModelUtil.setActionState(action);
 		State state = (State) WorkflowConfUtil.getAspectInstance(action,
 				WorkflowConfUtil.STATE_ASPECT);
 		// set the name with the state
 		action.setName(WorkflowModelUtil.getActionName(action) + " ("
 				+ state.getState().getName() + ") ");
 	}
+
 	public static Action removeAction(Model workflowModel, Activity activity,
 			Diagram diagram, String actionName) {
 		ActivityNode actNode = WorkflowModelUtil.getActivityNode(activity,
@@ -196,41 +232,42 @@ public class ChangePrimitive {
 	public static Role addRole(Model workflowModel, Activity activity,
 			Diagram diagram, org.js.model.rbac.Role roleType, String name,
 			int roleCoorX, int roleCoorY) {
-		org.js.model.rbac.Role rbacRole=WorkflowUtil.getRBACRole(workflowModel, name);
-		Role jwtRole=null;
-		if(rbacRole==null){
-		// add role
-		jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
-		WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole, roleCoorX,
-				roleCoorY);
+		org.js.model.rbac.Role rbacRole = WorkflowUtil.getRBACRole(
+				workflowModel, name);
+		Role jwtRole = null;
+		if (rbacRole == null) {
+			// add role
+			jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
+			WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole,
+					roleCoorX, roleCoorY);
 
-		// add role aspect
-		if (WorkflowConfUtil.containsProfile(workflowModel,
-				WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
-			ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
-					.getAspectInstance(workflowModel,
-							WorkflowConfUtil.ACM_ASPECT);
-			// add rbac role into the rbac model
-			AccessControlModel acm = (AccessControlModel) acmconnector
-					.getAcmref();
-			RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
-					.addAspectInstance(jwtRole, WorkflowConfUtil.ROLE_ASPECT);
-			rbacRole = RbacFactoryImpl.eINSTANCE
-					.createRole();
-			// rbacService.getParentRoles(rbacRole).add(stageRole);
-			rbacRole.getParentRoles().add(roleType);
-			rbacRole.setName(name);
-			rbacRole.setId(name);
-			acm.getRoles().add(rbacRole);
-			try {
-				acm.eResource().save(null);
-			} catch (IOException e) {
-				e.printStackTrace();
+			// add role aspect
+			if (WorkflowConfUtil.containsProfile(workflowModel,
+					WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
+				ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
+						.getAspectInstance(workflowModel,
+								WorkflowConfUtil.ACM_ASPECT);
+				// add rbac role into the rbac model
+				AccessControlModel acm = (AccessControlModel) acmconnector
+						.getAcmref();
+				RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
+						.addAspectInstance(jwtRole,
+								WorkflowConfUtil.ROLE_ASPECT);
+				rbacRole = RbacFactoryImpl.eINSTANCE.createRole();
+				// rbacService.getParentRoles(rbacRole).add(stageRole);
+				rbacRole.getParentRoles().add(roleType);
+				rbacRole.setName(name);
+				rbacRole.setId(name);
+				acm.getRoles().add(rbacRole);
+				try {
+					acm.eResource().save(null);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
 			}
-			WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
-		}
-		}else{
-			jwtRole=WorkflowModelUtil.getRole(workflowModel, name);
+		} else {
+			jwtRole = WorkflowModelUtil.getRole(workflowModel, name);
 		}
 		return jwtRole;
 	}
@@ -249,7 +286,7 @@ public class ChangePrimitive {
 							WorkflowConfUtil.ACM_ASPECT);
 			AccessControlModel acm = (AccessControlModel) acmconnector
 					.getAcmref();
-			// acm.getRoles().remove(getRBACRole(acm, roleName));
+			acm.getRoles().remove(WorkflowUtil.getRBACRole(acm, roleName));
 		}
 		// remove role
 		WorkflowViewUtil.removeRoleLayout(diagram, role);

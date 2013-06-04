@@ -8,8 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="roleref" eType="ecore:EClass ../../../../org.js.model.rbac/src/main/model/rbac.ecore#//Role"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EFMContainer" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="efmref" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="efmref" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Log" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurationDecisions"

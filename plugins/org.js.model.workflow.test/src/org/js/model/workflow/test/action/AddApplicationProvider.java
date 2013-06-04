@@ -36,16 +36,16 @@ public class AddApplicationProvider extends MyAction {
 			Action idleAction = WorkflowModelUtil.getIdleAction(activity);
 			FinalNode finalNode = WorkflowModelUtil.getFinalNode(activity);
 			Action platProviderAction = getPlatformProviderAction(activity,platformProviderType);
-		
+			String roleName= "ApplicationProviderTest";
 			if (forkNode != null && platformProviderType != null&&platformProviderType!=null&&platProviderAction!=null) {
 				// add an action
 				Action action = ChangePrimitive.addAction(workflowModel,
 						activity, diagram,
-						WorkflowModelUtil.SPECIALIZATION_ACTION, 400, 200);
+						WorkflowModelUtil.SPECIALIZATION_ACTION,roleName, 400, 200);
 				
 				// add the action with the reference of the role
 				Role role = ChangePrimitive.addRole(workflowModel, activity,
-						diagram, applicationProviderType, "ApplicationProviderTest", 400,
+						diagram, applicationProviderType, roleName, 400,
 						250);
 				ChangePrimitive.addRoleActionRef(workflowModel, activity,
 						diagram, role, action);

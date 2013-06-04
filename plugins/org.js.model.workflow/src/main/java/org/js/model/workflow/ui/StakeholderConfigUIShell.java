@@ -29,6 +29,8 @@ import org.js.model.rbac.SelectDomainValue;
 import org.js.model.rbac.SelectFeature;
 import org.js.model.rbac.SetAttribute;
 import org.js.model.workflow.Log;
+import org.js.model.workflow.State;
+import org.js.model.workflow.StateEnum;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowModelUtil;
 import org.eclipse.swt.layout.GridLayout;
@@ -50,6 +52,7 @@ public class StakeholderConfigUIShell extends Shell {
 	HashMap<Button, ConfigurationDecision> decisionMap = new HashMap<Button, ConfigurationDecision>();
 	Action selectedAction = null;
 	Role selectedRole = null;
+	State selectedState = null;
 
 	/**
 	 * Launch the application.
@@ -78,10 +81,12 @@ public class StakeholderConfigUIShell extends Shell {
 	 * 
 	 * @param display
 	 */
-	public StakeholderConfigUIShell(Display display, Role role, Action action) {
+	public StakeholderConfigUIShell(Display display, Role role, Action action,
+			State state) {
 		super(display, SWT.SHELL_TRIM);
 		selectedAction = action;
 		selectedRole = role;
+		selectedState = state;
 		setLayout(new FillLayout(SWT.HORIZONTAL));
 
 		Composite composite = new Composite(this, SWT.NONE);
@@ -106,11 +111,12 @@ public class StakeholderConfigUIShell extends Shell {
 		button_cancel.setText("Cancel");
 
 		// configuration groups
-		EList<Permission> permissions = role.getPermissions();
-		// RBACService rbacService = new RBACService();
-		// Set<Permission> permissions =
-		// rbacService.getAllRolePermissions(role);
+		// EList<Permission> permissions = role.getPermissions();
+		RBACService rbacService = new RBACService();
+		Set<Permission> permissions = rbacService.getAllRolePermissions(role);
 		Iterator<Permission> it = permissions.iterator();
+		Log log = (Log) WorkflowConfUtil.getAspectInstance(action,
+				WorkflowConfUtil.LOG_ASPECT);
 
 		while (it.hasNext()) {
 			Permission permission = it.next();
@@ -131,11 +137,21 @@ public class StakeholderConfigUIShell extends Shell {
 					configGroups.add(configGroup);
 				}
 				Button radioButton = new Button(configGroup, SWT.RADIO);
+				
 				if (permission instanceof SelectFeature) {
 					radioButton.setText("select feature");
 				} else if (permission instanceof DeselectFeature) {
 					radioButton.setText("deselect feature");
 				}
+				if (selectedState.getState().getValue() == 3) { // action configuration
+														// is finished
+					radioButton.setEnabled(false);
+					if (log.getConfigurationDecisions().contains(permission)) {
+						radioButton.setSelection(true);
+					}
+				}
+				decisionMap
+						.put(radioButton, (ConfigurationDecision) permission);
 			} else if (permission instanceof SetAttribute) {
 				String featureName = ((SetAttribute) permission).getFeature()
 						.getId();
@@ -166,8 +182,18 @@ public class StakeholderConfigUIShell extends Shell {
 						radioButton.setText("deselect "
 								+ attributeDec.getValue());
 					}
+					if (selectedState.getState().getValue() == 3) { // action
+															// configuration is
+															// finished
+						radioButton.setEnabled(false);
+						if (log.getConfigurationDecisions().contains(
+								attributeDec)) {
+							radioButton.setSelection(true);
+						}
+					}
+					decisionMap.put(radioButton,
+							(ConfigurationDecision) attributeDec);
 				}
-
 			}
 		}
 
@@ -196,7 +222,11 @@ public class StakeholderConfigUIShell extends Shell {
 					info += temp;
 					MessageDialog.openInformation(getShell(), "Warning", info);
 				} else {
-					saveConfigLog(configGroups, selectedRole, selectedAction);
+					if (selectedState.getState().getValue() != 3) {
+						saveConfigLog(configGroups, selectedRole,
+								selectedAction);
+						selectedState.setState(StateEnum.COMPLETED);
+					}
 					dispose();
 				}
 
@@ -233,20 +263,23 @@ public class StakeholderConfigUIShell extends Shell {
 			Action action) {
 		Log log = (Log) WorkflowConfUtil.getAspectInstance(action,
 				WorkflowConfUtil.LOG_ASPECT);
+		log.getConfigurationDecisions().clear();
 		for (Group group : configGroup) {
 			for (Control control : group.getChildren()) {
 				if (((Button) control).getSelection()) {
-					if (((Button) control).getText().contains("")) {
-
-					}
+					log.getConfigurationDecisions().add(
+							decisionMap.get(control));
 				}
 			}
 		}
-		log.getPermissions();
 	}
 
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
+	}
+	
+	public State getState(){
+		return selectedState;
 	}
 }

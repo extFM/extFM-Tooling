@@ -47,17 +47,22 @@ public class ConfigHandler implements DoubleClickHandler {
 		}
 	}
 
-	public void handleSpecializationAction(Action modelElement) {
-		State state = (State)WorkflowConfUtil.getAspectInstance(modelElement, WorkflowConfUtil.STATE_ASPECT);
+	public void handleSpecializationAction(Action action) {
+		State state = (State)WorkflowConfUtil.getAspectInstance(action, WorkflowConfUtil.STATE_ASPECT);
 		// according to the state value the ui is different
 		RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
-				.getAspectInstance(((Action) modelElement).getPerformedBy(),
+				.getAspectInstance(((Action) action).getPerformedBy(),
 						WorkflowConfUtil.ROLE_ASPECT);
 		org.js.model.rbac.Role role = roleConnector.getRoleref();
+		
+		if(state.getState().getValue()==1){
+			state.setState(StateEnum.RUNNING);
+			}
+		if(state.getState().getValue()==2||state.getState().getValue()==3){
 		try {
 			Display display = Display.getDefault();
 			StakeholderConfigUIShell shell = new StakeholderConfigUIShell(
-					display, role, (Action)modelElement);
+					display, role, (Action)action, state);
 			shell.open();
 			shell.layout();
 			while (!shell.isDisposed()) {
@@ -65,8 +70,15 @@ public class ConfigHandler implements DoubleClickHandler {
 					display.sleep();
 				}
 			}
+			state.setState(shell.getState().getState());
+			WorkflowModelUtil.setActionName(action);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		for(Action nextAction:WorkflowModelUtil.getNextSpecializationActions(action)){
+			WorkflowModelUtil.setActionState(nextAction);
+			WorkflowModelUtil.setActionName(nextAction);
+		}
 		}
 	}
 
