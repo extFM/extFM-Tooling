@@ -1,32 +1,26 @@
 package org.js.model.workflow.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.lang.model.element.PackageElement;
+import java.util.Collections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jwt.meta.model.core.Model;
-import org.eclipse.jwt.meta.model.core.ModelElement;
-import org.eclipse.jwt.meta.model.core.PackageableElement;
-import org.eclipse.jwt.meta.model.organisations.Role;
 import org.eclipse.jwt.meta.model.processes.Action;
-import org.eclipse.jwt.meta.model.processes.Activity;
-import org.eclipse.jwt.meta.model.processes.ActivityEdge;
-import org.eclipse.jwt.meta.model.processes.ActivityNode;
-import org.eclipse.jwt.we.model.view.Diagram;
-import org.js.graph.transformation.*;
+import org.js.model.feature.FeatureModel;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.Group;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.RoleConnector;
-import org.js.model.workflow.State;
-import org.js.model.workflow.StateEnum;
 
 /**
  * This class is used as help methods.
@@ -41,6 +35,7 @@ public class WorkflowUtil {
 	public static final String WORKFLOW_VIEW_FILE_EXTENSION = "workflow_view";
 	public static final String WORKFLOW_CONF_FILE_EXTENSION = "workflow_conf";
 
+	public static URI featureModeluri = null;
 	public static StakeholderInput SHTempStore = null;
 
 	/**
@@ -124,11 +119,13 @@ public class WorkflowUtil {
 				stakeholderGroupLeader);
 	}
 
-	public static org.js.model.rbac.Role getRBACRole(Model model, String name){
-		ACMConnector acmConnector=(ACMConnector) WorkflowConfUtil.getAspectInstance(model, WorkflowConfUtil.ACM_ASPECT);
+	public static org.js.model.rbac.Role getRBACRole(Model model, String name) {
+		ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
+				.getAspectInstance(model, WorkflowConfUtil.ACM_ASPECT);
 		AccessControlModel acm = acmConnector.getAcmref();
-		return getRBACRole( acm, name);
+		return getRBACRole(acm, name);
 	}
+
 	/**
 	 * get the role in acm with the given name.
 	 * 
@@ -149,19 +146,74 @@ public class WorkflowUtil {
 
 	/**
 	 * get the role referenced by the given action.
+	 * 
 	 * @param action
 	 * @return
 	 */
 	public static org.js.model.rbac.Role getRBACRole(Action action) {
 		RoleConnector roleConnector = null;
-		if( action.getPerformedBy()!=null){
-			roleConnector=((RoleConnector) WorkflowConfUtil
-				.getAspectInstance(((Action) action).getPerformedBy(),
-						WorkflowConfUtil.ROLE_ASPECT));}
+		if (action.getPerformedBy() != null) {
+			roleConnector = ((RoleConnector) WorkflowConfUtil
+					.getAspectInstance(((Action) action).getPerformedBy(),
+							WorkflowConfUtil.ROLE_ASPECT));
+		}
 		if (roleConnector != null && roleConnector.getRoleref() != null) {
 			return roleConnector.getRoleref();
 		}
 		return null;
 	}
-	
+
+	/**
+	 * copy a file.
+	 * 
+	 * @param oldPath
+	 * @param newPath
+	 * @return
+	 */
+	public static File copyFile(String oldPath, String newPath) {
+		try {
+			int byteread = 0;
+			File oldfile = new File(oldPath);
+			if (oldfile.exists()) {
+				InputStream inStream = new FileInputStream(oldPath);
+				FileOutputStream fs = new FileOutputStream(newPath);
+				byte[] buffer = new byte[1444];
+				while ((byteread = inStream.read(buffer)) != -1) {
+					fs.write(buffer, 0, byteread);
+				}
+				inStream.close();
+				return new File(newPath);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * get the efm model from the given uri.
+	 * 
+	 * @param uri
+	 * @return
+	 */
+	public static FeatureModel getFMMModel(URI uri) {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource rbacRes = resourceSet.getResource(uri, true);
+		try {
+			rbacRes.load(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		TreeIterator<EObject> rbacIt = rbacRes.getAllContents();
+		FeatureModel fm = null;
+
+		while (rbacIt.hasNext()) {
+			EObject object = rbacIt.next();
+			if (object instanceof FeatureModel) {
+				fm = (FeatureModel) object;
+			}
+		}
+		return fm;
+	}
+
 }
