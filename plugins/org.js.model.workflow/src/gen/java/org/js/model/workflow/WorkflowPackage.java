@@ -179,7 +179,7 @@ public interface WorkflowPackage extends EPackage {
 	int EFM_CONTAINER__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Efmref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Efmref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -444,10 +444,10 @@ public interface WorkflowPackage extends EPackage {
 	EClass getEFMContainer();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.js.model.workflow.EFMContainer#getEfmref <em>Efmref</em>}'.
+	 * Returns the meta object for the reference '{@link org.js.model.workflow.EFMContainer#getEfmref <em>Efmref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Efmref</em>'.
+	 * @return the meta object for the reference '<em>Efmref</em>'.
 	 * @see org.js.model.workflow.EFMContainer#getEfmref()
 	 * @see #getEFMContainer()
 	 * @generated
@@ -617,7 +617,7 @@ public interface WorkflowPackage extends EPackage {
 		EClass EFM_CONTAINER = eINSTANCE.getEFMContainer();
 
 		/**
-		 * The meta object literal for the '<em><b>Efmref</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Efmref</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -33,7 +33,7 @@ import org.js.model.workflow.WorkflowPackage;
  */
 public class EFMContainerImpl extends AspectInstanceImpl implements EFMContainer {
 	/**
-	 * The cached value of the '{@link #getEfmref() <em>Efmref</em>}' containment reference.
+	 * The cached value of the '{@link #getEfmref() <em>Efmref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEfmref()
@@ -67,6 +67,14 @@ public class EFMContainerImpl extends AspectInstanceImpl implements EFMContainer
 	 * @generated
 	 */
 	public FeatureModel getEfmref() {
+		if (efmref != null && efmref.eIsProxy()) {
+			InternalEObject oldEfmref = (InternalEObject)efmref;
+			efmref = (FeatureModel)eResolveProxy(oldEfmref);
+			if (efmref != oldEfmref) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, efmref));
+			}
+		}
 		return efmref;
 	}
 
@@ -75,14 +83,8 @@ public class EFMContainerImpl extends AspectInstanceImpl implements EFMContainer
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEfmref(FeatureModel newEfmref, NotificationChain msgs) {
-		FeatureModel oldEfmref = efmref;
-		efmref = newEfmref;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, newEfmref);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public FeatureModel basicGetEfmref() {
+		return efmref;
 	}
 
 	/**
@@ -91,31 +93,10 @@ public class EFMContainerImpl extends AspectInstanceImpl implements EFMContainer
 	 * @generated
 	 */
 	public void setEfmref(FeatureModel newEfmref) {
-		if (newEfmref != efmref) {
-			NotificationChain msgs = null;
-			if (efmref != null)
-				msgs = ((InternalEObject)efmref).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.EFM_CONTAINER__EFMREF, null, msgs);
-			if (newEfmref != null)
-				msgs = ((InternalEObject)newEfmref).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.EFM_CONTAINER__EFMREF, null, msgs);
-			msgs = basicSetEfmref(newEfmref, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.EFM_CONTAINER__EFMREF, newEfmref, newEfmref));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case WorkflowPackage.EFM_CONTAINER__EFMREF:
-				return basicSetEfmref(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		FeatureModel oldEfmref = efmref;
+		efmref = newEfmref;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, efmref));
 	}
 
 	/**
@@ -127,7 +108,8 @@ public class EFMContainerImpl extends AspectInstanceImpl implements EFMContainer
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case WorkflowPackage.EFM_CONTAINER__EFMREF:
-				return getEfmref();
+				if (resolve) return getEfmref();
+				return basicGetEfmref();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
