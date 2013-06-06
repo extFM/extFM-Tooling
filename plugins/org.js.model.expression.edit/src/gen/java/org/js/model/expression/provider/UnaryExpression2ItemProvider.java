@@ -177,6 +177,16 @@ public class UnaryExpression2ItemProvider
          (createChildParameter
             (expressionPackage.Literals.UNARY_EXPRESSION2__OPERAND,
              expressionFactory.eINSTANCE.createLessThanOrEqual()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.UNARY_EXPRESSION2__OPERAND,
+             expressionFactory.eINSTANCE.createNestedExpression2()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.UNARY_EXPRESSION2__OPERAND,
+             expressionFactory.eINSTANCE.createFeatureAttributeReference2()));
    }
 
 }

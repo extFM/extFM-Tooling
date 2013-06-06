@@ -20,7 +20,7 @@ OPTIONS {
 
 TOKENS {
 	//DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
-	//DEFINE DOT $('.')$;
+	DEFINE DOT $('.')$;
 	
 	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
@@ -86,7 +86,14 @@ RULES {
 
 	@Operator(type="primitive", weight="4", superclass="Expression2")
 	FeatureReference2 ::= feature[];
+	
+	//feature.attribute 
+	@Operator(type="primitive", weight="4", superclass="Expression2") 				  
+	FeatureAttributeReference2 ::= feature[]_[DOT]attribute[];
 
+	@Operator(type="primitive", weight="4", superclass="Expression2")
+	NestedExpression2 ::= "(" operand ")";
+	
 	@Operator(type="binary_left_associative", weight="3", superclass="Expression2")
 	GreaterThan ::= operand1 #1 _[GREATERTHAN] #1 operand2;                   
 	
@@ -118,29 +125,14 @@ RULES {
 //	 ExpressionModel  ::= "Expression" #1 "Model" #1 name['"','"'] #1 !0  
 	 					// "Feature" #1 "Model" #1 (featureModels['[',']'])+ !0
 //	  				       expressions*;	       
-	//--------------------------------------------------------------------------------	       
-    //-------------------  Expressions from feature model  ---------------------------
-//					@Operator(type="primitive", weight="9", superclass="Expression") 
-//					NestedExpression ::= "(" operand ")";
-	
-//	@Operator(type="unary_prefix", weight="8", superclass="Expression") 
-//	NotExpression ::= "!" operand;
-							
-//	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
-//	AndExpression ::= operand1 #1 "&&" #1 operand2;
-	
-//	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
-//	OrExpression ::= operand1 #1 "||" #1 operand2;
-	
-
 	//-------------------- feature model references------------------------------
-					
+	
 					//feature.attribute		
 				//	@Operator(type="primitive", weight="9", superclass="Expression")				  
 				//	FeatureAttributeReference ::= feature[] _[DOT] attribute[];  		
 	
-					//feature.attribute := value
+					//feature.attribute = value
 					//@Operator(type="primitive", weight="9", superclass="Expression") 				  
 								//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":="value[];  //original
-					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1":=" #1 value['"','"']; 
+					//FeatureAttributeValue ::= feature[] _[DOT] attribute[]#1"=" #1 value['"','"']; 
 //}

@@ -191,6 +191,16 @@ public class Constraint2ItemProvider
          (createChildParameter
             (expressionPackage.Literals.CONSTRAINT2__EXPRESSION,
              expressionFactory.eINSTANCE.createLessThanOrEqual()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.CONSTRAINT2__EXPRESSION,
+             expressionFactory.eINSTANCE.createNestedExpression2()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (expressionPackage.Literals.CONSTRAINT2__EXPRESSION,
+             expressionFactory.eINSTANCE.createFeatureAttributeReference2()));
    }
 
 }
