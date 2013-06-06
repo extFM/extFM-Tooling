@@ -29,7 +29,7 @@ import org.eclipse.swt.layout.RowLayout;
  * @author Xi
  *
  */
-public class StakeholderUIShell extends Shell {
+public class StakeholderInputUIShell extends Shell {
 	private Text stakeholderName;
 	private Combo stakeholderTypeCombo;
 	private Combo stakeholderGroupCombo;
@@ -44,7 +44,7 @@ public class StakeholderUIShell extends Shell {
 	// public static void main(String args[]) {
 	// try {
 	// Display display = Display.getDefault();
-	// StakeholderUIShell shell = new StakeholderUIShell(display);
+	// StakeholderInputUIShell shell = new StakeholderInputUIShell(display);
 	// shell.open();
 	// shell.layout();
 	// while (!shell.isDisposed()) {
@@ -62,7 +62,7 @@ public class StakeholderUIShell extends Shell {
 	 * 
 	 * @param display
 	 */
-	public StakeholderUIShell(Display display, AccessControlModel acm,
+	public StakeholderInputUIShell(Display display, AccessControlModel acm,
 			EList<Role> shTypes) {
 		super(display, SWT.SHELL_TRIM);
 
@@ -106,7 +106,6 @@ public class StakeholderUIShell extends Shell {
 		composite_1.setLayout(new RowLayout(SWT.HORIZONTAL));
 		composite_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
 				false, 1, 1));
-//		composite_1.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 
 		Button btnOk = new Button(composite_1, SWT.NONE);
 		btnOk.setText("Ok");

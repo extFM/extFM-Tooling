@@ -61,31 +61,31 @@ public class ChangePrimitive {
 				EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
 						.addAspectInstance(actNode, WorkflowConfUtil.EFM_ASPECT);
 
-				// get uri of efm
-				ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
-						.getAspectInstance(workflowModel,
-								WorkflowConfUtil.ACM_ASPECT);
-				AccessControlModel acm = acmConnector.getAcmref();
-				FeatureModel oldFM = acm.getFeatureModels().get(0);
-				URI oldFMUri = oldFM.eResource().getURI();
-				
-				// copy efm file for the added action
-				String oldFileName = oldFMUri.lastSegment();
-				URI resolvedFile = CommonPlugin.resolve(oldFMUri);
-				IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
-						.getFile(new Path(resolvedFile.toFileString()));
-				String oldFilePath = oldFile.getFullPath().toString();
-				String newFileName = roleName + "." + oldFMUri.fileExtension();
-				String newFilePath = oldFilePath.replace(oldFileName,
-						newFileName);
-				File file = WorkflowUtil.copyFile(oldFilePath, newFilePath);
-
-				// get the uri of the added file
-				URI newFileUri=WorkflowUtil.getURI(file);
-
-				// add efm reference
-				FeatureModel newFm = WorkflowUtil.getFMMModel(newFileUri);
-				WorkflowConfUtil.setEFM(efmContainer, newFm);
+//				// get uri of efm
+//				ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
+//						.getAspectInstance(workflowModel,
+//								WorkflowConfUtil.ACM_ASPECT);
+//				AccessControlModel acm = acmConnector.getAcmref();
+//				FeatureModel oldFM = acm.getFeatureModels().get(0);
+//				URI oldFMUri = oldFM.eResource().getURI();
+//				
+//				// copy efm file for the added action
+//				String oldFileName = oldFMUri.lastSegment();
+//				URI resolvedFile = CommonPlugin.resolve(oldFMUri);
+//				IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
+//						.getFile(new Path(resolvedFile.toFileString()));
+//				String oldFilePath = oldFile.getFullPath().toString();
+//				String newFileName = roleName + "." + oldFMUri.fileExtension();
+//				String newFilePath = oldFilePath.replace(oldFileName,
+//						newFileName);
+//				File file = WorkflowUtil.copyFile(oldFilePath, newFilePath);
+//
+//				// get the uri of the added file
+//				URI newFileUri=WorkflowUtil.getURI(file);
+//
+//				// add efm reference
+//				FeatureModel newFm = WorkflowUtil.getFMMModel(newFileUri);
+//				WorkflowConfUtil.setEFM(efmContainer, newFm);
 			}
 			// add state aspect
 			State state = (State) WorkflowConfUtil.addAspectInstance(actNode,

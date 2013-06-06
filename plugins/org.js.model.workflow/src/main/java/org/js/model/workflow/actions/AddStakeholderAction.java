@@ -10,7 +10,7 @@ import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.GraphTransConnector;
 import org.js.model.workflow.StakeholderTypes;
-import org.js.model.workflow.ui.StakeholderUIShell;
+import org.js.model.workflow.ui.StakeholderInputUIShell;
 import org.js.model.workflow.util.GraphTransformationUtil;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowUtil;
@@ -66,7 +66,7 @@ public class AddStakeholderAction extends MyAction {
 			} else {
 				try {
 					Display display = Display.getDefault();
-					StakeholderUIShell shell = new StakeholderUIShell(display,
+					StakeholderInputUIShell shell = new StakeholderInputUIShell(display,
 							acm, stakeholderTypes);
 					shell.open();
 					shell.layout();

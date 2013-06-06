@@ -395,6 +395,7 @@ public class WorkflowModelUtil {
 		} else {
 			stateAspect.setState(StateEnum.ENABLED);
 		}
+		setActionName(action);
 	}
 
 	/**
@@ -407,6 +408,7 @@ public class WorkflowModelUtil {
 		State stateAspect = (State) WorkflowConfUtil.getAspectInstance(action,
 				WorkflowConfUtil.STATE_ASPECT);
 		stateAspect.setState(state);
+		setActionName(action);
 	}
 
 	/**
