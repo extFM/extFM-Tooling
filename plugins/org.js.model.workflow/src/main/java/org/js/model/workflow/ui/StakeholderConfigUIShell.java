@@ -64,6 +64,9 @@ import org.eclipse.swt.layout.RowData;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import swing2swt.layout.FlowLayout;
+
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
@@ -72,6 +75,7 @@ public class StakeholderConfigUIShell extends Shell {
 	ArrayList<Group> configGroups = new ArrayList<Group>();
 	HashMap<Button, ConfigurationDecision> decisionMap = new HashMap<Button, ConfigurationDecision>();
 	HashMap<Group, Feature> featureMap = new HashMap<Group, Feature>();
+	HashMap<Group, Attribute> attributeMap = new HashMap<Group, Attribute>();
 	Action selectedAction = null;
 	Role selectedRole = null;
 	State selectedState = null;
@@ -139,7 +143,12 @@ public class StakeholderConfigUIShell extends Shell {
 			state.setState(StateEnum.RUNNING);
 			WorkflowModelUtil.setActionState(action, StateEnum.RUNNING);
 			// trace the previous efm
-			featureModel = tracePreEFM(workflowModel, role, action);
+			featureModel = WorkflowUtil
+					.tracePreEFM(workflowModel, role, action);
+		} else {
+			EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
+					.getAspectInstance(action, WorkflowConfUtil.EFM_ASPECT);
+			featureModel = efmContainer.getEfmref();
 		}
 
 		// TODO: check bugs
@@ -155,10 +164,14 @@ public class StakeholderConfigUIShell extends Shell {
 			// while (it.hasNext()) {
 			// Permission permission = it.next();
 			if (permission instanceof FeatureDecision) {
-				Feature feature = ((FeatureDecision) permission).getFeature();
-				String featureName = feature.getId();
+				// feature in the original efm
+				Feature oldFeature = ((FeatureDecision) permission)
+						.getFeature();
+				String featureName = oldFeature.getId();
 				String groupName = featureName;
-
+				// feature in the new efm
+				Feature configuredFeature = ReferenceResolverUtil.findFeature(
+						featureName, featureModel);
 				// get the configuration group
 				Group configGroup = null;
 				for (Group group : configGroups) {
@@ -172,7 +185,7 @@ public class StakeholderConfigUIShell extends Shell {
 					configGroup.setText(groupName);
 					configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
 					configGroups.add(configGroup);
-					featureMap.put(configGroup, feature);
+					featureMap.put(configGroup, configuredFeature);
 				}
 				// add radio button
 				Button radioButton = new Button(configGroup, SWT.RADIO);
@@ -184,9 +197,6 @@ public class StakeholderConfigUIShell extends Shell {
 				// if configuration action is running, check whether the feature
 				// is configured by the previous role
 				if (selectedState.getState().getValue() == 2) {
-					Feature configuredFeature = ReferenceResolverUtil
-							.findFeature(featureName, featureModel);
-
 					switch (configuredFeature.getSelected().getValue()) {
 					case 0:
 						break;
@@ -203,6 +213,7 @@ public class StakeholderConfigUIShell extends Shell {
 						}
 						break;
 					}
+
 				}
 				// if configuration action is finished, button is inactive
 				if (selectedState.getState().getValue() == 3) {
@@ -214,11 +225,17 @@ public class StakeholderConfigUIShell extends Shell {
 				decisionMap
 						.put(radioButton, (ConfigurationDecision) permission);
 			} else if (permission instanceof SetAttribute) {
-				String featureName = ((SetAttribute) permission).getFeature()
-						.getId();
-				String attributeName = ((SetAttribute) permission)
-						.getAttribute().getName();
+				Feature oldFeature = ((SetAttribute) permission).getFeature();
+				String featureName = oldFeature.getId();
+				Feature newFeature = ReferenceResolverUtil.findFeature(
+						featureName, featureModel);
+				Attribute oldAttribute = ((SetAttribute) permission)
+						.getAttribute();
+				String attributeName = oldAttribute.getName();
 				String groupName = featureName + ": " + attributeName;
+				// get the attribute
+				Attribute configuredAttribute = ReferenceResolverUtil
+						.findAttributeForFeature(attributeName, newFeature);
 				// get the configuration group
 				Group configGroup = null;
 				for (Group group : configGroups) {
@@ -232,12 +249,9 @@ public class StakeholderConfigUIShell extends Shell {
 					configGroup.setText(groupName);
 					configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
 					configGroups.add(configGroup);
+					attributeMap.put(configGroup, configuredAttribute);
 				}
 
-				// get the attribute
-				Attribute attribute = ReferenceResolverUtil.resolveAttribute(
-						((SetAttribute) permission).getAttribute().getName(),
-						featureModel);
 				for (AttributeDecision attributeDec : ((SetAttribute) permission)
 						.getAttributeDecisions()) {
 					Button radioButton = new Button(configGroup, SWT.RADIO);
@@ -251,13 +265,13 @@ public class StakeholderConfigUIShell extends Shell {
 					// if configuration action is running, check whether the
 					// attribute is configured
 					if (selectedState.getState().getValue() == 2) {
-						if (attribute.getValue() == null
-								|| attribute.getValue().equals("")) {
+						if (configuredAttribute.getValue() == null
+								|| configuredAttribute.getValue().equals("")) {
 						} else {
 							radioButton.setEnabled(false);
 							if (attributeDec instanceof SelectDomainValue
 									&& attributeDec.getValue().equals(
-											attribute.getValue())) {
+											configuredAttribute.getValue())) {
 								radioButton.setSelection(true);
 							}
 						}
@@ -286,9 +300,19 @@ public class StakeholderConfigUIShell extends Shell {
 								decisionMap, permissions, featureModel);
 					}
 				});
+				// ((Button) button).addFocusListener(new FocusListener() {
+				// @Override
+				// public void focusLost(FocusEvent e) {
+				// }
+				// @Override
+				// public void focusGained(FocusEvent e) {
+				// handleSelectionLogic((Button) e.getSource(),
+				// decisionMap, permissions, featureModel);
+				// }
+				// });
 			}
 		}
-
+		// TODO: check the feature in a group (optional group!)
 		// add listeners
 		button_ok.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -386,58 +410,6 @@ public class StakeholderConfigUIShell extends Shell {
 		}
 	}
 
-	/**
-	 * trace the configured efm of the previous action
-	 * 
-	 * @param workflowModel
-	 * @param role
-	 * @param action
-	 * @return feature model
-	 */
-	public FeatureModel tracePreEFM(Model workflowModel, Role role,
-			Action action) {
-		Action preAction = WorkflowModelUtil.getPrecedeAction(action);
-		FeatureModel oldFM = null;
-		if (preAction == null) { // it is the first enabled action
-			// get original efm
-			ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
-					.getAspectInstance(workflowModel,
-							WorkflowConfUtil.ACM_ASPECT);
-			AccessControlModel acm = acmConnector.getAcmref();
-			oldFM = acm.getFeatureModels().get(0);
-		} else {
-			// get the efm of previous action
-			EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
-					.getAspectInstance(preAction, WorkflowConfUtil.EFM_ASPECT);
-			oldFM = efmContainer.getEfmref();
-		}
-		// copy efm file for the added action
-		URI oldFMUri = oldFM.eResource().getURI();
-		String oldFileName = oldFMUri.lastSegment();
-		URI resolvedFile = CommonPlugin.resolve(oldFMUri);
-		IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
-				.getFile(new Path(resolvedFile.toFileString()));
-		String oldFilePath = oldFile.getFullPath().toString();
-		String newFileName = role.getId() + "." + oldFMUri.fileExtension();
-		String newFilePath = oldFilePath.replace(oldFileName, newFileName);
-		File newFile = WorkflowUtil.copyFile(oldFilePath, newFilePath);
-
-		// get the uri of the added file
-		URI newFileUri = WorkflowUtil.getURI(newFile);
-
-		// add efm reference
-		FeatureModel newFM = WorkflowUtil.getFMMModel(newFileUri);
-		EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
-				.getAspectInstance(action, WorkflowConfUtil.EFM_ASPECT);
-		if (newFM == null) {
-			System.out.println("the previuos action has no efm!");
-		} else {
-			WorkflowConfUtil.setEFM(efmContainer, newFM);
-		}
-
-		return newFM;
-	}
-
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
@@ -453,8 +425,10 @@ public class StakeholderConfigUIShell extends Shell {
 		if (button.getSelection()) {
 			ConfigurationDecision configDecision = decisionMap.get(button);
 			if (configDecision instanceof FeatureDecision) {
-				Feature configuredFeature = ((FeatureDecision) configDecision)
+				Feature oldFeature = ((FeatureDecision) configDecision)
 						.getFeature();
+				Feature configuredFeature = ReferenceResolverUtil.findFeature(
+						oldFeature.getId(), featureModel);
 				ArrayList<Feature> mandatoryChildFeatures = WorkflowUtil
 						.getMandatoryChildFeatures(configuredFeature);
 				ArrayList<Feature> parentFeaures = WorkflowUtil
@@ -483,41 +457,71 @@ public class StakeholderConfigUIShell extends Shell {
 							for (Control control : group.getChildren()) {
 								if (decisionMap.get(control) instanceof SelectFeature) {
 									((Button) control).setSelection(true);
+								} else {
+									((Button) control).setSelection(false);
 								}
 							}
 						}
 						// 4. set the selected status of the other features in
 						// the same group
-						else if (WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.ALTERNATIVE_GROUP
+						else if (featureGroup != null
+								&& WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.ALTERNATIVE_GROUP
+								&& feature != configuredFeature
 								&& groupFeatures.contains(feature)) {
+							for (Control control : group.getChildren()) {
+								if (decisionMap.get(control) instanceof SelectFeature) {
+									((Button) control).setSelection(false);
+								} else {
+									((Button) control).setSelection(true);
+								}
+							}
+						}
+					}
+				} else if (configDecision instanceof DeselectFeature) {
+					Feature parentFeature = WorkflowUtil.getParentFeature(
+							configuredFeature, featureModel.getRoot());
+					org.js.model.feature.Group featureGroup = WorkflowUtil
+							.getGroup(configuredFeature, featureModel);
+					for (Group group : featureMap.keySet()) {
+						Feature feature = featureMap.get(group);
+						// 1. set all sub features into deselected
+						// 2. related attributes are deselected
+						if (childFeatures.contains(feature)
+								|| constraintLeftOperands.contains(feature)) {
+							for (Control control : group.getChildren()) {
+								if (decisionMap.get(control) instanceof SelectFeature) {
+									((Button) control).setSelection(false);
+								} else {
+									((Button) control).setSelection(true);
+								}
+							}
+						}
+						// 3. if it is mandatory feature and its parent feature
+						// can not be deselected
+						if (feature == parentFeature
+								&& WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.MANDATORY_GROUP) {
 							for (Control control : group.getChildren()) {
 								if (decisionMap.get(control) instanceof SelectFeature) {
 									((Button) control).setSelection(false);
 								}
 							}
 						}
-					}
-				} else if (configDecision instanceof DeselectFeature) {
-					for (Group group : featureMap.keySet()) {
-						Feature feature = featureMap.get(group);
-						// 1. set all sub features into deselected
-						// 2. set the selected status of the other features in
+						// 4. set the selected status of the other features in
 						// the same group
-						if (childFeatures.contains(feature)
-								|| constraintLeftOperands.contains(feature)) {
-							for (Control control : group.getChildren()) {
-								if (decisionMap.get(control) instanceof DeselectFeature) {
-									((Button) control).setSelection(false);
-								}
+						if (WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.OR_GROUP
+								|| WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.ALTERNATIVE_GROUP) {
+							if (feature != configuredFeature
+									&& groupFeatures.contains(feature)) {
+
 							}
-						} else if (groupFeatures.contains(feature)) {
-							// TODO: maybe there is better to check the group
-							// conditions
 						}
 					}
 				}
-			} else if (configDecision instanceof AttributeDecision) {
-				// TODO:
+			} else if (configDecision instanceof SetAttribute) {
+				// related feature is selected
+				Feature oldFeature = ((SetAttribute) configDecision)
+						.getFeature();
+
 			}
 		}
 	}

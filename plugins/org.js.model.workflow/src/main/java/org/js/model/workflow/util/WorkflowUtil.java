@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -35,10 +36,12 @@ import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.ConfigurationDecision;
 import org.js.model.rbac.FeatureDecision;
 import org.js.model.rbac.Group;
+import org.js.model.rbac.Role;
 import org.js.model.rbac.SelectDomainValue;
 import org.js.model.rbac.SelectFeature;
 import org.js.model.rbac.SetAttribute;
 import org.js.model.workflow.ACMConnector;
+import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
 
@@ -344,10 +347,15 @@ public class WorkflowUtil {
 				handleFeatureLogic(feature, featureModel);
 			} else {
 				if (configDecision instanceof SelectDomainValue) {
-					Attribute attribute = ReferenceResolverUtil
-							.resolveAttribute(((SetAttribute) configDecision)
-									.getAttribute().getName(), featureModel);
-					attribute.setValue(((SelectDomainValue) configDecision)
+					Attribute oldAttribute = ((SetAttribute) ((SelectDomainValue) configDecision)
+							.eContainer()).getAttribute();
+					String attributeName = oldAttribute.getName();
+					String featureName = oldAttribute.getFeature().getId();
+					Feature newFeature = ReferenceResolverUtil.findFeature(
+							featureName, featureModel);
+					Attribute newAttribute = ReferenceResolverUtil
+							.findAttributeForFeature(attributeName, newFeature);
+					newAttribute.setValue(((SelectDomainValue) configDecision)
 							.getValue());
 				}
 			}
@@ -368,12 +376,16 @@ public class WorkflowUtil {
 	 */
 	public static org.js.model.feature.Group getGroup(Feature feature,
 			Feature root) {
+		org.js.model.feature.Group featureGroup = null;
 		for (org.js.model.feature.Group group : root.getGroups()) {
 			if (group.getChildFeatures().contains(feature)) {
 				return group;
 			} else {
 				for (Feature subFeature : group.getChildFeatures()) {
-					return getGroup(feature, subFeature);
+					featureGroup = getGroup(feature, subFeature);
+					if (featureGroup != null) {
+						return featureGroup;
+					}
 				}
 			}
 		}
@@ -426,12 +438,17 @@ public class WorkflowUtil {
 	 * @return
 	 */
 	public static Feature getParentFeature(Feature childFeature, Feature root) {
+		Feature parentFeature = null;
 		for (org.js.model.feature.Group group : root.getGroups()) {
 			for (Feature feature : group.getChildFeatures()) {
 				if (feature == childFeature) {
-					return root;
+					parentFeature = root;
+					return parentFeature;
 				} else {
-					return getParentFeature(childFeature, feature);
+					parentFeature = getParentFeature(childFeature, feature);
+					if (parentFeature != null) {
+						return parentFeature;
+					}
 				}
 			}
 		}
@@ -481,6 +498,7 @@ public class WorkflowUtil {
 
 	/**
 	 * get all child features of the given feature.
+	 * 
 	 * @param childFeature
 	 * @return
 	 */
@@ -507,22 +525,25 @@ public class WorkflowUtil {
 		ArrayList<Feature> groupFeatures = new ArrayList<Feature>();
 		org.js.model.feature.Group group = getGroup(feature,
 				featureModel.getRoot());
-		groupFeatures.addAll(group.getChildFeatures());
+		if (group != null) {
+			groupFeatures.addAll(group.getChildFeatures());
+		}
 		return groupFeatures;
 	}
-	
+
 	/**
-	 * get all right operands which are included in the implies constraints. 
+	 * get all right operands which are included in the implies constraints.
+	 * 
 	 * @param feature
 	 * @param featureModel
 	 * @return
 	 */
-	public static ArrayList<Feature> getImpliesConstraintRightOperands(Feature feature,
-			FeatureModel featureModel){
+	public static ArrayList<Feature> getImpliesConstraintRightOperands(
+			Feature feature, FeatureModel featureModel) {
 		ArrayList<Feature> constraintFeatures = new ArrayList<Feature>();
 		EList<Constraint> constraints = featureModel.getConstraints();
-		
-		for(Constraint constraint:constraints){
+
+		for (Constraint constraint : constraints) {
 			if (constraint.getExpression() instanceof ImpliesExpression) {
 				ImpliesExpression expression = (ImpliesExpression) constraint
 						.getExpression();
@@ -539,19 +560,20 @@ public class WorkflowUtil {
 		}
 		return constraintFeatures;
 	}
-	
+
 	/**
-	 * get all left operands which are included in the implies constraints. 
+	 * get all left operands which are included in the implies constraints.
+	 * 
 	 * @param feature
 	 * @param featureModel
 	 * @return
 	 */
-	public static ArrayList<Feature> getImpliesConstraintLeftOperands(Feature feature,
-			FeatureModel featureModel){
+	public static ArrayList<Feature> getImpliesConstraintLeftOperands(
+			Feature feature, FeatureModel featureModel) {
 		ArrayList<Feature> constraintFeatures = new ArrayList<Feature>();
 		EList<Constraint> constraints = featureModel.getConstraints();
-		
-		for(Constraint constraint:constraints){
+
+		for (Constraint constraint : constraints) {
 			if (constraint.getExpression() instanceof ImpliesExpression) {
 				ImpliesExpression expression = (ImpliesExpression) constraint
 						.getExpression();
@@ -567,5 +589,55 @@ public class WorkflowUtil {
 			}
 		}
 		return constraintFeatures;
+	}
+
+	/**
+	 * trace the configured efm of the previous action
+	 * 
+	 * @param workflowModel
+	 * @param role
+	 * @param action
+	 * @return feature model
+	 */
+	public static FeatureModel tracePreEFM(Model workflowModel, Role role,
+			Action action) {
+		Action preAction = WorkflowModelUtil.getPrecedeAction(action);
+		FeatureModel oldFM = null;
+		if (preAction == null) { // it is the first enabled action
+			// get original efm
+			ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
+					.getAspectInstance(workflowModel,
+							WorkflowConfUtil.ACM_ASPECT);
+			AccessControlModel acm = acmConnector.getAcmref();
+			oldFM = acm.getFeatureModels().get(0);
+		} else {
+			// get the efm of previous action
+			EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
+					.getAspectInstance(preAction, WorkflowConfUtil.EFM_ASPECT);
+			oldFM = efmContainer.getEfmref();
+		}
+		// copy efm file for the added action
+		URI oldFMUri = oldFM.eResource().getURI();
+		String oldFileName = oldFMUri.lastSegment();
+		URI resolvedFile = CommonPlugin.resolve(oldFMUri);
+		IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
+				.getFile(new Path(resolvedFile.toFileString()));
+		String oldFilePath = oldFile.getFullPath().toString();
+		String newFileName = role.getId() + "." + oldFMUri.fileExtension();
+		String newFilePath = oldFilePath.replace(oldFileName, newFileName);
+		File newFile = WorkflowUtil.copyFile(oldFilePath, newFilePath);
+		// get the uri of the added file
+		URI newFileUri = WorkflowUtil.getURI(newFile);
+
+		// add efm reference
+		FeatureModel newFM = WorkflowUtil.getFMMModel(newFileUri);
+		EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
+				.getAspectInstance(action, WorkflowConfUtil.EFM_ASPECT);
+		if (newFM == null) {
+			System.out.println("the previuos action has no efm!");
+		} else {
+			WorkflowConfUtil.setEFM(efmContainer, newFM);
+		}
+		return newFM;
 	}
 }

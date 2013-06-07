@@ -322,13 +322,18 @@ public class WorkflowModelUtil {
 
 	public static ArrayList<Action> getNextSpecializationActions(Action action) {
 		ArrayList<Action> nextActions = new ArrayList<Action>();
-		for (ActivityEdge actEdge : action.getOut().get(0).getTarget().getOut()) {
-			ActivityNode actNode = actEdge.getTarget();
-			if (actNode instanceof Action
-					&& (WorkflowModelUtil.getActionName((Action) actNode)
-							.equals(WorkflowModelUtil.SPECIALIZATION_ACTION))) {
-				nextActions.add((Action) actNode);
+		if(action.getOut().get(0).getTarget() instanceof ForkNode){
+			ActivityNode forkNode = action.getOut().get(0).getTarget() ;
+			for (ActivityEdge actEdge : forkNode.getOut()) {
+				ActivityNode actNode = actEdge.getTarget();
+				if (actNode instanceof Action
+						&& (WorkflowModelUtil.getActionName((Action) actNode)
+								.equals(WorkflowModelUtil.SPECIALIZATION_ACTION))) {
+					nextActions.add((Action) actNode);
+				}
 			}
+		}else if(action.getOut().get(0).getTarget() instanceof Action){
+			nextActions.add((Action)action.getOut().get(0).getTarget());
 		}
 		return nextActions;
 	}

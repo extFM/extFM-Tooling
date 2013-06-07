@@ -61,31 +61,32 @@ public class ChangePrimitive {
 				EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
 						.addAspectInstance(actNode, WorkflowConfUtil.EFM_ASPECT);
 
-//				// get uri of efm
-//				ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
-//						.getAspectInstance(workflowModel,
-//								WorkflowConfUtil.ACM_ASPECT);
-//				AccessControlModel acm = acmConnector.getAcmref();
-//				FeatureModel oldFM = acm.getFeatureModels().get(0);
-//				URI oldFMUri = oldFM.eResource().getURI();
-//				
-//				// copy efm file for the added action
-//				String oldFileName = oldFMUri.lastSegment();
-//				URI resolvedFile = CommonPlugin.resolve(oldFMUri);
-//				IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
-//						.getFile(new Path(resolvedFile.toFileString()));
-//				String oldFilePath = oldFile.getFullPath().toString();
-//				String newFileName = roleName + "." + oldFMUri.fileExtension();
-//				String newFilePath = oldFilePath.replace(oldFileName,
-//						newFileName);
-//				File file = WorkflowUtil.copyFile(oldFilePath, newFilePath);
-//
-//				// get the uri of the added file
-//				URI newFileUri=WorkflowUtil.getURI(file);
-//
-//				// add efm reference
-//				FeatureModel newFm = WorkflowUtil.getFMMModel(newFileUri);
-//				WorkflowConfUtil.setEFM(efmContainer, newFm);
+				// // get uri of efm
+				// ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil
+				// .getAspectInstance(workflowModel,
+				// WorkflowConfUtil.ACM_ASPECT);
+				// AccessControlModel acm = acmConnector.getAcmref();
+				// FeatureModel oldFM = acm.getFeatureModels().get(0);
+				// URI oldFMUri = oldFM.eResource().getURI();
+				//
+				// // copy efm file for the added action
+				// String oldFileName = oldFMUri.lastSegment();
+				// URI resolvedFile = CommonPlugin.resolve(oldFMUri);
+				// IFile oldFile = ResourcesPlugin.getWorkspace().getRoot()
+				// .getFile(new Path(resolvedFile.toFileString()));
+				// String oldFilePath = oldFile.getFullPath().toString();
+				// String newFileName = roleName + "." +
+				// oldFMUri.fileExtension();
+				// String newFilePath = oldFilePath.replace(oldFileName,
+				// newFileName);
+				// File file = WorkflowUtil.copyFile(oldFilePath, newFilePath);
+				//
+				// // get the uri of the added file
+				// URI newFileUri=WorkflowUtil.getURI(file);
+				//
+				// // add efm reference
+				// FeatureModel newFm = WorkflowUtil.getFMMModel(newFileUri);
+				// WorkflowConfUtil.setEFM(efmContainer, newFm);
 			}
 			// add state aspect
 			State state = (State) WorkflowConfUtil.addAspectInstance(actNode,
@@ -229,37 +230,38 @@ public class ChangePrimitive {
 		org.js.model.rbac.Role rbacRole = WorkflowUtil.getRBACRole(
 				workflowModel, name);
 		Role jwtRole = null;
-		if (rbacRole == null) {
-			// add role
-			jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
-			WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole,
-					roleCoorX, roleCoorY);
 
-			// add role aspect
-			if (WorkflowConfUtil.containsProfile(workflowModel,
-					WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
-				ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
-						.getAspectInstance(workflowModel,
-								WorkflowConfUtil.ACM_ASPECT);
-				// add rbac role into the rbac model
-				AccessControlModel acm = (AccessControlModel) acmconnector
-						.getAcmref();
-				RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
-						.addAspectInstance(jwtRole,
-								WorkflowConfUtil.ROLE_ASPECT);
+		// add role
+		jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
+		WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole, roleCoorX,
+				roleCoorY);
+
+		// add role aspect
+		if (WorkflowConfUtil.containsProfile(workflowModel,
+				WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
+			ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
+					.getAspectInstance(workflowModel,
+							WorkflowConfUtil.ACM_ASPECT);
+			// add rbac role into the rbac model
+			AccessControlModel acm = (AccessControlModel) acmconnector
+					.getAcmref();
+			RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
+					.addAspectInstance(jwtRole, WorkflowConfUtil.ROLE_ASPECT);
+			if (rbacRole == null) {
 				rbacRole = RbacFactoryImpl.eINSTANCE.createRole();
 				// rbacService.getParentRoles(rbacRole).add(stageRole);
 				rbacRole.getParentRoles().add(roleType);
 				rbacRole.setName(name);
 				rbacRole.setId(name);
-				acm.getRoles().add(rbacRole);
-				try {
-					acm.eResource().save(null);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
 			}
+			acm.getRoles().add(rbacRole);
+			try {
+				acm.eResource().save(null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
+
 		} else {
 			jwtRole = WorkflowModelUtil.getRole(workflowModel, name);
 		}
