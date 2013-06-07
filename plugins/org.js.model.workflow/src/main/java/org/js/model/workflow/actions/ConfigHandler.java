@@ -23,6 +23,8 @@ import org.js.model.feature.FeatureModel;
 import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.RoleConnector;
 import org.js.model.workflow.State;
+import org.js.model.workflow.StateEnum;
+import org.js.model.workflow.ui.IdleUI;
 import org.js.model.workflow.ui.StakeholderConfigUIShell;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowModelUtil;
@@ -95,8 +97,27 @@ public class ConfigHandler extends MyAction implements DoubleClickHandler {
 		}
 	}
 
-	public void handleIdleAction(Action modelElement) {
-
+	public void handleIdleAction(Action action) {
+		State state = (State) WorkflowConfUtil.getAspectInstance(action,
+				WorkflowConfUtil.STATE_ASPECT);
+		if (state.getState().getValue() == 1) {
+			WorkflowModelUtil.setActionState(action, StateEnum.RUNNING);
+			try {
+				Display display = Display.getDefault();
+				IdleUI shell = new IdleUI(display, activity, state);
+				shell.open();
+				shell.layout();
+				while (!shell.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+				WorkflowModelUtil.setActionState(action, shell.getState()
+						.getState());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void handleFlowFinal(Event flowFinal) {
@@ -108,17 +129,24 @@ public class ConfigHandler extends MyAction implements DoubleClickHandler {
 			EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
 					.getAspectInstance(preAction, WorkflowConfUtil.EFM_ASPECT);
 			FeatureModel fm = efmContainer.getEfmref();
-			URI fmURI = CommonPlugin.resolve(fm.eResource().getURI());
-			IFile iFile = ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(new Path(fmURI.toFileString()));
-			File file = new File(iFile.getFullPath().toString());
-			final IFile inputFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(Path.fromOSString(file.getAbsolutePath()));
-			if (inputFile != null) {
-			    IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			    try {
-				IDE.openEditor(page, inputFile);
-				} catch (PartInitException e) {
-					e.printStackTrace();
+			if (fm != null) {
+				URI fmURI = CommonPlugin.resolve(fm.eResource().getURI());
+				IFile iFile = ResourcesPlugin.getWorkspace().getRoot()
+						.getFile(new Path(fmURI.toFileString()));
+				File file = new File(iFile.getFullPath().toString());
+				final IFile inputFile = ResourcesPlugin
+						.getWorkspace()
+						.getRoot()
+						.getFileForLocation(
+								Path.fromOSString(file.getAbsolutePath()));
+				if (inputFile != null) {
+					IWorkbenchPage page = PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getActivePage();
+					try {
+						IDE.openEditor(page, inputFile);
+					} catch (PartInitException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
