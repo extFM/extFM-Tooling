@@ -239,7 +239,7 @@ public class WorkflowUtil {
 	 * @param uri
 	 * @return
 	 */
-	public static FeatureModel getFMMModel(URI uri) {
+	public static FeatureModel getFeatureModel(URI uri) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource rbacRes = resourceSet.getResource(uri, true);
 		try {
@@ -630,7 +630,7 @@ public class WorkflowUtil {
 		URI newFileUri = WorkflowUtil.getURI(newFile);
 
 		// add efm reference
-		FeatureModel newFM = WorkflowUtil.getFMMModel(newFileUri);
+		FeatureModel newFM = WorkflowUtil.getFeatureModel(newFileUri);
 		EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil
 				.getAspectInstance(action, WorkflowConfUtil.EFM_ASPECT);
 		if (newFM == null) {
@@ -639,5 +639,33 @@ public class WorkflowUtil {
 			WorkflowConfUtil.setEFM(efmContainer, newFM);
 		}
 		return newFM;
+	}
+
+	/**
+	 * get all features of the given feature model.
+	 * 
+	 * @param featureModel
+	 * @return
+	 */
+	public static ArrayList<Feature> getFeatures(FeatureModel featureModel) {
+		ArrayList<Feature> features = new ArrayList<Feature>();
+		features.add(featureModel.getRoot());
+		features.addAll(getChildFeatures(featureModel.getRoot()));
+		return features;
+	}
+
+	/**
+	 * get all attributes of features in the given feature model.
+	 * @param feaureModel
+	 * @return
+	 */
+	public static ArrayList<Attribute> getAttributes(FeatureModel feaureModel) {
+		ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+		for (Feature feature : getFeatures(feaureModel)) {
+			if (feature.getAttributes().size() > 0) {
+				attributes.addAll(feature.getAttributes());
+			}
+		}
+		return attributes;
 	}
 }

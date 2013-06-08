@@ -158,158 +158,166 @@ public class StakeholderConfigUIShell extends Shell {
 		permissions = rbacService.getAllRolePermissions(role);
 		log = (Log) WorkflowConfUtil.getAspectInstance(action,
 				WorkflowConfUtil.LOG_ASPECT);
-
-		for (Permission permission : permissions) {
-			// Iterator<Permission> it = permissions.iterator();
-			// while (it.hasNext()) {
-			// Permission permission = it.next();
-			if (permission instanceof FeatureDecision) {
-				// feature in the original efm
-				Feature oldFeature = ((FeatureDecision) permission)
-						.getFeature();
-				String featureName = oldFeature.getId();
-				String groupName = featureName;
-				// feature in the new efm
-				Feature configuredFeature = ReferenceResolverUtil.findFeature(
-						featureName, featureModel);
-				// get the configuration group
-				Group configGroup = null;
-				for (Group group : configGroups) {
-					if (group.getText().equals(groupName)) {
-						configGroup = group;
-						break;
-					}
-				}
-				if (configGroup == null) {
-					configGroup = new Group(composite_config, SWT.NONE);
-					configGroup.setText(groupName);
-					configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
-					configGroups.add(configGroup);
-					featureMap.put(configGroup, configuredFeature);
-				}
-				// add radio button
-				Button radioButton = new Button(configGroup, SWT.RADIO);
-				if (permission instanceof SelectFeature) {
-					radioButton.setText("select feature");
-				} else if (permission instanceof DeselectFeature) {
-					radioButton.setText("deselect feature");
-				}
-				// if configuration action is running, check whether the feature
-				// is configured by the previous role
-				if (selectedState.getState().getValue() == 2) {
-					switch (configuredFeature.getSelected().getValue()) {
-					case 0:
-						break;
-					case 1:
-						radioButton.setEnabled(false);
-						if (permission instanceof SelectFeature) {
-							radioButton.setSelection(true);
+		if (featureModel != null) {
+			for (Permission permission : permissions) {
+				// Iterator<Permission> it = permissions.iterator();
+				// while (it.hasNext()) {
+				// Permission permission = it.next();
+				if (permission instanceof FeatureDecision) {
+					// feature in the original efm
+					Feature oldFeature = ((FeatureDecision) permission)
+							.getFeature();
+					String featureName = oldFeature.getId();
+					String groupName = featureName;
+					// feature in the new efm
+					Feature configuredFeature = ReferenceResolverUtil
+							.findFeature(featureName, featureModel);
+					// get the configuration group
+					Group configGroup = null;
+					for (Group group : configGroups) {
+						if (group.getText().equals(groupName)) {
+							configGroup = group;
+							break;
 						}
-						break;
-					case 2:
-						radioButton.setEnabled(false);
-						if (permission instanceof DeselectFeature) {
-							radioButton.setSelection(true);
-						}
-						break;
 					}
-
-				}
-				// if configuration action is finished, button is inactive
-				if (selectedState.getState().getValue() == 3) {
-					radioButton.setEnabled(false);
-					if (log.getConfigurationDecisions().contains(permission)) {
-						radioButton.setSelection(true);
+					if (configGroup == null) {
+						configGroup = new Group(composite_config, SWT.NONE);
+						configGroup.setText(groupName);
+						configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
+						configGroups.add(configGroup);
+						featureMap.put(configGroup, configuredFeature);
 					}
-				}
-				decisionMap
-						.put(radioButton, (ConfigurationDecision) permission);
-			} else if (permission instanceof SetAttribute) {
-				Feature oldFeature = ((SetAttribute) permission).getFeature();
-				String featureName = oldFeature.getId();
-				Feature newFeature = ReferenceResolverUtil.findFeature(
-						featureName, featureModel);
-				Attribute oldAttribute = ((SetAttribute) permission)
-						.getAttribute();
-				String attributeName = oldAttribute.getName();
-				String groupName = featureName + ": " + attributeName;
-				// get the attribute
-				Attribute configuredAttribute = ReferenceResolverUtil
-						.findAttributeForFeature(attributeName, newFeature);
-				// get the configuration group
-				Group configGroup = null;
-				for (Group group : configGroups) {
-					if (group.getText().equals(groupName)) {
-						configGroup = group;
-						break;
-					}
-				}
-				if (configGroup == null) {
-					configGroup = new Group(composite_config, SWT.NONE);
-					configGroup.setText(groupName);
-					configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
-					configGroups.add(configGroup);
-					attributeMap.put(configGroup, configuredAttribute);
-				}
-
-				for (AttributeDecision attributeDec : ((SetAttribute) permission)
-						.getAttributeDecisions()) {
+					// add radio button
 					Button radioButton = new Button(configGroup, SWT.RADIO);
-					if (attributeDec instanceof SelectDomainValue) {
-						radioButton
-								.setText("select " + attributeDec.getValue());
-					} else if (attributeDec instanceof DeselectDomainValue) {
-						radioButton.setText("deselect "
-								+ attributeDec.getValue());
+					if (permission instanceof SelectFeature) {
+						radioButton.setText("select feature");
+					} else if (permission instanceof DeselectFeature) {
+						radioButton.setText("deselect feature");
 					}
 					// if configuration action is running, check whether the
-					// attribute is configured
+					// feature
+					// is configured by the previous role
 					if (selectedState.getState().getValue() == 2) {
-						if (configuredAttribute.getValue() == null
-								|| configuredAttribute.getValue().equals("")) {
-						} else {
+						switch (configuredFeature.getSelected().getValue()) {
+						case 0:
+							break;
+						case 1:
 							radioButton.setEnabled(false);
-							if (attributeDec instanceof SelectDomainValue
-									&& attributeDec.getValue().equals(
-											configuredAttribute.getValue())) {
+							if (permission instanceof SelectFeature) {
 								radioButton.setSelection(true);
 							}
+							break;
+						case 2:
+							radioButton.setEnabled(false);
+							if (permission instanceof DeselectFeature) {
+								radioButton.setSelection(true);
+							}
+							break;
 						}
+
 					}
-					// configuration action is finished
+					// if configuration action is finished, button is inactive
 					if (selectedState.getState().getValue() == 3) {
 						radioButton.setEnabled(false);
-						if (log.getConfigurationDecisions().contains(
-								attributeDec)) {
+						if (log.getConfigurationDecisions()
+								.contains(permission)) {
 							radioButton.setSelection(true);
 						}
 					}
 					decisionMap.put(radioButton,
-							(ConfigurationDecision) attributeDec);
+							(ConfigurationDecision) permission);
+				} else if (permission instanceof SetAttribute) {
+					Feature oldFeature = ((SetAttribute) permission)
+							.getFeature();
+					String featureName = oldFeature.getId();
+					Feature newFeature = ReferenceResolverUtil.findFeature(
+							featureName, featureModel);
+					Attribute oldAttribute = ((SetAttribute) permission)
+							.getAttribute();
+					String attributeName = oldAttribute.getName();
+					String groupName = featureName + ": " + attributeName;
+					// get the attribute
+					Attribute configuredAttribute = ReferenceResolverUtil
+							.findAttributeForFeature(attributeName, newFeature);
+					// get the configuration group
+					Group configGroup = null;
+					for (Group group : configGroups) {
+						if (group.getText().equals(groupName)) {
+							configGroup = group;
+							break;
+						}
+					}
+					if (configGroup == null) {
+						configGroup = new Group(composite_config, SWT.NONE);
+						configGroup.setText(groupName);
+						configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
+						configGroups.add(configGroup);
+						attributeMap.put(configGroup, configuredAttribute);
+					}
+
+					for (AttributeDecision attributeDec : ((SetAttribute) permission)
+							.getAttributeDecisions()) {
+						Button radioButton = new Button(configGroup, SWT.RADIO);
+						if (attributeDec instanceof SelectDomainValue) {
+							radioButton.setText("select "
+									+ attributeDec.getValue());
+						} else if (attributeDec instanceof DeselectDomainValue) {
+							radioButton.setText("deselect "
+									+ attributeDec.getValue());
+						}
+						// if configuration action is running, check whether the
+						// attribute is configured
+						if (selectedState.getState().getValue() == 2) {
+							if (configuredAttribute.getValue() == null
+									|| configuredAttribute.getValue()
+											.equals("")) {
+							} else {
+								radioButton.setEnabled(false);
+								if (attributeDec instanceof SelectDomainValue
+										&& attributeDec.getValue().equals(
+												configuredAttribute.getValue())) {
+									radioButton.setSelection(true);
+								}
+							}
+						}
+						// configuration action is finished
+						if (selectedState.getState().getValue() == 3) {
+							radioButton.setEnabled(false);
+							if (log.getConfigurationDecisions().contains(
+									attributeDec)) {
+								radioButton.setSelection(true);
+							}
+						}
+						decisionMap.put(radioButton,
+								(ConfigurationDecision) attributeDec);
+					}
 				}
 			}
-		}
 
-		// add listeners for buttons
-		for (Group group : configGroups) {
-			for (Control button : group.getChildren()) {
-				((Button) button).addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						handleSelectionLogic((Button) e.getSource(),
-								decisionMap, permissions, featureModel);
-					}
-				});
-				// ((Button) button).addFocusListener(new FocusListener() {
-				// @Override
-				// public void focusLost(FocusEvent e) {
-				// }
-				// @Override
-				// public void focusGained(FocusEvent e) {
-				// handleSelectionLogic((Button) e.getSource(),
-				// decisionMap, permissions, featureModel);
-				// }
-				// });
+			// add listeners for buttons
+			for (Group group : configGroups) {
+				for (Control button : group.getChildren()) {
+					((Button) button)
+							.addSelectionListener(new SelectionAdapter() {
+								@Override
+								public void widgetSelected(SelectionEvent e) {
+									handleSelectionLogic(
+											(Button) e.getSource(),
+											decisionMap, permissions,
+											featureModel);
+								}
+							});
+					// ((Button) button).addFocusListener(new FocusListener() {
+					// @Override
+					// public void focusLost(FocusEvent e) {
+					// }
+					// @Override
+					// public void focusGained(FocusEvent e) {
+					// handleSelectionLogic((Button) e.getSource(),
+					// decisionMap, permissions, featureModel);
+					// }
+					// });
+				}
 			}
 		}
 		// TODO: check the feature in a group (optional group!)
@@ -376,6 +384,7 @@ public class StakeholderConfigUIShell extends Shell {
 		});
 
 		createContents();
+
 	}
 
 	/**

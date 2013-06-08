@@ -4,7 +4,9 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.js.model.workflow;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
- swing2swt.jar
+ swing2swt.jar,
+ jar/com.sap.research.cocktail.core-0.0.1-SNAPSHOT.jar,
+ jar/com.sap.research.cocktail.model-0.0.1-SNAPSHOT.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -29,7 +31,9 @@ Require-Bundle: org.eclipse.core.runtime,
  com.ibm.icu,
  org.eclipse.core.resources;bundle-version="3.8.1",
  org.eclipse.core.filesystem;bundle-version="1.3.200",
- org.eclipse.ui.ide;bundle-version="3.8.2"
+ org.eclipse.ui.ide;bundle-version="3.8.2",
+ org.eclipse.ui,
+ org.aspectj.runtime;bundle-version="1.7.2"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.junit

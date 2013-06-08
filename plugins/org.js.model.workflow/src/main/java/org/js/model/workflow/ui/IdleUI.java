@@ -79,7 +79,7 @@ public class IdleUI extends Shell {
 				ArrayList<Action> actionList = WorkflowModelUtil
 						.getActionList(activity);
 				for (Action action : actionList) {
-					WorkflowModelUtil.setActionState(action, StateEnum.COMPLETED);
+					WorkflowModelUtil.setActionState(action, StateEnum.INACTIVE);
 				}
 				state.setState(StateEnum.COMPLETED);
 				dispose();
