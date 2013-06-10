@@ -68,7 +68,7 @@ public class AddUser extends MyAction {
 			// add an action
 			String roleName = "UserTest" + index;
 			Action action = ChangePrimitive.addAction(workflowModel, activity,
-					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION, roleName,
+					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION,
 					900, groupLeaderY + 100 * size);
 			Role role = ChangePrimitive.addRole(workflowModel, activity,
 					diagram, userType, roleName, 900, groupLeaderY + 100 * size

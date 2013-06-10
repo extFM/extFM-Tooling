@@ -55,7 +55,7 @@ public class GroupSelection extends Shell {
 		Composite composite = new Composite(this, SWT.NONE);
 		composite.setLayout(new FillLayout(SWT.VERTICAL));
 		
-		groupCombo = new Combo(composite, SWT.NONE);
+		groupCombo = new Combo(composite, SWT.READ_ONLY);
 		
 		Composite composite_1 = new Composite(composite, SWT.NONE);
 		composite_1.setLayout(new RowLayout(SWT.HORIZONTAL));

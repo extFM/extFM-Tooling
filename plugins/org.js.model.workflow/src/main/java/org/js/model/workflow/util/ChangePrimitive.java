@@ -22,6 +22,7 @@ import org.eclipse.jwt.we.model.view.Diagram;
 import org.eclipse.jwt.we.model.view.ReferenceEdge;
 import org.js.model.feature.FeatureModel;
 import org.js.model.rbac.AccessControlModel;
+import org.js.model.rbac.Group;
 import org.js.model.rbac.RBACService;
 import org.js.model.rbac.impl.RbacFactoryImpl;
 import org.js.model.workflow.ACMConnector;
@@ -40,8 +41,7 @@ public class ChangePrimitive {
 	public static RBACService rbacService = new RBACService();
 
 	public static Action addAction(Model workflowModel, Activity activity,
-			Diagram diagram, String actionName, String roleName,
-			int actionCoorX, int actionCoorY) {
+			Diagram diagram, String actionName, int actionCoorX, int actionCoorY) {
 
 		// add action
 		ActivityNode actNode = WorkflowModelUtil
@@ -103,11 +103,24 @@ public class ChangePrimitive {
 	public static void updateActionState(Action action) {
 		// WorkflowConfUtil.setState(state, StateEnum.INACTIVE);
 		WorkflowModelUtil.setActionState(action);
-		State state = (State) WorkflowConfUtil.getAspectInstance(action,
-				WorkflowConfUtil.STATE_ASPECT);
-		// set the name with the state
-		action.setName(WorkflowModelUtil.getActionName(action) + " ("
-				+ state.getState().getName() + ") ");
+//		State state = (State) WorkflowConfUtil.getAspectInstance(action,
+//				WorkflowConfUtil.STATE_ASPECT);
+//		// set the name with the state
+//		action.setName(WorkflowModelUtil.getActionName(action) + " ("
+//				+ state.getState().getName() + ") ");
+	}
+
+	public static ActivityNode removeActivityNode(Model workflowModel,
+			Activity activity, Diagram diagram, String name) {
+		ActivityNode actNode = WorkflowModelUtil
+				.getActivityNode(activity, name);
+		if (actNode instanceof Action) {
+			removeAction(workflowModel, activity, diagram, name);
+		} else {
+			WorkflowModelUtil.removeActivityNode(activity, name);
+			WorkflowViewUtil.removeNodeLayout(diagram, actNode);
+		}
+		return actNode;
 	}
 
 	public static Action removeAction(Model workflowModel, Activity activity,
@@ -230,42 +243,91 @@ public class ChangePrimitive {
 		org.js.model.rbac.Role rbacRole = WorkflowUtil.getRBACRole(
 				workflowModel, name);
 		Role jwtRole = null;
+		if (rbacRole == null) {
+			// add jwt role
+			jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
+			WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole,
+					roleCoorX, roleCoorY);
 
-		// add role
-		jwtRole = WorkflowModelUtil.addRole(workflowModel, name);
-		WorkflowViewUtil.setRoleLayout(diagram, activity, jwtRole, roleCoorX,
-				roleCoorY);
+			// add role aspect
+			if (WorkflowConfUtil.containsProfile(workflowModel,
+					WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
+				ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
+						.getAspectInstance(workflowModel,
+								WorkflowConfUtil.ACM_ASPECT);
+				// add rbac role into the rbac model
+				AccessControlModel acm = (AccessControlModel) acmconnector
+						.getAcmref();
+				RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
+						.addAspectInstance(jwtRole,
+								WorkflowConfUtil.ROLE_ASPECT);
 
-		// add role aspect
-		if (WorkflowConfUtil.containsProfile(workflowModel,
-				WorkflowConfUtil.WORKFLOW_PROFILE_NAME)) {
-			ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
-					.getAspectInstance(workflowModel,
-							WorkflowConfUtil.ACM_ASPECT);
-			// add rbac role into the rbac model
-			AccessControlModel acm = (AccessControlModel) acmconnector
-					.getAcmref();
-			RoleConnector roleConnector = (RoleConnector) WorkflowConfUtil
-					.addAspectInstance(jwtRole, WorkflowConfUtil.ROLE_ASPECT);
-			if (rbacRole == null) {
 				rbacRole = RbacFactoryImpl.eINSTANCE.createRole();
 				// rbacService.getParentRoles(rbacRole).add(stageRole);
 				rbacRole.getParentRoles().add(roleType);
 				rbacRole.setName(name);
 				rbacRole.setId(name);
-			}
-			acm.getRoles().add(rbacRole);
-			try {
-				acm.eResource().save(null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
 
+				acm.getRoles().add(rbacRole);
+				try {
+					acm.eResource().save(null);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				WorkflowConfUtil.setRoleRef(roleConnector, rbacRole);
+
+			}
 		} else {
 			jwtRole = WorkflowModelUtil.getRole(workflowModel, name);
 		}
 		return jwtRole;
+	}
+
+	/**
+	 * add a new group into the rbac model if the group is not included in the
+	 * model.
+	 * 
+	 * @param workflowModel
+	 * @param groupLeader
+	 * @param groupMember
+	 * @return
+	 */
+	public static Group addGroup(Model workflowModel,
+			org.js.model.rbac.Role groupLeader,org.js.model.rbac.Role groupMember) {
+		ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
+				.getAspectInstance(workflowModel, WorkflowConfUtil.ACM_ASPECT);
+		// add rbac role into the rbac model
+		AccessControlModel acm = (AccessControlModel) acmconnector.getAcmref();
+		Group group = null;
+		for (Group tempGroup : acm.getGroups()) {
+			if (tempGroup.getRepresents().getId().equals( groupLeader.getId())) {
+				group = tempGroup;
+				break;
+			}
+		}
+		if (group == null) {
+			group = RbacFactoryImpl.eINSTANCE.createGroup();
+			group.setRepresents(groupLeader);
+			group.setId(groupLeader.getId());
+			group.setName(groupLeader.getName());
+			acm.getGroups().add(group);
+		}
+		boolean containsMember = false;
+		for(org.js.model.rbac.Role member :group.getContains()){
+			if(member.getId().equals(groupMember.getId())){
+				containsMember=true;
+				break;
+			}
+		}
+		if(!containsMember){
+			group.getContains().add(groupMember);
+		}
+		try {
+			acm.eResource().save(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return group;
 	}
 
 	public static Role removeRole(Model workflowModel, Activity activity,

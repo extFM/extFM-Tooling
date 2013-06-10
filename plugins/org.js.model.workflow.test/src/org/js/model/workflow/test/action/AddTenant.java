@@ -41,7 +41,7 @@ public class AddTenant extends MyAction {
 			String roleName = "TenantTest" + size;
 			// add an action
 			Action action = ChangePrimitive.addAction(workflowModel, activity,
-					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION,roleName, 650,
+					diagram, WorkflowModelUtil.SPECIALIZATION_ACTION, 650,
 					200 + 100 * size);
 			// add the action with the reference of the role
 			Role role = ChangePrimitive.addRole(workflowModel, activity,

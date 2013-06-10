@@ -77,10 +77,7 @@ public class GraphTransformationUtil {
 			Activity activity) {
 		ArrayList<LeftSideRef> leftSides = new ArrayList<LeftSideRef>();
 		for (ActivityNode node : activity.getNodes()) {
-			LeftSideRef leftSideRef = getLeftSideRef(node, rule.getLeftside());
-			if (leftSideRef != null) {
-				leftSides.add(leftSideRef);
-			}
+			leftSides.addAll(getLeftSideRef(node, rule.getLeftside()));
 		}
 		return leftSides;
 	}
@@ -92,14 +89,13 @@ public class GraphTransformationUtil {
 	 * @param leftSide
 	 * @return
 	 */
-	public static LeftSideRef getLeftSideRef(ActivityNode actNode,
+	public static ArrayList<LeftSideRef> getLeftSideRef(ActivityNode actNode,
 			LeftSide leftSide) {
+		ArrayList<LeftSideRef> leftSideRefs = new ArrayList<LeftSideRef>();
 		LeftSideRef leftSideRef = new LeftSideRef();
-		Node tail = getLeftSideTail(leftSide);
-		if (checkStructure(actNode, tail, leftSideRef, leftSide)) {
-			return leftSideRef;
-		}
-		return null;
+		Node root = getLeftSideRoot(leftSide);
+		checkStructure(actNode, root, leftSideRefs, leftSideRef, leftSide);
+		return leftSideRefs;
 	}
 
 	/**
@@ -109,12 +105,14 @@ public class GraphTransformationUtil {
 	 *            activity node from workflow
 	 * @param node
 	 *            node from rule
+	 * @param leftSideRefs
 	 * @param leftSideRef
 	 * @param leftSide
 	 * @return
 	 */
 	public static boolean checkStructure(ActivityNode actNode, Node node,
-			LeftSideRef leftSideRef, LeftSide leftSide) {
+			ArrayList<LeftSideRef> leftSideRefs, LeftSideRef leftSideRef,
+			LeftSide leftSide) {
 		if (parseRuleElement(node).equals(actNode.getClass())) {
 			if ((node instanceof SpecializationAction && !WorkflowModelUtil
 					.getActionName((Action) actNode).equals(
@@ -126,20 +124,22 @@ public class GraphTransformationUtil {
 			}
 			leftSideRef.getNodes().add(actNode);
 			leftSideRef.getActivityNodesMap().put(node, actNode);
-			if (node.getIn().size() != 0) {
-				for (Edge edge : node.getIn()) {
+			if (node.getOut().size() != 0) {
+				for (Edge edge : node.getOut()) {
 					if (leftSide.getEdges().contains(edge)) {
-						for (ActivityEdge actEdge : actNode.getIn()) {
-							if (parseRuleElement(edge.getSource()).equals(
-									actEdge.getSource().getClass())) {
-								return checkStructure(actEdge, edge,
-										leftSideRef, leftSide);
+						for (ActivityEdge actEdge : actNode.getOut()) {
+							if (parseRuleElement(edge.getTarget()).equals(
+									actEdge.getTarget().getClass())) {
+								LeftSideRef newLeftSideRef = LeftSideRef
+										.createLeftSideRef(leftSideRef);
+								checkStructure(actEdge, edge, leftSideRefs,
+										newLeftSideRef, leftSide);
 							}
 						}
 					}
 				}
 			} else {
-				return true;
+				leftSideRefs.add(leftSideRef);
 			}
 		}
 		return false;
@@ -152,21 +152,23 @@ public class GraphTransformationUtil {
 	 *            edge from workflow
 	 * @param edge
 	 *            edge from rule
+	 * @param leftSideRefs
 	 * @param leftSideRef
 	 * @param leftSide
 	 * @return
 	 */
 	public static boolean checkStructure(ActivityEdge actedge, Edge edge,
-			LeftSideRef leftSideRef, LeftSide leftSide) {
+			ArrayList<LeftSideRef> leftSideRefs, LeftSideRef leftSideRef,
+			LeftSide leftSide) {
 		if (parseRuleElement(edge).equals(actedge.getClass())) {
 			leftSideRef.getEdges().add(actedge);
 			leftSideRef.getActivityEdgesMap().put(edge, actedge);
-			if (edge.getSource() != null
-					&& leftSide.getNodes().contains(edge.getSource())) {
-				return checkStructure(actedge.getSource(), edge.getSource(),
-						leftSideRef, leftSide);
+			if (edge.getTarget() != null
+					&& leftSide.getNodes().contains(edge.getTarget())) {
+				checkStructure(actedge.getTarget(), edge.getTarget(),
+						leftSideRefs, leftSideRef, leftSide);
 			} else {
-				return true;
+				leftSideRefs.add(leftSideRef);
 			}
 		}
 		return false;
@@ -251,8 +253,8 @@ public class GraphTransformationUtil {
 					addedNode = ChangePrimitive.addFlowFinalNode(activity,
 							diagram, "", 100, 100);
 				} else if (node instanceof Fork) {
-					addedNode = ChangePrimitive.addFlowFinalNode(activity,
-							diagram, "", 100, 100);
+					addedNode = ChangePrimitive.addForkNode(activity, diagram,
+							100, 100);
 				} else if (node instanceof SpecializationAction) {
 					addedNode = ChangePrimitive.addAction(workflowModel,
 							activity, diagram,
@@ -314,7 +316,14 @@ public class GraphTransformationUtil {
 					org.js.model.rbac.Role childRef = ((RoleConnector) WorkflowConfUtil
 							.getAspectInstance(action.getPerformedBy(),
 									WorkflowConfUtil.ROLE_ASPECT)).getRoleref();
-					if (!rbacService.getParentRoles(childRef).contains(parent)) {
+					boolean containsParent = false;
+					for (org.js.model.rbac.Role tempParent : rbacService
+							.getParentRoles(childRef)) {
+						if (tempParent.getId().equals(parent.getId())) {
+							containsParent = true;
+						}
+					}
+					if (!containsParent) {
 						return false;
 					}
 				} else {
@@ -332,11 +341,12 @@ public class GraphTransformationUtil {
 						&& leader instanceof ExistingRole) {
 					Action action = (Action) leftSideRef.getNodeRef(leader
 							.getAction());
-					org.js.model.rbac.Role leaderRef = (org.js.model.rbac.Role) WorkflowConfUtil
+					org.js.model.rbac.Role leaderRef = ((RoleConnector) WorkflowConfUtil
 							.getAspectInstance(action.getPerformedBy(),
-									WorkflowConfUtil.ROLE_ASPECT);
-					if (!shInput.getStakeholderGroup().getId()
-							.equals(leaderRef.getId())) {
+									WorkflowConfUtil.ROLE_ASPECT)).getRoleref();
+					if (shInput.getStakeholderGroup() == null
+							|| !shInput.getStakeholderGroup().getId()
+									.equals(leaderRef.getId())) {
 						return false;
 					}
 				} else {

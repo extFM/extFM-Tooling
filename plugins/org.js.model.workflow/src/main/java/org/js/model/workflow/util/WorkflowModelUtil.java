@@ -308,7 +308,7 @@ public class WorkflowModelUtil {
 	 */
 	public static Action getPrecedeAction(ActivityNode actNode) {
 		Action preAction = null;
-		if (actNode.getIn().size() > 0) {
+		if (actNode.getIn()!=null&&actNode.getIn().size() > 0) {
 			ActivityEdge actEdge = actNode.getIn().get(0);
 			ActivityNode preActNode = actEdge.getSource();
 			if (preActNode instanceof Action) {

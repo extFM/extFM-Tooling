@@ -42,7 +42,7 @@ public class ImportModelAction extends MyAction {
 	public void run() {
 		initialRes();
 		loadModel();
-		setSHTypes();
+//		setSHTypes();
 		save();
 		refresh();
 
@@ -152,9 +152,13 @@ public class ImportModelAction extends MyAction {
 		}
 		
 	}
-	
-	public void setSHTypes(){
-		SetStakeholerTypes sSHTypes = new SetStakeholerTypes();
-		sSHTypes.run();
-	}
+//	
+//	public void setSHTypes(){
+//		SetStakeholerTypes sSHTypes = new SetStakeholerTypes();
+//		sSHTypes.run();
+//	}
+//	
+//	public void importGT(){
+//		
+//	}
 }

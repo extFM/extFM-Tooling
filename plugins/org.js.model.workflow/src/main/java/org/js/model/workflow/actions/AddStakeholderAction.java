@@ -10,8 +10,9 @@ import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.GraphTransConnector;
 import org.js.model.workflow.StakeholderTypes;
+import org.js.model.workflow.graphtransformation.GraphTransformationUtil;
 import org.js.model.workflow.ui.StakeholderInputUIShell;
-import org.js.model.workflow.util.GraphTransformationUtil;
+import org.js.model.workflow.util.StakeholderInput;
 import org.js.model.workflow.util.WorkflowConfUtil;
 import org.js.model.workflow.util.WorkflowUtil;
 
@@ -75,12 +76,16 @@ public class AddStakeholderAction extends MyAction {
 							display.sleep();
 						}
 					}
+					if(shell.getOk()){
+						StakeholderInput stakeholderInput = shell.getStakeholderInput();
+						// search valid rules and apply the change primitives
+						GraphTransformationUtil.graphTransformation(stakeholderInput, gt,
+								workflowModel, activity, diagram);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				// search valid rules and apply the change primitives
-				GraphTransformationUtil.graphTransformation(WorkflowUtil.SHTempStore, gt,
-						workflowModel, activity, diagram);
+			
 			}
 		}
 	}

@@ -64,7 +64,6 @@ public class WorkflowUtil {
 	public static final int OR_GROUP = 4;
 
 	public static URI featureModeluri = null;
-	public static StakeholderInput SHTempStore = null;
 
 	/**
 	 * get the workflow view resource for the given workflow resource.
@@ -152,9 +151,15 @@ public class WorkflowUtil {
 				break;
 			}
 		}
-		for (Group group : acm.getGroups()) {
-			if (group.getRepresents().getId().equals(stakeholderGroupName)) {
-				stakeholderGroupLeader = group.getRepresents();
+//		for (Group group : acm.getGroups()) {
+//			if (group.getRepresents().getId().equals(stakeholderGroupName)) {
+//				stakeholderGroupLeader = group.getRepresents();
+//				break;
+//			}
+//		}
+		for(org.js.model.rbac.Role role: acm.getRoles()){
+			if (role.getId().equals(stakeholderGroupName)) {
+				stakeholderGroupLeader = role;
 				break;
 			}
 		}

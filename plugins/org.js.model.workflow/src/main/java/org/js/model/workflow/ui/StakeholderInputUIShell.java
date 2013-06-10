@@ -35,6 +35,8 @@ public class StakeholderInputUIShell extends Shell {
 	private Combo stakeholderGroupCombo;
 	private AccessControlModel accessControlModel;
 	private EList<Role> stakeholerTypes;
+	private StakeholderInput stakeholderInput = null;
+	private boolean ok=false;
 
 	/**
 	 * Launch the application.
@@ -125,37 +127,44 @@ public class StakeholderInputUIShell extends Shell {
 				stakeholderTypeCombo.add(stakeholder.getId());
 			}
 		}
-		for (Group group : acm.getGroups()) {
-			Role leader = group.getRepresents();
-			if (stakeholerTypes != null) {
-				if (!stakeholerTypes.contains(leader)) {
-					stakeholderGroupCombo.add(leader.getId());
-				}
-			} else {
-				stakeholderGroupCombo.add(leader.getId());
+		
+		for (Role stakeholder : acm.getRoles()) {
+			if(!stakeholerTypes.contains(stakeholder)){
+				stakeholderGroupCombo.add(stakeholder.getId());
 			}
 		}
+		
+//		for (Group group : acm.getGroups()) {
+//			Role leader = group.getRepresents();
+//			if (stakeholerTypes != null) {
+//				if (!stakeholerTypes.contains(leader)) {
+//					stakeholderGroupCombo.add(leader.getId());
+//				}
+//			} else {
+//				stakeholderGroupCombo.add(leader.getId());
+//			}
+//		}
 
 		stakeholderTypeCombo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// int index = stakeholderTypeCombo.getSelectionIndex();
 				// String typeName = stakeholderTypeCombo.getItem(index);
-				String typeName = stakeholderTypeCombo.getText();
-				Role stakeholderType = null;
-				for (Role role : stakeholerTypes) {
-					if (role.getId().equals(typeName)) {
-						stakeholderType = role;
-						break;
-					}
-				}
-
-				stakeholderGroupCombo.removeAll();
-				for (Role leader : accessControlModel.getRoles()) {
-					if (leader.getParentRoles().contains(stakeholderType)) {
-						stakeholderGroupCombo.add(leader.getId());
-					}
-				}
+//				String typeName = stakeholderTypeCombo.getText();
+//				Role stakeholderType = null;
+//				for (Role role : stakeholerTypes) {
+//					if (role.getId().equals(typeName)) {
+//						stakeholderType = role;
+//						break;
+//					}
+//				}
+//
+//				stakeholderGroupCombo.removeAll();
+//				for (Role leader : accessControlModel.getRoles()) {
+//					if (leader.getParentRoles().contains(stakeholderType)) {
+//						stakeholderGroupCombo.add(leader.getId());
+//					}
+//				}
 			}
 		});
 
@@ -165,16 +174,17 @@ public class StakeholderInputUIShell extends Shell {
 				super.widgetSelected(e);
 				if (stakeholderName.getText().equals("")
 						|| stakeholderTypeCombo.getSelectionIndex() == -1
-						|| (stakeholderGroupCombo.getItemCount() != 0 && stakeholderGroupCombo
-								.getSelectionIndex() == -1)) {
+						) {
+//					|| (stakeholderGroupCombo.getItemCount() != 0 && stakeholderGroupCombo
+//							.getSelectionIndex() == -1)
 					String message = "Please fill the required information.";
 					MessageDialog.openInformation(
 							stakeholderTypeCombo.getShell(), "Warning", message);
 				} else {
-					WorkflowUtil.SHTempStore=WorkflowUtil.analyzeShInput(stakeholderName.getText(),
+					stakeholderInput=WorkflowUtil.analyzeShInput(stakeholderName.getText(),
 							stakeholderTypeCombo.getText(),
 							stakeholderGroupCombo.getText(), accessControlModel, stakeholerTypes);
-					
+					ok=true;
 					dispose();
 				}
 			}
@@ -213,5 +223,12 @@ public class StakeholderInputUIShell extends Shell {
 
 	public Combo getStakeholderGroupCombo() {
 		return stakeholderGroupCombo;
+	}
+	
+	public StakeholderInput getStakeholderInput(){
+		return stakeholderInput;
+	}
+	public boolean getOk(){
+		return ok;
 	}
 }

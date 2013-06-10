@@ -41,7 +41,7 @@ public class AddApplicationProvider extends MyAction {
 				// add an action
 				Action action = ChangePrimitive.addAction(workflowModel,
 						activity, diagram,
-						WorkflowModelUtil.SPECIALIZATION_ACTION,roleName, 400, 200);
+						WorkflowModelUtil.SPECIALIZATION_ACTION, 400, 200);
 				
 				// add the action with the reference of the role
 				Role role = ChangePrimitive.addRole(workflowModel, activity,
