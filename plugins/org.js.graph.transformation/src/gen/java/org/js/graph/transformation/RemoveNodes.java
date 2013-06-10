@@ -6,21 +6,21 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Remove Node</b></em>'.
+ * A representation of the model object '<em><b>Remove Nodes</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.js.graph.transformation.RemoveNode#getNode <em>Node</em>}</li>
+ *   <li>{@link org.js.graph.transformation.RemoveNodes#getNode <em>Node</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.js.graph.transformation.TransformationPackage#getRemoveNode()
+ * @see org.js.graph.transformation.TransformationPackage#getRemoveNodes()
  * @model
  * @generated
  */
-public interface RemoveNode extends GraphOperation {
+public interface RemoveNodes extends GraphOperation {
 	/**
 	 * Returns the value of the '<em><b>Node</b></em>' reference list.
 	 * The list contents are of type {@link org.js.graph.transformation.Node}.
@@ -31,10 +31,10 @@ public interface RemoveNode extends GraphOperation {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Node</em>' reference list.
-	 * @see org.js.graph.transformation.TransformationPackage#getRemoveNode_Node()
+	 * @see org.js.graph.transformation.TransformationPackage#getRemoveNodes_Node()
 	 * @model
 	 * @generated
 	 */
 	EList<Node> getNode();
 
-} // RemoveNode
+} // RemoveNodes

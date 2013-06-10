@@ -11,6 +11,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,16 +24,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.graph.transformation.RemoveNode;
+import org.js.graph.transformation.AddNodes;
+import org.js.graph.transformation.TransformationFactory;
 import org.js.graph.transformation.TransformationPackage;
 
 /**
- * This is the item provider adapter for a {@link org.js.graph.transformation.RemoveNode} object.
+ * This is the item provider adapter for a {@link org.js.graph.transformation.AddNodes} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RemoveNodeItemProvider
+public class AddNodesItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -45,7 +48,7 @@ public class RemoveNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveNodeItemProvider(AdapterFactory adapterFactory) {
+	public AddNodesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,7 +64,6 @@ public class RemoveNodeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addNodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,36 +91,44 @@ public class RemoveNodeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Node feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNodePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RemoveNode_node_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RemoveNode_node_feature", "_UI_RemoveNode_type"),
-				 TransformationPackage.Literals.REMOVE_NODE__NODE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(TransformationPackage.Literals.ADD_NODES__NODE);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns RemoveNode.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns AddNodes.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RemoveNode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AddNodes"));
 	}
 
 	/**
@@ -129,10 +139,10 @@ public class RemoveNodeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RemoveNode)object).getName();
+		String label = ((AddNodes)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_RemoveNode_type") :
-			getString("_UI_RemoveNode_type") + " " + label;
+			getString("_UI_AddNodes_type") :
+			getString("_UI_AddNodes_type") + " " + label;
 	}
 
 	/**
@@ -146,9 +156,12 @@ public class RemoveNodeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RemoveNode.class)) {
-			case TransformationPackage.REMOVE_NODE__NAME:
+		switch (notification.getFeatureID(AddNodes.class)) {
+			case TransformationPackage.ADD_NODES__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case TransformationPackage.ADD_NODES__NODE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -164,6 +177,36 @@ public class RemoveNodeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformationPackage.Literals.ADD_NODES__NODE,
+				 TransformationFactory.eINSTANCE.createInitial()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformationPackage.Literals.ADD_NODES__NODE,
+				 TransformationFactory.eINSTANCE.createActivityFinal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformationPackage.Literals.ADD_NODES__NODE,
+				 TransformationFactory.eINSTANCE.createFlowFinal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformationPackage.Literals.ADD_NODES__NODE,
+				 TransformationFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformationPackage.Literals.ADD_NODES__NODE,
+				 TransformationFactory.eINSTANCE.createSpecializationAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformationPackage.Literals.ADD_NODES__NODE,
+				 TransformationFactory.eINSTANCE.createIdleAction()));
 	}
 
 	/**

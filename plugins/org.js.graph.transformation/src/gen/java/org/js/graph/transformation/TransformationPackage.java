@@ -343,13 +343,40 @@ public interface TransformationPackage extends EPackage {
 	int OPERATIONS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Graph Operations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Remove Edges</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONS__GRAPH_OPERATIONS = 0;
+	int OPERATIONS__REMOVE_EDGES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Remove Nodes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONS__REMOVE_NODES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Add Nodes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONS__ADD_NODES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Add Edges</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONS__ADD_EDGES = 3;
 
 	/**
 	 * The number of structural features of the '<em>Operations</em>' class.
@@ -358,7 +385,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONS_FEATURE_COUNT = 1;
+	int OPERATIONS_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Operations</em>' class.
@@ -1141,14 +1168,14 @@ public interface TransformationPackage extends EPackage {
 	int BELONGS_TO_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.js.graph.transformation.impl.RemoveNodeImpl <em>Remove Node</em>}' class.
+	 * The meta object id for the '{@link org.js.graph.transformation.impl.RemoveNodesImpl <em>Remove Nodes</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.js.graph.transformation.impl.RemoveNodeImpl
-	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveNode()
+	 * @see org.js.graph.transformation.impl.RemoveNodesImpl
+	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveNodes()
 	 * @generated
 	 */
-	int REMOVE_NODE = 21;
+	int REMOVE_NODES = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1157,7 +1184,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE__NAME = GRAPH_OPERATION__NAME;
+	int REMOVE_NODES__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference list.
@@ -1166,35 +1193,35 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE__NODE = GRAPH_OPERATION_FEATURE_COUNT + 0;
+	int REMOVE_NODES__NODE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Remove Node</em>' class.
+	 * The number of structural features of the '<em>Remove Nodes</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
+	int REMOVE_NODES_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Remove Node</em>' class.
+	 * The number of operations of the '<em>Remove Nodes</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_NODE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
+	int REMOVE_NODES_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.js.graph.transformation.impl.RemoveEdgeImpl <em>Remove Edge</em>}' class.
+	 * The meta object id for the '{@link org.js.graph.transformation.impl.RemoveEdgesImpl <em>Remove Edges</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.js.graph.transformation.impl.RemoveEdgeImpl
-	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveEdge()
+	 * @see org.js.graph.transformation.impl.RemoveEdgesImpl
+	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveEdges()
 	 * @generated
 	 */
-	int REMOVE_EDGE = 22;
+	int REMOVE_EDGES = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1203,7 +1230,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE__NAME = GRAPH_OPERATION__NAME;
+	int REMOVE_EDGES__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Edge</b></em>' reference list.
@@ -1212,35 +1239,35 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE__EDGE = GRAPH_OPERATION_FEATURE_COUNT + 0;
+	int REMOVE_EDGES__EDGE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Remove Edge</em>' class.
+	 * The number of structural features of the '<em>Remove Edges</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
+	int REMOVE_EDGES_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Remove Edge</em>' class.
+	 * The number of operations of the '<em>Remove Edges</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_EDGE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
+	int REMOVE_EDGES_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.js.graph.transformation.impl.AddEdgeImpl <em>Add Edge</em>}' class.
+	 * The meta object id for the '{@link org.js.graph.transformation.impl.AddEdgesImpl <em>Add Edges</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.js.graph.transformation.impl.AddEdgeImpl
-	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddEdge()
+	 * @see org.js.graph.transformation.impl.AddEdgesImpl
+	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddEdges()
 	 * @generated
 	 */
-	int ADD_EDGE = 23;
+	int ADD_EDGES = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1249,7 +1276,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE__NAME = GRAPH_OPERATION__NAME;
+	int ADD_EDGES__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Edge</b></em>' containment reference list.
@@ -1258,35 +1285,35 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE__EDGE = GRAPH_OPERATION_FEATURE_COUNT + 0;
+	int ADD_EDGES__EDGE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Add Edge</em>' class.
+	 * The number of structural features of the '<em>Add Edges</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
+	int ADD_EDGES_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Add Edge</em>' class.
+	 * The number of operations of the '<em>Add Edges</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EDGE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
+	int ADD_EDGES_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.js.graph.transformation.impl.AddNodeImpl <em>Add Node</em>}' class.
+	 * The meta object id for the '{@link org.js.graph.transformation.impl.AddNodesImpl <em>Add Nodes</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.js.graph.transformation.impl.AddNodeImpl
-	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddNode()
+	 * @see org.js.graph.transformation.impl.AddNodesImpl
+	 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddNodes()
 	 * @generated
 	 */
-	int ADD_NODE = 24;
+	int ADD_NODES = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1295,7 +1322,7 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE__NAME = GRAPH_OPERATION__NAME;
+	int ADD_NODES__NAME = GRAPH_OPERATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' containment reference list.
@@ -1304,26 +1331,25 @@ public interface TransformationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE__NODE = GRAPH_OPERATION_FEATURE_COUNT + 0;
+	int ADD_NODES__NODE = GRAPH_OPERATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Add Node</em>' class.
+	 * The number of structural features of the '<em>Add Nodes</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
+	int ADD_NODES_FEATURE_COUNT = GRAPH_OPERATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Add Node</em>' class.
+	 * The number of operations of the '<em>Add Nodes</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_NODE_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
-
+	int ADD_NODES_OPERATION_COUNT = GRAPH_OPERATION_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.js.graph.transformation.GraphTransformation <em>Graph Transformation</em>}'.
@@ -1496,15 +1522,48 @@ public interface TransformationPackage extends EPackage {
 	EClass getOperations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.Operations#getGraphOperations <em>Graph Operations</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.js.graph.transformation.Operations#getRemoveEdges <em>Remove Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Graph Operations</em>'.
-	 * @see org.js.graph.transformation.Operations#getGraphOperations()
+	 * @return the meta object for the containment reference '<em>Remove Edges</em>'.
+	 * @see org.js.graph.transformation.Operations#getRemoveEdges()
 	 * @see #getOperations()
 	 * @generated
 	 */
-	EReference getOperations_GraphOperations();
+	EReference getOperations_RemoveEdges();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.js.graph.transformation.Operations#getRemoveNodes <em>Remove Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Remove Nodes</em>'.
+	 * @see org.js.graph.transformation.Operations#getRemoveNodes()
+	 * @see #getOperations()
+	 * @generated
+	 */
+	EReference getOperations_RemoveNodes();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.js.graph.transformation.Operations#getAddNodes <em>Add Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Add Nodes</em>'.
+	 * @see org.js.graph.transformation.Operations#getAddNodes()
+	 * @see #getOperations()
+	 * @generated
+	 */
+	EReference getOperations_AddNodes();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.js.graph.transformation.Operations#getAddEdges <em>Add Edges</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Add Edges</em>'.
+	 * @see org.js.graph.transformation.Operations#getAddEdges()
+	 * @see #getOperations()
+	 * @generated
+	 */
+	EReference getOperations_AddEdges();
 
 	/**
 	 * Returns the meta object for class '{@link org.js.graph.transformation.Node <em>Node</em>}'.
@@ -1767,88 +1826,88 @@ public interface TransformationPackage extends EPackage {
 	EReference getBelongsTo_Member();
 
 	/**
-	 * Returns the meta object for class '{@link org.js.graph.transformation.RemoveNode <em>Remove Node</em>}'.
+	 * Returns the meta object for class '{@link org.js.graph.transformation.RemoveNodes <em>Remove Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Remove Node</em>'.
-	 * @see org.js.graph.transformation.RemoveNode
+	 * @return the meta object for class '<em>Remove Nodes</em>'.
+	 * @see org.js.graph.transformation.RemoveNodes
 	 * @generated
 	 */
-	EClass getRemoveNode();
+	EClass getRemoveNodes();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.js.graph.transformation.RemoveNode#getNode <em>Node</em>}'.
+	 * Returns the meta object for the reference list '{@link org.js.graph.transformation.RemoveNodes#getNode <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Node</em>'.
-	 * @see org.js.graph.transformation.RemoveNode#getNode()
-	 * @see #getRemoveNode()
+	 * @see org.js.graph.transformation.RemoveNodes#getNode()
+	 * @see #getRemoveNodes()
 	 * @generated
 	 */
-	EReference getRemoveNode_Node();
+	EReference getRemoveNodes_Node();
 
 	/**
-	 * Returns the meta object for class '{@link org.js.graph.transformation.RemoveEdge <em>Remove Edge</em>}'.
+	 * Returns the meta object for class '{@link org.js.graph.transformation.RemoveEdges <em>Remove Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Remove Edge</em>'.
-	 * @see org.js.graph.transformation.RemoveEdge
+	 * @return the meta object for class '<em>Remove Edges</em>'.
+	 * @see org.js.graph.transformation.RemoveEdges
 	 * @generated
 	 */
-	EClass getRemoveEdge();
+	EClass getRemoveEdges();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.js.graph.transformation.RemoveEdge#getEdge <em>Edge</em>}'.
+	 * Returns the meta object for the reference list '{@link org.js.graph.transformation.RemoveEdges#getEdge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Edge</em>'.
-	 * @see org.js.graph.transformation.RemoveEdge#getEdge()
-	 * @see #getRemoveEdge()
+	 * @see org.js.graph.transformation.RemoveEdges#getEdge()
+	 * @see #getRemoveEdges()
 	 * @generated
 	 */
-	EReference getRemoveEdge_Edge();
+	EReference getRemoveEdges_Edge();
 
 	/**
-	 * Returns the meta object for class '{@link org.js.graph.transformation.AddEdge <em>Add Edge</em>}'.
+	 * Returns the meta object for class '{@link org.js.graph.transformation.AddEdges <em>Add Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Add Edge</em>'.
-	 * @see org.js.graph.transformation.AddEdge
+	 * @return the meta object for class '<em>Add Edges</em>'.
+	 * @see org.js.graph.transformation.AddEdges
 	 * @generated
 	 */
-	EClass getAddEdge();
+	EClass getAddEdges();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.AddEdge#getEdge <em>Edge</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.AddEdges#getEdge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Edge</em>'.
-	 * @see org.js.graph.transformation.AddEdge#getEdge()
-	 * @see #getAddEdge()
+	 * @see org.js.graph.transformation.AddEdges#getEdge()
+	 * @see #getAddEdges()
 	 * @generated
 	 */
-	EReference getAddEdge_Edge();
+	EReference getAddEdges_Edge();
 
 	/**
-	 * Returns the meta object for class '{@link org.js.graph.transformation.AddNode <em>Add Node</em>}'.
+	 * Returns the meta object for class '{@link org.js.graph.transformation.AddNodes <em>Add Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Add Node</em>'.
-	 * @see org.js.graph.transformation.AddNode
+	 * @return the meta object for class '<em>Add Nodes</em>'.
+	 * @see org.js.graph.transformation.AddNodes
 	 * @generated
 	 */
-	EClass getAddNode();
+	EClass getAddNodes();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.AddNode#getNode <em>Node</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.js.graph.transformation.AddNodes#getNode <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Node</em>'.
-	 * @see org.js.graph.transformation.AddNode#getNode()
-	 * @see #getAddNode()
+	 * @see org.js.graph.transformation.AddNodes#getNode()
+	 * @see #getAddNodes()
 	 * @generated
 	 */
-	EReference getAddNode_Node();
+	EReference getAddNodes_Node();
 
 	/**
 	 * Returns the meta object for class '{@link org.js.graph.transformation.Nameable <em>Nameable</em>}'.
@@ -2035,12 +2094,36 @@ public interface TransformationPackage extends EPackage {
 		EClass OPERATIONS = eINSTANCE.getOperations();
 
 		/**
-		 * The meta object literal for the '<em><b>Graph Operations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Remove Edges</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATIONS__GRAPH_OPERATIONS = eINSTANCE.getOperations_GraphOperations();
+		EReference OPERATIONS__REMOVE_EDGES = eINSTANCE.getOperations_RemoveEdges();
+
+		/**
+		 * The meta object literal for the '<em><b>Remove Nodes</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATIONS__REMOVE_NODES = eINSTANCE.getOperations_RemoveNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Nodes</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATIONS__ADD_NODES = eINSTANCE.getOperations_AddNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Edges</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATIONS__ADD_EDGES = eINSTANCE.getOperations_AddEdges();
 
 		/**
 		 * The meta object literal for the '{@link org.js.graph.transformation.Node <em>Node</em>}' class.
@@ -2273,14 +2356,14 @@ public interface TransformationPackage extends EPackage {
 		EReference BELONGS_TO__MEMBER = eINSTANCE.getBelongsTo_Member();
 
 		/**
-		 * The meta object literal for the '{@link org.js.graph.transformation.impl.RemoveNodeImpl <em>Remove Node</em>}' class.
+		 * The meta object literal for the '{@link org.js.graph.transformation.impl.RemoveNodesImpl <em>Remove Nodes</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.js.graph.transformation.impl.RemoveNodeImpl
-		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveNode()
+		 * @see org.js.graph.transformation.impl.RemoveNodesImpl
+		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveNodes()
 		 * @generated
 		 */
-		EClass REMOVE_NODE = eINSTANCE.getRemoveNode();
+		EClass REMOVE_NODES = eINSTANCE.getRemoveNodes();
 
 		/**
 		 * The meta object literal for the '<em><b>Node</b></em>' reference list feature.
@@ -2288,17 +2371,17 @@ public interface TransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REMOVE_NODE__NODE = eINSTANCE.getRemoveNode_Node();
+		EReference REMOVE_NODES__NODE = eINSTANCE.getRemoveNodes_Node();
 
 		/**
-		 * The meta object literal for the '{@link org.js.graph.transformation.impl.RemoveEdgeImpl <em>Remove Edge</em>}' class.
+		 * The meta object literal for the '{@link org.js.graph.transformation.impl.RemoveEdgesImpl <em>Remove Edges</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.js.graph.transformation.impl.RemoveEdgeImpl
-		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveEdge()
+		 * @see org.js.graph.transformation.impl.RemoveEdgesImpl
+		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getRemoveEdges()
 		 * @generated
 		 */
-		EClass REMOVE_EDGE = eINSTANCE.getRemoveEdge();
+		EClass REMOVE_EDGES = eINSTANCE.getRemoveEdges();
 
 		/**
 		 * The meta object literal for the '<em><b>Edge</b></em>' reference list feature.
@@ -2306,17 +2389,17 @@ public interface TransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REMOVE_EDGE__EDGE = eINSTANCE.getRemoveEdge_Edge();
+		EReference REMOVE_EDGES__EDGE = eINSTANCE.getRemoveEdges_Edge();
 
 		/**
-		 * The meta object literal for the '{@link org.js.graph.transformation.impl.AddEdgeImpl <em>Add Edge</em>}' class.
+		 * The meta object literal for the '{@link org.js.graph.transformation.impl.AddEdgesImpl <em>Add Edges</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.js.graph.transformation.impl.AddEdgeImpl
-		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddEdge()
+		 * @see org.js.graph.transformation.impl.AddEdgesImpl
+		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddEdges()
 		 * @generated
 		 */
-		EClass ADD_EDGE = eINSTANCE.getAddEdge();
+		EClass ADD_EDGES = eINSTANCE.getAddEdges();
 
 		/**
 		 * The meta object literal for the '<em><b>Edge</b></em>' containment reference list feature.
@@ -2324,17 +2407,17 @@ public interface TransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ADD_EDGE__EDGE = eINSTANCE.getAddEdge_Edge();
+		EReference ADD_EDGES__EDGE = eINSTANCE.getAddEdges_Edge();
 
 		/**
-		 * The meta object literal for the '{@link org.js.graph.transformation.impl.AddNodeImpl <em>Add Node</em>}' class.
+		 * The meta object literal for the '{@link org.js.graph.transformation.impl.AddNodesImpl <em>Add Nodes</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.js.graph.transformation.impl.AddNodeImpl
-		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddNode()
+		 * @see org.js.graph.transformation.impl.AddNodesImpl
+		 * @see org.js.graph.transformation.impl.TransformationPackageImpl#getAddNodes()
 		 * @generated
 		 */
-		EClass ADD_NODE = eINSTANCE.getAddNode();
+		EClass ADD_NODES = eINSTANCE.getAddNodes();
 
 		/**
 		 * The meta object literal for the '<em><b>Node</b></em>' containment reference list feature.
@@ -2342,7 +2425,7 @@ public interface TransformationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ADD_NODE__NODE = eINSTANCE.getAddNode_Node();
+		EReference ADD_NODES__NODE = eINSTANCE.getAddNodes_Node();
 
 		/**
 		 * The meta object literal for the '{@link org.js.graph.transformation.Nameable <em>Nameable</em>}' class.

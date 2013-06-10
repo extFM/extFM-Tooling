@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.js.graph.transformation.ActivityFinal;
-import org.js.graph.transformation.AddEdge;
-import org.js.graph.transformation.AddNode;
+import org.js.graph.transformation.AddEdges;
+import org.js.graph.transformation.AddNodes;
 import org.js.graph.transformation.ApplicationConditions;
 import org.js.graph.transformation.ArrivingRole;
 import org.js.graph.transformation.BelongsTo;
@@ -29,8 +29,8 @@ import org.js.graph.transformation.LeftSide;
 import org.js.graph.transformation.Nameable;
 import org.js.graph.transformation.Node;
 import org.js.graph.transformation.Operations;
-import org.js.graph.transformation.RemoveEdge;
-import org.js.graph.transformation.RemoveNode;
+import org.js.graph.transformation.RemoveEdges;
+import org.js.graph.transformation.RemoveNodes;
 import org.js.graph.transformation.Roles;
 import org.js.graph.transformation.Rule;
 import org.js.graph.transformation.SpecializationAction;
@@ -199,28 +199,28 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass removeNodeEClass = null;
+	private EClass removeNodesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass removeEdgeEClass = null;
+	private EClass removeEdgesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass addEdgeEClass = null;
+	private EClass addEdgesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass addNodeEClass = null;
+	private EClass addNodesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -442,8 +442,35 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperations_GraphOperations() {
+	public EReference getOperations_RemoveEdges() {
 		return (EReference)operationsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperations_RemoveNodes() {
+		return (EReference)operationsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperations_AddNodes() {
+		return (EReference)operationsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperations_AddEdges() {
+		return (EReference)operationsEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -676,8 +703,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRemoveNode() {
-		return removeNodeEClass;
+	public EClass getRemoveNodes() {
+		return removeNodesEClass;
 	}
 
 	/**
@@ -685,8 +712,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRemoveNode_Node() {
-		return (EReference)removeNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getRemoveNodes_Node() {
+		return (EReference)removeNodesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -694,8 +721,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRemoveEdge() {
-		return removeEdgeEClass;
+	public EClass getRemoveEdges() {
+		return removeEdgesEClass;
 	}
 
 	/**
@@ -703,8 +730,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRemoveEdge_Edge() {
-		return (EReference)removeEdgeEClass.getEStructuralFeatures().get(0);
+	public EReference getRemoveEdges_Edge() {
+		return (EReference)removeEdgesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -712,8 +739,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAddEdge() {
-		return addEdgeEClass;
+	public EClass getAddEdges() {
+		return addEdgesEClass;
 	}
 
 	/**
@@ -721,8 +748,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddEdge_Edge() {
-		return (EReference)addEdgeEClass.getEStructuralFeatures().get(0);
+	public EReference getAddEdges_Edge() {
+		return (EReference)addEdgesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -730,8 +757,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAddNode() {
-		return addNodeEClass;
+	public EClass getAddNodes() {
+		return addNodesEClass;
 	}
 
 	/**
@@ -739,8 +766,8 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAddNode_Node() {
-		return (EReference)addNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getAddNodes_Node() {
+		return (EReference)addNodesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -810,7 +837,10 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		createEReference(applicationConditionsEClass, APPLICATION_CONDITIONS__CONDITIONS);
 
 		operationsEClass = createEClass(OPERATIONS);
-		createEReference(operationsEClass, OPERATIONS__GRAPH_OPERATIONS);
+		createEReference(operationsEClass, OPERATIONS__REMOVE_EDGES);
+		createEReference(operationsEClass, OPERATIONS__REMOVE_NODES);
+		createEReference(operationsEClass, OPERATIONS__ADD_NODES);
+		createEReference(operationsEClass, OPERATIONS__ADD_EDGES);
 
 		nodeEClass = createEClass(NODE);
 		createEReference(nodeEClass, NODE__IN);
@@ -852,17 +882,17 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		createEReference(belongsToEClass, BELONGS_TO__LEADER);
 		createEReference(belongsToEClass, BELONGS_TO__MEMBER);
 
-		removeNodeEClass = createEClass(REMOVE_NODE);
-		createEReference(removeNodeEClass, REMOVE_NODE__NODE);
+		removeNodesEClass = createEClass(REMOVE_NODES);
+		createEReference(removeNodesEClass, REMOVE_NODES__NODE);
 
-		removeEdgeEClass = createEClass(REMOVE_EDGE);
-		createEReference(removeEdgeEClass, REMOVE_EDGE__EDGE);
+		removeEdgesEClass = createEClass(REMOVE_EDGES);
+		createEReference(removeEdgesEClass, REMOVE_EDGES__EDGE);
 
-		addEdgeEClass = createEClass(ADD_EDGE);
-		createEReference(addEdgeEClass, ADD_EDGE__EDGE);
+		addEdgesEClass = createEClass(ADD_EDGES);
+		createEReference(addEdgesEClass, ADD_EDGES__EDGE);
 
-		addNodeEClass = createEClass(ADD_NODE);
-		createEReference(addNodeEClass, ADD_NODE__NODE);
+		addNodesEClass = createEClass(ADD_NODES);
+		createEReference(addNodesEClass, ADD_NODES__NODE);
 
 		nameableEClass = createEClass(NAMEABLE);
 		createEAttribute(nameableEClass, NAMEABLE__NAME);
@@ -915,10 +945,10 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		variableRoleEClass.getESuperTypes().add(this.getNameable());
 		inheritsFromEClass.getESuperTypes().add(this.getCondition());
 		belongsToEClass.getESuperTypes().add(this.getCondition());
-		removeNodeEClass.getESuperTypes().add(this.getGraphOperation());
-		removeEdgeEClass.getESuperTypes().add(this.getGraphOperation());
-		addEdgeEClass.getESuperTypes().add(this.getGraphOperation());
-		addNodeEClass.getESuperTypes().add(this.getGraphOperation());
+		removeNodesEClass.getESuperTypes().add(this.getGraphOperation());
+		removeEdgesEClass.getESuperTypes().add(this.getGraphOperation());
+		addEdgesEClass.getESuperTypes().add(this.getGraphOperation());
+		addNodesEClass.getESuperTypes().add(this.getGraphOperation());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(graphTransformationEClass, GraphTransformation.class, "GraphTransformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -936,13 +966,16 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 
 		initEClass(rolesEClass, Roles.class, "Roles", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRoles_ExistingRoles(), this.getExistingRole(), null, "existingRoles", null, 0, -1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRoles_ArrivingRole(), this.getArrivingRole(), null, "arrivingRole", null, 0, 1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRoles_ArrivingRole(), this.getArrivingRole(), null, "arrivingRole", null, 1, 1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(applicationConditionsEClass, ApplicationConditions.class, "ApplicationConditions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getApplicationConditions_Conditions(), this.getCondition(), null, "conditions", null, 0, -1, ApplicationConditions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationsEClass, Operations.class, "Operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperations_GraphOperations(), this.getGraphOperation(), null, "graphOperations", null, 1, -1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperations_RemoveEdges(), this.getRemoveEdges(), null, "removeEdges", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperations_RemoveNodes(), this.getRemoveNodes(), null, "removeNodes", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperations_AddNodes(), this.getAddNodes(), null, "addNodes", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperations_AddEdges(), this.getAddEdges(), null, "addEdges", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNode_In(), this.getEdge(), this.getEdge_Target(), "in", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -984,17 +1017,17 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		initEReference(getBelongsTo_Leader(), this.getVariableRole(), null, "leader", null, 1, 1, BelongsTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBelongsTo_Member(), this.getVariableRole(), null, "member", null, 1, 1, BelongsTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(removeNodeEClass, RemoveNode.class, "RemoveNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRemoveNode_Node(), this.getNode(), null, "node", null, 0, -1, RemoveNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(removeNodesEClass, RemoveNodes.class, "RemoveNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRemoveNodes_Node(), this.getNode(), null, "node", null, 0, -1, RemoveNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(removeEdgeEClass, RemoveEdge.class, "RemoveEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRemoveEdge_Edge(), this.getEdge(), null, "edge", null, 0, -1, RemoveEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(removeEdgesEClass, RemoveEdges.class, "RemoveEdges", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRemoveEdges_Edge(), this.getEdge(), null, "edge", null, 0, -1, RemoveEdges.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(addEdgeEClass, AddEdge.class, "AddEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAddEdge_Edge(), this.getEdge(), null, "edge", null, 0, -1, AddEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(addEdgesEClass, AddEdges.class, "AddEdges", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAddEdges_Edge(), this.getEdge(), null, "edge", null, 0, -1, AddEdges.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(addNodeEClass, AddNode.class, "AddNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAddNode_Node(), this.getNode(), null, "node", null, 0, -1, AddNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(addNodesEClass, AddNodes.class, "AddNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAddNodes_Node(), this.getNode(), null, "node", null, 0, -1, AddNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNameable_Name(), ecorePackage.getEString(), "name", "", 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

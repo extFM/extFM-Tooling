@@ -218,35 +218,35 @@ public class TransformationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformationPackage.REMOVE_NODE: {
-				RemoveNode removeNode = (RemoveNode)theEObject;
-				T result = caseRemoveNode(removeNode);
-				if (result == null) result = caseGraphOperation(removeNode);
-				if (result == null) result = caseNameable(removeNode);
+			case TransformationPackage.REMOVE_NODES: {
+				RemoveNodes removeNodes = (RemoveNodes)theEObject;
+				T result = caseRemoveNodes(removeNodes);
+				if (result == null) result = caseGraphOperation(removeNodes);
+				if (result == null) result = caseNameable(removeNodes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformationPackage.REMOVE_EDGE: {
-				RemoveEdge removeEdge = (RemoveEdge)theEObject;
-				T result = caseRemoveEdge(removeEdge);
-				if (result == null) result = caseGraphOperation(removeEdge);
-				if (result == null) result = caseNameable(removeEdge);
+			case TransformationPackage.REMOVE_EDGES: {
+				RemoveEdges removeEdges = (RemoveEdges)theEObject;
+				T result = caseRemoveEdges(removeEdges);
+				if (result == null) result = caseGraphOperation(removeEdges);
+				if (result == null) result = caseNameable(removeEdges);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformationPackage.ADD_EDGE: {
-				AddEdge addEdge = (AddEdge)theEObject;
-				T result = caseAddEdge(addEdge);
-				if (result == null) result = caseGraphOperation(addEdge);
-				if (result == null) result = caseNameable(addEdge);
+			case TransformationPackage.ADD_EDGES: {
+				AddEdges addEdges = (AddEdges)theEObject;
+				T result = caseAddEdges(addEdges);
+				if (result == null) result = caseGraphOperation(addEdges);
+				if (result == null) result = caseNameable(addEdges);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformationPackage.ADD_NODE: {
-				AddNode addNode = (AddNode)theEObject;
-				T result = caseAddNode(addNode);
-				if (result == null) result = caseGraphOperation(addNode);
-				if (result == null) result = caseNameable(addNode);
+			case TransformationPackage.ADD_NODES: {
+				AddNodes addNodes = (AddNodes)theEObject;
+				T result = caseAddNodes(addNodes);
+				if (result == null) result = caseGraphOperation(addNodes);
+				if (result == null) result = caseNameable(addNodes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -576,62 +576,62 @@ public class TransformationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Remove Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Remove Nodes</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Remove Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Remove Nodes</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRemoveNode(RemoveNode object) {
+	public T caseRemoveNodes(RemoveNodes object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Remove Edge</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Remove Edges</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Remove Edge</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Remove Edges</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRemoveEdge(RemoveEdge object) {
+	public T caseRemoveEdges(RemoveEdges object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Add Edge</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Add Edges</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Add Edge</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Add Edges</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAddEdge(AddEdge object) {
+	public T caseAddEdges(AddEdges object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Add Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Add Nodes</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Add Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Add Nodes</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAddNode(AddNode object) {
+	public T caseAddNodes(AddNodes object) {
 		return null;
 	}
 

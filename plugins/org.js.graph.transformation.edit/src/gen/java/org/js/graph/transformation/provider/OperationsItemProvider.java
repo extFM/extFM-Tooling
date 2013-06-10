@@ -11,8 +11,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,8 +21,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.js.graph.transformation.Operations;
 import org.js.graph.transformation.TransformationFactory;
 import org.js.graph.transformation.TransformationPackage;
@@ -61,8 +62,100 @@ public class OperationsItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addRemoveEdgesPropertyDescriptor(object);
+			addRemoveNodesPropertyDescriptor(object);
+			addAddNodesPropertyDescriptor(object);
+			addAddEdgesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Remove Edges feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRemoveEdgesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operations_removeEdges_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operations_removeEdges_feature", "_UI_Operations_type"),
+				 TransformationPackage.Literals.OPERATIONS__REMOVE_EDGES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Remove Nodes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRemoveNodesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operations_removeNodes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operations_removeNodes_feature", "_UI_Operations_type"),
+				 TransformationPackage.Literals.OPERATIONS__REMOVE_NODES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Add Nodes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAddNodesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operations_addNodes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operations_addNodes_feature", "_UI_Operations_type"),
+				 TransformationPackage.Literals.OPERATIONS__ADD_NODES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Add Edges feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAddEdgesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Operations_addEdges_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Operations_addEdges_feature", "_UI_Operations_type"),
+				 TransformationPackage.Literals.OPERATIONS__ADD_EDGES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,7 +170,10 @@ public class OperationsItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS);
+			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__REMOVE_EDGES);
+			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__REMOVE_NODES);
+			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__ADD_NODES);
+			childrenFeatures.add(TransformationPackage.Literals.OPERATIONS__ADD_EDGES);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +225,10 @@ public class OperationsItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Operations.class)) {
-			case TransformationPackage.OPERATIONS__GRAPH_OPERATIONS:
+			case TransformationPackage.OPERATIONS__REMOVE_EDGES:
+			case TransformationPackage.OPERATIONS__REMOVE_NODES:
+			case TransformationPackage.OPERATIONS__ADD_NODES:
+			case TransformationPackage.OPERATIONS__ADD_EDGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,23 +248,23 @@ public class OperationsItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
-				 TransformationFactory.eINSTANCE.createRemoveNode()));
+				(TransformationPackage.Literals.OPERATIONS__REMOVE_EDGES,
+				 TransformationFactory.eINSTANCE.createRemoveEdges()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
-				 TransformationFactory.eINSTANCE.createRemoveEdge()));
+				(TransformationPackage.Literals.OPERATIONS__REMOVE_NODES,
+				 TransformationFactory.eINSTANCE.createRemoveNodes()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
-				 TransformationFactory.eINSTANCE.createAddEdge()));
+				(TransformationPackage.Literals.OPERATIONS__ADD_NODES,
+				 TransformationFactory.eINSTANCE.createAddNodes()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.OPERATIONS__GRAPH_OPERATIONS,
-				 TransformationFactory.eINSTANCE.createAddNode()));
+				(TransformationPackage.Literals.OPERATIONS__ADD_EDGES,
+				 TransformationFactory.eINSTANCE.createAddEdges()));
 	}
 
 	/**

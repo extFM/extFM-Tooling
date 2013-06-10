@@ -22,16 +22,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.graph.transformation.RemoveEdge;
+import org.js.graph.transformation.RemoveNodes;
 import org.js.graph.transformation.TransformationPackage;
 
 /**
- * This is the item provider adapter for a {@link org.js.graph.transformation.RemoveEdge} object.
+ * This is the item provider adapter for a {@link org.js.graph.transformation.RemoveNodes} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RemoveEdgeItemProvider
+public class RemoveNodesItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -45,7 +45,7 @@ public class RemoveEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveEdgeItemProvider(AdapterFactory adapterFactory) {
+	public RemoveNodesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,7 +61,7 @@ public class RemoveEdgeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addEdgePropertyDescriptor(object);
+			addNodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,19 +89,19 @@ public class RemoveEdgeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Edge feature.
+	 * This adds a property descriptor for the Node feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEdgePropertyDescriptor(Object object) {
+	protected void addNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RemoveEdge_edge_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RemoveEdge_edge_feature", "_UI_RemoveEdge_type"),
-				 TransformationPackage.Literals.REMOVE_EDGE__EDGE,
+				 getString("_UI_RemoveNodes_node_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RemoveNodes_node_feature", "_UI_RemoveNodes_type"),
+				 TransformationPackage.Literals.REMOVE_NODES__NODE,
 				 true,
 				 false,
 				 true,
@@ -111,14 +111,14 @@ public class RemoveEdgeItemProvider
 	}
 
 	/**
-	 * This returns RemoveEdge.gif.
+	 * This returns RemoveNodes.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RemoveEdge"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RemoveNodes"));
 	}
 
 	/**
@@ -129,10 +129,10 @@ public class RemoveEdgeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RemoveEdge)object).getName();
+		String label = ((RemoveNodes)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_RemoveEdge_type") :
-			getString("_UI_RemoveEdge_type") + " " + label;
+			getString("_UI_RemoveNodes_type") :
+			getString("_UI_RemoveNodes_type") + " " + label;
 	}
 
 	/**
@@ -146,8 +146,8 @@ public class RemoveEdgeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RemoveEdge.class)) {
-			case TransformationPackage.REMOVE_EDGE__NAME:
+		switch (notification.getFeatureID(RemoveNodes.class)) {
+			case TransformationPackage.REMOVE_NODES__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

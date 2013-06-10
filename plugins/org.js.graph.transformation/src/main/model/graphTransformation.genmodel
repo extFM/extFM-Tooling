@@ -30,7 +30,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//ApplicationConditions/conditions"/>
     </genClasses>
     <genClasses ecoreClass="graphTransformation.ecore#//Operations">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Operations/graphOperations"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Operations/removeEdges"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Operations/removeNodes"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Operations/addNodes"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Operations/addEdges"/>
     </genClasses>
     <genClasses image="false" ecoreClass="graphTransformation.ecore#//Node">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//Node/in"/>
@@ -63,17 +66,17 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//BelongsTo/leader"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//BelongsTo/member"/>
     </genClasses>
-    <genClasses ecoreClass="graphTransformation.ecore#//RemoveNode">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//RemoveNode/node"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//RemoveNodes">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//RemoveNodes/node"/>
     </genClasses>
-    <genClasses ecoreClass="graphTransformation.ecore#//RemoveEdge">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//RemoveEdge/edge"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//RemoveEdges">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//RemoveEdges/edge"/>
     </genClasses>
-    <genClasses ecoreClass="graphTransformation.ecore#//AddEdge">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//AddEdge/edge"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//AddEdges">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//AddEdges/edge"/>
     </genClasses>
-    <genClasses ecoreClass="graphTransformation.ecore#//AddNode">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//AddNode/node"/>
+    <genClasses ecoreClass="graphTransformation.ecore#//AddNodes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphTransformation.ecore#//AddNodes/node"/>
     </genClasses>
     <genClasses image="false" ecoreClass="graphTransformation.ecore#//Nameable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphTransformation.ecore#//Nameable/name"/>

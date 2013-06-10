@@ -11,8 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,17 +22,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.graph.transformation.AddEdge;
-import org.js.graph.transformation.TransformationFactory;
+import org.js.graph.transformation.RemoveEdges;
 import org.js.graph.transformation.TransformationPackage;
 
 /**
- * This is the item provider adapter for a {@link org.js.graph.transformation.AddEdge} object.
+ * This is the item provider adapter for a {@link org.js.graph.transformation.RemoveEdges} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AddEdgeItemProvider
+public class RemoveEdgesItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +45,7 @@ public class AddEdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddEdgeItemProvider(AdapterFactory adapterFactory) {
+	public RemoveEdgesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,6 +61,7 @@ public class AddEdgeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addEdgePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,44 +89,36 @@ public class AddEdgeItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Edge feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(TransformationPackage.Literals.ADD_EDGE__EDGE);
-		}
-		return childrenFeatures;
+	protected void addEdgePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RemoveEdges_edge_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RemoveEdges_edge_feature", "_UI_RemoveEdges_type"),
+				 TransformationPackage.Literals.REMOVE_EDGES__EDGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns AddEdge.gif.
+	 * This returns RemoveEdges.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AddEdge"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RemoveEdges"));
 	}
 
 	/**
@@ -139,10 +129,10 @@ public class AddEdgeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AddEdge)object).getName();
+		String label = ((RemoveEdges)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AddEdge_type") :
-			getString("_UI_AddEdge_type") + " " + label;
+			getString("_UI_RemoveEdges_type") :
+			getString("_UI_RemoveEdges_type") + " " + label;
 	}
 
 	/**
@@ -156,12 +146,9 @@ public class AddEdgeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AddEdge.class)) {
-			case TransformationPackage.ADD_EDGE__NAME:
+		switch (notification.getFeatureID(RemoveEdges.class)) {
+			case TransformationPackage.REMOVE_EDGES__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case TransformationPackage.ADD_EDGE__EDGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -177,11 +164,6 @@ public class AddEdgeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TransformationPackage.Literals.ADD_EDGE__EDGE,
-				 TransformationFactory.eINSTANCE.createEdge()));
 	}
 
 	/**

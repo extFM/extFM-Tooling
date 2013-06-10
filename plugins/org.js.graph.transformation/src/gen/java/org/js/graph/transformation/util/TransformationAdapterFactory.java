@@ -152,20 +152,20 @@ public class TransformationAdapterFactory extends AdapterFactoryImpl {
 				return createBelongsToAdapter();
 			}
 			@Override
-			public Adapter caseRemoveNode(RemoveNode object) {
-				return createRemoveNodeAdapter();
+			public Adapter caseRemoveNodes(RemoveNodes object) {
+				return createRemoveNodesAdapter();
 			}
 			@Override
-			public Adapter caseRemoveEdge(RemoveEdge object) {
-				return createRemoveEdgeAdapter();
+			public Adapter caseRemoveEdges(RemoveEdges object) {
+				return createRemoveEdgesAdapter();
 			}
 			@Override
-			public Adapter caseAddEdge(AddEdge object) {
-				return createAddEdgeAdapter();
+			public Adapter caseAddEdges(AddEdges object) {
+				return createAddEdgesAdapter();
 			}
 			@Override
-			public Adapter caseAddNode(AddNode object) {
-				return createAddNodeAdapter();
+			public Adapter caseAddNodes(AddNodes object) {
+				return createAddNodesAdapter();
 			}
 			@Override
 			public Adapter caseNameable(Nameable object) {
@@ -486,58 +486,58 @@ public class TransformationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.RemoveNode <em>Remove Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.RemoveNodes <em>Remove Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.js.graph.transformation.RemoveNode
+	 * @see org.js.graph.transformation.RemoveNodes
 	 * @generated
 	 */
-	public Adapter createRemoveNodeAdapter() {
+	public Adapter createRemoveNodesAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.RemoveEdge <em>Remove Edge</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.RemoveEdges <em>Remove Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.js.graph.transformation.RemoveEdge
+	 * @see org.js.graph.transformation.RemoveEdges
 	 * @generated
 	 */
-	public Adapter createRemoveEdgeAdapter() {
+	public Adapter createRemoveEdgesAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.AddEdge <em>Add Edge</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.AddEdges <em>Add Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.js.graph.transformation.AddEdge
+	 * @see org.js.graph.transformation.AddEdges
 	 * @generated
 	 */
-	public Adapter createAddEdgeAdapter() {
+	public Adapter createAddEdgesAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.AddNode <em>Add Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.js.graph.transformation.AddNodes <em>Add Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.js.graph.transformation.AddNode
+	 * @see org.js.graph.transformation.AddNodes
 	 * @generated
 	 */
-	public Adapter createAddNodeAdapter() {
+	public Adapter createAddNodesAdapter() {
 		return null;
 	}
 

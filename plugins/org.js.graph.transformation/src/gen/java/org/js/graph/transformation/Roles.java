@@ -51,7 +51,7 @@ public interface Roles extends EObject {
 	 * @return the value of the '<em>Arriving Role</em>' containment reference.
 	 * @see #setArrivingRole(ArrivingRole)
 	 * @see org.js.graph.transformation.TransformationPackage#getRoles_ArrivingRole()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ArrivingRole getArrivingRole();

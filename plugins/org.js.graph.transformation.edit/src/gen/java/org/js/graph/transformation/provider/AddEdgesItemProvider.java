@@ -24,17 +24,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.graph.transformation.AddNode;
+import org.js.graph.transformation.AddEdges;
 import org.js.graph.transformation.TransformationFactory;
 import org.js.graph.transformation.TransformationPackage;
 
 /**
- * This is the item provider adapter for a {@link org.js.graph.transformation.AddNode} object.
+ * This is the item provider adapter for a {@link org.js.graph.transformation.AddEdges} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AddNodeItemProvider
+public class AddEdgesItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +48,7 @@ public class AddNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddNodeItemProvider(AdapterFactory adapterFactory) {
+	public AddEdgesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -102,7 +102,7 @@ public class AddNodeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TransformationPackage.Literals.ADD_NODE__NODE);
+			childrenFeatures.add(TransformationPackage.Literals.ADD_EDGES__EDGE);
 		}
 		return childrenFeatures;
 	}
@@ -121,14 +121,14 @@ public class AddNodeItemProvider
 	}
 
 	/**
-	 * This returns AddNode.gif.
+	 * This returns AddEdges.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AddNode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AddEdges"));
 	}
 
 	/**
@@ -139,10 +139,10 @@ public class AddNodeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AddNode)object).getName();
+		String label = ((AddEdges)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AddNode_type") :
-			getString("_UI_AddNode_type") + " " + label;
+			getString("_UI_AddEdges_type") :
+			getString("_UI_AddEdges_type") + " " + label;
 	}
 
 	/**
@@ -156,11 +156,11 @@ public class AddNodeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AddNode.class)) {
-			case TransformationPackage.ADD_NODE__NAME:
+		switch (notification.getFeatureID(AddEdges.class)) {
+			case TransformationPackage.ADD_EDGES__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case TransformationPackage.ADD_NODE__NODE:
+			case TransformationPackage.ADD_EDGES__EDGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -180,33 +180,8 @@ public class AddNodeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformationPackage.Literals.ADD_NODE__NODE,
-				 TransformationFactory.eINSTANCE.createInitial()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TransformationPackage.Literals.ADD_NODE__NODE,
-				 TransformationFactory.eINSTANCE.createActivityFinal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TransformationPackage.Literals.ADD_NODE__NODE,
-				 TransformationFactory.eINSTANCE.createFlowFinal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TransformationPackage.Literals.ADD_NODE__NODE,
-				 TransformationFactory.eINSTANCE.createFork()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TransformationPackage.Literals.ADD_NODE__NODE,
-				 TransformationFactory.eINSTANCE.createSpecializationAction()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TransformationPackage.Literals.ADD_NODE__NODE,
-				 TransformationFactory.eINSTANCE.createIdleAction()));
+				(TransformationPackage.Literals.ADD_EDGES__EDGE,
+				 TransformationFactory.eINSTANCE.createEdge()));
 	}
 
 	/**

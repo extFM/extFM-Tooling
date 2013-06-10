@@ -5,35 +5,38 @@ package org.js.graph.transformation.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.js.graph.transformation.Node;
-import org.js.graph.transformation.RemoveNode;
+import org.js.graph.transformation.AddEdges;
+import org.js.graph.transformation.Edge;
 import org.js.graph.transformation.TransformationPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Remove Node</b></em>'.
+ * An implementation of the model object '<em><b>Add Edges</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.js.graph.transformation.impl.RemoveNodeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.js.graph.transformation.impl.RemoveNodeImpl#getNode <em>Node</em>}</li>
+ *   <li>{@link org.js.graph.transformation.impl.AddEdgesImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.js.graph.transformation.impl.AddEdgesImpl#getEdge <em>Edge</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements RemoveNode {
+public class AddEdgesImpl extends MinimalEObjectImpl.Container implements AddEdges {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,21 +58,21 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getNode() <em>Node</em>}' reference list.
+	 * The cached value of the '{@link #getEdge() <em>Edge</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNode()
+	 * @see #getEdge()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Node> node;
+	protected EList<Edge> edge;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RemoveNodeImpl() {
+	protected AddEdgesImpl() {
 		super();
 	}
 
@@ -80,7 +83,7 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.REMOVE_NODE;
+		return TransformationPackage.Literals.ADD_EDGES;
 	}
 
 	/**
@@ -101,7 +104,7 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.REMOVE_NODE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ADD_EDGES__NAME, oldName, name));
 	}
 
 	/**
@@ -109,11 +112,25 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Node> getNode() {
-		if (node == null) {
-			node = new EObjectResolvingEList<Node>(Node.class, this, TransformationPackage.REMOVE_NODE__NODE);
+	public EList<Edge> getEdge() {
+		if (edge == null) {
+			edge = new EObjectContainmentEList<Edge>(Edge.class, this, TransformationPackage.ADD_EDGES__EDGE);
 		}
-		return node;
+		return edge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TransformationPackage.ADD_EDGES__EDGE:
+				return ((InternalEList<?>)getEdge()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -124,10 +141,10 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TransformationPackage.REMOVE_NODE__NAME:
+			case TransformationPackage.ADD_EDGES__NAME:
 				return getName();
-			case TransformationPackage.REMOVE_NODE__NODE:
-				return getNode();
+			case TransformationPackage.ADD_EDGES__EDGE:
+				return getEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -141,12 +158,12 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TransformationPackage.REMOVE_NODE__NAME:
+			case TransformationPackage.ADD_EDGES__NAME:
 				setName((String)newValue);
 				return;
-			case TransformationPackage.REMOVE_NODE__NODE:
-				getNode().clear();
-				getNode().addAll((Collection<? extends Node>)newValue);
+			case TransformationPackage.ADD_EDGES__EDGE:
+				getEdge().clear();
+				getEdge().addAll((Collection<? extends Edge>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -160,11 +177,11 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TransformationPackage.REMOVE_NODE__NAME:
+			case TransformationPackage.ADD_EDGES__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case TransformationPackage.REMOVE_NODE__NODE:
-				getNode().clear();
+			case TransformationPackage.ADD_EDGES__EDGE:
+				getEdge().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -178,10 +195,10 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TransformationPackage.REMOVE_NODE__NAME:
+			case TransformationPackage.ADD_EDGES__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TransformationPackage.REMOVE_NODE__NODE:
-				return node != null && !node.isEmpty();
+			case TransformationPackage.ADD_EDGES__EDGE:
+				return edge != null && !edge.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -202,4 +219,4 @@ public class RemoveNodeImpl extends MinimalEObjectImpl.Container implements Remo
 		return result.toString();
 	}
 
-} //RemoveNodeImpl
+} //AddEdgesImpl

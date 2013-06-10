@@ -73,10 +73,10 @@ public class TransformationFactoryImpl extends EFactoryImpl implements Transform
 			case TransformationPackage.IDLE_ACTION: return createIdleAction();
 			case TransformationPackage.INHERITS_FROM: return createInheritsFrom();
 			case TransformationPackage.BELONGS_TO: return createBelongsTo();
-			case TransformationPackage.REMOVE_NODE: return createRemoveNode();
-			case TransformationPackage.REMOVE_EDGE: return createRemoveEdge();
-			case TransformationPackage.ADD_EDGE: return createAddEdge();
-			case TransformationPackage.ADD_NODE: return createAddNode();
+			case TransformationPackage.REMOVE_NODES: return createRemoveNodes();
+			case TransformationPackage.REMOVE_EDGES: return createRemoveEdges();
+			case TransformationPackage.ADD_EDGES: return createAddEdges();
+			case TransformationPackage.ADD_NODES: return createAddNodes();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -257,9 +257,9 @@ public class TransformationFactoryImpl extends EFactoryImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveNode createRemoveNode() {
-		RemoveNodeImpl removeNode = new RemoveNodeImpl();
-		return removeNode;
+	public RemoveNodes createRemoveNodes() {
+		RemoveNodesImpl removeNodes = new RemoveNodesImpl();
+		return removeNodes;
 	}
 
 	/**
@@ -267,9 +267,9 @@ public class TransformationFactoryImpl extends EFactoryImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveEdge createRemoveEdge() {
-		RemoveEdgeImpl removeEdge = new RemoveEdgeImpl();
-		return removeEdge;
+	public RemoveEdges createRemoveEdges() {
+		RemoveEdgesImpl removeEdges = new RemoveEdgesImpl();
+		return removeEdges;
 	}
 
 	/**
@@ -277,9 +277,9 @@ public class TransformationFactoryImpl extends EFactoryImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddEdge createAddEdge() {
-		AddEdgeImpl addEdge = new AddEdgeImpl();
-		return addEdge;
+	public AddEdges createAddEdges() {
+		AddEdgesImpl addEdges = new AddEdgesImpl();
+		return addEdges;
 	}
 
 	/**
@@ -287,9 +287,9 @@ public class TransformationFactoryImpl extends EFactoryImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddNode createAddNode() {
-		AddNodeImpl addNode = new AddNodeImpl();
-		return addNode;
+	public AddNodes createAddNodes() {
+		AddNodesImpl addNodes = new AddNodesImpl();
+		return addNodes;
 	}
 
 	/**

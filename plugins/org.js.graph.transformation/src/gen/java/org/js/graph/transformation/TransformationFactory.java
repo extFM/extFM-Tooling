@@ -175,40 +175,40 @@ public interface TransformationFactory extends EFactory {
 	BelongsTo createBelongsTo();
 
 	/**
-	 * Returns a new object of class '<em>Remove Node</em>'.
+	 * Returns a new object of class '<em>Remove Nodes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Remove Node</em>'.
+	 * @return a new object of class '<em>Remove Nodes</em>'.
 	 * @generated
 	 */
-	RemoveNode createRemoveNode();
+	RemoveNodes createRemoveNodes();
 
 	/**
-	 * Returns a new object of class '<em>Remove Edge</em>'.
+	 * Returns a new object of class '<em>Remove Edges</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Remove Edge</em>'.
+	 * @return a new object of class '<em>Remove Edges</em>'.
 	 * @generated
 	 */
-	RemoveEdge createRemoveEdge();
+	RemoveEdges createRemoveEdges();
 
 	/**
-	 * Returns a new object of class '<em>Add Edge</em>'.
+	 * Returns a new object of class '<em>Add Edges</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Add Edge</em>'.
+	 * @return a new object of class '<em>Add Edges</em>'.
 	 * @generated
 	 */
-	AddEdge createAddEdge();
+	AddEdges createAddEdges();
 
 	/**
-	 * Returns a new object of class '<em>Add Node</em>'.
+	 * Returns a new object of class '<em>Add Nodes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Add Node</em>'.
+	 * @return a new object of class '<em>Add Nodes</em>'.
 	 * @generated
 	 */
-	AddNode createAddNode();
+	AddNodes createAddNodes();
 
 	/**
 	 * Returns the package supported by this factory.

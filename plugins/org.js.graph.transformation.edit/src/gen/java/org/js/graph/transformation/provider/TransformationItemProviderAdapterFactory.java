@@ -463,95 +463,95 @@ public class TransformationItemProviderAdapterFactory extends TransformationAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveNode} instances.
+	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveNodes} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RemoveNodeItemProvider removeNodeItemProvider;
+	protected RemoveNodesItemProvider removeNodesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.RemoveNode}.
+	 * This creates an adapter for a {@link org.js.graph.transformation.RemoveNodes}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createRemoveNodeAdapter() {
-		if (removeNodeItemProvider == null) {
-			removeNodeItemProvider = new RemoveNodeItemProvider(this);
+	public Adapter createRemoveNodesAdapter() {
+		if (removeNodesItemProvider == null) {
+			removeNodesItemProvider = new RemoveNodesItemProvider(this);
 		}
 
-		return removeNodeItemProvider;
+		return removeNodesItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveEdge} instances.
+	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveEdges} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RemoveEdgeItemProvider removeEdgeItemProvider;
+	protected RemoveEdgesItemProvider removeEdgesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.RemoveEdge}.
+	 * This creates an adapter for a {@link org.js.graph.transformation.RemoveEdges}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createRemoveEdgeAdapter() {
-		if (removeEdgeItemProvider == null) {
-			removeEdgeItemProvider = new RemoveEdgeItemProvider(this);
+	public Adapter createRemoveEdgesAdapter() {
+		if (removeEdgesItemProvider == null) {
+			removeEdgesItemProvider = new RemoveEdgesItemProvider(this);
 		}
 
-		return removeEdgeItemProvider;
+		return removeEdgesItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddEdge} instances.
+	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddEdges} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AddEdgeItemProvider addEdgeItemProvider;
+	protected AddEdgesItemProvider addEdgesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.AddEdge}.
+	 * This creates an adapter for a {@link org.js.graph.transformation.AddEdges}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAddEdgeAdapter() {
-		if (addEdgeItemProvider == null) {
-			addEdgeItemProvider = new AddEdgeItemProvider(this);
+	public Adapter createAddEdgesAdapter() {
+		if (addEdgesItemProvider == null) {
+			addEdgesItemProvider = new AddEdgesItemProvider(this);
 		}
 
-		return addEdgeItemProvider;
+		return addEdgesItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddNode} instances.
+	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddNodes} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AddNodeItemProvider addNodeItemProvider;
+	protected AddNodesItemProvider addNodesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.AddNode}.
+	 * This creates an adapter for a {@link org.js.graph.transformation.AddNodes}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAddNodeAdapter() {
-		if (addNodeItemProvider == null) {
-			addNodeItemProvider = new AddNodeItemProvider(this);
+	public Adapter createAddNodesAdapter() {
+		if (addNodesItemProvider == null) {
+			addNodesItemProvider = new AddNodesItemProvider(this);
 		}
 
-		return addNodeItemProvider;
+		return addNodesItemProvider;
 	}
 
 	/**
@@ -670,10 +670,10 @@ public class TransformationItemProviderAdapterFactory extends TransformationAdap
 		if (idleActionItemProvider != null) idleActionItemProvider.dispose();
 		if (inheritsFromItemProvider != null) inheritsFromItemProvider.dispose();
 		if (belongsToItemProvider != null) belongsToItemProvider.dispose();
-		if (removeNodeItemProvider != null) removeNodeItemProvider.dispose();
-		if (removeEdgeItemProvider != null) removeEdgeItemProvider.dispose();
-		if (addEdgeItemProvider != null) addEdgeItemProvider.dispose();
-		if (addNodeItemProvider != null) addNodeItemProvider.dispose();
+		if (removeNodesItemProvider != null) removeNodesItemProvider.dispose();
+		if (removeEdgesItemProvider != null) removeEdgesItemProvider.dispose();
+		if (addEdgesItemProvider != null) addEdgesItemProvider.dispose();
+		if (addNodesItemProvider != null) addNodesItemProvider.dispose();
 	}
 
 }
