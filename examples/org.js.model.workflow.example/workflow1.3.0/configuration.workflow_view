@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:view="org.eclipse.jwt/view">
+  <describesModel href="configuration.workflow#/"/>
+  <layoutData viewid="Technical" x="200" y="200">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.0"/>
+  </layoutData>
+  <layoutData viewid="Technical" x="400" y="200">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.1"/>
+  </layoutData>
+  <layoutData viewid="Technical" x="600" y="200">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.2"/>
+  </layoutData>
+</view:Diagram>

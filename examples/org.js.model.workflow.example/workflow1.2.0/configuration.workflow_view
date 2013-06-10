@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:view="org.eclipse.jwt/view">
+  <describesModel href="configuration.workflow#/"/>
+  <layoutData viewid="ConfWorkflow" x="100" y="100">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.0"/>
+  </layoutData>
+  <layoutData viewid="ConfWorkflow" x="150" y="100">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.1"/>
+  </layoutData>
+  <layoutData viewid="ConfWorkflow" x="826" y="100" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.2"/>
+  </layoutData>
+  <layoutData viewid="ConfWorkflow" x="976" y="100" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.3"/>
+  </layoutData>
+  <layoutData describesElement="//@references.0" viewid="ConfWorkflow" x="154" y="252" initialized="true"/>
+  <layoutData viewid="ConfWorkflow" x="112" y="196" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.4"/>
+  </layoutData>
+  <layoutData describesElement="//@references.1" viewid="ConfWorkflow" x="350" y="266" initialized="true"/>
+  <layoutData viewid="ConfWorkflow" x="308" y="196" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.5"/>
+  </layoutData>
+  <layoutData viewid="ConfWorkflow" x="490" y="200" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.6"/>
+  </layoutData>
+  <layoutData describesElement="//@references.2" viewid="ConfWorkflow" x="602" y="280" initialized="true"/>
+  <layoutData viewid="ConfWorkflow" x="518" y="210" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.7"/>
+  </layoutData>
+  <layoutData viewid="ConfWorkflow" x="686" y="214" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.8"/>
+  </layoutData>
+  <layoutData describesElement="//@references.3" viewid="ConfWorkflow" x="803" y="280" initialized="true"/>
+  <layoutData viewid="ConfWorkflow" x="714" y="210" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.9"/>
+  </layoutData>
+  <layoutData viewid="ConfWorkflow" x="882" y="214" initialized="true">
+    <describesElement href="configuration.workflow#//@elements.0/@nodes.10"/>
+  </layoutData>
+  <references referenceEdges="//@referenceEdges.0">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <reference href="configuration.workflow#//@elements.1"/>
+  </references>
+  <references referenceEdges="//@referenceEdges.1">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <reference href="configuration.workflow#//@elements.2"/>
+  </references>
+  <references referenceEdges="//@referenceEdges.2">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <reference href="configuration.workflow#//@elements.3"/>
+  </references>
+  <references referenceEdges="//@referenceEdges.3">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <reference href="configuration.workflow#//@elements.4"/>
+  </references>
+  <referenceEdges reference="//@references.0">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <action href="configuration.workflow#//@elements.0/@nodes.4"/>
+  </referenceEdges>
+  <referenceEdges reference="//@references.1">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <action href="configuration.workflow#//@elements.0/@nodes.5"/>
+  </referenceEdges>
+  <referenceEdges reference="//@references.2">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <action href="configuration.workflow#//@elements.0/@nodes.7"/>
+  </referenceEdges>
+  <referenceEdges reference="//@references.3">
+    <containedIn href="configuration.workflow#//@elements.0"/>
+    <action href="configuration.workflow#//@elements.0/@nodes.9"/>
+  </referenceEdges>
+</view:Diagram>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation:GraphTransformation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:transformation="http://graphtransformation/1.0">
+  <rules name="A">
+    <leftside>
+      <nodes xsi:type="transformation:Initial" name="A1" out="//@rules.0/@leftside/@edges.0"/>
+      <nodes xsi:type="transformation:Fork" name="A2" in="//@rules.0/@leftside/@edges.0" out="//@rules.0/@leftside/@edges.1 //@rules.0/@operations/@addEdges/@edge.0"/>
+      <nodes xsi:type="transformation:IdleAction" name="A3" in="//@rules.0/@leftside/@edges.1 //@rules.0/@operations/@addEdges/@edge.1" out="//@rules.0/@leftside/@edges.2"/>
+      <nodes xsi:type="transformation:ActivityFinal" name="A4" in="//@rules.0/@leftside/@edges.2"/>
+      <edges name=" (A1 -> A2)" source="//@rules.0/@leftside/@nodes.0" target="//@rules.0/@leftside/@nodes.1"/>
+      <edges name=" (A2 -> A3)" source="//@rules.0/@leftside/@nodes.1" target="//@rules.0/@leftside/@nodes.2"/>
+      <edges name=" (A3 -> A4)" source="//@rules.0/@leftside/@nodes.2" target="//@rules.0/@leftside/@nodes.3"/>
+    </leftside>
+    <roles>
+      <arrivingRole name="RoleA1" action="//@rules.0/@operations/@addNodes/@node.0"/>
+    </roles>
+    <applicationConditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleA1 Inherits From PlatformProvider" child="//@rules.0/@roles/@arrivingRole">
+        <parent href="../vm/configvm.rbactext#PlatformProvider"/>
+      </conditions>
+    </applicationConditions>
+    <operations>
+      <addNodes>
+        <node xsi:type="transformation:SpecializationAction" name="A5" in="//@rules.0/@operations/@addEdges/@edge.0" out="//@rules.0/@operations/@addEdges/@edge.1" variableRole="//@rules.0/@roles/@arrivingRole"/>
+      </addNodes>
+      <addEdges>
+        <edge name=" (A2 -> A5)" source="//@rules.0/@leftside/@nodes.1" target="//@rules.0/@operations/@addNodes/@node.0"/>
+        <edge name=" (A5 -> A3)" source="//@rules.0/@operations/@addNodes/@node.0" target="//@rules.0/@leftside/@nodes.2"/>
+      </addEdges>
+    </operations>
+  </rules>
+  <rules name="B">
+    <leftside>
+      <nodes xsi:type="transformation:SpecializationAction" name="B1" out="//@rules.1/@leftside/@edges.0 //@rules.1/@operations/@addEdges/@edge.0" variableRole="//@rules.1/@roles/@existingRoles.0"/>
+      <nodes xsi:type="transformation:IdleAction" name="B2" in="//@rules.1/@leftside/@edges.0 //@rules.1/@operations/@addEdges/@edge.2"/>
+      <edges name=" (B1 -> B2)" source="//@rules.1/@leftside/@nodes.0" target="//@rules.1/@leftside/@nodes.1"/>
+    </leftside>
+    <roles>
+      <existingRoles name="RoleB1" action="//@rules.1/@leftside/@nodes.0"/>
+      <arrivingRole name="RoleB2" action="//@rules.1/@operations/@addNodes/@node.0"/>
+    </roles>
+    <applicationConditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleB1 Inherits From PlatformProvider" child="//@rules.1/@roles/@existingRoles.0">
+        <parent href="../vm/configvm.rbactext#PlatformProvider"/>
+      </conditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleB2 Inherits From ApplicationProvider" child="//@rules.1/@roles/@arrivingRole">
+        <parent href="../vm/configvm.rbactext#ApplicationProvider"/>
+      </conditions>
+    </applicationConditions>
+    <operations>
+      <removeEdges edge="//@rules.1/@leftside/@edges.0"/>
+      <addNodes>
+        <node xsi:type="transformation:SpecializationAction" name="B3" in="//@rules.1/@operations/@addEdges/@edge.0" out="//@rules.1/@operations/@addEdges/@edge.1" variableRole="//@rules.1/@roles/@arrivingRole"/>
+        <node xsi:type="transformation:Fork" name="B4" in="//@rules.1/@operations/@addEdges/@edge.1" out="//@rules.1/@operations/@addEdges/@edge.2"/>
+      </addNodes>
+      <addEdges>
+        <edge name=" (B1 -> B3)" source="//@rules.1/@leftside/@nodes.0" target="//@rules.1/@operations/@addNodes/@node.0"/>
+        <edge name=" (B3 -> B4)" source="//@rules.1/@operations/@addNodes/@node.0" target="//@rules.1/@operations/@addNodes/@node.1"/>
+        <edge name=" (B4 -> B2)" source="//@rules.1/@operations/@addNodes/@node.1" target="//@rules.1/@leftside/@nodes.1"/>
+      </addEdges>
+    </operations>
+  </rules>
+  <rules name="C">
+    <leftside>
+      <nodes xsi:type="transformation:SpecializationAction" name="C1" out="//@rules.2/@leftside/@edges.0" variableRole="//@rules.2/@roles/@existingRoles.0"/>
+      <nodes xsi:type="transformation:Fork" name="C2" in="//@rules.2/@leftside/@edges.0" out="//@rules.2/@leftside/@edges.1 //@rules.2/@operations/@addEdges/@edge.0"/>
+      <nodes xsi:type="transformation:IdleAction" name="C3" in="//@rules.2/@leftside/@edges.1 //@rules.2/@operations/@addEdges/@edge.2"/>
+      <edges name=" (C1 -> C2)" source="//@rules.2/@leftside/@nodes.0" target="//@rules.2/@leftside/@nodes.1"/>
+      <edges name=" (C2 -> C3)" source="//@rules.2/@leftside/@nodes.1" target="//@rules.2/@leftside/@nodes.2"/>
+    </leftside>
+    <roles>
+      <existingRoles name="RoleC1" action="//@rules.2/@leftside/@nodes.0"/>
+      <arrivingRole name="RoleC2" action="//@rules.2/@operations/@addNodes/@node.0"/>
+    </roles>
+    <applicationConditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleC1 Inherits From ApplicationProvider" child="//@rules.2/@roles/@existingRoles.0">
+        <parent href="../vm/configvm.rbactext#ApplicationProvider"/>
+      </conditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleC2 Inherits From Tenant" child="//@rules.2/@roles/@arrivingRole">
+        <parent href="../vm/configvm.rbactext#Tenant"/>
+      </conditions>
+    </applicationConditions>
+    <operations>
+      <addNodes>
+        <node xsi:type="transformation:SpecializationAction" name="C4" in="//@rules.2/@operations/@addEdges/@edge.0" out="//@rules.2/@operations/@addEdges/@edge.1" variableRole="//@rules.2/@roles/@arrivingRole"/>
+        <node xsi:type="transformation:Fork" name="C5" in="//@rules.2/@operations/@addEdges/@edge.1" out="//@rules.2/@operations/@addEdges/@edge.2"/>
+      </addNodes>
+      <addEdges>
+        <edge name=" (C2 -> C4)" source="//@rules.2/@leftside/@nodes.1" target="//@rules.2/@operations/@addNodes/@node.0"/>
+        <edge name=" (C4 -> C5)" source="//@rules.2/@operations/@addNodes/@node.0" target="//@rules.2/@operations/@addNodes/@node.1"/>
+        <edge name=" (C5 -> C3)" source="//@rules.2/@operations/@addNodes/@node.1" target="//@rules.2/@leftside/@nodes.2"/>
+      </addEdges>
+    </operations>
+  </rules>
+  <rules name="D">
+    <leftside>
+      <nodes xsi:type="transformation:SpecializationAction" name="D1" out="//@rules.3/@leftside/@edges.0" variableRole="//@rules.3/@roles/@existingRoles.0"/>
+      <nodes xsi:type="transformation:Fork" name="D2" in="//@rules.3/@leftside/@edges.0" out="//@rules.3/@leftside/@edges.1 //@rules.3/@operations/@addEdges/@edge.0"/>
+      <nodes xsi:type="transformation:IdleAction" name="D3" in="//@rules.3/@leftside/@edges.1"/>
+      <edges name=" (D1 -> D2)" source="//@rules.3/@leftside/@nodes.0" target="//@rules.3/@leftside/@nodes.1"/>
+      <edges name=" (D2 -> D3)" source="//@rules.3/@leftside/@nodes.1" target="//@rules.3/@leftside/@nodes.2"/>
+    </leftside>
+    <roles>
+      <existingRoles name="RoleD1" action="//@rules.3/@leftside/@nodes.0"/>
+      <arrivingRole name="RoleD2" action="//@rules.3/@operations/@addNodes/@node.0"/>
+    </roles>
+    <applicationConditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleD1 Inherits From Tenant" child="//@rules.3/@roles/@existingRoles.0">
+        <parent href="../vm/configvm.rbactext#Tenant"/>
+      </conditions>
+      <conditions xsi:type="transformation:InheritsFrom" name="RoleD2 Inherits From User" child="//@rules.3/@roles/@arrivingRole">
+        <parent href="../vm/configvm.rbactext#User"/>
+      </conditions>
+      <conditions xsi:type="transformation:BelongsTo" name="RoleD2 Belongs To RoleD1" leader="//@rules.3/@roles/@existingRoles.0" member="//@rules.3/@roles/@arrivingRole"/>
+    </applicationConditions>
+    <operations>
+      <addNodes>
+        <node xsi:type="transformation:SpecializationAction" name="D4" in="//@rules.3/@operations/@addEdges/@edge.0" out="//@rules.3/@operations/@addEdges/@edge.1" variableRole="//@rules.3/@roles/@arrivingRole"/>
+        <node xsi:type="transformation:FlowFinal" name="D5" in="//@rules.3/@operations/@addEdges/@edge.1"/>
+      </addNodes>
+      <addEdges>
+        <edge name=" (D2 -> D4)" source="//@rules.3/@leftside/@nodes.1" target="//@rules.3/@operations/@addNodes/@node.0"/>
+        <edge name=" (D4 -> D5)" source="//@rules.3/@operations/@addNodes/@node.0" target="//@rules.3/@operations/@addNodes/@node.1"/>
+      </addEdges>
+    </operations>
+  </rules>
+</transformation:GraphTransformation>

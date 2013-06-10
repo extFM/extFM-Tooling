@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ASCII"?>
+<conf:ConfModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:conf="org.eclipse.jwt.conf" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:workflow="org.js.model.workflow">
+  <profiles name="org.js.model.workflow.profile">
+    <aspects id="org.js.model.workflow.acmaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//ACMConnector"/>
+      <targetModelElements href="org.eclipse.jwt/core#//Model"/>
+    </aspects>
+    <aspects id="org.js.model.workflow.stakeholdertypesaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//StakeholderTypes"/>
+      <targetModelElements href="org.eclipse.jwt/core#//Model"/>
+    </aspects>
+    <aspects id="org.js.model.workflow.roleaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//RoleConnector"/>
+      <targetModelElements href="org.eclipse.jwt/organisations#//Role"/>
+    </aspects>
+    <aspects id="org.js.model.workflow.logaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//Log"/>
+      <targetModelElements href="org.eclipse.jwt/processes#//Action"/>
+    </aspects>
+    <aspects id="org.js.model.workflow.stateaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//State"/>
+      <targetModelElements href="org.eclipse.jwt/processes#//Action"/>
+    </aspects>
+    <aspects id="org.js.model.workflow.efmaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//EFMContainer"/>
+      <targetModelElements href="org.eclipse.jwt/processes#//Action"/>
+    </aspects>
+    <aspects id="org.js.model.workflow.graphtransaspect" autocreated="false" multiple="false">
+      <aspectInstanceEType xsi:type="ecore:EClass" href="org.js.model.workflow#//GraphTransConnector"/>
+      <targetModelElements href="org.eclipse.jwt/core#//Model"/>
+    </aspects>
+  </profiles>
+  <aspectInstances xsi:type="workflow:GraphTransConnector" id="org.js.model.workflow.transaspect">
+    <targetModelElement href="configuration.workflow#/"/>
+    <graphTransref href="../graphtransformation/My.transformation#/"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:ACMConnector" id="org.js.model.workflow.acmaspect">
+    <targetModelElement href="configuration.workflow#/"/>
+    <acmref href="../vm/configvm.rbactext#/"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:StakeholderTypes" id="org.js.model.workflow.stakeholdertypesaspect">
+    <targetModelElement href="configuration.workflow#/"/>
+    <stakeholderTypes href="../vm/configvm.rbactext#PlatformProvider"/>
+    <stakeholderTypes href="../vm/configvm.rbactext#ApplicationProvider"/>
+    <stakeholderTypes href="../vm/configvm.rbactext#Tenant"/>
+    <stakeholderTypes href="../vm/configvm.rbactext#User"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect" state="Enabled">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.2"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:RoleConnector" id="org.js.model.workflow.roleaspect">
+    <targetModelElement href="configuration.workflow#//@elements.1"/>
+    <roleref href="../vm/configvm.rbactext#pp1"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:Log" id="org.js.model.workflow.logaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.4"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:EFMContainer" id="org.js.model.workflow.efmaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.4"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect" state="Enabled">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.4"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:RoleConnector" id="org.js.model.workflow.roleaspect">
+    <targetModelElement href="configuration.workflow#//@elements.2"/>
+    <roleref href="../vm/configvm.rbactext#ap1"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:Log" id="org.js.model.workflow.logaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.5"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:EFMContainer" id="org.js.model.workflow.efmaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.5"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.5"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:RoleConnector" id="org.js.model.workflow.roleaspect">
+    <targetModelElement href="configuration.workflow#//@elements.3"/>
+    <roleref href="../vm/configvm.rbactext#t1"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:Log" id="org.js.model.workflow.logaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.7"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:EFMContainer" id="org.js.model.workflow.efmaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.7"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.7"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:RoleConnector" id="org.js.model.workflow.roleaspect">
+    <targetModelElement href="configuration.workflow#//@elements.4"/>
+    <roleref href="../vm/configvm.rbactext#u1"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:Log" id="org.js.model.workflow.logaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.9"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:EFMContainer" id="org.js.model.workflow.efmaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.9"/>
+  </aspectInstances>
+  <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect">
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.9"/>
+  </aspectInstances>
+  <enrichedModel href="configuration.workflow#/"/>
+</conf:ConfModel>
