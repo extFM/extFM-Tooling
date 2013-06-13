@@ -2,16 +2,14 @@
 <transformation:GraphTransformation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:transformation="http://graphtransformation/1.0">
   <rules name="A">
     <leftside>
-      <nodes xsi:type="transformation:Initial" name="A1" out="//@rules.0/@leftside/@edges.0"/>
-      <nodes xsi:type="transformation:Fork" name="A2" in="//@rules.0/@leftside/@edges.0" out="//@rules.0/@leftside/@edges.1 //@rules.0/@operations/@addEdges/@edge.0"/>
-      <nodes xsi:type="transformation:IdleAction" name="A3" in="//@rules.0/@leftside/@edges.1 //@rules.0/@operations/@addEdges/@edge.1" out="//@rules.0/@leftside/@edges.2"/>
-      <nodes xsi:type="transformation:ActivityFinal" name="A4" in="//@rules.0/@leftside/@edges.2"/>
+      <nodes xsi:type="transformation:Initial" name="A1" out="//@rules.0/@leftside/@edges.0 //@rules.0/@operations/@addEdges/@edge.0"/>
+      <nodes xsi:type="transformation:IdleAction" name="A2" in="//@rules.0/@operations/@addEdges/@edge.1 //@rules.0/@leftside/@edges.0 //@rules.0/@operations/@addEdges/@edge.3" out="//@rules.0/@leftside/@edges.1"/>
+      <nodes xsi:type="transformation:ActivityFinal" name="A3" in="//@rules.0/@leftside/@edges.1"/>
       <edges name=" (A1 -> A2)" source="//@rules.0/@leftside/@nodes.0" target="//@rules.0/@leftside/@nodes.1"/>
       <edges name=" (A2 -> A3)" source="//@rules.0/@leftside/@nodes.1" target="//@rules.0/@leftside/@nodes.2"/>
-      <edges name=" (A3 -> A4)" source="//@rules.0/@leftside/@nodes.2" target="//@rules.0/@leftside/@nodes.3"/>
     </leftside>
     <roles>
-      <arrivingRole name="RoleA1" action="//@rules.0/@operations/@addNodes/@node.0"/>
+      <arrivingRole name="RoleA1" action="//@rules.0/@operations/@addNodes/@node.1"/>
     </roles>
     <applicationConditions>
       <conditions xsi:type="transformation:InheritsFrom" name="RoleA1 Inherits From PlatformProvider" child="//@rules.0/@roles/@arrivingRole">
@@ -19,12 +17,16 @@
       </conditions>
     </applicationConditions>
     <operations>
+      <removeEdges edge="//@rules.0/@leftside/@edges.0"/>
       <addNodes>
-        <node xsi:type="transformation:SpecializationAction" name="A5" in="//@rules.0/@operations/@addEdges/@edge.0" out="//@rules.0/@operations/@addEdges/@edge.1" variableRole="//@rules.0/@roles/@arrivingRole"/>
+        <node xsi:type="transformation:Fork" name="A4" in="//@rules.0/@operations/@addEdges/@edge.0" out="//@rules.0/@operations/@addEdges/@edge.1 //@rules.0/@operations/@addEdges/@edge.2"/>
+        <node xsi:type="transformation:SpecializationAction" name="A5" in="//@rules.0/@operations/@addEdges/@edge.2" out="//@rules.0/@operations/@addEdges/@edge.3" variableRole="//@rules.0/@roles/@arrivingRole"/>
       </addNodes>
       <addEdges>
-        <edge name=" (A2 -> A5)" source="//@rules.0/@leftside/@nodes.1" target="//@rules.0/@operations/@addNodes/@node.0"/>
-        <edge name=" (A5 -> A3)" source="//@rules.0/@operations/@addNodes/@node.0" target="//@rules.0/@leftside/@nodes.2"/>
+        <edge name=" (A1 -> A4)" source="//@rules.0/@leftside/@nodes.0" target="//@rules.0/@operations/@addNodes/@node.0"/>
+        <edge name=" (A4 -> A2)" source="//@rules.0/@operations/@addNodes/@node.0" target="//@rules.0/@leftside/@nodes.1"/>
+        <edge name=" (A4 -> A5)" source="//@rules.0/@operations/@addNodes/@node.0" target="//@rules.0/@operations/@addNodes/@node.1"/>
+        <edge name=" (A5 -> A2)" source="//@rules.0/@operations/@addNodes/@node.1" target="//@rules.0/@leftside/@nodes.1"/>
       </addEdges>
     </operations>
   </rules>

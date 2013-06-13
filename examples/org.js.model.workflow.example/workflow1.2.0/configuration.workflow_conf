@@ -46,11 +46,11 @@
     <stakeholderTypes href="../vm/configvm.rbactext#User"/>
   </aspectInstances>
   <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect" state="Enabled">
-    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.2"/>
+    <targetModelElement href="configuration.workflow#//@elements.0/@nodes.1"/>
   </aspectInstances>
   <aspectInstances xsi:type="workflow:RoleConnector" id="org.js.model.workflow.roleaspect">
     <targetModelElement href="configuration.workflow#//@elements.1"/>
-    <roleref href="../vm/configvm.rbactext#pp1"/>
+    <roleref href="../vm/configvm.rbactext#p1"/>
   </aspectInstances>
   <aspectInstances xsi:type="workflow:Log" id="org.js.model.workflow.logaspect">
     <targetModelElement href="configuration.workflow#//@elements.0/@nodes.4"/>

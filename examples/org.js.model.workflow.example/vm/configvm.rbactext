@@ -97,7 +97,7 @@ role "User" <User> {
 	"select SatelliteMap",
 	"deselect SatelliteMap"
 }
-role "pp1" <pp1>extends PlatformProvider
+role "p1" <p1>extends PlatformProvider
 role "ap1" <ap1>extends ApplicationProvider
 role "t1" <t1>extends Tenant
 role "u1" <u1>extends User
