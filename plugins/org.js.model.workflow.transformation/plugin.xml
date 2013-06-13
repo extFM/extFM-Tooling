@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.js.model.workflow.contribution"
+            nameFilter="*.eft"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="org.js.model.workflow.menu"
+               label="YMS"
+               path="additions">
+            <separator
+                  name="group">
+            </separator>
+         </menu>
+         <action
+               class="org.js.model.workflow.transformation.popup.actions.YMSTransformation"
+               enablesFor="1"
+               id="org.js.model.workflow.newAction"
+               label="Generate YMS configuration"
+               menubarPath="org.js.model.workflow.menu/group">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

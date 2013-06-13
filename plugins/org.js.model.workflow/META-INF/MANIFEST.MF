@@ -4,9 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.js.model.workflow;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
- swing2swt.jar,
- jar/com.sap.research.cocktail.core-0.0.1-SNAPSHOT.jar,
- jar/com.sap.research.cocktail.model-0.0.1-SNAPSHOT.jar
+ swing2swt.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
