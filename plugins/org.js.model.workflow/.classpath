@@ -4,8 +4,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="jar/com.sap.research.cocktail.core-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="jar/com.sap.research.cocktail.model-0.0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="jar/swing2swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
