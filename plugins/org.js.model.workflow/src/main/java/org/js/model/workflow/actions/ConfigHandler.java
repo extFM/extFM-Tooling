@@ -61,6 +61,8 @@ public class ConfigHandler extends MyAction implements DoubleClickHandler {
 		} else if (modelElement instanceof Event) {
 			handleFlowFinal((Event) modelElement);
 		}
+		save();
+		refresh();
 	}
 
 	public void handleSpecializationAction(Action action) {
