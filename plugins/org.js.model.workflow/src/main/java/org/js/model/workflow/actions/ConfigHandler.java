@@ -72,8 +72,8 @@ public class ConfigHandler extends MyAction implements DoubleClickHandler {
 				.getAspectInstance(((Action) action).getPerformedBy(),
 						WorkflowConfUtil.ROLE_ASPECT)).getRoleref();
 		// according to the state value the ui is different
-		if (state.getState().getValue() == 1
-				|| state.getState().getValue() == 3) {
+		if (StateEnum.ENABLED.equals(state.getState())
+				|| StateEnum.COMPLETED.equals(state.getState())) {
 			try {
 				Display display = Display.getDefault();
 				StakeholderConfigUIShell shell = new StakeholderConfigUIShell(
@@ -90,7 +90,7 @@ public class ConfigHandler extends MyAction implements DoubleClickHandler {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (state.getState().getValue() == 3) {
+			if (StateEnum.COMPLETED.equals(state.getState())) {
 				for (Action nextAction : WorkflowModelUtil
 						.getNextSpecializationActions(action)) {
 					WorkflowModelUtil.setActionState(nextAction);
