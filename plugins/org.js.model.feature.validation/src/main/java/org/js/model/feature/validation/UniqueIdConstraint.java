@@ -23,6 +23,8 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
+import org.js.model.feature.Attribute;
+import org.js.model.feature.Feature;
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
@@ -122,9 +124,19 @@ public class UniqueIdConstraint extends AbstractModelConstraint implements IMode
                String otherObjectId = EcoreUtil.getID(next);
                if (targetId.equals(otherObjectId)) {
                   msg = "An element with identifier <" + targetId + "> is already defined";
-                  break;
+                  // Attributes may have the same identifier but must belong to differing features
+                  if (target instanceof Attribute && next instanceof Attribute) {
+                     Attribute targetAttribute = (Attribute) target;
+                     Attribute otherAttribute = (Attribute) next;
+                     Feature otherFeature = otherAttribute.getFeature();
+                     Feature targetFeature = targetAttribute.getFeature();
+                     if (!EcoreUtil.equals(otherFeature, targetFeature)) {
+                        msg = null;
+                     }
+                  } else {
+                     break;
+                  }
                }
-
             }
          }
       }
