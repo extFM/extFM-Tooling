@@ -24,6 +24,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/root"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/domains"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//FeatureModel/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//FeatureModel/name"/>
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/name"/>

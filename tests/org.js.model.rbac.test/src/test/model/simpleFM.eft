@@ -1,4 +1,4 @@
-featuremodel 
+featuremodel "testModel"
 domain <d1> [v1=1, v2=2, v3=3, v4=4]
 domain <d2> [10..20, 30..50]
 

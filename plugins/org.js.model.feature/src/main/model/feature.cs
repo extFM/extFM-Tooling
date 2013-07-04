@@ -40,7 +40,7 @@ TOKENSTYLES {
 }
 
 RULES {
-	FeatureModel ::= "featuremodel" !0!0
+	FeatureModel ::= "featuremodel" #1 name['"','"'] !0!0
 						domains* !0 root !0 constraints* ; 
 						
 	@SuppressWarnings(explicitSyntaxChoice) 					
