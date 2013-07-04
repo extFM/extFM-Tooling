@@ -52,58 +52,12 @@
       <childFeatures id="gi" name="GeneralIndex" selected="unbound"/>
     </groups>
   </root>
-  <constraints id="uni_ex_sim">
-    <expression xsi:type="feature:ExcludesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="tuni"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="tsim"/>
-    </expression>
-  </constraints>
-  <constraints id="ImageOCR_req_ImageType">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="image"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="timg"/>
-    </expression>
-  </constraints>
-  <constraints id="PDFOCR_req_PDFType">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="pdf"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="tpdf"/>
-    </expression>
-  </constraints>
-  <constraints id="TitleIndexUsage_req_TitleIndex">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="indexUsage"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="ti"/>
-    </expression>
-  </constraints>
-  <constraints id="MetaDataSearch_req_TitleIndex">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="mds"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="ti"/>
-    </expression>
-  </constraints>
-  <constraints id="AuthorSearch_req_AutorIndex">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="as"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="ai"/>
-    </expression>
-  </constraints>
-  <constraints id="GeneralSearch_req_AuthorIndex">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="gs"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="ai"/>
-    </expression>
-  </constraints>
-  <constraints id="fns_req_fni">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="fns"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="fni"/>
-    </expression>
-  </constraints>
-  <constraints id="SearchResults_req_Search">
-    <expression xsi:type="feature:ImpliesExpression">
-      <operand1 xsi:type="feature:FeatureReference" feature="searchResults"/>
-      <operand2 xsi:type="feature:FeatureReference" feature="search"/>
-    </expression>
-  </constraints>
+  <constraints xsi:type="feature:Exclude" id="uni_ex_sim" leftOperand="tuni" rightOperand="tsim"/>
+  <constraints xsi:type="feature:Imply" id="ImageOCR_req_ImageType" leftOperand="image" rightOperand="timg"/>
+  <constraints xsi:type="feature:Imply" id="PDFOCR_req_PDFType" leftOperand="pdf" rightOperand="tpdf"/>
+  <constraints xsi:type="feature:Imply" id="TitleIndexUsage_req_TitleIndex" leftOperand="indexUsage" rightOperand="ti"/>
+  <constraints xsi:type="feature:Imply" id="MetaDataSearch_req_TitleIndex" leftOperand="mds" rightOperand="ti"/>
+  <constraints xsi:type="feature:Imply" id="GeneralSearch_req_AuthorIndex" leftOperand="gs" rightOperand="ai"/>
+  <constraints xsi:type="feature:Imply" id="fns_req_fni" leftOperand="fns" rightOperand="fni"/>
+  <constraints xsi:type="feature:Imply" id="SearchResults_req_Search" leftOperand="searchResults" rightOperand="search"/>
 </feature:FeatureModel>
