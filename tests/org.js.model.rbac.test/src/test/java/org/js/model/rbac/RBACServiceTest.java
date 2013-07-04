@@ -1,3 +1,4 @@
+package org.js.model.rbac;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,3 +1,4 @@
+package org.js.model.rbac;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,7 @@ public class TestModel {
 
    private EObject loadTestModel(String filename, String suffix, Factory resourceFactory) {
       resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(suffix, resourceFactory);
-      URL fileresource = TestModel.class.getResource(filename);
+      URL fileresource = this.getClass().getClassLoader().getResource(filename);
       String path = fileresource.getPath();
       URI uri = URI.createFileURI(path);
       Resource resource = resourceSet.getResource(uri, true);

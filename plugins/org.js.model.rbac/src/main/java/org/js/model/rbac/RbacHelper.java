@@ -8,6 +8,7 @@
 package org.js.model.rbac;
 
 import org.js.model.feature.Attribute;
+import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
 
 
@@ -19,14 +20,16 @@ import org.js.model.feature.Feature;
  */
 public final class RbacHelper {
    
-   public static DeselectDomainValue createDeselectDomainValue(String value){
+   public static DeselectDomainValue createDeselectDomainValue(DomainValue value){
       DeselectDomainValue domainValue = RbacFactory.eINSTANCE.createDeselectDomainValue();
-      domainValue.setValue(value);
+      String name = value.getName();
+      domainValue.setValue(name);
       return domainValue;
    }
-   public static SelectDomainValue createSelectDomainValue(String value){
+   public static SelectDomainValue createSelectDomainValue(DomainValue value){
       SelectDomainValue domainValue = RbacFactory.eINSTANCE.createSelectDomainValue();
-      domainValue.setValue(value);
+      String name = value.getName();
+      domainValue.setValue(name);
       return domainValue;
    }
    

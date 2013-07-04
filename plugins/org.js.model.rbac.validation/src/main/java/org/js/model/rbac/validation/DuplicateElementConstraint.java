@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.js.model.feature.Attribute;
+import org.js.model.feature.Feature;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.Group;
 import org.js.model.rbac.Role;

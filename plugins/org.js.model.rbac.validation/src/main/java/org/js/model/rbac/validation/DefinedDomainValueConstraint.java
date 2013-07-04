@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
+import org.js.model.feature.DomainValue;
 import org.js.model.rbac.AttributeDecision;
 import org.js.model.rbac.SetAttribute;
 
@@ -35,10 +36,11 @@ public class DefinedDomainValueConstraint extends AbstractAttributeConstraint {
       Domain domain = attribute.getDomain();
       if (domain instanceof DiscreteDomain) {
          DiscreteDomain discreteDomain = (DiscreteDomain) domain;
-         EList<String> domainValues = discreteDomain.getValues();
+         EList<DomainValue> domainValues = discreteDomain.getValues();
          boolean iscontained = false;
-         for (String domainValue : domainValues) {
-            if (domainValue.equals(value)) {
+         for (DomainValue domainValue : domainValues) {
+            String name = domainValue.getName();
+            if (name != null && name.equals(value)) {
                iscontained = true;
                break;
             }

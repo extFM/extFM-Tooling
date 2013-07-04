@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
+import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 
@@ -78,9 +79,9 @@ public class PermissionInitialization {
    }
 
    private List<AttributeDecision> createDiscreteDomainPermissions(DiscreteDomain domain) {
-      EList<String> domainValues = domain.getValues();
+      EList<DomainValue> domainValues = domain.getValues();
       List<AttributeDecision> operations = new ArrayList<AttributeDecision>(domainValues.size() * 2);
-      for (String value : domainValues) {
+      for (DomainValue value : domainValues) {
          SelectDomainValue selectDomainValue = createSelectDomainValueOperation(value);
          operations.add(selectDomainValue);
          DeselectDomainValue deselectDomainValue = createDeselectDomainValueOperation(value);
@@ -89,12 +90,12 @@ public class PermissionInitialization {
       return operations;
    }
 
-   private DeselectDomainValue createDeselectDomainValueOperation(String value) {
+   private DeselectDomainValue createDeselectDomainValueOperation(DomainValue value) {
       DeselectDomainValue deselectDomainValue = RbacHelper.createDeselectDomainValue(value);
       return deselectDomainValue;
    }
 
-   private SelectDomainValue createSelectDomainValueOperation(String value) {
+   private SelectDomainValue createSelectDomainValueOperation(DomainValue value) {
       SelectDomainValue selectDomainValue = RbacHelper.createSelectDomainValue(value);
       return selectDomainValue;
    }

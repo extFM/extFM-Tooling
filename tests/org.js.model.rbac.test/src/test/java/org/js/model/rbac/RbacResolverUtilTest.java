@@ -1,3 +1,4 @@
+package org.js.model.rbac;
 import org.js.model.rbac.RBACResolverUtil;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,9 +1,11 @@
+package org.js.model.rbac;
 
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.js.model.feature.Attribute;
+import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 import org.js.model.rbac.AccessControlModel;
@@ -104,11 +106,11 @@ public abstract class AbstractTestRbac {
       return result;
    }
 
-   protected DeselectDomainValue createDeselectDomainValue(String domainValue) {
+   protected DeselectDomainValue createDeselectDomainValue(DomainValue domainValue) {
       return RbacHelper.createDeselectDomainValue(domainValue);
    }
 
-   protected SelectDomainValue createSelectDomainValue(String domainValue) {
+   protected SelectDomainValue createSelectDomainValue(DomainValue domainValue) {
       return RbacHelper.createSelectDomainValue(domainValue);
    }
 
