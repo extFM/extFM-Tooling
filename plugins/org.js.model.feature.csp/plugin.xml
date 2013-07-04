@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <separator
+               name="org.js.analyze.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.js.featuremodel.efm.analyze"
+               icon="icons/obj16/magnifier.png"
+               label="Analyze Featuremodel"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.js.analyzeFeaturemodel.enable">
+               </reference>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.js.analyze.separator2"
+               visible="true">
+         </separator>
+      </menuContribution>
+   </extension>
+
+<extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.js.model.feature.csp.AnalyzeFeatureModelCommandHandler"
+            id="org.js.featuremodel.efm.analyze"
+            name="Analyze Featuremodel">
+      </command>
+   </extension>
+   
+<extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.js.analyzeFeaturemodel.enable">
+         <iterate>
+            <and>
+               <adapt
+                     type="org.eclipse.core.resources.IResource">
+               </adapt>
+            </and>
+         </iterate>
+      </definition>
+   </extension>   
+</plugin>
