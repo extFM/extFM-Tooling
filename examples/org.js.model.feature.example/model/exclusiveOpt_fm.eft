@@ -1,10 +1,10 @@
-feature model "exclusiveOpt_fm"
+featuremodel "exclusiveOpt_fm"
 
-feature "root" <root>{
+feature "root" <root>
 	group <gr0> (0..1) {
-		feature "f1" <f1>;
-		feature "f2" <f2>;
-		feature "f3" <f3>;
+		feature "f1" <f1>
+		feature "f2" <f2>
+		feature "f3" <f3>
 	}
-}
+
 	

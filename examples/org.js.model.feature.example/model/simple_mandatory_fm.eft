@@ -1,7 +1,6 @@
-feature model "simple_mandatory_fm"
+featuremodel "simple_mandatory_fm"
 
-feature "root" <root>{
+feature "root" <root>
 	group <gr0> (1..1){
-		feature "f1" <f1>;
+		feature "f1" <f1>
 	}
-}
