@@ -35,118 +35,118 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class ApplicationConditionsImpl extends MinimalEObjectImpl.Container implements ApplicationConditions {
 	/**
-	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditions()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getConditions()
+    * @generated
+    * @ordered
+    */
 	protected EList<Condition> conditions;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ApplicationConditionsImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.APPLICATION_CONDITIONS;
-	}
+      return TransformationPackage.Literals.APPLICATION_CONDITIONS;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EList<Condition> getConditions() {
-		if (conditions == null) {
-			conditions = new EObjectContainmentEList<Condition>(Condition.class, this, TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS);
-		}
-		return conditions;
-	}
+      if (conditions == null) {
+         conditions = new EObjectContainmentEList<Condition>(Condition.class, this, TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS);
+      }
+      return conditions;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
-				return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
+            return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
-				return getConditions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
+            return getConditions();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
-				getConditions().clear();
-				getConditions().addAll((Collection<? extends Condition>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
+            getConditions().clear();
+            getConditions().addAll((Collection<? extends Condition>)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
-				getConditions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
+            getConditions().clear();
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
-				return conditions != null && !conditions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.APPLICATION_CONDITIONS__CONDITIONS:
+            return conditions != null && !conditions.isEmpty();
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //ApplicationConditionsImpl

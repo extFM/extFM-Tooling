@@ -39,183 +39,183 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class RolesImpl extends MinimalEObjectImpl.Container implements Roles {
 	/**
-	 * The cached value of the '{@link #getExistingRoles() <em>Existing Roles</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getExistingRoles() <em>Existing Roles</em>}' containment reference list.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExistingRoles()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getExistingRoles()
+    * @generated
+    * @ordered
+    */
 	protected EList<ExistingRole> existingRoles;
 
 	/**
-	 * The cached value of the '{@link #getArrivingRole() <em>Arriving Role</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getArrivingRole() <em>Arriving Role</em>}' containment reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArrivingRole()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getArrivingRole()
+    * @generated
+    * @ordered
+    */
 	protected ArrivingRole arrivingRole;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RolesImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.ROLES;
-	}
+      return TransformationPackage.Literals.ROLES;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EList<ExistingRole> getExistingRoles() {
-		if (existingRoles == null) {
-			existingRoles = new EObjectContainmentEList<ExistingRole>(ExistingRole.class, this, TransformationPackage.ROLES__EXISTING_ROLES);
-		}
-		return existingRoles;
-	}
+      if (existingRoles == null) {
+         existingRoles = new EObjectContainmentEList<ExistingRole>(ExistingRole.class, this, TransformationPackage.ROLES__EXISTING_ROLES);
+      }
+      return existingRoles;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ArrivingRole getArrivingRole() {
-		return arrivingRole;
-	}
+      return arrivingRole;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public NotificationChain basicSetArrivingRole(ArrivingRole newArrivingRole, NotificationChain msgs) {
-		ArrivingRole oldArrivingRole = arrivingRole;
-		arrivingRole = newArrivingRole;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.ROLES__ARRIVING_ROLE, oldArrivingRole, newArrivingRole);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+      ArrivingRole oldArrivingRole = arrivingRole;
+      arrivingRole = newArrivingRole;
+      if (eNotificationRequired()) {
+         ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.ROLES__ARRIVING_ROLE, oldArrivingRole, newArrivingRole);
+         if (msgs == null) msgs = notification; else msgs.add(notification);
+      }
+      return msgs;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setArrivingRole(ArrivingRole newArrivingRole) {
-		if (newArrivingRole != arrivingRole) {
-			NotificationChain msgs = null;
-			if (arrivingRole != null)
-				msgs = ((InternalEObject)arrivingRole).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.ROLES__ARRIVING_ROLE, null, msgs);
-			if (newArrivingRole != null)
-				msgs = ((InternalEObject)newArrivingRole).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.ROLES__ARRIVING_ROLE, null, msgs);
-			msgs = basicSetArrivingRole(newArrivingRole, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ROLES__ARRIVING_ROLE, newArrivingRole, newArrivingRole));
-	}
+      if (newArrivingRole != arrivingRole) {
+         NotificationChain msgs = null;
+         if (arrivingRole != null)
+            msgs = ((InternalEObject)arrivingRole).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.ROLES__ARRIVING_ROLE, null, msgs);
+         if (newArrivingRole != null)
+            msgs = ((InternalEObject)newArrivingRole).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.ROLES__ARRIVING_ROLE, null, msgs);
+         msgs = basicSetArrivingRole(newArrivingRole, msgs);
+         if (msgs != null) msgs.dispatch();
+      }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ROLES__ARRIVING_ROLE, newArrivingRole, newArrivingRole));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.ROLES__EXISTING_ROLES:
-				return ((InternalEList<?>)getExistingRoles()).basicRemove(otherEnd, msgs);
-			case TransformationPackage.ROLES__ARRIVING_ROLE:
-				return basicSetArrivingRole(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.ROLES__EXISTING_ROLES:
+            return ((InternalEList<?>)getExistingRoles()).basicRemove(otherEnd, msgs);
+         case TransformationPackage.ROLES__ARRIVING_ROLE:
+            return basicSetArrivingRole(null, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.ROLES__EXISTING_ROLES:
-				return getExistingRoles();
-			case TransformationPackage.ROLES__ARRIVING_ROLE:
-				return getArrivingRole();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.ROLES__EXISTING_ROLES:
+            return getExistingRoles();
+         case TransformationPackage.ROLES__ARRIVING_ROLE:
+            return getArrivingRole();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.ROLES__EXISTING_ROLES:
-				getExistingRoles().clear();
-				getExistingRoles().addAll((Collection<? extends ExistingRole>)newValue);
-				return;
-			case TransformationPackage.ROLES__ARRIVING_ROLE:
-				setArrivingRole((ArrivingRole)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.ROLES__EXISTING_ROLES:
+            getExistingRoles().clear();
+            getExistingRoles().addAll((Collection<? extends ExistingRole>)newValue);
+            return;
+         case TransformationPackage.ROLES__ARRIVING_ROLE:
+            setArrivingRole((ArrivingRole)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.ROLES__EXISTING_ROLES:
-				getExistingRoles().clear();
-				return;
-			case TransformationPackage.ROLES__ARRIVING_ROLE:
-				setArrivingRole((ArrivingRole)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.ROLES__EXISTING_ROLES:
+            getExistingRoles().clear();
+            return;
+         case TransformationPackage.ROLES__ARRIVING_ROLE:
+            setArrivingRole((ArrivingRole)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.ROLES__EXISTING_ROLES:
-				return existingRoles != null && !existingRoles.isEmpty();
-			case TransformationPackage.ROLES__ARRIVING_ROLE:
-				return arrivingRole != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.ROLES__EXISTING_ROLES:
+            return existingRoles != null && !existingRoles.isEmpty();
+         case TransformationPackage.ROLES__ARRIVING_ROLE:
+            return arrivingRole != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //RolesImpl

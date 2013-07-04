@@ -34,646 +34,646 @@ import org.js.graph.transformation.util.TransformationAdapterFactory;
  */
 public class TransformationItemProviderAdapterFactory extends TransformationAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the root adapter factory that delegates to this adapter factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc -->
+    * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
-	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-	 * <!-- begin-user-doc -->
+    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc -->
+    * This constructs an instance.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public TransformationItemProviderAdapterFactory() {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-	}
+      supportedTypes.add(IEditingDomainItemProvider.class);
+      supportedTypes.add(IStructuredItemContentProvider.class);
+      supportedTypes.add(ITreeItemContentProvider.class);
+      supportedTypes.add(IItemLabelProvider.class);
+      supportedTypes.add(IItemPropertySource.class);
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.GraphTransformation} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.GraphTransformation} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected GraphTransformationItemProvider graphTransformationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.GraphTransformation}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.GraphTransformation}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createGraphTransformationAdapter() {
-		if (graphTransformationItemProvider == null) {
-			graphTransformationItemProvider = new GraphTransformationItemProvider(this);
-		}
+      if (graphTransformationItemProvider == null) {
+         graphTransformationItemProvider = new GraphTransformationItemProvider(this);
+      }
 
-		return graphTransformationItemProvider;
-	}
+      return graphTransformationItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Rule} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Rule} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RuleItemProvider ruleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.Rule}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.Rule}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createRuleAdapter() {
-		if (ruleItemProvider == null) {
-			ruleItemProvider = new RuleItemProvider(this);
-		}
+      if (ruleItemProvider == null) {
+         ruleItemProvider = new RuleItemProvider(this);
+      }
 
-		return ruleItemProvider;
-	}
+      return ruleItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.LeftSide} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.LeftSide} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected LeftSideItemProvider leftSideItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.LeftSide}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.LeftSide}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createLeftSideAdapter() {
-		if (leftSideItemProvider == null) {
-			leftSideItemProvider = new LeftSideItemProvider(this);
-		}
+      if (leftSideItemProvider == null) {
+         leftSideItemProvider = new LeftSideItemProvider(this);
+      }
 
-		return leftSideItemProvider;
-	}
+      return leftSideItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Roles} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Roles} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RolesItemProvider rolesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.Roles}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.Roles}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createRolesAdapter() {
-		if (rolesItemProvider == null) {
-			rolesItemProvider = new RolesItemProvider(this);
-		}
+      if (rolesItemProvider == null) {
+         rolesItemProvider = new RolesItemProvider(this);
+      }
 
-		return rolesItemProvider;
-	}
+      return rolesItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ApplicationConditions} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ApplicationConditions} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ApplicationConditionsItemProvider applicationConditionsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.ApplicationConditions}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.ApplicationConditions}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createApplicationConditionsAdapter() {
-		if (applicationConditionsItemProvider == null) {
-			applicationConditionsItemProvider = new ApplicationConditionsItemProvider(this);
-		}
+      if (applicationConditionsItemProvider == null) {
+         applicationConditionsItemProvider = new ApplicationConditionsItemProvider(this);
+      }
 
-		return applicationConditionsItemProvider;
-	}
+      return applicationConditionsItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Operations} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Operations} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected OperationsItemProvider operationsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.Operations}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.Operations}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createOperationsAdapter() {
-		if (operationsItemProvider == null) {
-			operationsItemProvider = new OperationsItemProvider(this);
-		}
+      if (operationsItemProvider == null) {
+         operationsItemProvider = new OperationsItemProvider(this);
+      }
 
-		return operationsItemProvider;
-	}
+      return operationsItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Edge} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Edge} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected EdgeItemProvider edgeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.Edge}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.Edge}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createEdgeAdapter() {
-		if (edgeItemProvider == null) {
-			edgeItemProvider = new EdgeItemProvider(this);
-		}
+      if (edgeItemProvider == null) {
+         edgeItemProvider = new EdgeItemProvider(this);
+      }
 
-		return edgeItemProvider;
-	}
+      return edgeItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ExistingRole} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ExistingRole} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ExistingRoleItemProvider existingRoleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.ExistingRole}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.ExistingRole}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createExistingRoleAdapter() {
-		if (existingRoleItemProvider == null) {
-			existingRoleItemProvider = new ExistingRoleItemProvider(this);
-		}
+      if (existingRoleItemProvider == null) {
+         existingRoleItemProvider = new ExistingRoleItemProvider(this);
+      }
 
-		return existingRoleItemProvider;
-	}
+      return existingRoleItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ArrivingRole} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ArrivingRole} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ArrivingRoleItemProvider arrivingRoleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.ArrivingRole}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.ArrivingRole}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createArrivingRoleAdapter() {
-		if (arrivingRoleItemProvider == null) {
-			arrivingRoleItemProvider = new ArrivingRoleItemProvider(this);
-		}
+      if (arrivingRoleItemProvider == null) {
+         arrivingRoleItemProvider = new ArrivingRoleItemProvider(this);
+      }
 
-		return arrivingRoleItemProvider;
-	}
+      return arrivingRoleItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Initial} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Initial} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected InitialItemProvider initialItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.Initial}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.Initial}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createInitialAdapter() {
-		if (initialItemProvider == null) {
-			initialItemProvider = new InitialItemProvider(this);
-		}
+      if (initialItemProvider == null) {
+         initialItemProvider = new InitialItemProvider(this);
+      }
 
-		return initialItemProvider;
-	}
+      return initialItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ActivityFinal} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.ActivityFinal} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ActivityFinalItemProvider activityFinalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.ActivityFinal}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.ActivityFinal}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createActivityFinalAdapter() {
-		if (activityFinalItemProvider == null) {
-			activityFinalItemProvider = new ActivityFinalItemProvider(this);
-		}
+      if (activityFinalItemProvider == null) {
+         activityFinalItemProvider = new ActivityFinalItemProvider(this);
+      }
 
-		return activityFinalItemProvider;
-	}
+      return activityFinalItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.FlowFinal} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.FlowFinal} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected FlowFinalItemProvider flowFinalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.FlowFinal}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.FlowFinal}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createFlowFinalAdapter() {
-		if (flowFinalItemProvider == null) {
-			flowFinalItemProvider = new FlowFinalItemProvider(this);
-		}
+      if (flowFinalItemProvider == null) {
+         flowFinalItemProvider = new FlowFinalItemProvider(this);
+      }
 
-		return flowFinalItemProvider;
-	}
+      return flowFinalItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Fork} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.Fork} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ForkItemProvider forkItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.Fork}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.Fork}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createForkAdapter() {
-		if (forkItemProvider == null) {
-			forkItemProvider = new ForkItemProvider(this);
-		}
+      if (forkItemProvider == null) {
+         forkItemProvider = new ForkItemProvider(this);
+      }
 
-		return forkItemProvider;
-	}
+      return forkItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.SpecializationAction} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.SpecializationAction} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected SpecializationActionItemProvider specializationActionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.SpecializationAction}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.SpecializationAction}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createSpecializationActionAdapter() {
-		if (specializationActionItemProvider == null) {
-			specializationActionItemProvider = new SpecializationActionItemProvider(this);
-		}
+      if (specializationActionItemProvider == null) {
+         specializationActionItemProvider = new SpecializationActionItemProvider(this);
+      }
 
-		return specializationActionItemProvider;
-	}
+      return specializationActionItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.IdleAction} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.IdleAction} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected IdleActionItemProvider idleActionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.IdleAction}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.IdleAction}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createIdleActionAdapter() {
-		if (idleActionItemProvider == null) {
-			idleActionItemProvider = new IdleActionItemProvider(this);
-		}
+      if (idleActionItemProvider == null) {
+         idleActionItemProvider = new IdleActionItemProvider(this);
+      }
 
-		return idleActionItemProvider;
-	}
+      return idleActionItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.InheritsFrom} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.InheritsFrom} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected InheritsFromItemProvider inheritsFromItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.InheritsFrom}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.InheritsFrom}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createInheritsFromAdapter() {
-		if (inheritsFromItemProvider == null) {
-			inheritsFromItemProvider = new InheritsFromItemProvider(this);
-		}
+      if (inheritsFromItemProvider == null) {
+         inheritsFromItemProvider = new InheritsFromItemProvider(this);
+      }
 
-		return inheritsFromItemProvider;
-	}
+      return inheritsFromItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.BelongsTo} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.BelongsTo} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected BelongsToItemProvider belongsToItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.BelongsTo}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.BelongsTo}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createBelongsToAdapter() {
-		if (belongsToItemProvider == null) {
-			belongsToItemProvider = new BelongsToItemProvider(this);
-		}
+      if (belongsToItemProvider == null) {
+         belongsToItemProvider = new BelongsToItemProvider(this);
+      }
 
-		return belongsToItemProvider;
-	}
+      return belongsToItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveNodes} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveNodes} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RemoveNodesItemProvider removeNodesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.RemoveNodes}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.RemoveNodes}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createRemoveNodesAdapter() {
-		if (removeNodesItemProvider == null) {
-			removeNodesItemProvider = new RemoveNodesItemProvider(this);
-		}
+      if (removeNodesItemProvider == null) {
+         removeNodesItemProvider = new RemoveNodesItemProvider(this);
+      }
 
-		return removeNodesItemProvider;
-	}
+      return removeNodesItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveEdges} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.RemoveEdges} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RemoveEdgesItemProvider removeEdgesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.RemoveEdges}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.RemoveEdges}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createRemoveEdgesAdapter() {
-		if (removeEdgesItemProvider == null) {
-			removeEdgesItemProvider = new RemoveEdgesItemProvider(this);
-		}
+      if (removeEdgesItemProvider == null) {
+         removeEdgesItemProvider = new RemoveEdgesItemProvider(this);
+      }
 
-		return removeEdgesItemProvider;
-	}
+      return removeEdgesItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddEdges} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddEdges} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected AddEdgesItemProvider addEdgesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.AddEdges}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.AddEdges}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createAddEdgesAdapter() {
-		if (addEdgesItemProvider == null) {
-			addEdgesItemProvider = new AddEdgesItemProvider(this);
-		}
+      if (addEdgesItemProvider == null) {
+         addEdgesItemProvider = new AddEdgesItemProvider(this);
+      }
 
-		return addEdgesItemProvider;
-	}
+      return addEdgesItemProvider;
+   }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddNodes} instances.
-	 * <!-- begin-user-doc -->
+    * This keeps track of the one adapter used for all {@link org.js.graph.transformation.AddNodes} instances.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected AddNodesItemProvider addNodesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.js.graph.transformation.AddNodes}.
-	 * <!-- begin-user-doc -->
+    * This creates an adapter for a {@link org.js.graph.transformation.AddNodes}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter createAddNodesAdapter() {
-		if (addNodesItemProvider == null) {
-			addNodesItemProvider = new AddNodesItemProvider(this);
-		}
+      if (addNodesItemProvider == null) {
+         addNodesItemProvider = new AddNodesItemProvider(this);
+      }
 
-		return addNodesItemProvider;
-	}
+      return addNodesItemProvider;
+   }
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+    * This returns the root adapter factory that contains this factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-	}
+      return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+   }
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+    * This sets the composed adapter factory that contains this factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-		this.parentAdapterFactory = parentAdapterFactory;
-	}
+      this.parentAdapterFactory = parentAdapterFactory;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
-	}
+      return supportedTypes.contains(type) || super.isFactoryForType(type);
+   }
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc -->
+    * This implementation substitutes the factory itself as the key for the adapter.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
-		return super.adapt(notifier, this);
-	}
+      return super.adapt(notifier, this);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
-			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-				return adapter;
-			}
-		}
+      if (isFactoryForType(type)) {
+         Object adapter = super.adapt(object, type);
+         if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+            return adapter;
+         }
+      }
 
-		return null;
-	}
+      return null;
+   }
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc -->
+    * This adds a listener.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.addListener(notifyChangedListener);
-	}
+      changeNotifier.addListener(notifyChangedListener);
+   }
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc -->
+    * This removes a listener.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.removeListener(notifyChangedListener);
-	}
+      changeNotifier.removeListener(notifyChangedListener);
+   }
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc -->
+    * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void fireNotifyChanged(Notification notification) {
-		changeNotifier.fireNotifyChanged(notification);
+      changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
-		}
-	}
+      if (parentAdapterFactory != null) {
+         parentAdapterFactory.fireNotifyChanged(notification);
+      }
+   }
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
+    * This disposes all of the item providers created by this factory. 
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void dispose() {
-		if (graphTransformationItemProvider != null) graphTransformationItemProvider.dispose();
-		if (ruleItemProvider != null) ruleItemProvider.dispose();
-		if (leftSideItemProvider != null) leftSideItemProvider.dispose();
-		if (rolesItemProvider != null) rolesItemProvider.dispose();
-		if (applicationConditionsItemProvider != null) applicationConditionsItemProvider.dispose();
-		if (operationsItemProvider != null) operationsItemProvider.dispose();
-		if (edgeItemProvider != null) edgeItemProvider.dispose();
-		if (existingRoleItemProvider != null) existingRoleItemProvider.dispose();
-		if (arrivingRoleItemProvider != null) arrivingRoleItemProvider.dispose();
-		if (initialItemProvider != null) initialItemProvider.dispose();
-		if (activityFinalItemProvider != null) activityFinalItemProvider.dispose();
-		if (flowFinalItemProvider != null) flowFinalItemProvider.dispose();
-		if (forkItemProvider != null) forkItemProvider.dispose();
-		if (specializationActionItemProvider != null) specializationActionItemProvider.dispose();
-		if (idleActionItemProvider != null) idleActionItemProvider.dispose();
-		if (inheritsFromItemProvider != null) inheritsFromItemProvider.dispose();
-		if (belongsToItemProvider != null) belongsToItemProvider.dispose();
-		if (removeNodesItemProvider != null) removeNodesItemProvider.dispose();
-		if (removeEdgesItemProvider != null) removeEdgesItemProvider.dispose();
-		if (addEdgesItemProvider != null) addEdgesItemProvider.dispose();
-		if (addNodesItemProvider != null) addNodesItemProvider.dispose();
-	}
+      if (graphTransformationItemProvider != null) graphTransformationItemProvider.dispose();
+      if (ruleItemProvider != null) ruleItemProvider.dispose();
+      if (leftSideItemProvider != null) leftSideItemProvider.dispose();
+      if (rolesItemProvider != null) rolesItemProvider.dispose();
+      if (applicationConditionsItemProvider != null) applicationConditionsItemProvider.dispose();
+      if (operationsItemProvider != null) operationsItemProvider.dispose();
+      if (edgeItemProvider != null) edgeItemProvider.dispose();
+      if (existingRoleItemProvider != null) existingRoleItemProvider.dispose();
+      if (arrivingRoleItemProvider != null) arrivingRoleItemProvider.dispose();
+      if (initialItemProvider != null) initialItemProvider.dispose();
+      if (activityFinalItemProvider != null) activityFinalItemProvider.dispose();
+      if (flowFinalItemProvider != null) flowFinalItemProvider.dispose();
+      if (forkItemProvider != null) forkItemProvider.dispose();
+      if (specializationActionItemProvider != null) specializationActionItemProvider.dispose();
+      if (idleActionItemProvider != null) idleActionItemProvider.dispose();
+      if (inheritsFromItemProvider != null) inheritsFromItemProvider.dispose();
+      if (belongsToItemProvider != null) belongsToItemProvider.dispose();
+      if (removeNodesItemProvider != null) removeNodesItemProvider.dispose();
+      if (removeEdgesItemProvider != null) removeEdgesItemProvider.dispose();
+      if (addEdgesItemProvider != null) addEdgesItemProvider.dispose();
+      if (addNodesItemProvider != null) addNodesItemProvider.dispose();
+   }
 
 }

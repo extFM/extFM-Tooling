@@ -31,255 +31,255 @@ import org.js.graph.transformation.VariableRole;
  */
 public class BelongsToImpl extends MinimalEObjectImpl.Container implements BelongsTo {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected static final String NAME_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLeader() <em>Leader</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getLeader() <em>Leader</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeader()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getLeader()
+    * @generated
+    * @ordered
+    */
 	protected VariableRole leader;
 
 	/**
-	 * The cached value of the '{@link #getMember() <em>Member</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getMember() <em>Member</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMember()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getMember()
+    * @generated
+    * @ordered
+    */
 	protected VariableRole member;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected BelongsToImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.BELONGS_TO;
-	}
+      return TransformationPackage.Literals.BELONGS_TO;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public String getName() {
-		return name;
-	}
+      return name;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.BELONGS_TO__NAME, oldName, name));
-	}
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.BELONGS_TO__NAME, oldName, name));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public VariableRole getLeader() {
-		if (leader != null && leader.eIsProxy()) {
-			InternalEObject oldLeader = (InternalEObject)leader;
-			leader = (VariableRole)eResolveProxy(oldLeader);
-			if (leader != oldLeader) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.BELONGS_TO__LEADER, oldLeader, leader));
-			}
-		}
-		return leader;
-	}
+      if (leader != null && leader.eIsProxy()) {
+         InternalEObject oldLeader = (InternalEObject)leader;
+         leader = (VariableRole)eResolveProxy(oldLeader);
+         if (leader != oldLeader) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.BELONGS_TO__LEADER, oldLeader, leader));
+         }
+      }
+      return leader;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public VariableRole basicGetLeader() {
-		return leader;
-	}
+      return leader;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setLeader(VariableRole newLeader) {
-		VariableRole oldLeader = leader;
-		leader = newLeader;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.BELONGS_TO__LEADER, oldLeader, leader));
-	}
+      VariableRole oldLeader = leader;
+      leader = newLeader;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.BELONGS_TO__LEADER, oldLeader, leader));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public VariableRole getMember() {
-		if (member != null && member.eIsProxy()) {
-			InternalEObject oldMember = (InternalEObject)member;
-			member = (VariableRole)eResolveProxy(oldMember);
-			if (member != oldMember) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.BELONGS_TO__MEMBER, oldMember, member));
-			}
-		}
-		return member;
-	}
+      if (member != null && member.eIsProxy()) {
+         InternalEObject oldMember = (InternalEObject)member;
+         member = (VariableRole)eResolveProxy(oldMember);
+         if (member != oldMember) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.BELONGS_TO__MEMBER, oldMember, member));
+         }
+      }
+      return member;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public VariableRole basicGetMember() {
-		return member;
-	}
+      return member;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setMember(VariableRole newMember) {
-		VariableRole oldMember = member;
-		member = newMember;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.BELONGS_TO__MEMBER, oldMember, member));
-	}
+      VariableRole oldMember = member;
+      member = newMember;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.BELONGS_TO__MEMBER, oldMember, member));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.BELONGS_TO__NAME:
-				return getName();
-			case TransformationPackage.BELONGS_TO__LEADER:
-				if (resolve) return getLeader();
-				return basicGetLeader();
-			case TransformationPackage.BELONGS_TO__MEMBER:
-				if (resolve) return getMember();
-				return basicGetMember();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.BELONGS_TO__NAME:
+            return getName();
+         case TransformationPackage.BELONGS_TO__LEADER:
+            if (resolve) return getLeader();
+            return basicGetLeader();
+         case TransformationPackage.BELONGS_TO__MEMBER:
+            if (resolve) return getMember();
+            return basicGetMember();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.BELONGS_TO__NAME:
-				setName((String)newValue);
-				return;
-			case TransformationPackage.BELONGS_TO__LEADER:
-				setLeader((VariableRole)newValue);
-				return;
-			case TransformationPackage.BELONGS_TO__MEMBER:
-				setMember((VariableRole)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.BELONGS_TO__NAME:
+            setName((String)newValue);
+            return;
+         case TransformationPackage.BELONGS_TO__LEADER:
+            setLeader((VariableRole)newValue);
+            return;
+         case TransformationPackage.BELONGS_TO__MEMBER:
+            setMember((VariableRole)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.BELONGS_TO__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TransformationPackage.BELONGS_TO__LEADER:
-				setLeader((VariableRole)null);
-				return;
-			case TransformationPackage.BELONGS_TO__MEMBER:
-				setMember((VariableRole)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.BELONGS_TO__NAME:
+            setName(NAME_EDEFAULT);
+            return;
+         case TransformationPackage.BELONGS_TO__LEADER:
+            setLeader((VariableRole)null);
+            return;
+         case TransformationPackage.BELONGS_TO__MEMBER:
+            setMember((VariableRole)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.BELONGS_TO__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TransformationPackage.BELONGS_TO__LEADER:
-				return leader != null;
-			case TransformationPackage.BELONGS_TO__MEMBER:
-				return member != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.BELONGS_TO__NAME:
+            return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+         case TransformationPackage.BELONGS_TO__LEADER:
+            return leader != null;
+         case TransformationPackage.BELONGS_TO__MEMBER:
+            return member != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+      if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuffer result = new StringBuffer(super.toString());
+      result.append(" (name: ");
+      result.append(name);
+      result.append(')');
+      return result.toString();
+   }
 
 } //BelongsToImpl

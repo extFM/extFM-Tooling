@@ -39,237 +39,237 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class ForkImpl extends MinimalEObjectImpl.Container implements Fork {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected static final String NAME_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIn() <em>In</em>}' reference list.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getIn() <em>In</em>}' reference list.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIn()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getIn()
+    * @generated
+    * @ordered
+    */
 	protected EList<Edge> in;
 
 	/**
-	 * The cached value of the '{@link #getOut() <em>Out</em>}' reference list.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getOut() <em>Out</em>}' reference list.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOut()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getOut()
+    * @generated
+    * @ordered
+    */
 	protected EList<Edge> out;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ForkImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.FORK;
-	}
+      return TransformationPackage.Literals.FORK;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public String getName() {
-		return name;
-	}
+      return name;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.FORK__NAME, oldName, name));
-	}
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.FORK__NAME, oldName, name));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EList<Edge> getIn() {
-		if (in == null) {
-			in = new EObjectWithInverseResolvingEList<Edge>(Edge.class, this, TransformationPackage.FORK__IN, TransformationPackage.EDGE__TARGET);
-		}
-		return in;
-	}
+      if (in == null) {
+         in = new EObjectWithInverseResolvingEList<Edge>(Edge.class, this, TransformationPackage.FORK__IN, TransformationPackage.EDGE__TARGET);
+      }
+      return in;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EList<Edge> getOut() {
-		if (out == null) {
-			out = new EObjectWithInverseResolvingEList<Edge>(Edge.class, this, TransformationPackage.FORK__OUT, TransformationPackage.EDGE__SOURCE);
-		}
-		return out;
-	}
+      if (out == null) {
+         out = new EObjectWithInverseResolvingEList<Edge>(Edge.class, this, TransformationPackage.FORK__OUT, TransformationPackage.EDGE__SOURCE);
+      }
+      return out;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.FORK__IN:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIn()).basicAdd(otherEnd, msgs);
-			case TransformationPackage.FORK__OUT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOut()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.FORK__IN:
+            return ((InternalEList<InternalEObject>)(InternalEList<?>)getIn()).basicAdd(otherEnd, msgs);
+         case TransformationPackage.FORK__OUT:
+            return ((InternalEList<InternalEObject>)(InternalEList<?>)getOut()).basicAdd(otherEnd, msgs);
+      }
+      return super.eInverseAdd(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.FORK__IN:
-				return ((InternalEList<?>)getIn()).basicRemove(otherEnd, msgs);
-			case TransformationPackage.FORK__OUT:
-				return ((InternalEList<?>)getOut()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.FORK__IN:
+            return ((InternalEList<?>)getIn()).basicRemove(otherEnd, msgs);
+         case TransformationPackage.FORK__OUT:
+            return ((InternalEList<?>)getOut()).basicRemove(otherEnd, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.FORK__NAME:
-				return getName();
-			case TransformationPackage.FORK__IN:
-				return getIn();
-			case TransformationPackage.FORK__OUT:
-				return getOut();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.FORK__NAME:
+            return getName();
+         case TransformationPackage.FORK__IN:
+            return getIn();
+         case TransformationPackage.FORK__OUT:
+            return getOut();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.FORK__NAME:
-				setName((String)newValue);
-				return;
-			case TransformationPackage.FORK__IN:
-				getIn().clear();
-				getIn().addAll((Collection<? extends Edge>)newValue);
-				return;
-			case TransformationPackage.FORK__OUT:
-				getOut().clear();
-				getOut().addAll((Collection<? extends Edge>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.FORK__NAME:
+            setName((String)newValue);
+            return;
+         case TransformationPackage.FORK__IN:
+            getIn().clear();
+            getIn().addAll((Collection<? extends Edge>)newValue);
+            return;
+         case TransformationPackage.FORK__OUT:
+            getOut().clear();
+            getOut().addAll((Collection<? extends Edge>)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.FORK__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TransformationPackage.FORK__IN:
-				getIn().clear();
-				return;
-			case TransformationPackage.FORK__OUT:
-				getOut().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.FORK__NAME:
+            setName(NAME_EDEFAULT);
+            return;
+         case TransformationPackage.FORK__IN:
+            getIn().clear();
+            return;
+         case TransformationPackage.FORK__OUT:
+            getOut().clear();
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.FORK__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TransformationPackage.FORK__IN:
-				return in != null && !in.isEmpty();
-			case TransformationPackage.FORK__OUT:
-				return out != null && !out.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.FORK__NAME:
+            return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+         case TransformationPackage.FORK__IN:
+            return in != null && !in.isEmpty();
+         case TransformationPackage.FORK__OUT:
+            return out != null && !out.isEmpty();
+      }
+      return super.eIsSet(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+      if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuffer result = new StringBuffer(super.toString());
+      result.append(" (name: ");
+      result.append(name);
+      result.append(')');
+      return result.toString();
+   }
 
 } //ForkImpl

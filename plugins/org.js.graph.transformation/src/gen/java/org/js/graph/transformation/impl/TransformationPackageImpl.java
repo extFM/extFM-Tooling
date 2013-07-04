@@ -48,992 +48,992 @@ import org.js.model.rbac.RbacPackage;
  */
 public class TransformationPackageImpl extends EPackageImpl implements TransformationPackage {
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass graphTransformationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass ruleEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass leftSideEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass rolesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass applicationConditionsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass operationsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass nodeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass edgeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass existingRoleEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass arrivingRoleEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass conditionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass graphOperationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass initialEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass activityFinalEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass flowFinalEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass forkEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass specializationActionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass idleActionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass variableRoleEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass inheritsFromEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass belongsToEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass removeNodesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass removeEdgesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass addEdgesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass addNodesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private EClass nameableEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
+    * Creates an instance of the model <b>Package</b>, registered with
+    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+    * package URI value.
+    * <p>Note: the correct way to create the package is via the static
+    * factory method {@link #init init()}, which also performs
+    * initialization of the package, or returns the registered package,
+    * if one already exists.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.js.graph.transformation.TransformationPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
+    * @see org.eclipse.emf.ecore.EPackage.Registry
+    * @see org.js.graph.transformation.TransformationPackage#eNS_URI
+    * @see #init()
+    * @generated
+    */
 	private TransformationPackageImpl() {
-		super(eNS_URI, TransformationFactory.eINSTANCE);
-	}
+      super(eNS_URI, TransformationFactory.eINSTANCE);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link TransformationPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+    * 
+    * <p>This method is used to initialize {@link TransformationPackage#eINSTANCE} when that field is accessed.
+    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #eNS_URI
-	 * @see #createPackageContents()
-	 * @see #initializePackageContents()
-	 * @generated
-	 */
+    * @see #eNS_URI
+    * @see #createPackageContents()
+    * @see #initializePackageContents()
+    * @generated
+    */
 	public static TransformationPackage init() {
-		if (isInited) return (TransformationPackage)EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI);
+      if (isInited) return (TransformationPackage)EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI);
 
-		// Obtain or create and register package
-		TransformationPackageImpl theTransformationPackage = (TransformationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TransformationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TransformationPackageImpl());
+      // Obtain or create and register package
+      TransformationPackageImpl theTransformationPackage = (TransformationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TransformationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TransformationPackageImpl());
 
-		isInited = true;
+      isInited = true;
 
-		// Initialize simple dependencies
-		RbacPackage.eINSTANCE.eClass();
+      // Initialize simple dependencies
+      RbacPackage.eINSTANCE.eClass();
 
-		// Create package meta-data objects
-		theTransformationPackage.createPackageContents();
+      // Create package meta-data objects
+      theTransformationPackage.createPackageContents();
 
-		// Initialize created meta-data
-		theTransformationPackage.initializePackageContents();
+      // Initialize created meta-data
+      theTransformationPackage.initializePackageContents();
 
-		// Mark meta-data to indicate it can't be changed
-		theTransformationPackage.freeze();
+      // Mark meta-data to indicate it can't be changed
+      theTransformationPackage.freeze();
 
   
-		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(TransformationPackage.eNS_URI, theTransformationPackage);
-		return theTransformationPackage;
-	}
+      // Update the registry and return the package
+      EPackage.Registry.INSTANCE.put(TransformationPackage.eNS_URI, theTransformationPackage);
+      return theTransformationPackage;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getGraphTransformation() {
-		return graphTransformationEClass;
-	}
+      return graphTransformationEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getGraphTransformation_Rules() {
-		return (EReference)graphTransformationEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)graphTransformationEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getRule() {
-		return ruleEClass;
-	}
+      return ruleEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRule_Leftside() {
-		return (EReference)ruleEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)ruleEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRule_Roles() {
-		return (EReference)ruleEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)ruleEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRule_ApplicationConditions() {
-		return (EReference)ruleEClass.getEStructuralFeatures().get(2);
-	}
+      return (EReference)ruleEClass.getEStructuralFeatures().get(2);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRule_Operations() {
-		return (EReference)ruleEClass.getEStructuralFeatures().get(3);
-	}
+      return (EReference)ruleEClass.getEStructuralFeatures().get(3);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getLeftSide() {
-		return leftSideEClass;
-	}
+      return leftSideEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getLeftSide_Nodes() {
-		return (EReference)leftSideEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)leftSideEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getLeftSide_Edges() {
-		return (EReference)leftSideEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)leftSideEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getRoles() {
-		return rolesEClass;
-	}
+      return rolesEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRoles_ExistingRoles() {
-		return (EReference)rolesEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)rolesEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRoles_ArrivingRole() {
-		return (EReference)rolesEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)rolesEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getApplicationConditions() {
-		return applicationConditionsEClass;
-	}
+      return applicationConditionsEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getApplicationConditions_Conditions() {
-		return (EReference)applicationConditionsEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)applicationConditionsEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getOperations() {
-		return operationsEClass;
-	}
+      return operationsEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getOperations_RemoveEdges() {
-		return (EReference)operationsEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)operationsEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getOperations_RemoveNodes() {
-		return (EReference)operationsEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)operationsEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getOperations_AddNodes() {
-		return (EReference)operationsEClass.getEStructuralFeatures().get(2);
-	}
+      return (EReference)operationsEClass.getEStructuralFeatures().get(2);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getOperations_AddEdges() {
-		return (EReference)operationsEClass.getEStructuralFeatures().get(3);
-	}
+      return (EReference)operationsEClass.getEStructuralFeatures().get(3);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getNode() {
-		return nodeEClass;
-	}
+      return nodeEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getNode_In() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)nodeEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getNode_Out() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)nodeEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getEdge() {
-		return edgeEClass;
-	}
+      return edgeEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getEdge_Source() {
-		return (EReference)edgeEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)edgeEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getEdge_Target() {
-		return (EReference)edgeEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)edgeEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getExistingRole() {
-		return existingRoleEClass;
-	}
+      return existingRoleEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getArrivingRole() {
-		return arrivingRoleEClass;
-	}
+      return arrivingRoleEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getCondition() {
-		return conditionEClass;
-	}
+      return conditionEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getGraphOperation() {
-		return graphOperationEClass;
-	}
+      return graphOperationEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getInitial() {
-		return initialEClass;
-	}
+      return initialEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getActivityFinal() {
-		return activityFinalEClass;
-	}
+      return activityFinalEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getFlowFinal() {
-		return flowFinalEClass;
-	}
+      return flowFinalEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getFork() {
-		return forkEClass;
-	}
+      return forkEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getSpecializationAction() {
-		return specializationActionEClass;
-	}
+      return specializationActionEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getSpecializationAction_VariableRole() {
-		return (EReference)specializationActionEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)specializationActionEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getIdleAction() {
-		return idleActionEClass;
-	}
+      return idleActionEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getVariableRole() {
-		return variableRoleEClass;
-	}
+      return variableRoleEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getVariableRole_Action() {
-		return (EReference)variableRoleEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)variableRoleEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getInheritsFrom() {
-		return inheritsFromEClass;
-	}
+      return inheritsFromEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getInheritsFrom_Parent() {
-		return (EReference)inheritsFromEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)inheritsFromEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getInheritsFrom_Child() {
-		return (EReference)inheritsFromEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)inheritsFromEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getBelongsTo() {
-		return belongsToEClass;
-	}
+      return belongsToEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getBelongsTo_Leader() {
-		return (EReference)belongsToEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)belongsToEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getBelongsTo_Member() {
-		return (EReference)belongsToEClass.getEStructuralFeatures().get(1);
-	}
+      return (EReference)belongsToEClass.getEStructuralFeatures().get(1);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getRemoveNodes() {
-		return removeNodesEClass;
-	}
+      return removeNodesEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRemoveNodes_Node() {
-		return (EReference)removeNodesEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)removeNodesEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getRemoveEdges() {
-		return removeEdgesEClass;
-	}
+      return removeEdgesEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getRemoveEdges_Edge() {
-		return (EReference)removeEdgesEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)removeEdgesEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getAddEdges() {
-		return addEdgesEClass;
-	}
+      return addEdgesEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getAddEdges_Edge() {
-		return (EReference)addEdgesEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)addEdgesEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getAddNodes() {
-		return addNodesEClass;
-	}
+      return addNodesEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EReference getAddNodes_Node() {
-		return (EReference)addNodesEClass.getEStructuralFeatures().get(0);
-	}
+      return (EReference)addNodesEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EClass getNameable() {
-		return nameableEClass;
-	}
+      return nameableEClass;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EAttribute getNameable_Name() {
-		return (EAttribute)nameableEClass.getEStructuralFeatures().get(0);
-	}
+      return (EAttribute)nameableEClass.getEStructuralFeatures().get(0);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public TransformationFactory getTransformationFactory() {
-		return (TransformationFactory)getEFactoryInstance();
-	}
+      return (TransformationFactory)getEFactoryInstance();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+    * Creates the meta-model objects for the package.  This method is
+    * guarded to have no affect on any invocation but its first.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void createPackageContents() {
-		if (isCreated) return;
-		isCreated = true;
+      if (isCreated) return;
+      isCreated = true;
 
-		// Create classes and their features
-		graphTransformationEClass = createEClass(GRAPH_TRANSFORMATION);
-		createEReference(graphTransformationEClass, GRAPH_TRANSFORMATION__RULES);
+      // Create classes and their features
+      graphTransformationEClass = createEClass(GRAPH_TRANSFORMATION);
+      createEReference(graphTransformationEClass, GRAPH_TRANSFORMATION__RULES);
 
-		ruleEClass = createEClass(RULE);
-		createEReference(ruleEClass, RULE__LEFTSIDE);
-		createEReference(ruleEClass, RULE__ROLES);
-		createEReference(ruleEClass, RULE__APPLICATION_CONDITIONS);
-		createEReference(ruleEClass, RULE__OPERATIONS);
+      ruleEClass = createEClass(RULE);
+      createEReference(ruleEClass, RULE__LEFTSIDE);
+      createEReference(ruleEClass, RULE__ROLES);
+      createEReference(ruleEClass, RULE__APPLICATION_CONDITIONS);
+      createEReference(ruleEClass, RULE__OPERATIONS);
 
-		leftSideEClass = createEClass(LEFT_SIDE);
-		createEReference(leftSideEClass, LEFT_SIDE__NODES);
-		createEReference(leftSideEClass, LEFT_SIDE__EDGES);
+      leftSideEClass = createEClass(LEFT_SIDE);
+      createEReference(leftSideEClass, LEFT_SIDE__NODES);
+      createEReference(leftSideEClass, LEFT_SIDE__EDGES);
 
-		rolesEClass = createEClass(ROLES);
-		createEReference(rolesEClass, ROLES__EXISTING_ROLES);
-		createEReference(rolesEClass, ROLES__ARRIVING_ROLE);
+      rolesEClass = createEClass(ROLES);
+      createEReference(rolesEClass, ROLES__EXISTING_ROLES);
+      createEReference(rolesEClass, ROLES__ARRIVING_ROLE);
 
-		applicationConditionsEClass = createEClass(APPLICATION_CONDITIONS);
-		createEReference(applicationConditionsEClass, APPLICATION_CONDITIONS__CONDITIONS);
+      applicationConditionsEClass = createEClass(APPLICATION_CONDITIONS);
+      createEReference(applicationConditionsEClass, APPLICATION_CONDITIONS__CONDITIONS);
 
-		operationsEClass = createEClass(OPERATIONS);
-		createEReference(operationsEClass, OPERATIONS__REMOVE_EDGES);
-		createEReference(operationsEClass, OPERATIONS__REMOVE_NODES);
-		createEReference(operationsEClass, OPERATIONS__ADD_NODES);
-		createEReference(operationsEClass, OPERATIONS__ADD_EDGES);
+      operationsEClass = createEClass(OPERATIONS);
+      createEReference(operationsEClass, OPERATIONS__REMOVE_EDGES);
+      createEReference(operationsEClass, OPERATIONS__REMOVE_NODES);
+      createEReference(operationsEClass, OPERATIONS__ADD_NODES);
+      createEReference(operationsEClass, OPERATIONS__ADD_EDGES);
 
-		nodeEClass = createEClass(NODE);
-		createEReference(nodeEClass, NODE__IN);
-		createEReference(nodeEClass, NODE__OUT);
+      nodeEClass = createEClass(NODE);
+      createEReference(nodeEClass, NODE__IN);
+      createEReference(nodeEClass, NODE__OUT);
 
-		edgeEClass = createEClass(EDGE);
-		createEReference(edgeEClass, EDGE__SOURCE);
-		createEReference(edgeEClass, EDGE__TARGET);
+      edgeEClass = createEClass(EDGE);
+      createEReference(edgeEClass, EDGE__SOURCE);
+      createEReference(edgeEClass, EDGE__TARGET);
 
-		existingRoleEClass = createEClass(EXISTING_ROLE);
+      existingRoleEClass = createEClass(EXISTING_ROLE);
 
-		arrivingRoleEClass = createEClass(ARRIVING_ROLE);
+      arrivingRoleEClass = createEClass(ARRIVING_ROLE);
 
-		conditionEClass = createEClass(CONDITION);
+      conditionEClass = createEClass(CONDITION);
 
-		graphOperationEClass = createEClass(GRAPH_OPERATION);
+      graphOperationEClass = createEClass(GRAPH_OPERATION);
 
-		initialEClass = createEClass(INITIAL);
+      initialEClass = createEClass(INITIAL);
 
-		activityFinalEClass = createEClass(ACTIVITY_FINAL);
+      activityFinalEClass = createEClass(ACTIVITY_FINAL);
 
-		flowFinalEClass = createEClass(FLOW_FINAL);
+      flowFinalEClass = createEClass(FLOW_FINAL);
 
-		forkEClass = createEClass(FORK);
+      forkEClass = createEClass(FORK);
 
-		specializationActionEClass = createEClass(SPECIALIZATION_ACTION);
-		createEReference(specializationActionEClass, SPECIALIZATION_ACTION__VARIABLE_ROLE);
+      specializationActionEClass = createEClass(SPECIALIZATION_ACTION);
+      createEReference(specializationActionEClass, SPECIALIZATION_ACTION__VARIABLE_ROLE);
 
-		idleActionEClass = createEClass(IDLE_ACTION);
+      idleActionEClass = createEClass(IDLE_ACTION);
 
-		variableRoleEClass = createEClass(VARIABLE_ROLE);
-		createEReference(variableRoleEClass, VARIABLE_ROLE__ACTION);
+      variableRoleEClass = createEClass(VARIABLE_ROLE);
+      createEReference(variableRoleEClass, VARIABLE_ROLE__ACTION);
 
-		inheritsFromEClass = createEClass(INHERITS_FROM);
-		createEReference(inheritsFromEClass, INHERITS_FROM__PARENT);
-		createEReference(inheritsFromEClass, INHERITS_FROM__CHILD);
+      inheritsFromEClass = createEClass(INHERITS_FROM);
+      createEReference(inheritsFromEClass, INHERITS_FROM__PARENT);
+      createEReference(inheritsFromEClass, INHERITS_FROM__CHILD);
 
-		belongsToEClass = createEClass(BELONGS_TO);
-		createEReference(belongsToEClass, BELONGS_TO__LEADER);
-		createEReference(belongsToEClass, BELONGS_TO__MEMBER);
+      belongsToEClass = createEClass(BELONGS_TO);
+      createEReference(belongsToEClass, BELONGS_TO__LEADER);
+      createEReference(belongsToEClass, BELONGS_TO__MEMBER);
 
-		removeNodesEClass = createEClass(REMOVE_NODES);
-		createEReference(removeNodesEClass, REMOVE_NODES__NODE);
+      removeNodesEClass = createEClass(REMOVE_NODES);
+      createEReference(removeNodesEClass, REMOVE_NODES__NODE);
 
-		removeEdgesEClass = createEClass(REMOVE_EDGES);
-		createEReference(removeEdgesEClass, REMOVE_EDGES__EDGE);
+      removeEdgesEClass = createEClass(REMOVE_EDGES);
+      createEReference(removeEdgesEClass, REMOVE_EDGES__EDGE);
 
-		addEdgesEClass = createEClass(ADD_EDGES);
-		createEReference(addEdgesEClass, ADD_EDGES__EDGE);
+      addEdgesEClass = createEClass(ADD_EDGES);
+      createEReference(addEdgesEClass, ADD_EDGES__EDGE);
 
-		addNodesEClass = createEClass(ADD_NODES);
-		createEReference(addNodesEClass, ADD_NODES__NODE);
+      addNodesEClass = createEClass(ADD_NODES);
+      createEReference(addNodesEClass, ADD_NODES__NODE);
 
-		nameableEClass = createEClass(NAMEABLE);
-		createEAttribute(nameableEClass, NAMEABLE__NAME);
-	}
+      nameableEClass = createEClass(NAMEABLE);
+      createEAttribute(nameableEClass, NAMEABLE__NAME);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+    * Complete the initialization of the package and its meta-model.  This
+    * method is guarded to have no affect on any invocation but its first.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void initializePackageContents() {
-		if (isInitialized) return;
-		isInitialized = true;
+      if (isInitialized) return;
+      isInitialized = true;
 
-		// Initialize package
-		setName(eNAME);
-		setNsPrefix(eNS_PREFIX);
-		setNsURI(eNS_URI);
+      // Initialize package
+      setName(eNAME);
+      setNsPrefix(eNS_PREFIX);
+      setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		RbacPackage theRbacPackage = (RbacPackage)EPackage.Registry.INSTANCE.getEPackage(RbacPackage.eNS_URI);
+      // Obtain other dependent packages
+      RbacPackage theRbacPackage = (RbacPackage)EPackage.Registry.INSTANCE.getEPackage(RbacPackage.eNS_URI);
 
-		// Create type parameters
+      // Create type parameters
 
-		// Set bounds for type parameters
+      // Set bounds for type parameters
 
-		// Add supertypes to classes
-		ruleEClass.getESuperTypes().add(this.getNameable());
-		nodeEClass.getESuperTypes().add(this.getNameable());
-		edgeEClass.getESuperTypes().add(this.getNameable());
-		existingRoleEClass.getESuperTypes().add(this.getVariableRole());
-		arrivingRoleEClass.getESuperTypes().add(this.getVariableRole());
-		conditionEClass.getESuperTypes().add(this.getNameable());
-		graphOperationEClass.getESuperTypes().add(this.getNameable());
-		initialEClass.getESuperTypes().add(this.getNode());
-		activityFinalEClass.getESuperTypes().add(this.getNode());
-		flowFinalEClass.getESuperTypes().add(this.getNode());
-		forkEClass.getESuperTypes().add(this.getNode());
-		specializationActionEClass.getESuperTypes().add(this.getNode());
-		idleActionEClass.getESuperTypes().add(this.getNode());
-		variableRoleEClass.getESuperTypes().add(this.getNameable());
-		inheritsFromEClass.getESuperTypes().add(this.getCondition());
-		belongsToEClass.getESuperTypes().add(this.getCondition());
-		removeNodesEClass.getESuperTypes().add(this.getGraphOperation());
-		removeEdgesEClass.getESuperTypes().add(this.getGraphOperation());
-		addEdgesEClass.getESuperTypes().add(this.getGraphOperation());
-		addNodesEClass.getESuperTypes().add(this.getGraphOperation());
+      // Add supertypes to classes
+      ruleEClass.getESuperTypes().add(this.getNameable());
+      nodeEClass.getESuperTypes().add(this.getNameable());
+      edgeEClass.getESuperTypes().add(this.getNameable());
+      existingRoleEClass.getESuperTypes().add(this.getVariableRole());
+      arrivingRoleEClass.getESuperTypes().add(this.getVariableRole());
+      conditionEClass.getESuperTypes().add(this.getNameable());
+      graphOperationEClass.getESuperTypes().add(this.getNameable());
+      initialEClass.getESuperTypes().add(this.getNode());
+      activityFinalEClass.getESuperTypes().add(this.getNode());
+      flowFinalEClass.getESuperTypes().add(this.getNode());
+      forkEClass.getESuperTypes().add(this.getNode());
+      specializationActionEClass.getESuperTypes().add(this.getNode());
+      idleActionEClass.getESuperTypes().add(this.getNode());
+      variableRoleEClass.getESuperTypes().add(this.getNameable());
+      inheritsFromEClass.getESuperTypes().add(this.getCondition());
+      belongsToEClass.getESuperTypes().add(this.getCondition());
+      removeNodesEClass.getESuperTypes().add(this.getGraphOperation());
+      removeEdgesEClass.getESuperTypes().add(this.getGraphOperation());
+      addEdgesEClass.getESuperTypes().add(this.getGraphOperation());
+      addNodesEClass.getESuperTypes().add(this.getGraphOperation());
 
-		// Initialize classes, features, and operations; add parameters
-		initEClass(graphTransformationEClass, GraphTransformation.class, "GraphTransformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGraphTransformation_Rules(), this.getRule(), null, "rules", null, 0, -1, GraphTransformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      // Initialize classes, features, and operations; add parameters
+      initEClass(graphTransformationEClass, GraphTransformation.class, "GraphTransformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getGraphTransformation_Rules(), this.getRule(), null, "rules", null, 0, -1, GraphTransformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRule_Leftside(), this.getLeftSide(), null, "leftside", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRule_Roles(), this.getRoles(), null, "roles", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRule_ApplicationConditions(), this.getApplicationConditions(), null, "applicationConditions", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRule_Operations(), this.getOperations(), null, "operations", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getRule_Leftside(), this.getLeftSide(), null, "leftside", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getRule_Roles(), this.getRoles(), null, "roles", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getRule_ApplicationConditions(), this.getApplicationConditions(), null, "applicationConditions", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getRule_Operations(), this.getOperations(), null, "operations", null, 1, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(leftSideEClass, LeftSide.class, "LeftSide", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLeftSide_Nodes(), this.getNode(), null, "nodes", null, 0, -1, LeftSide.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLeftSide_Edges(), this.getEdge(), null, "edges", null, 0, -1, LeftSide.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(leftSideEClass, LeftSide.class, "LeftSide", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getLeftSide_Nodes(), this.getNode(), null, "nodes", null, 0, -1, LeftSide.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getLeftSide_Edges(), this.getEdge(), null, "edges", null, 0, -1, LeftSide.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(rolesEClass, Roles.class, "Roles", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRoles_ExistingRoles(), this.getExistingRole(), null, "existingRoles", null, 0, -1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRoles_ArrivingRole(), this.getArrivingRole(), null, "arrivingRole", null, 1, 1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(rolesEClass, Roles.class, "Roles", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getRoles_ExistingRoles(), this.getExistingRole(), null, "existingRoles", null, 0, -1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getRoles_ArrivingRole(), this.getArrivingRole(), null, "arrivingRole", null, 1, 1, Roles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(applicationConditionsEClass, ApplicationConditions.class, "ApplicationConditions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getApplicationConditions_Conditions(), this.getCondition(), null, "conditions", null, 0, -1, ApplicationConditions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(applicationConditionsEClass, ApplicationConditions.class, "ApplicationConditions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getApplicationConditions_Conditions(), this.getCondition(), null, "conditions", null, 0, -1, ApplicationConditions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(operationsEClass, Operations.class, "Operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperations_RemoveEdges(), this.getRemoveEdges(), null, "removeEdges", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperations_RemoveNodes(), this.getRemoveNodes(), null, "removeNodes", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperations_AddNodes(), this.getAddNodes(), null, "addNodes", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperations_AddEdges(), this.getAddEdges(), null, "addEdges", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(operationsEClass, Operations.class, "Operations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getOperations_RemoveEdges(), this.getRemoveEdges(), null, "removeEdges", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getOperations_RemoveNodes(), this.getRemoveNodes(), null, "removeNodes", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getOperations_AddNodes(), this.getAddNodes(), null, "addNodes", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getOperations_AddEdges(), this.getAddEdges(), null, "addEdges", null, 1, 1, Operations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNode_In(), this.getEdge(), this.getEdge_Target(), "in", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Out(), this.getEdge(), this.getEdge_Source(), "out", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getNode_In(), this.getEdge(), this.getEdge_Target(), "in", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getNode_Out(), this.getEdge(), this.getEdge_Source(), "out", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdge_Source(), this.getNode(), this.getNode_Out(), "source", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEdge_Target(), this.getNode(), this.getNode_In(), "target", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getEdge_Source(), this.getNode(), this.getNode_Out(), "source", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getEdge_Target(), this.getNode(), this.getNode_In(), "target", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(existingRoleEClass, ExistingRole.class, "ExistingRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(existingRoleEClass, ExistingRole.class, "ExistingRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(arrivingRoleEClass, ArrivingRole.class, "ArrivingRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(arrivingRoleEClass, ArrivingRole.class, "ArrivingRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(graphOperationEClass, GraphOperation.class, "GraphOperation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(graphOperationEClass, GraphOperation.class, "GraphOperation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(initialEClass, Initial.class, "Initial", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(initialEClass, Initial.class, "Initial", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(activityFinalEClass, ActivityFinal.class, "ActivityFinal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(activityFinalEClass, ActivityFinal.class, "ActivityFinal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(flowFinalEClass, FlowFinal.class, "FlowFinal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(flowFinalEClass, FlowFinal.class, "FlowFinal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(specializationActionEClass, SpecializationAction.class, "SpecializationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpecializationAction_VariableRole(), this.getVariableRole(), this.getVariableRole_Action(), "variableRole", null, 1, 1, SpecializationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(specializationActionEClass, SpecializationAction.class, "SpecializationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getSpecializationAction_VariableRole(), this.getVariableRole(), this.getVariableRole_Action(), "variableRole", null, 1, 1, SpecializationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(idleActionEClass, IdleAction.class, "IdleAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEClass(idleActionEClass, IdleAction.class, "IdleAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(variableRoleEClass, VariableRole.class, "VariableRole", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableRole_Action(), this.getSpecializationAction(), this.getSpecializationAction_VariableRole(), "action", null, 1, 1, VariableRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(variableRoleEClass, VariableRole.class, "VariableRole", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getVariableRole_Action(), this.getSpecializationAction(), this.getSpecializationAction_VariableRole(), "action", null, 1, 1, VariableRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(inheritsFromEClass, InheritsFrom.class, "InheritsFrom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInheritsFrom_Parent(), theRbacPackage.getRole(), null, "parent", null, 1, 1, InheritsFrom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInheritsFrom_Child(), this.getVariableRole(), null, "child", null, 1, 1, InheritsFrom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(inheritsFromEClass, InheritsFrom.class, "InheritsFrom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getInheritsFrom_Parent(), theRbacPackage.getRole(), null, "parent", null, 1, 1, InheritsFrom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getInheritsFrom_Child(), this.getVariableRole(), null, "child", null, 1, 1, InheritsFrom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(belongsToEClass, BelongsTo.class, "BelongsTo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBelongsTo_Leader(), this.getVariableRole(), null, "leader", null, 1, 1, BelongsTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBelongsTo_Member(), this.getVariableRole(), null, "member", null, 1, 1, BelongsTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(belongsToEClass, BelongsTo.class, "BelongsTo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getBelongsTo_Leader(), this.getVariableRole(), null, "leader", null, 1, 1, BelongsTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEReference(getBelongsTo_Member(), this.getVariableRole(), null, "member", null, 1, 1, BelongsTo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(removeNodesEClass, RemoveNodes.class, "RemoveNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRemoveNodes_Node(), this.getNode(), null, "node", null, 0, -1, RemoveNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(removeNodesEClass, RemoveNodes.class, "RemoveNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getRemoveNodes_Node(), this.getNode(), null, "node", null, 0, -1, RemoveNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(removeEdgesEClass, RemoveEdges.class, "RemoveEdges", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRemoveEdges_Edge(), this.getEdge(), null, "edge", null, 0, -1, RemoveEdges.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(removeEdgesEClass, RemoveEdges.class, "RemoveEdges", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getRemoveEdges_Edge(), this.getEdge(), null, "edge", null, 0, -1, RemoveEdges.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(addEdgesEClass, AddEdges.class, "AddEdges", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAddEdges_Edge(), this.getEdge(), null, "edge", null, 0, -1, AddEdges.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(addEdgesEClass, AddEdges.class, "AddEdges", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getAddEdges_Edge(), this.getEdge(), null, "edge", null, 0, -1, AddEdges.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(addNodesEClass, AddNodes.class, "AddNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAddNodes_Node(), this.getNode(), null, "node", null, 0, -1, AddNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(addNodesEClass, AddNodes.class, "AddNodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getAddNodes_Node(), this.getNode(), null, "node", null, 0, -1, AddNodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNameable_Name(), ecorePackage.getEString(), "name", "", 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+      initEClass(nameableEClass, Nameable.class, "Nameable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEAttribute(getNameable_Name(), ecorePackage.getEString(), "name", "", 0, 1, Nameable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		// Create resource
-		createResource(eNS_URI);
-	}
+      // Create resource
+      createResource(eNS_URI);
+   }
 
 } //TransformationPackageImpl

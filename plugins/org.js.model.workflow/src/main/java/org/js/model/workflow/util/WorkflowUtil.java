@@ -28,10 +28,9 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.Constraint;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
-import org.js.model.feature.FeatureReference;
-import org.js.model.feature.ImpliesExpression;
+import org.js.model.feature.FeatureState;
+import org.js.model.feature.Imply;
 import org.js.model.feature.ReferenceResolverUtil;
-import org.js.model.feature.SelectedState;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.ConfigurationDecision;
 import org.js.model.rbac.FeatureDecision;
@@ -273,13 +272,13 @@ public class WorkflowUtil {
 	public static void handleFeatureLogic(Feature feature,
 			FeatureModel featureModel) {
 		// if the feature is selected
-		if (feature.getSelected().equals(SelectedState.SELECTED)) {
+		if (feature.getSelected().equals(FeatureState.SELECTED)) {
 			for (org.js.model.feature.Group group : feature.getGroups()) {
 				// if feature is mandatory
 				if (group.getMinCardinality() * group.getMaxCardinality() == 1) {
 					if (group.getChildFeatures().size() == 1) {
 						Feature subFeature = group.getChildFeatures().get(0);
-						subFeature.setSelected(SelectedState.SELECTED);
+						subFeature.setSelected(FeatureState.SELECTED);
 						handleFeatureLogic(subFeature, featureModel);
 					}
 				}
@@ -287,16 +286,13 @@ public class WorkflowUtil {
 			for (Constraint constraint : featureModel.getConstraints()) {
 				// TODO: here only implies express is handled, we still need to
 				// handle the other expresses
-				if (constraint.getExpression() instanceof ImpliesExpression) {
-					ImpliesExpression expression = (ImpliesExpression) constraint
-							.getExpression();
-					if (expression.getOperand1() instanceof FeatureReference) {
-						Feature operand1 = ((FeatureReference) expression
-								.getOperand1()).getFeature();
+				if (constraint instanceof Imply) {
+				   Imply expression = (Imply) constraint;
+					if (expression.getLeftOperand() instanceof Feature) {
+						Feature operand1 = expression.getLeftOperand();
 						if (operand1.getId().equals(feature.getId())) {
-							Feature operand2 = ((FeatureReference) expression
-									.getOperand2()).getFeature();
-							operand2.setSelected(SelectedState.SELECTED);
+							Feature operand2 = expression.getRightOperand();
+							operand2.setSelected(FeatureState.SELECTED);
 							handleFeatureLogic(operand2, featureModel);
 						}
 					}
@@ -306,26 +302,21 @@ public class WorkflowUtil {
 			// if the feature is deselected
 			for (org.js.model.feature.Group group : feature.getGroups()) {
 				for (Feature subFeature : group.getChildFeatures()) {
-					subFeature.setSelected(SelectedState.DESELECTED);
+					subFeature.setSelected(FeatureState.DESELECTED);
 					handleFeatureLogic(subFeature, featureModel);
 				}
 			}
 			for (Constraint contraint : featureModel.getConstraints()) {
 				// TODO: here only implies express is handled, we still need to
 				// handle the other expresses
-				if (contraint.getExpression() instanceof ImpliesExpression) {
-					ImpliesExpression expression = (ImpliesExpression) contraint
-							.getExpression();
-					if (expression.getOperand2() instanceof FeatureReference) {
-						Feature operand2 = ((FeatureReference) expression
-								.getOperand2()).getFeature();
+				if (contraint instanceof Imply) {
+					Imply expression = (Imply)contraint;
+						Feature operand2 = expression.getRightOperand();
 						if (operand2.getId().equals(feature.getId())) {
-							Feature operand1 = ((FeatureReference) expression
-									.getOperand1()).getFeature();
-							operand1.setSelected(SelectedState.DESELECTED);
+							Feature operand1 = expression.getLeftOperand();
+							operand1.setSelected(FeatureState.DESELECTED);
 							handleFeatureLogic(operand1, featureModel);
 						}
-					}
 				}
 			}
 		}
@@ -345,9 +336,9 @@ public class WorkflowUtil {
 						.findFeature(((FeatureDecision) configDecision)
 								.getFeature().getId(), featureModel);
 				if (configDecision instanceof SelectFeature) {
-					feature.setSelected(SelectedState.SELECTED);
+					feature.setSelected(FeatureState.SELECTED);
 				} else {
-					feature.setSelected(SelectedState.DESELECTED);
+					feature.setSelected(FeatureState.DESELECTED);
 				}
 				handleFeatureLogic(feature, featureModel);
 			} else {
@@ -549,18 +540,13 @@ public class WorkflowUtil {
 		EList<Constraint> constraints = featureModel.getConstraints();
 
 		for (Constraint constraint : constraints) {
-			if (constraint.getExpression() instanceof ImpliesExpression) {
-				ImpliesExpression expression = (ImpliesExpression) constraint
-						.getExpression();
-				if (expression.getOperand1() instanceof FeatureReference) {
-					Feature operand1 = ((FeatureReference) expression
-							.getOperand1()).getFeature();
+			if (constraint instanceof Imply) {
+			   Imply expression = (Imply) constraint;
+			   Feature operand1 = expression.getLeftOperand();
 					if (operand1.getId().equals(feature.getId())) {
-						Feature operand2 = ((FeatureReference) expression
-								.getOperand2()).getFeature();
+						Feature operand2 = expression.getRightOperand();
 						constraintFeatures.add(operand2);
 					}
-				}
 			}
 		}
 		return constraintFeatures;
@@ -579,18 +565,13 @@ public class WorkflowUtil {
 		EList<Constraint> constraints = featureModel.getConstraints();
 
 		for (Constraint constraint : constraints) {
-			if (constraint.getExpression() instanceof ImpliesExpression) {
-				ImpliesExpression expression = (ImpliesExpression) constraint
-						.getExpression();
-				if (expression.getOperand2() instanceof FeatureReference) {
-					Feature operand2 = ((FeatureReference) expression
-							.getOperand2()).getFeature();
+			if (constraint instanceof Imply) {
+			   Imply expression = (Imply) constraint;
+					Feature operand2 = expression.getRightOperand();
 					if (operand2.getId().equals(feature.getId())) {
-						Feature operand1 = ((FeatureReference) expression
-								.getOperand1()).getFeature();
+						Feature operand1 =  expression.getLeftOperand();
 						constraintFeatures.add(operand1);
 					}
-				}
 			}
 		}
 		return constraintFeatures;

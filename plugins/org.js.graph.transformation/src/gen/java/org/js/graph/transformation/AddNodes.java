@@ -22,19 +22,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface AddNodes extends GraphOperation {
 	/**
-	 * Returns the value of the '<em><b>Node</b></em>' containment reference list.
-	 * The list contents are of type {@link org.js.graph.transformation.Node}.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Node</b></em>' containment reference list.
+    * The list contents are of type {@link org.js.graph.transformation.Node}.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Node</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Node</em>' containment reference list.
-	 * @see org.js.graph.transformation.TransformationPackage#getAddNodes_Node()
-	 * @model containment="true"
-	 * @generated
-	 */
+    * @return the value of the '<em>Node</em>' containment reference list.
+    * @see org.js.graph.transformation.TransformationPackage#getAddNodes_Node()
+    * @model containment="true"
+    * @generated
+    */
 	EList<Node> getNode();
 
 } // AddNodes

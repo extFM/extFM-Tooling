@@ -31,248 +31,248 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class ArrivingRoleImpl extends MinimalEObjectImpl.Container implements ArrivingRole {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected static final String NAME_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAction()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getAction()
+    * @generated
+    * @ordered
+    */
 	protected SpecializationAction action;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected ArrivingRoleImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.ARRIVING_ROLE;
-	}
+      return TransformationPackage.Literals.ARRIVING_ROLE;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public String getName() {
-		return name;
-	}
+      return name;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ARRIVING_ROLE__NAME, oldName, name));
-	}
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ARRIVING_ROLE__NAME, oldName, name));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public SpecializationAction getAction() {
-		if (action != null && action.eIsProxy()) {
-			InternalEObject oldAction = (InternalEObject)action;
-			action = (SpecializationAction)eResolveProxy(oldAction);
-			if (action != oldAction) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.ARRIVING_ROLE__ACTION, oldAction, action));
-			}
-		}
-		return action;
-	}
+      if (action != null && action.eIsProxy()) {
+         InternalEObject oldAction = (InternalEObject)action;
+         action = (SpecializationAction)eResolveProxy(oldAction);
+         if (action != oldAction) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformationPackage.ARRIVING_ROLE__ACTION, oldAction, action));
+         }
+      }
+      return action;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public SpecializationAction basicGetAction() {
-		return action;
-	}
+      return action;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public NotificationChain basicSetAction(SpecializationAction newAction, NotificationChain msgs) {
-		SpecializationAction oldAction = action;
-		action = newAction;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.ARRIVING_ROLE__ACTION, oldAction, newAction);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+      SpecializationAction oldAction = action;
+      action = newAction;
+      if (eNotificationRequired()) {
+         ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.ARRIVING_ROLE__ACTION, oldAction, newAction);
+         if (msgs == null) msgs = notification; else msgs.add(notification);
+      }
+      return msgs;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setAction(SpecializationAction newAction) {
-		if (newAction != action) {
-			NotificationChain msgs = null;
-			if (action != null)
-				msgs = ((InternalEObject)action).eInverseRemove(this, TransformationPackage.SPECIALIZATION_ACTION__VARIABLE_ROLE, SpecializationAction.class, msgs);
-			if (newAction != null)
-				msgs = ((InternalEObject)newAction).eInverseAdd(this, TransformationPackage.SPECIALIZATION_ACTION__VARIABLE_ROLE, SpecializationAction.class, msgs);
-			msgs = basicSetAction(newAction, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ARRIVING_ROLE__ACTION, newAction, newAction));
-	}
+      if (newAction != action) {
+         NotificationChain msgs = null;
+         if (action != null)
+            msgs = ((InternalEObject)action).eInverseRemove(this, TransformationPackage.SPECIALIZATION_ACTION__VARIABLE_ROLE, SpecializationAction.class, msgs);
+         if (newAction != null)
+            msgs = ((InternalEObject)newAction).eInverseAdd(this, TransformationPackage.SPECIALIZATION_ACTION__VARIABLE_ROLE, SpecializationAction.class, msgs);
+         msgs = basicSetAction(newAction, msgs);
+         if (msgs != null) msgs.dispatch();
+      }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.ARRIVING_ROLE__ACTION, newAction, newAction));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.ARRIVING_ROLE__ACTION:
-				if (action != null)
-					msgs = ((InternalEObject)action).eInverseRemove(this, TransformationPackage.SPECIALIZATION_ACTION__VARIABLE_ROLE, SpecializationAction.class, msgs);
-				return basicSetAction((SpecializationAction)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.ARRIVING_ROLE__ACTION:
+            if (action != null)
+               msgs = ((InternalEObject)action).eInverseRemove(this, TransformationPackage.SPECIALIZATION_ACTION__VARIABLE_ROLE, SpecializationAction.class, msgs);
+            return basicSetAction((SpecializationAction)otherEnd, msgs);
+      }
+      return super.eInverseAdd(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.ARRIVING_ROLE__ACTION:
-				return basicSetAction(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.ARRIVING_ROLE__ACTION:
+            return basicSetAction(null, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.ARRIVING_ROLE__NAME:
-				return getName();
-			case TransformationPackage.ARRIVING_ROLE__ACTION:
-				if (resolve) return getAction();
-				return basicGetAction();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.ARRIVING_ROLE__NAME:
+            return getName();
+         case TransformationPackage.ARRIVING_ROLE__ACTION:
+            if (resolve) return getAction();
+            return basicGetAction();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.ARRIVING_ROLE__NAME:
-				setName((String)newValue);
-				return;
-			case TransformationPackage.ARRIVING_ROLE__ACTION:
-				setAction((SpecializationAction)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.ARRIVING_ROLE__NAME:
+            setName((String)newValue);
+            return;
+         case TransformationPackage.ARRIVING_ROLE__ACTION:
+            setAction((SpecializationAction)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.ARRIVING_ROLE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TransformationPackage.ARRIVING_ROLE__ACTION:
-				setAction((SpecializationAction)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.ARRIVING_ROLE__NAME:
+            setName(NAME_EDEFAULT);
+            return;
+         case TransformationPackage.ARRIVING_ROLE__ACTION:
+            setAction((SpecializationAction)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.ARRIVING_ROLE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TransformationPackage.ARRIVING_ROLE__ACTION:
-				return action != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.ARRIVING_ROLE__NAME:
+            return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+         case TransformationPackage.ARRIVING_ROLE__ACTION:
+            return action != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+      if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuffer result = new StringBuffer(super.toString());
+      result.append(" (name: ");
+      result.append(name);
+      result.append(')');
+      return result.toString();
+   }
 
 } //ArrivingRoleImpl

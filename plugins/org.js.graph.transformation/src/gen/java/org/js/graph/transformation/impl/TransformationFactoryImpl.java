@@ -20,296 +20,296 @@ import org.js.graph.transformation.*;
  */
 public class TransformationFactoryImpl extends EFactoryImpl implements TransformationFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+    * Creates the default factory implementation.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public static TransformationFactory init() {
-		try {
-			TransformationFactory theTransformationFactory = (TransformationFactory)EPackage.Registry.INSTANCE.getEFactory(TransformationPackage.eNS_URI);
-			if (theTransformationFactory != null) {
-				return theTransformationFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new TransformationFactoryImpl();
-	}
+      try {
+         TransformationFactory theTransformationFactory = (TransformationFactory)EPackage.Registry.INSTANCE.getEFactory("http://graphtransformation/1.0"); 
+         if (theTransformationFactory != null) {
+            return theTransformationFactory;
+         }
+      }
+      catch (Exception exception) {
+         EcorePlugin.INSTANCE.log(exception);
+      }
+      return new TransformationFactoryImpl();
+   }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+    * Creates an instance of the factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public TransformationFactoryImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case TransformationPackage.GRAPH_TRANSFORMATION: return createGraphTransformation();
-			case TransformationPackage.RULE: return createRule();
-			case TransformationPackage.LEFT_SIDE: return createLeftSide();
-			case TransformationPackage.ROLES: return createRoles();
-			case TransformationPackage.APPLICATION_CONDITIONS: return createApplicationConditions();
-			case TransformationPackage.OPERATIONS: return createOperations();
-			case TransformationPackage.EDGE: return createEdge();
-			case TransformationPackage.EXISTING_ROLE: return createExistingRole();
-			case TransformationPackage.ARRIVING_ROLE: return createArrivingRole();
-			case TransformationPackage.INITIAL: return createInitial();
-			case TransformationPackage.ACTIVITY_FINAL: return createActivityFinal();
-			case TransformationPackage.FLOW_FINAL: return createFlowFinal();
-			case TransformationPackage.FORK: return createFork();
-			case TransformationPackage.SPECIALIZATION_ACTION: return createSpecializationAction();
-			case TransformationPackage.IDLE_ACTION: return createIdleAction();
-			case TransformationPackage.INHERITS_FROM: return createInheritsFrom();
-			case TransformationPackage.BELONGS_TO: return createBelongsTo();
-			case TransformationPackage.REMOVE_NODES: return createRemoveNodes();
-			case TransformationPackage.REMOVE_EDGES: return createRemoveEdges();
-			case TransformationPackage.ADD_EDGES: return createAddEdges();
-			case TransformationPackage.ADD_NODES: return createAddNodes();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+      switch (eClass.getClassifierID()) {
+         case TransformationPackage.GRAPH_TRANSFORMATION: return createGraphTransformation();
+         case TransformationPackage.RULE: return createRule();
+         case TransformationPackage.LEFT_SIDE: return createLeftSide();
+         case TransformationPackage.ROLES: return createRoles();
+         case TransformationPackage.APPLICATION_CONDITIONS: return createApplicationConditions();
+         case TransformationPackage.OPERATIONS: return createOperations();
+         case TransformationPackage.EDGE: return createEdge();
+         case TransformationPackage.EXISTING_ROLE: return createExistingRole();
+         case TransformationPackage.ARRIVING_ROLE: return createArrivingRole();
+         case TransformationPackage.INITIAL: return createInitial();
+         case TransformationPackage.ACTIVITY_FINAL: return createActivityFinal();
+         case TransformationPackage.FLOW_FINAL: return createFlowFinal();
+         case TransformationPackage.FORK: return createFork();
+         case TransformationPackage.SPECIALIZATION_ACTION: return createSpecializationAction();
+         case TransformationPackage.IDLE_ACTION: return createIdleAction();
+         case TransformationPackage.INHERITS_FROM: return createInheritsFrom();
+         case TransformationPackage.BELONGS_TO: return createBelongsTo();
+         case TransformationPackage.REMOVE_NODES: return createRemoveNodes();
+         case TransformationPackage.REMOVE_EDGES: return createRemoveEdges();
+         case TransformationPackage.ADD_EDGES: return createAddEdges();
+         case TransformationPackage.ADD_NODES: return createAddNodes();
+         default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+      }
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public GraphTransformation createGraphTransformation() {
-		GraphTransformationImpl graphTransformation = new GraphTransformationImpl();
-		return graphTransformation;
-	}
+      GraphTransformationImpl graphTransformation = new GraphTransformationImpl();
+      return graphTransformation;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Rule createRule() {
-		RuleImpl rule = new RuleImpl();
-		return rule;
-	}
+      RuleImpl rule = new RuleImpl();
+      return rule;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public LeftSide createLeftSide() {
-		LeftSideImpl leftSide = new LeftSideImpl();
-		return leftSide;
-	}
+      LeftSideImpl leftSide = new LeftSideImpl();
+      return leftSide;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Roles createRoles() {
-		RolesImpl roles = new RolesImpl();
-		return roles;
-	}
+      RolesImpl roles = new RolesImpl();
+      return roles;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ApplicationConditions createApplicationConditions() {
-		ApplicationConditionsImpl applicationConditions = new ApplicationConditionsImpl();
-		return applicationConditions;
-	}
+      ApplicationConditionsImpl applicationConditions = new ApplicationConditionsImpl();
+      return applicationConditions;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Operations createOperations() {
-		OperationsImpl operations = new OperationsImpl();
-		return operations;
-	}
+      OperationsImpl operations = new OperationsImpl();
+      return operations;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Edge createEdge() {
-		EdgeImpl edge = new EdgeImpl();
-		return edge;
-	}
+      EdgeImpl edge = new EdgeImpl();
+      return edge;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ExistingRole createExistingRole() {
-		ExistingRoleImpl existingRole = new ExistingRoleImpl();
-		return existingRole;
-	}
+      ExistingRoleImpl existingRole = new ExistingRoleImpl();
+      return existingRole;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ArrivingRole createArrivingRole() {
-		ArrivingRoleImpl arrivingRole = new ArrivingRoleImpl();
-		return arrivingRole;
-	}
+      ArrivingRoleImpl arrivingRole = new ArrivingRoleImpl();
+      return arrivingRole;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Initial createInitial() {
-		InitialImpl initial = new InitialImpl();
-		return initial;
-	}
+      InitialImpl initial = new InitialImpl();
+      return initial;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ActivityFinal createActivityFinal() {
-		ActivityFinalImpl activityFinal = new ActivityFinalImpl();
-		return activityFinal;
-	}
+      ActivityFinalImpl activityFinal = new ActivityFinalImpl();
+      return activityFinal;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public FlowFinal createFlowFinal() {
-		FlowFinalImpl flowFinal = new FlowFinalImpl();
-		return flowFinal;
-	}
+      FlowFinalImpl flowFinal = new FlowFinalImpl();
+      return flowFinal;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Fork createFork() {
-		ForkImpl fork = new ForkImpl();
-		return fork;
-	}
+      ForkImpl fork = new ForkImpl();
+      return fork;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public SpecializationAction createSpecializationAction() {
-		SpecializationActionImpl specializationAction = new SpecializationActionImpl();
-		return specializationAction;
-	}
+      SpecializationActionImpl specializationAction = new SpecializationActionImpl();
+      return specializationAction;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public IdleAction createIdleAction() {
-		IdleActionImpl idleAction = new IdleActionImpl();
-		return idleAction;
-	}
+      IdleActionImpl idleAction = new IdleActionImpl();
+      return idleAction;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public InheritsFrom createInheritsFrom() {
-		InheritsFromImpl inheritsFrom = new InheritsFromImpl();
-		return inheritsFrom;
-	}
+      InheritsFromImpl inheritsFrom = new InheritsFromImpl();
+      return inheritsFrom;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public BelongsTo createBelongsTo() {
-		BelongsToImpl belongsTo = new BelongsToImpl();
-		return belongsTo;
-	}
+      BelongsToImpl belongsTo = new BelongsToImpl();
+      return belongsTo;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public RemoveNodes createRemoveNodes() {
-		RemoveNodesImpl removeNodes = new RemoveNodesImpl();
-		return removeNodes;
-	}
+      RemoveNodesImpl removeNodes = new RemoveNodesImpl();
+      return removeNodes;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public RemoveEdges createRemoveEdges() {
-		RemoveEdgesImpl removeEdges = new RemoveEdgesImpl();
-		return removeEdges;
-	}
+      RemoveEdgesImpl removeEdges = new RemoveEdgesImpl();
+      return removeEdges;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public AddEdges createAddEdges() {
-		AddEdgesImpl addEdges = new AddEdgesImpl();
-		return addEdges;
-	}
+      AddEdgesImpl addEdges = new AddEdgesImpl();
+      return addEdges;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public AddNodes createAddNodes() {
-		AddNodesImpl addNodes = new AddNodesImpl();
-		return addNodes;
-	}
+      AddNodesImpl addNodes = new AddNodesImpl();
+      return addNodes;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public TransformationPackage getTransformationPackage() {
-		return (TransformationPackage)getEPackage();
-	}
+      return (TransformationPackage)getEPackage();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+    * @deprecated
+    * @generated
+    */
 	@Deprecated
 	public static TransformationPackage getPackage() {
-		return TransformationPackage.eINSTANCE;
-	}
+      return TransformationPackage.eINSTANCE;
+   }
 
 } //TransformationFactoryImpl

@@ -37,409 +37,409 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class RuleImpl extends MinimalEObjectImpl.Container implements Rule {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected static final String NAME_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getName()
+    * @generated
+    * @ordered
+    */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLeftside() <em>Leftside</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getLeftside() <em>Leftside</em>}' containment reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeftside()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getLeftside()
+    * @generated
+    * @ordered
+    */
 	protected LeftSide leftside;
 
 	/**
-	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getRoles() <em>Roles</em>}' containment reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRoles()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getRoles()
+    * @generated
+    * @ordered
+    */
 	protected Roles roles;
 
 	/**
-	 * The cached value of the '{@link #getApplicationConditions() <em>Application Conditions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getApplicationConditions() <em>Application Conditions</em>}' containment reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getApplicationConditions()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getApplicationConditions()
+    * @generated
+    * @ordered
+    */
 	protected ApplicationConditions applicationConditions;
 
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperations()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getOperations()
+    * @generated
+    * @ordered
+    */
 	protected Operations operations;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RuleImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.RULE;
-	}
+      return TransformationPackage.Literals.RULE;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public String getName() {
-		return name;
-	}
+      return name;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__NAME, oldName, name));
-	}
+      String oldName = name;
+      name = newName;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__NAME, oldName, name));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public LeftSide getLeftside() {
-		return leftside;
-	}
+      return leftside;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public NotificationChain basicSetLeftside(LeftSide newLeftside, NotificationChain msgs) {
-		LeftSide oldLeftside = leftside;
-		leftside = newLeftside;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__LEFTSIDE, oldLeftside, newLeftside);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+      LeftSide oldLeftside = leftside;
+      leftside = newLeftside;
+      if (eNotificationRequired()) {
+         ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__LEFTSIDE, oldLeftside, newLeftside);
+         if (msgs == null) msgs = notification; else msgs.add(notification);
+      }
+      return msgs;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setLeftside(LeftSide newLeftside) {
-		if (newLeftside != leftside) {
-			NotificationChain msgs = null;
-			if (leftside != null)
-				msgs = ((InternalEObject)leftside).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__LEFTSIDE, null, msgs);
-			if (newLeftside != null)
-				msgs = ((InternalEObject)newLeftside).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__LEFTSIDE, null, msgs);
-			msgs = basicSetLeftside(newLeftside, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__LEFTSIDE, newLeftside, newLeftside));
-	}
+      if (newLeftside != leftside) {
+         NotificationChain msgs = null;
+         if (leftside != null)
+            msgs = ((InternalEObject)leftside).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__LEFTSIDE, null, msgs);
+         if (newLeftside != null)
+            msgs = ((InternalEObject)newLeftside).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__LEFTSIDE, null, msgs);
+         msgs = basicSetLeftside(newLeftside, msgs);
+         if (msgs != null) msgs.dispatch();
+      }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__LEFTSIDE, newLeftside, newLeftside));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Roles getRoles() {
-		return roles;
-	}
+      return roles;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public NotificationChain basicSetRoles(Roles newRoles, NotificationChain msgs) {
-		Roles oldRoles = roles;
-		roles = newRoles;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__ROLES, oldRoles, newRoles);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+      Roles oldRoles = roles;
+      roles = newRoles;
+      if (eNotificationRequired()) {
+         ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__ROLES, oldRoles, newRoles);
+         if (msgs == null) msgs = notification; else msgs.add(notification);
+      }
+      return msgs;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setRoles(Roles newRoles) {
-		if (newRoles != roles) {
-			NotificationChain msgs = null;
-			if (roles != null)
-				msgs = ((InternalEObject)roles).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__ROLES, null, msgs);
-			if (newRoles != null)
-				msgs = ((InternalEObject)newRoles).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__ROLES, null, msgs);
-			msgs = basicSetRoles(newRoles, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__ROLES, newRoles, newRoles));
-	}
+      if (newRoles != roles) {
+         NotificationChain msgs = null;
+         if (roles != null)
+            msgs = ((InternalEObject)roles).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__ROLES, null, msgs);
+         if (newRoles != null)
+            msgs = ((InternalEObject)newRoles).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__ROLES, null, msgs);
+         msgs = basicSetRoles(newRoles, msgs);
+         if (msgs != null) msgs.dispatch();
+      }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__ROLES, newRoles, newRoles));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ApplicationConditions getApplicationConditions() {
-		return applicationConditions;
-	}
+      return applicationConditions;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public NotificationChain basicSetApplicationConditions(ApplicationConditions newApplicationConditions, NotificationChain msgs) {
-		ApplicationConditions oldApplicationConditions = applicationConditions;
-		applicationConditions = newApplicationConditions;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__APPLICATION_CONDITIONS, oldApplicationConditions, newApplicationConditions);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+      ApplicationConditions oldApplicationConditions = applicationConditions;
+      applicationConditions = newApplicationConditions;
+      if (eNotificationRequired()) {
+         ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__APPLICATION_CONDITIONS, oldApplicationConditions, newApplicationConditions);
+         if (msgs == null) msgs = notification; else msgs.add(notification);
+      }
+      return msgs;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setApplicationConditions(ApplicationConditions newApplicationConditions) {
-		if (newApplicationConditions != applicationConditions) {
-			NotificationChain msgs = null;
-			if (applicationConditions != null)
-				msgs = ((InternalEObject)applicationConditions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__APPLICATION_CONDITIONS, null, msgs);
-			if (newApplicationConditions != null)
-				msgs = ((InternalEObject)newApplicationConditions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__APPLICATION_CONDITIONS, null, msgs);
-			msgs = basicSetApplicationConditions(newApplicationConditions, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__APPLICATION_CONDITIONS, newApplicationConditions, newApplicationConditions));
-	}
+      if (newApplicationConditions != applicationConditions) {
+         NotificationChain msgs = null;
+         if (applicationConditions != null)
+            msgs = ((InternalEObject)applicationConditions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__APPLICATION_CONDITIONS, null, msgs);
+         if (newApplicationConditions != null)
+            msgs = ((InternalEObject)newApplicationConditions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__APPLICATION_CONDITIONS, null, msgs);
+         msgs = basicSetApplicationConditions(newApplicationConditions, msgs);
+         if (msgs != null) msgs.dispatch();
+      }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__APPLICATION_CONDITIONS, newApplicationConditions, newApplicationConditions));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Operations getOperations() {
-		return operations;
-	}
+      return operations;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public NotificationChain basicSetOperations(Operations newOperations, NotificationChain msgs) {
-		Operations oldOperations = operations;
-		operations = newOperations;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__OPERATIONS, oldOperations, newOperations);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+      Operations oldOperations = operations;
+      operations = newOperations;
+      if (eNotificationRequired()) {
+         ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__OPERATIONS, oldOperations, newOperations);
+         if (msgs == null) msgs = notification; else msgs.add(notification);
+      }
+      return msgs;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setOperations(Operations newOperations) {
-		if (newOperations != operations) {
-			NotificationChain msgs = null;
-			if (operations != null)
-				msgs = ((InternalEObject)operations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__OPERATIONS, null, msgs);
-			if (newOperations != null)
-				msgs = ((InternalEObject)newOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__OPERATIONS, null, msgs);
-			msgs = basicSetOperations(newOperations, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__OPERATIONS, newOperations, newOperations));
-	}
+      if (newOperations != operations) {
+         NotificationChain msgs = null;
+         if (operations != null)
+            msgs = ((InternalEObject)operations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__OPERATIONS, null, msgs);
+         if (newOperations != null)
+            msgs = ((InternalEObject)newOperations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformationPackage.RULE__OPERATIONS, null, msgs);
+         msgs = basicSetOperations(newOperations, msgs);
+         if (msgs != null) msgs.dispatch();
+      }
+      else if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, TransformationPackage.RULE__OPERATIONS, newOperations, newOperations));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.RULE__LEFTSIDE:
-				return basicSetLeftside(null, msgs);
-			case TransformationPackage.RULE__ROLES:
-				return basicSetRoles(null, msgs);
-			case TransformationPackage.RULE__APPLICATION_CONDITIONS:
-				return basicSetApplicationConditions(null, msgs);
-			case TransformationPackage.RULE__OPERATIONS:
-				return basicSetOperations(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.RULE__LEFTSIDE:
+            return basicSetLeftside(null, msgs);
+         case TransformationPackage.RULE__ROLES:
+            return basicSetRoles(null, msgs);
+         case TransformationPackage.RULE__APPLICATION_CONDITIONS:
+            return basicSetApplicationConditions(null, msgs);
+         case TransformationPackage.RULE__OPERATIONS:
+            return basicSetOperations(null, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.RULE__NAME:
-				return getName();
-			case TransformationPackage.RULE__LEFTSIDE:
-				return getLeftside();
-			case TransformationPackage.RULE__ROLES:
-				return getRoles();
-			case TransformationPackage.RULE__APPLICATION_CONDITIONS:
-				return getApplicationConditions();
-			case TransformationPackage.RULE__OPERATIONS:
-				return getOperations();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.RULE__NAME:
+            return getName();
+         case TransformationPackage.RULE__LEFTSIDE:
+            return getLeftside();
+         case TransformationPackage.RULE__ROLES:
+            return getRoles();
+         case TransformationPackage.RULE__APPLICATION_CONDITIONS:
+            return getApplicationConditions();
+         case TransformationPackage.RULE__OPERATIONS:
+            return getOperations();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.RULE__NAME:
-				setName((String)newValue);
-				return;
-			case TransformationPackage.RULE__LEFTSIDE:
-				setLeftside((LeftSide)newValue);
-				return;
-			case TransformationPackage.RULE__ROLES:
-				setRoles((Roles)newValue);
-				return;
-			case TransformationPackage.RULE__APPLICATION_CONDITIONS:
-				setApplicationConditions((ApplicationConditions)newValue);
-				return;
-			case TransformationPackage.RULE__OPERATIONS:
-				setOperations((Operations)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.RULE__NAME:
+            setName((String)newValue);
+            return;
+         case TransformationPackage.RULE__LEFTSIDE:
+            setLeftside((LeftSide)newValue);
+            return;
+         case TransformationPackage.RULE__ROLES:
+            setRoles((Roles)newValue);
+            return;
+         case TransformationPackage.RULE__APPLICATION_CONDITIONS:
+            setApplicationConditions((ApplicationConditions)newValue);
+            return;
+         case TransformationPackage.RULE__OPERATIONS:
+            setOperations((Operations)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.RULE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TransformationPackage.RULE__LEFTSIDE:
-				setLeftside((LeftSide)null);
-				return;
-			case TransformationPackage.RULE__ROLES:
-				setRoles((Roles)null);
-				return;
-			case TransformationPackage.RULE__APPLICATION_CONDITIONS:
-				setApplicationConditions((ApplicationConditions)null);
-				return;
-			case TransformationPackage.RULE__OPERATIONS:
-				setOperations((Operations)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.RULE__NAME:
+            setName(NAME_EDEFAULT);
+            return;
+         case TransformationPackage.RULE__LEFTSIDE:
+            setLeftside((LeftSide)null);
+            return;
+         case TransformationPackage.RULE__ROLES:
+            setRoles((Roles)null);
+            return;
+         case TransformationPackage.RULE__APPLICATION_CONDITIONS:
+            setApplicationConditions((ApplicationConditions)null);
+            return;
+         case TransformationPackage.RULE__OPERATIONS:
+            setOperations((Operations)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.RULE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TransformationPackage.RULE__LEFTSIDE:
-				return leftside != null;
-			case TransformationPackage.RULE__ROLES:
-				return roles != null;
-			case TransformationPackage.RULE__APPLICATION_CONDITIONS:
-				return applicationConditions != null;
-			case TransformationPackage.RULE__OPERATIONS:
-				return operations != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.RULE__NAME:
+            return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+         case TransformationPackage.RULE__LEFTSIDE:
+            return leftside != null;
+         case TransformationPackage.RULE__ROLES:
+            return roles != null;
+         case TransformationPackage.RULE__APPLICATION_CONDITIONS:
+            return applicationConditions != null;
+         case TransformationPackage.RULE__OPERATIONS:
+            return operations != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+      if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+      StringBuffer result = new StringBuffer(super.toString());
+      result.append(" (name: ");
+      result.append(name);
+      result.append(')');
+      return result.toString();
+   }
 
 } //RuleImpl

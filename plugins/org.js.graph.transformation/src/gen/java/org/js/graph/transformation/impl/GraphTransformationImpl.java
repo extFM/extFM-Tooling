@@ -35,118 +35,118 @@ import org.js.graph.transformation.TransformationPackage;
  */
 public class GraphTransformationImpl extends MinimalEObjectImpl.Container implements GraphTransformation {
 	/**
-	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRules()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getRules()
+    * @generated
+    * @ordered
+    */
 	protected EList<Rule> rules;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected GraphTransformationImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformationPackage.Literals.GRAPH_TRANSFORMATION;
-	}
+      return TransformationPackage.Literals.GRAPH_TRANSFORMATION;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EList<Rule> getRules() {
-		if (rules == null) {
-			rules = new EObjectContainmentEList<Rule>(Rule.class, this, TransformationPackage.GRAPH_TRANSFORMATION__RULES);
-		}
-		return rules;
-	}
+      if (rules == null) {
+         rules = new EObjectContainmentEList<Rule>(Rule.class, this, TransformationPackage.GRAPH_TRANSFORMATION__RULES);
+      }
+      return rules;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
-				return ((InternalEList<?>)getRules()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+      switch (featureID) {
+         case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
+            return ((InternalEList<?>)getRules()).basicRemove(otherEnd, msgs);
+      }
+      return super.eInverseRemove(otherEnd, featureID, msgs);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
-				return getRules();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
+            return getRules();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
-				getRules().clear();
-				getRules().addAll((Collection<? extends Rule>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
+            getRules().clear();
+            getRules().addAll((Collection<? extends Rule>)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
-				getRules().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
+            getRules().clear();
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
-				return rules != null && !rules.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case TransformationPackage.GRAPH_TRANSFORMATION__RULES:
+            return rules != null && !rules.isEmpty();
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //GraphTransformationImpl

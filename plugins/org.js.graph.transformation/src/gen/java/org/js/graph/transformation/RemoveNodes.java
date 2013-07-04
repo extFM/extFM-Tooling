@@ -22,19 +22,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface RemoveNodes extends GraphOperation {
 	/**
-	 * Returns the value of the '<em><b>Node</b></em>' reference list.
-	 * The list contents are of type {@link org.js.graph.transformation.Node}.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Node</b></em>' reference list.
+    * The list contents are of type {@link org.js.graph.transformation.Node}.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Node</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Node</em>' reference list.
-	 * @see org.js.graph.transformation.TransformationPackage#getRemoveNodes_Node()
-	 * @model
-	 * @generated
-	 */
+    * @return the value of the '<em>Node</em>' reference list.
+    * @see org.js.graph.transformation.TransformationPackage#getRemoveNodes_Node()
+    * @model
+    * @generated
+    */
 	EList<Node> getNode();
 
 } // RemoveNodes
