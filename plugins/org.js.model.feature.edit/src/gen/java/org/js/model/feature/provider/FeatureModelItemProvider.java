@@ -63,31 +63,8 @@ public class FeatureModelItemProvider
       if (itemPropertyDescriptors == null) {
          super.getPropertyDescriptors(object);
 
-         addNamePropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
-   }
-
-   /**
-    * This adds a property descriptor for the Name feature.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected void addNamePropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_FeatureModel_name_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_FeatureModel_name_feature", "_UI_FeatureModel_type"),
-             FeaturePackage.Literals.FEATURE_MODEL__NAME,
-             true,
-             false,
-             false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-             null,
-             null));
    }
 
    /**
@@ -141,10 +118,7 @@ public class FeatureModelItemProvider
     */
    @Override
    public String getText(Object object) {
-      String label = ((FeatureModel)object).getName();
-      return label == null || label.length() == 0 ?
-         getString("_UI_FeatureModel_type") :
-         getString("_UI_FeatureModel_type") + " " + label;
+      return getString("_UI_FeatureModel_type");
    }
 
    /**
@@ -159,9 +133,6 @@ public class FeatureModelItemProvider
       updateChildren(notification);
 
       switch (notification.getFeatureID(FeatureModel.class)) {
-         case FeaturePackage.FEATURE_MODEL__NAME:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
          case FeaturePackage.FEATURE_MODEL__ROOT:
          case FeaturePackage.FEATURE_MODEL__DOMAINS:
          case FeaturePackage.FEATURE_MODEL__CONSTRAINTS:
@@ -195,12 +166,22 @@ public class FeatureModelItemProvider
       newChildDescriptors.add
          (createChildParameter
             (FeaturePackage.Literals.FEATURE_MODEL__DOMAINS,
-             FeatureFactory.eINSTANCE.createContinuousDomain()));
+             FeatureFactory.eINSTANCE.createNumericalDomain()));
 
       newChildDescriptors.add
          (createChildParameter
             (FeaturePackage.Literals.FEATURE_MODEL__CONSTRAINTS,
-             FeatureFactory.eINSTANCE.createConstraint()));
+             FeatureFactory.eINSTANCE.createAttributeConstraint()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (FeaturePackage.Literals.FEATURE_MODEL__CONSTRAINTS,
+             FeatureFactory.eINSTANCE.createImply()));
+
+      newChildDescriptors.add
+         (createChildParameter
+            (FeaturePackage.Literals.FEATURE_MODEL__CONSTRAINTS,
+             FeatureFactory.eINSTANCE.createExclude()));
    }
 
    /**

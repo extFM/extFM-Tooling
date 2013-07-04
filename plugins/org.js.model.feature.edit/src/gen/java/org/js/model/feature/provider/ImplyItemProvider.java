@@ -16,16 +16,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.js.model.feature.FeaturePackage;
+import org.js.model.feature.Imply;
 
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.ImpliesExpression} object.
+ * This is the item provider adapter for a {@link org.js.model.feature.Imply} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImpliesExpressionItemProvider
-   extends BinaryExpressionItemProvider
+public class ImplyItemProvider
+   extends FeatureConstraintItemProvider
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,
@@ -38,7 +38,7 @@ public class ImpliesExpressionItemProvider
     * <!-- end-user-doc -->
     * @generated
     */
-   public ImpliesExpressionItemProvider(AdapterFactory adapterFactory) {
+   public ImplyItemProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
    }
 
@@ -58,14 +58,14 @@ public class ImpliesExpressionItemProvider
    }
 
    /**
-    * This returns ImpliesExpression.gif.
+    * This returns Imply.gif.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
    public Object getImage(Object object) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/ImpliesExpression"));
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/Imply"));
    }
 
    /**
@@ -76,7 +76,10 @@ public class ImpliesExpressionItemProvider
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_ImpliesExpression_type");
+      String label = ((Imply)object).getId();
+      return label == null || label.length() == 0 ?
+         getString("_UI_Imply_type") :
+         getString("_UI_Imply_type") + " " + label;
    }
 
    /**
@@ -102,29 +105,6 @@ public class ImpliesExpressionItemProvider
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
       super.collectNewChildDescriptors(newChildDescriptors, object);
-   }
-
-   /**
-    * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-      Object childFeature = feature;
-      Object childObject = child;
-
-      boolean qualify =
-         childFeature == FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1 ||
-         childFeature == FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2;
-
-      if (qualify) {
-         return getString
-            ("_UI_CreateChild_text2",
-             new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-      }
-      return super.getCreateChildText(owner, feature, child, selection);
    }
 
 }

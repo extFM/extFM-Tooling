@@ -9,6 +9,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -16,17 +18,21 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.js.model.feature.DomainValue;
 import org.js.model.feature.FeaturePackage;
 
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.FeatureReference} object.
+ * This is the item provider adapter for a {@link org.js.model.feature.DomainValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureReferenceItemProvider
-   extends AtomicExpressionItemProvider
+public class DomainValueItemProvider
+   extends ItemProviderAdapter
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,
@@ -39,7 +45,7 @@ public class FeatureReferenceItemProvider
     * <!-- end-user-doc -->
     * @generated
     */
-   public FeatureReferenceItemProvider(AdapterFactory adapterFactory) {
+   public DomainValueItemProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
    }
 
@@ -54,42 +60,65 @@ public class FeatureReferenceItemProvider
       if (itemPropertyDescriptors == null) {
          super.getPropertyDescriptors(object);
 
-         addFeaturePropertyDescriptor(object);
+         addIntPropertyDescriptor(object);
+         addNamePropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
    }
 
    /**
-    * This adds a property descriptor for the Feature feature.
+    * This adds a property descriptor for the Int feature.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected void addFeaturePropertyDescriptor(Object object) {
+   protected void addIntPropertyDescriptor(Object object) {
       itemPropertyDescriptors.add
          (createItemPropertyDescriptor
             (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
              getResourceLocator(),
-             getString("_UI_FeatureReference_feature_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_FeatureReference_feature_feature", "_UI_FeatureReference_type"),
-             FeaturePackage.Literals.FEATURE_REFERENCE__FEATURE,
+             getString("_UI_DomainValue_int_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_DomainValue_int_feature", "_UI_DomainValue_type"),
+             FeaturePackage.Literals.DOMAIN_VALUE__INT,
              true,
              false,
-             true,
-             null,
+             false,
+             ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
              null,
              null));
    }
 
    /**
-    * This returns FeatureReference.gif.
+    * This adds a property descriptor for the Name feature.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected void addNamePropertyDescriptor(Object object) {
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_DomainValue_name_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_DomainValue_name_feature", "_UI_DomainValue_type"),
+             FeaturePackage.Literals.DOMAIN_VALUE__NAME,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+             null,
+             null));
+   }
+
+   /**
+    * This returns DomainValue.gif.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
    public Object getImage(Object object) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureReference"));
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainValue"));
    }
 
    /**
@@ -100,7 +129,10 @@ public class FeatureReferenceItemProvider
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_FeatureReference_type");
+      String label = ((DomainValue)object).getName();
+      return label == null || label.length() == 0 ?
+         getString("_UI_DomainValue_type") :
+         getString("_UI_DomainValue_type") + " " + label;
    }
 
    /**
@@ -113,6 +145,13 @@ public class FeatureReferenceItemProvider
    @Override
    public void notifyChanged(Notification notification) {
       updateChildren(notification);
+
+      switch (notification.getFeatureID(DomainValue.class)) {
+         case FeaturePackage.DOMAIN_VALUE__INT:
+         case FeaturePackage.DOMAIN_VALUE__NAME:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+      }
       super.notifyChanged(notification);
    }
 
@@ -126,6 +165,17 @@ public class FeatureReferenceItemProvider
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
       super.collectNewChildDescriptors(newChildDescriptors, object);
+   }
+
+   /**
+    * Return the resource locator for this item provider's resources.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public ResourceLocator getResourceLocator() {
+      return FeatureEditPlugin.INSTANCE;
    }
 
 }

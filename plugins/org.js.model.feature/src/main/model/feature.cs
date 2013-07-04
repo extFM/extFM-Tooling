@@ -1,5 +1,5 @@
 @SuppressWarnings(tokenOverlapping)
-SYNTAXDEF eft //Extended Feature Text
+SYNTAXDEF eft //Extended Featuremodel Text
 FOR <http://www.tudresden.de/extfeature>
 START FeatureModel
 
@@ -19,32 +19,18 @@ OPTIONS {
 	uiSrcFolder = "src/main/java";
 	uiSrcGenFolder = "src/gen/java";
 
-
-	//disableTokenSorting = "true";
-	//overrideBracketSet = "false";
-	//overrideChoice = "false";
-	//overrideIExpectedElement = "false";
-	//usePredefinedTokens = "false";
-	//disableTokenSorting = "true";
 }
 
 TOKENS {
 	//DEFINE INTEGER $('0')|(('1'..'9')('0'..'9')*)$;
-	
-	//Careful: Using a dot (.) as qualifier character causes problems!
-	DEFINE QUALIFIED_ATTRIBUTE_NAME_LITERAL $($ + TEXT + $'#'$ + TEXT + $)$;
 	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
 }
 
 
 TOKENSTYLES {
 	"COMMENT" COLOR #AAAAAA;
-	"!" COLOR #800055, BOLD;
-	"&&" COLOR #800055, BOLD;
-	"||" COLOR #800055, BOLD;
-	"->" COLOR #800055, BOLD;
-	"excludes" COLOR #800055, BOLD;
-	
+	"->" COLOR #000000, BOLD;
+	"<->" COLOR #000000, BOLD;
 	"==" COLOR #000000, BOLD;
 	"!=" COLOR #000000, BOLD;
 	"<" COLOR #000000, BOLD;
@@ -54,50 +40,35 @@ TOKENSTYLES {
 }
 
 RULES {
-	FeatureModel ::= "feature" #1 "model" #1 name['"','"'] !0!0
-						domains* !0 root !0 constraints* !0; 
+	FeatureModel ::= "featuremodel" !0!0
+						domains* !0 root !0 constraints* ; 
 						
-	Feature ::= selected[selected : "selected", deselected : "deselected", unbound : ""] 
-				"feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
-				//Order is mandatory for correct printing!
-				((!0 #4 (attributes))*)? 
-				((!0 #4 (groups))*)?; 
+	@SuppressWarnings(explicitSyntaxChoice) 					
+	Feature ::= selected[selected : "selected", deselected : "deselected", unbound : ""] "feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
+				(!1 (attributes | groups) )*; 
 	
 	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[TEXT] ".." maxCardinality[TEXT] ")" 
-						#1 "{" !0 childFeatures+ !0 "}" !1;
-	Attribute ::= name[TEXT] #1 "[" #1 domain[] #1 "]" ("\\" "{" deselectedDomainValues[TEXT] ("," deselectedDomainValues[TEXT])* "}")? 
-	(#1 "=" #1 (value[TEXT]))?;
+						#1 "{" (!1 childFeatures)+ "}" !0;
+	Attribute ::= name[TEXT] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues[TEXT] ("," #1 deselectedDomainValues[TEXT])* "}")? 
+	(#1 ":=" #1 (value[TEXT]))? ;
 
-	ContinuousDomain ::= "domain" #1 "<" id[TEXT] ">" "[" intervals ("," #1 intervals)* "]";
+	NumericalDomain ::= "domain" #1 "<" id[TEXT] ">" #1 "[" intervals ("," #1 intervals)* "]" !0;
 	Interval ::= lowerBound[TEXT] ".." upperBound[TEXT];
 
-	DiscreteDomain ::= "domain"  #1 "<" id[TEXT] ">" "[" values[TEXT] ("," #1 values[TEXT])* "]";
+	DiscreteDomain ::= "domain"  #1 "<" id[TEXT] ">" #1 "[" values ("," #1 values)* "]" !0;
 
-	Constraint ::= "constraint" #1 "<" id[TEXT] ">" #1 expression ";" !0;
-	//Expression
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	NestedExpression ::= "(" operand ")";
+	DomainValue ::= (name[] "=")? #0 int[];
+	Imply ::= "constraint" #1 "<" id[TEXT] ">" #1 leftOperand[TEXT] #1 "->" #1 rightOperand[TEXT] !0;
 	
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	FeatureReference ::= feature[];
-	@Operator(type="unary_prefix", weight="4", superclass="Expression")
-	NotExpression ::= "!" operand;
+	Exclude ::= "constraint" #1 "<" id[TEXT] ">" #1 leftOperand[TEXT] #1 "<->" #1 rightOperand[TEXT] !0;
 	
-	@Operator(type="binary_left_associative", weight="3", superclass="Expression")
-	AndExpression ::= operand1 #1 "&&" #1 operand2;
+	AttributeConstraint ::= "constraint" #1 "<" id[TEXT] ">" #1 
+			attribute1 #1 
+			operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] #1 
+			attribute2 !0;
+
+	AttributeReference ::= feature[] "." attribute[];
 	
-	@Operator(type="binary_left_associative", weight="2", superclass="Expression")
-	OrExpression ::= operand1 #1 "||" #1 operand2;
-	
-	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	ImpliesExpression ::= operand1 #1 "->" #1 operand2;
-	
-	@Operator(type="binary_left_associative", weight="1", superclass="Expression")
-	ExcludesExpression ::= operand1 #1 "excludes" #1 operand2;
-	
-	@Operator(type="primitive", weight="5", superclass="Expression")
-	AttributeComparisonExpression ::= attribute1 operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] attribute2;
-		
-	AttributeValueLiteral ::= (value[TEXT]);
-	AttributeReference ::= attribute[QUALIFIED_ATTRIBUTE_NAME_LITERAL];
+	@SuppressWarnings		
+	AttributeValue ::= (name['"','"'] | int[]);	
 }

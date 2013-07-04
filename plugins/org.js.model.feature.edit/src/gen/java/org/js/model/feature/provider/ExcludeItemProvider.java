@@ -16,14 +16,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.js.model.feature.Exclude;
+
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.NotExpression} object.
+ * This is the item provider adapter for a {@link org.js.model.feature.Exclude} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NotExpressionItemProvider
-   extends UnaryExpressionItemProvider
+public class ExcludeItemProvider
+   extends FeatureConstraintItemProvider
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,
@@ -36,7 +38,7 @@ public class NotExpressionItemProvider
     * <!-- end-user-doc -->
     * @generated
     */
-   public NotExpressionItemProvider(AdapterFactory adapterFactory) {
+   public ExcludeItemProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
    }
 
@@ -56,14 +58,14 @@ public class NotExpressionItemProvider
    }
 
    /**
-    * This returns NotExpression.gif.
+    * This returns Exclude.gif.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
    public Object getImage(Object object) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/NotExpression"));
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/Exclude"));
    }
 
    /**
@@ -74,7 +76,10 @@ public class NotExpressionItemProvider
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_NotExpression_type");
+      String label = ((Exclude)object).getId();
+      return label == null || label.length() == 0 ?
+         getString("_UI_Exclude_type") :
+         getString("_UI_Exclude_type") + " " + label;
    }
 
    /**

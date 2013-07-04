@@ -8,8 +8,8 @@
 
    <extension point="org.eclipse.ui.newWizards">
       <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+            id="org.js.model.puma.id"
+            name="PUMA -- Product-Line Utilities for Multi-Tenant Applications"/>
       <wizard
             id="org.js.model.feature.editor.FeatureModelWizardID"
             name="%_UI_FeatureModelWizard_label"

@@ -40,32 +40,9 @@ public class ReferenceResolverUtil {
 		return null;
 	}
 	
-	public static Attribute resolveAttribute(String identifier, FeatureModel featureModel) {
-		if (!identifier.contains("#")) {
-			return null;
-		}
-		
-		String[] parts = identifier.split("\\#");
-		
-		if (parts.length != 2) {
-			return null;
-		}
-		
-		String featureId = parts[0];
-		String attributeName = parts[1];
-		
-		
-		Feature feature = ReferenceResolverUtil.findFeature(featureId, featureModel);
-		
-		if (feature == null) {
-			return null;
-		}
-		
-		return ReferenceResolverUtil.findAttributeForFeature(attributeName, feature);
-	}
 	
 	public static String deresolveAttribute(Attribute attribute) {
 		Feature feature = attribute.getFeature();
-		return feature.getId() + "#" + attribute.getName();
+		return feature.getId() + "." + attribute.getName();
 	}
 }

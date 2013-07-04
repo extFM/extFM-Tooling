@@ -24,7 +24,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureFactory;
 import org.js.model.feature.FeaturePackage;
-import org.js.model.feature.SelectedState;
+import org.js.model.feature.FeatureState;
+
 
 /**
  * This is the item provider adapter for a {@link org.js.model.feature.Feature} object.
@@ -153,10 +154,10 @@ public class FeatureItemProvider
       String imagePath = "Feature";
       if (object instanceof Feature) {
          Feature feature = (Feature) object;
-         SelectedState selected = feature.getSelected();
-        if (SelectedState.DESELECTED.equals(selected)){
+         FeatureState selected = feature.getSelected();
+        if (FeatureState.DESELECTED.equals(selected)){
            imagePath = "DeSelectedFeature";
-         } else if (SelectedState.SELECTED.equals(selected)) {
+         } else if (FeatureState.SELECTED.equals(selected)) {
            imagePath = "SelectedFeature";
          }
       }

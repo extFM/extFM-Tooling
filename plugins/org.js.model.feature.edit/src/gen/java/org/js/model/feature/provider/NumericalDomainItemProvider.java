@@ -18,22 +18,20 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.model.feature.AttributeComparisonExpression;
-import org.js.model.feature.AttributeComparisonOperator;
 import org.js.model.feature.FeatureFactory;
 import org.js.model.feature.FeaturePackage;
+import org.js.model.feature.NumericalDomain;
 
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.AttributeComparisonExpression} object.
+ * This is the item provider adapter for a {@link org.js.model.feature.NumericalDomain} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeComparisonExpressionItemProvider
-   extends AtomicExpressionItemProvider
+public class NumericalDomainItemProvider
+   extends DomainItemProvider
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,
@@ -46,7 +44,7 @@ public class AttributeComparisonExpressionItemProvider
     * <!-- end-user-doc -->
     * @generated
     */
-   public AttributeComparisonExpressionItemProvider(AdapterFactory adapterFactory) {
+   public NumericalDomainItemProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
    }
 
@@ -61,29 +59,29 @@ public class AttributeComparisonExpressionItemProvider
       if (itemPropertyDescriptors == null) {
          super.getPropertyDescriptors(object);
 
-         addOperatorPropertyDescriptor(object);
+         addIntervalsPropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
    }
 
    /**
-    * This adds a property descriptor for the Operator feature.
+    * This adds a property descriptor for the Intervals feature.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected void addOperatorPropertyDescriptor(Object object) {
+   protected void addIntervalsPropertyDescriptor(Object object) {
       itemPropertyDescriptors.add
          (createItemPropertyDescriptor
             (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
              getResourceLocator(),
-             getString("_UI_AttributeComparisonExpression_operator_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_AttributeComparisonExpression_operator_feature", "_UI_AttributeComparisonExpression_type"),
-             FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__OPERATOR,
+             getString("_UI_NumericalDomain_intervals_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_NumericalDomain_intervals_feature", "_UI_NumericalDomain_type"),
+             FeaturePackage.Literals.NUMERICAL_DOMAIN__INTERVALS,
              true,
              false,
              false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+             null,
              null,
              null));
    }
@@ -100,8 +98,7 @@ public class AttributeComparisonExpressionItemProvider
    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
       if (childrenFeatures == null) {
          super.getChildrenFeatures(object);
-         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE1);
-         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE2);
+         childrenFeatures.add(FeaturePackage.Literals.NUMERICAL_DOMAIN__INTERVALS);
       }
       return childrenFeatures;
    }
@@ -120,6 +117,17 @@ public class AttributeComparisonExpressionItemProvider
    }
 
    /**
+    * This returns NumericalDomain.gif.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Object getImage(Object object) {
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/NumericalDomain"));
+   }
+
+   /**
     * This returns the label text for the adapted class.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
@@ -127,11 +135,10 @@ public class AttributeComparisonExpressionItemProvider
     */
    @Override
    public String getText(Object object) {
-      AttributeComparisonOperator labelValue = ((AttributeComparisonExpression)object).getOperator();
-      String label = labelValue == null ? null : labelValue.toString();
+      String label = ((NumericalDomain)object).getId();
       return label == null || label.length() == 0 ?
-         getString("_UI_AttributeComparisonExpression_type") :
-         getString("_UI_AttributeComparisonExpression_type") + " " + label;
+         getString("_UI_NumericalDomain_type") :
+         getString("_UI_NumericalDomain_type") + " " + label;
    }
 
    /**
@@ -145,12 +152,8 @@ public class AttributeComparisonExpressionItemProvider
    public void notifyChanged(Notification notification) {
       updateChildren(notification);
 
-      switch (notification.getFeatureID(AttributeComparisonExpression.class)) {
-         case FeaturePackage.ATTRIBUTE_COMPARISON_EXPRESSION__OPERATOR:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-         case FeaturePackage.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE1:
-         case FeaturePackage.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE2:
+      switch (notification.getFeatureID(NumericalDomain.class)) {
+         case FeaturePackage.NUMERICAL_DOMAIN__INTERVALS:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
             return;
       }
@@ -170,46 +173,8 @@ public class AttributeComparisonExpressionItemProvider
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE1,
-             FeatureFactory.eINSTANCE.createAttributeReference()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE1,
-             FeatureFactory.eINSTANCE.createAttributeValueLiteral()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE2,
-             FeatureFactory.eINSTANCE.createAttributeReference()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE2,
-             FeatureFactory.eINSTANCE.createAttributeValueLiteral()));
-   }
-
-   /**
-    * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-      Object childFeature = feature;
-      Object childObject = child;
-
-      boolean qualify =
-         childFeature == FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE1 ||
-         childFeature == FeaturePackage.Literals.ATTRIBUTE_COMPARISON_EXPRESSION__ATTRIBUTE2;
-
-      if (qualify) {
-         return getString
-            ("_UI_CreateChild_text2",
-             new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-      }
-      return super.getCreateChildText(owner, feature, child, selection);
+            (FeaturePackage.Literals.NUMERICAL_DOMAIN__INTERVALS,
+             FeatureFactory.eINSTANCE.createInterval()));
    }
 
 }

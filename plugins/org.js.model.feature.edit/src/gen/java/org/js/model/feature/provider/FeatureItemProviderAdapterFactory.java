@@ -187,26 +187,49 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.ContinuousDomain} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.feature.DomainValue} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected ContinuousDomainItemProvider continuousDomainItemProvider;
+   protected DomainValueItemProvider domainValueItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.ContinuousDomain}.
+    * This creates an adapter for a {@link org.js.model.feature.DomainValue}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createContinuousDomainAdapter() {
-      if (continuousDomainItemProvider == null) {
-         continuousDomainItemProvider = new ContinuousDomainItemProvider(this);
+   public Adapter createDomainValueAdapter() {
+      if (domainValueItemProvider == null) {
+         domainValueItemProvider = new DomainValueItemProvider(this);
       }
 
-      return continuousDomainItemProvider;
+      return domainValueItemProvider;
+   }
+
+   /**
+    * This keeps track of the one adapter used for all {@link org.js.model.feature.NumericalDomain} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected NumericalDomainItemProvider numericalDomainItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.feature.NumericalDomain}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createNumericalDomainAdapter() {
+      if (numericalDomainItemProvider == null) {
+         numericalDomainItemProvider = new NumericalDomainItemProvider(this);
+      }
+
+      return numericalDomainItemProvider;
    }
 
    /**
@@ -233,210 +256,26 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Constraint} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeConstraint} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected ConstraintItemProvider constraintItemProvider;
+   protected AttributeConstraintItemProvider attributeConstraintItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Constraint}.
+    * This creates an adapter for a {@link org.js.model.feature.AttributeConstraint}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createConstraintAdapter() {
-      if (constraintItemProvider == null) {
-         constraintItemProvider = new ConstraintItemProvider(this);
+   public Adapter createAttributeConstraintAdapter() {
+      if (attributeConstraintItemProvider == null) {
+         attributeConstraintItemProvider = new AttributeConstraintItemProvider(this);
       }
 
-      return constraintItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.FeatureReference} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected FeatureReferenceItemProvider featureReferenceItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.FeatureReference}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createFeatureReferenceAdapter() {
-      if (featureReferenceItemProvider == null) {
-         featureReferenceItemProvider = new FeatureReferenceItemProvider(this);
-      }
-
-      return featureReferenceItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.NotExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected NotExpressionItemProvider notExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.NotExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createNotExpressionAdapter() {
-      if (notExpressionItemProvider == null) {
-         notExpressionItemProvider = new NotExpressionItemProvider(this);
-      }
-
-      return notExpressionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.AndExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected AndExpressionItemProvider andExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.AndExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createAndExpressionAdapter() {
-      if (andExpressionItemProvider == null) {
-         andExpressionItemProvider = new AndExpressionItemProvider(this);
-      }
-
-      return andExpressionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.OrExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected OrExpressionItemProvider orExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.OrExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createOrExpressionAdapter() {
-      if (orExpressionItemProvider == null) {
-         orExpressionItemProvider = new OrExpressionItemProvider(this);
-      }
-
-      return orExpressionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.ImpliesExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected ImpliesExpressionItemProvider impliesExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.ImpliesExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createImpliesExpressionAdapter() {
-      if (impliesExpressionItemProvider == null) {
-         impliesExpressionItemProvider = new ImpliesExpressionItemProvider(this);
-      }
-
-      return impliesExpressionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.ExcludesExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected ExcludesExpressionItemProvider excludesExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.ExcludesExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createExcludesExpressionAdapter() {
-      if (excludesExpressionItemProvider == null) {
-         excludesExpressionItemProvider = new ExcludesExpressionItemProvider(this);
-      }
-
-      return excludesExpressionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.NestedExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected NestedExpressionItemProvider nestedExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.NestedExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createNestedExpressionAdapter() {
-      if (nestedExpressionItemProvider == null) {
-         nestedExpressionItemProvider = new NestedExpressionItemProvider(this);
-      }
-
-      return nestedExpressionItemProvider;
-   }
-
-   /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeComparisonExpression} instances.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected AttributeComparisonExpressionItemProvider attributeComparisonExpressionItemProvider;
-
-   /**
-    * This creates an adapter for a {@link org.js.model.feature.AttributeComparisonExpression}.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public Adapter createAttributeComparisonExpressionAdapter() {
-      if (attributeComparisonExpressionItemProvider == null) {
-         attributeComparisonExpressionItemProvider = new AttributeComparisonExpressionItemProvider(this);
-      }
-
-      return attributeComparisonExpressionItemProvider;
+      return attributeConstraintItemProvider;
    }
 
    /**
@@ -463,26 +302,72 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
    }
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeValueLiteral} instances.
+    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeValue} instances.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected AttributeValueLiteralItemProvider attributeValueLiteralItemProvider;
+   protected AttributeValueItemProvider attributeValueItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.AttributeValueLiteral}.
+    * This creates an adapter for a {@link org.js.model.feature.AttributeValue}.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
-   public Adapter createAttributeValueLiteralAdapter() {
-      if (attributeValueLiteralItemProvider == null) {
-         attributeValueLiteralItemProvider = new AttributeValueLiteralItemProvider(this);
+   public Adapter createAttributeValueAdapter() {
+      if (attributeValueItemProvider == null) {
+         attributeValueItemProvider = new AttributeValueItemProvider(this);
       }
 
-      return attributeValueLiteralItemProvider;
+      return attributeValueItemProvider;
+   }
+
+   /**
+    * This keeps track of the one adapter used for all {@link org.js.model.feature.Imply} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected ImplyItemProvider implyItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.feature.Imply}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createImplyAdapter() {
+      if (implyItemProvider == null) {
+         implyItemProvider = new ImplyItemProvider(this);
+      }
+
+      return implyItemProvider;
+   }
+
+   /**
+    * This keeps track of the one adapter used for all {@link org.js.model.feature.Exclude} instances.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected ExcludeItemProvider excludeItemProvider;
+
+   /**
+    * This creates an adapter for a {@link org.js.model.feature.Exclude}.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   @Override
+   public Adapter createExcludeAdapter() {
+      if (excludeItemProvider == null) {
+         excludeItemProvider = new ExcludeItemProvider(this);
+      }
+
+      return excludeItemProvider;
    }
 
    /**
@@ -589,19 +474,14 @@ public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory imp
       if (groupItemProvider != null) groupItemProvider.dispose();
       if (attributeItemProvider != null) attributeItemProvider.dispose();
       if (discreteDomainItemProvider != null) discreteDomainItemProvider.dispose();
-      if (continuousDomainItemProvider != null) continuousDomainItemProvider.dispose();
+      if (domainValueItemProvider != null) domainValueItemProvider.dispose();
+      if (numericalDomainItemProvider != null) numericalDomainItemProvider.dispose();
       if (intervalItemProvider != null) intervalItemProvider.dispose();
-      if (constraintItemProvider != null) constraintItemProvider.dispose();
-      if (featureReferenceItemProvider != null) featureReferenceItemProvider.dispose();
-      if (notExpressionItemProvider != null) notExpressionItemProvider.dispose();
-      if (andExpressionItemProvider != null) andExpressionItemProvider.dispose();
-      if (orExpressionItemProvider != null) orExpressionItemProvider.dispose();
-      if (impliesExpressionItemProvider != null) impliesExpressionItemProvider.dispose();
-      if (excludesExpressionItemProvider != null) excludesExpressionItemProvider.dispose();
-      if (nestedExpressionItemProvider != null) nestedExpressionItemProvider.dispose();
-      if (attributeComparisonExpressionItemProvider != null) attributeComparisonExpressionItemProvider.dispose();
+      if (attributeConstraintItemProvider != null) attributeConstraintItemProvider.dispose();
       if (attributeReferenceItemProvider != null) attributeReferenceItemProvider.dispose();
-      if (attributeValueLiteralItemProvider != null) attributeValueLiteralItemProvider.dispose();
+      if (attributeValueItemProvider != null) attributeValueItemProvider.dispose();
+      if (implyItemProvider != null) implyItemProvider.dispose();
+      if (excludeItemProvider != null) excludeItemProvider.dispose();
    }
 
 }

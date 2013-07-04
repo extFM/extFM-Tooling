@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.js.model.feature.AttributeReference;
 import org.js.model.feature.FeaturePackage;
 
 /**
@@ -55,6 +56,7 @@ public class AttributeReferenceItemProvider
          super.getPropertyDescriptors(object);
 
          addAttributePropertyDescriptor(object);
+         addFeaturePropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
    }
@@ -82,6 +84,28 @@ public class AttributeReferenceItemProvider
    }
 
    /**
+    * This adds a property descriptor for the Feature feature.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected void addFeaturePropertyDescriptor(Object object) {
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_AttributeReference_feature_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_AttributeReference_feature_feature", "_UI_AttributeReference_type"),
+             FeaturePackage.Literals.ATTRIBUTE_REFERENCE__FEATURE,
+             true,
+             false,
+             true,
+             null,
+             null,
+             null));
+   }
+
+   /**
     * This returns AttributeReference.gif.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
@@ -96,11 +120,18 @@ public class AttributeReferenceItemProvider
     * This returns the label text for the adapted class.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
+    * @generated NOT
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_AttributeReference_type");
+      String text = getString("_UI_AttributeReference_type");
+      if (object instanceof AttributeReference) {
+         AttributeReference reference = (AttributeReference) object;
+         String featureId = reference.getFeature().getId();
+         String attName = reference.getAttribute().getName();
+         text += " " + featureId + "." + attName;
+      }
+      return text;
    }
 
    /**

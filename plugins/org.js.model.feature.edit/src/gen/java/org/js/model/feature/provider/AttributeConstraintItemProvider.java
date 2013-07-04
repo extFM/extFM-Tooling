@@ -11,26 +11,31 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.model.feature.BinaryExpression;
+import org.js.model.feature.AttributeConstraint;
+import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureFactory;
 import org.js.model.feature.FeaturePackage;
+import org.js.model.feature.FeatureState;
+import org.js.model.feature.Relop;
 
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.BinaryExpression} object.
+ * This is the item provider adapter for a {@link org.js.model.feature.AttributeConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BinaryExpressionItemProvider
-   extends ExpressionItemProvider
+public class AttributeConstraintItemProvider
+   extends ConstraintItemProvider
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,
@@ -43,7 +48,7 @@ public class BinaryExpressionItemProvider
     * <!-- end-user-doc -->
     * @generated
     */
-   public BinaryExpressionItemProvider(AdapterFactory adapterFactory) {
+   public AttributeConstraintItemProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
    }
 
@@ -58,8 +63,31 @@ public class BinaryExpressionItemProvider
       if (itemPropertyDescriptors == null) {
          super.getPropertyDescriptors(object);
 
+         addOperatorPropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
+   }
+
+   /**
+    * This adds a property descriptor for the Operator feature.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected void addOperatorPropertyDescriptor(Object object) {
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_AttributeConstraint_operator_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_AttributeConstraint_operator_feature", "_UI_AttributeConstraint_type"),
+             FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__OPERATOR,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+             null,
+             null));
    }
 
    /**
@@ -74,8 +102,8 @@ public class BinaryExpressionItemProvider
    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
       if (childrenFeatures == null) {
          super.getChildrenFeatures(object);
-         childrenFeatures.add(FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1);
-         childrenFeatures.add(FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2);
+         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1);
+         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2);
       }
       return childrenFeatures;
    }
@@ -94,6 +122,51 @@ public class BinaryExpressionItemProvider
    }
 
    /**
+    * This returns AttributeConstraint.gif.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated NOT
+    */
+   @Override
+   public Object getImage(Object object) {
+      String imagePath = "AttributeConstraint";
+      if (object instanceof AttributeConstraint) {
+         AttributeConstraint constraint = (AttributeConstraint) object;
+        Relop operator = constraint.getOperator();
+        if (operator != null){
+           int operatorValue = operator.getValue();
+           switch (operatorValue) {
+            case Relop.EQUAL_VALUE:
+               imagePath = "AttributeConstraint_Equals";
+               break;
+            case Relop.GREATER_THAN_OR_EQUAL_VALUE:
+               imagePath = "AttributeConstraint_GreaterOrEqual";
+               break;
+            case Relop.GREATER_THAN_VALUE:
+               imagePath = "AttributeConstraint_Greater";
+               break;
+            case Relop.LESS_THAN_OR_EQUAL_VALUE:
+               imagePath = "AttributeConstraint_LessOrEqual";
+               break;
+            case Relop.LESS_THAN_VALUE:
+               imagePath = "AttributeConstraint_Less";
+               break;
+            case Relop.UNEQUAL_VALUE:
+               imagePath = "AttributeConstraint_Unequal";
+               break;
+            default:
+               break;
+         }
+           
+        }
+      }
+      
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/" + imagePath));
+      
+      //return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeConstraint"));
+   }
+
+   /**
     * This returns the label text for the adapted class.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
@@ -101,7 +174,10 @@ public class BinaryExpressionItemProvider
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_BinaryExpression_type");
+      String label = ((AttributeConstraint)object).getId();
+      return label == null || label.length() == 0 ?
+         getString("_UI_AttributeConstraint_type") :
+         getString("_UI_AttributeConstraint_type") + " " + label;
    }
 
    /**
@@ -115,9 +191,12 @@ public class BinaryExpressionItemProvider
    public void notifyChanged(Notification notification) {
       updateChildren(notification);
 
-      switch (notification.getFeatureID(BinaryExpression.class)) {
-         case FeaturePackage.BINARY_EXPRESSION__OPERAND1:
-         case FeaturePackage.BINARY_EXPRESSION__OPERAND2:
+      switch (notification.getFeatureID(AttributeConstraint.class)) {
+         case FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+         case FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1:
+         case FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
             return;
       }
@@ -137,83 +216,23 @@ public class BinaryExpressionItemProvider
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createFeatureReference()));
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1,
+             FeatureFactory.eINSTANCE.createAttributeReference()));
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createNotExpression()));
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1,
+             FeatureFactory.eINSTANCE.createAttributeValue()));
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createAndExpression()));
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2,
+             FeatureFactory.eINSTANCE.createAttributeReference()));
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createOrExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createImpliesExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createExcludesExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createNestedExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1,
-             FeatureFactory.eINSTANCE.createAttributeComparisonExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createFeatureReference()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createNotExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createAndExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createOrExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createImpliesExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createExcludesExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createNestedExpression()));
-
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2,
-             FeatureFactory.eINSTANCE.createAttributeComparisonExpression()));
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2,
+             FeatureFactory.eINSTANCE.createAttributeValue()));
    }
 
    /**
@@ -228,8 +247,8 @@ public class BinaryExpressionItemProvider
       Object childObject = child;
 
       boolean qualify =
-         childFeature == FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND1 ||
-         childFeature == FeaturePackage.Literals.BINARY_EXPRESSION__OPERAND2;
+         childFeature == FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1 ||
+         childFeature == FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2;
 
       if (qualify) {
          return getString

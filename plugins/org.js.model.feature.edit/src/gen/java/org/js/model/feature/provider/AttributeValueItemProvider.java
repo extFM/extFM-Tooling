@@ -19,16 +19,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.js.model.feature.AttributeValueLiteral;
+import org.js.model.feature.AttributeValue;
 import org.js.model.feature.FeaturePackage;
 
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.AttributeValueLiteral} object.
+ * This is the item provider adapter for a {@link org.js.model.feature.AttributeValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeValueLiteralItemProvider
+public class AttributeValueItemProvider
    extends AttributeOperandItemProvider
    implements
       IEditingDomainItemProvider,
@@ -42,7 +42,7 @@ public class AttributeValueLiteralItemProvider
     * <!-- end-user-doc -->
     * @generated
     */
-   public AttributeValueLiteralItemProvider(AdapterFactory adapterFactory) {
+   public AttributeValueItemProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
    }
 
@@ -57,25 +57,26 @@ public class AttributeValueLiteralItemProvider
       if (itemPropertyDescriptors == null) {
          super.getPropertyDescriptors(object);
 
-         addValuePropertyDescriptor(object);
+         addNamePropertyDescriptor(object);
+         addIntPropertyDescriptor(object);
       }
       return itemPropertyDescriptors;
    }
 
    /**
-    * This adds a property descriptor for the Value feature.
+    * This adds a property descriptor for the Name feature.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
-   protected void addValuePropertyDescriptor(Object object) {
+   protected void addNamePropertyDescriptor(Object object) {
       itemPropertyDescriptors.add
          (createItemPropertyDescriptor
             (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
              getResourceLocator(),
-             getString("_UI_AttributeValueLiteral_value_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_AttributeValueLiteral_value_feature", "_UI_AttributeValueLiteral_type"),
-             FeaturePackage.Literals.ATTRIBUTE_VALUE_LITERAL__VALUE,
+             getString("_UI_AttributeValue_name_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_AttributeValue_name_feature", "_UI_AttributeValue_type"),
+             FeaturePackage.Literals.ATTRIBUTE_VALUE__NAME,
              true,
              false,
              false,
@@ -85,28 +86,50 @@ public class AttributeValueLiteralItemProvider
    }
 
    /**
-    * This returns AttributeValueLiteral.gif.
+    * This adds a property descriptor for the Int feature.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   protected void addIntPropertyDescriptor(Object object) {
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_AttributeValue_int_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_AttributeValue_int_feature", "_UI_AttributeValue_type"),
+             FeaturePackage.Literals.ATTRIBUTE_VALUE__INT,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+             null,
+             null));
+   }
+
+   /**
+    * This returns AttributeValue.gif.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
     * @generated
     */
    @Override
    public Object getImage(Object object) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValueLiteral"));
+      return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeValue"));
    }
 
    /**
     * This returns the label text for the adapted class.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
+    * @generated NOT
     */
    @Override
    public String getText(Object object) {
-      String label = ((AttributeValueLiteral)object).getValue();
+      String label = ((AttributeValue)object).getName();
       return label == null || label.length() == 0 ?
-         getString("_UI_AttributeValueLiteral_type") :
-         getString("_UI_AttributeValueLiteral_type") + " " + label;
+         getString("_UI_AttributeValue_type") :
+         getString("_UI_AttributeValue_type") + " " + label;
    }
 
    /**
@@ -120,8 +143,9 @@ public class AttributeValueLiteralItemProvider
    public void notifyChanged(Notification notification) {
       updateChildren(notification);
 
-      switch (notification.getFeatureID(AttributeValueLiteral.class)) {
-         case FeaturePackage.ATTRIBUTE_VALUE_LITERAL__VALUE:
+      switch (notification.getFeatureID(AttributeValue.class)) {
+         case FeaturePackage.ATTRIBUTE_VALUE__NAME:
+         case FeaturePackage.ATTRIBUTE_VALUE__INT:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
       }
