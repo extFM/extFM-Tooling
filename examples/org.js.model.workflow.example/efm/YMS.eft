@@ -1,10 +1,10 @@
-feature model "YMS"
-domain <scheduleType> [next, fitting]
+featuremodel "YMS"
+domain <scheduleType> [next=1, fitting=2]
 //domain <d2> [10..20, 30..50]
 
 feature "YMS" <YMS>
 	group <Authentication_opt>(0..1) {
-		feature "Authentication" <Authentication>
+      feature "Authentication" <Authentication>
 			group <JAAS_man> (1..1){
 				feature "JAAS" <JAAS>
 			}
@@ -55,4 +55,4 @@ feature "YMS" <YMS>
 	group <MC_opt> (0..1){
 		feature "MC" <MC>
 	}
-constraint <lsconstraint> LS -> MC;
+constraint <lsconstraint> LS -> MC
