@@ -24,6 +24,7 @@ import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.js.model.feature.Attribute;
+import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
 
 /**
@@ -131,6 +132,12 @@ public class UniqueIdConstraint extends AbstractModelConstraint implements IMode
                      Feature otherFeature = otherAttribute.getFeature();
                      Feature targetFeature = targetAttribute.getFeature();
                      if (!EcoreUtil.equals(otherFeature, targetFeature)) {
+                        msg = null;
+                     }
+                     // the id of a domain value is its integer representation. Multiple domain values of different
+                     // domains may have the same integer representation
+                  } else if (target instanceof DomainValue && next instanceof DomainValue) {
+                     if (!EcoreUtil.equals(target.eContainer(), next.eContainer())) {
                         msg = null;
                      }
                   } else {
