@@ -50,7 +50,7 @@ RULES {
 	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[TEXT] ".." maxCardinality[TEXT] ")" 
 						#1 "{" (!1 childFeatures)+ "}" !0;
 	Attribute ::= name[TEXT] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues[TEXT] ("," #1 deselectedDomainValues[TEXT])* "}")? 
-	(#1 ":=" #1 (value[TEXT]))? ;
+	(#1 ":=" #1 (value['"','"']))? ;
 
 	NumericalDomain ::= "domain" #1 "<" id[TEXT] ">" #1 "[" intervals ("," #1 intervals)* "]" !0;
 	Interval ::= lowerBound[TEXT] ".." upperBound[TEXT];
