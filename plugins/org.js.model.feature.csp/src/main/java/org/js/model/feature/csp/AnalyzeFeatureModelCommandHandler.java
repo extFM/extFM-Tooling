@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.ISelectionService;
@@ -40,8 +41,34 @@ public class AnalyzeFeatureModelCommandHandler extends AbstractHandler {
    @Override
    public Object execute(ExecutionEvent event) throws ExecutionException {
       List<IFile> files = getSelectedWorkbenchFiles();
-      CSPAnalyzer.analyze(files);
+      // ask for a number of variants to be persisted
+      // Customized MessageDialog with configured buttons
+      int result = dialogPersistVariants(files);
+      switch (result) {
+         case 0:
+            CSPAnalyzer.analyze(files, true);
+            break;
+         case 1:
+            CSPAnalyzer.analyze(files, result);
+            break;
+         case 2:
+            CSPAnalyzer.analyze(files, false);
+            break;
+         default:
+            CSPAnalyzer.analyze(files, false);
+            break;
+      }
       return null;
+   }
+
+   private int dialogPersistVariants(List<IFile> files) {
+
+      MessageDialog dialog =
+         new MessageDialog(null, "Persist Variants", null, "Shall variants of the selected feature model files be persisted? \\"
+                                                           + files.toString(), MessageDialog.QUESTION, new String[] {
+               "Yes, all", "Yes, only one", "No" }, 0);
+      int result = dialog.open();
+      return result;
    }
 
    /**

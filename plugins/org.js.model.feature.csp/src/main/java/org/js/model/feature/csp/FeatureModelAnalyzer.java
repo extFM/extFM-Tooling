@@ -43,7 +43,9 @@ public class FeatureModelAnalyzer {
    private FeatureModel model;
 
    private boolean keepVariantFlag = false;
-   private boolean persistVariantFlag = true;
+   private boolean persistVariants = true;
+
+   private int numberOfVariantsToDerive = -1;
 
    /**
     * default constructor.
@@ -53,6 +55,15 @@ public class FeatureModelAnalyzer {
    public FeatureModelAnalyzer(FeatureModel model) {
       this.model = model;
       featureModelHelper = new FeatureModelHelper(model);
+   }
+
+   public FeatureModelAnalyzer(FeatureModel featureModel, boolean persistAllVariants) {
+      this(featureModel);
+      this.persistVariants = persistAllVariants;
+   }
+
+   public String getFeatureModelName() {
+      return (model != null) ? model.getName() : "";
    }
 
    public int getConstraintCoverage() {
@@ -65,6 +76,10 @@ public class FeatureModelAnalyzer {
       int features = featureModelHelper.getAllFeatures().size();
       int percentage = (constrained * 100) / features;
       return percentage;
+   }
+
+   public void setPersistVariants(boolean persistVariants) {
+      this.persistVariants = persistVariants;
    }
 
    /**
@@ -148,21 +163,25 @@ public class FeatureModelAnalyzer {
       return cspModel;
    }
 
-   private void solveModel(boolean findAll, boolean keepVariants, boolean persistVariant) {
+   private void solveModel(boolean findAll) {
       long start = System.currentTimeMillis();
       CPSolver solver = new CPSolver();
       Model problemModel = getCSPModel();
       solver.read(problemModel);
       log.debug("------------------------------------------");
       int j = 0;
+      
       if (solver.solve()) {
          do {
             j++;
+            if (numberOfVariantsToDerive != -1 && j > numberOfVariantsToDerive){
+               persistVariants = false;
+            }
             FeatureVariant variant = createVariant(solver);
-            if (persistVariant){
+            if (persistVariants) {
                save(variant, j);
             }
-            if (keepVariants) {
+            if (keepVariantFlag) {
                derivableVariants.add(variant);
             }
             log.debug(j + ". variant found.");
@@ -178,9 +197,9 @@ public class FeatureModelAnalyzer {
    }
 
    private void save(FeatureVariant variant, int number) {
-    FeatureModel featureModelVariant = variant.getModel();
-    String featureModelProject = FeatureModelUtil.getProjectName(model);
-    FeatureModelUtil.persistModel(featureModelVariant, "variant_"+number, "eft", "variants", featureModelProject);
+      FeatureModel featureModelVariant = variant.getModel();
+      String featureModelProject = FeatureModelUtil.getProjectName(model);
+      FeatureModelUtil.persistModel(featureModelVariant, featureModelVariant.getName() + number, "eft", "variants", featureModelProject);
    }
 
    private FeatureVariant createVariant(CPSolver solver) {
@@ -248,7 +267,7 @@ public class FeatureModelAnalyzer {
    public int getNumberOfDerivableVariants() {
       if (derivableVariants == null) {
          derivableVariants = new HashSet<FeatureVariant>();
-         solveModel(true, keepVariantFlag, persistVariantFlag);
+         solveModel(true);
       }
       return numberDerivableVariant;
    }
@@ -268,6 +287,10 @@ public class FeatureModelAnalyzer {
     */
    public int getNumberOfAllAttributes() {
       return getAllAttributes().size();
+   }
+
+   public void setNumberOfVariantsToDerive(int numberOfVariants) {
+      this.numberOfVariantsToDerive = numberOfVariants;
    }
 
 }

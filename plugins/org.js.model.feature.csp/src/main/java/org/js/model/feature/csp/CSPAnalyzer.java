@@ -1,10 +1,8 @@
 package org.js.model.feature.csp;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -15,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 
 public class CSPAnalyzer {
@@ -27,12 +24,20 @@ public class CSPAnalyzer {
     * 
     * @param files
     */
-   public static void analyze(List<IFile> files) {
+   public static void analyze(List<IFile> files, boolean persistAllVariants) {
       for (IFile file : files) {
-         analyze(file);
-//         for (int j = 0; j < 10; j++) {
-//            satPerformanceMeasure(file);
-//         }
+         analyze(file, persistAllVariants);
+      }
+   }
+
+   /**
+    * analyzes multiple files and creates statistics for them.
+    * 
+    * @param files
+    */
+   public static void analyze(List<IFile> files, int numberVariants) {
+      for (IFile file : files) {
+         analyze(file, numberVariants);
       }
    }
 
@@ -44,7 +49,6 @@ public class CSPAnalyzer {
       }
    }
 
-   
    /**
     * initialize a featuremodel from an Ifile.
     * 
@@ -59,8 +63,7 @@ public class CSPAnalyzer {
       }
       return featuremodel;
    }
-   
-   
+
    /**
     * Generic method to load a model from a file.
     * 
@@ -87,8 +90,7 @@ public class CSPAnalyzer {
       }
       return result;
    }
-   
-   
+
    /**
     * get the according resource for a file.
     * 
@@ -105,23 +107,32 @@ public class CSPAnalyzer {
       return resource;
    }
 
-   
+   private static FeatureModelAnalyzer getAnalyzer(IFile file) {
+      log.info("Analyzing file '" + file.getName() + "'.");
+      FeatureModelAnalyzer analyzer = null;
+      Assert.isNotNull(file);
+      FeatureModel featureModel = getFeatureModel(file, new ResourceSetImpl());
+      if (featureModel != null) {
+         analyzer = new FeatureModelAnalyzer(featureModel);
+      }
+      if (analyzer == null) {
+         log.info("The file" + file.getName() + " does not represent a feature model");
+      }
+      return analyzer;
+   }
+
    /**
     * analyze method to create a statistic for the given featuremodel.
     * 
     * @param file
     */
-   public static void analyze(IFile file) {
-      Assert.isNotNull(file);
+   public static void analyze(FeatureModelAnalyzer analyzer) {
       log.info("--------------------------------------");
       log.info("--------------------------------------");
-      log.info("Analyzing file '" + file.getName() + "'.");
-      FeatureModel featureModel = getFeatureModel(file, new ResourceSetImpl());
-      if (featureModel != null) {
+      if (analyzer != null) {
          log.info("--------------------------------------");
-         log.info("Featuremodel " + featureModel.getRoot().getName());
+         log.info("Featuremodel " + analyzer.getFeatureModelName());
          log.info("--------------------------------------");
-         FeatureModelAnalyzer analyzer = new FeatureModelAnalyzer(featureModel);
          int numberOfAllFeatures = analyzer.getNumberOfAllFeatures();
          log.info("Number of total features         : " + numberOfAllFeatures);
 
@@ -148,14 +159,24 @@ public class CSPAnalyzer {
 
          int derivableVariants = analyzer.getNumberOfDerivableVariants();
          log.info("Number of derivable variants     : " + derivableVariants);
-
-         // log.info("--------------------------------------");
-         // log.info("--------------------------------------");
-      } else {
-         log.info("The file" + file.getName() + " does not represent a feature model");
       }
    }
-   
-     
-   
+
+   public static void analyze(IFile file, boolean persistAllVariants) {
+      FeatureModelAnalyzer analyzer = getAnalyzer(file);
+      if (analyzer != null) {
+         analyzer.setPersistVariants(persistAllVariants);
+         analyze(analyzer);
+      }
+   }
+
+   public static void analyze(IFile file, int numberOfVariants) {
+      FeatureModelAnalyzer analyzer = getAnalyzer(file);
+      if (analyzer != null) {
+         analyzer.setNumberOfVariantsToDerive(numberOfVariants);
+         analyze(analyzer);
+      }
+
+   }
+
 }
