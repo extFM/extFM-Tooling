@@ -1,0 +1,58 @@
+featuremodel "YMS"
+domain <scheduleType> [next=1, fitting=2]
+//domain <d2> [10..20, 30..50]
+
+feature "YMS" <YMS>
+	group <Authentication_opt>(0..1) {
+      feature "Authentication" <Authentication>
+			group <JAAS_man> (1..1){
+				feature "JAAS" <JAAS>
+			}
+	}
+	group <Persistence_man>(1..1){
+		feature "Persistence" <Persistence>
+			group <PersistenceValue_alt>(1..1){
+				feature "JDBC" <JDBC>
+				feature "JPI" <JPI>
+				}
+	}	
+	group <Connectivity_man>(1..1){
+		feature "Connectivity" <Connectivity>
+			group <ConnectivityValue_alt>(1..1){
+				feature "RFC" <RFC>
+				feature "SOAP" <SOAP>
+				feature "REST" <REST>
+			}
+	}
+	group <YM_man>(1..1){ 
+		feature "YM" <YM>
+					SchedulingType [scheduleType]
+			group <EnableShips_opt>(0..1) {
+				feature "EnableShips" <EnableShips>
+			}
+			group <EnableTrains_opt>(0..1) {
+				feature "EnableTrains" <EnableTrains>
+			}
+			group <SpecialDocks_opt>(0..1) {
+				feature "SpecialDocks" <SpecialDocks> 
+			}
+	}
+	group <YJ_man>(1..1){
+		feature "YJ" <YJ>
+			group <LS_opt> (0..1){
+				feature "LS" <LS>
+					group <Coordinate_opt>(0..1){
+						feature "Coordinate" <Coordinate>	
+					}
+					group <RoadMap_opt>(0..1){
+						feature "RoadMap" <RoadMap>
+							group <SatelliteMap_opt> (0..1){
+								feature "SatelliteMap" <SatelliteMap>
+							}
+					}
+			}
+	}
+	group <MC_opt> (0..1){
+		feature "MC" <MC>
+	}
+constraint <lsconstraint> LS -> MC
