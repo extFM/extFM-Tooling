@@ -137,14 +137,13 @@ public class FeatureModelItemProvider
     * This returns the label text for the adapted class.
     * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
+    * @generated NOT
     */
    @Override
    public String getText(Object object) {
       String label = ((FeatureModel)object).getName();
       return label == null || label.length() == 0 ?
-         getString("_UI_FeatureModel_type") :
-         getString("_UI_FeatureModel_type") + " " + label;
+         "Featuremodel" : "Featuremodel " + label;
    }
 
    /**
