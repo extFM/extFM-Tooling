@@ -24,10 +24,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.js.model.feature.AttributeConstraint;
+import org.js.model.feature.AttributeOperand;
+import org.js.model.feature.AttributeReference;
+import org.js.model.feature.AttributeValue;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureState;
 import org.js.model.feature.Imply;
+import org.js.model.feature.Relop;
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
@@ -182,6 +187,7 @@ public final class FeatureModelUtil {
 
 	/**
 	 * return a textual representation of the given feature model constraint
+	 * 
 	 * @param constraint
 	 * @return
 	 */
@@ -194,7 +200,82 @@ public final class FeatureModelUtil {
 		String operator = constraint instanceof Imply ? "implies" : "excludes";
 		label += " " + leftOpId + " " + operator + " " + rightOpId;
 		return label;
+	}
 
+	public static String getLabel(AttributeOperand operand) {
+		String label = "";
+		if (operand instanceof AttributeReference) {
+			AttributeReference attributeRef = (AttributeReference) operand;
+			label += getAttributeReferenceName(attributeRef);
+		} else if (operand instanceof AttributeValue) {
+			AttributeValue attributeValue = (AttributeValue) operand;
+			label += getAttributeValueLabel(attributeValue);
+
+		}
+
+		return label;
+	}
+
+	public static String getLabel(
+			AttributeConstraint constraint) {
+		String label = "<" + constraint.getId() + ">";
+		AttributeOperand attribute1 = constraint.getAttribute1();
+		String att1Label = getLabel(attribute1);
+		AttributeOperand attribute2 = constraint.getAttribute2();
+		String att2Label = getLabel(attribute2);
+
+		Relop operator = constraint.getOperator();
+		String operatorLabel = getLabel(operator);
+		label += " " + att1Label + " " + operatorLabel + " " + att2Label;
+		return label;
+	}
+
+	private static String getLabel(Relop operator) {
+		String label = "";
+		switch (operator.getValue()) {
+		case Relop.EQUAL_VALUE:
+			label = "==";
+			break;
+		case Relop.GREATER_THAN_OR_EQUAL_VALUE:
+			label = ">=";
+			break;
+		case Relop.GREATER_THAN_VALUE:
+			label = ">";
+			break;
+		case Relop.LESS_THAN_OR_EQUAL_VALUE:
+			label = "<=";
+			break;
+		case Relop.LESS_THAN_VALUE:
+			label = "<";
+			break;
+		case Relop.UNEQUAL_VALUE:
+			label = "!=";
+			break;
+
+		default:
+			break;
+		}
+		
+		return label;
+	}
+
+	public static String getAttributeValueLabel(AttributeValue attributeValue) {
+		String label = "";
+		String name = attributeValue.getName();
+		if (name != null && !name.isEmpty()) {
+			label = name;
+		} else {
+			label = Integer.toString(attributeValue.getInt());
+		}
+		return label;
+	}
+
+	public static String getAttributeReferenceName(AttributeReference reference) {
+		String label = "";
+		String featureId = reference.getFeature().getId();
+		String attName = reference.getAttribute().getName();
+		label += " " + featureId + "." + attName;
+		return label;
 	}
 
 }

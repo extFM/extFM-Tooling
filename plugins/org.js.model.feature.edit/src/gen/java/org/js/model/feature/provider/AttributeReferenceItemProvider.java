@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -16,9 +15,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.js.model.feature.AttributeReference;
 import org.js.model.feature.FeaturePackage;
+import org.js.model.feature.edit.FeatureModelUtil;
 
 /**
  * This is the item provider adapter for a {@link org.js.model.feature.AttributeReference} object.
@@ -126,10 +125,7 @@ public class AttributeReferenceItemProvider
    public String getText(Object object) {
       String text = getString("_UI_AttributeReference_type");
       if (object instanceof AttributeReference) {
-         AttributeReference reference = (AttributeReference) object;
-         String featureId = reference.getFeature().getId();
-         String attName = reference.getAttribute().getName();
-         text += " " + featureId + "." + attName;
+         text += " " + FeatureModelUtil.getAttributeReferenceName((AttributeReference)object);
       }
       return text;
    }
