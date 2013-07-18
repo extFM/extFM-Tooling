@@ -1,9 +1,15 @@
 featuremodel "Business ByDesign"
 
-feature "Business ByDesign" <bbd>
-group <modules> (1..1) {
-  feature "Customer Relationship Management" <crm>
-	group <optionalModules> (0..10) {
+domain <employeeDomain> [10..10000]
+domain <userDomain> [10..10000]
+
+feature "Customer Relationship Management" <crm>
+	group <stakeholderConfiguration> (1..1){
+		feature "Stakeholders" <stakeholders> 
+			employees [employeeDomain]
+			users [userDomain]
+	}
+	group <modules> (1..10) {
 		feature "Marketing" <Marketing>
 			group <marketingSelection> (1..2) {
 				feature "Market Development" <Market_Development>
@@ -14,7 +20,7 @@ group <modules> (1..1) {
 			group <salesSelection> (1..6) {
 				feature "Account and Activity Management" <Account_and_Activity_Management>
 				feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
-				feature "New_Business" <New_Business>
+				feature "New Business" <New_Business>
 				feature "Selling Products and Services" <Selling_Products_and_Services>
 				feature "Customer Invoicing" <Customer_Invoicing>
 				feature "Sales Planning" <Sales_Planning>
@@ -102,7 +108,7 @@ group <modules> (1..1) {
 			group <financialSelection> (0..3) {
 				feature "Fixed Assets" <Fixed_Assets>
 				feature "Inventory Valuation" <Inventory_Valuation>
-				feature "Payables Receivables and Cash" <Payables_Receivables_and_Cash>
+				feature "Payables, Receivables, and Cash" <Payables_Receivables_and_Cash>
 			}
 		
 		feature "Human Resources" <Human_Resources> 
@@ -114,7 +120,7 @@ group <modules> (1..1) {
 				feature "Time and Labor Management" <Time_and_Labor_Management>
 				feature "Compensation" <Compensation>
 				feature "Payroll" <Payroll>
-				feature "Management_Self-Services" <Management_Self-Services>
+				feature "Management Self-Services" <Management_Self-Services>
 			}
 		
 		feature "Employee Self-Service" <Employee_Self-Service> 
@@ -132,7 +138,7 @@ group <modules> (1..1) {
 		feature "Communication and Information Exchange" <Communication_and_Information_Exchange>
 			group <communicationObligatorySelection> (3..3) {	
 				feature "Business Process Management" <Business_Process_Management>
-				feature "People Collaboration Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
+				feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
 				feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
 			}
 		feature "Compliance" <Compliance>
@@ -143,8 +149,7 @@ group <modules> (1..1) {
 			group <complianceSelection> (0..1) {
 				feature "Foreign Trade Declarations" <Foreign_Trade_Declarations>
 			}
-		}
-	}
+      }
 }
 
 constraint <c1> Campaign_Management -> Market_Development
@@ -169,3 +174,5 @@ constraint <c19> Inventory_Management -> Inventory_Valuation
 constraint <c20> Production -> Supply_Control
 constraint <c21> Project_Planning_and_Execution -> Purchase_Request_and_Order_Management
 constraint <c22> Payroll -> Compensation
+
+constraint <c23> stakeholders.employees >= stakeholders.users

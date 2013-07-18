@@ -64,13 +64,25 @@ public class AnalyzeFeatureModelCommandHandler extends AbstractHandler {
    private int dialogPersistVariants(List<IFile> files) {
 
       MessageDialog dialog =
-         new MessageDialog(null, "Persist Variants", null, "Shall variants of the selected feature model files be persisted? \\"
-                                                           + files.toString(), MessageDialog.QUESTION, new String[] {
+         new MessageDialog(null, "Persist Variants", null, "Shall variants of the selected feature model files \"" +getText(files) + "\" be persisted?"
+                                                           , MessageDialog.QUESTION, new String[] {
                "Yes, all", "Yes, only one", "No" }, 0);
       int result = dialog.open();
       return result;
    }
 
+   private String getText(List<IFile> files){
+	   String result = "";
+	   for (IFile iFile : files) {
+		if (result.length() > 0){
+			result += ", ";
+		}   
+		String name = iFile.getName();
+		result += name;	
+	}
+	   return result;
+   }
+   
    /**
     * determine the selected files in the workbench.
     * 

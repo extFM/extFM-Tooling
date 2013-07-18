@@ -134,10 +134,10 @@ public class CSPAnalyzer {
          log.info("Featuremodel " + analyzer.getFeatureModelName());
          log.info("--------------------------------------");
          int numberOfAllFeatures = analyzer.getNumberOfAllFeatures();
-         log.info("Number of total features         : " + numberOfAllFeatures);
+         log.info("Number of features             : " + numberOfAllFeatures);
 
          int numberOfAllAttributes = analyzer.getNumberOfAllAttributes();
-         log.info("Number of total attributes       : " + numberOfAllAttributes);
+         log.info("Number of attributes           : " + numberOfAllAttributes);
          // int numberOfMandatoryFeatures = analyzer.getNumberOfMandatoryFeatures();
          // log.info("Number of mandatory features     : " + numberOfMandatoryFeatures);
 
@@ -151,11 +151,14 @@ public class CSPAnalyzer {
          int numberOfAllCSPConstraints = analyzer.getNumberOfAllCSPConstraints();
          log.info("Number of cross-tree constraints : " + numberOfAllCSPConstraints);
 
-         int constraintCoverage = analyzer.getConstraintCoverage();
-         log.info("Constraint Coverage              : " + constraintCoverage + "%");
+         int constraintFeatureCoverage = analyzer.getFeatureConstraintCoverage();
+         log.info("Constraint feature coverage      : " + constraintFeatureCoverage + "%");
+
+         int constraintAttributeCoverage = analyzer.getAttributeConstraintCoverage();
+         log.info("Constraint attribute coverage    : " + constraintAttributeCoverage + "%");
 
          boolean isConsistent = analyzer.isSatisfiable();
-         log.info("The feature model is satisfiable : " + isConsistent);
+         log.info("Is feature model satisfiable     : " + isConsistent);
 
          int derivableVariants = analyzer.getNumberOfDerivableVariants();
          log.info("Number of derivable variants     : " + derivableVariants);

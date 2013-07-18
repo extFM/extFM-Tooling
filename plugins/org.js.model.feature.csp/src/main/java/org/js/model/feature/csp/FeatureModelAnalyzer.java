@@ -8,6 +8,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
+import org.js.model.feature.AttributeConstraint;
+import org.js.model.feature.AttributeOperand;
+import org.js.model.feature.AttributeReference;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureModel;
@@ -27,270 +30,309 @@ import choco.kernel.solver.variables.integer.IntDomainVar;
  */
 public class FeatureModelAnalyzer {
 
-   private static Logger log = Logger.getLogger(FeatureModelAnalyzer.class);
+	private static Logger log = Logger.getLogger(FeatureModelAnalyzer.class);
 
-   Set<FeatureVariant> derivableVariants;
+	Set<FeatureVariant> derivableVariants;
 
-   int numberDerivableVariant;
+	int numberDerivableVariant;
 
-   Set<Feature> mandatoryFeatures;
-   Set<Feature> coreFeatures;
-   Set<Feature> variableFeatures;
-   Model cspModel;
+	Set<Feature> mandatoryFeatures;
+	Set<Feature> coreFeatures;
+	Set<Feature> variableFeatures;
+	Model cspModel;
 
-   private FeatureModelHelper featureModelHelper;
+	private FeatureModelHelper featureModelHelper;
 
-   private FeatureModel model;
+	private FeatureModel model;
 
-   private boolean keepVariantFlag = false;
-   private boolean persistVariants = true;
+	private boolean keepVariantFlag = false;
+	private boolean persistVariants = true;
 
-   private int numberOfVariantsToDerive = -1;
+	private int numberOfVariantsToDerive = -1;
 
-   /**
-    * default constructor.
-    * 
-    * @param model must not be null.
-    */
-   public FeatureModelAnalyzer(FeatureModel model) {
-      this.model = model;
-      featureModelHelper = new FeatureModelHelper(model);
-   }
+	/**
+	 * default constructor.
+	 * 
+	 * @param model
+	 *            must not be null.
+	 */
+	public FeatureModelAnalyzer(FeatureModel model) {
+		this.model = model;
+		featureModelHelper = new FeatureModelHelper(model);
+	}
 
-   public FeatureModelAnalyzer(FeatureModel featureModel, boolean persistAllVariants) {
-      this(featureModel);
-      this.persistVariants = persistAllVariants;
-   }
+	public FeatureModelAnalyzer(FeatureModel featureModel,
+			boolean persistAllVariants) {
+		this(featureModel);
+		this.persistVariants = persistAllVariants;
+	}
 
-   public String getFeatureModelName() {
-      return (model != null) ? model.getName() : "";
-   }
+	public String getFeatureModelName() {
+		return (model != null) ? model.getName() : "";
+	}
 
-   public int getConstraintCoverage() {
-      Set<Feature> consFeatures = new HashSet<Feature>();
-      for (FeatureConstraint featureCon : featureModelHelper.getAllFeatureConstraints()) {
-         consFeatures.add(featureCon.getLeftOperand());
-         consFeatures.add(featureCon.getRightOperand());
-      }
-      int constrained = consFeatures.size();
-      int features = featureModelHelper.getAllFeatures().size();
-      int percentage = (constrained * 100) / features;
-      return percentage;
-   }
+	public int getFeatureConstraintCoverage() {
+		Set<Feature> consFeatures = new HashSet<Feature>();
+		for (FeatureConstraint featureCon : featureModelHelper
+				.getAllFeatureConstraints()) {
+			consFeatures.add(featureCon.getLeftOperand());
+			consFeatures.add(featureCon.getRightOperand());
+		}
+		int constrained = consFeatures.size();
+		int features = featureModelHelper.getAllFeatures().size();
+		int percentage = (constrained * 100) / features;
+		return percentage;
+	}
 
-   public void setPersistVariants(boolean persistVariants) {
-      this.persistVariants = persistVariants;
-   }
+	public void setPersistVariants(boolean persistVariants) {
+		this.persistVariants = persistVariants;
+	}
 
-   /**
-    * get the total number of all CSP-constraints.
-    * 
-    * @return
-    */
-   public int getNumberOfAllCSPConstraints() {
-      int attributeConstraints = featureModelHelper.getAllAttributeConstraints().size();
-      int featureConstraints = featureModelHelper.getAllFeatureConstraints().size();
-      return attributeConstraints + featureConstraints;
-   }
+	/**
+	 * get the coverage of attributes in constraints.
+	 * 
+	 * @return
+	 */
+	public int getAttributeConstraintCoverage() {
+		Set<Attribute> consAttribute = new HashSet<Attribute>();
+		for (AttributeConstraint attributeCon : featureModelHelper
+				.getAllAttributeConstraints()) {
+			AttributeOperand attOp1 = attributeCon.getAttribute1();
+			AttributeOperand attOp2 = attributeCon.getAttribute2();
+			consAttribute.add(getConstrainedAttribute(attOp1));
+			consAttribute.add(getConstrainedAttribute(attOp2));
+		}
+		int constrained = consAttribute.size();
+		int attributes = featureModelHelper.getAllAttributes().size();
+		int percentage = attributes == 0 ? 0 : (constrained * 100) / attributes;
+		return percentage;
+	}
 
-   /**
-    * get the total number of all contained features.
-    * 
-    * @return
-    */
-   public int getNumberOfAllFeatures() {
-      return featureModelHelper.getAllFeatures().size();
-   }
+	private Attribute getConstrainedAttribute(AttributeOperand operand) {
+		Attribute result = null;
+		if (operand instanceof AttributeReference) {
+			AttributeReference reference = (AttributeReference) operand;
+			result = reference.getAttribute();
+		}
+		return result;
+	}
 
-   /**
-    * get all mandatory features.
-    * 
-    * @return
-    */
-   public Set<Feature> getMandatoryFeatures() {
-      if (mandatoryFeatures == null) {
-         mandatoryFeatures = new HashSet<Feature>(2);
-         Set<Feature> features = featureModelHelper.getAllFeatures();
-         for (Feature feature : features) {
-            EObject container = feature.eContainer();
-            if (container != null) {
-               Group group = (Group) container;
-               EList<Feature> childFeatures = group.getChildFeatures();
-               if (childFeatures.size() == group.getMinCardinality()) {
-                  mandatoryFeatures.add(feature);
-               }
-            }
-         }
-      }
-      return mandatoryFeatures;
-   }
+	/**
+	 * get the total number of all CSP-constraints.
+	 * 
+	 * @return
+	 */
+	public int getNumberOfAllCSPConstraints() {
+		int attributeConstraints = featureModelHelper
+				.getAllAttributeConstraints().size();
+		int featureConstraints = featureModelHelper.getAllFeatureConstraints()
+				.size();
+		return attributeConstraints + featureConstraints;
+	}
 
-   /**
-    * get the number of all mandatory features.
-    * 
-    * @return
-    */
-   public int getNumberOfMandatoryFeatures() {
-      return getMandatoryFeatures().size();
-   }
+	/**
+	 * get the total number of all contained features.
+	 * 
+	 * @return
+	 */
+	public int getNumberOfAllFeatures() {
+		return featureModelHelper.getAllFeatures().size();
+	}
 
-   /**
-    * Try to find a solution. If one solution was found, return true.
-    * 
-    * @return
-    */
-   public boolean isSatisfiable() {
-      CPSolver solver = new CPSolver();
-      Model problemModel = getCSPModel();
-      solver.read(problemModel);
-      solver.solve();
-      return solver.isFeasible();
-   }
+	/**
+	 * get all mandatory features.
+	 * 
+	 * @return
+	 */
+	public Set<Feature> getMandatoryFeatures() {
+		if (mandatoryFeatures == null) {
+			mandatoryFeatures = new HashSet<Feature>(2);
+			Set<Feature> features = featureModelHelper.getAllFeatures();
+			for (Feature feature : features) {
+				EObject container = feature.eContainer();
+				if (container != null) {
+					Group group = (Group) container;
+					EList<Feature> childFeatures = group.getChildFeatures();
+					if (childFeatures.size() == group.getMinCardinality()) {
+						mandatoryFeatures.add(feature);
+					}
+				}
+			}
+		}
+		return mandatoryFeatures;
+	}
 
-   private boolean isFeature(String featureId) {
-      return getFeature(featureId) != null;
-   }
+	/**
+	 * get the number of all mandatory features.
+	 * 
+	 * @return
+	 */
+	public int getNumberOfMandatoryFeatures() {
+		return getMandatoryFeatures().size();
+	}
 
-   private boolean isAttribute(String attributeId) {
-      return featureModelHelper.getAttribute(attributeId) != null;
-   }
+	/**
+	 * Try to find a solution. If one solution was found, return true.
+	 * 
+	 * @return
+	 */
+	public boolean isSatisfiable() {
+		CPSolver solver = new CPSolver();
+		Model problemModel = getCSPModel();
+		solver.read(problemModel);
+		solver.solve();
+		return solver.isFeasible();
+	}
 
-   private Model getCSPModel() {
-      if (cspModel == null) {
-         TranslateFM2CSP modelBuilder = new TranslateFM2CSP();
-         cspModel = modelBuilder.getCSPModel(model);
-      }
-      return cspModel;
-   }
+	private boolean isFeature(String featureId) {
+		return getFeature(featureId) != null;
+	}
 
-   private void solveModel(boolean findAll) {
-      long start = System.currentTimeMillis();
-      CPSolver solver = new CPSolver();
-      Model problemModel = getCSPModel();
-      solver.read(problemModel);
-      log.debug("------------------------------------------");
-      int j = 0;
-      
-      if (solver.solve()) {
-         do {
-            j++;
-            if (numberOfVariantsToDerive != -1 && j > numberOfVariantsToDerive){
-               persistVariants = false;
-            }
-            FeatureVariant variant = createVariant(solver);
-            if (persistVariants) {
-               save(variant, j);
-            }
-            if (keepVariantFlag) {
-               derivableVariants.add(variant);
-            }
-            log.debug(j + ". variant found.");
-            log.info(j + ". variant found: '" + variant.toString() + "'");
-            log.debug("------------------------------------------");
-         }
-         while (findAll && solver.nextSolution());
-         long end = System.currentTimeMillis();
-         log.info("Check derivable variants took " + (end - start) + " ms.");
-         numberDerivableVariant = j;
-         log.info(numberDerivableVariant + " derivable variants found.");
-      }
-   }
+	private boolean isAttribute(String attributeId) {
+		return featureModelHelper.getAttribute(attributeId) != null;
+	}
 
-   private void save(FeatureVariant variant, int number) {
-      FeatureModel featureModelVariant = variant.getModel();
-      String featureModelProject = FeatureModelUtil.getProjectName(model);
-      FeatureModelUtil.persistModel(featureModelVariant, featureModelVariant.getName() + number, "eft", "variants", featureModelProject);
-   }
+	private Model getCSPModel() {
+		if (cspModel == null) {
+			TranslateFM2CSP modelBuilder = new TranslateFM2CSP();
+			cspModel = modelBuilder.getCSPModel(model);
+		}
+		return cspModel;
+	}
 
-   private FeatureVariant createVariant(CPSolver solver) {
-      DisposableIterator<IntDomainVar> variables = solver.getIntVarIterator();
-      IntDomainVar variable;
-      FeatureVariant variant = new FeatureVariant(EcoreUtil.copy(model));
-      while (variables.hasNext()) {
-         variable = variables.next();
-         // Skip temporary variables
-         if (variable.getName().startsWith("TMP_")) continue;
-         String id = variable.getName();
+	private void solveModel(boolean findAll) {
+		long start = System.currentTimeMillis();
+		CPSolver solver = new CPSolver();
+		Model problemModel = getCSPModel();
+		solver.read(problemModel);
+		log.debug("------------------------------------------");
+		int j = 0;
 
-         if (isFeature(id)) {
-            handleFeatureVariable(variable, variant);
-         } else if (isAttribute(id)) {
-            handleAttributeVariable(variable, variant);
-         }
-         log.debug(variable.getName() + ":" + variable.getVal());
-      }
-      return variant;
-   }
+		if (solver.solve()) {
+			do {
+				j++;
+				if (numberOfVariantsToDerive != -1
+						&& j > numberOfVariantsToDerive) {
+					persistVariants = false;
+				}
+				FeatureVariant variant = createVariant(solver);
+				if (persistVariants) {
+					save(variant, j);
+				}
+				if (keepVariantFlag) {
+					derivableVariants.add(variant);
+				}
+				//log.debug(j + ". variant found.");
+				log.debug(j + ". variant found: '" + variant.toString() + "'");
+				log.debug("------------------------------------------");
+			} while (findAll && solver.nextSolution());
+			long end = System.currentTimeMillis();
+			log.info("Check derivable variants took " + (end - start) + " ms.");
+			numberDerivableVariant = j;
+			//log.info(numberDerivableVariant + " derivable variants found.");
+		}
+	}
 
-   private void handleAttributeVariable(IntDomainVar variable, FeatureVariant variant) {
-      int value = variable.getVal();
-      String id = variable.getName();
-      // attribute enablement
-      if (id.startsWith(TranslateFM2CSP.attributeEnablement)) {
-         if (value == 0) {
-            // attribute is disabled
-         } else if (value == 1) {
-            // attribute is enabled
-         }
-      }
-      // attribute value
-      else if (id.startsWith(TranslateFM2CSP.attributeValue)) {
-         variant.setAttributeValue(value, id);
-      }
-   }
+	private void save(FeatureVariant variant, int number) {
+		FeatureModel featureModelVariant = variant.getModel();
+		String featureModelProject = FeatureModelUtil.getProjectName(model);
+		FeatureModelUtil.persistModel(featureModelVariant,
+				featureModelVariant.getName() + number, "eft", "variants",
+				featureModelProject);
+	}
 
-   private void handleFeatureVariable(IntDomainVar variable, FeatureVariant variant) {
-      int value = variable.getVal();
-      String id = variable.getName();
-      // 1 is selected
-      if (value == 1) {
-         variant.selectFeature(id);
-      } else {
-         // 0 is not selected
-         variant.deselectFeature(id);
-      }
-   }
+	private FeatureVariant createVariant(CPSolver solver) {
+		DisposableIterator<IntDomainVar> variables = solver.getIntVarIterator();
+		IntDomainVar variable;
+		FeatureVariant variant = new FeatureVariant(EcoreUtil.copy(model));
+		while (variables.hasNext()) {
+			variable = variables.next();
+			// Skip temporary variables
+			if (variable.getName().startsWith("TMP_"))
+				continue;
+			String id = variable.getName();
 
-   private Feature getFeature(String id) {
-      Feature foundFeature = null;
-      Set<Feature> features = featureModelHelper.getAllFeatures();
-      for (Feature feature : features) {
-         String featureId = EcoreUtil.getID(feature);
-         if (id.equals(featureId)) {
-            foundFeature = feature;
-            break;
-         }
-      }
-      return foundFeature;
-   }
+			if (isFeature(id)) {
+				handleFeatureVariable(variable, variant);
+			} else if (isAttribute(id)) {
+				handleAttributeVariable(variable, variant);
+			}
+			log.debug(variable.getName() + ":" + variable.getVal());
+		}
+		return variant;
+	}
 
-   public int getNumberOfDerivableVariants() {
-      if (derivableVariants == null) {
-         derivableVariants = new HashSet<FeatureVariant>();
-         solveModel(true);
-      }
-      return numberDerivableVariant;
-   }
+	private void handleAttributeVariable(IntDomainVar variable,
+			FeatureVariant variant) {
+		int value = variable.getVal();
+		String id = variable.getName();
+		// attribute enablement
+		if (id.startsWith(TranslateFM2CSP.attributeEnablement)) {
+			if (value == 0) {
+				// attribute is disabled
+			} else if (value == 1) {
+				// attribute is enabled
+			}
+		}
+		// attribute value
+		else if (id.startsWith(TranslateFM2CSP.attributeValue)) {
+			variant.setAttributeValue(value, id);
+		}
+	}
 
-   public Set<Feature> getAllFeatures() {
-      return featureModelHelper.getAllFeatures();
-   }
+	private void handleFeatureVariable(IntDomainVar variable,
+			FeatureVariant variant) {
+		int value = variable.getVal();
+		String id = variable.getName();
+		// 1 is selected
+		if (value == 1) {
+			variant.selectFeature(id);
+		} else {
+			// 0 is not selected
+			variant.deselectFeature(id);
+		}
+	}
 
-   public Set<Attribute> getAllAttributes() {
-      return featureModelHelper.getAllAttributes();
-   }
+	private Feature getFeature(String id) {
+		Feature foundFeature = null;
+		Set<Feature> features = featureModelHelper.getAllFeatures();
+		for (Feature feature : features) {
+			String featureId = EcoreUtil.getID(feature);
+			if (id.equals(featureId)) {
+				foundFeature = feature;
+				break;
+			}
+		}
+		return foundFeature;
+	}
 
-   /**
-    * get the total number of all contained features.
-    * 
-    * @return
-    */
-   public int getNumberOfAllAttributes() {
-      return getAllAttributes().size();
-   }
+	public int getNumberOfDerivableVariants() {
+		if (derivableVariants == null) {
+			derivableVariants = new HashSet<FeatureVariant>();
+			solveModel(true);
+		}
+		return numberDerivableVariant;
+	}
 
-   public void setNumberOfVariantsToDerive(int numberOfVariants) {
-      this.numberOfVariantsToDerive = numberOfVariants;
-   }
+	public Set<Feature> getAllFeatures() {
+		return featureModelHelper.getAllFeatures();
+	}
+
+	public Set<Attribute> getAllAttributes() {
+		return featureModelHelper.getAllAttributes();
+	}
+
+	/**
+	 * get the total number of all contained features.
+	 * 
+	 * @return
+	 */
+	public int getNumberOfAllAttributes() {
+		return getAllAttributes().size();
+	}
+
+	public void setNumberOfVariantsToDerive(int numberOfVariants) {
+		this.numberOfVariantsToDerive = numberOfVariants;
+	}
 
 }

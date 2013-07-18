@@ -79,6 +79,8 @@ public class FeatureVariant {
          EList<Attribute> attributes = feature.getAttributes();
          for (Attribute attribute : attributes) {
             buffer.append("; ");
+            buffer.append(attribute.getFeature().getId());
+            buffer.append(".");
             buffer.append(attribute.getName());
             buffer.append("=");
             buffer.append(attribute.getValue());
