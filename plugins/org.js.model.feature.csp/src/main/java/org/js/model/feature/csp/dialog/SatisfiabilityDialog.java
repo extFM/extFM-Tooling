@@ -72,8 +72,8 @@ public class SatisfiabilityDialog extends MessageDialog{
 
 	  // This will create the columns for the table
 	  private void createColumns(final Composite parent, final TableViewer viewer) {
-	    String[] titles = { "Satisfiability", "File" };
-	    int[] bounds = { 100, 300};
+	    String[] titles = { "Satisfiable", "File", "Featuremodel" };
+	    int[] bounds = { 80, 200, 200};
 
 	    // First column is for satisifiability
 	    TableViewerColumn col = createTableViewerColumn(titles[0], bounds[0], 0);
@@ -100,6 +100,15 @@ public class SatisfiabilityDialog extends MessageDialog{
 	      public void update(ViewerCell cell) {
 	        cell.setText(((SatisfiableFile) cell.getElement()).getFileName());
 	      }
+	    });
+
+	    // third column is for featuremodel name
+	    col = createTableViewerColumn(titles[2], bounds[2], 2);
+	    col.setLabelProvider(new CellLabelProvider() {
+	    	@Override
+	    	public void update(ViewerCell cell) {
+	    		cell.setText(((SatisfiableFile) cell.getElement()).getFeatureModelName());
+	    	}
 	    });
 
 

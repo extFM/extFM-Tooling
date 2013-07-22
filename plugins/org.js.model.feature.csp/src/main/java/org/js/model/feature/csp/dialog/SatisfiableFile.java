@@ -5,14 +5,17 @@ package org.js.model.feature.csp.dialog;
 
 /**
  * @author Julia
- *
+ * 
  */
 public class SatisfiableFile {
 
-	 private boolean isSatisfiable;
-	  private String fileName;
-	 
-	  public SatisfiableFile(String fileName, boolean isSatisfiable) {
+	private boolean isSatisfiable;
+	private String fileName;
+	private String featureModelName;
+
+	public SatisfiableFile(String fileName, boolean isSatisfiable,
+			String featureModelName) {
+		this.setFeatureModelName(featureModelName);
 		this.setFileName(fileName);
 		this.setSatisfiable(isSatisfiable);
 	}
@@ -32,5 +35,13 @@ public class SatisfiableFile {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
+
+	public String getFeatureModelName() {
+		return featureModelName;
+	}
+
+	public void setFeatureModelName(String featureModelName) {
+		this.featureModelName = featureModelName;
+	}
+
 }
