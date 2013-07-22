@@ -95,8 +95,8 @@ public class FeatureModelAnalyzer {
 	 */
 	public int getAttributeConstraintCoverage() {
 		Set<Attribute> consAttribute = new HashSet<Attribute>();
-		for (AttributeConstraint attributeCon : featureModelHelper
-				.getAllAttributeConstraints()) {
+		Set<AttributeConstraint> allAttributeConstraints = featureModelHelper.getAllAttributeConstraints();
+		for (AttributeConstraint attributeCon : allAttributeConstraints) {
 			AttributeOperand attOp1 = attributeCon.getAttribute1();
 			AttributeOperand attOp2 = attributeCon.getAttribute2();
 			consAttribute.add(getConstrainedAttribute(attOp1));

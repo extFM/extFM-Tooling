@@ -8,6 +8,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.js.model.feature.FeatureModel;
 import org.js.model.feature.csp.dialog.SatisfiabilityDialog;
 import org.js.model.feature.csp.dialog.SatisfiableFile;
 
@@ -28,8 +29,10 @@ public class FeatureModelSatisfiabilityHandler extends
 		for (IFile iFile : files) {
 			boolean isSatisfiable = CSPAnalyzer.isSatisfiable(iFile);
 			String fileName = iFile.getName();
+			FeatureModel featureModel = FeatureModelHelper.getFeatureModel(iFile);
+			String featureModelName = featureModel != null ? featureModel.getName() : "not a feature model";
 			SatisfiableFile satFile = new SatisfiableFile(fileName,
-					isSatisfiable);
+					isSatisfiable,featureModelName);
 			fileList.add(satFile);
 		}
 		showResultDialog();
