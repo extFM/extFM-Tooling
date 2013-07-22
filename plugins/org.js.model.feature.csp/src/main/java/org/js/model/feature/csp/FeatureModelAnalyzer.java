@@ -181,7 +181,9 @@ public class FeatureModelAnalyzer {
 		Model problemModel = getCSPModel();
 		solver.read(problemModel);
 		solver.solve();
-		return solver.isFeasible();
+		boolean isSolvable = solver.isFeasible();
+		log.debug("Featuremodel is solvable: "+isSolvable);
+		return isSolvable;
 	}
 
 	private boolean isFeature(String featureId) {
@@ -223,7 +225,7 @@ public class FeatureModelAnalyzer {
 					derivableVariants.add(variant);
 				}
 				//log.debug(j + ". variant found.");
-				log.debug(j + ". variant found: '" + variant.toString() + "'");
+				log.info(j + ". variant found: '" + variant.toString() + "'");
 				log.debug("------------------------------------------");
 			} while (findAll && solver.nextSolution());
 			long end = System.currentTimeMillis();

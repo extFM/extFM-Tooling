@@ -50,6 +50,20 @@ public class CSPAnalyzer {
    }
 
    /**
+    * check whether the given file is satisfiable.
+    * @param file
+    * @return
+    */
+   public static boolean isSatisfiable(IFile file){
+	   boolean isSatisfiable = false;
+	   FeatureModelAnalyzer analyzer = getAnalyzer(file);
+	      if (analyzer != null) {
+	    	isSatisfiable = analyzer.isSatisfiable();
+	      }
+	   return isSatisfiable;
+   }
+   
+   /**
     * initialize a featuremodel from an Ifile.
     * 
     * @param file

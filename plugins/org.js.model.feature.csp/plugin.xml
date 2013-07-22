@@ -22,6 +22,18 @@
                </reference>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.js.featuremodel.efm.satisfiable"
+               icon="icons/obj16/satisfiable.gif"
+               label="Check Featuremodel Satisfiability"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.js.analyzeFeaturemodel.enable">
+               </reference>
+            </visibleWhen>
+         </command>
          <separator
                name="org.js.analyze.separator2"
                visible="true">
@@ -35,6 +47,11 @@
             defaultHandler="org.js.model.feature.csp.AnalyzeFeatureModelCommandHandler"
             id="org.js.featuremodel.efm.analyze"
             name="Analyze Featuremodel">
+      </command>
+      <command
+            defaultHandler="org.js.model.feature.csp.FeatureModelSatisfiabilityHandler"
+            id="org.js.featuremodel.efm.satisfiable"
+            name="Check Featuremodel Satisfiability">
       </command>
    </extension>
    
