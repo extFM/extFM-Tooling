@@ -98,14 +98,22 @@ public class FeatureModelAnalyzer {
 		Set<AttributeConstraint> allAttributeConstraints = featureModelHelper.getAllAttributeConstraints();
 		for (AttributeConstraint attributeCon : allAttributeConstraints) {
 			AttributeOperand attOp1 = attributeCon.getAttribute1();
+			addAttribute(attOp1, consAttribute);
 			AttributeOperand attOp2 = attributeCon.getAttribute2();
-			consAttribute.add(getConstrainedAttribute(attOp1));
-			consAttribute.add(getConstrainedAttribute(attOp2));
+			addAttribute(attOp2, consAttribute);
+			
 		}
 		int constrained = consAttribute.size();
 		int attributes = featureModelHelper.getAllAttributes().size();
 		int percentage = attributes == 0 ? 0 : (constrained * 100) / attributes;
 		return percentage;
+	}
+	
+	private void addAttribute(AttributeOperand attOperand, Set<Attribute> consAttribute){
+		Attribute attribute = getConstrainedAttribute(attOperand);
+		if (attribute != null && !consAttribute.contains(attribute)){
+			consAttribute.add(attribute);
+		}
 	}
 
 	private Attribute getConstrainedAttribute(AttributeOperand operand) {

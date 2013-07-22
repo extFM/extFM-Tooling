@@ -250,25 +250,19 @@ public class TranslateFM2CSP {
 	}
 
 	private IntegerVariable createAttributeEnableVariable(String attributeId) {
-		String attrOptions = null;
+		String attrOptions = "";
 		return Choco.makeBooleanVar(attributeId, attrOptions);
 	}
 
 	private IntegerVariable createAttributeValueVariable(Attribute attribute,
 			String attributeId, boolean addDisableInteger) {
 		// String attrOptions = "cp:no_decision";
-		String attrOptions = null;
+		String attrOptions = "";
 
 		Domain attributeDomain = attribute.getDomain();
 		IntegerVariable attributeVariable = null;
 
-		// // (1) if attributeValue is already set, then assign it's integer
-		// // representation to the attribute variable
-		// if (FeatureModelHelper.isAttributeValueSet(attribute)) {
-		// attributeVariable = createFixedAttributeValueVariable(attribute,
-		// attributeId, attrOptions);
-		// }
-		// (2) if attribute domain is discrete
+		// (1) if attribute domain is discrete
 		if (attributeDomain instanceof DiscreteDomain) {
 			DiscreteDomain discreteDomain = (DiscreteDomain) attributeDomain;
 			int[] domainValues = getOrCreateDomainValues(discreteDomain);
@@ -284,7 +278,7 @@ public class TranslateFM2CSP {
 			attributeVariable = Choco.makeIntVar(attributeId, domainValues,
 					attrOptions);
 
-			// (3) if attribute domain is integer
+			// (2) if attribute domain is integer
 		} else if (attributeDomain instanceof NumericalDomain) {
 			NumericalDomain numericalDomain = (NumericalDomain) attributeDomain;
 			int lowestBoundofNumericalDomain = getLowestBoundofNumericalDomain(numericalDomain);
@@ -300,13 +294,6 @@ public class TranslateFM2CSP {
 		return attributeVariable;
 	}
 
-	private IntegerVariable createFixedAttributeValueVariable(
-			Attribute attribute, String attributeId, String options) {
-		int value = FeatureModelHelper.getAttributeValue(attribute);
-		IntegerVariable attributeVariable = Choco.makeIntVar(attributeId,
-				value, value, options);
-		return attributeVariable;
-	}
 
 	private void transformGroup(Group group) {
 		createGroupConstraint(group);
