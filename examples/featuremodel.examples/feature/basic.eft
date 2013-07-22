@@ -9,14 +9,14 @@ group <g1> (0..2) {
         group <g2> (0..1) {
 			feature "f3" <f3>
         }
-		attr1 [d1]
+		attr1 [d1] //:= "a3"
 	feature "f2" <f2>
-		attr1 [d2]
+		attr2 [d2]
 		//attr2 [d2]
 	//group <g2> (0..1) {
 	//	feature "s2" <s2Id>
 	//}
 }
 
-constraint <c1> f1.attr1 > f2.attr1
+constraint <c1> f1.attr1 > f2.attr2
 constraint <c3> f1.attr1 == "a3"

@@ -9,7 +9,7 @@ feature "Customer Relationship Management" <crm>
 			employees [employeeDomain]
 			users [userDomain]
 	}
-	group <modules> (1..10) {
+	group <modules> (1..17) {
 		feature "Marketing" <Marketing>
 			group <marketingSelection> (1..2) {
 				feature "Market Development" <Market_Development>
@@ -87,7 +87,6 @@ feature "Customer Relationship Management" <crm>
 				feature "Project Planning and Execution" <Project_Planning_and_Execution>
 			}
 	
-	group <obligatoryModules> (7..7) {
 		feature "Cash Flow Management" <Cash_Flow_Management>
 			group <cashFlowObligatorySelection> (2..2) {	
 				feature "Payables and Receivables Processing" <Payables_and_Receivables_Processing>
@@ -116,16 +115,16 @@ feature "Customer Relationship Management" <crm>
 				feature "Personnel Administration" <Personnel_Administration>
 			}
 			
-			group <hrSelection> (0..4) {
+			group <hrSelection> (0..3) {
 				feature "Time and Labor Management" <Time_and_Labor_Management>
 				feature "Compensation" <Compensation>
 				feature "Payroll" <Payroll>
-				feature "Management Self-Services" <Management_Self-Services>
 			}
 		
 		feature "Employee Self-Service" <Employee_Self-Service> 
-			group <employeeObligatorySelection> (1..1) {
+			group <employeeSelection> (1..2) {
 				feature "Employee Self-Services" <Employee_Self-Services>
+				feature "Management Self-Services" <Management_Self-Services>
 			}
 			
 		
@@ -150,7 +149,6 @@ feature "Customer Relationship Management" <crm>
 				feature "Foreign Trade Declarations" <Foreign_Trade_Declarations>
 			}
       }
-}
 
 constraint <c1> Campaign_Management -> Market_Development
 constraint <c2> New_Business -> Account_and_Activity_Management
