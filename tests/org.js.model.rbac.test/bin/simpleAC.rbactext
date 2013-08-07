@@ -1,0 +1,77 @@
+access control on <simpleFM.eft>
+
+permissions {
+    select fr,
+    select f2,
+    deselect f2,
+    select f3,
+    deselect f3,
+    select f4,
+    deselect f4,
+    select f9,
+    deselect f9,
+    set f9.f9a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    select f5,
+    deselect f5,
+    set f5.f5a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    set f5.a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    set f5.a2 {+1},
+    select f6,
+    deselect f6,
+    set f6.a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    select f7,
+    deselect f7,
+    select f8,
+    deselect f8}
+
+
+role <r1> {
+	"select f2",
+	"select f3",
+	task "t1" <t1>
+}
+
+role <r2> extends r1 {
+	"deselect f2"
+}
+
+role <r3> {
+	"select f2",
+	"deselect f2"
+}
+
+role <r4> extends r2 
+
+role <r5> {
+	"select f9",
+	"deselect f9",
+	"select f4",
+	"deselect f4"
+}
+
+role <r6> extends r5, r4, r3 {
+	"select f5",
+	"deselect f5"
+}
+
+role <r7> {
+	"set f5.a1",
+	"set f6.a1"
+}
+
+group <r7> r7 {r6, r4}
+group <r8> r6 {r3, r2}
+
+
+subject "s1" <s1> {r1}
+
+subject "s2" <s2> {r2}
+
+subject "s3" <s3> {r2, r1}
+
+subject "s4" <s4> {r2, r1} 
+ 	
+subject "s5" <s5> {r4}
+
+
+

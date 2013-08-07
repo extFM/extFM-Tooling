@@ -1,0 +1,41 @@
+featuremodel "testModel"
+domain <d1> [v1=1, v2=2, v3=3, v4=4]
+domain <d2> [10..20, 30..50]
+
+feature "F_Root" <fr>
+	group <g_alt> (0..1) {
+		deselected feature "F2" <f2>
+		feature "F3" <f3>
+	}
+	group <g_opt> (0..1) {
+		feature "F4" <f4>
+		group <g_man1> (1..1) {
+			feature "F9" <f9>
+			f9a1 [d1]
+		}
+	}
+	group <g_man> (0..1) {
+		feature "F5" <f5>
+			f5a1 [d1]
+			a1 [d1]
+			a2 [d2]
+	}
+	group <g_or> (1..3) {
+		feature "F6" <f6>
+			a1 [d1]\{v2} := v1
+		feature "F7" <f7>
+		feature "F8" <f8>
+	}
+
+constraint <c1> F6 -> F4
+constraint <c2> F5 <-> F6
+constraint <c3> F9.f9a1	> 0
+constraint <c4> F9.f9a1	< "v2"
+constraint <c5> F9.f9a1	== "v1"
+constraint <c6> F9.f9a1	!= 3
+constraint <c7> F9.f9a1	<= 3
+constraint <c8> F9.f9a1	<= F6.a1
+constraint <c9> F9.f9a1	>= 2
+constraint <c10> 5 < F5.a2
+constraint <c11> 5 < F6.a1
+constraint <c12> 5 < F5.a1
