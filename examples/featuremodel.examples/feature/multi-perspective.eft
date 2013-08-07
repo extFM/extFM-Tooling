@@ -1,0 +1,38 @@
+featuremodel "abstract FM"
+
+
+feature "root" <fr>
+	group  <g_f1> (1..1) {
+		feature "f1" <f1>
+			group <g_f45> (1..1) {
+				feature "f4" <f4>
+					group <g_f4> (0..1) {
+						feature "f10" <f10>
+					}
+				feature "f5" <f5>
+			}
+	}
+	group  <g_f2> (1..1) {
+		feature "f2" <f2>
+		group  <g_f67> (1..1) {
+			feature "f6" <f6>
+			feature "f7" <f7>
+				group <g_f11> (0..1) {
+					feature "f11" <f11>
+				}
+		}
+	}
+	group  <g_f3> (0..1) {
+		feature "f3" <f3>
+		group  <g_f89> (1..2) {
+			feature "f8" <f8>
+			feature "f9" <f9>
+				group <g_f12> (0..1) {
+					feature "f12" <f12>
+				}
+		}
+	}
+
+constraint <c1> f7 -> f4	
+constraint <c2> f5 -> f6	
+constraint <c3> f11 <-> f9	
