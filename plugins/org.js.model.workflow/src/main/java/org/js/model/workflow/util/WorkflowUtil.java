@@ -272,13 +272,13 @@ public class WorkflowUtil {
 	public static void handleFeatureLogic(Feature feature,
 			FeatureModel featureModel) {
 		// if the feature is selected
-		if (feature.getSelected().equals(FeatureState.SELECTED)) {
+		if (feature.getConfigurationState().equals(FeatureState.SELECTED)) {
 			for (org.js.model.feature.Group group : feature.getGroups()) {
 				// if feature is mandatory
 				if (group.getMinCardinality() * group.getMaxCardinality() == 1) {
 					if (group.getChildFeatures().size() == 1) {
 						Feature subFeature = group.getChildFeatures().get(0);
-						subFeature.setSelected(FeatureState.SELECTED);
+						subFeature.setConfigurationState(FeatureState.SELECTED);
 						handleFeatureLogic(subFeature, featureModel);
 					}
 				}
@@ -292,7 +292,7 @@ public class WorkflowUtil {
 						Feature operand1 = expression.getLeftOperand();
 						if (operand1.getId().equals(feature.getId())) {
 							Feature operand2 = expression.getRightOperand();
-							operand2.setSelected(FeatureState.SELECTED);
+							operand2.setConfigurationState(FeatureState.SELECTED);
 							handleFeatureLogic(operand2, featureModel);
 						}
 					}
@@ -302,7 +302,7 @@ public class WorkflowUtil {
 			// if the feature is deselected
 			for (org.js.model.feature.Group group : feature.getGroups()) {
 				for (Feature subFeature : group.getChildFeatures()) {
-					subFeature.setSelected(FeatureState.DESELECTED);
+					subFeature.setConfigurationState(FeatureState.DESELECTED);
 					handleFeatureLogic(subFeature, featureModel);
 				}
 			}
@@ -314,7 +314,7 @@ public class WorkflowUtil {
 						Feature operand2 = expression.getRightOperand();
 						if (operand2.getId().equals(feature.getId())) {
 							Feature operand1 = expression.getLeftOperand();
-							operand1.setSelected(FeatureState.DESELECTED);
+							operand1.setConfigurationState(FeatureState.DESELECTED);
 							handleFeatureLogic(operand1, featureModel);
 						}
 				}
@@ -336,9 +336,9 @@ public class WorkflowUtil {
 						.findFeature(((FeatureDecision) configDecision)
 								.getFeature().getId(), featureModel);
 				if (configDecision instanceof SelectFeature) {
-					feature.setSelected(FeatureState.SELECTED);
+					feature.setConfigurationState(FeatureState.SELECTED);
 				} else {
-					feature.setSelected(FeatureState.DESELECTED);
+					feature.setConfigurationState(FeatureState.DESELECTED);
 				}
 				handleFeatureLogic(feature, featureModel);
 			} else {

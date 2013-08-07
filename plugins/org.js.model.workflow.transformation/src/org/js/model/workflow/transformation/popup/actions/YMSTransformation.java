@@ -92,7 +92,7 @@ public class YMSTransformation implements IObjectActionDelegate {
 			if (variant != null) {
 				e.setResolves(variant);
 				String value = "false";
-				if (feature.getSelected().getValue() == 1) {
+				if (feature.getConfigurationState().getValue() == 1) {
 					value = "true";
 				}
 				e.setValue(value);

@@ -163,7 +163,7 @@ public class StakeholderConfigUIShell extends Shell {
                // feature
                // is configured by the previous role
                if (selectedState.getState().getValue() == 2) {
-                  switch (configuredFeature.getSelected().getValue()) {
+                  switch (configuredFeature.getConfigurationState().getValue()) {
                      case 0:
                         break;
                      case 1:
