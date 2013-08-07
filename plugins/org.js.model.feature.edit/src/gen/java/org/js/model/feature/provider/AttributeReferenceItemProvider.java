@@ -34,86 +34,86 @@ public class AttributeReferenceItemProvider
       IItemLabelProvider,
       IItemPropertySource {
    /**
-    * This constructs an instance from a factory and a notifier.
-    * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public AttributeReferenceItemProvider(AdapterFactory adapterFactory) {
-      super(adapterFactory);
-   }
+		super(adapterFactory);
+	}
 
    /**
-    * This returns the property descriptors for the adapted class.
-    * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-      if (itemPropertyDescriptors == null) {
-         super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-         addAttributePropertyDescriptor(object);
-         addFeaturePropertyDescriptor(object);
-      }
-      return itemPropertyDescriptors;
-   }
+			addAttributePropertyDescriptor(object);
+			addFeaturePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
    /**
-    * This adds a property descriptor for the Attribute feature.
-    * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Attribute feature.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected void addAttributePropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_AttributeReference_attribute_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_AttributeReference_attribute_feature", "_UI_AttributeReference_type"),
-             FeaturePackage.Literals.ATTRIBUTE_REFERENCE__ATTRIBUTE,
-             true,
-             false,
-             true,
-             null,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeReference_attribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeReference_attribute_feature", "_UI_AttributeReference_type"),
+				 FeaturePackage.Literals.ATTRIBUTE_REFERENCE__ATTRIBUTE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
 
    /**
-    * This adds a property descriptor for the Feature feature.
-    * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Feature feature.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected void addFeaturePropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_AttributeReference_feature_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_AttributeReference_feature_feature", "_UI_AttributeReference_type"),
-             FeaturePackage.Literals.ATTRIBUTE_REFERENCE__FEATURE,
-             true,
-             false,
-             true,
-             null,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeReference_feature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeReference_feature_feature", "_UI_AttributeReference_type"),
+				 FeaturePackage.Literals.ATTRIBUTE_REFERENCE__FEATURE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
 
    /**
-    * This returns AttributeReference.gif.
-    * <!-- begin-user-doc -->
+	 * This returns AttributeReference.gif.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Object getImage(Object object) {
-      return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeReference"));
-   }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeReference"));
+	}
 
    /**
     * This returns the label text for the adapted class.
@@ -131,28 +131,28 @@ public class AttributeReferenceItemProvider
    }
 
    /**
-    * This handles model notifications by calling {@link #updateChildren} to update any cached
-    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-    * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public void notifyChanged(Notification notification) {
-      updateChildren(notification);
-      super.notifyChanged(notification);
-   }
+		updateChildren(notification);
+		super.notifyChanged(notification);
+	}
 
    /**
-    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-    * that can be created under this object.
-    * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-      super.collectNewChildDescriptors(newChildDescriptors, object);
-   }
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
 }

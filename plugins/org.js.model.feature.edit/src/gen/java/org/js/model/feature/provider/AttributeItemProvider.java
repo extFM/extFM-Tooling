@@ -35,116 +35,116 @@ public class AttributeItemProvider extends ItemProviderAdapter implements IEditi
       ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
    /**
-    * This constructs an instance from a factory and a notifier.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    public AttributeItemProvider(AdapterFactory adapterFactory) {
-      super(adapterFactory);
-   }
+		super(adapterFactory);
+	}
 
    /**
-    * This returns the property descriptors for the adapted class.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    @Override
    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-      if (itemPropertyDescriptors == null) {
-         super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-         addNamePropertyDescriptor(object);
-         addDomainPropertyDescriptor(object);
-         addValuePropertyDescriptor(object);
-         addDeselectedDomainValuesPropertyDescriptor(object);
-      }
-      return itemPropertyDescriptors;
-   }
+			addNamePropertyDescriptor(object);
+			addDomainPropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
+			addDeselectedDomainValuesPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
    /**
-    * This adds a property descriptor for the Name feature.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    protected void addNamePropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_Attribute_name_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_Attribute_name_feature", "_UI_Attribute_type"),
-             FeaturePackage.Literals.ATTRIBUTE__NAME,
-             true,
-             false,
-             false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Attribute_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_name_feature", "_UI_Attribute_type"),
+				 FeaturePackage.Literals.ATTRIBUTE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
    /**
-    * This adds a property descriptor for the Domain feature.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * This adds a property descriptor for the Domain feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    protected void addDomainPropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_Attribute_domain_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_Attribute_domain_feature", "_UI_Attribute_type"),
-             FeaturePackage.Literals.ATTRIBUTE__DOMAIN,
-             true,
-             false,
-             false,
-             null,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Attribute_domain_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_domain_feature", "_UI_Attribute_type"),
+				 FeaturePackage.Literals.ATTRIBUTE__DOMAIN,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
 
    /**
-    * This adds a property descriptor for the Value feature.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * This adds a property descriptor for the Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    protected void addValuePropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_Attribute_value_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_Attribute_value_feature", "_UI_Attribute_type"),
-             FeaturePackage.Literals.ATTRIBUTE__VALUE,
-             true,
-             false,
-             false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Attribute_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_value_feature", "_UI_Attribute_type"),
+				 FeaturePackage.Literals.ATTRIBUTE__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
    /**
-    * This adds a property descriptor for the Deselected Domain Values feature.
-    * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Deselected Domain Values feature.
+	 * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected void addDeselectedDomainValuesPropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_Attribute_deselectedDomainValues_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_Attribute_deselectedDomainValues_feature", "_UI_Attribute_type"),
-             FeaturePackage.Literals.ATTRIBUTE__DESELECTED_DOMAIN_VALUES,
-             true,
-             false,
-             false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Attribute_deselectedDomainValues_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_deselectedDomainValues_feature", "_UI_Attribute_type"),
+				 FeaturePackage.Literals.ATTRIBUTE__DESELECTED_DOMAIN_VALUES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
    /**
     * This returns Attribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -222,43 +222,43 @@ public class AttributeItemProvider extends ItemProviderAdapter implements IEditi
     */
    @Override
    public void notifyChanged(Notification notification) {
-      updateChildren(notification);
+		updateChildren(notification);
 
-      switch (notification.getFeatureID(Attribute.class)) {
-         case FeaturePackage.ATTRIBUTE__NAME:
-         case FeaturePackage.ATTRIBUTE__DOMAIN:
-         case FeaturePackage.ATTRIBUTE__VALUE:
-         case FeaturePackage.ATTRIBUTE__DESELECTED_DOMAIN_VALUES:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-      }
-      super.notifyChanged(notification);
-   }
+		switch (notification.getFeatureID(Attribute.class)) {
+			case FeaturePackage.ATTRIBUTE__NAME:
+			case FeaturePackage.ATTRIBUTE__DOMAIN:
+			case FeaturePackage.ATTRIBUTE__VALUE:
+			case FeaturePackage.ATTRIBUTE__DESELECTED_DOMAIN_VALUES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
    /**
-    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-    * that can be created under this object.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-      super.collectNewChildDescriptors(newChildDescriptors, object);
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE__DESELECTED_DOMAIN_VALUES,
-             ""));
-   }
+		newChildDescriptors.add
+			(createChildParameter
+				(FeaturePackage.Literals.ATTRIBUTE__DESELECTED_DOMAIN_VALUES,
+				 ""));
+	}
 
    /**
-    * Return the resource locator for this item provider's resources.
-    * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * @generated
-    */
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
    @Override
    public ResourceLocator getResourceLocator() {
-      return FeatureEditPlugin.INSTANCE;
-   }
+		return FeatureEditPlugin.INSTANCE;
+	}
 
 }

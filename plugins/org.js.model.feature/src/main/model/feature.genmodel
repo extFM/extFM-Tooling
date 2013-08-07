@@ -28,7 +28,7 @@
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/selected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//Feature/configurationState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/attributes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//Feature/groups"/>
     </genClasses>

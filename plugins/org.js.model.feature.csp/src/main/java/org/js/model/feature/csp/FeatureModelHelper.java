@@ -260,7 +260,7 @@ public class FeatureModelHelper {
    public boolean isFeatureSelected(Feature feature) {
       boolean result = false;
       if (feature != null) {
-         result = FeatureState.SELECTED.equals(feature.getSelected());
+         result = FeatureState.SELECTED.equals(feature.getConfigurationState());
       }
       return result;
    }

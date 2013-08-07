@@ -45,7 +45,7 @@ RULES {
 						
     // syntax definition for features and their configuration state
 	@SuppressWarnings(explicitSyntaxChoice) 					
-	Feature ::= selected[selected : "selected", deselected : "deselected", unbound : ""] "feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
+	Feature ::= configurationState[selected : "selected", deselected : "deselected", unbound : ""] "feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
 				(!1 (attributes | groups) )*; 
 	
     // syntax definition for groups

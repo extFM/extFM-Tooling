@@ -12,8 +12,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selected" lowerBound="1"
-        eType="#//FeatureState" defaultValueLiteral="undetermined"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="configurationState" lowerBound="1"
+        eType="#//FeatureState" defaultValueLiteral="unbound"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true" eOpposite="#//Attribute/feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"

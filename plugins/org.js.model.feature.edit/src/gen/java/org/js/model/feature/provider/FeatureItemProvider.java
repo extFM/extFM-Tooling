@@ -42,106 +42,106 @@ public class FeatureItemProvider
       IItemLabelProvider,
       IItemPropertySource {
    /**
-    * This constructs an instance from a factory and a notifier.
-    * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public FeatureItemProvider(AdapterFactory adapterFactory) {
-      super(adapterFactory);
-   }
+		super(adapterFactory);
+	}
 
    /**
-    * This returns the property descriptors for the adapted class.
-    * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-      if (itemPropertyDescriptors == null) {
-         super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-         addNamePropertyDescriptor(object);
-         addSelectedPropertyDescriptor(object);
-      }
-      return itemPropertyDescriptors;
-   }
+			addNamePropertyDescriptor(object);
+			addConfigurationStatePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
    /**
-    * This adds a property descriptor for the Name feature.
-    * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected void addNamePropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_Feature_name_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_Feature_name_feature", "_UI_Feature_type"),
-             FeaturePackage.Literals.FEATURE__NAME,
-             true,
-             false,
-             false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-             null,
-             null));
-   }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_name_feature", "_UI_Feature_type"),
+				 FeaturePackage.Literals.FEATURE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
    /**
-    * This adds a property descriptor for the Selected feature.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   protected void addSelectedPropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add
-         (createItemPropertyDescriptor
-            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-             getResourceLocator(),
-             getString("_UI_Feature_selected_feature"),
-             getString("_UI_PropertyDescriptor_description", "_UI_Feature_selected_feature", "_UI_Feature_type"),
-             FeaturePackage.Literals.FEATURE__SELECTED,
-             true,
-             false,
-             false,
-             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-             null,
-             null));
-   }
+	 * This adds a property descriptor for the Configuration State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConfigurationStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_configurationState_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_configurationState_feature", "_UI_Feature_type"),
+				 FeaturePackage.Literals.FEATURE__CONFIGURATION_STATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
-   /**
-    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-    * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-    * <!-- begin-user-doc -->
+			/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-      if (childrenFeatures == null) {
-         super.getChildrenFeatures(object);
-         childrenFeatures.add(FeaturePackage.Literals.FEATURE__ATTRIBUTES);
-         childrenFeatures.add(FeaturePackage.Literals.FEATURE__GROUPS);
-      }
-      return childrenFeatures;
-   }
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(FeaturePackage.Literals.FEATURE__ATTRIBUTES);
+			childrenFeatures.add(FeaturePackage.Literals.FEATURE__GROUPS);
+		}
+		return childrenFeatures;
+	}
 
    /**
-    * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    protected EStructuralFeature getChildFeature(Object object, Object child) {
-      // Check the type of the specified child object and return the proper feature to use for
-      // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-      return super.getChildFeature(object, child);
-   }
+		return super.getChildFeature(object, child);
+	}
 
    /**
     * This returns Feature.gif.
@@ -154,7 +154,7 @@ public class FeatureItemProvider
       String imagePath = "Feature";
       if (object instanceof Feature) {
          Feature feature = (Feature) object;
-         FeatureState selected = feature.getSelected();
+         FeatureState selected = feature.getConfigurationState();
         if (FeatureState.DESELECTED.equals(selected)){
            imagePath = "DeSelectedFeature";
          } else if (FeatureState.SELECTED.equals(selected)) {
@@ -166,63 +166,63 @@ public class FeatureItemProvider
    }
 
    /**
-    * This returns the label text for the adapted class.
-    * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public String getText(Object object) {
-      String label = ((Feature)object).getName();
-      return label == null || label.length() == 0 ?
-         getString("_UI_Feature_type") :
-         getString("_UI_Feature_type") + " " + label;
-   }
+		String label = ((Feature)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Feature_type") :
+			getString("_UI_Feature_type") + " " + label;
+	}
 
    /**
-    * This handles model notifications by calling {@link #updateChildren} to update any cached
-    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-    * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public void notifyChanged(Notification notification) {
-      updateChildren(notification);
+		updateChildren(notification);
 
-      switch (notification.getFeatureID(Feature.class)) {
-         case FeaturePackage.FEATURE__NAME:
-         case FeaturePackage.FEATURE__SELECTED:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-         case FeaturePackage.FEATURE__ATTRIBUTES:
-         case FeaturePackage.FEATURE__GROUPS:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-            return;
-      }
-      super.notifyChanged(notification);
-   }
+		switch (notification.getFeatureID(Feature.class)) {
+			case FeaturePackage.FEATURE__NAME:
+			case FeaturePackage.FEATURE__CONFIGURATION_STATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case FeaturePackage.FEATURE__ATTRIBUTES:
+			case FeaturePackage.FEATURE__GROUPS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
    /**
-    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-    * that can be created under this object.
-    * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-      super.collectNewChildDescriptors(newChildDescriptors, object);
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.FEATURE__ATTRIBUTES,
-             FeatureFactory.eINSTANCE.createAttribute()));
+		newChildDescriptors.add
+			(createChildParameter
+				(FeaturePackage.Literals.FEATURE__ATTRIBUTES,
+				 FeatureFactory.eINSTANCE.createAttribute()));
 
-      newChildDescriptors.add
-         (createChildParameter
-            (FeaturePackage.Literals.FEATURE__GROUPS,
-             FeatureFactory.eINSTANCE.createGroup()));
-   }
+		newChildDescriptors.add
+			(createChildParameter
+				(FeaturePackage.Literals.FEATURE__GROUPS,
+				 FeatureFactory.eINSTANCE.createGroup()));
+	}
 
 }

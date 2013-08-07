@@ -41,12 +41,12 @@ import org.js.model.feature.Relop;
 public final class FeatureModelUtil {
 
 	public static boolean isFeatureSelected(Feature feature) {
-		FeatureState selected = feature.getSelected();
+		FeatureState selected = feature.getConfigurationState();
 		return FeatureState.SELECTED.equals(selected);
 	}
 
 	public static boolean isFeatureDeselected(Feature feature) {
-		FeatureState selected = feature.getSelected();
+		FeatureState selected = feature.getConfigurationState();
 		return FeatureState.DESELECTED.equals(selected);
 	}
 

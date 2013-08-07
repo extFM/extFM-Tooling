@@ -582,9 +582,9 @@ public class TranslateFM2CSP {
 		// a selected feature has cardinality [1..1],
 		// a deselected feature has cardinality [0..0]
 		int minCardinality = (FeatureState.SELECTED.equals(feature
-				.getSelected())) ? 1 : 0;
+				.getConfigurationState())) ? 1 : 0;
 		int maxCardinality = (FeatureState.DESELECTED.equals(feature
-				.getSelected())) ? 0 : 1;
+				.getConfigurationState())) ? 0 : 1;
 
 		log.debug("Create IntegerVariable for '" + id + "' [" + minCardinality
 				+ "," + maxCardinality + "].");

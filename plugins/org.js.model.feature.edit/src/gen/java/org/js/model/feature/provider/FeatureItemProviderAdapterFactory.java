@@ -34,454 +34,454 @@ import org.js.model.feature.util.FeatureAdapterFactory;
  */
 public class FeatureItemProviderAdapterFactory extends FeatureAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
    /**
-    * This keeps track of the root adapter factory that delegates to this adapter factory.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected ComposedAdapterFactory parentAdapterFactory;
 
    /**
-    * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-    * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
    /**
-    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-    * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
    /**
-    * This constructs an instance.
-    * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public FeatureItemProviderAdapterFactory() {
-      supportedTypes.add(IEditingDomainItemProvider.class);
-      supportedTypes.add(IStructuredItemContentProvider.class);
-      supportedTypes.add(ITreeItemContentProvider.class);
-      supportedTypes.add(IItemLabelProvider.class);
-      supportedTypes.add(IItemPropertySource.class);
-   }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.FeatureModel} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.FeatureModel} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected FeatureModelItemProvider featureModelItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.FeatureModel}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.FeatureModel}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createFeatureModelAdapter() {
-      if (featureModelItemProvider == null) {
-         featureModelItemProvider = new FeatureModelItemProvider(this);
-      }
+		if (featureModelItemProvider == null) {
+			featureModelItemProvider = new FeatureModelItemProvider(this);
+		}
 
-      return featureModelItemProvider;
-   }
+		return featureModelItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Feature} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.Feature} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected FeatureItemProvider featureItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Feature}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.Feature}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createFeatureAdapter() {
-      if (featureItemProvider == null) {
-         featureItemProvider = new FeatureItemProvider(this);
-      }
+		if (featureItemProvider == null) {
+			featureItemProvider = new FeatureItemProvider(this);
+		}
 
-      return featureItemProvider;
-   }
+		return featureItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Group} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.Group} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected GroupItemProvider groupItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Group}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.Group}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createGroupAdapter() {
-      if (groupItemProvider == null) {
-         groupItemProvider = new GroupItemProvider(this);
-      }
+		if (groupItemProvider == null) {
+			groupItemProvider = new GroupItemProvider(this);
+		}
 
-      return groupItemProvider;
-   }
+		return groupItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Attribute} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.Attribute} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected AttributeItemProvider attributeItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Attribute}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.Attribute}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createAttributeAdapter() {
-      if (attributeItemProvider == null) {
-         attributeItemProvider = new AttributeItemProvider(this);
-      }
+		if (attributeItemProvider == null) {
+			attributeItemProvider = new AttributeItemProvider(this);
+		}
 
-      return attributeItemProvider;
-   }
+		return attributeItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.DiscreteDomain} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.DiscreteDomain} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected DiscreteDomainItemProvider discreteDomainItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.DiscreteDomain}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.DiscreteDomain}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createDiscreteDomainAdapter() {
-      if (discreteDomainItemProvider == null) {
-         discreteDomainItemProvider = new DiscreteDomainItemProvider(this);
-      }
+		if (discreteDomainItemProvider == null) {
+			discreteDomainItemProvider = new DiscreteDomainItemProvider(this);
+		}
 
-      return discreteDomainItemProvider;
-   }
+		return discreteDomainItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.DomainValue} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.DomainValue} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected DomainValueItemProvider domainValueItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.DomainValue}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.DomainValue}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createDomainValueAdapter() {
-      if (domainValueItemProvider == null) {
-         domainValueItemProvider = new DomainValueItemProvider(this);
-      }
+		if (domainValueItemProvider == null) {
+			domainValueItemProvider = new DomainValueItemProvider(this);
+		}
 
-      return domainValueItemProvider;
-   }
+		return domainValueItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.NumericalDomain} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.NumericalDomain} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected NumericalDomainItemProvider numericalDomainItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.NumericalDomain}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.NumericalDomain}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createNumericalDomainAdapter() {
-      if (numericalDomainItemProvider == null) {
-         numericalDomainItemProvider = new NumericalDomainItemProvider(this);
-      }
+		if (numericalDomainItemProvider == null) {
+			numericalDomainItemProvider = new NumericalDomainItemProvider(this);
+		}
 
-      return numericalDomainItemProvider;
-   }
+		return numericalDomainItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Interval} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.Interval} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected IntervalItemProvider intervalItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Interval}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.Interval}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createIntervalAdapter() {
-      if (intervalItemProvider == null) {
-         intervalItemProvider = new IntervalItemProvider(this);
-      }
+		if (intervalItemProvider == null) {
+			intervalItemProvider = new IntervalItemProvider(this);
+		}
 
-      return intervalItemProvider;
-   }
+		return intervalItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeConstraint} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeConstraint} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected AttributeConstraintItemProvider attributeConstraintItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.AttributeConstraint}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.AttributeConstraint}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createAttributeConstraintAdapter() {
-      if (attributeConstraintItemProvider == null) {
-         attributeConstraintItemProvider = new AttributeConstraintItemProvider(this);
-      }
+		if (attributeConstraintItemProvider == null) {
+			attributeConstraintItemProvider = new AttributeConstraintItemProvider(this);
+		}
 
-      return attributeConstraintItemProvider;
-   }
+		return attributeConstraintItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeReference} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeReference} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected AttributeReferenceItemProvider attributeReferenceItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.AttributeReference}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.AttributeReference}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createAttributeReferenceAdapter() {
-      if (attributeReferenceItemProvider == null) {
-         attributeReferenceItemProvider = new AttributeReferenceItemProvider(this);
-      }
+		if (attributeReferenceItemProvider == null) {
+			attributeReferenceItemProvider = new AttributeReferenceItemProvider(this);
+		}
 
-      return attributeReferenceItemProvider;
-   }
+		return attributeReferenceItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeValue} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.AttributeValue} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected AttributeValueItemProvider attributeValueItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.AttributeValue}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.AttributeValue}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createAttributeValueAdapter() {
-      if (attributeValueItemProvider == null) {
-         attributeValueItemProvider = new AttributeValueItemProvider(this);
-      }
+		if (attributeValueItemProvider == null) {
+			attributeValueItemProvider = new AttributeValueItemProvider(this);
+		}
 
-      return attributeValueItemProvider;
-   }
+		return attributeValueItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Imply} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.Imply} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected ImplyItemProvider implyItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Imply}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.Imply}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createImplyAdapter() {
-      if (implyItemProvider == null) {
-         implyItemProvider = new ImplyItemProvider(this);
-      }
+		if (implyItemProvider == null) {
+			implyItemProvider = new ImplyItemProvider(this);
+		}
 
-      return implyItemProvider;
-   }
+		return implyItemProvider;
+	}
 
    /**
-    * This keeps track of the one adapter used for all {@link org.js.model.feature.Exclude} instances.
-    * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.js.model.feature.Exclude} instances.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    protected ExcludeItemProvider excludeItemProvider;
 
    /**
-    * This creates an adapter for a {@link org.js.model.feature.Exclude}.
-    * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.js.model.feature.Exclude}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter createExcludeAdapter() {
-      if (excludeItemProvider == null) {
-         excludeItemProvider = new ExcludeItemProvider(this);
-      }
+		if (excludeItemProvider == null) {
+			excludeItemProvider = new ExcludeItemProvider(this);
+		}
 
-      return excludeItemProvider;
-   }
+		return excludeItemProvider;
+	}
 
    /**
-    * This returns the root adapter factory that contains this factory.
-    * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public ComposeableAdapterFactory getRootAdapterFactory() {
-      return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-   }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
    /**
-    * This sets the composed adapter factory that contains this factory.
-    * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-      this.parentAdapterFactory = parentAdapterFactory;
-   }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
    /**
-    * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public boolean isFactoryForType(Object type) {
-      return supportedTypes.contains(type) || super.isFactoryForType(type);
-   }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
    /**
-    * This implementation substitutes the factory itself as the key for the adapter.
-    * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Adapter adapt(Notifier notifier, Object type) {
-      return super.adapt(notifier, this);
-   }
+		return super.adapt(notifier, this);
+	}
 
    /**
-    * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    @Override
    public Object adapt(Object object, Object type) {
-      if (isFactoryForType(type)) {
-         Object adapter = super.adapt(object, type);
-         if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-            return adapter;
-         }
-      }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-      return null;
-   }
+		return null;
+	}
 
    /**
-    * This adds a listener.
-    * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public void addListener(INotifyChangedListener notifyChangedListener) {
-      changeNotifier.addListener(notifyChangedListener);
-   }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
    /**
-    * This removes a listener.
-    * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public void removeListener(INotifyChangedListener notifyChangedListener) {
-      changeNotifier.removeListener(notifyChangedListener);
-   }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
    /**
-    * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-    * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public void fireNotifyChanged(Notification notification) {
-      changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-      if (parentAdapterFactory != null) {
-         parentAdapterFactory.fireNotifyChanged(notification);
-      }
-   }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
    /**
-    * This disposes all of the item providers created by this factory. 
-    * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+	 * @generated
+	 */
    public void dispose() {
-      if (featureModelItemProvider != null) featureModelItemProvider.dispose();
-      if (featureItemProvider != null) featureItemProvider.dispose();
-      if (groupItemProvider != null) groupItemProvider.dispose();
-      if (attributeItemProvider != null) attributeItemProvider.dispose();
-      if (discreteDomainItemProvider != null) discreteDomainItemProvider.dispose();
-      if (domainValueItemProvider != null) domainValueItemProvider.dispose();
-      if (numericalDomainItemProvider != null) numericalDomainItemProvider.dispose();
-      if (intervalItemProvider != null) intervalItemProvider.dispose();
-      if (attributeConstraintItemProvider != null) attributeConstraintItemProvider.dispose();
-      if (attributeReferenceItemProvider != null) attributeReferenceItemProvider.dispose();
-      if (attributeValueItemProvider != null) attributeValueItemProvider.dispose();
-      if (implyItemProvider != null) implyItemProvider.dispose();
-      if (excludeItemProvider != null) excludeItemProvider.dispose();
-   }
+		if (featureModelItemProvider != null) featureModelItemProvider.dispose();
+		if (featureItemProvider != null) featureItemProvider.dispose();
+		if (groupItemProvider != null) groupItemProvider.dispose();
+		if (attributeItemProvider != null) attributeItemProvider.dispose();
+		if (discreteDomainItemProvider != null) discreteDomainItemProvider.dispose();
+		if (domainValueItemProvider != null) domainValueItemProvider.dispose();
+		if (numericalDomainItemProvider != null) numericalDomainItemProvider.dispose();
+		if (intervalItemProvider != null) intervalItemProvider.dispose();
+		if (attributeConstraintItemProvider != null) attributeConstraintItemProvider.dispose();
+		if (attributeReferenceItemProvider != null) attributeReferenceItemProvider.dispose();
+		if (attributeValueItemProvider != null) attributeValueItemProvider.dispose();
+		if (implyItemProvider != null) implyItemProvider.dispose();
+		if (excludeItemProvider != null) excludeItemProvider.dispose();
+	}
 
 }

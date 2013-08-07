@@ -52,14 +52,14 @@ public class FeatureVariant {
    public void selectFeature(String featureId) {
       Feature feature = helper.getFeature(featureId);
       if (feature != null) {
-         feature.setSelected(FeatureState.SELECTED);
+         feature.setConfigurationState(FeatureState.SELECTED);
       }
    }
 
    public void deselectFeature(String featureId) {
       Feature feature = helper.getFeature(featureId);
       if (feature != null) {
-         feature.setSelected(FeatureState.DESELECTED);
+         feature.setConfigurationState(FeatureState.DESELECTED);
       }
    }
 
@@ -92,7 +92,7 @@ public class FeatureVariant {
 
    private String getFeatureSelectionString(Feature feature) {
       String state;
-      FeatureState selected = feature.getSelected();
+      FeatureState selected = feature.getConfigurationState();
       if (FeatureState.UNBOUND.equals(selected)) {
          state = "(" + selected.getLiteral() + ")";
       }
