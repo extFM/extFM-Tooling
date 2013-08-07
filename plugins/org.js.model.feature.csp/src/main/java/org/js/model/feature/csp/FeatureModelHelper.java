@@ -24,6 +24,8 @@ import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
+import org.js.model.feature.Interval;
+import org.js.model.feature.NumericalDomain;
 
 /**
  * 
@@ -156,12 +158,36 @@ public class FeatureModelHelper {
          if (domain instanceof DiscreteDomain) {
             DiscreteDomain discreteDomain = (DiscreteDomain) domain;
             isSet = containsValue(discreteDomain, value);
-         }
+         } else if (domain instanceof NumericalDomain) {
+			NumericalDomain numDomain = (NumericalDomain) domain;
+			isSet = containsValue(numDomain, value);
+		}
       }
       return isSet;
    }
 
-   /**
+   private static boolean containsValue(NumericalDomain numDomain, String value) {
+	boolean isContained = false;
+	int number = Integer.parseInt(value);
+	for (Interval interval : numDomain.getIntervals()) {
+		isContained = isInInterval(number, interval);
+		if (isContained){
+			break;
+		}
+	}
+	return isContained;
+}
+   
+   private static boolean isInInterval(int number, Interval interval){
+	   boolean isinbounds = false;
+	   int lowerBound = interval.getLowerBound();
+	   int upperBound = interval.getUpperBound();
+	   isinbounds = lowerBound <= number && upperBound >= number;
+	   return isinbounds;
+   }
+   
+
+/**
     * get the String representation of the given attribute and integer value
     * @param value
     * @param attribute

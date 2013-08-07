@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
 <feature:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:feature="http://www.tudresden.de/extfeature" name="basic">
-  <root id="root" name="root" ConfigurationState="selected">
+  <root id="root" name="root" configurationState="selected">
     <groups id="g1" maxCardinality="2">
       <childFeatures id="f1" name="f1">
         <attributes name="attr1" domain="d1"/>
         <groups id="g2" maxCardinality="1">
-          <childFeatures id="f3" name="f3"/>
+          <childFeatures id="f3" name="f3" configurationState="selected"/>
         </groups>
       </childFeatures>
       <childFeatures id="f2" name="f2">
-        <attributes name="attr2" domain="d2"/>
+        <attributes name="attr2" domain="d2" value="1"/>
       </childFeatures>
     </groups>
   </root>

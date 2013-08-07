@@ -114,7 +114,6 @@ public class TranslateFM2CSP {
 				memberConstraint);
 		getModel().addConstraint(checkAttribute);
 		getModel().addConstraint(memberConstraint);
-
 	}
 
 	private Constraint getMemberConstraint(Attribute attribute) {
