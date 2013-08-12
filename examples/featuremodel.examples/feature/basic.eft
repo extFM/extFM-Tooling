@@ -3,13 +3,14 @@ featuremodel "basic"
 domain <d1> [a1=0,a2=1,a3=2]
 domain <d2> [0..3]
 
-selected feature "root" <root>
+feature "root" <root>
 group <g1> (0..2) {
 	feature "f1" <f1>
         group <g2> (0..1) {
 			feature "f3" <f3>
+			feature "f4" <f4>
         }
-		attr1 [d1] //:= "a3"
+		attr1 [d1] := "a3"
 	feature "f2" <f2>
 		attr2 [d2]
 		//attr2 [d2]

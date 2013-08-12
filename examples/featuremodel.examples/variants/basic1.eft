@@ -3,17 +3,16 @@ featuremodel "basic"
 domain <d1> [a1=0, a2= 1, a3= 2]
 domain <d2> [0..3]
 
-selected feature "someName" <someId>
+selected feature "root" <root>
 	group <g1> (0..2) {
-		selected feature "s1" <s1Id>
+		selected feature "f1" <f1>
 			attr1 [d1] := "a3"
-			attr2 [d2] := "0"
 			group <g2> (0..1) {
-				selected feature "s3" <s3Id>
+				deselected feature "f3" <f3>
+				deselected feature "f4" <f4>
 				}
-		selected feature "s2" <s2Id>
-			attr1 [d1] := "a1"
+		selected feature "f2" <f2>
+			attr2 [d2] := "0"
 		}
-constraint <c1> s1Id.attr1 > s1Id.attr2
-constraint <c3> s1Id.attr1 == "a3"
-constraint <c2> s1Id -> s3Id
+constraint <c1> f1.attr1 > f2.attr2
+constraint <c3> f1.attr1 == "a3"
