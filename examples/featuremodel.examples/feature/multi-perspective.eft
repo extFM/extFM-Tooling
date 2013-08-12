@@ -32,6 +32,12 @@ feature "root" <fr>
 				}
 		}
 	}
+	group  <g_f13> (0..1) {
+		feature "f13" <f13>
+	}
+	group  <g_f14> (0..1) {
+		feature "f14" <f14>
+	}
 
 constraint <c1> f7 -> f4	
 constraint <c2> f5 -> f6	
