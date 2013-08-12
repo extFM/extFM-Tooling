@@ -21,7 +21,7 @@ public class GenerateVariantHandler extends AbstractFeatureModelCommandHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		List<IFile> files = getSelectedWorkbenchFiles();
+		List<IFile> files = getSelectedWorkbenchFiles(event);
 			// persist one variant
 			int numberOfVariantsToPersist = 1;
 			boolean findAll = false;

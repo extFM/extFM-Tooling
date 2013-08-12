@@ -24,7 +24,7 @@ public class FeatureModelSatisfiabilityHandler extends
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		List<IFile> files = getSelectedWorkbenchFiles();
+		List<IFile> files = getSelectedWorkbenchFiles(event);
 		fileList = new ArrayList<SatisfiableFile>(files.size());
 		for (IFile iFile : files) {
 			boolean isSatisfiable = CSPAnalyzer.isSatisfiable(iFile);

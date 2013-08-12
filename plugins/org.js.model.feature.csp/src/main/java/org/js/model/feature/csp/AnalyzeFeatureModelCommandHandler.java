@@ -32,7 +32,7 @@ public class AnalyzeFeatureModelCommandHandler extends
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		List<IFile> files = getSelectedWorkbenchFiles();
+		List<IFile> files = getSelectedWorkbenchFiles(event);
 		// ask for a number of variants to be persisted
 		// Customized MessageDialog with configured buttons
 		int result = dialogPersistVariants(files);
