@@ -197,7 +197,7 @@ public final class FeatureModelUtil {
 		Feature rightOperand = constraint.getRightOperand();
 		String leftOpId = leftOperand.getName();
 		String rightOpId = rightOperand.getName();
-		String operator = constraint instanceof Imply ? "implies" : "excludes";
+		String operator = constraint instanceof Imply ? "requires" : "excludes";
 		label += " " + leftOpId + " " + operator + " " + rightOpId;
 		return label;
 	}
