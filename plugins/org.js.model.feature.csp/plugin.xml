@@ -23,6 +23,18 @@
             </visibleWhen>
          </command>
          <command
+               commandId="org.js.model.feature.efm.generateVariant"
+               icon="icons/obj16/wand.png"
+               label="Generate Variant"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.js.analyzeFeaturemodel.enable">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
                commandId="org.js.featuremodel.efm.satisfiable"
                icon="icons/obj16/satisfiable.gif"
                label="Check Featuremodel Satisfiability"
@@ -52,6 +64,11 @@
             defaultHandler="org.js.model.feature.csp.FeatureModelSatisfiabilityHandler"
             id="org.js.featuremodel.efm.satisfiable"
             name="Check Featuremodel Satisfiability">
+      </command>
+      <command
+            defaultHandler="org.js.model.feature.csp.GenerateVariantHandler"
+            id="org.js.model.feature.efm.generateVariant"
+            name="Generate Variant">
       </command>
    </extension>
    

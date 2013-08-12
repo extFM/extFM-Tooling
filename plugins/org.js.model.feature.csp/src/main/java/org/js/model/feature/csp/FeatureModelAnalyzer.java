@@ -41,6 +41,8 @@ public class FeatureModelAnalyzer {
 	Set<Feature> variableFeatures;
 	Model cspModel;
 
+	private boolean findAll = true;
+	
 	private FeatureModelHelper featureModelHelper;
 
 	private FeatureModel model;
@@ -210,7 +212,7 @@ public class FeatureModelAnalyzer {
 		return cspModel;
 	}
 
-	private void solveModel(boolean findAll) {
+	private void solveModel() {
 		long start = System.currentTimeMillis();
 		CPSolver solver = new CPSolver();
 		Model problemModel = getCSPModel();
@@ -235,7 +237,7 @@ public class FeatureModelAnalyzer {
 				//log.debug(j + ". variant found.");
 				log.info(j + ". variant found: '" + variant.toString() + "'");
 				log.debug("------------------------------------------");
-			} while (findAll && solver.nextSolution());
+			} while (isFindAll() && solver.nextSolution());
 			long end = System.currentTimeMillis();
 			log.info("Check derivable variants took " + (end - start) + " ms.");
 			numberDerivableVariant = j;
@@ -319,7 +321,7 @@ public class FeatureModelAnalyzer {
 	public int getNumberOfDerivableVariants() {
 		if (derivableVariants == null) {
 			derivableVariants = new HashSet<FeatureVariant>();
-			solveModel(true);
+			solveModel();
 		}
 		return numberDerivableVariant;
 	}
@@ -343,6 +345,14 @@ public class FeatureModelAnalyzer {
 
 	public void setNumberOfVariantsToDerive(int numberOfVariants) {
 		this.numberOfVariantsToDerive = numberOfVariants;
+	}
+
+	public boolean isFindAll() {
+		return findAll;
+	}
+
+	public void setFindAll(boolean findAll) {
+		this.findAll = findAll;
 	}
 
 }

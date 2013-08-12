@@ -28,9 +28,9 @@ public class CSPAnalyzer {
 	 * 
 	 * @param files
 	 */
-	public static void analyze(List<IFile> files, int numberVariants) {
+	public static void analyze(List<IFile> files, int numberVariants, boolean findAll) {
 		for (IFile file : files) {
-			analyze(file, numberVariants);
+			analyze(file, numberVariants, findAll);
 		}
 	}
 
@@ -138,10 +138,11 @@ public class CSPAnalyzer {
 		}
 	}
 
-	public static void analyze(IFile file, int numberOfVariants) {
+	public static void analyze(IFile file, int numberOfVariants, boolean findAll) {
 		FeatureModelAnalyzer analyzer = getAnalyzer(file);
 		if (analyzer != null) {
 			analyzer.setNumberOfVariantsToDerive(numberOfVariants);
+			analyzer.setFindAll(findAll);
 			analyze(analyzer);
 		}
 

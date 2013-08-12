@@ -38,12 +38,16 @@ public class AnalyzeFeatureModelCommandHandler extends
 		int result = dialogPersistVariants(files);
 		switch (result) {
 		case 0:
+			// persist all variants
 			CSPAnalyzer.analyze(files, true);
 			break;
 		case 1:
-			CSPAnalyzer.analyze(files, result);
+			// persist only one variant
+			boolean findAll = true;
+			CSPAnalyzer.analyze(files, result, findAll);
 			break;
 		case 2:
+			// persist no variants
 			CSPAnalyzer.analyze(files, false);
 			break;
 		default:
@@ -56,8 +60,8 @@ public class AnalyzeFeatureModelCommandHandler extends
 	private int dialogPersistVariants(List<IFile> files) {
 
 		MessageDialog dialog = new MessageDialog(null, "Persist Variants",
-				null, "Shall variants of the selected feature model files \""
-						+ getText(files) + "\" be persisted?",
+				null, "All variants of the feature model files \""
+						+ getText(files) + "\" will be derived. Shall variants be persisted as well?",
 				MessageDialog.QUESTION, new String[] { "Yes, all",
 						"Yes, only one", "No" }, 0);
 		int result = dialog.open();
