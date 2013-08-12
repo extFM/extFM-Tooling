@@ -235,7 +235,7 @@ public class FeatureModelAnalyzer {
 					derivableVariants.add(variant);
 				}
 				//log.debug(j + ". variant found.");
-				log.info(j + ". variant found: '" + variant.toString() + "'");
+				log.debug(j + ". variant found: '" + variant.toString() + "'");
 				log.debug("------------------------------------------");
 			} while (isFindAll() && solver.nextSolution());
 			long end = System.currentTimeMillis();

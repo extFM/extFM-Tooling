@@ -76,13 +76,25 @@
          point="org.eclipse.core.expressions.definitions">
       <definition
             id="org.js.analyzeFeaturemodel.enable">
-         <iterate>
-            <and>
-               <adapt
-                     type="org.eclipse.core.resources.IResource">
-               </adapt>
-            </and>
-         </iterate>
+             <iterate
+                  operator="or">
+             <or>
+            	<with
+                	 variable="activePartId">
+             		<or>
+                  		<equals
+                        	value="org.js.model.feature.resource.eft.ui.EftEditor">
+                 		</equals>
+                  		<equals
+                        	value="org.js.model.feature.editor.FeatureEditorID">
+                  		</equals>
+            		</or>
+               	</with>
+                <adapt
+                	type="org.eclipse.core.resources.IResource">
+               	</adapt>
+       		</or>
+              </iterate>
       </definition>
    </extension>   
 </plugin>
