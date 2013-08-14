@@ -64,8 +64,8 @@ TOKENSTYLES {
 			("{" roles[] ("," roles[])* "}")?;
 	
 	// syntax definition for groups
-	Group ::= "group" #1 name['"','"']? #1 id['<','>'] represents[] !0 
-			("{" contains[] ("," contains[])* "}")?;
+	Group ::= "group" #1 name['"','"']? #1 id['<','>'] "of" represents[] !0 
+			"contains" #1 ("{" contains[] ("," contains[])* "}")?;
 
 	// syntax definition for feature information model elements
 	Task ::= "task" name['"','"']? #1 id['<','>'];
