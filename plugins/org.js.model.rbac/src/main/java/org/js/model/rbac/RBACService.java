@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
@@ -181,5 +182,29 @@ public class RBACService {
       return result;
    }
 
+   public List<Group> getOwnedGroups(Role role){
+      AccessControlModel accessControlModel = getAccessControlModel(role);
+      List<Group> roleGroups = new ArrayList<Group>(1);
+      if (accessControlModel != null) {
+         EList<Group> groups = accessControlModel.getGroups();
+         for (Group group : groups) {
+            Role represents = group.getOwner();
+            if (EcoreUtil.equals(role, represents)) {
+               roleGroups.add(group);
+            }
+         }
+         
+      }
+      return roleGroups;
+   }
+   
+   public AccessControlModel getAccessControlModel(EObject object){
+      AccessControlModel model = null;
+      EObject rootContainer = EcoreUtil.getRootContainer(object);
+      if (rootContainer instanceof AccessControlModel) {
+         model = (AccessControlModel) rootContainer;
+      }
+      return model;
+   }
   
 }

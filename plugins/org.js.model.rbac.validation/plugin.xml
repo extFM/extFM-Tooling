@@ -27,7 +27,7 @@
                   message body text
                </message>
                <target
-                     class="ValueOperation">
+                     class="Role">
                   <event
                         name="Set">
                   </event></target>
@@ -45,7 +45,7 @@
                   message body text
                </message>
                <target
-                     class="ValueOperation">
+                     class="Role">
                   <event
                         name="Set">
                   </event>
@@ -64,7 +64,26 @@
                   message body text
                </message>
                <target
-                     class="ValueOperation">
+                     class="Role">
+                  <event
+                        name="Set">
+                  </event>
+               </target>
+            </constraint>
+            <constraint
+                  class="org.js.model.rbac.validation.GroupRoleCycleConstraint"
+                  id="org.js.model.rbac.validation.constraint4"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="GroupRoleCycleConstraint"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="Group">
                   <event
                         name="Set">
                   </event>
@@ -72,7 +91,7 @@
             </constraint>
             <constraint
                   class="org.js.model.rbac.validation.DuplicateElementConstraint"
-                  id="org.js.model.rbac.validation.constraint4"
+                  id="org.js.model.rbac.validation.constraint5"
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Live"
@@ -83,7 +102,7 @@
                   message body text
                </message>
                <target
-                     class="ValueOperation">
+                     class="Role">
                   <event
                         name="Set">
                   </event>
