@@ -41,5 +41,8 @@
   <aspectInstances xsi:type="workflow:State" id="org.js.model.workflow.stateaspect" state="Enabled">
     <targetModelElement href="stagedConfiguration.workflow#//@elements.0/@nodes.1"/>
   </aspectInstances>
+  <aspectInstances xsi:type="workflow:StakeholderTypes" id="org.js.model.workflow.stakeholdertypesaspect">
+    <targetModelElement href="stagedConfiguration.workflow#/"/>
+  </aspectInstances>
   <enrichedModel href="stagedConfiguration.workflow#/"/>
 </conf:ConfModel>

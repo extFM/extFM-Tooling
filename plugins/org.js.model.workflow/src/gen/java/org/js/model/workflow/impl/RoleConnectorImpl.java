@@ -31,131 +31,132 @@ import org.js.model.workflow.WorkflowPackage;
  *
  * @generated
  */
-public class RoleConnectorImpl extends AspectInstanceImpl implements RoleConnector {
+public class RoleConnectorImpl extends 
+AspectInstanceImpl implements RoleConnector {
 	/**
-	 * The cached value of the '{@link #getRoleref() <em>Roleref</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getRoleref() <em>Roleref</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRoleref()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getRoleref()
+    * @generated
+    * @ordered
+    */
 	protected Role roleref;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected RoleConnectorImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkflowPackage.Literals.ROLE_CONNECTOR;
-	}
+      return WorkflowPackage.Literals.ROLE_CONNECTOR;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Role getRoleref() {
-		if (roleref != null && roleref.eIsProxy()) {
-			InternalEObject oldRoleref = (InternalEObject)roleref;
-			roleref = (Role)eResolveProxy(oldRoleref);
-			if (roleref != oldRoleref) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.ROLE_CONNECTOR__ROLEREF, oldRoleref, roleref));
-			}
-		}
-		return roleref;
-	}
+      if (roleref != null && roleref.eIsProxy()) {
+         InternalEObject oldRoleref = (InternalEObject)roleref;
+         roleref = (Role)eResolveProxy(oldRoleref);
+         if (roleref != oldRoleref) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.ROLE_CONNECTOR__ROLEREF, oldRoleref, roleref));
+         }
+      }
+      return roleref;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Role basicGetRoleref() {
-		return roleref;
-	}
+      return roleref;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setRoleref(Role newRoleref) {
-		Role oldRoleref = roleref;
-		roleref = newRoleref;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.ROLE_CONNECTOR__ROLEREF, oldRoleref, roleref));
-	}
+      Role oldRoleref = roleref;
+      roleref = newRoleref;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.ROLE_CONNECTOR__ROLEREF, oldRoleref, roleref));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
-				if (resolve) return getRoleref();
-				return basicGetRoleref();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
+            if (resolve) return getRoleref();
+            return basicGetRoleref();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
-				setRoleref((Role)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
+            setRoleref((Role)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
-				setRoleref((Role)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
+            setRoleref((Role)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
-				return roleref != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.ROLE_CONNECTOR__ROLEREF:
+            return roleref != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //RoleConnectorImpl

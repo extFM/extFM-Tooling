@@ -12,8 +12,8 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
 import org.js.model.feature.DomainValue;
-import org.js.model.rbac.AttributeDecision;
-import org.js.model.rbac.SetAttribute;
+import org.js.model.rbac.AttributeOperation;
+import org.js.model.rbac.DomainValueOperation;
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
@@ -29,7 +29,7 @@ public class DefinedDomainValueConstraint extends AbstractAttributeConstraint {
     * @return
     */
    @Override
-   String checkAttributeConfiguration(SetAttribute attributeConfig, AttributeDecision operation) {
+   String checkAttributeConfiguration(AttributeOperation attributeConfig, DomainValueOperation operation) {
       String msg = null;
       Attribute attribute = attributeConfig.getAttribute();
       String value = operation.getValue();

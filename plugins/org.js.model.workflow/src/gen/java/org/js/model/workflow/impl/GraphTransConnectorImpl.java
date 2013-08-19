@@ -29,131 +29,132 @@ import org.js.model.workflow.WorkflowPackage;
  *
  * @generated
  */
-public class GraphTransConnectorImpl extends AspectInstanceImpl implements GraphTransConnector {
+public class GraphTransConnectorImpl extends 
+AspectInstanceImpl implements GraphTransConnector {
 	/**
-	 * The cached value of the '{@link #getGraphTransref() <em>Graph Transref</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getGraphTransref() <em>Graph Transref</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGraphTransref()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getGraphTransref()
+    * @generated
+    * @ordered
+    */
 	protected GraphTransformation graphTransref;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected GraphTransConnectorImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkflowPackage.Literals.GRAPH_TRANS_CONNECTOR;
-	}
+      return WorkflowPackage.Literals.GRAPH_TRANS_CONNECTOR;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public GraphTransformation getGraphTransref() {
-		if (graphTransref != null && graphTransref.eIsProxy()) {
-			InternalEObject oldGraphTransref = (InternalEObject)graphTransref;
-			graphTransref = (GraphTransformation)eResolveProxy(oldGraphTransref);
-			if (graphTransref != oldGraphTransref) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF, oldGraphTransref, graphTransref));
-			}
-		}
-		return graphTransref;
-	}
+      if (graphTransref != null && graphTransref.eIsProxy()) {
+         InternalEObject oldGraphTransref = (InternalEObject)graphTransref;
+         graphTransref = (GraphTransformation)eResolveProxy(oldGraphTransref);
+         if (graphTransref != oldGraphTransref) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF, oldGraphTransref, graphTransref));
+         }
+      }
+      return graphTransref;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public GraphTransformation basicGetGraphTransref() {
-		return graphTransref;
-	}
+      return graphTransref;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setGraphTransref(GraphTransformation newGraphTransref) {
-		GraphTransformation oldGraphTransref = graphTransref;
-		graphTransref = newGraphTransref;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF, oldGraphTransref, graphTransref));
-	}
+      GraphTransformation oldGraphTransref = graphTransref;
+      graphTransref = newGraphTransref;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF, oldGraphTransref, graphTransref));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
-				if (resolve) return getGraphTransref();
-				return basicGetGraphTransref();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
+            if (resolve) return getGraphTransref();
+            return basicGetGraphTransref();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
-				setGraphTransref((GraphTransformation)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
+            setGraphTransref((GraphTransformation)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
-				setGraphTransref((GraphTransformation)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
+            setGraphTransref((GraphTransformation)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
-				return graphTransref != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF:
+            return graphTransref != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //GraphTransConnectorImpl

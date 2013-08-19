@@ -27,26 +27,25 @@ public class PermissionComparator implements Comparator<Permission> {
    public int compare(Permission o1, Permission o2) {
       if (o1 != null && o2 != null) {
 
-         if ((o1 instanceof SelectFeature && o2 instanceof SelectFeature) || o1 instanceof DeselectFeature && o2 instanceof DeselectFeature) {
+         if ((o1 instanceof FeatureOperation && o2 instanceof FeatureOperation)) {
             // if permission is a FeatureOperation than compare referenced features
-            FeatureDecision o1FeatureOp = (FeatureDecision) o1;
-            FeatureDecision o2FeatureOp = (FeatureDecision) o2;
+            FeatureOperation o1FeatureOp = (FeatureOperation) o1;
+            FeatureOperation o2FeatureOp = (FeatureOperation) o2;
             return compareFeatureOperations(o1FeatureOp, o2FeatureOp);
 
-         } else if ((o1 instanceof SelectDomainValue && o2 instanceof SelectDomainValue) || o1 instanceof DeselectDomainValue
-                    && o2 instanceof DeselectDomainValue) {
+         } else if (o1 instanceof DomainValueOperation && o2 instanceof DomainValueOperation) {
             // if permission is a DomainValueOperation than compare domain values and referenced attributes
-            AttributeDecision o1DomainOp = (AttributeDecision) o1;
-            AttributeDecision o2DomainOp = (AttributeDecision) o2;
+            DomainValueOperation o1DomainOp = (DomainValueOperation) o1;
+            DomainValueOperation o2DomainOp = (DomainValueOperation) o2;
             return compareDomainValueOperations(o1DomainOp, o2DomainOp);
-         } else if ((o1 instanceof SetAttribute && o2 instanceof SetAttribute)) {
+         } else if (o1 instanceof AttributeOperation && o2 instanceof AttributeOperation) {
             // if both are set attribute permissions than check attribute and contained domain value permissions
-            SetAttribute o1SetOp = (SetAttribute) o1;
-            SetAttribute o2SetOp = (SetAttribute) o2;
+            AttributeOperation o1SetOp = (AttributeOperation) o1;
+            AttributeOperation o2SetOp = (AttributeOperation) o2;
             Attribute o1Attribute = o1SetOp.getAttribute();
             Attribute o2Attribute = o2SetOp.getAttribute();
             if (EcoreUtil.equals(o1Attribute, o2Attribute)
-                && (o1SetOp.getAttributeDecisions().size() == o2SetOp.getAttributeDecisions().size())) {
+                && (o1SetOp.getValueOperations().size() == o2SetOp.getValueOperations().size())) {
                // TODO: check each domainValuePermission
                return isEqual;
             }
@@ -57,10 +56,11 @@ public class PermissionComparator implements Comparator<Permission> {
       return isNotEqual;
    }
 
-   private int compareFeatureOperations(FeatureDecision o1FeatureOp, FeatureDecision o2FeatureOp) {
+   private int compareFeatureOperations(FeatureOperation o1FeatureOp, FeatureOperation o2FeatureOp) {
+      boolean isEqualType = RbacHelper.isSelectFeatureOperation(o1FeatureOp) && RbacHelper.isSelectFeatureOperation(o2FeatureOp);
       Feature o1Feature = o1FeatureOp.getFeature();
       Feature o2Feature = o2FeatureOp.getFeature();
-      return compareEObjects(o1Feature, o2Feature);
+      return (isEqualType) ? compareEObjects(o1Feature, o2Feature) : isNotEqual;
    }
 
    private int compareEObjects(EObject o1, EObject o2) {
@@ -71,27 +71,39 @@ public class PermissionComparator implements Comparator<Permission> {
       return isNotEqual;
    }
 
-   private int compareDomainValueOperations(AttributeDecision o1DomainOp, AttributeDecision o2DomainOp) {
+   private int compareDomainValueOperations(DomainValueOperation o1DomainOp, DomainValueOperation o2DomainOp) {
+      int equals = isNotEqual;
       String o1Value = o1DomainOp.getValue();
       String o2Value = o2DomainOp.getValue();
       if (o1Value != null) {
          int valueResult = o1Value.compareTo(o2Value);
          if (isEqual == valueResult) {
-            EObject o1container = o1DomainOp.eContainer();
-            EObject o2container = o2DomainOp.eContainer();
-            if (o1container instanceof SetAttribute && o2container instanceof SetAttribute) {
-               SetAttribute o1SetAttribute = (SetAttribute) o1container;
-               SetAttribute o2SetAttribute = (SetAttribute) o2container;
-               Attribute o1attribute = o1SetAttribute.getAttribute();
-               Attribute o2attribute = o2SetAttribute.getAttribute();
-               boolean equalAttributes = EcoreUtil.equals(o1attribute, o2attribute);
-               if (equalAttributes) {
-                  return isEqual;
-               }
+            Attribute o1attribute = getAttributeFromDomainValueOp(o1DomainOp);
+            Attribute o2attribute = getAttributeFromDomainValueOp(o2DomainOp);
+            if (EcoreUtil.equals(o1attribute, o2attribute)) {
+               equals = isEqual;
             }
          }
       }
-      return isNotEqual;
+      return equals;
+   }
+
+   private AttributeOperation getContainerAttribute(DomainValueOperation op) {
+      AttributeOperation attrOp = null;
+      EObject container = op.eContainer();
+      if (container instanceof AttributeOperation) {
+         attrOp = (AttributeOperation) container;
+      }
+      return attrOp;
+   }
+
+   private Attribute getAttributeFromDomainValueOp(DomainValueOperation op) {
+      Attribute attribute = null;
+      AttributeOperation containerAttribute = getContainerAttribute(op);
+      if (containerAttribute != null) {
+         attribute = containerAttribute.getAttribute();
+      }
+      return attribute;
    }
 
 }

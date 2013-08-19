@@ -24,17 +24,14 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.ReferenceResolverUtil;
-import org.js.model.rbac.AttributeDecision;
-import org.js.model.rbac.ConfigurationDecision;
-import org.js.model.rbac.DeselectDomainValue;
-import org.js.model.rbac.DeselectFeature;
-import org.js.model.rbac.FeatureDecision;
+import org.js.model.rbac.AttributeOperation;
+import org.js.model.rbac.ConfigurationOperation;
+import org.js.model.rbac.DomainValueOperation;
+import org.js.model.rbac.FeatureOperation;
 import org.js.model.rbac.Permission;
 import org.js.model.rbac.RBACService;
+import org.js.model.rbac.RbacHelper;
 import org.js.model.rbac.Role;
-import org.js.model.rbac.SelectDomainValue;
-import org.js.model.rbac.SelectFeature;
-import org.js.model.rbac.SetAttribute;
 import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.State;
@@ -46,7 +43,7 @@ import org.js.model.workflow.util.WorkflowUtil;
 public class StakeholderConfigUIShell extends Shell {
 
    ArrayList<Group> configGroups = new ArrayList<Group>();
-   HashMap<Button, ConfigurationDecision> decisionMap = new HashMap<Button, ConfigurationDecision>();
+   HashMap<Button, ConfigurationOperation> decisionMap = new HashMap<Button, ConfigurationOperation>();
    HashMap<Group, Feature> featureMap = new HashMap<Group, Feature>();
    HashMap<Group, Attribute> attributeMap = new HashMap<Group, Attribute>();
    Action selectedAction = null;
@@ -130,9 +127,9 @@ public class StakeholderConfigUIShell extends Shell {
             // Iterator<Permission> it = permissions.iterator();
             // while (it.hasNext()) {
             // Permission permission = it.next();
-            if (permission instanceof FeatureDecision) {
+            if (permission instanceof FeatureOperation) {
                // feature in the original efm
-               Feature oldFeature = ((FeatureDecision) permission).getFeature();
+               Feature oldFeature = ((FeatureOperation) permission).getFeature();
                String featureName = oldFeature.getId();
                String groupName = featureName;
                // feature in the new efm
@@ -154,9 +151,9 @@ public class StakeholderConfigUIShell extends Shell {
                }
                // add radio button
                Button radioButton = new Button(configGroup, SWT.RADIO);
-               if (permission instanceof SelectFeature) {
+               if (RbacHelper.isSelectFeatureOperation(permission)) {
                   radioButton.setText("select feature");
-               } else if (permission instanceof DeselectFeature) {
+               } else if (RbacHelper.isDeselectFeatureOperation(permission)) {
                   radioButton.setText("deselect feature");
                }
                // if configuration action is running, check whether the
@@ -168,13 +165,13 @@ public class StakeholderConfigUIShell extends Shell {
                         break;
                      case 1:
                         radioButton.setEnabled(false);
-                        if (permission instanceof SelectFeature) {
+                        if (RbacHelper.isSelectFeatureOperation(permission)) {
                            radioButton.setSelection(true);
                         }
                         break;
                      case 2:
                         radioButton.setEnabled(false);
-                        if (permission instanceof DeselectFeature) {
+                        if (RbacHelper.isDeselectFeatureOperation(permission)) {
                            radioButton.setSelection(true);
                         }
                         break;
@@ -184,16 +181,16 @@ public class StakeholderConfigUIShell extends Shell {
                // if configuration action is finished, button is inactive
                if (selectedState.getState().getValue() == 3) {
                   radioButton.setEnabled(false);
-                  if (log.getConfigurationDecisions().contains(permission)) {
+                  if (log.getConfigurationOperations().contains(permission)) {
                      radioButton.setSelection(true);
                   }
                }
-               decisionMap.put(radioButton, (ConfigurationDecision) permission);
-            } else if (permission instanceof SetAttribute) {
-               Feature oldFeature = ((SetAttribute) permission).getFeature();
+               decisionMap.put(radioButton, (ConfigurationOperation) permission);
+            } else if (permission instanceof AttributeOperation) {
+               Feature oldFeature = ((AttributeOperation) permission).getFeature();
                String featureName = oldFeature.getId();
                Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
-               Attribute oldAttribute = ((SetAttribute) permission).getAttribute();
+               Attribute oldAttribute = ((AttributeOperation) permission).getAttribute();
                String attributeName = oldAttribute.getName();
                String groupName = featureName + ": " + attributeName;
                // get the attribute
@@ -214,11 +211,11 @@ public class StakeholderConfigUIShell extends Shell {
                   attributeMap.put(configGroup, configuredAttribute);
                }
 
-               for (AttributeDecision attributeDec : ((SetAttribute) permission).getAttributeDecisions()) {
+               for (DomainValueOperation attributeDec : ((AttributeOperation) permission).getValueOperations()) {
                   Button radioButton = new Button(configGroup, SWT.RADIO);
-                  if (attributeDec instanceof SelectDomainValue) {
+                  if (RbacHelper.isSelectDomainValueOperation(attributeDec)) {
                      radioButton.setText("select " + attributeDec.getValue());
-                  } else if (attributeDec instanceof DeselectDomainValue) {
+                  } else if (RbacHelper.isDeselectDomainValueOperation(attributeDec)) {
                      radioButton.setText("deselect " + attributeDec.getValue());
                   }
                   // if configuration action is running, check whether the
@@ -226,7 +223,7 @@ public class StakeholderConfigUIShell extends Shell {
                   if (selectedState.getState().getValue() == 2) {
                      if (configuredAttribute.getValue() == null || configuredAttribute.getValue().equals("")) {} else {
                         radioButton.setEnabled(false);
-                        if (attributeDec instanceof SelectDomainValue && attributeDec.getValue().equals(configuredAttribute.getValue())) {
+                        if (RbacHelper.isSelectDomainValueOperation(attributeDec) && attributeDec.getValue().equals(configuredAttribute.getValue())) {
                            radioButton.setSelection(true);
                         }
                      }
@@ -234,11 +231,11 @@ public class StakeholderConfigUIShell extends Shell {
                   // configuration action is finished
                   if (selectedState.getState().getValue() == 3) {
                      radioButton.setEnabled(false);
-                     if (log.getConfigurationDecisions().contains(attributeDec)) {
+                     if (log.getConfigurationOperations().contains(attributeDec)) {
                         radioButton.setSelection(true);
                      }
                   }
-                  decisionMap.put(radioButton, (ConfigurationDecision) attributeDec);
+                  decisionMap.put(radioButton, (ConfigurationOperation) attributeDec);
                }
             }
          }
@@ -281,8 +278,8 @@ public class StakeholderConfigUIShell extends Shell {
                // if the group is about attribute
                if (group.getText().contains(":")) {
                   for (Control control : group.getChildren()) {
-                     ConfigurationDecision configDecision = decisionMap.get(control);
-                     if (configDecision instanceof SelectDomainValue) {
+                     ConfigurationOperation configDecision = decisionMap.get(control);
+                     if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
                         groupSelected = ((Button) control).getSelection() || groupSelected;
                      }
                   }
@@ -349,11 +346,11 @@ public class StakeholderConfigUIShell extends Shell {
 
    public void saveConfigLog(ArrayList<Group> configGroup, Role role, Action action) {
       Log log = (Log) WorkflowConfUtil.getAspectInstance(action, WorkflowConfUtil.LOG_ASPECT);
-      log.getConfigurationDecisions().clear();
+      log.getConfigurationOperations().clear();
       for (Group group : configGroup) {
          for (Control control : group.getChildren()) {
             if (((Button) control).getSelection()) {
-               log.getConfigurationDecisions().add(decisionMap.get(control));
+               log.getConfigurationOperations().add(decisionMap.get(control));
             }
          }
       }
@@ -368,12 +365,12 @@ public class StakeholderConfigUIShell extends Shell {
       return selectedState;
    }
 
-   public void handleSelectionLogic(Button button, HashMap<Button, ConfigurationDecision> decisionMap, Set<Permission> permissions,
+   public void handleSelectionLogic(Button button, HashMap<Button, ConfigurationOperation> decisionMap, Set<Permission> permissions,
                                     FeatureModel featureModel) {
       if (button.getSelection()) {
-         ConfigurationDecision configDecision = decisionMap.get(button);
-         if (configDecision instanceof FeatureDecision) {
-            Feature oldFeature = ((FeatureDecision) configDecision).getFeature();
+         ConfigurationOperation configDecision = decisionMap.get(button);
+         if (configDecision instanceof FeatureOperation) {
+            Feature oldFeature = ((FeatureOperation) configDecision).getFeature();
             Feature configuredFeature = ReferenceResolverUtil.findFeature(oldFeature.getId(), featureModel);
             ArrayList<Feature> mandatoryChildFeatures = WorkflowUtil.getMandatoryChildFeatures(configuredFeature);
             ArrayList<Feature> parentFeaures = WorkflowUtil.getParentFeatures(configuredFeature, featureModel);
@@ -381,7 +378,7 @@ public class StakeholderConfigUIShell extends Shell {
             ArrayList<Feature> constraintRightOperands = WorkflowUtil.getImpliesConstraintRightOperands(configuredFeature, featureModel);
             ArrayList<Feature> constraintLeftOperands = WorkflowUtil.getImpliesConstraintLeftOperands(configuredFeature, featureModel);
             ArrayList<Feature> childFeatures = WorkflowUtil.getChildFeatures(configuredFeature);
-            if (configDecision instanceof SelectFeature) {
+            if (RbacHelper.isSelectFeatureOperation(configDecision)) {
                for (Group group : featureMap.keySet()) {
                   Feature feature = featureMap.get(group);
                   org.js.model.feature.Group featureGroup = WorkflowUtil.getGroup(feature, featureModel);
@@ -391,7 +388,7 @@ public class StakeholderConfigUIShell extends Shell {
                   if (mandatoryChildFeatures.contains(feature) || parentFeaures.contains(feature)
                       || constraintRightOperands.contains(feature)) {
                      for (Control control : group.getChildren()) {
-                        if (decisionMap.get(control) instanceof SelectFeature) {
+                        if (RbacHelper.isSelectFeatureOperation(decisionMap.get(control))) {
                            ((Button) control).setSelection(true);
                         } else {
                            ((Button) control).setSelection(false);
@@ -403,7 +400,7 @@ public class StakeholderConfigUIShell extends Shell {
                   else if (featureGroup != null && WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.ALTERNATIVE_GROUP
                            && feature != configuredFeature && groupFeatures.contains(feature)) {
                      for (Control control : group.getChildren()) {
-                        if (decisionMap.get(control) instanceof SelectFeature) {
+                        if (RbacHelper.isSelectFeatureOperation(decisionMap.get(control))) {
                            ((Button) control).setSelection(false);
                         } else {
                            ((Button) control).setSelection(true);
@@ -411,7 +408,7 @@ public class StakeholderConfigUIShell extends Shell {
                      }
                   }
                }
-            } else if (configDecision instanceof DeselectFeature) {
+            } else if (RbacHelper.isDeselectFeatureOperation(configDecision)) {
                Feature parentFeature = WorkflowUtil.getParentFeature(configuredFeature, featureModel.getRoot());
                org.js.model.feature.Group featureGroup = WorkflowUtil.getGroup(configuredFeature, featureModel);
                for (Group group : featureMap.keySet()) {
@@ -420,7 +417,7 @@ public class StakeholderConfigUIShell extends Shell {
                   // 2. related attributes are deselected
                   if (childFeatures.contains(feature) || constraintLeftOperands.contains(feature)) {
                      for (Control control : group.getChildren()) {
-                        if (decisionMap.get(control) instanceof SelectFeature) {
+                        if (RbacHelper.isSelectFeatureOperation(decisionMap.get(control))) {
                            ((Button) control).setSelection(false);
                         } else {
                            ((Button) control).setSelection(true);
@@ -431,7 +428,7 @@ public class StakeholderConfigUIShell extends Shell {
                   // can not be deselected
                   if (feature == parentFeature && WorkflowUtil.getGroupType(featureGroup) == WorkflowUtil.MANDATORY_GROUP) {
                      for (Control control : group.getChildren()) {
-                        if (decisionMap.get(control) instanceof SelectFeature) {
+                        if (RbacHelper.isSelectFeatureOperation(decisionMap.get(control))) {
                            ((Button) control).setSelection(false);
                         }
                      }
@@ -446,9 +443,9 @@ public class StakeholderConfigUIShell extends Shell {
                   }
                }
             }
-         } else if (configDecision instanceof SetAttribute) {
+         } else if (configDecision instanceof AttributeOperation) {
             // related feature is selected
-            Feature oldFeature = ((SetAttribute) configDecision).getFeature();
+            Feature oldFeature = ((AttributeOperation) configDecision).getFeature();
 
          }
       }

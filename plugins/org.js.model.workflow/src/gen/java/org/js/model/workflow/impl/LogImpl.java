@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 
 import org.eclipse.jwt.we.conf.model.impl.AspectInstanceImpl;
-import org.js.model.rbac.ConfigurationDecision;
+import org.js.model.rbac.ConfigurationOperation;
 import org.js.model.rbac.Permission;
 
 import org.js.model.workflow.Log;
@@ -26,111 +26,112 @@ import org.js.model.workflow.WorkflowPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.js.model.workflow.impl.LogImpl#getConfigurationDecisions <em>Configuration Decisions</em>}</li>
+ *   <li>{@link org.js.model.workflow.impl.LogImpl#getConfigurationOperations <em>Configuration Operations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LogImpl extends AspectInstanceImpl implements Log {
+public class LogImpl extends 
+AspectInstanceImpl implements Log {
 	/**
-	 * The cached value of the '{@link #getConfigurationDecisions() <em>Configuration Decisions</em>}' reference list.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getConfigurationOperations() <em>Configuration Operations</em>}' reference list.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @see #getConfigurationOperations()
+    * @generated
+    * @ordered
+    */
+   protected EList<ConfigurationOperation> configurationOperations;
+   /**
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConfigurationDecisions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConfigurationDecision> configurationDecisions;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected LogImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkflowPackage.Literals.LOG;
-	}
+      return WorkflowPackage.Literals.LOG;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConfigurationDecision> getConfigurationDecisions() {
-		if (configurationDecisions == null) {
-			configurationDecisions = new EObjectResolvingEList<ConfigurationDecision>(ConfigurationDecision.class, this, WorkflowPackage.LOG__CONFIGURATION_DECISIONS);
-		}
-		return configurationDecisions;
-	}
+    * @generated
+    */
+	public EList<ConfigurationOperation> getConfigurationOperations() {
+      if (configurationOperations == null) {
+         configurationOperations = new EObjectResolvingEList<ConfigurationOperation>(ConfigurationOperation.class, this, WorkflowPackage.LOG__CONFIGURATION_OPERATIONS);
+      }
+      return configurationOperations;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
-				return getConfigurationDecisions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case WorkflowPackage.LOG__CONFIGURATION_OPERATIONS:
+            return getConfigurationOperations();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
-				getConfigurationDecisions().clear();
-				getConfigurationDecisions().addAll((Collection<? extends ConfigurationDecision>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case WorkflowPackage.LOG__CONFIGURATION_OPERATIONS:
+            getConfigurationOperations().clear();
+            getConfigurationOperations().addAll((Collection<? extends ConfigurationOperation>)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
-				getConfigurationDecisions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.LOG__CONFIGURATION_OPERATIONS:
+            getConfigurationOperations().clear();
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.LOG__CONFIGURATION_DECISIONS:
-				return configurationDecisions != null && !configurationDecisions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.LOG__CONFIGURATION_OPERATIONS:
+            return configurationOperations != null && !configurationOperations.isEmpty();
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //LogImpl

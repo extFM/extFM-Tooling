@@ -37,15 +37,18 @@ import org.js.model.feature.NumericalDomain;
  */
 public class FeatureModelHelper {
 
-   Set<Feature> allFeatures;
+   // Set<Feature> allFeatures;
+   Set<Feature> selectedFeatures;
+   Set<Feature> unboundFeatures;
+   Set<Feature> deselectedFeatures;
+
    private Set<Attribute> allAttributes;
    private Set<FeatureConstraint> allFeatureConstraints;
    private Set<AttributeConstraint> allAttributeConstraints;
    private FeatureModel model;
 
-   private static Logger log = Logger
-			.getLogger(FeatureModelHelper.class);
-   
+   private static Logger log = Logger.getLogger(FeatureModelHelper.class);
+
    public FeatureModelHelper(FeatureModel model) {
       this.model = model;
       initLists();
@@ -53,7 +56,9 @@ public class FeatureModelHelper {
    }
 
    private void initLists() {
-      allFeatures = new HashSet<Feature>();
+      selectedFeatures = new HashSet<Feature>();
+      deselectedFeatures = new HashSet<Feature>();
+      unboundFeatures = new HashSet<Feature>();
       setAllAttributes(new HashSet<Attribute>());
       setAllFeatureConstraints(new HashSet<FeatureConstraint>());
       setAllAttributeConstraints(new HashSet<AttributeConstraint>());
@@ -65,7 +70,7 @@ public class FeatureModelHelper {
          Object object = (Object) allContents.next();
          if (object instanceof Feature) {
             Feature feature = (Feature) object;
-            allFeatures.add(feature);
+            sortFeature(feature);
          } else if (object instanceof Attribute) {
             Attribute attribute = (Attribute) object;
             getAllAttributes().add(attribute);
@@ -79,6 +84,17 @@ public class FeatureModelHelper {
       }
    }
 
+   private void sortFeature(Feature feature) {
+      FeatureState configurationState = feature.getConfigurationState();
+      if (FeatureState.SELECTED.equals(configurationState)) {
+         selectedFeatures.add(feature);
+      } else if (FeatureState.DESELECTED.equals(configurationState)) {
+         deselectedFeatures.add(feature);
+      } else if (FeatureState.UNBOUND.equals(configurationState)) {
+         unboundFeatures.add(feature);
+      }
+   }
+
    public int getValue(String attributeId) {
       String[] split = attributeId.split("~");
       // fourth is value, if available
@@ -87,19 +103,21 @@ public class FeatureModelHelper {
    }
 
    /**
-    * get the currently set attribute value as integer representation.
-    * beware: if the attribute does not have a value assigned, this methods returns -1.
-    * Use the method isAttributeValueSet(Attribute attribute) before to ensure a correct result.
+    * get the currently set attribute value as integer representation. beware: if the attribute does not have a value
+    * assigned, this methods returns -1. Use the method isAttributeValueSet(Attribute attribute) before to ensure a
+    * correct result.
+    * 
     * @param attribute
     * @return
     */
-   public static int getAttributeValue(Attribute attribute){
-	   String value = attribute.getValue();
-	   return getAttributeValueForString(value, attribute);
+   public static int getAttributeValue(Attribute attribute) {
+      String value = attribute.getValue();
+      return getAttributeValueForString(value, attribute);
    }
-   
+
    /**
     * returns the attribute integer representation that belongs to the given String representation.
+    * 
     * @param valueString
     * @param attribute
     * @return
@@ -126,6 +144,7 @@ public class FeatureModelHelper {
 
    /**
     * check if the given attribute value is contained in the given domain
+    * 
     * @param domain
     * @param attributeValue
     * @return
@@ -146,6 +165,7 @@ public class FeatureModelHelper {
 
    /**
     * check if the attribute's value is already set.
+    * 
     * @param attribute
     * @return
     */
@@ -159,36 +179,36 @@ public class FeatureModelHelper {
             DiscreteDomain discreteDomain = (DiscreteDomain) domain;
             isSet = containsValue(discreteDomain, value);
          } else if (domain instanceof NumericalDomain) {
-			NumericalDomain numDomain = (NumericalDomain) domain;
-			isSet = containsValue(numDomain, value);
-		}
+            NumericalDomain numDomain = (NumericalDomain) domain;
+            isSet = containsValue(numDomain, value);
+         }
       }
       return isSet;
    }
 
    private static boolean containsValue(NumericalDomain numDomain, String value) {
-	boolean isContained = false;
-	int number = Integer.parseInt(value);
-	for (Interval interval : numDomain.getIntervals()) {
-		isContained = isInInterval(number, interval);
-		if (isContained){
-			break;
-		}
-	}
-	return isContained;
-}
-   
-   private static boolean isInInterval(int number, Interval interval){
-	   boolean isinbounds = false;
-	   int lowerBound = interval.getLowerBound();
-	   int upperBound = interval.getUpperBound();
-	   isinbounds = lowerBound <= number && upperBound >= number;
-	   return isinbounds;
+      boolean isContained = false;
+      int number = Integer.parseInt(value);
+      for (Interval interval : numDomain.getIntervals()) {
+         isContained = isInInterval(number, interval);
+         if (isContained) {
+            break;
+         }
+      }
+      return isContained;
    }
-   
 
-/**
+   private static boolean isInInterval(int number, Interval interval) {
+      boolean isinbounds = false;
+      int lowerBound = interval.getLowerBound();
+      int upperBound = interval.getUpperBound();
+      isinbounds = lowerBound <= number && upperBound >= number;
+      return isinbounds;
+   }
+
+   /**
     * get the String representation of the given attribute and integer value
+    * 
     * @param value
     * @param attribute
     * @return
@@ -213,28 +233,30 @@ public class FeatureModelHelper {
    }
 
    /**
-    * resolve the attribute identified by the given attributeId.
-    * the attribute id is used in the cpmodel utilized in the csp solver.
+    * resolve the attribute identified by the given attributeId. the attribute id is used in the cpmodel utilized in the
+    * csp solver.
+    * 
     * @param attributeId
     * @return
     */
    public Attribute getAttribute(String attributeId) {
       Attribute attribute = null;
       String[] split = attributeId.split("~");
-         // first is identifier value or enablement
-         // String identifier = split[0];
-         // second is feature id
-         String featureId = split[1];
-         // third is attribute id
-         String attributeName = split[2];
-         // fourth is value
-         //String value = split[3];
-         attribute = getAttribute(featureId, attributeName);
+      // first is identifier value or enablement
+      // String identifier = split[0];
+      // second is feature id
+      String featureId = split[1];
+      // third is attribute id
+      String attributeName = split[2];
+      // fourth is value
+      // String value = split[3];
+      attribute = getAttribute(featureId, attributeName);
       return attribute;
    }
 
    /**
     * resolve the attribute by its name and feature.
+    * 
     * @param featureId
     * @param attributeName
     * @return
@@ -253,8 +275,19 @@ public class FeatureModelHelper {
    }
 
    public Feature getFeature(String featureId) {
+      Feature result = getUnboundFeature(featureId);
+      if (result == null) {
+         result = getSelectedFeature(featureId);
+         if (result == null) {
+            result = getDeselectedFeature(featureId);
+         }
+      }
+      return result;
+   }
+
+   private Feature getFeatureFromSet(Set<Feature> featureSet, String featureId) {
       Feature result = null;
-      for (Feature feature : allFeatures) {
+      for (Feature feature : featureSet) {
          String id = feature.getId();
          if (id.equals(featureId)) {
             result = feature;
@@ -264,23 +297,33 @@ public class FeatureModelHelper {
       return result;
    }
 
+   private Feature getUnboundFeature(String featureId) {
+      return getFeatureFromSet(unboundFeatures, featureId);
+   }
+
+   private Feature getSelectedFeature(String featureId) {
+      return getFeatureFromSet(selectedFeatures, featureId);
+   }
+
+   private Feature getDeselectedFeature(String featureId) {
+      return getFeatureFromSet(deselectedFeatures, featureId);
+   }
+
    public Set<Feature> getAllFeatures() {
+      Set<Feature> allFeatures = new HashSet<Feature>();
+      allFeatures.addAll(deselectedFeatures);
+      allFeatures.addAll(selectedFeatures);
+      allFeatures.addAll(unboundFeatures);
       return allFeatures;
    }
 
    public Set<Feature> getSelectedFeatures() {
-      Set<Feature> selectedFeatures = new HashSet<Feature>();
-      for (Feature feature : allFeatures) {
-         if (isFeatureSelected(feature)) {
-            selectedFeatures.add(feature);
-         }
-      }
       return selectedFeatures;
    }
 
    public boolean isFeatureSelected(String featureId) {
-      Feature feature = getFeature(featureId);
-      return isFeatureSelected(feature);
+      Feature feature = getSelectedFeature(featureId);
+      return feature != null;
    }
 
    public boolean isFeatureSelected(Feature feature) {
@@ -319,8 +362,6 @@ public class FeatureModelHelper {
       return model;
    }
 
-   
-   
    /**
     * initialize a featuremodel from an Ifile.
     * 
@@ -336,11 +377,10 @@ public class FeatureModelHelper {
       return featuremodel;
    }
 
-   public static FeatureModel getFeatureModel(IFile file){
-	   return getFeatureModel(file, new ResourceSetImpl());
+   public static FeatureModel getFeatureModel(IFile file) {
+      return getFeatureModel(file, new ResourceSetImpl());
    }
-   
-   
+
    /**
     * Generic method to load a model from a file.
     * 
@@ -383,5 +423,25 @@ public class FeatureModelHelper {
       }
       return resource;
    }
-   
+
+   public Set<Feature> getUnboundFeatures() {
+      return unboundFeatures;
+   }
+
+   public Set<Feature> getDeselectedFeatures() {
+      return deselectedFeatures;
+   }
+
+   public Set<Attribute> getAssignedAttributes() {
+      Set<Attribute> assignedAttributes = new HashSet<Attribute>();
+      Set<Attribute> attributes = getAllAttributes();
+      for (Attribute attribute : attributes) {
+         String value = attribute.getValue();
+         if (value != null && !value.isEmpty()) {
+            assignedAttributes.add(attribute);
+         }
+      }
+      return assignedAttributes;
+   }
+
 }

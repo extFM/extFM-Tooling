@@ -54,7 +54,7 @@ feature "Customer Relationship Management" <crm>
 			}
 		
 		feature "Supply Chain Setup Management" <Supply_Chain_Setup_Management> 
-			group <supplychainSetupSelection> (1..2) {
+			group <supplychainSetupSelection> (1..3) {
 				feature "Supply Chain Design" <Supply_Chain_Design>
 				feature "Execution Design" <Execution_Design>
 				feature "Production Models" <Production_Models>

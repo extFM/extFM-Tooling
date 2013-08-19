@@ -32,12 +32,12 @@ public final class RBACResolverUtil {
 
    public static final String delimiter = ".";
 
-   static final String select = "select";
-   static final String deselect = "deselect";
-   static final String set = "set";
-   
-   static final String view = "view";
-   static final String modify = "modify";
+   public static final String select = "select";
+   public static final String deselect = "deselect";
+   public static final String set = "set";
+
+   public static final String view = "view";
+   public static final String modify = "modify";
 
    /**
     * find the feature identified by the given id in any feature model referenced by the given accesscontrol model;
@@ -95,34 +95,26 @@ public final class RBACResolverUtil {
       Permission result = null;
       String keyword = getKeyword(identifier);
       String objectId = getObjectIdentifier(keyword, identifier);
-
-      if (isSelectFeature(keyword, objectId)) {
+      boolean isSelectFeature = isSelectFeature(keyword, objectId);
+      boolean isDeselectFeature = isDeselectFeature(keyword, objectId);
+      if (isSelectFeature || isDeselectFeature) {
          for (Permission permission : permissions) {
-            if (permission instanceof SelectFeature) {
-               SelectFeature selectFeature = (SelectFeature) permission;
-               String featureid = selectFeature.getFeature().getId();
-               if (objectId.equals(featureid)) {
-                  result = permission;
-                  break;
-               }
-            }
-         }
-      } else if (isDeselectFeature(keyword, objectId)) {
-         for (Permission permission : permissions) {
-            if (permission instanceof DeselectFeature) {
-               DeselectFeature deselectFeature = (DeselectFeature) permission;
-               String featureId = deselectFeature.getFeature().getId();
-               if (objectId.equals(featureId)) {
-                  result = permission;
-                  break;
+            if (permission instanceof FeatureOperation) {
+               FeatureOperation featureOp = (FeatureOperation) permission;
+               if (RbacHelper.isSelectFeatureOperation(featureOp) == isSelectFeature) {
+                  String featureid = featureOp.getFeature().getId();
+                  if (objectId.equals(featureid)) {
+                     result = permission;
+                     break;
+                  }
                }
             }
          }
       } else if (isSetAttribute(keyword, objectId)) {
          String[] split = splitObjectId(delimiter, objectId);
          for (Permission permission : permissions) {
-            if (permission instanceof SetAttribute) {
-               SetAttribute setAttribute = (SetAttribute) permission;
+            if (permission instanceof AttributeOperation) {
+               AttributeOperation setAttribute = (AttributeOperation) permission;
                String featureId = setAttribute.getFeature().getId();
                String attributeName = setAttribute.getAttribute().getName();
                if (split[0].equals(featureId) && split[1].equals(attributeName)) {
@@ -131,33 +123,26 @@ public final class RBACResolverUtil {
                }
             }
          }
-      } else if (isViewElement(keyword)){
-         for (Permission permission : permissions) {
-            if (permission instanceof ViewElement) {
-               ViewElement viewElement = (ViewElement) permission;
-               String resourceId = viewElement.getResourceId();
-               if (objectId.equals(resourceId)){
-                  result = viewElement;
-                  break;
+      } else {
+         boolean isViewElement = isViewElement(keyword);
+         if (isViewElement || isModifyElement(keyword)) {
+            for (Permission permission : permissions) {
+               if (permission instanceof VisibilityRestriction) {
+                  VisibilityRestriction restriction = (VisibilityRestriction) permission;
+                  if (RbacHelper.isViewElement(restriction) == isViewElement) {
+                     String resourceId = restriction.getResourceId();
+                     if (objectId.equals(resourceId)) {
+                        result = restriction;
+                        break;
+                     }
+                  }
                }
             }
          }
-   } else if (isModifyElement(keyword)){
-      for (Permission permission : permissions) {
-         if (permission instanceof ModifyElement) {
-            ModifyElement modifyElement = (ModifyElement) permission;
-            String resourceId = modifyElement.getResourceId();
-            if (objectId.equals(resourceId)){
-               result = modifyElement;
-               break;
-            }
-         }
       }
-   }
       return result;
    }
 
-   
    public static String[] splitObjectId(String delimiter, String objectId) {
       int delimiterPosition = objectId.indexOf(delimiter);
       String objectFeatureId = objectId.substring(0, delimiterPosition);
@@ -170,7 +155,7 @@ public final class RBACResolverUtil {
 
    public static boolean isAttributeReference(String objectId) {
       boolean isAttribute = false;
-      if (objectId.contains(delimiter)) {
+      if (objectId != null && objectId.contains(delimiter)) {
          int firstPosition = objectId.indexOf(delimiter);
          int lastPosition = objectId.lastIndexOf(delimiter);
          isAttribute = (firstPosition == lastPosition);
@@ -189,7 +174,7 @@ public final class RBACResolverUtil {
    public static boolean isViewElement(String keyword) {
       return (view.equals(keyword));
    }
-   
+
    public static boolean isModifyElement(String keyword) {
       return (modify.equals(keyword));
    }
@@ -312,21 +297,20 @@ public final class RBACResolverUtil {
       return file;
    }
 
-   public static String getPermissionAsString(Permission permission) {
-      String identifier = "";
-      if (permission instanceof SelectFeature) {
-         SelectFeature selectFeature = (SelectFeature) permission;
-         String featureId = selectFeature.getFeature().getId();
-         identifier = select + " " + featureId;
-      } else if (permission instanceof DeselectFeature) {
-         DeselectFeature deselectFeature = (DeselectFeature) permission;
-         String featureId = deselectFeature.getFeature().getId();
-         identifier = deselect + " " + featureId;
-      } else if (permission instanceof SetAttribute) {
-         SetAttribute setAttribute = (SetAttribute) permission;
-         String featureId = setAttribute.getFeature().getId();
-         String attributeId = setAttribute.getAttribute().getName();
-         identifier = set + " " + featureId + delimiter + attributeId;
+   public static String getPermissionIdentifier(Permission permission) {
+      String identifier = null;
+      if (permission instanceof FeatureOperation) {
+         FeatureOperation featureOp = (FeatureOperation) permission;
+         identifier = (RbacHelper.isSelectFeatureOperation(featureOp)) ? select : deselect;
+         Feature feature = featureOp.getFeature();
+         identifier +=  " " + feature.getId();
+      } else if (permission instanceof AttributeOperation) {
+         AttributeOperation attrOp = (AttributeOperation) permission;
+         identifier = set + " " + attrOp.getFeature().getId() + delimiter + attrOp.getAttribute().getName();
+      } else if (permission instanceof DomainValueOperation) {
+         DomainValueOperation dvOp = (DomainValueOperation) permission;
+         identifier = (RbacHelper.isSelectDomainValueOperation(dvOp)) ? select : deselect;
+         identifier += " " + dvOp.getValue();
       }
       return identifier;
    }

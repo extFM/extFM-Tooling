@@ -10,142 +10,141 @@ import org.js.model.feature.FeatureModel;
 
 public class CSPAnalyzer {
 
-	private static Logger log = Logger.getLogger(CSPAnalyzer.class);
+   private static Logger log = Logger.getLogger(CSPAnalyzer.class);
 
-	/**
-	 * analyzes multiple files and creates statistics for them.
-	 * 
-	 * @param files
-	 */
-	public static void analyze(List<IFile> files, boolean persistAllVariants) {
-		for (IFile file : files) {
-			analyze(file, persistAllVariants);
-		}
-	}
+   /**
+    * analyzes multiple files and creates statistics for them.
+    * 
+    * @param files
+    */
+   public static void analyze(List<IFile> files, boolean persistAllVariants) {
+      for (IFile file : files) {
+         analyze(file, persistAllVariants);
+      }
+   }
 
-	/**
-	 * analyzes multiple files and creates statistics for them.
-	 * 
-	 * @param files
-	 */
-	public static void analyze(List<IFile> files, int numberVariants, boolean findAll) {
-		for (IFile file : files) {
-			analyze(file, numberVariants, findAll);
-		}
-	}
+   /**
+    * analyzes multiple files and creates statistics for them.
+    * 
+    * @param files
+    */
+   public static void analyze(List<IFile> files, int numberVariants, boolean findAll) {
+      for (IFile file : files) {
+         analyze(file, numberVariants, findAll);
+      }
+   }
 
-	public static void satPerformanceMeasure(IFile file) {
-		FeatureModel featureModel = FeatureModelHelper.getFeatureModel(file,
-				new ResourceSetImpl());
-		if (featureModel != null) {
-			FeatureModelAnalyzer analyzer = new FeatureModelAnalyzer(
-					featureModel);
-			analyzer.isSatisfiable();
-		}
-	}
+   public static void satPerformanceMeasure(IFile file) {
+      FeatureModel featureModel = FeatureModelHelper.getFeatureModel(file, new ResourceSetImpl());
+      if (featureModel != null) {
+         FeatureModelAnalyzer analyzer = new FeatureModelAnalyzer(featureModel);
+         analyzer.isSatisfiable();
+      }
+   }
 
-	/**
-	 * check whether the given file is satisfiable.
-	 * 
-	 * @param file
-	 * @return
-	 */
-	public static boolean isSatisfiable(IFile file) {
-		boolean isSatisfiable = false;
-		FeatureModelAnalyzer analyzer = getAnalyzer(file);
-		if (analyzer != null) {
-			isSatisfiable = analyzer.isSatisfiable();
-		}
-		return isSatisfiable;
-	}
+   /**
+    * check whether the given file is satisfiable.
+    * 
+    * @param file
+    * @return
+    */
+   public static boolean isSatisfiable(IFile file) {
+      boolean isSatisfiable = false;
+      FeatureModelAnalyzer analyzer = getAnalyzer(file);
+      if (analyzer != null) {
+         isSatisfiable = analyzer.isSatisfiable();
+      }
+      return isSatisfiable;
+   }
 
-	private static FeatureModelAnalyzer getAnalyzer(IFile file) {
-		log.debug("Analyzer for file '" + file.getName() + "'.");
-		FeatureModelAnalyzer analyzer = null;
-		Assert.isNotNull(file);
-		FeatureModel featureModel = FeatureModelHelper.getFeatureModel(file);
-		if (featureModel != null) {
-			analyzer = new FeatureModelAnalyzer(featureModel);
-		}
-		if (analyzer == null) {
-			log.info("The file" + file.getName()
-					+ " does not represent a feature model");
-		}
-		return analyzer;
-	}
+   private static FeatureModelAnalyzer getAnalyzer(IFile file) {
+      log.debug("Analyzer for file '" + file.getName() + "'.");
+      FeatureModelAnalyzer analyzer = null;
+      Assert.isNotNull(file);
+      FeatureModel featureModel = FeatureModelHelper.getFeatureModel(file);
+      if (featureModel != null) {
+         analyzer = new FeatureModelAnalyzer(featureModel);
+      }
+      if (analyzer == null) {
+         log.info("The file" + file.getName() + " does not represent a feature model");
+      }
+      return analyzer;
+   }
 
-	/**
-	 * analyze method to create a statistic for the given featuremodel.
-	 * 
-	 * @param file
-	 */
-	public static void analyze(FeatureModelAnalyzer analyzer) {
-		log.info("--------------------------------------");
-		log.info("--------------------------------------");
-		if (analyzer != null) {
-			log.info("--------------------------------------");
-			log.info("Featuremodel " + analyzer.getFeatureModelName());
-			log.info("--------------------------------------");
-			int numberOfAllFeatures = analyzer.getNumberOfAllFeatures();
-			log.info("Number of features             : " + numberOfAllFeatures);
+   /**
+    * analyze method to create a statistic for the given featuremodel.
+    * 
+    * @param file
+    */
+   public static void analyze(FeatureModelAnalyzer analyzer) {
+      log.info("--------------------------------------");
+      log.info("--------------------------------------");
+      if (analyzer != null) {
+         log.info("--------------------------------------");
+         log.info("Featuremodel " + analyzer.getFeatureModelName());
+         log.info("--------------------------------------");
+         int numberOfAllFeatures = analyzer.getNumberOfAllFeatures();
+         log.info("Total number of features         : " + numberOfAllFeatures);
 
-			int numberOfAllAttributes = analyzer.getNumberOfAllAttributes();
-			log.info("Number of attributes           : "
-					+ numberOfAllAttributes);
-			// int numberOfMandatoryFeatures =
-			// analyzer.getNumberOfMandatoryFeatures();
-			// log.info("Number of mandatory features     : " +
-			// numberOfMandatoryFeatures);
+         int numberOfUnboundFeatures = analyzer.getNumberOfUnboundFeatures();
+         log.info("   - Unbound features            : " + numberOfUnboundFeatures);
+         int numberOfSelectedFeatures = analyzer.getNumberOfSelectedFeatures();
+         log.info("   - Selected features           : " + numberOfSelectedFeatures);
+         int numberOfDeselectedFeatures = analyzer.getNumberOfDeselectedFeatures();
+         log.info("   - Deselected features         : " + numberOfDeselectedFeatures);
 
-			// int numberOfCoreFeature = analyzer.getNumberOfCoreFeatures();
-			// String core = analyzer.getCoreFeaturesAsString();
-			// log.info("Number of core features          : " +
-			// numberOfCoreFeature + " " + core);
-			//
-			// int numberOfVariableFeature =
-			// analyzer.getNumberOfVariableFeatures();
-			// log.info("Number of variable features      : " +
-			// numberOfVariableFeature);
+         int numberOfAllAttributes = analyzer.getNumberOfAllAttributes();
+         log.info("Total number of attributes       : " + numberOfAllAttributes);
+         int numberOfAssignedAttributes = analyzer.getNumberOfAssignedAttributes();
+         log.info("   - Assigned attributes         : " + numberOfAssignedAttributes);
+         // int numberOfMandatoryFeatures =
+         // analyzer.getNumberOfMandatoryFeatures();
+         // log.info("Number of mandatory features     : " +
+         // numberOfMandatoryFeatures);
 
-			int numberOfAllCSPConstraints = analyzer
-					.getNumberOfAllCSPConstraints();
-			log.info("Number of cross-tree constraints : "
-					+ numberOfAllCSPConstraints);
+         // int numberOfCoreFeature = analyzer.getNumberOfCoreFeatures();
+         // String core = analyzer.getCoreFeaturesAsString();
+         // log.info("Number of core features          : " +
+         // numberOfCoreFeature + " " + core);
+         //
+         // int numberOfVariableFeature =
+         // analyzer.getNumberOfVariableFeatures();
+         // log.info("Number of variable features      : " +
+         // numberOfVariableFeature);
 
-			int constraintFeatureCoverage = analyzer
-					.getFeatureConstraintCoverage();
-			log.info("Constraint feature coverage      : "
-					+ constraintFeatureCoverage + "%");
+         int numberOfAllCSPConstraints = analyzer.getNumberOfAllCSPConstraints();
+         log.info("Number of cross-tree constraints : " + numberOfAllCSPConstraints);
 
-			int constraintAttributeCoverage = analyzer
-					.getAttributeConstraintCoverage();
-			log.info("Constraint attribute coverage    : "
-					+ constraintAttributeCoverage + "%");
+         int constraintFeatureCoverage = analyzer.getFeatureConstraintCoverage();
+         log.info("Constraint feature coverage      : " + constraintFeatureCoverage + "%");
 
-			boolean isConsistent = analyzer.isSatisfiable();
-			log.info("Is feature model satisfiable     : " + isConsistent);
+         int constraintAttributeCoverage = analyzer.getAttributeConstraintCoverage();
+         log.info("Constraint attribute coverage    : " + constraintAttributeCoverage + "%");
 
-			int derivableVariants = analyzer.getNumberOfDerivableVariants();
-			log.info("Number of derivable variants     : " + derivableVariants);
-		}
-	}
+         boolean isConsistent = analyzer.isSatisfiable();
+         log.info("Is feature model satisfiable     : " + isConsistent);
 
-	public static void analyze(IFile file, boolean persistAllVariants) {
-		FeatureModelAnalyzer analyzer = getAnalyzer(file);
-		if (analyzer != null) {
-			analyzer.setPersistVariants(persistAllVariants);
-			analyze(analyzer);
-		}
-	}
+         int derivableVariants = analyzer.getNumberOfDerivableVariants();
+         log.info("Number of derivable variants     : " + derivableVariants);
+      }
+   }
 
-	public static void analyze(IFile file, int numberOfVariants, boolean findAll) {
-		FeatureModelAnalyzer analyzer = getAnalyzer(file);
-		if (analyzer != null) {
-			analyzer.setNumberOfVariantsToDerive(numberOfVariants);
-			analyzer.setFindAll(findAll);
-			analyze(analyzer);
-		}
+   public static void analyze(IFile file, boolean persistAllVariants) {
+      FeatureModelAnalyzer analyzer = getAnalyzer(file);
+      if (analyzer != null) {
+         analyzer.setPersistVariants(persistAllVariants);
+         analyze(analyzer);
+      }
+   }
 
-	}
+   public static void analyze(IFile file, int numberOfVariants, boolean findAll) {
+      FeatureModelAnalyzer analyzer = getAnalyzer(file);
+      if (analyzer != null) {
+         analyzer.setNumberOfVariantsToDerive(numberOfVariants);
+         analyzer.setFindAll(findAll);
+         analyze(analyzer);
+      }
+
+   }
 
 }

@@ -14,83 +14,83 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface WorkflowFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+    * The singleton instance of the factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	WorkflowFactory eINSTANCE = org.js.model.workflow.impl.WorkflowFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>ACM Connector</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>ACM Connector</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ACM Connector</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>ACM Connector</em>'.
+    * @generated
+    */
 	ACMConnector createACMConnector();
 
 	/**
-	 * Returns a new object of class '<em>Role Connector</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Role Connector</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Role Connector</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Role Connector</em>'.
+    * @generated
+    */
 	RoleConnector createRoleConnector();
 
 	/**
-	 * Returns a new object of class '<em>EFM Container</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>EFM Container</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EFM Container</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>EFM Container</em>'.
+    * @generated
+    */
 	EFMContainer createEFMContainer();
 
 	/**
-	 * Returns a new object of class '<em>Log</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Log</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Log</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Log</em>'.
+    * @generated
+    */
 	Log createLog();
 
 	/**
-	 * Returns a new object of class '<em>State</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>State</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>State</em>'.
+    * @generated
+    */
 	State createState();
 
 	/**
-	 * Returns a new object of class '<em>Stakeholder Types</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Stakeholder Types</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Stakeholder Types</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Stakeholder Types</em>'.
+    * @generated
+    */
 	StakeholderTypes createStakeholderTypes();
 
 	/**
-	 * Returns a new object of class '<em>Graph Trans Connector</em>'.
-	 * <!-- begin-user-doc -->
+    * Returns a new object of class '<em>Graph Trans Connector</em>'.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Graph Trans Connector</em>'.
-	 * @generated
-	 */
+    * @return a new object of class '<em>Graph Trans Connector</em>'.
+    * @generated
+    */
 	GraphTransConnector createGraphTransConnector();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+    * Returns the package supported by this factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+    * @return the package supported by this factory.
+    * @generated
+    */
 	WorkflowPackage getWorkflowPackage();
 
 } //WorkflowFactory

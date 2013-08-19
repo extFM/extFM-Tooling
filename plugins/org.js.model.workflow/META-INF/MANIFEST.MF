@@ -4,7 +4,8 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.js.model.workflow;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
- swing2swt.jar
+ jar/swing2swt.jar
+Bundle-Activator: org.js.model.workflow.WorkflowPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -14,7 +15,7 @@ Export-Package: org.js.model.workflow,
  org.js.model.workflow.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.jwt.we.conf.model;bundle-version="1.2.0";visibility:=reexport,
+ org.eclipse.jwt.we.conf.model;visibility:=reexport;bundle-version="1.2.0",
  org.js.model.feature;visibility:=reexport,
  org.js.graph.transformation;visibility:=reexport,
  org.js.model.rbac;visibility:=reexport,

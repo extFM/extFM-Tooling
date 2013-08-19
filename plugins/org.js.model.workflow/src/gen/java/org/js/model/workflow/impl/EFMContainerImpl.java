@@ -31,131 +31,132 @@ import org.js.model.workflow.WorkflowPackage;
  *
  * @generated
  */
-public class EFMContainerImpl extends AspectInstanceImpl implements EFMContainer {
+public class EFMContainerImpl extends 
+AspectInstanceImpl implements EFMContainer {
 	/**
-	 * The cached value of the '{@link #getEfmref() <em>Efmref</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * The cached value of the '{@link #getEfmref() <em>Efmref</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEfmref()
-	 * @generated
-	 * @ordered
-	 */
+    * @see #getEfmref()
+    * @generated
+    * @ordered
+    */
 	protected FeatureModel efmref;
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	protected EFMContainerImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	protected EClass eStaticClass() {
-		return WorkflowPackage.Literals.EFM_CONTAINER;
-	}
+      return WorkflowPackage.Literals.EFM_CONTAINER;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public FeatureModel getEfmref() {
-		if (efmref != null && efmref.eIsProxy()) {
-			InternalEObject oldEfmref = (InternalEObject)efmref;
-			efmref = (FeatureModel)eResolveProxy(oldEfmref);
-			if (efmref != oldEfmref) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, efmref));
-			}
-		}
-		return efmref;
-	}
+      if (efmref != null && efmref.eIsProxy()) {
+         InternalEObject oldEfmref = (InternalEObject)efmref;
+         efmref = (FeatureModel)eResolveProxy(oldEfmref);
+         if (efmref != oldEfmref) {
+            if (eNotificationRequired())
+               eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, efmref));
+         }
+      }
+      return efmref;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public FeatureModel basicGetEfmref() {
-		return efmref;
-	}
+      return efmref;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public void setEfmref(FeatureModel newEfmref) {
-		FeatureModel oldEfmref = efmref;
-		efmref = newEfmref;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, efmref));
-	}
+      FeatureModel oldEfmref = efmref;
+      efmref = newEfmref;
+      if (eNotificationRequired())
+         eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.EFM_CONTAINER__EFMREF, oldEfmref, efmref));
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case WorkflowPackage.EFM_CONTAINER__EFMREF:
-				if (resolve) return getEfmref();
-				return basicGetEfmref();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+      switch (featureID) {
+         case WorkflowPackage.EFM_CONTAINER__EFMREF:
+            if (resolve) return getEfmref();
+            return basicGetEfmref();
+      }
+      return super.eGet(featureID, resolve, coreType);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case WorkflowPackage.EFM_CONTAINER__EFMREF:
-				setEfmref((FeatureModel)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+      switch (featureID) {
+         case WorkflowPackage.EFM_CONTAINER__EFMREF:
+            setEfmref((FeatureModel)newValue);
+            return;
+      }
+      super.eSet(featureID, newValue);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.EFM_CONTAINER__EFMREF:
-				setEfmref((FeatureModel)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.EFM_CONTAINER__EFMREF:
+            setEfmref((FeatureModel)null);
+            return;
+      }
+      super.eUnset(featureID);
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case WorkflowPackage.EFM_CONTAINER__EFMREF:
-				return efmref != null;
-		}
-		return super.eIsSet(featureID);
-	}
+      switch (featureID) {
+         case WorkflowPackage.EFM_CONTAINER__EFMREF:
+            return efmref != null;
+      }
+      return super.eIsSet(featureID);
+   }
 
 } //EFMContainerImpl

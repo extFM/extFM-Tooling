@@ -24,29 +24,29 @@ import org.js.model.rbac.Role;
  */
 public interface RoleConnector extends AspectInstance {
 	/**
-	 * Returns the value of the '<em><b>Roleref</b></em>' reference.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Roleref</b></em>' reference.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Roleref</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Roleref</em>' reference.
-	 * @see #setRoleref(Role)
-	 * @see org.js.model.workflow.WorkflowPackage#getRoleConnector_Roleref()
-	 * @model
-	 * @generated
-	 */
+    * @return the value of the '<em>Roleref</em>' reference.
+    * @see #setRoleref(Role)
+    * @see org.js.model.workflow.WorkflowPackage#getRoleConnector_Roleref()
+    * @model
+    * @generated
+    */
 	Role getRoleref();
 
 	/**
-	 * Sets the value of the '{@link org.js.model.workflow.RoleConnector#getRoleref <em>Roleref</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * Sets the value of the '{@link org.js.model.workflow.RoleConnector#getRoleref <em>Roleref</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Roleref</em>' reference.
-	 * @see #getRoleref()
-	 * @generated
-	 */
+    * @param value the new value of the '<em>Roleref</em>' reference.
+    * @see #getRoleref()
+    * @generated
+    */
 	void setRoleref(Role value);
 
 } // RoleConnector

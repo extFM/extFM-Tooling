@@ -35,41 +35,39 @@ TOKENSTYLES {
 	// syntax definition for container class 'AccessControlModel'
 	@SuppressWarnings(explicitSyntaxChoice) 
 	AccessControlModel   ::= "access control" #1 
-									("on" #1 featureModels['<','>'] ("," featureModels['<','>'])*) !0
-									("references" #1 accessControlModels['<','>'] ("," accessControlModels['<','>'])* )? !0
-									("permissions" #1 "{" !0 permissions ( ","!0 permissions)* "}")* !0
+									("on" #1 featureModels['<','>'] (#1 "," #1 featureModels['<','>'])*) !0
+									("references" #1 accessControlModels['<','>'] (#1 "," #1 accessControlModels['<','>'])* )? !0
+									("permissions" #1 "{" !0 permissions ( ","!0 permissions)* !0 "}")* !0
 									(roles | groups | subjects)* ; 
 	
 	// syntax definition for roles
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
-	Role ::= "role" #1 name['"','"']? #1 id['<','>'] ("extends" (parentRoles[]) ("," parentRoles[])*)? !0 
-			(("{" (permissions['"','"'] | tasks)  ("," (permissions['"','"'] | tasks) )* "}") )? ;
+	Role ::= "role" #1 name['"','"']? #1 id['<','>'] #1 ("extends" #1 (parentRoles[]) (#1 "," #1 parentRoles[])*)? #1 
+			(("{" !1 ( permissions['"','"'] | tasks) #1 (","  #1 ( permissions['"','"'] | tasks) )* #1 
+			!0 "}") )? !0 ;
 
 	// syntax definition for feature configuration operations
-	SelectFeature ::= #4 "select" #1 feature[];
-	DeselectFeature ::= #4 "deselect" #1 feature[];
+	FeatureOperation ::= #4 type[select : "select", deselect : "deselect"] #1 feature[TEXT] !0;
 	
 	// syntax definition for attribute configuration operations
-	SetAttribute ::= #4 "set" feature[] #0 "." #0 attribute[]
-						(#1 "{" #1 attributeDecisions ("," #1 attributeDecisions)* "}")* ;
+	AttributeOperation ::= #4 "set" feature[] #0 "." #0 attribute[TEXT]
+						(#1 "{" #1 valueOperations ("," #1 valueOperations)* "}")* ;
 
-	SelectDomainValue ::= "+"#0 value[];
-	DeselectDomainValue ::= "-"#0 value[];
+	DomainValueOperation ::= type[select : "select", deselect : "deselect"] #1 value[TEXT] !0;
 	
 	
 	// syntax definition for subjects
 	@SuppressWarnings(nonContainmentOpposite) 
-	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] !0 
-			("{" roles[] ("," roles[])* "}")?;
+	Subject ::= "subject" #1 name['"','"']? #1 id['<','>'] #1 "plays" #1 (roles[] ( #1 "," #1 roles[])* )? !0;
 	
 	// syntax definition for groups
 	Group ::= "group" #1 name['"','"']? #1 id['<','>'] (#1 "of" #1 owner[])? !0 
-			"has members" #1 (members[] ("," members[])*)?;
+			"has members" #1 (members[] (#1 "," #1 members[])*)?;
 
-	// syntax definition for feature information model elements
-	Task ::= "task" name['"','"']? #1 id['<','>'];
+	// syntax definition for tasks used in feature information models
+	Task ::= "task" #1 name['"','"']? #1 id['<','>'] !0;
 
-	ViewElement ::= "view" #1 resourceId[]; 
-	ModifyElement ::= "modify" #1 resourceId[];
+	// syntax definition for restricting the visibility of feature information model elements
+	VisibilityRestriction ::= visibility[modify : "modify", view : "view"] #1 resourceId[] !0; 
 }

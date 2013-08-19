@@ -28,7 +28,7 @@ permissions {
     deselect EnableTrains,
     select SpecialDocks,
     deselect SpecialDocks,
-    set YM.SchedulingType {  +next, -next, +fitting, -fitting},
+    set YM.SchedulingType { select next, deselect next, select fitting,  deselect fitting},
     select YJ,
     deselect YJ,
     select LS,
