@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
+import org.js.model.feature.FeatureState;
 import org.js.model.feature.ReferenceResolverUtil;
 import org.js.model.rbac.AttributeOperation;
 import org.js.model.rbac.ConfigurationOperation;
@@ -53,27 +54,8 @@ public class StakeholderConfigUIShell extends Shell {
    Log log = null;
    Set<Permission> permissions = null;
 
-   /**
-    * Launch the application.
-    * 
-    * @param args
-    */
-   // public static void main(String args[]) {
-   // try {
-   // Display display = Display.getDefault();
-   // StakeholderConfigUIShell shell = new StakeholderConfigUIShell(
-   // display);
-   // shell.open();
-   // shell.layout();
-   // while (!shell.isDisposed()) {
-   // if (!display.readAndDispatch()) {
-   // display.sleep();
-   // }
-   // }
-   // } catch (Exception e) {
-   // e.printStackTrace();
-   // }
-   // }
+   Composite composite_config;
+   Button button_ok, button_cancel;
 
    /**
     * Create the shell.
@@ -85,160 +67,155 @@ public class StakeholderConfigUIShell extends Shell {
       selectedAction = action;
       selectedRole = role;
       selectedState = state;
-      setLayout(new FillLayout(SWT.HORIZONTAL));
+      RBACService rbacService = new RBACService();
+      permissions = rbacService.getAllRolePermissions(selectedRole);
+      log = (Log) WorkflowConfUtil.getAspectInstance(selectedAction, WorkflowConfUtil.LOG_ASPECT);
+      initUI();
+      checkSelectionStates(workflowModel);
+      createContents();
+   }
 
-      Composite composite = new Composite(this, SWT.NONE);
-      composite.setLayout(new GridLayout(1, false));
+   private void handlePermissions() {
+      for (Permission permission : permissions) {
+         if (permission instanceof FeatureOperation) {
+            FeatureOperation operation = (FeatureOperation) permission;
+            handleFeatureOperation(operation);
+         } else if (permission instanceof AttributeOperation) {
+            AttributeOperation operation = (AttributeOperation) permission;
+            handleAttributeOperation(operation);
 
-      Composite composite_config = new Composite(composite, SWT.NONE);
-      RowLayout rl_composite_config = new RowLayout(SWT.VERTICAL);
-      rl_composite_config.fill = true;
-      composite_config.setLayout(rl_composite_config);
-      composite_config.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+         }
+      }
+   }
 
-      Composite composite_buttons = new Composite(composite, SWT.NONE);
-      composite_buttons.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-      composite_buttons.setLayout(new RowLayout(SWT.HORIZONTAL));
+   private void handleFeatureOperation(FeatureOperation operation) {
+      // feature in the original efm
+      Feature oldFeature = operation.getFeature();
+      String featureName = oldFeature.getId();
+      String groupName = featureName;
+      // feature in the new efm
+      Feature configuredFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
+      // get the configuration group
+      Group configGroup = null;
+      for (Group group : configGroups) {
+         if (group.getText().equals(groupName)) {
+            configGroup = group;
+            break;
+         }
+      }
+      if (configGroup == null) {
+         configGroup = new Group(composite_config, SWT.NONE);
+         configGroup.setText(groupName);
+         configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
+         configGroups.add(configGroup);
+         featureMap.put(configGroup, configuredFeature);
+      }
+      // add radio button
+      Button radioButton = new Button(configGroup, SWT.RADIO);
+      if (RbacHelper.isSelectFeatureOperation(operation)) {
+         radioButton.setText("select");
+      } else if (RbacHelper.isDeselectFeatureOperation(operation)) {
+         radioButton.setText("deselect");
+      }
+      // if configuration action is running, check whether the
+      // feature is configured by the previous role
+      if (StateEnum.RUNNING.equals(selectedState.getState())) {
+         switch (configuredFeature.getConfigurationState().getValue()) {
+            case FeatureState.UNBOUND_VALUE:
+               break;
+            case FeatureState.SELECTED_VALUE:
+               radioButton.setEnabled(false);
+               if (RbacHelper.isSelectFeatureOperation(operation)) {
+                  radioButton.setSelection(true);
+               }
+               break;
+            case FeatureState.DESELECTED_VALUE:
+               radioButton.setEnabled(false);
+               if (RbacHelper.isDeselectFeatureOperation(operation)) {
+                  radioButton.setSelection(true);
+               }
+               break;
+         }
 
-      Button button_ok = new Button(composite_buttons, SWT.NONE);
-      button_ok.setText("Ok");
+      }
+      // if configuration action is finished, button is inactive
+      if (StateEnum.COMPLETED.equals(selectedState.getState())) {
+         radioButton.setEnabled(false);
+         if (log.getConfigurationOperations().contains(operation)) {
+            radioButton.setSelection(true);
+         }
+      }
+      decisionMap.put(radioButton, (ConfigurationOperation) operation);
+   }
 
-      Button button_cancel = new Button(composite_buttons, SWT.NONE);
-      button_cancel.setText("Cancel");
+   private void handleAttributeOperation(AttributeOperation operation) {
+      Feature oldFeature = operation.getFeature();
+      String featureName = oldFeature.getId();
+      Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
+      Attribute oldAttribute = operation.getAttribute();
+      String attributeName = oldAttribute.getName();
+      String groupName = featureName + ": " + attributeName;
+      // get the attribute
+      Attribute configuredAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
+      // get the configuration group
+      Group configGroup = null;
+      for (Group group : configGroups) {
+         if (group.getText().equals(groupName)) {
+            configGroup = group;
+            break;
+         }
+      }
+      if (configGroup == null) {
+         configGroup = new Group(composite_config, SWT.NONE);
+         configGroup.setText(groupName);
+         configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
+         configGroups.add(configGroup);
+         attributeMap.put(configGroup, configuredAttribute);
+      }
 
-      if (state.getState().getValue() == 1) {
-         state.setState(StateEnum.RUNNING);
-         WorkflowModelUtil.setActionState(action, StateEnum.RUNNING);
+      for (DomainValueOperation attributeDec : operation.getValueOperations()) {
+         Button radioButton = new Button(configGroup, SWT.RADIO);
+         if (RbacHelper.isSelectDomainValueOperation(attributeDec)) {
+            radioButton.setText("select " + attributeDec.getValue());
+         } else if (RbacHelper.isDeselectDomainValueOperation(attributeDec)) {
+            radioButton.setText("deselect " + attributeDec.getValue());
+         }
+         // if configuration action is running, check whether the attribute is configured
+         if (StateEnum.RUNNING.equals(selectedState.getState())) {
+            if (configuredAttribute.getValue() == null || configuredAttribute.getValue().equals("")) {} else {
+               radioButton.setEnabled(false);
+               if (RbacHelper.isSelectDomainValueOperation(attributeDec) && attributeDec.getValue().equals(configuredAttribute.getValue())) {
+                  radioButton.setSelection(true);
+               }
+            }
+         }
+         // configuration action is finished
+         if (StateEnum.COMPLETED.equals(selectedState.getState())) {
+            radioButton.setEnabled(false);
+            if (log.getConfigurationOperations().contains(attributeDec)) {
+               radioButton.setSelection(true);
+            }
+         }
+         decisionMap.put(radioButton, (ConfigurationOperation) attributeDec);
+      }
+   }
+
+   private void checkSelectionStates(Model workflowModel) {
+      if (StateEnum.ENABLED.equals(selectedState.getState())) {
+         selectedState.setState(StateEnum.RUNNING);
+         WorkflowModelUtil.setActionState(selectedAction, StateEnum.RUNNING);
          // trace the previous efm
-         featureModel = WorkflowUtil.tracePreEFM(workflowModel, role, action);
+         featureModel = WorkflowUtil.tracePreEFM(workflowModel, selectedRole, selectedAction);
       } else {
-         EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil.getAspectInstance(action, WorkflowConfUtil.EFM_ASPECT);
+         EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil.getAspectInstance(selectedAction, WorkflowConfUtil.EFM_ASPECT);
          featureModel = efmContainer.getEfmref();
       }
 
       // TODO: check bugs
       // create configuration groups
       // EList<Permission> permissions = role.getPermissions();
-      RBACService rbacService = new RBACService();
-      permissions = rbacService.getAllRolePermissions(role);
-      log = (Log) WorkflowConfUtil.getAspectInstance(action, WorkflowConfUtil.LOG_ASPECT);
       if (featureModel != null) {
-         for (Permission permission : permissions) {
-            // Iterator<Permission> it = permissions.iterator();
-            // while (it.hasNext()) {
-            // Permission permission = it.next();
-            if (permission instanceof FeatureOperation) {
-               // feature in the original efm
-               Feature oldFeature = ((FeatureOperation) permission).getFeature();
-               String featureName = oldFeature.getId();
-               String groupName = featureName;
-               // feature in the new efm
-               Feature configuredFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
-               // get the configuration group
-               Group configGroup = null;
-               for (Group group : configGroups) {
-                  if (group.getText().equals(groupName)) {
-                     configGroup = group;
-                     break;
-                  }
-               }
-               if (configGroup == null) {
-                  configGroup = new Group(composite_config, SWT.NONE);
-                  configGroup.setText(groupName);
-                  configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
-                  configGroups.add(configGroup);
-                  featureMap.put(configGroup, configuredFeature);
-               }
-               // add radio button
-               Button radioButton = new Button(configGroup, SWT.RADIO);
-               if (RbacHelper.isSelectFeatureOperation(permission)) {
-                  radioButton.setText("select feature");
-               } else if (RbacHelper.isDeselectFeatureOperation(permission)) {
-                  radioButton.setText("deselect feature");
-               }
-               // if configuration action is running, check whether the
-               // feature
-               // is configured by the previous role
-               if (selectedState.getState().getValue() == 2) {
-                  switch (configuredFeature.getConfigurationState().getValue()) {
-                     case 0:
-                        break;
-                     case 1:
-                        radioButton.setEnabled(false);
-                        if (RbacHelper.isSelectFeatureOperation(permission)) {
-                           radioButton.setSelection(true);
-                        }
-                        break;
-                     case 2:
-                        radioButton.setEnabled(false);
-                        if (RbacHelper.isDeselectFeatureOperation(permission)) {
-                           radioButton.setSelection(true);
-                        }
-                        break;
-                  }
-
-               }
-               // if configuration action is finished, button is inactive
-               if (selectedState.getState().getValue() == 3) {
-                  radioButton.setEnabled(false);
-                  if (log.getConfigurationOperations().contains(permission)) {
-                     radioButton.setSelection(true);
-                  }
-               }
-               decisionMap.put(radioButton, (ConfigurationOperation) permission);
-            } else if (permission instanceof AttributeOperation) {
-               Feature oldFeature = ((AttributeOperation) permission).getFeature();
-               String featureName = oldFeature.getId();
-               Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
-               Attribute oldAttribute = ((AttributeOperation) permission).getAttribute();
-               String attributeName = oldAttribute.getName();
-               String groupName = featureName + ": " + attributeName;
-               // get the attribute
-               Attribute configuredAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
-               // get the configuration group
-               Group configGroup = null;
-               for (Group group : configGroups) {
-                  if (group.getText().equals(groupName)) {
-                     configGroup = group;
-                     break;
-                  }
-               }
-               if (configGroup == null) {
-                  configGroup = new Group(composite_config, SWT.NONE);
-                  configGroup.setText(groupName);
-                  configGroup.setLayout(new FillLayout(SWT.HORIZONTAL));
-                  configGroups.add(configGroup);
-                  attributeMap.put(configGroup, configuredAttribute);
-               }
-
-               for (DomainValueOperation attributeDec : ((AttributeOperation) permission).getValueOperations()) {
-                  Button radioButton = new Button(configGroup, SWT.RADIO);
-                  if (RbacHelper.isSelectDomainValueOperation(attributeDec)) {
-                     radioButton.setText("select " + attributeDec.getValue());
-                  } else if (RbacHelper.isDeselectDomainValueOperation(attributeDec)) {
-                     radioButton.setText("deselect " + attributeDec.getValue());
-                  }
-                  // if configuration action is running, check whether the
-                  // attribute is configured
-                  if (selectedState.getState().getValue() == 2) {
-                     if (configuredAttribute.getValue() == null || configuredAttribute.getValue().equals("")) {} else {
-                        radioButton.setEnabled(false);
-                        if (RbacHelper.isSelectDomainValueOperation(attributeDec) && attributeDec.getValue().equals(configuredAttribute.getValue())) {
-                           radioButton.setSelection(true);
-                        }
-                     }
-                  }
-                  // configuration action is finished
-                  if (selectedState.getState().getValue() == 3) {
-                     radioButton.setEnabled(false);
-                     if (log.getConfigurationOperations().contains(attributeDec)) {
-                        radioButton.setSelection(true);
-                     }
-                  }
-                  decisionMap.put(radioButton, (ConfigurationOperation) attributeDec);
-               }
-            }
-         }
+         handlePermissions();
 
          // add listeners for buttons
          for (Group group : configGroups) {
@@ -247,19 +224,9 @@ public class StakeholderConfigUIShell extends Shell {
 
                   @Override
                   public void widgetSelected(SelectionEvent e) {
-                     handleSelectionLogic((Button) e.getSource(), decisionMap, permissions, featureModel);
+                   // handleSelectionLogic((Button) e.getSource(), decisionMap, permissions, featureModel);
                   }
                });
-               // ((Button) button).addFocusListener(new FocusListener() {
-               // @Override
-               // public void focusLost(FocusEvent e) {
-               // }
-               // @Override
-               // public void focusGained(FocusEvent e) {
-               // handleSelectionLogic((Button) e.getSource(),
-               // decisionMap, permissions, featureModel);
-               // }
-               // });
             }
          }
       }
@@ -323,8 +290,29 @@ public class StakeholderConfigUIShell extends Shell {
          }
       });
 
-      createContents();
+   }
 
+   private void initUI() {
+      setLayout(new FillLayout(SWT.HORIZONTAL));
+
+      Composite composite = new Composite(this, SWT.NONE);
+      composite.setLayout(new GridLayout(1, false));
+
+      composite_config = new Composite(composite, SWT.NONE);
+      RowLayout rl_composite_config = new RowLayout(SWT.VERTICAL);
+      rl_composite_config.fill = true;
+      composite_config.setLayout(rl_composite_config);
+      composite_config.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+
+      Composite composite_buttons = new Composite(composite, SWT.NONE);
+      composite_buttons.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+      composite_buttons.setLayout(new RowLayout(SWT.HORIZONTAL));
+
+      button_ok = new Button(composite_buttons, SWT.NONE);
+      button_ok.setText("Ok");
+
+      button_cancel = new Button(composite_buttons, SWT.NONE);
+      button_cancel.setText("Cancel");
    }
 
    /**

@@ -327,7 +327,7 @@ public class WorkflowUtil {
             } else {
                feature.setConfigurationState(FeatureState.DESELECTED);
             }
-            handleFeatureLogic(feature, featureModel);
+           // handleFeatureLogic(feature, featureModel);
          } else {
             if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
                Attribute oldAttribute = ((AttributeOperation) ((DomainValueOperation) configDecision).eContainer()).getAttribute();
