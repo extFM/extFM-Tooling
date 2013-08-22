@@ -1,6 +1,5 @@
 package org.js.model.rbac;
 
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -8,16 +7,6 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
-import org.js.model.rbac.AccessControlModel;
-import org.js.model.rbac.DeselectDomainValue;
-import org.js.model.rbac.DeselectFeature;
-import org.js.model.rbac.RBACService;
-import org.js.model.rbac.RbacHelper;
-import org.js.model.rbac.Role;
-import org.js.model.rbac.SelectDomainValue;
-import org.js.model.rbac.SelectFeature;
-import org.js.model.rbac.SetAttribute;
-import org.js.model.rbac.Subject;
 
 /************************************************************
  * Copyright (c) 2010 paperlocator.org - all rights reserved.
@@ -106,23 +95,23 @@ public abstract class AbstractTestRbac {
       return result;
    }
 
-   protected DeselectDomainValue createDeselectDomainValue(DomainValue domainValue) {
+   protected DomainValueOperation createDeselectDomainValue(DomainValue domainValue) {
       return RbacHelper.createDeselectDomainValue(domainValue);
    }
 
-   protected SelectDomainValue createSelectDomainValue(DomainValue domainValue) {
+   protected DomainValueOperation createSelectDomainValue(DomainValue domainValue) {
       return RbacHelper.createSelectDomainValue(domainValue);
    }
 
-   protected SetAttribute createSetAttribute(Feature f, Attribute a) {
+   protected AttributeOperation createSetAttribute(Feature f, Attribute a) {
       return RbacHelper.createSetAttribute(f, a);
    }
 
-   protected SelectFeature createSelectFeature(Feature f) {
+   protected FeatureOperation createSelectFeature(Feature f) {
       return RbacHelper.createSelectFeature(f);
    }
 
-   protected DeselectFeature createDeselectFeature(Feature f) {
+   protected FeatureOperation createDeselectFeature(Feature f) {
       return RbacHelper.createDeselectFeature(f);
    }
 

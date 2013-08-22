@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
@@ -139,39 +140,43 @@ public class RBACService {
       return parents;
    }
 
-   public SelectFeature getSelectFeaturePermission(Feature feature, List<Permission> permissions) {
-      SelectFeature result = null;
+   public FeatureOperation getSelectFeaturePermission(Feature feature, List<Permission> permissions) {
+      FeatureOperation result = null;
       for (Permission permission : permissions) {
-         if (permission instanceof SelectFeature) {
-            SelectFeature selectFeature = (SelectFeature) permission;
-            Feature permFeature = selectFeature.getFeature();
-            if (EcoreUtil.equals(feature, permFeature)) {
-               result = selectFeature;
+         if (permission instanceof FeatureOperation) {
+            FeatureOperation operation = (FeatureOperation) permission;
+            if (ConfigurationType.SELECT.equals(operation.getType())) {
+               Feature permFeature = operation.getFeature();
+               if (EcoreUtil.equals(feature, permFeature)) {
+                  result = operation;
+               }
             }
          }
       }
       return result;
    }
 
-   public DeselectFeature getDeselectFeaturePermission(Feature feature, List<Permission> permissions) {
-      DeselectFeature result = null;
+   public FeatureOperation getDeselectFeaturePermission(Feature feature, List<Permission> permissions) {
+      FeatureOperation result = null;
       for (Permission permission : permissions) {
-         if (permission instanceof DeselectFeature) {
-            DeselectFeature deselectFeature = (DeselectFeature) permission;
-            Feature permFeature = deselectFeature.getFeature();
-            if (EcoreUtil.equals(feature, permFeature)) {
-               result = deselectFeature;
+         if (permission instanceof FeatureOperation) {
+            FeatureOperation operation = (FeatureOperation) permission;
+            if (ConfigurationType.DESELECT.equals(operation.getType())) {
+               Feature permFeature = operation.getFeature();
+               if (EcoreUtil.equals(feature, permFeature)) {
+                  result = operation;
+               }
             }
          }
       }
       return result;
    }
 
-   public SetAttribute getSetAttributePermission(Attribute attribute, List<Permission> permissions) {
-      SetAttribute result = null;
+   public AttributeOperation getSetAttributePermission(Attribute attribute, List<Permission> permissions) {
+      AttributeOperation result = null;
       for (Permission permission : permissions) {
-         if (permission instanceof SetAttribute) {
-            SetAttribute setAttribute = (SetAttribute) permission;
+         if (permission instanceof AttributeOperation) {
+            AttributeOperation setAttribute = (AttributeOperation) permission;
             Attribute permAttribute = setAttribute.getAttribute();
             if (EcoreUtil.equals(attribute, permAttribute)) {
                result = setAttribute;
@@ -181,5 +186,29 @@ public class RBACService {
       return result;
    }
 
-  
+   public List<Group> getOwnedGroups(Role role) {
+      AccessControlModel accessControlModel = getAccessControlModel(role);
+      List<Group> roleGroups = new ArrayList<Group>(1);
+      if (accessControlModel != null) {
+         EList<Group> groups = accessControlModel.getGroups();
+         for (Group group : groups) {
+            Role represents = group.getOwner();
+            if (EcoreUtil.equals(role, represents)) {
+               roleGroups.add(group);
+            }
+         }
+
+      }
+      return roleGroups;
+   }
+
+   public AccessControlModel getAccessControlModel(EObject object) {
+      AccessControlModel model = null;
+      EObject rootContainer = EcoreUtil.getRootContainer(object);
+      if (rootContainer instanceof AccessControlModel) {
+         model = (AccessControlModel) rootContainer;
+      }
+      return model;
+   }
+
 }

@@ -12,6 +12,7 @@ OPTIONS {
 	generateCodeFromGeneratorModel = "true";
 	disableLaunchSupport = "true";
 	disableNewProjectWizard = "true";
+	//usePredefinedTokens = "false";
 	
 	srcFolder = "src/main/java";
 	srcGenFolder = "src/gen/java";
@@ -22,11 +23,14 @@ OPTIONS {
 }
 
 TOKENS {
-	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
+//	DEFINE TEXT $('A'..'Z'|'a'..'z'|'0'..'9'|'_')+ $;
+	DEFINE INTEGER $('0'..'9')+ $;
+	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $;
 }
 
 
 TOKENSTYLES {
+	"INTEGER" COLOR #00BB00;
 	"COMMENT" COLOR #AAAAAA;
 	"->" COLOR #000000, BOLD;
 	"<->" COLOR #000000, BOLD;
@@ -45,35 +49,35 @@ RULES {
 						
     // syntax definition for features and their configuration state
 	@SuppressWarnings(explicitSyntaxChoice) 					
-	Feature ::= configurationState[selected : "selected", deselected : "deselected", unbound : ""] "feature" #1 name['"','"'] #1 "<" id[TEXT] ">"
+	Feature ::= configurationState[selected : "selected", deselected : "deselected", unbound : ""] #1 "feature" #1 name['"','"'] #1 "<" id[] ">" 
 				(!1 (attributes | groups) )*; 
 	
     // syntax definition for groups
-	Group ::= "group" #1 "<" id[TEXT] ">" #1 "(" minCardinality[TEXT] ".." maxCardinality[TEXT] ")" 
+	Group ::= "group" #1  "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
 						#1 "{" (!1 childFeatures)+ "}" !0;
 
     // syntax definition for attributes and their configuration state
-	Attribute ::= name[TEXT] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues[TEXT] ("," #1 deselectedDomainValues[TEXT])* "}")? 
+	Attribute ::= "attribute" name[] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues[] ("," #1 deselectedDomainValues[])* "}")? 
 	(#1 ":=" #1 (value['"','"']))? ;
 
     // syntax definition for attribute domains
-	NumericalDomain ::= "domain" #1 "<" id[TEXT] ">" #1 "[" intervals ("," #1 intervals)* "]" !0;
-	Interval ::= lowerBound[TEXT] ".." upperBound[TEXT];
+	NumericalDomain ::= "domain" #1 "<" id[] ">" #1 "[" intervals ("," #1 intervals)* "]" !0;
+	Interval ::= lowerBound[INTEGER] ".." upperBound[INTEGER];
 
-	DiscreteDomain ::= "domain"  #1 "<" id[TEXT] ">" #1 "[" values ("," #1 values)* "]" !0;
-	DomainValue ::= (name[] "=")? #0 int[];
+	DiscreteDomain ::= "domain"  #1 "<" id[] ">" #1 "[" values ("," #1 values)* "]" !0;
+	DomainValue ::= (name[] "=")? #0 int[INTEGER];
 
     // syntax definition for cross-tree constraints
-	Imply ::= "constraint" #1 "<" id[TEXT] ">" #1 leftOperand[TEXT] #1 "->" #1 rightOperand[TEXT] !0;
-	Exclude ::= "constraint" #1 "<" id[TEXT] ">" #1 leftOperand[TEXT] #1 "<->" #1 rightOperand[TEXT] !0;
+	Imply ::= "constraint" #1  leftOperand[] #1 "->" #1 rightOperand[] !0;
+	Exclude ::= "constraint" #1  leftOperand[] #1 "<->" #1 rightOperand[] !0;
 	
-	AttributeConstraint ::= "constraint" #1 "<" id[TEXT] ">" #1 
+	AttributeConstraint ::= "constraint" #1  
 			attribute1 #1 
 			operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] #1 
 			attribute2 !0;
 
-	AttributeReference ::= feature[] "." attribute[];
+	AttributeReference ::= feature[] #0 "." #0 attribute[];
 	
 	@SuppressWarnings		
-	AttributeValue ::= (name['"','"'] | int[]);	
+	AttributeValue ::= (name['"','"'] | int[INTEGER]);	
 }

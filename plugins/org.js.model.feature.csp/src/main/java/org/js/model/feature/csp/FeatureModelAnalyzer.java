@@ -330,6 +330,10 @@ public class FeatureModelAnalyzer {
 		return featureModelHelper.getAllFeatures();
 	}
 
+	   public int getNumberOfUnboundFeatures() {
+	      return featureModelHelper.getUnboundFeatures().size();
+	   }
+	
 	public Set<Attribute> getAllAttributes() {
 		return featureModelHelper.getAllAttributes();
 	}
@@ -354,5 +358,17 @@ public class FeatureModelAnalyzer {
 	public void setFindAll(boolean findAll) {
 		this.findAll = findAll;
 	}
+
+   public int getNumberOfSelectedFeatures() {
+      return featureModelHelper.getSelectedFeatures().size();
+   }
+
+   public int getNumberOfDeselectedFeatures() {
+      return featureModelHelper.getDeselectedFeatures().size();
+   }
+
+   public int getNumberOfAssignedAttributes() {
+     return featureModelHelper.getAssignedAttributes().size();
+   }
 
 }

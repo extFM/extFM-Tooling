@@ -6,7 +6,7 @@
  */
 package org.js.model.rbac.resource.rbactext.analysis;
 
-public class GroupContainsReferenceResolver implements org.js.model.rbac.resource.rbactext.IRbactextReferenceResolver<org.js.model.rbac.Group, org.js.model.rbac.Role> {
+public class GroupOwnerReferenceResolver implements org.js.model.rbac.resource.rbactext.IRbactextReferenceResolver<org.js.model.rbac.Group, org.js.model.rbac.Role> {
 	
 	private org.js.model.rbac.resource.rbactext.analysis.RbactextDefaultResolverDelegate<org.js.model.rbac.Group, org.js.model.rbac.Role> delegate = new org.js.model.rbac.resource.rbactext.analysis.RbactextDefaultResolverDelegate<org.js.model.rbac.Group, org.js.model.rbac.Role>();
 	

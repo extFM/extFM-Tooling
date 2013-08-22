@@ -21,192 +21,192 @@ import org.js.model.workflow.*;
  */
 public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+    * Creates the default factory implementation.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public static WorkflowFactory init() {
-		try {
-			WorkflowFactory theWorkflowFactory = (WorkflowFactory)EPackage.Registry.INSTANCE.getEFactory(WorkflowPackage.eNS_URI);
-			if (theWorkflowFactory != null) {
-				return theWorkflowFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new WorkflowFactoryImpl();
-	}
+      try {
+         WorkflowFactory theWorkflowFactory = (WorkflowFactory)EPackage.Registry.INSTANCE.getEFactory(WorkflowPackage.eNS_URI);
+         if (theWorkflowFactory != null) {
+            return theWorkflowFactory;
+         }
+      }
+      catch (Exception exception) {
+         EcorePlugin.INSTANCE.log(exception);
+      }
+      return new WorkflowFactoryImpl();
+   }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+    * Creates an instance of the factory.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public WorkflowFactoryImpl() {
-		super();
-	}
+      super();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case WorkflowPackage.ACM_CONNECTOR: return createACMConnector();
-			case WorkflowPackage.ROLE_CONNECTOR: return createRoleConnector();
-			case WorkflowPackage.EFM_CONTAINER: return createEFMContainer();
-			case WorkflowPackage.LOG: return createLog();
-			case WorkflowPackage.STATE: return createState();
-			case WorkflowPackage.STAKEHOLDER_TYPES: return createStakeholderTypes();
-			case WorkflowPackage.GRAPH_TRANS_CONNECTOR: return createGraphTransConnector();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+      switch (eClass.getClassifierID()) {
+         case WorkflowPackage.ACM_CONNECTOR: return createACMConnector();
+         case WorkflowPackage.ROLE_CONNECTOR: return createRoleConnector();
+         case WorkflowPackage.EFM_CONTAINER: return createEFMContainer();
+         case WorkflowPackage.LOG: return createLog();
+         case WorkflowPackage.STATE: return createState();
+         case WorkflowPackage.STAKEHOLDER_TYPES: return createStakeholderTypes();
+         case WorkflowPackage.GRAPH_TRANS_CONNECTOR: return createGraphTransConnector();
+         default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+      }
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case WorkflowPackage.STATE_ENUM:
-				return createStateEnumFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+      switch (eDataType.getClassifierID()) {
+         case WorkflowPackage.STATE_ENUM:
+            return createStateEnumFromString(eDataType, initialValue);
+         default:
+            throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+      }
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case WorkflowPackage.STATE_ENUM:
-				return convertStateEnumToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+      switch (eDataType.getClassifierID()) {
+         case WorkflowPackage.STATE_ENUM:
+            return convertStateEnumToString(eDataType, instanceValue);
+         default:
+            throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+      }
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public ACMConnector createACMConnector() {
-		ACMConnectorImpl acmConnector = new ACMConnectorImpl();
-		return acmConnector;
-	}
+      ACMConnectorImpl acmConnector = new ACMConnectorImpl();
+      return acmConnector;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public RoleConnector createRoleConnector() {
-		RoleConnectorImpl roleConnector = new RoleConnectorImpl();
-		return roleConnector;
-	}
+      RoleConnectorImpl roleConnector = new RoleConnectorImpl();
+      return roleConnector;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public EFMContainer createEFMContainer() {
-		EFMContainerImpl efmContainer = new EFMContainerImpl();
-		return efmContainer;
-	}
+      EFMContainerImpl efmContainer = new EFMContainerImpl();
+      return efmContainer;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public Log createLog() {
-		LogImpl log = new LogImpl();
-		return log;
-	}
+      LogImpl log = new LogImpl();
+      return log;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public State createState() {
-		StateImpl state = new StateImpl();
-		return state;
-	}
+      StateImpl state = new StateImpl();
+      return state;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public StakeholderTypes createStakeholderTypes() {
-		StakeholderTypesImpl stakeholderTypes = new StakeholderTypesImpl();
-		return stakeholderTypes;
-	}
+      StakeholderTypesImpl stakeholderTypes = new StakeholderTypesImpl();
+      return stakeholderTypes;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public GraphTransConnector createGraphTransConnector() {
-		GraphTransConnectorImpl graphTransConnector = new GraphTransConnectorImpl();
-		return graphTransConnector;
-	}
+      GraphTransConnectorImpl graphTransConnector = new GraphTransConnectorImpl();
+      return graphTransConnector;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public StateEnum createStateEnumFromString(EDataType eDataType, String initialValue) {
-		StateEnum result = StateEnum.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+      StateEnum result = StateEnum.get(initialValue);
+      if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+      return result;
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public String convertStateEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+      return instanceValue == null ? null : instanceValue.toString();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+    * @generated
+    */
 	public WorkflowPackage getWorkflowPackage() {
-		return (WorkflowPackage)getEPackage();
-	}
+      return (WorkflowPackage)getEPackage();
+   }
 
 	/**
-	 * <!-- begin-user-doc -->
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+    * @deprecated
+    * @generated
+    */
 	@Deprecated
 	public static WorkflowPackage getPackage() {
-		return WorkflowPackage.eINSTANCE;
-	}
+      return WorkflowPackage.eINSTANCE;
+   }
 
 } //WorkflowFactoryImpl

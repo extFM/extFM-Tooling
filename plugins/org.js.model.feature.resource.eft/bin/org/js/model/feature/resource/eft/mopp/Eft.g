@@ -367,7 +367,7 @@ options {
 				break;
 			}
 		}
-		int followSetID = 99;
+		int followSetID = 88;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
 			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -992,7 +992,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[54]);
 	}
 	
-	a1 = '<' {
+	a1 = '(' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
 			startIncompleteElement(element);
@@ -1007,7 +1007,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 	}
 	
 	(
-		a2 = TEXT		
+		a2 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1017,18 +1017,18 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__ID), result);
+				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MIN_CARDINALITY), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
 					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
 				}
-				java.lang.String resolved = (java.lang.String) resolvedObject;
+				java.lang.Integer resolved = (java.lang.Integer) resolvedObject;
 				if (resolved != null) {
 					Object value = resolved;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__ID), value);
+					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MIN_CARDINALITY), value);
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
@@ -1042,7 +1042,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[56]);
 	}
 	
-	a3 = '>' {
+	a3 = '..' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
 			startIncompleteElement(element);
@@ -1056,22 +1056,8 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[57]);
 	}
 	
-	a4 = '(' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_6, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[58]);
-	}
-	
 	(
-		a5 = TEXT		
+		a4 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1080,33 +1066,47 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
 				startIncompleteElement(element);
 			}
-			if (a5 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+			if (a4 != null) {
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MIN_CARDINALITY), result);
+				tokenResolver.resolve(a4.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MAX_CARDINALITY), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a4).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStopIndex());
 				}
 				java.lang.Integer resolved = (java.lang.Integer) resolvedObject;
 				if (resolved != null) {
 					Object value = resolved;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MIN_CARDINALITY), value);
+					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MAX_CARDINALITY), value);
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_7, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_5, resolved, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[58]);
+	}
+	
+	a5 = ')' {
+		if (element == null) {
+			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
+			startIncompleteElement(element);
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_6, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+	}
+	{
+		// expected elements (follow set)
 		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[59]);
 	}
 	
-	a6 = '..' {
+	a6 = '{' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
 			startIncompleteElement(element);
@@ -1117,46 +1117,47 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[60]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[60]);
 	}
 	
 	(
-		a7 = TEXT		
-		{
-			if (terminateParsing) {
-				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
-			}
-			if (element == null) {
-				element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
-				startIncompleteElement(element);
-			}
-			if (a7 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
-				tokenResolver.setOptions(getOptions());
-				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a7.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MAX_CARDINALITY), result);
-				Object resolvedObject = result.getResolvedToken();
-				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a7).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStopIndex());
+		(
+			(
+				a7_0 = parse_org_js_model_feature_Feature				{
+					if (terminateParsing) {
+						throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
+					}
+					if (element == null) {
+						element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
+						startIncompleteElement(element);
+					}
+					if (a7_0 != null) {
+						if (a7_0 != null) {
+							Object value = a7_0;
+							addObjectToList(element, org.js.model.feature.FeaturePackage.GROUP__CHILD_FEATURES, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_9_0_0_1, a7_0, true);
+						copyLocalizationInfos(a7_0, element);
+					}
 				}
-				java.lang.Integer resolved = (java.lang.Integer) resolvedObject;
-				if (resolved != null) {
-					Object value = resolved;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MAX_CARDINALITY), value);
-					completedElement(value, false);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_9, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a7, element);
+			)
+			{
+				// expected elements (follow set)
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[61]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[62]);
 			}
-		}
-	)
-	{
+			
+		)
+		
+	)+	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[61]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[63]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[64]);
 	}
 	
-	a8 = ')' {
+	a8 = '}' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
 			startIncompleteElement(element);
@@ -1167,78 +1168,13 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[62]);
-	}
-	
-	a9 = '{' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_12, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a9, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[63]);
-	}
-	
-	(
-		(
-			(
-				a10_0 = parse_org_js_model_feature_Feature				{
-					if (terminateParsing) {
-						throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
-					}
-					if (element == null) {
-						element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
-						startIncompleteElement(element);
-					}
-					if (a10_0 != null) {
-						if (a10_0 != null) {
-							Object value = a10_0;
-							addObjectToList(element, org.js.model.feature.FeaturePackage.GROUP__CHILD_FEATURES, value);
-							completedElement(value, true);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_13_0_0_1, a10_0, true);
-						copyLocalizationInfos(a10_0, element);
-					}
-				}
-			)
-			{
-				// expected elements (follow set)
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[64]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[65]);
-			}
-			
-		)
-		
-	)+	{
-		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[66]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[67]);
-	}
-	
-	a11 = '}' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createGroup();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_2_0_0_14, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a11, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[68]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[69]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[70]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[71]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[72]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[73]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[74]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[65]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[66]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[67]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[68]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[69]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[70]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[71]);
 	}
 	
 ;
@@ -1247,8 +1183,22 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 @init{
 }
 :
+	a0 = 'attribute' {
+		if (element == null) {
+			element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
+			startIncompleteElement(element);
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_0, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[72]);
+	}
+	
 	(
-		a0 = TEXT		
+		a1 = TEXT		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1257,14 +1207,14 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 				startIncompleteElement(element);
 			}
-			if (a0 != null) {
+			if (a1 != null) {
 				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__NAME), result);
+				tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__NAME), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
 				}
 				java.lang.String resolved = (java.lang.String) resolvedObject;
 				if (resolved != null) {
@@ -1273,32 +1223,32 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_0, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_1, resolved, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[75]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[73]);
 	}
 	
-	a1 = '[' {
+	a2 = '[' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_3, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[76]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[74]);
 	}
 	
 	(
-		a2 = TEXT		
+		a3 = TEXT		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1307,14 +1257,14 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 				startIncompleteElement(element);
 			}
-			if (a2 != null) {
+			if (a3 != null) {
 				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__DOMAIN), result);
+				tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__DOMAIN), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.js.model.feature.Domain proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createDiscreteDomain();
@@ -1326,71 +1276,71 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_3, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, proxy);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_4, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[77]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[75]);
 	}
 	
-	a3 = ']' {
+	a4 = ']' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[78]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[79]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[80]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[81]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[76]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[77]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[78]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[79]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[80]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[81]);
 		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[82]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[83]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[84]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[85]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[86]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[83]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[84]);
 	}
 	
 	(
 		(
-			a4 = '\\' {
+			a5 = '\\' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
-			}
-			{
-				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[87]);
-			}
-			
-			a5 = '{' {
-				if (element == null) {
-					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
-					startIncompleteElement(element);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5_0_0_1, null, true);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[88]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[85]);
+			}
+			
+			a6 = '{' {
+				if (element == null) {
+					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
+					startIncompleteElement(element);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_1, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+			}
+			{
+				// expected elements (follow set)
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[86]);
 			}
 			
 			(
-				a6 = TEXT				
+				a7 = TEXT				
 				{
 					if (terminateParsing) {
 						throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1399,14 +1349,14 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 						element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 						startIncompleteElement(element);
 					}
-					if (a6 != null) {
+					if (a7 != null) {
 						org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 						tokenResolver.setOptions(getOptions());
 						org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-						tokenResolver.resolve(a6.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__DESELECTED_DOMAIN_VALUES), result);
+						tokenResolver.resolve(a7.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__DESELECTED_DOMAIN_VALUES), result);
 						Object resolvedObject = result.getResolvedToken();
 						if (resolvedObject == null) {
-							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a6).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStopIndex());
+							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a7).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a7).getStopIndex());
 						}
 						java.lang.String resolved = (java.lang.String) resolvedObject;
 						if (resolved != null) {
@@ -1415,35 +1365,35 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 							completedElement(value, false);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5_0_0_2, resolved, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, element);
+						retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_2, resolved, true);
+						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a7, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[89]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[90]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[87]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[88]);
 			}
 			
 			(
 				(
-					a7 = ',' {
+					a8 = ',' {
 						if (element == null) {
 							element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 							startIncompleteElement(element);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5_0_0_3_0_0_0, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+						retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_3_0_0_0, null, true);
+						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[91]);
+						addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[89]);
 					}
 					
 					(
-						a8 = TEXT						
+						a9 = TEXT						
 						{
 							if (terminateParsing) {
 								throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1452,14 +1402,14 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 								element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 								startIncompleteElement(element);
 							}
-							if (a8 != null) {
+							if (a9 != null) {
 								org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 								tokenResolver.setOptions(getOptions());
 								org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-								tokenResolver.resolve(a8.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__DESELECTED_DOMAIN_VALUES), result);
+								tokenResolver.resolve(a9.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__DESELECTED_DOMAIN_VALUES), result);
 								Object resolvedObject = result.getResolvedToken();
 								if (resolvedObject == null) {
-									addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a8).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a8).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a8).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a8).getStopIndex());
+									addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a9).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a9).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a9).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a9).getStopIndex());
 								}
 								java.lang.String resolved = (java.lang.String) resolvedObject;
 								if (resolved != null) {
@@ -1468,79 +1418,79 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 									completedElement(value, false);
 								}
 								collectHiddenTokens(element);
-								retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5_0_0_3_0_0_2, resolved, true);
-								copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a8, element);
+								retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_3_0_0_2, resolved, true);
+								copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a9, element);
 							}
 						}
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[92]);
-						addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[93]);
+						addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[90]);
+						addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[91]);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[94]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[95]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[92]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[93]);
 			}
 			
-			a9 = '}' {
+			a10 = '}' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_5_0_0_4, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a9, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a10, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[96]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[97]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[98]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[94]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[95]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[96]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[97]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[98]);
 				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[99]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[100]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[101]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[102]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[103]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[100]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[101]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[104]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[105]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[106]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[102]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[103]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[104]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[105]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[106]);
 		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[107]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[108]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[109]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[110]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[111]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[108]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[109]);
 	}
 	
 	(
 		(
-			a10 = ':=' {
+			a11 = ':=' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a10, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_7_0_0_1, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a11, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[112]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[110]);
 			}
 			
 			(
 				(
-					a11 = QUOTED_34_34					
+					a12 = QUOTED_34_34					
 					{
 						if (terminateParsing) {
 							throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1549,14 +1499,14 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 							element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttribute();
 							startIncompleteElement(element);
 						}
-						if (a11 != null) {
+						if (a12 != null) {
 							org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
 							tokenResolver.setOptions(getOptions());
 							org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-							tokenResolver.resolve(a11.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__VALUE), result);
+							tokenResolver.resolve(a12.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE__VALUE), result);
 							Object resolvedObject = result.getResolvedToken();
 							if (resolvedObject == null) {
-								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a11).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a11).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a11).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a11).getStopIndex());
+								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a12).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a12).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a12).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a12).getStopIndex());
 							}
 							java.lang.String resolved = (java.lang.String) resolvedObject;
 							if (resolved != null) {
@@ -1565,45 +1515,45 @@ parse_org_js_model_feature_Attribute returns [org.js.model.feature.Attribute ele
 								completedElement(value, false);
 							}
 							collectHiddenTokens(element);
-							retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_6_0_0_3_0_0_0, resolved, true);
-							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a11, element);
+							retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_3_0_0_7_0_0_3_0_0_0, resolved, true);
+							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a12, element);
 						}
 					}
 				)
 				{
 					// expected elements (follow set)
-					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[113]);
-					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[114]);
+					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[111]);
+					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[112]);
+					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[113]);
+					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[114]);
 					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[115]);
-					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[116]);
-					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[117]);
-					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[118]);
-					addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[119]);
+					addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[116]);
+					addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[117]);
 				}
 				
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[120]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[121]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[118]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[119]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[120]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[121]);
 				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[122]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[123]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[124]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[125]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[126]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[123]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[124]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[127]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[128]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[125]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeature(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[126]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[127]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[128]);
 		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[129]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[130]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[131]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[132]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[133]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getGroup(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[130]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[131]);
 	}
 	
 ;
@@ -1623,7 +1573,7 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[134]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[132]);
 	}
 	
 	a1 = '<' {
@@ -1637,7 +1587,7 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[135]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[133]);
 	}
 	
 	(
@@ -1673,7 +1623,7 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[136]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[134]);
 	}
 	
 	a3 = '>' {
@@ -1687,7 +1637,7 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[137]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[135]);
 	}
 	
 	a4 = '[' {
@@ -1701,7 +1651,7 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getNumericalDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[138]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getNumericalDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[136]);
 	}
 	
 	(
@@ -1727,8 +1677,8 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[139]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[140]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[137]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[138]);
 	}
 	
 	(
@@ -1744,7 +1694,7 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getNumericalDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[141]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getNumericalDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[139]);
 			}
 			
 			(
@@ -1770,16 +1720,16 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[142]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[143]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[140]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[141]);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[144]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[145]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[142]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[143]);
 	}
 	
 	a8 = ']' {
@@ -1793,9 +1743,9 @@ parse_org_js_model_feature_NumericalDomain returns [org.js.model.feature.Numeric
 	}
 	{
 		// expected elements (follow set)
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[144]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[145]);
 		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[146]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[147]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[148]);
 	}
 	
 ;
@@ -1805,7 +1755,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 }
 :
 	(
-		a0 = TEXT		
+		a0 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1815,7 +1765,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 				startIncompleteElement(element);
 			}
 			if (a0 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.INTERVAL__LOWER_BOUND), result);
@@ -1837,7 +1787,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[149]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[147]);
 	}
 	
 	a1 = '..' {
@@ -1851,11 +1801,11 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[150]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[148]);
 	}
 	
 	(
-		a2 = TEXT		
+		a2 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1865,7 +1815,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.INTERVAL__UPPER_BOUND), result);
@@ -1887,8 +1837,8 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[151]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[152]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[149]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[150]);
 	}
 	
 ;
@@ -1908,7 +1858,7 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[153]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[151]);
 	}
 	
 	a1 = '<' {
@@ -1922,7 +1872,7 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[154]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[152]);
 	}
 	
 	(
@@ -1958,7 +1908,7 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[155]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[153]);
 	}
 	
 	a3 = '>' {
@@ -1972,7 +1922,7 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[156]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[154]);
 	}
 	
 	a4 = '[' {
@@ -1986,8 +1936,8 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[157]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[158]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[155]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[156]);
 	}
 	
 	(
@@ -2013,8 +1963,8 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[159]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[160]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[157]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[158]);
 	}
 	
 	(
@@ -2030,8 +1980,8 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[161]);
-				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[162]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[159]);
+				addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getDiscreteDomain(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[160]);
 			}
 			
 			(
@@ -2057,16 +2007,16 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[163]);
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[164]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[161]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[162]);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[165]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[166]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[163]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[164]);
 	}
 	
 	a8 = ']' {
@@ -2080,9 +2030,9 @@ parse_org_js_model_feature_DiscreteDomain returns [org.js.model.feature.Discrete
 	}
 	{
 		// expected elements (follow set)
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[165]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[166]);
 		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[167]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[168]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[169]);
 	}
 	
 ;
@@ -2126,7 +2076,7 @@ parse_org_js_model_feature_DomainValue returns [org.js.model.feature.DomainValue
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[170]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[168]);
 			}
 			
 			a1 = '=' {
@@ -2140,18 +2090,18 @@ parse_org_js_model_feature_DomainValue returns [org.js.model.feature.DomainValue
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[171]);
+				addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[169]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[172]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[170]);
 	}
 	
 	(
-		a2 = TEXT		
+		a2 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2161,7 +2111,7 @@ parse_org_js_model_feature_DomainValue returns [org.js.model.feature.DomainValue
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.DOMAIN_VALUE__INT), result);
@@ -2183,8 +2133,8 @@ parse_org_js_model_feature_DomainValue returns [org.js.model.feature.DomainValue
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[173]);
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[174]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[171]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[172]);
 	}
 	
 ;
@@ -2204,25 +2154,11 @@ parse_org_js_model_feature_Imply returns [org.js.model.feature.Imply element = n
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[175]);
-	}
-	
-	a1 = '<' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createImply();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[176]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[173]);
 	}
 	
 	(
-		a2 = TEXT		
+		a1 = TEXT		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2231,64 +2167,14 @@ parse_org_js_model_feature_Imply returns [org.js.model.feature.Imply element = n
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createImply();
 				startIncompleteElement(element);
 			}
-			if (a2 != null) {
+			if (a1 != null) {
 				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.IMPLY__ID), result);
+				tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.IMPLY__LEFT_OPERAND), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
-				}
-				java.lang.String resolved = (java.lang.String) resolvedObject;
-				if (resolved != null) {
-					Object value = resolved;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.IMPLY__ID), value);
-					completedElement(value, false);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_3, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[177]);
-	}
-	
-	a3 = '>' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createImply();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[178]);
-	}
-	
-	(
-		a4 = TEXT		
-		{
-			if (terminateParsing) {
-				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
-			}
-			if (element == null) {
-				element = org.js.model.feature.FeatureFactory.eINSTANCE.createImply();
-				startIncompleteElement(element);
-			}
-			if (a4 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
-				tokenResolver.setOptions(getOptions());
-				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a4.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.IMPLY__LEFT_OPERAND), result);
-				Object resolvedObject = result.getResolvedToken();
-				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a4).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
@@ -2300,33 +2186,33 @@ parse_org_js_model_feature_Imply returns [org.js.model.feature.Imply element = n
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_6, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, proxy);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_2, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, proxy);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[179]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[174]);
 	}
 	
-	a5 = '->' {
+	a2 = '->' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createImply();
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_8, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_4, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[180]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[175]);
 	}
 	
 	(
-		a6 = TEXT		
+		a3 = TEXT		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2335,14 +2221,14 @@ parse_org_js_model_feature_Imply returns [org.js.model.feature.Imply element = n
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createImply();
 				startIncompleteElement(element);
 			}
-			if (a6 != null) {
+			if (a3 != null) {
 				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a6.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.IMPLY__RIGHT_OPERAND), result);
+				tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.IMPLY__RIGHT_OPERAND), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a6).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
@@ -2354,17 +2240,17 @@ parse_org_js_model_feature_Imply returns [org.js.model.feature.Imply element = n
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_10, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, proxy);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_8_0_0_6, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[181]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[182]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[183]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[176]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[177]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[178]);
 	}
 	
 ;
@@ -2384,25 +2270,11 @@ parse_org_js_model_feature_Exclude returns [org.js.model.feature.Exclude element
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[184]);
-	}
-	
-	a1 = '<' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createExclude();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[185]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[179]);
 	}
 	
 	(
-		a2 = TEXT		
+		a1 = TEXT		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2411,64 +2283,14 @@ parse_org_js_model_feature_Exclude returns [org.js.model.feature.Exclude element
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createExclude();
 				startIncompleteElement(element);
 			}
-			if (a2 != null) {
+			if (a1 != null) {
 				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.EXCLUDE__ID), result);
+				tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.EXCLUDE__LEFT_OPERAND), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
-				}
-				java.lang.String resolved = (java.lang.String) resolvedObject;
-				if (resolved != null) {
-					Object value = resolved;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.EXCLUDE__ID), value);
-					completedElement(value, false);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_3, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[186]);
-	}
-	
-	a3 = '>' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createExclude();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[187]);
-	}
-	
-	(
-		a4 = TEXT		
-		{
-			if (terminateParsing) {
-				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
-			}
-			if (element == null) {
-				element = org.js.model.feature.FeatureFactory.eINSTANCE.createExclude();
-				startIncompleteElement(element);
-			}
-			if (a4 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
-				tokenResolver.setOptions(getOptions());
-				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a4.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.EXCLUDE__LEFT_OPERAND), result);
-				Object resolvedObject = result.getResolvedToken();
-				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a4).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
@@ -2480,33 +2302,33 @@ parse_org_js_model_feature_Exclude returns [org.js.model.feature.Exclude element
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_6, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, proxy);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_2, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, proxy);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[188]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[180]);
 	}
 	
-	a5 = '<->' {
+	a2 = '<->' {
 		if (element == null) {
 			element = org.js.model.feature.FeatureFactory.eINSTANCE.createExclude();
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_8, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_4, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[189]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[181]);
 	}
 	
 	(
-		a6 = TEXT		
+		a3 = TEXT		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2515,14 +2337,14 @@ parse_org_js_model_feature_Exclude returns [org.js.model.feature.Exclude element
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createExclude();
 				startIncompleteElement(element);
 			}
-			if (a6 != null) {
+			if (a3 != null) {
 				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a6.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.EXCLUDE__RIGHT_OPERAND), result);
+				tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.EXCLUDE__RIGHT_OPERAND), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a6).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
@@ -2534,17 +2356,17 @@ parse_org_js_model_feature_Exclude returns [org.js.model.feature.Exclude element
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_10, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, proxy);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_9_0_0_6, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[190]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[191]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[192]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[182]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[183]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[184]);
 	}
 	
 ;
@@ -2564,26 +2386,13 @@ parse_org_js_model_feature_AttributeConstraint returns [org.js.model.feature.Att
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[193]);
-	}
-	
-	a1 = '<' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[194]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[185]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[186]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[187]);
 	}
 	
 	(
-		a2 = TEXT		
-		{
+		a1_0 = parse_org_js_model_feature_AttributeOperand		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
 			}
@@ -2591,149 +2400,98 @@ parse_org_js_model_feature_AttributeConstraint returns [org.js.model.feature.Att
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 				startIncompleteElement(element);
 			}
-			if (a2 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
-				tokenResolver.setOptions(getOptions());
-				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
-				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__ID), result);
-				Object resolvedObject = result.getResolvedToken();
-				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
-				}
-				java.lang.String resolved = (java.lang.String) resolvedObject;
-				if (resolved != null) {
-					Object value = resolved;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__ID), value);
-					completedElement(value, false);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_3, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[195]);
-	}
-	
-	a3 = '>' {
-		if (element == null) {
-			element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[196]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[197]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[198]);
-	}
-	
-	(
-		a4_0 = parse_org_js_model_feature_AttributeOperand		{
-			if (terminateParsing) {
-				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
-			}
-			if (element == null) {
-				element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
-				startIncompleteElement(element);
-			}
-			if (a4_0 != null) {
-				if (a4_0 != null) {
-					Object value = a4_0;
+			if (a1_0 != null) {
+				if (a1_0 != null) {
+					Object value = a1_0;
 					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_6, a4_0, true);
-				copyLocalizationInfos(a4_0, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_2, a1_0, true);
+				copyLocalizationInfos(a1_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[199]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[188]);
 	}
 	
 	(
 		(
-			a5 = '==' {
+			a2 = '==' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_8, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.js.model.feature.FeaturePackage.eINSTANCE.getRelop().getEEnumLiteral(org.js.model.feature.Relop.EQUAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR), value);
 				completedElement(value, false);
 			}
-			|			a6 = '!=' {
+			|			a3 = '!=' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_8, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.js.model.feature.FeaturePackage.eINSTANCE.getRelop().getEEnumLiteral(org.js.model.feature.Relop.UNEQUAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR), value);
 				completedElement(value, false);
 			}
-			|			a7 = '>' {
+			|			a4 = '>' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_8, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.js.model.feature.FeaturePackage.eINSTANCE.getRelop().getEEnumLiteral(org.js.model.feature.Relop.GREATER_THAN_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR), value);
 				completedElement(value, false);
 			}
-			|			a8 = '>=' {
+			|			a5 = '>=' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_8, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
 				// set value of enumeration attribute
 				Object value = org.js.model.feature.FeaturePackage.eINSTANCE.getRelop().getEEnumLiteral(org.js.model.feature.Relop.GREATER_THAN_OR_EQUAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR), value);
 				completedElement(value, false);
 			}
-			|			a9 = '<' {
+			|			a6 = '<' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_8, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a9, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
 				// set value of enumeration attribute
 				Object value = org.js.model.feature.FeaturePackage.eINSTANCE.getRelop().getEEnumLiteral(org.js.model.feature.Relop.LESS_THAN_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR), value);
 				completedElement(value, false);
 			}
-			|			a10 = '<=' {
+			|			a7 = '<=' {
 				if (element == null) {
 					element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_8, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a10, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_4, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
 				// set value of enumeration attribute
 				Object value = org.js.model.feature.FeaturePackage.eINSTANCE.getRelop().getEEnumLiteral(org.js.model.feature.Relop.LESS_THAN_OR_EQUAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR), value);
@@ -2743,13 +2501,13 @@ parse_org_js_model_feature_AttributeConstraint returns [org.js.model.feature.Att
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[200]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[201]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[202]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[189]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[190]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getAttributeConstraint(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[191]);
 	}
 	
 	(
-		a13_0 = parse_org_js_model_feature_AttributeOperand		{
+		a10_0 = parse_org_js_model_feature_AttributeOperand		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
 			}
@@ -2757,23 +2515,23 @@ parse_org_js_model_feature_AttributeConstraint returns [org.js.model.feature.Att
 				element = org.js.model.feature.FeatureFactory.eINSTANCE.createAttributeConstraint();
 				startIncompleteElement(element);
 			}
-			if (a13_0 != null) {
-				if (a13_0 != null) {
-					Object value = a13_0;
+			if (a10_0 != null) {
+				if (a10_0 != null) {
+					Object value = a10_0;
 					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_10, a13_0, true);
-				copyLocalizationInfos(a13_0, element);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_10_0_0_6, a10_0, true);
+				copyLocalizationInfos(a10_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[203]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[204]);
-		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[205]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[192]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[193]);
+		addExpectedElement(org.js.model.feature.FeaturePackage.eINSTANCE.getFeatureModel(), org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[194]);
 	}
 	
 ;
@@ -2819,7 +2577,7 @@ parse_org_js_model_feature_AttributeReference returns [org.js.model.feature.Attr
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[206]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[195]);
 	}
 	
 	a1 = '.' {
@@ -2828,12 +2586,12 @@ parse_org_js_model_feature_AttributeReference returns [org.js.model.feature.Attr
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[207]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[196]);
 	}
 	
 	(
@@ -2865,7 +2623,7 @@ parse_org_js_model_feature_AttributeReference returns [org.js.model.feature.Attr
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_2, proxy, true);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_4, proxy, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, proxy);
 			}
@@ -2873,7 +2631,7 @@ parse_org_js_model_feature_AttributeReference returns [org.js.model.feature.Attr
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[208]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[197]);
 	}
 	
 ;
@@ -2916,12 +2674,12 @@ parse_org_js_model_feature_AttributeValue returns [org.js.model.feature.Attribut
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[209]);
+			addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[198]);
 		}
 		
 		
 		|		(
-			a1 = TEXT			
+			a1 = INTEGER			
 			{
 				if (terminateParsing) {
 					throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2931,7 +2689,7 @@ parse_org_js_model_feature_AttributeValue returns [org.js.model.feature.Attribut
 					startIncompleteElement(element);
 				}
 				if (a1 != null) {
-					org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+					org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 					tokenResolver.setOptions(getOptions());
 					org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_VALUE__INT), result);
@@ -2953,13 +2711,13 @@ parse_org_js_model_feature_AttributeValue returns [org.js.model.feature.Attribut
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[210]);
+			addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[199]);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[211]);
+		addExpectedElement(null, org.js.model.feature.resource.eft.mopp.EftExpectationConstants.EXPECTATIONS[200]);
 	}
 	
 ;
@@ -2986,6 +2744,9 @@ parse_org_js_model_feature_AttributeOperand returns [org.js.model.feature.Attrib
 	
 ;
 
+INTEGER:
+	(('0'..'9')+ )
+;
 COMMENT:
 	('//'(~('\n'|'\r'|'\uffff'))* )
 	{ _channel = 99; }

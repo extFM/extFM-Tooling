@@ -24,29 +24,29 @@ import org.js.model.feature.FeatureModel;
  */
 public interface EFMContainer extends AspectInstance {
 	/**
-	 * Returns the value of the '<em><b>Efmref</b></em>' reference.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Efmref</b></em>' reference.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Efmref</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Efmref</em>' reference.
-	 * @see #setEfmref(FeatureModel)
-	 * @see org.js.model.workflow.WorkflowPackage#getEFMContainer_Efmref()
-	 * @model
-	 * @generated
-	 */
+    * @return the value of the '<em>Efmref</em>' reference.
+    * @see #setEfmref(FeatureModel)
+    * @see org.js.model.workflow.WorkflowPackage#getEFMContainer_Efmref()
+    * @model
+    * @generated
+    */
 	FeatureModel getEfmref();
 
 	/**
-	 * Sets the value of the '{@link org.js.model.workflow.EFMContainer#getEfmref <em>Efmref</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * Sets the value of the '{@link org.js.model.workflow.EFMContainer#getEfmref <em>Efmref</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Efmref</em>' reference.
-	 * @see #getEfmref()
-	 * @generated
-	 */
+    * @param value the new value of the '<em>Efmref</em>' reference.
+    * @see #getEfmref()
+    * @generated
+    */
 	void setEfmref(FeatureModel value);
 
 } // EFMContainer

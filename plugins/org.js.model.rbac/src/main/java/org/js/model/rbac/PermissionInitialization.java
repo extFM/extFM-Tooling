@@ -39,9 +39,9 @@ public class PermissionInitialization {
    }
 
    private void addSelectRootFeaturePermission(Feature root) {
-      SelectFeature rootPermission = rbacService.getSelectFeaturePermission(root, allModelPermissions);
+      FeatureOperation rootPermission = rbacService.getSelectFeaturePermission(root, allModelPermissions);
       if (rootPermission == null) {
-         SelectFeature selectFeature = RbacHelper.createSelectFeature(root);
+         FeatureOperation selectFeature = RbacHelper.createSelectFeature(root);
          EList<Permission> permissions = model.getPermissions();
          permissions.add(selectFeature);
       }
@@ -58,7 +58,7 @@ public class PermissionInitialization {
    }
 
    private void createAttributePermissions(Attribute attribute) {
-      SetAttribute permission = rbacService.getSetAttributePermission(attribute, allModelPermissions);
+      AttributeOperation permission = rbacService.getSetAttributePermission(attribute, allModelPermissions);
       if (permission == null) {
          Feature feature = attribute.getFeature();
          permission = RbacHelper.createSetAttribute(feature, attribute);
@@ -69,47 +69,47 @@ public class PermissionInitialization {
       createDomainPermissions(permission, domain);
    }
 
-   private void createDomainPermissions(SetAttribute setAttribute, Domain domain) {
-      EList<AttributeDecision> domainValueOperations = setAttribute.getAttributeDecisions();
+   private void createDomainPermissions(AttributeOperation setAttribute, Domain domain) {
+      EList<DomainValueOperation> domainValueOperations = setAttribute.getValueOperations();
       if (domain instanceof DiscreteDomain) {
          DiscreteDomain discreteDomain = (DiscreteDomain) domain;
-         List<AttributeDecision> discreteDomainPermissions = createDiscreteDomainPermissions(discreteDomain);
+         List<DomainValueOperation> discreteDomainPermissions = createDiscreteDomainPermissions(discreteDomain);
          domainValueOperations.addAll(discreteDomainPermissions);
       }
    }
 
-   private List<AttributeDecision> createDiscreteDomainPermissions(DiscreteDomain domain) {
+   private List<DomainValueOperation> createDiscreteDomainPermissions(DiscreteDomain domain) {
       EList<DomainValue> domainValues = domain.getValues();
-      List<AttributeDecision> operations = new ArrayList<AttributeDecision>(domainValues.size() * 2);
+      List<DomainValueOperation> operations = new ArrayList<DomainValueOperation>(domainValues.size() * 2);
       for (DomainValue value : domainValues) {
-         SelectDomainValue selectDomainValue = createSelectDomainValueOperation(value);
+         DomainValueOperation selectDomainValue = createSelectDomainValueOperation(value);
          operations.add(selectDomainValue);
-         DeselectDomainValue deselectDomainValue = createDeselectDomainValueOperation(value);
+         DomainValueOperation deselectDomainValue = createDeselectDomainValueOperation(value);
          operations.add(deselectDomainValue);
       }
       return operations;
    }
 
-   private DeselectDomainValue createDeselectDomainValueOperation(DomainValue value) {
-      DeselectDomainValue deselectDomainValue = RbacHelper.createDeselectDomainValue(value);
+   private DomainValueOperation createDeselectDomainValueOperation(DomainValue value) {
+      DomainValueOperation deselectDomainValue = RbacHelper.createDeselectDomainValue(value);
       return deselectDomainValue;
    }
 
-   private SelectDomainValue createSelectDomainValueOperation(DomainValue value) {
-      SelectDomainValue selectDomainValue = RbacHelper.createSelectDomainValue(value);
+   private DomainValueOperation createSelectDomainValueOperation(DomainValue value) {
+      DomainValueOperation selectDomainValue = RbacHelper.createSelectDomainValue(value);
       return selectDomainValue;
    }
 
    private void createFeaturePermissions(Feature feature) {
-      SelectFeature permission = rbacService.getSelectFeaturePermission(feature, allModelPermissions);
+      FeatureOperation permission = rbacService.getSelectFeaturePermission(feature, allModelPermissions);
       EList<Permission> permissions = model.getPermissions();
       if (permission == null) {
-         SelectFeature selectFeature = RbacHelper.createSelectFeature(feature);
+         FeatureOperation selectFeature = RbacHelper.createSelectFeature(feature);
          permissions.add(selectFeature);
       }
-      DeselectFeature deselectPermission = rbacService.getDeselectFeaturePermission(feature, allModelPermissions);
+      FeatureOperation deselectPermission = rbacService.getDeselectFeaturePermission(feature, allModelPermissions);
       if (deselectPermission == null) {
-         DeselectFeature deselectFeature = RbacHelper.createDeselectFeature(feature);
+         FeatureOperation deselectFeature = RbacHelper.createDeselectFeature(feature);
          permissions.add(deselectFeature);
       }
    }

@@ -25,19 +25,19 @@ import org.js.model.rbac.Role;
  */
 public interface StakeholderTypes extends AspectInstance {
 	/**
-	 * Returns the value of the '<em><b>Stakeholder Types</b></em>' reference list.
-	 * The list contents are of type {@link org.js.model.rbac.Role}.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Stakeholder Types</b></em>' reference list.
+    * The list contents are of type {@link org.js.model.rbac.Role}.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stakeholder Types</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stakeholder Types</em>' reference list.
-	 * @see org.js.model.workflow.WorkflowPackage#getStakeholderTypes_StakeholderTypes()
-	 * @model
-	 * @generated
-	 */
+    * @return the value of the '<em>Stakeholder Types</em>' reference list.
+    * @see org.js.model.workflow.WorkflowPackage#getStakeholderTypes_StakeholderTypes()
+    * @model
+    * @generated
+    */
 	EList<Role> getStakeholderTypes();
 
 } // StakeholderTypes

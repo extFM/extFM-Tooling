@@ -9,6 +9,15 @@
   <foreignModel>rbac.ecore</foreignModel>
   <genPackages prefix="Rbac" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="rbac.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbac.ecore#//ConfigurationType">
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ConfigurationType/select"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ConfigurationType/deselect"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbac.ecore#//ModificationType">
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ModificationType/hide"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ModificationType/view"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ModificationType/modify"/>
+    </genEnums>
     <genClasses ecoreClass="rbac.ecore#//AccessControlModel">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/featureModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/roles"/>
@@ -17,15 +26,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/groups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/permissions"/>
     </genClasses>
-    <genClasses ecoreClass="rbac.ecore#//VisibilityPermission">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//VisibilityPermission/resourceId"/>
-    </genClasses>
-    <genClasses ecoreClass="rbac.ecore#//ViewElement"/>
-    <genClasses ecoreClass="rbac.ecore#//ModifyElement"/>
     <genClasses image="false" ecoreClass="rbac.ecore#//Permission"/>
     <genClasses ecoreClass="rbac.ecore#//Group">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Group/represents"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Group/contains"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Group/owner"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Group/members"/>
     </genClasses>
     <genClasses ecoreClass="rbac.ecore#//Subject">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Subject/roles"/>
@@ -41,22 +45,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Nameable/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Nameable/id"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="rbac.ecore#//FeatureDecision">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//FeatureDecision/feature"/>
+    <genClasses ecoreClass="rbac.ecore#//FeatureOperation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//FeatureOperation/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//FeatureOperation/type"/>
     </genClasses>
-    <genClasses ecoreClass="rbac.ecore#//SelectFeature"/>
-    <genClasses ecoreClass="rbac.ecore#//DeselectFeature"/>
-    <genClasses ecoreClass="rbac.ecore#//SetAttribute">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//SetAttribute/attribute"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//SetAttribute/feature"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//SetAttribute/attributeDecisions"/>
+    <genClasses ecoreClass="rbac.ecore#//AttributeOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeOperation/valueOperations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeOperation/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeOperation/feature"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="rbac.ecore#//AttributeDecision">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//AttributeDecision/value"/>
+    <genClasses ecoreClass="rbac.ecore#//DomainValueOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//DomainValueOperation/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//DomainValueOperation/type"/>
     </genClasses>
-    <genClasses ecoreClass="rbac.ecore#//SelectDomainValue"/>
-    <genClasses ecoreClass="rbac.ecore#//DeselectDomainValue"/>
     <genClasses image="false" ecoreClass="rbac.ecore#//Task"/>
-    <genClasses image="false" ecoreClass="rbac.ecore#//ConfigurationDecision"/>
+    <genClasses image="false" ecoreClass="rbac.ecore#//ConfigurationOperation"/>
+    <genClasses ecoreClass="rbac.ecore#//VisibilityRestriction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//VisibilityRestriction/resourceId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//VisibilityRestriction/visibility"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

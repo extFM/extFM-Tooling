@@ -24,29 +24,29 @@ import org.js.graph.transformation.GraphTransformation;
  */
 public interface GraphTransConnector extends AspectInstance {
 	/**
-	 * Returns the value of the '<em><b>Graph Transref</b></em>' reference.
-	 * <!-- begin-user-doc -->
+    * Returns the value of the '<em><b>Graph Transref</b></em>' reference.
+    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Graph Transref</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graph Transref</em>' reference.
-	 * @see #setGraphTransref(GraphTransformation)
-	 * @see org.js.model.workflow.WorkflowPackage#getGraphTransConnector_GraphTransref()
-	 * @model
-	 * @generated
-	 */
+    * @return the value of the '<em>Graph Transref</em>' reference.
+    * @see #setGraphTransref(GraphTransformation)
+    * @see org.js.model.workflow.WorkflowPackage#getGraphTransConnector_GraphTransref()
+    * @model
+    * @generated
+    */
 	GraphTransformation getGraphTransref();
 
 	/**
-	 * Sets the value of the '{@link org.js.model.workflow.GraphTransConnector#getGraphTransref <em>Graph Transref</em>}' reference.
-	 * <!-- begin-user-doc -->
+    * Sets the value of the '{@link org.js.model.workflow.GraphTransConnector#getGraphTransref <em>Graph Transref</em>}' reference.
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph Transref</em>' reference.
-	 * @see #getGraphTransref()
-	 * @generated
-	 */
+    * @param value the new value of the '<em>Graph Transref</em>' reference.
+    * @see #getGraphTransref()
+    * @generated
+    */
 	void setGraphTransref(GraphTransformation value);
 
 } // GraphTransConnector

@@ -300,27 +300,27 @@ public class ChangePrimitive {
 		AccessControlModel acm = (AccessControlModel) acmconnector.getAcmref();
 		Group group = null;
 		for (Group tempGroup : acm.getGroups()) {
-			if (tempGroup.getRepresents().getId().equals( groupLeader.getId())) {
+			if (tempGroup.getOwner().getId().equals( groupLeader.getId())) {
 				group = tempGroup;
 				break;
 			}
 		}
 		if (group == null) {
 			group = RbacFactoryImpl.eINSTANCE.createGroup();
-			group.setRepresents(groupLeader);
+			group.setOwner(groupLeader);
 			group.setId(groupLeader.getId());
 			group.setName(groupLeader.getName());
 			acm.getGroups().add(group);
 		}
 		boolean containsMember = false;
-		for(org.js.model.rbac.Role member :group.getContains()){
+		for(org.js.model.rbac.Role member :group.getMembers()){
 			if(member.getId().equals(groupMember.getId())){
 				containsMember=true;
 				break;
 			}
 		}
 		if(!containsMember){
-			group.getContains().add(groupMember);
+			group.getMembers().add(groupMember);
 		}
 		try {
 			acm.eResource().save(null);

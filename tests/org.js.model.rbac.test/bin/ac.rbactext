@@ -10,20 +10,20 @@ permissions {
     deselect f4,
     select f9,
     deselect f9,
-    set f9.f9a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    set f9.f9a1 { select v1, deselect v1, select v2, deselect v2, select v3, deselect v3, select v4, deselect v4},
     select f5,
     deselect f5,
-    set f5.f5a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    set f5.f5a1 { select v1, deselect v1, select v2, deselect v2, select v3, deselect v3, select v4, deselect v4},
+    set f5.a1 { select v1, deselect v1, select v2, deselect v2, select v3, deselect v3, select v4, deselect v4},
     set f5.a2,
     select f6,
     deselect f6,
-    set f6.a1 { +v1, -v1, +v2, -v2, +v3, -v3, +v4, -v4},
+    set f6.a1 { select v1, deselect v1, select v2, deselect v2, select v3, deselect v3, select v4, deselect v4},
     select f7,
     deselect f7,
     select f8,
-    deselect f8}
-
-
+    deselect f8
+}
 
 
 
