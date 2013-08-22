@@ -1,6 +1,10 @@
 package org.js.model.feature.quality.assurance;
 
+import java.util.*;
+
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.js.model.feature.*;
+import org.js.model.feature.csp.*;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -49,11 +53,31 @@ public class QAPlugin extends AbstractUIPlugin {
 	
 	//****************************************************************************************
 	
+	/*
+	 * Start the algorithm here
+	 */
+	private void startAlgorithm() {
+		retrieveInput();
+	}
+	
 	/* 1. Retrieve Input:
 	 * - one folder full of concrete configurations of one and the same feature model
 	 * - (the corresponding feature model) -> which can be extracted from the configurations
 	 * - the feature under test (feature ID?)
 	 * */
+	
+	private ArrayList<FeatureModel> configs = new ArrayList<FeatureModel>();
+	private Feature testfeature;
+	
+	private void retrieveInput() {
+		
+		// take the folder and store every model into the configs list
+		
+		// ask for feature under test
+		
+		// store feature under test into testfeature
+		
+	}
 	
 	/* 2. Get through the algorithm:
 	 * - identify all constantly deselected features throughout all configurations
@@ -69,5 +93,44 @@ public class QAPlugin extends AbstractUIPlugin {
 	
 	/* 3. Push all the information to the console
 	 */
+	
+	private void getThroughAlgo() {
+		if(configs.isEmpty()) {
+			// no configurations set
+			// TODO: throw exception
+			return;
+		}
+		
+		if(testfeature == null) {
+			// no feature set
+			// TODO: throw exception
+			return;
+		}
+		
+		/*
+		 * 1. identify all constantly deselected features throughout all configurations
+		 */
+		
+		Set<Feature> featureset = new HashSet<Feature>();
+		FeatureModel model = configs.get(0);
+		
+		// get all features from model into featureset (use FeatureModelHelper) 
+		
+		for (FeatureModel c : configs) {
+			// get all selected and unbound features from c
+			
+			// subtract all these features from featureset
+		}
+		
+		// output: featureset -> all deselected features
+		
+		/*
+		 * 2. identify all configurations containing the feature under test
+		 */
+		
+		/*
+		 * 3. grab information of the feature under test
+		 */
+	}
 
 }
