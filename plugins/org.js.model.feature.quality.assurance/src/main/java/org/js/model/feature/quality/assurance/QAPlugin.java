@@ -46,5 +46,28 @@ public class QAPlugin extends AbstractUIPlugin {
 	public static QAPlugin getDefault() {
 		return plugin;
 	}
+	
+	//****************************************************************************************
+	
+	/* 1. Retrieve Input:
+	 * - one folder full of concrete configurations of one and the same feature model
+	 * - (the corresponding feature model) -> which can be extracted from the configurations
+	 * - the feature under test (feature ID?)
+	 * */
+	
+	/* 2. Get through the algorithm:
+	 * - identify all constantly deselected features throughout all configurations
+	 * - identify all configurations containing the feature under test
+	 * - grab information of the feature under test
+	 * 		* get name, ID and attributes
+	 * 		* is that feature mandatory? (contained in a group which min-cardinality
+	 * 		  equals the number of child-features)
+	 * 		* are there any cross-tree-constraints referring this feature?
+	 * 		* are there any implicating cross-tree-constraints which referencing
+	 * 		  a child-feature of this feature in its consequence part? 
+	 */
+	
+	/* 3. Push all the information to the console
+	 */
 
 }
