@@ -14,3 +14,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: lib/choco-solver-2.1.5-with-sources.jar,
  lib/log4j-1.2.15.jar,
  .
+Export-Package: org.js.model.feature.csp

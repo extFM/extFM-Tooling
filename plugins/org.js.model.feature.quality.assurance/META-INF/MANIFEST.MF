@@ -10,3 +10,5 @@ Require-Bundle: org.eclipse.ui,
  org.js.model.feature.csp;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ lib/log4j-1.2.15.jar
