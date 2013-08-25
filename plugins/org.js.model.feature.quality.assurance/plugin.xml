@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.js.model.feature.quality.assurance.contributionQA"
+            objectClass="org.eclipse.core.resources.IFolder">
+         <menu
+               id="org.js.model.feature.quality.assurance.menuQA"
+               label="Quality Assurance"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="org.js.model.feature.quality.assurance.popup.actions.ShowDeselectedFeaturesAction"
+               enablesFor="1"
+               id="org.js.model.feature.quality.assurance.actionShowDeselectedFeatures"
+               label="Show Deselected Features"
+               menubarPath="org.js.model.feature.quality.assurance.menuQA/group1">
+         </action>
+         <action
+               class="org.js.model.feature.quality.assurance.popup.actions.ShowModelsContainingAFeatureAction"
+               enablesFor="1"
+               id="org.js.model.feature.quality.assurance.actionShowModelsContainingAFeature"
+               label="Show Configurations Containing a Feature"
+               menubarPath="org.js.model.feature.quality.assurance.menuQA/group1">
+         </action>
+         <action
+               class="org.js.model.feature.quality.assurance.popup.actions.ShowFeatureDependenciesAction"
+               enablesFor="1"
+               id="org.js.model.feature.quality.assurance.actionShowFeatureDependencies"
+               label="Show Feature Dependencies"
+               menubarPath="org.js.model.feature.quality.assurance.menuQA/group1">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
