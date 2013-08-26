@@ -2,6 +2,7 @@ package org.js.model.feature.quality.assurance.popup.actions;
 
 import java.util.*;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.*;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -47,31 +48,29 @@ public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 			return;
 		}
 		
+		// get files
 		List<IFile> files = QAPluginHelper.getFilesFromFolderSelection(currentSelection);
 		
+		// run algorithm
 		QAShowDeselectedFeatures analyzer = new QAShowDeselectedFeatures(files);
 		Set<Feature> results = analyzer.getAllDeselectedFeatures();
 		
-		String sResults = new String();
-		boolean firstElementSwitch = true;
+		// generate output
+		Logger log = Logger.getLogger(ShowDeselectedFeaturesAction.class);
+		log.info("===================================================================");
+		log.info("Quality Assurance - Plugin - ShowDeselectedFeaturesAction");
+		log.info("===================================================================");
+		log.info("Number of constantly deselected features found: " + results.size());
+		log.info("The following fetures are deselected throughout all configurations:");
 		for (Feature feature : results) {
-			
-			if(!firstElementSwitch) {
-				sResults += ", ";
-			} else {
-				firstElementSwitch = false;
-			}
-			
-			sResults += feature.getName() + " (" + feature.getId() + ")";
+			log.info("  * " + feature.getName() + " (" + feature.getId() + ")");
 		}
+		log.info("===================================================================");
 		
 		MessageDialog.openInformation(shell, 
 				"Quality Assurance", 
-				"There are " + results.size() + " Features that are deselected in all configurations.");
-		
-		/*MessageDialog.openInformation(shell, 
-				"Quality Assurance", 
-				"The following features are constantly deselected: " + sResults);*/
+				"There are " + results.size() + " Features that are deselected in all configurations. " +
+				"For further information, please have a look at the logger output.");
 	}
 
 	/**
