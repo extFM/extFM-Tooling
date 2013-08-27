@@ -17,6 +17,7 @@ import org.js.model.feature.quality.assurance.QAPluginHelper;
 public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 
 	private Shell shell;
+	private Logger log = Logger.getLogger(ShowDeselectedFeaturesAction.class);
 	private ISelection currentSelection; 
 	
 	/**
@@ -50,13 +51,17 @@ public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 		
 		// get files
 		List<IFile> files = QAPluginHelper.getFilesFromFolderSelection(currentSelection);
+		if(files == null) {
+			MessageDialog.openError(shell, "Quality Assurance", "An error occured during selection retrieval.");
+			log.debug("An error occured during selection retrieval.");
+			return;
+		}
 		
 		// run algorithm
 		QAShowDeselectedFeatures analyzer = new QAShowDeselectedFeatures(files);
 		Set<Feature> results = analyzer.getAllDeselectedFeatures();
 		
 		// generate output
-		Logger log = Logger.getLogger(ShowDeselectedFeaturesAction.class);
 		log.info("===================================================================");
 		log.info("Quality Assurance - Plugin - ShowDeselectedFeaturesAction");
 		log.info("===================================================================");

@@ -27,9 +27,9 @@ public class QAShowDeselectedFeatures {
 	}
 	
 	/**
-	 * Identify all constatly deselected features in all configurations under test<br />
+	 * Identify all constantly deselected features in all configurations under test<br />
 	 * Ensure that all configurations are based on the same feature model!
-	 * @return
+	 * @return A set of all features constantly deselected 
 	 */
 	public Set<Feature> getAllDeselectedFeatures() {
 		// create a list with all features of the model
