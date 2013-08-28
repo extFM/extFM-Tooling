@@ -80,4 +80,24 @@ public class QAShowFeatureDependencies {
 		
 		return isMandatory;
 	}
+
+	private Set<Feature> getSuborderedFeatures() {
+		return null;
+	}
+	
+	private Set<FeatureConstraint> getFeatureConstraintsAffectingTheFeature() {
+		return null;
+	}
+	
+	private Set<FeatureConstraint> getFeatureConstraintsAffectingAFeature(Feature feature) {
+		return null;
+	}
+	
+	private Set<FeatureConstraint> getFeatureConstraintsAffectingFeatureInRightOperand(Feature feature) {
+		return null;
+	}
+	
+	private Set<FeatureConstraint> getFeatureConstraintsAffectingFeatureInLeftOperand(Feature feature) {
+		return null;
+	}
 }
