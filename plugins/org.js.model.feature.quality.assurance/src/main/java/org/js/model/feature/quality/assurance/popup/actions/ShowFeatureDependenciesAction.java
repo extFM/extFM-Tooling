@@ -101,7 +101,12 @@ public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 		
 		// run algorithm
 		//TODO: extend this part and remove old code afterwards
-		QAShowFeatureDependencies analyzer2 = new QAShowFeatureDependencies(files, featureundertest);
+		try {
+			QAShowFeatureDependencies analyzer2 = new QAShowFeatureDependencies(files, featureundertest);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		QAShowModelsContainingAFeature analyzer = new QAShowModelsContainingAFeature(files, featureundertest);
 		Set<FeatureModel> results = analyzer.getAllModelsContainingTheFeature();
