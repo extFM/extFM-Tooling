@@ -1,4 +1,4 @@
-featuremodel "Business ByDesign"
+featuremodel "Business ByDesign4"
 
 domain <employeeDomain> [10..10000]
 domain <userDomain> [10..10000]
@@ -25,52 +25,52 @@ selected feature "Customer Relationship Management" <crm>
 				deselected feature "Customer Invoicing" <Customer_Invoicing>
 				deselected feature "Sales Planning" <Sales_Planning>
 				}
-		deselected feature "Service" <Service>
+		selected feature "Service" <Service>
 			group <serviceSelection> (1..4) {
 				deselected feature "Entitlement Management" <Entitlement_Management>
-				deselected feature "Product and Service Portfolio for Field Service and Repair" <Product_and_Service_Portfolio_for_Field_Service_and_Repair>
+				selected feature "Product and Service Portfolio for Field Service and Repair" <Product_and_Service_Portfolio_for_Field_Service_and_Repair>
 				deselected feature "Customer Care" <Customer_Care>
 				deselected feature "Field Service and Repair" <Field_Service_and_Repair>
 				}
-		deselected feature "Sourcing" <Sourcing>
+		selected feature "Sourcing" <Sourcing>
 			group <sourcingSelection> (1..2) {
-				deselected feature "Supplier Base Management" <Supplier_Base_Management>
-				deselected feature "Sourcing and Contracting" <Sourcing_and_Contracting>
+				selected feature "Supplier Base Management" <Supplier_Base_Management>
+				selected feature "Sourcing and Contracting" <Sourcing_and_Contracting>
 				}
-		deselected feature "Purchasing" <Purchasing>
+		selected feature "Purchasing" <Purchasing>
 			group <purchasingSelection> (1..3) {
 				deselected feature "Self-Service Procurement" <SelfService_Procurement>
-				deselected feature "Purchase Request and Order Management" <Purchase_Request_and_Order_Management>
+				selected feature "Purchase Request and Order Management" <Purchase_Request_and_Order_Management>
 				deselected feature "Supplier Invoicing" <Supplier_Invoicing>
 				}
-		deselected feature "Product Development" <Product_Development>
+		selected feature "Product Development" <Product_Development>
 			group <productSelection> (1..2) {
-				deselected feature "Product Definition" <Product_Definition>
-				deselected feature "Product Engineering" <Product_Engineering>
+				selected feature "Product Definition" <Product_Definition>
+				selected feature "Product Engineering" <Product_Engineering>
 				}
-		deselected feature "Supply Chain Setup Management" <Supply_Chain_Setup_Management>
+		selected feature "Supply Chain Setup Management" <Supply_Chain_Setup_Management>
 			group <supplychainSetupSelection> (1..3) {
 				deselected feature "Supply Chain Design" <Supply_Chain_Design>
 				deselected feature "Execution Design" <Execution_Design>
-				deselected feature "Production Models" <Production_Models>
+				selected feature "Production Models" <Production_Models>
 				}
-		deselected feature "Supply Chain Planning and Control" <Supply_Chain_Planning_and_Control>
+		selected feature "Supply Chain Planning and Control" <Supply_Chain_Planning_and_Control>
 			group <supplychainPlanningSelection> (1..2) {
 				deselected feature "Demand Planning" <Demand_Planning>
-				deselected feature "Demand Management and Order Confirmation" <Demand_Management_and_Order_Confirmation>
-				deselected feature "Exception Monitoring and Control" <Exception_Monitoring_and_Control>
+				selected feature "Demand Management and Order Confirmation" <Demand_Management_and_Order_Confirmation>
+				selected feature "Exception Monitoring and Control" <Exception_Monitoring_and_Control>
 				deselected feature "Supply Planning" <Supply_Planning>
 				deselected feature "Supply Control" <Supply_Control>
 				deselected feature "Logistics Control" <Logistics_Control>
 				}
-		deselected feature "Manufacturing Warehousing and Logistics" <Manufacturing_Warehousing_and_Logistics>
+		selected feature "Manufacturing Warehousing and Logistics" <Manufacturing_Warehousing_and_Logistics>
 			group <manufacturingSelection> (1..8) {
 				deselected feature "Inbound Logistics" <Inbound_Logistics>
-				deselected feature "Outbound Logistics" <Outbound_Logistics>
+				selected feature "Outbound Logistics" <Outbound_Logistics>
 				deselected feature "Internal Logistics" <Internal_Logistics>
 				deselected feature "Inventory Management" <Inventory_Management>
 				deselected feature "Production" <Production>
-				deselected feature "Quality Assurance" <Quality_Assurance>
+				selected feature "Quality Assurance" <Quality_Assurance>
 				deselected feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
 				deselected feature "Task Management and Automation" <Task_Management_and_Automation>
 				}
@@ -88,20 +88,20 @@ selected feature "Customer Relationship Management" <crm>
 				deselected feature "Expense and Reimbursement Management" <Expense_and_Reimbursement_Management>
 				deselected feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
 				}
-		deselected feature "Financial and Management Accounting" <Financial_and_Management_Accounting>
+		selected feature "Financial and Management Accounting" <Financial_and_Management_Accounting>
 			group <financialObligatorySelection> (2..2) {
-				deselected feature "General Ledger" <General_Ledger>
-				deselected feature "Management Accounting" <Management_Accounting>
+				selected feature "General Ledger" <General_Ledger>
+				selected feature "Management Accounting" <Management_Accounting>
 				}
 		
 			group <financialSelection> (0..3) {
 				deselected feature "Fixed Assets" <Fixed_Assets>
-				deselected feature "Inventory Valuation" <Inventory_Valuation>
+				selected feature "Inventory Valuation" <Inventory_Valuation>
 				deselected feature "Payables, Receivables, and Cash" <Payables_Receivables_and_Cash>
 				}
-		deselected feature "Human Resources" <Human_Resources>
+		selected feature "Human Resources" <Human_Resources>
 			group <hrObligatorySelection> (1..1) {
-				deselected feature "Personnel Administration" <Personnel_Administration>
+				selected feature "Personnel Administration" <Personnel_Administration>
 				}
 		
 			group <hrSelection> (0..3) {
@@ -119,19 +119,19 @@ selected feature "Customer Relationship Management" <crm>
 				selected feature "Business Insight" <Business_Insight>
 				selected feature "Management Support" <Management_Support>
 				}
-		deselected feature "Communication and Information Exchange" <Communication_and_Information_Exchange>
+		selected feature "Communication and Information Exchange" <Communication_and_Information_Exchange>
 			group <communicationObligatorySelection> (3..3) {
-				deselected feature "Business Process Management" <Business_Process_Management>
-				deselected feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
-				deselected feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
+				selected feature "Business Process Management" <Business_Process_Management>
+				selected feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
+				selected feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
 				}
-		deselected feature "Compliance" <Compliance>
+		selected feature "Compliance" <Compliance>
 			group <complianceObligatorySelection> (1..1) {
-				deselected feature "Corporate Governance" <Corporate_Governance>
+				selected feature "Corporate Governance" <Corporate_Governance>
 				}
 		
 			group <complianceSelection> (0..1) {
-				deselected feature "Foreign Trade Declarations" <Foreign_Trade_Declarations>
+				selected feature "Foreign Trade Declarations" <Foreign_Trade_Declarations>
 				}
 		}
 constraint <c1> Campaign_Management -> Market_Development
