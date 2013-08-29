@@ -39,8 +39,11 @@ public class QAShowModelsContainingAFeature {
 		
 		for (FeatureModel currentModel : configurations) {
 			FeatureModelHelper currentModelHelper = new FeatureModelHelper(currentModel);
-			if(currentModelHelper.getFeature(featureundertest.getId().toString()) != null)
-				results.add(currentModel);
+			Feature concreteFeature = currentModelHelper.getFeature(featureundertest.getId()); 
+			if(concreteFeature != null) {
+				if(concreteFeature.getConfigurationState() != FeatureState.DESELECTED)
+					results.add(currentModel);	
+			}
 		}
 		
 		return results;
