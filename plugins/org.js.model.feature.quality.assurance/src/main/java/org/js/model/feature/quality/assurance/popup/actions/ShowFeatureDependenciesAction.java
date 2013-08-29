@@ -14,7 +14,9 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureModel;
+import org.js.model.feature.Imply;
 import org.js.model.feature.csp.FeatureModelHelper;
 import org.js.model.feature.quality.assurance.QAPluginHelper;
 import org.js.model.feature.quality.assurance.QAShowFeatureDependencies;
@@ -100,31 +102,39 @@ public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 		Feature featureundertest = modelhelper.getFeature(result);
 		
 		// run algorithm
-		//TODO: extend this part and remove old code afterwards
+		QAShowFeatureDependencies analyzer = null;
 		try {
-			QAShowFeatureDependencies analyzer2 = new QAShowFeatureDependencies(files, featureundertest);
+			analyzer = new QAShowFeatureDependencies(files, featureundertest);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 		
-		QAShowModelsContainingAFeature analyzer = new QAShowModelsContainingAFeature(files, featureundertest);
-		Set<FeatureModel> results = analyzer.getAllModelsContainingTheFeature();
+		if(analyzer == null) {
+			log.error("Exit procedure due to an error while initializing analyzer.");
+		}
+		
+		boolean isMandatory = analyzer.isFeatureMandatory();
+		Set<FeatureConstraint> affectedConstraints = analyzer.getAffectingFeatureConstraints();
 		
 		// generate output
 		log.info("===================================================================");
 		log.info("Quality Assurance - Plugin - ShowFeatureDependenciesAction");
 		log.info("===================================================================");
-		log.info("Number of configurations found: " + results.size());
-		log.info("The following models can be indentifyed to contain " + featureundertest.getId() + ":");
-		for (FeatureModel resultsmodel : results) {
-			log.info("  * " + resultsmodel.getName());
+		log.info("Name of the feature under test: " + featureundertest.getName());
+		log.info("ID of the feature under test:   " + featureundertest.getId());
+		log.info("-------------------------------------------------------------------");
+		log.info("EXPLICIT PROPERTIES:");
+		log.info("  * Mandatory: " + (isMandatory ? "yes" : "no"));
+		log.info("-------------------------------------------------------------------");
+		log.info("AFFECTING FEATURE CONSTRAINTS:");
+		for (FeatureConstraint c : affectedConstraints) {
+			log.info("  * <" + c.getId() + "> " + c.getLeftOperand().getId() + ((c instanceof Imply) ? " -> " : " <-> ") + c.getRightOperand().getId());
 		}
 		log.info("===================================================================");
 		
 		MessageDialog.openInformation(shell, 
 				"Quality Assurance", 
-				"There are " + results.size() + " configurations that contain the feature " + featureundertest.getId() + ". " +
+				"There are " + affectedConstraints.size() + " feature constraints that affect the feature " + featureundertest.getName() + ". " +
 				"For further information, please have a look at the logger output.");
 	}
 

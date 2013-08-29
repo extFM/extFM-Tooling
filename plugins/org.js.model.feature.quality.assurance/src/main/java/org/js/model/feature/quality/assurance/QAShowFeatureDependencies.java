@@ -73,8 +73,8 @@ public class QAShowFeatureDependencies {
 				for (Feature f2 : allFeaturesOfGroup) {
 					if(f2 == feature) {
 						readyToBreak = true;
-						if(allFeaturesOfGroup.size() == g.getMinCardinality()) {
-							isMandatory = true;
+						if(allFeaturesOfGroup.size() > g.getMinCardinality()) {
+							isMandatory = false;
 						}
 						break;
 					}
@@ -139,22 +139,86 @@ public class QAShowFeatureDependencies {
 	}
 	
 	private Set<FeatureConstraint> getFeatureConstraintsAffectingFeatureInImplyRightOperand(Feature feature) {
-		//TODO: implement this method
-		return null;
+		FeatureModelHelper fmh = new FeatureModelHelper(model);
+		Set<FeatureConstraint> allconstraints = fmh.getAllFeatureConstraints();
+		Set<Imply> allimplys = new HashSet<Imply>();
+		
+		for (FeatureConstraint fc : allconstraints) {
+			if(fc instanceof Imply) {
+				allimplys.add((Imply) fc);
+			}
+		}
+		
+		Set<FeatureConstraint> results = new HashSet<FeatureConstraint>();
+		
+		for (Imply imply : allimplys) {
+			if(imply.getRightOperand() == feature)
+				results.add(imply);
+		}
+		
+		return results;
 	}
 	
 	private Set<FeatureConstraint> getFeatureConstraintsAffectingFeatureInImplyLeftOperand(Feature feature) {
-		//TODO: implement this method
-		return null;
+		FeatureModelHelper fmh = new FeatureModelHelper(model);
+		Set<FeatureConstraint> allconstraints = fmh.getAllFeatureConstraints();
+		Set<Imply> allimplys = new HashSet<Imply>();
+		
+		for (FeatureConstraint fc : allconstraints) {
+			if(fc instanceof Imply) {
+				allimplys.add((Imply) fc);
+			}
+		}
+		
+		Set<FeatureConstraint> results = new HashSet<FeatureConstraint>();
+		
+		for (Imply imply : allimplys) {
+			if(imply.getLeftOperand() == feature)
+				results.add(imply);
+		}
+		
+		return results;
 	}
 	
 	private Set<FeatureConstraint> getFeatureConstraintsAffectingFeatureInExcludeRightOperand(Feature feature) {
-		//TODO: implement this method
-		return null;
+		FeatureModelHelper fmh = new FeatureModelHelper(model);
+		Set<FeatureConstraint> allconstraints = fmh.getAllFeatureConstraints();
+		Set<Exclude> allexcludes = new HashSet<Exclude>();
+		
+		for (FeatureConstraint fc : allconstraints) {
+			if(fc instanceof Exclude) {
+				allexcludes.add((Exclude) fc);
+			}
+		}
+		
+		Set<FeatureConstraint> results = new HashSet<FeatureConstraint>();
+		
+		for (Exclude exclude : allexcludes) {
+			if(exclude.getRightOperand() == feature)
+				results.add(exclude);
+		}
+		
+		return results;
 	}
 	
 	private Set<FeatureConstraint> getFeatureConstraintsAffectingFeatureInExcludeLeftOperand(Feature feature) {
-		//TODO: implement this method
-		return null;
+		FeatureModelHelper fmh = new FeatureModelHelper(model);
+		Set<FeatureConstraint> allconstraints = fmh.getAllFeatureConstraints();
+		Set<Exclude> allexcludes = new HashSet<Exclude>();
+		
+		for (FeatureConstraint fc : allconstraints) {
+			if(fc instanceof Exclude) {
+				allexcludes.add((Exclude) fc);
+			}
+		}
+		
+		Set<FeatureConstraint> results = new HashSet<FeatureConstraint>();
+		
+		for (Exclude exclude : allexcludes) {
+			if(exclude.getLeftOperand() == feature)
+				results.add(exclude);
+		}
+		
+		return results;
 	}
 }
