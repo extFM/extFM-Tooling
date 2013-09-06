@@ -6,13 +6,21 @@ import org.js.model.feature.*;
 import org.js.model.feature.csp.FeatureModelHelper;
 
 public class ConfigurationSetStructureAnalyzer extends StructureAnalyzer {
-
-	public ConfigurationSetStructureAnalyzer() {
-		super();
-	}
 	
+	/**
+	 * Create a new ConfigurationSetStructureAnalyzer with a specific models set
+	 * @param models
+	 */
 	public ConfigurationSetStructureAnalyzer(Set<FeatureModel> models) {
 		super(models);
+	}
+	
+	/**
+	 * exchange the tested models
+	 * @param models
+	 */
+	public void resetModels(Set<FeatureModel> models) {
+		setModels(models);
 	}
 	
 	/**
