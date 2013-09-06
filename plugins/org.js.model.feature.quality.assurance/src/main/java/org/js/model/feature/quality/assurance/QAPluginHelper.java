@@ -1,10 +1,15 @@
 package org.js.model.feature.quality.assurance;
 
 import java.util.*;
+import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
 import org.eclipse.jface.viewers.*;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.*;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.js.model.feature.*;
 import org.js.model.feature.csp.FeatureModelHelper;
 
@@ -84,5 +89,37 @@ public class QAPluginHelper {
 		}
 		
 		return models;
+	}
+
+	/**
+	 * Opens a selection tool that allows the user to select a feature out of a feature model
+	 * @param shell The shell to open the tool
+	 * @param model The model to choose the the feature of
+	 * @return The chosen feature
+	 */
+	public static Feature selectFeature(Shell shell, FeatureModel model) {
+		if(shell == null || model == null) return null;
+		Logger log = Logger.getLogger(QAPluginHelper.class);
+		// extract all features
+		FeatureModelHelper modelhelper = new FeatureModelHelper(model);
+		Set<Feature> modelfeatures = modelhelper.getAllFeatures();
+		List<String> modelfeatures_ids = new ArrayList<String>();
+		for (Feature f : modelfeatures) {
+			modelfeatures_ids.add(f.getId().toString());
+		}
+		// create and open a selection dialog
+		ElementListSelectionDialog selectFeatureDialog = new ElementListSelectionDialog(shell, new LabelProvider());
+		selectFeatureDialog.setElements(modelfeatures_ids.toArray());
+		selectFeatureDialog.setTitle("Quality Assurance");
+		selectFeatureDialog.setMessage("Please select the desired feature (ID) under test.");
+		selectFeatureDialog.setMultipleSelection(false);
+		if (selectFeatureDialog.open() != Window.OK) {
+			log.debug("No feature selected.");
+		    return null;
+		}
+		// return the selection
+		String result = (String)(selectFeatureDialog.getResult()[0]);
+		log.info("The feature " + result + " will be returned.");
+		return modelhelper.getFeature(result);
 	}
 }
