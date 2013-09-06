@@ -5,22 +5,23 @@ import java.util.*;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
 import org.eclipse.jface.viewers.*;
+import org.js.model.feature.*;
+import org.js.model.feature.csp.FeatureModelHelper;
 
 /**
  * This class offers static functionalities to interact with Eclipse
- * @author David Gollasch
- *
+ * @author David Gollasch (<a href="mailto:david@gollasch-it.de">david@gollasch-it.de</a>)
  */
 public class QAPluginHelper {
+
 	/**
-	 * Takes a selection and if it's a folder selection it will return you back a 
+	 * Takes a selection and if it's a folder selection it will return a 
 	 * list with all directly sub ordered files of this folder 
 	 * @param selection The selection (a folder has to be selected to run correctly)
 	 * @return A list of files if <code>selection</code> is a folder selection 
 	 * 			and if this folder includes files
 	 */
-	public static List<IFile> getFilesFromFolderSelection(ISelection selection) {
-		
+	public static List<IFile> getFiles(ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection issl = (IStructuredSelection)selection;
 			Object obj = issl.getFirstElement();
@@ -64,5 +65,24 @@ public class QAPluginHelper {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Converts a list of files into a set of feature models
+	 * (only valid feature models will be returned and invalid
+	 * files will be ignored)
+	 * @param files The list of files
+	 * @return A set of feature models
+	 */
+	public static Set<FeatureModel> getFeatureModels(List<IFile> files) {
+		Set<FeatureModel> models = new HashSet<FeatureModel>();
+		
+		for (IFile f : files) {
+			FeatureModel fm = FeatureModelHelper.getFeatureModel(f);
+			if(fm != null)
+				models.add(fm);
+		}
+		
+		return models;
 	}
 }

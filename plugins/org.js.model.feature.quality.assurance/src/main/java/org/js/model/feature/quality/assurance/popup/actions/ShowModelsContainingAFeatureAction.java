@@ -56,7 +56,7 @@ public class ShowModelsContainingAFeatureAction implements IObjectActionDelegate
 		}
 		
 		// get files
-		List<IFile> files = QAPluginHelper.getFilesFromFolderSelection(currentSelection);
+		List<IFile> files = QAPluginHelper.getFiles(currentSelection);
 		if(files == null) {
 			MessageDialog.openError(shell, "Quality Assurance", "An error occured during selection retrieval.");
 			log.debug("An error occured during selection retrieval.");
