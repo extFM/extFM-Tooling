@@ -11,8 +11,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.js.model.feature.*;
-import org.js.model.feature.quality.assurance.QAShowDeselectedFeatures;
-import org.js.model.feature.quality.assurance.QAPluginHelper;
+import org.js.model.feature.quality.assurance.*;
+import org.js.model.feature.quality.assurance.analyze.*;
 
 public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 
@@ -40,7 +40,7 @@ public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		// jump out test
+		// information prepare
 		if(currentSelection == null || currentSelection.isEmpty()) {
 			MessageDialog.openError(
 					shell, 
@@ -48,18 +48,22 @@ public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 					"There is no folder selected. Please select a folder and then execute this command.");
 			return;
 		}
-		
-		// get files
 		List<IFile> files = QAPluginHelper.getFiles(currentSelection);
 		if(files == null) {
 			MessageDialog.openError(shell, "Quality Assurance", "An error occured during selection retrieval.");
 			log.debug("An error occured during selection retrieval.");
 			return;
 		}
+		Set<FeatureModel> models = QAPluginHelper.getFeatureModels(files);
+		if(models == null) {
+			MessageDialog.openError(shell, "Quality Assurance", "An error occured during feature model retrieval.");
+			log.debug("An error occured during feature model retrieval.");
+			return;
+		}
 		
-		// run algorithm
-		QAShowDeselectedFeatures analyzer = new QAShowDeselectedFeatures(files);
-		Set<Feature> results = analyzer.getAllDeselectedFeatures();
+		// run algorithm		
+		ConfigurationSetStructureAnalyzer analyzer = new ConfigurationSetStructureAnalyzer(models);
+		Set<Feature> results = analyzer.getDeselectedFeatures();
 		
 		// generate output
 		log.info("===================================================================");

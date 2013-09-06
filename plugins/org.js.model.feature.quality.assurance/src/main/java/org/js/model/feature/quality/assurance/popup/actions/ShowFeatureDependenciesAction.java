@@ -21,6 +21,7 @@ import org.js.model.feature.csp.FeatureModelHelper;
 import org.js.model.feature.quality.assurance.QAPluginHelper;
 import org.js.model.feature.quality.assurance.QAShowFeatureDependencies;
 import org.js.model.feature.quality.assurance.QAShowModelsContainingAFeature;
+import org.js.model.feature.quality.assurance.analyze.FeatureBasedStructureAnalyzer;
 
 public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 	
@@ -48,7 +49,7 @@ public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		// jump out test
+		// information prepare
 		if(currentSelection == null || currentSelection.isEmpty()) {
 			MessageDialog.openError(
 					shell, 
@@ -56,72 +57,53 @@ public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 					"There is no folder selected. Please select a folder and then execute this command.");
 			return;
 		}
-		
-		// get files
 		List<IFile> files = QAPluginHelper.getFiles(currentSelection);
 		if(files == null) {
 			MessageDialog.openError(shell, "Quality Assurance", "An error occured during selection retrieval.");
 			log.debug("An error occured during selection retrieval.");
 			return;
 		}
-		
-		// get feature under test
-		
-		// - take a model
-		FeatureModel model = null;
-		for (IFile f : files) {
-			FeatureModel fm = FeatureModelHelper.getFeatureModel(f);
-			if(fm != null) {
-				model = fm;
-				break;
-			}
-		}
-		if(model == null) {
-			MessageDialog.openError(shell, "Quality Assurance", "No model found in this folder.");
-			log.debug("No model found in this folder.");
+		Set<FeatureModel> models = QAPluginHelper.getFeatureModels(files);
+		if(models == null || models.isEmpty()) {
+			MessageDialog.openError(shell, "Quality Assurance", "An error occured during feature model retrieval." + 
+					" Propably there is no feature model in this selection.");
+			log.debug("An error occured during feature model retrieval.");
 			return;
 		}
-		// - extract all features
-		FeatureModelHelper modelhelper = new FeatureModelHelper(model);
-		Set<Feature> modelfeatures = modelhelper.getAllFeatures();
-		List<String> modelfeatures_ids = new ArrayList<String>();
-		for (Feature f : modelfeatures) {
-			modelfeatures_ids.add(f.getId().toString());
+		FeatureModel model = (FeatureModel)(models.toArray()[0]);
+		Feature feature = QAPluginHelper.selectFeature(shell, model);
+		if(feature == null) {
+			MessageDialog.openError(shell, "Quality Assurance", "No feature has been selected.");
+			log.debug("No feature has been selected.");
+			return;
 		}
-		ElementListSelectionDialog selectFeatureDialog = new ElementListSelectionDialog(shell, new LabelProvider());
-		selectFeatureDialog.setElements(modelfeatures_ids.toArray());
-		selectFeatureDialog.setTitle("Quality Assurance");
-		selectFeatureDialog.setMessage("Please select the desired feature (ID) under test.");
-		selectFeatureDialog.setMultipleSelection(false);
-		if (selectFeatureDialog.open() != Window.OK) {
-			log.debug("No feature selected.");
-		    return;
-		}
-		String result = (String)(selectFeatureDialog.getResult()[0]);
-		log.info("The feature " + result + " will be tested.");
-		Feature featureundertest = modelhelper.getFeature(result);
 		
 		// run algorithm
-		QAShowFeatureDependencies analyzer = null;
+		FeatureBasedStructureAnalyzer analyzer = null;
 		try {
-			analyzer = new QAShowFeatureDependencies(files, featureundertest);
+			analyzer = new FeatureBasedStructureAnalyzer(models, model, feature);
 		} catch (Exception e) {
+			MessageDialog.openError(shell, "Quality Assurance", e.getMessage());
 			log.error(e.getMessage());
+			return;
 		}
 		
-		if(analyzer == null) {
-			log.error("Exit procedure due to an error while initializing analyzer.");
+		boolean isMandatory;
+		try {
+			isMandatory = analyzer.isFeatureMandatory();
+		} catch (Exception e) {
+			MessageDialog.openError(shell, "Quality Assurance", e.getMessage());
+			log.error(e.getMessage());
+			return;
 		}
-		
-		boolean isMandatory = analyzer.isFeatureMandatory();
-		Set<FeatureConstraint> affectedConstraints = analyzer.getAffectingFeatureConstraints();
+		Set<FeatureConstraint> affectedConstraints = analyzer.getFeatureConstraintsAffectingFeature();
 		
 		// generate output
 		log.info("===================================================================");
 		log.info("Quality Assurance - Plugin - ShowFeatureDependenciesAction");
 		log.info("===================================================================");
-		log.info("Name of the feature under test: " + featureundertest.getName());
-		log.info("ID of the feature under test:   " + featureundertest.getId());
+		log.info("Name of the feature under test: " + feature.getName());
+		log.info("ID of the feature under test:   " + feature.getId());
 		log.info("-------------------------------------------------------------------");
 		log.info("EXPLICIT PROPERTIES:");
 		log.info("  * Mandatory: " + (isMandatory ? "yes" : "no"));
@@ -134,7 +116,7 @@ public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 		
 		MessageDialog.openInformation(shell, 
 				"Quality Assurance", 
-				"There are " + affectedConstraints.size() + " feature constraints that affect the feature " + featureundertest.getName() + ". " +
+				"There are " + affectedConstraints.size() + " feature constraints that affect the feature " + feature.getName() + ". " +
 				"For further information, please have a look at the logger output.");
 	}
 
