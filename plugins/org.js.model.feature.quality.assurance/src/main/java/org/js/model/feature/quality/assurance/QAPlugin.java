@@ -1,10 +1,6 @@
 package org.js.model.feature.quality.assurance;
 
-import java.util.*;
-
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.js.model.feature.*;
-import org.js.model.feature.csp.*;
 import org.osgi.framework.BundleContext;
 
 /**

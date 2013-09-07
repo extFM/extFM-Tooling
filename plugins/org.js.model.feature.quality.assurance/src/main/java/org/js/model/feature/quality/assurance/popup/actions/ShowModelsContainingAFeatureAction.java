@@ -7,18 +7,12 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
-import org.js.model.feature.csp.FeatureModelHelper;
 import org.js.model.feature.quality.assurance.QAPluginHelper;
-import org.js.model.feature.quality.assurance.QAShowModelsContainingAFeature;
 import org.js.model.feature.quality.assurance.analyze.FeatureBasedStructureAnalyzer;
 
 public class ShowModelsContainingAFeatureAction implements IObjectActionDelegate {
