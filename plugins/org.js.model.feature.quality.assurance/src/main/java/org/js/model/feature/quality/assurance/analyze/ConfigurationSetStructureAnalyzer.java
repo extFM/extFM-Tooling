@@ -36,7 +36,8 @@ public class ConfigurationSetStructureAnalyzer extends StructureAnalyzer {
 		Set<Feature> features = helper.getAllFeatures();
 		
 		// iterate over all configurations
-		for (FeatureModel model : getModels()) {
+		Set<FeatureModel> allmodels = getModels();
+		for (FeatureModel model : allmodels) {
 			FeatureModelHelper modelHelper = new FeatureModelHelper(model);
 			
 			// collect all features to potentially remove from results set
@@ -49,7 +50,7 @@ public class ConfigurationSetStructureAnalyzer extends StructureAnalyzer {
 				Feature ref = null;
 				
 				for (Feature g : features) {
-					if(g.getId() == f.getId()) {
+					if(g.getId().equals(f.getId())) {
 						ref = g;
 						break;
 					}
