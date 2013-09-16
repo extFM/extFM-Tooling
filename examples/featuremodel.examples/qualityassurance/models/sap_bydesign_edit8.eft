@@ -12,16 +12,16 @@ feature "Customer Relationship Management" <crm>
 	group <modules> (1..17) {
 		feature "Marketing" <Marketing>
 			group <marketingSelection> (1..2) {
-				feature "Market Development" <Market_Development>
-				feature "Campaign Management" <Campaign_Management>
+				selected feature "Market Development" <Market_Development>
+				selected feature "Campaign Management" <Campaign_Management>
 			}
 		
 		feature "Sales" <Sales>
 			group <salesSelection> (1..6) {
-				feature "Account and Activity Management" <Account_and_Activity_Management>
-				feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
+				selected feature "Account and Activity Management" <Account_and_Activity_Management>
+				selected feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
 				feature "New Business" <New_Business>
-				feature "Selling Products and Services" <Selling_Products_and_Services>
+				selected feature "Selling Products and Services" <Selling_Products_and_Services>
 				feature "Customer Invoicing" <Customer_Invoicing>
 				feature "Sales Planning" <Sales_Planning>
 			}
@@ -79,7 +79,7 @@ feature "Customer Relationship Management" <crm>
 				feature "Production" <Production>
 				selected feature "Quality Assurance" <Quality_Assurance>
 				feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
-				feature "Task Management and Automation" <Task_Management_and_Automation>
+				selected feature "Task Management and Automation" <Task_Management_and_Automation>
 			}
 		
 		feature "Project Management" <Project_Management>
@@ -89,19 +89,19 @@ feature "Customer Relationship Management" <crm>
 	
 		feature "Cash Flow Management" <Cash_Flow_Management>
 			group <cashFlowObligatorySelection> (2..2) {	
-				feature "Payables and Receivables Processing" <Payables_and_Receivables_Processing>
+				selected feature "Payables and Receivables Processing" <Payables_and_Receivables_Processing>
 				selected feature "Tax Management" <Tax_Management>
 			}
 			
 			group <cashFlowSelection> (0..2) {
-				feature "Expense and Reimbursement Management" <Expense_and_Reimbursement_Management>
-				feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
+				selected feature "Expense and Reimbursement Management" <Expense_and_Reimbursement_Management>
+				selected feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
 			}
 		
 		feature "Financial and Management Accounting" <Financial_and_Management_Accounting>
 			group <financialObligatorySelection> (2..2) {	
 				feature "General Ledger" <General_Ledger>
-				feature "Management Accounting" <Management_Accounting>
+				selected feature "Management Accounting" <Management_Accounting>
 			}
 			
 			group <financialSelection> (0..3) {
@@ -117,7 +117,7 @@ feature "Customer Relationship Management" <crm>
 			
 			group <hrSelection> (0..3) {
 				feature "Time and Labor Management" <Time_and_Labor_Management>
-				feature "Compensation" <Compensation>
+				selected feature "Compensation" <Compensation>
 				feature "Payroll" <Payroll>
 			}
 		
@@ -130,19 +130,19 @@ feature "Customer Relationship Management" <crm>
 		
 		feature "Business Performance Management" <Business_Performance_Management> 
 			group <businessObligatorySelection> (2..2) {	
-				feature "Business Insight" <Business_Insight>
-				feature "Management Support" <Management_Support>
+				selected feature "Business Insight" <Business_Insight>
+				selected feature "Management Support" <Management_Support>
 			}
 		
 		feature "Communication and Information Exchange" <Communication_and_Information_Exchange>
 			group <communicationObligatorySelection> (3..3) {	
-				feature "Business Process Management" <Business_Process_Management>
+				selected feature "Business Process Management" <Business_Process_Management>
 				feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
 				feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
 			}
 		feature "Compliance" <Compliance>
 			group <complianceObligatorySelection> (1..1) {	
-				feature "Corporate Governance" <Corporate_Governance>
+				selected feature "Corporate Governance" <Corporate_Governance>
 			}
 			
 			group <complianceSelection> (0..1) {

@@ -1,4 +1,4 @@
-featuremodel "Business ByDesign0"
+featuremodel "Business ByDesign1"
 
 domain <employeeDomain> [10..10000]
 domain <userDomain> [10..10000]
@@ -13,24 +13,24 @@ feature "Customer Relationship Management" <crm>
 		feature "Marketing" <Marketing>
 			group <marketingSelection> (1..2) {
 				selected feature "Market Development" <Market_Development>
-				selected feature "Campaign Management" <Campaign_Management>
+				feature "Campaign Management" <Campaign_Management>
 			}
 		
 		feature "Sales" <Sales>
 			group <salesSelection> (1..6) {
 				feature "Account and Activity Management" <Account_and_Activity_Management>
-				feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
+				selected feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
 				selected feature "New Business" <New_Business>
 				selected feature "Selling Products and Services" <Selling_Products_and_Services>
-				feature "Customer Invoicing" <Customer_Invoicing>
-				feature "Sales Planning" <Sales_Planning>
+				selected feature "Customer Invoicing" <Customer_Invoicing>
+				selected feature "Sales Planning" <Sales_Planning>
 			}
 		
 		feature "Service" <Service>
 			group <serviceSelection> (1..4)	{
 				feature "Entitlement Management" <Entitlement_Management>
 				feature "Product and Service Portfolio for Field Service and Repair" <Product_and_Service_Portfolio_for_Field_Service_and_Repair>
-				feature "Customer Care" <Customer_Care>
+				selected feature "Customer Care" <Customer_Care>
 				feature "Field Service and Repair" <Field_Service_and_Repair>
 			}
 		
@@ -63,10 +63,10 @@ feature "Customer Relationship Management" <crm>
 		feature "Supply Chain Planning and Control" <Supply_Chain_Planning_and_Control>
 			group <supplychainPlanningSelection> (1..2) {
 				feature "Demand Planning" <Demand_Planning>
-				feature "Demand Management and Order Confirmation" <Demand_Management_and_Order_Confirmation>
-				feature "Exception Monitoring and Control" <Exception_Monitoring_and_Control>
+				selected feature "Demand Management and Order Confirmation" <Demand_Management_and_Order_Confirmation>
+				selected feature "Exception Monitoring and Control" <Exception_Monitoring_and_Control>
 				feature "Supply Planning" <Supply_Planning>
-				feature "Supply Control" <Supply_Control>
+				deselected feature "Supply Control" <Supply_Control>
 				feature "Logistics Control" <Logistics_Control>
 			}
 		
@@ -77,8 +77,8 @@ feature "Customer Relationship Management" <crm>
 				feature "Internal Logistics" <Internal_Logistics>
 				selected feature "Inventory Management" <Inventory_Management>
 				feature "Production" <Production>
-				deselected feature "Quality Assurance" <Quality_Assurance>
-				feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
+				feature "Quality Assurance" <Quality_Assurance>
+				selected feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
 				feature "Task Management and Automation" <Task_Management_and_Automation>
 			}
 		
@@ -95,7 +95,7 @@ feature "Customer Relationship Management" <crm>
 			
 			group <cashFlowSelection> (0..2) {
 				feature "Expense and Reimbursement Management" <Expense_and_Reimbursement_Management>
-				feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
+				selected feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
 			}
 		
 		feature "Financial and Management Accounting" <Financial_and_Management_Accounting>

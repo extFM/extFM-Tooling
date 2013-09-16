@@ -13,17 +13,17 @@ feature "Customer Relationship Management" <crm>
 		feature "Marketing" <Marketing>
 			group <marketingSelection> (1..2) {
 				feature "Market Development" <Market_Development>
-				feature "Campaign Management" <Campaign_Management>
+				selected feature "Campaign Management" <Campaign_Management>
 			}
 		
 		feature "Sales" <Sales>
 			group <salesSelection> (1..6) {
 				feature "Account and Activity Management" <Account_and_Activity_Management>
-				feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
-				feature "New Business" <New_Business>
+				selected feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
+				selected feature "New Business" <New_Business>
 				feature "Selling Products and Services" <Selling_Products_and_Services>
-				feature "Customer Invoicing" <Customer_Invoicing>
-				feature "Sales Planning" <Sales_Planning>
+				selected feature "Customer Invoicing" <Customer_Invoicing>
+				selected feature "Sales Planning" <Sales_Planning>
 			}
 		
 		feature "Service" <Service>
@@ -75,7 +75,7 @@ feature "Customer Relationship Management" <crm>
 				feature "Inbound Logistics" <Inbound_Logistics>
 				selected feature "Outbound Logistics" <Outbound_Logistics>
 				feature "Internal Logistics" <Internal_Logistics>
-				feature "Inventory Management" <Inventory_Management>
+				selected feature "Inventory Management" <Inventory_Management>
 				feature "Production" <Production>
 				selected feature "Quality Assurance" <Quality_Assurance>
 				feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
@@ -117,7 +117,7 @@ feature "Customer Relationship Management" <crm>
 			
 			group <hrSelection> (0..3) {
 				feature "Time and Labor Management" <Time_and_Labor_Management>
-				feature "Compensation" <Compensation>
+				selected feature "Compensation" <Compensation>
 				feature "Payroll" <Payroll>
 			}
 		
@@ -137,7 +137,7 @@ feature "Customer Relationship Management" <crm>
 		feature "Communication and Information Exchange" <Communication_and_Information_Exchange>
 			group <communicationObligatorySelection> (3..3) {	
 				selected feature "Business Process Management" <Business_Process_Management>
-				feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
+				selected feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
 				feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
 			}
 		feature "Compliance" <Compliance>

@@ -19,18 +19,18 @@ feature "Customer Relationship Management" <crm>
 		feature "Sales" <Sales>
 			group <salesSelection> (1..6) {
 				feature "Account and Activity Management" <Account_and_Activity_Management>
-				feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
+				selected feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
 				selected feature "New Business" <New_Business>
 				selected feature "Selling Products and Services" <Selling_Products_and_Services>
 				selected feature "Customer Invoicing" <Customer_Invoicing>
-				feature "Sales Planning" <Sales_Planning>
+				selected feature "Sales Planning" <Sales_Planning>
 			}
 		
 		feature "Service" <Service>
 			group <serviceSelection> (1..4)	{
 				feature "Entitlement Management" <Entitlement_Management>
-				selected feature "Product and Service Portfolio for Field Service and Repair" <Product_and_Service_Portfolio_for_Field_Service_and_Repair>
-				feature "Customer Care" <Customer_Care>
+				feature "Product and Service Portfolio for Field Service and Repair" <Product_and_Service_Portfolio_for_Field_Service_and_Repair>
+				selected feature "Customer Care" <Customer_Care>
 				feature "Field Service and Repair" <Field_Service_and_Repair>
 			}
 		
@@ -64,9 +64,9 @@ feature "Customer Relationship Management" <crm>
 			group <supplychainPlanningSelection> (1..2) {
 				feature "Demand Planning" <Demand_Planning>
 				feature "Demand Management and Order Confirmation" <Demand_Management_and_Order_Confirmation>
-				feature "Exception Monitoring and Control" <Exception_Monitoring_and_Control>
+				selected feature "Exception Monitoring and Control" <Exception_Monitoring_and_Control>
 				feature "Supply Planning" <Supply_Planning>
-				feature "Supply Control" <Supply_Control>
+				deselected feature "Supply Control" <Supply_Control>
 				feature "Logistics Control" <Logistics_Control>
 			}
 		
@@ -75,16 +75,16 @@ feature "Customer Relationship Management" <crm>
 				feature "Inbound Logistics" <Inbound_Logistics>
 				selected feature "Outbound Logistics" <Outbound_Logistics>
 				feature "Internal Logistics" <Internal_Logistics>
-				feature "Inventory Management" <Inventory_Management>
+				selected feature "Inventory Management" <Inventory_Management>
 				feature "Production" <Production>
-				selected feature "Quality Assurance" <Quality_Assurance>
-				feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
+				feature "Quality Assurance" <Quality_Assurance>
+				selected feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
 				feature "Task Management and Automation" <Task_Management_and_Automation>
 			}
 		
 		feature "Project Management" <Project_Management>
 			group <projectSelection> (1..1) {
-				feature "Project Planning and Execution" <Project_Planning_and_Execution>
+				selected feature "Project Planning and Execution" <Project_Planning_and_Execution>
 			}
 	
 		feature "Cash Flow Management" <Cash_Flow_Management>
@@ -95,13 +95,13 @@ feature "Customer Relationship Management" <crm>
 			
 			group <cashFlowSelection> (0..2) {
 				feature "Expense and Reimbursement Management" <Expense_and_Reimbursement_Management>
-				feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
+				selected feature "Payment and Liquidity Management" <Payment_and_Liquidity_Management>
 			}
 		
 		feature "Financial and Management Accounting" <Financial_and_Management_Accounting>
 			group <financialObligatorySelection> (2..2) {	
 				feature "General Ledger" <General_Ledger>
-				feature "Management Accounting" <Management_Accounting>
+				selected feature "Management Accounting" <Management_Accounting>
 			}
 			
 			group <financialSelection> (0..3) {

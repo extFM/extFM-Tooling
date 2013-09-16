@@ -1,4 +1,4 @@
-featuremodel "Business ByDesign4"
+featuremodel "Business ByDesign7"
 
 domain <employeeDomain> [10..10000]
 domain <userDomain> [10..10000]
@@ -12,32 +12,32 @@ feature "Customer Relationship Management" <crm>
 	group <modules> (1..17) {
 		feature "Marketing" <Marketing>
 			group <marketingSelection> (1..2) {
-				feature "Market Development" <Market_Development>
-				selected feature "Campaign Management" <Campaign_Management>
+				selected feature "Market Development" <Market_Development>
+				feature "Campaign Management" <Campaign_Management>
 			}
 		
 		feature "Sales" <Sales>
 			group <salesSelection> (1..6) {
-				feature "Account and Activity Management" <Account_and_Activity_Management>
-				feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
+				selected feature "Account and Activity Management" <Account_and_Activity_Management>
+				selected feature "Product and Service Portfolio for Sales" <Product_and_Service_Portfolio_for_Sales>
 				feature "New Business" <New_Business>
 				feature "Selling Products and Services" <Selling_Products_and_Services>
 				feature "Customer Invoicing" <Customer_Invoicing>
-				feature "Sales Planning" <Sales_Planning>
+				selected feature "Sales Planning" <Sales_Planning>
 			}
 		
 		feature "Service" <Service>
 			group <serviceSelection> (1..4)	{
 				feature "Entitlement Management" <Entitlement_Management>
 				selected feature "Product and Service Portfolio for Field Service and Repair" <Product_and_Service_Portfolio_for_Field_Service_and_Repair>
-				feature "Customer Care" <Customer_Care>
-				selected feature "Field Service and Repair" <Field_Service_and_Repair>
+				selected feature "Customer Care" <Customer_Care>
+				feature "Field Service and Repair" <Field_Service_and_Repair>
 			}
 		
 		feature "Sourcing" <Sourcing>
 			group <sourcingSelection> (1..2) {
 				selected feature "Supplier Base Management" <Supplier_Base_Management>
-				feature "Sourcing and Contracting" <Sourcing_and_Contracting>
+				selected feature "Sourcing and Contracting" <Sourcing_and_Contracting>
 			}
 		
 		feature "Purchasing" <Purchasing>
@@ -72,14 +72,14 @@ feature "Customer Relationship Management" <crm>
 		
 		feature "Manufacturing Warehousing and Logistics" <Manufacturing_Warehousing_and_Logistics>
 			group <manufacturingSelection> (1..8) {
-				selected feature "Inbound Logistics" <Inbound_Logistics>
+				feature "Inbound Logistics" <Inbound_Logistics>
 				selected feature "Outbound Logistics" <Outbound_Logistics>
-				selected feature "Internal Logistics" <Internal_Logistics>
-				selected feature "Inventory Management" <Inventory_Management>
+				feature "Internal Logistics" <Internal_Logistics>
+				feature "Inventory Management" <Inventory_Management>
 				feature "Production" <Production>
 				selected feature "Quality Assurance" <Quality_Assurance>
-				feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
-				feature "Task Management and Automation" <Task_Management_and_Automation>
+				selected feature "Tracking Tracing and Identification" <Tracking_Tracing_and_Identification>
+				selected feature "Task Management and Automation" <Task_Management_and_Automation>
 			}
 		
 		feature "Project Management" <Project_Management>
@@ -105,8 +105,8 @@ feature "Customer Relationship Management" <crm>
 			}
 			
 			group <financialSelection> (0..3) {
-				feature "Fixed Assets" <Fixed_Assets>
-				selected feature "Inventory Valuation" <Inventory_Valuation>
+				selected feature "Fixed Assets" <Fixed_Assets>
+				feature "Inventory Valuation" <Inventory_Valuation>
 				feature "Payables, Receivables, and Cash" <Payables_Receivables_and_Cash>
 			}
 		
@@ -130,15 +130,15 @@ feature "Customer Relationship Management" <crm>
 		
 		feature "Business Performance Management" <Business_Performance_Management> 
 			group <businessObligatorySelection> (2..2) {	
-				feature "Business Insight" <Business_Insight>
+				selected feature "Business Insight" <Business_Insight>
 				selected feature "Management Support" <Management_Support>
 			}
 		
 		feature "Communication and Information Exchange" <Communication_and_Information_Exchange>
 			group <communicationObligatorySelection> (3..3) {	
 				feature "Business Process Management" <Business_Process_Management>
-				selected feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
-				selected feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
+				feature "People Collaboration, Intranet and External Services" <People_Collaboration_Intranet_and_External_Services>
+				feature "Office and Desktop Integration" <Office_and_Desktop_Integration>
 			}
 		feature "Compliance" <Compliance>
 			group <complianceObligatorySelection> (1..1) {	
