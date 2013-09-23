@@ -1,4 +1,4 @@
-featuremodel "Business ByDesign7"
+featuremodel "Business ByDesign70"
 
 domain <employeeDomain> [10..10000]
 domain <userDomain> [10..10000]
