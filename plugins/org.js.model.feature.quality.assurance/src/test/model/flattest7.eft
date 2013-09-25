@@ -1,20 +1,20 @@
-featuremodel "Deselected Features Test Model"
+featuremodel "Flat Test Model 7"
 
 selected feature "Root" <root>
 	group <rootSelection> (1..20) {
 		selected feature "Feature 01" <feature01>
-		selected feature "Feature 02" <feature02>
-		selected feature "Feature 03" <feature03>
-		selected feature "Feature 04" <feature04>
-		selected feature "Feature 05" <feature05>
+		deselected feature "Feature 02" <feature02>
+		deselected feature "Feature 03" <feature03>
+		deselected feature "Feature 04" <feature04>
+		deselected feature "Feature 05" <feature05>
 		deselected feature "Feature 06" <feature06>
 		deselected feature "Feature 07" <feature07>
-		selected feature "Feature 08" <feature08>
+		deselected feature "Feature 08" <feature08>
 		deselected feature "Feature 09" <feature09>
 		deselected feature "Feature 10" <feature10>
 		deselected feature "Feature 11" <feature11>
-		selected feature "Feature 12" <feature12>
-		selected feature "Feature 13" <feature13>
+		deselected feature "Feature 12" <feature12>
+		deselected feature "Feature 13" <feature13>
 		deselected feature "Feature 14" <feature14>
 		deselected feature "Feature 15" <feature15>
 		deselected feature "Feature 16" <feature16>

@@ -1,0 +1,25 @@
+featuremodel "Flat Test Model 8"
+
+selected feature "Root" <root>
+	group <rootSelection> (1..20) {
+		selected feature "Feature 01" <feature01>
+		selected feature "Feature 02" <feature02>
+		selected feature "Feature 03" <feature03>
+		selected feature "Feature 04" <feature04>
+		selected feature "Feature 05" <feature05>
+		selected feature "Feature 06" <feature06>
+		selected feature "Feature 07" <feature07>
+		selected feature "Feature 08" <feature08>
+		selected feature "Feature 09" <feature09>
+		selected feature "Feature 10" <feature10>
+		selected feature "Feature 11" <feature11>
+		selected feature "Feature 12" <feature12>
+		selected feature "Feature 13" <feature13>
+		selected feature "Feature 14" <feature14>
+		selected feature "Feature 15" <feature15>
+		selected feature "Feature 16" <feature16>
+		selected feature "Feature 17" <feature17>
+		selected feature "Feature 18" <feature18>
+		selected feature "Feature 19" <feature19>
+		selected feature "Feature 20" <feature20>
+	}

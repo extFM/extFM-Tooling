@@ -1,0 +1,38 @@
+featuremodel "Dependencies Test Model"
+
+feature "Root" <Root>
+	group <rootSelection> (1..1) {
+		feature "SubRoot" <SubRoot>
+		group <g1> (2..6) {
+			feature "g1f1" <g1f1>
+			feature "g1f2" <g1f2>
+			feature "g1f3" <g1f3>
+			feature "g1f4" <g1f4>
+			feature "g1f5" <g1f5>
+			feature "g1f6" <g1f6>
+			feature "g1f7" <g1f7>
+			feature "g1f8" <g1f8>
+		}
+		group <g2> (2..2) {
+			feature "g2f1" <g2f1>
+			feature "g2f2" <g2f2>
+		}
+		group <g3> (0..2) {
+			feature "g3f1" <g3f1>
+			feature "g3f2" <g3f2>
+		}
+		group <g4> (1..1) {
+			feature "g4f1" <g4f1>
+			feature "g4f2" <g4f2>
+			feature "g4f3" <g4f3>
+		}
+		group <g5> (1..3) {
+			feature "g5f1" <g5f1>
+			feature "g5f2" <g5f2>
+			feature "g5f3" <g5f3>
+		}
+	}
+constraint <c1> g2f2 -> g1f8
+constraint <c2> g2f2 -> g5f2
+constraint <c3> g3f2 <-> g4f1
+constraint <c4> g4f2 <-> g5f1
