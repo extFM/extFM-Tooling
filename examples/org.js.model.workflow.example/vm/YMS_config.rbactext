@@ -1,0 +1,61 @@
+access control on <../efm/YMS.eft>
+
+permissions {
+    select YMS,
+    select Authentication, deselect Authentication,
+    select JAAS, deselect JAAS,
+    select Persistence, deselect Persistence,
+    select JDBC, deselect JDBC,
+    select JPI, deselect JPI,
+    select Connectivity, deselect Connectivity,
+    select RFC, deselect RFC,
+    select SOAP, deselect SOAP,
+    select REST, deselect REST,
+    select YM, deselect YM,
+    select EnableShips, deselect EnableShips,
+    select EnableTrains, deselect EnableTrains,
+    select SpecialDocks, deselect SpecialDocks,
+    set YM.SchedulingType { select next, deselect next, select fitting,  deselect fitting},
+    select YJ, deselect YJ,
+    select LS, deselect LS,
+    select Coordinate, deselect Coordinate,
+    select RoadMap, deselect RoadMap,
+    select SatelliteMap, deselect SatelliteMap,
+    select MC, deselect MC
+}
+    
+role "PlatformProvider" <PlatformProvider> { 
+	"select YMS",
+  	"select Authentication", "deselect Authentication",
+    "select Persistence", "deselect Persistence",
+    "deselect Connectivity", "select Connectivity"
+} 
+
+role "ApplicationProvider" <ApplicationProvider> { 
+	"select JAAS", "deselect JAAS",
+    "select JDBC", "deselect JDBC",
+    "select JPI", "deselect JPI",
+    "select RFC", "deselect RFC",
+    "select SOAP", "deselect SOAP",
+    "select REST", "deselect REST"
+} 
+
+role "Tenant" <Tenant> {
+	"select YM", "deselect YM",
+	"select YJ", "deselect YJ",
+	"select MC", "deselect MC",
+	"select LS", "deselect LS",
+	"set YM.SchedulingType"
+} 
+
+role "User" <User> {
+	"select EnableShips", "deselect EnableShips",
+	"select EnableTrains", "deselect EnableTrains",
+	"select SpecialDocks", "deselect SpecialDocks",
+	"select Coordinate", "deselect Coordinate",
+	"select RoadMap", "deselect RoadMap",
+	"select SatelliteMap", "deselect SatelliteMap"
+}
+
+
+
