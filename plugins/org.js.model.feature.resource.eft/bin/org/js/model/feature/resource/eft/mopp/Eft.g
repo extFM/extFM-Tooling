@@ -747,7 +747,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 			element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.FEATURE__CONFIGURATION_STATE), value);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
 	}
 	{
@@ -784,7 +784,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_3, resolved, true);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_4, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
 			}
 		}
@@ -803,7 +803,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 			element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.FEATURE__CONFIGURATION_STATE), value);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_5, null, true);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_6, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
 	}
 	{
@@ -840,7 +840,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_6, resolved, true);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_7, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a7, element);
 			}
 		}
@@ -859,7 +859,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 			element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.FEATURE__CONFIGURATION_STATE), value);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_7, null, true);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_8, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
 	}
 	{
@@ -895,7 +895,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 								completedElement(value, true);
 							}
 							collectHiddenTokens(element);
-							retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_8_0_0_1_0_0_0, a9_0, true);
+							retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_9_0_0_1_0_0_0, a9_0, true);
 							copyLocalizationInfos(a9_0, element);
 						}
 					}
@@ -931,7 +931,7 @@ parse_org_js_model_feature_Feature returns [org.js.model.feature.Feature element
 								completedElement(value, true);
 							}
 							collectHiddenTokens(element);
-							retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_8_0_0_1_0_1_0, a10_0, true);
+							retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_1_0_0_9_0_0_1_0_1_0, a10_0, true);
 							copyLocalizationInfos(a10_0, element);
 						}
 					}
@@ -1071,7 +1071,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 	}
 	
 	(
-		a5 = TEXT		
+		a5 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1081,7 +1081,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 				startIncompleteElement(element);
 			}
 			if (a5 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MIN_CARDINALITY), result);
@@ -1121,7 +1121,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 	}
 	
 	(
-		a7 = TEXT		
+		a7 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1131,7 +1131,7 @@ parse_org_js_model_feature_Group returns [org.js.model.feature.Group element = n
 				startIncompleteElement(element);
 			}
 			if (a7 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a7.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.GROUP__MAX_CARDINALITY), result);
@@ -1805,7 +1805,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 }
 :
 	(
-		a0 = TEXT		
+		a0 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1815,7 +1815,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 				startIncompleteElement(element);
 			}
 			if (a0 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.INTERVAL__LOWER_BOUND), result);
@@ -1855,7 +1855,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 	}
 	
 	(
-		a2 = TEXT		
+		a2 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -1865,7 +1865,7 @@ parse_org_js_model_feature_Interval returns [org.js.model.feature.Interval eleme
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.INTERVAL__UPPER_BOUND), result);
@@ -2151,7 +2151,7 @@ parse_org_js_model_feature_DomainValue returns [org.js.model.feature.DomainValue
 	}
 	
 	(
-		a2 = TEXT		
+		a2 = INTEGER		
 		{
 			if (terminateParsing) {
 				throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2161,7 +2161,7 @@ parse_org_js_model_feature_DomainValue returns [org.js.model.feature.DomainValue
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
-				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 				tokenResolver.setOptions(getOptions());
 				org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.DOMAIN_VALUE__INT), result);
@@ -2828,7 +2828,7 @@ parse_org_js_model_feature_AttributeReference returns [org.js.model.feature.Attr
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
@@ -2865,7 +2865,7 @@ parse_org_js_model_feature_AttributeReference returns [org.js.model.feature.Attr
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_2, proxy, true);
+				retrieveLayoutInformation(element, org.js.model.feature.resource.eft.grammar.EftGrammarInformationProvider.EFT_11_0_0_4, proxy, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, proxy);
 			}
@@ -2921,7 +2921,7 @@ parse_org_js_model_feature_AttributeValue returns [org.js.model.feature.Attribut
 		
 		
 		|		(
-			a1 = TEXT			
+			a1 = INTEGER			
 			{
 				if (terminateParsing) {
 					throw new org.js.model.feature.resource.eft.mopp.EftTerminateParsingException();
@@ -2931,7 +2931,7 @@ parse_org_js_model_feature_AttributeValue returns [org.js.model.feature.Attribut
 					startIncompleteElement(element);
 				}
 				if (a1 != null) {
-					org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+					org.js.model.feature.resource.eft.IEftTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("INTEGER");
 					tokenResolver.setOptions(getOptions());
 					org.js.model.feature.resource.eft.IEftTokenResolveResult result = getFreshTokenResolveResult();
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_VALUE__INT), result);
@@ -2986,6 +2986,9 @@ parse_org_js_model_feature_AttributeOperand returns [org.js.model.feature.Attrib
 	
 ;
 
+INTEGER:
+	(('0'..'9')+ )
+;
 COMMENT:
 	('//'(~('\n'|'\r'|'\uffff'))* )
 	{ _channel = 99; }

@@ -33,7 +33,8 @@ import org.js.model.feature.FeaturePackage;
  */
 public class ConstraintItemProvider
    extends 
-ItemProviderAdapter
+
+IdentifiableItemProvider
    implements
       IEditingDomainItemProvider,
       IStructuredItemContentProvider,
@@ -84,7 +85,10 @@ ItemProviderAdapter
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_Constraint_type");
+      String label = ((Constraint)object).getId();
+      return label == null || label.length() == 0 ?
+         getString("_UI_Constraint_type") :
+         getString("_UI_Constraint_type") + " " + label;
    }
 
    /**
@@ -110,17 +114,6 @@ ItemProviderAdapter
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
       super.collectNewChildDescriptors(newChildDescriptors, object);
-   }
-
-   /**
-    * Return the resource locator for this item provider's resources.
-    * <!-- begin-user-doc -->
-    * <!-- end-user-doc -->
-    * @generated
-    */
-   @Override
-   public ResourceLocator getResourceLocator() {
-      return FeatureEditPlugin.INSTANCE;
    }
 
 }

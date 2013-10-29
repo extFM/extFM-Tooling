@@ -19,7 +19,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//Group" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Group">
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="childFeatures" lowerBound="1"
         upperBound="-1" eType="#//Feature" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCardinality" lowerBound="1"
@@ -62,7 +62,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" eSuperTypes="#//Identifiable"/>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureState">
     <eLiterals name="unbound"/>
     <eLiterals name="selected" value="1"/>

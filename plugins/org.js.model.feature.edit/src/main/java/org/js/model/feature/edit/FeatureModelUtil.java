@@ -31,6 +31,7 @@ import org.js.model.feature.AttributeValue;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureState;
+import org.js.model.feature.Group;
 import org.js.model.feature.Imply;
 import org.js.model.feature.Relop;
 
@@ -184,6 +185,17 @@ public final class FeatureModelUtil {
       return getProject(object).getName();
    }
 
+   
+   public static String getLabel(Group group){
+      String range = "";
+         int minCardinality = group.getMinCardinality();
+         int maxCardinality = group.getMaxCardinality();
+         range = "[" + minCardinality + ".." + maxCardinality + "] ";
+         String id = group.getId();
+      String label = range + "Group <" + id + ">";
+      return label;
+   }
+   
    /**
     * return a textual representation of the given feature model constraint
     * 
@@ -191,7 +203,8 @@ public final class FeatureModelUtil {
     * @return
     */
    public static String getLabel(FeatureConstraint constraint) {
-      String label = "";
+      String id = constraint.getId();
+      String label = "<" + id + ">";
       Feature leftOperand = constraint.getLeftOperand();
       Feature rightOperand = constraint.getRightOperand();
       String operator = constraint instanceof Imply ? "requires" : "excludes";
@@ -222,7 +235,8 @@ public final class FeatureModelUtil {
    }
 
    public static String getLabel(AttributeConstraint constraint) {
-      String label = "";
+      String id = constraint.getId();
+      String label = "<" + id + ">";
       AttributeOperand attribute1 = constraint.getAttribute1();
       String att1Label = getLabel(attribute1);
       AttributeOperand attribute2 = constraint.getAttribute2();

@@ -53,11 +53,11 @@ RULES {
 				(!1 (attributes | groups) )*; 
 	
     // syntax definition for groups
-	Group ::= "group" #1  "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
+	Group ::= "group" #1 "<"id[]">" #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
 						#1 "{" (!1 childFeatures)+ "}" !0;
 
     // syntax definition for attributes and their configuration state
-	Attribute ::= "attribute" name[] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues[] ("," #1 deselectedDomainValues[])* "}")? 
+	Attribute ::= name[] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues[] ("," #1 deselectedDomainValues[])* "}")? 
 	(#1 ":=" #1 (value['"','"']))? ;
 
     // syntax definition for attribute domains
@@ -68,10 +68,10 @@ RULES {
 	DomainValue ::= (name[] "=")? #0 int[INTEGER];
 
     // syntax definition for cross-tree constraints
-	Imply ::= "constraint" #1  leftOperand[] #1 "->" #1 rightOperand[] !0;
-	Exclude ::= "constraint" #1  leftOperand[] #1 "<->" #1 rightOperand[] !0;
+	Imply ::= "constraint" #1 "<"id[]">" #1  leftOperand[] #1 "->" #1 rightOperand[] !0;
+	Exclude ::= "constraint" #1 "<"id[]">" #1  leftOperand[] #1 "<->" #1 rightOperand[] !0;
 	
-	AttributeConstraint ::= "constraint" #1  
+	AttributeConstraint ::= "constraint" #1 "<"id[]">" #1  
 			attribute1 #1 
 			operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] #1 
 			attribute2 !0;

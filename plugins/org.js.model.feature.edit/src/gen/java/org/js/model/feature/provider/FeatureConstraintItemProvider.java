@@ -113,7 +113,10 @@ public class FeatureConstraintItemProvider
     */
    @Override
    public String getText(Object object) {
-      return getString("_UI_FeatureConstraint_type");
+      String label = ((FeatureConstraint)object).getId();
+      return label == null || label.length() == 0 ?
+         getString("_UI_FeatureConstraint_type") :
+         getString("_UI_FeatureConstraint_type") + " " + label;
    }
 
    /**
