@@ -26,7 +26,7 @@ feature "YMS" <YMS>
 	}
 	group <YM_man>(1..1){ 
 		feature "YM" <YM>
-					SchedulingType [scheduleType]
+				SchedulingType [scheduleType]
 			group <EnableShips_opt>(0..1) {
 				feature "EnableShips" <EnableShips>
 			}
