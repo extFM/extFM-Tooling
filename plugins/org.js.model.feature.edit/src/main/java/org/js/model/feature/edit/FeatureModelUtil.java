@@ -18,16 +18,19 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.js.model.feature.Attribute;
 import org.js.model.feature.AttributeConstraint;
 import org.js.model.feature.AttributeOperand;
 import org.js.model.feature.AttributeReference;
 import org.js.model.feature.AttributeValue;
+import org.js.model.feature.Domain;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureState;
@@ -277,6 +280,42 @@ public final class FeatureModelUtil {
       return label;
    }
 
+   public static String getAttributeName(Attribute attribute){
+      String label = "Attribute";
+         String name = attribute.getName();
+         if (name != null & name.length() != 0) {
+            label += " " + name;
+         }
+         String domainDesc = "";
+         String attributeValue = attribute.getValue();
+         if (attributeValue != null && attributeValue.length() != 0) {
+            String attributeSet = " = " + attributeValue;
+            domainDesc += attributeSet;
+         }
+         Domain domain = attribute.getDomain();
+         if (domain != null) {
+            String domainId = domain.getId();
+            domainDesc += " [" + domainId + "]";
+            EList<String> deselectedValues = attribute.getDeselectedDomainValues();
+            if (deselectedValues.size() > 0) {
+               String deselected = "";
+               for (String value : deselectedValues) {
+                  if (deselected.length() > 0) {
+                     deselected += ", ";
+                  }
+                  deselected += value;
+               }
+               if (deselected.length() > 0) {
+                  domainDesc += " \\ (" + deselected + ")";
+               }
+            }
+         }
+
+         label += domainDesc;
+      return label;
+   }
+   
+   
    public static String getAttributeValueLabel(AttributeValue attributeValue) {
       String label = "";
       String name = attributeValue.getName();

@@ -156,12 +156,19 @@ public class AttributeItemProvider extends ItemProviderAdapter implements IEditi
       String imagePath = "Attribute";
       if (object instanceof Attribute) {
          Attribute attribute = (Attribute) object;
+         String value = attribute.getValue();
+         boolean isSet = (value != null && value.length() > 0);
+         
+         
          Feature feature = attribute.getFeature();
          if (FeatureModelUtil.isFeatureDeselected(feature)) {
-            imagePath = "DisabledAttribute";
+            if (isSet){
+               imagePath = "DisabledAttribute";
+            } else {
+               imagePath = "DisabledUnassignedAttribute";
+            }
          } else {
-            String value = attribute.getValue();
-            if (value != null && value.length() > 0) {
+            if (isSet) {
                imagePath = "SetAttribute";
             }
          }
@@ -176,41 +183,7 @@ public class AttributeItemProvider extends ItemProviderAdapter implements IEditi
     */
    @Override
    public String getText(Object object) {
-      String label = getString("_UI_Attribute_type");
-      if (object instanceof Attribute) {
-         Attribute attribute = (Attribute) object;
-         String name = attribute.getName();
-         if (name != null & name.length() != 0) {
-            label += " " + name;
-         }
-         String domainDesc = "";
-         String attributeValue = attribute.getValue();
-         if (attributeValue != null && attributeValue.length() != 0) {
-            String attributeSet = " = " + attributeValue;
-            domainDesc += attributeSet;
-         }
-         Domain domain = attribute.getDomain();
-         if (domain != null) {
-            String domainId = domain.getId();
-            domainDesc += " [" + domainId + "]";
-            EList<String> deselectedValues = attribute.getDeselectedDomainValues();
-            if (deselectedValues.size() > 0) {
-               String deselected = "";
-               for (String value : deselectedValues) {
-                  if (deselected.length() > 0) {
-                     deselected += ", ";
-                  }
-                  deselected += value;
-               }
-               if (deselected.length() > 0) {
-                  domainDesc += " \\ (" + deselected + ")";
-               }
-            }
-         }
-
-         label += domainDesc;
-      }
-      return label;
+      return FeatureModelUtil.getAttributeName((Attribute)object);
    }
 
    /**
