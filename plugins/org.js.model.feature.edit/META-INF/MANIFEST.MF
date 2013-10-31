@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.js.model.feature.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/log4j-1.2.15.jar
 Bundle-Activator: org.js.model.feature.provider.FeatureEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

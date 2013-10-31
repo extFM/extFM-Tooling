@@ -7,6 +7,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.js.model.feature.FeatureModel;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 public class CSPAnalyzer {
 

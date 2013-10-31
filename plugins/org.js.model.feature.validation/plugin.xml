@@ -32,6 +32,24 @@
                         name="Set">
                   </event></target>
             </constraint>
+            <constraint
+                  class="org.js.model.feature.validation.AttributeDomainValueRangeConstraint"
+                  id="org.js.model.feature.validation.constraint2"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="UniqueIdConstraint"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  message body text
+               </message>
+               <target
+                     class="org.js.model.feature.Attribute">
+                  <event
+                        name="Set">
+                  </event></target>
+            </constraint>
          </constraints>
       </constraintProvider>
    </extension>

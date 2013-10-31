@@ -11,6 +11,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.csp.dialog.SatisfiabilityDialog;
 import org.js.model.feature.csp.dialog.SatisfiableFile;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 public class FeatureModelSatisfiabilityHandler extends
 		AbstractFeatureModelCommandHandler {

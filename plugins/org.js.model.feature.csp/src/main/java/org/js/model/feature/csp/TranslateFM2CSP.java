@@ -31,6 +31,7 @@ import org.js.model.feature.Imply;
 import org.js.model.feature.Interval;
 import org.js.model.feature.NumericalDomain;
 import org.js.model.feature.Relop;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 import choco.Choco;
 import choco.cp.model.CPModel;

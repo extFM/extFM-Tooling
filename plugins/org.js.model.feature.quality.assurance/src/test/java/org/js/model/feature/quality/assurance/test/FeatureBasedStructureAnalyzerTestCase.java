@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.js.model.feature.*;
-import org.js.model.feature.csp.FeatureModelHelper;
+import org.js.model.feature.edit.FeatureModelHelper;
 import org.js.model.feature.quality.assurance.analyze.FeatureBasedStructureAnalyzer;
 import org.js.model.feature.resource.eft.mopp.EftResourceFactory;
 

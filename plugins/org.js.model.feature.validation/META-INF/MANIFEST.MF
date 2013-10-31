@@ -8,6 +8,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.js.model.feature;bundle-version="1.0.0",
  org.js.model.feature.resource.eft;bundle-version="1.0.0",
- org.eclipse.emf.validation;bundle-version="1.4.0"
+ org.eclipse.emf.validation;bundle-version="1.4.0",
+ org.js.model.feature.edit;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

@@ -1,4 +1,4 @@
-package org.js.model.feature.csp;
+package org.js.model.feature.edit;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -26,6 +26,8 @@ import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
 import org.js.model.feature.Interval;
 import org.js.model.feature.NumericalDomain;
+
+import sun.org.mozilla.javascript.internal.ast.TryStatement;
 
 /**
  * 
@@ -149,15 +151,22 @@ public class FeatureModelHelper {
     * @param attributeValue
     * @return
     */
-   public static boolean containsValue(DiscreteDomain domain, String attributeValue) {
+   public static boolean containsValue(Domain domain, String attributeValue) {
+      return (domain instanceof DiscreteDomain) ? containsValue((DiscreteDomain) domain, attributeValue)
+            : containsValue((NumericalDomain) domain, attributeValue);
+   }
+
+   private static boolean containsValue(DiscreteDomain domain, String attributeValue) {
       boolean isContained = false;
-      DiscreteDomain discreteDomain = (DiscreteDomain) domain;
-      EList<DomainValue> values = discreteDomain.getValues();
-      for (DomainValue domainValue : values) {
-         String domainValueString = domainValue.getName();
-         if (attributeValue.equals(domainValueString)) {
-            isContained = true;
-            break;
+      if (attributeValue != null) {
+         DiscreteDomain discreteDomain = (DiscreteDomain) domain;
+         EList<DomainValue> values = discreteDomain.getValues();
+         for (DomainValue domainValue : values) {
+            String domainValueString = domainValue.getName();
+            if (attributeValue.equals(domainValueString)) {
+               isContained = true;
+               break;
+            }
          }
       }
       return isContained;
@@ -186,18 +195,33 @@ public class FeatureModelHelper {
       return isSet;
    }
 
+   /**
+    * checks whether the given domain contains the attribute value.
+    * 
+    * @param numDomain
+    * @param value
+    * @return
+    */
    private static boolean containsValue(NumericalDomain numDomain, String value) {
       boolean isContained = false;
-      int number = Integer.parseInt(value);
-      for (Interval interval : numDomain.getIntervals()) {
-         isContained = isInInterval(number, interval);
-         if (isContained) {
-            break;
+      if (value != null) {
+         try {
+         int number = Integer.parseInt(value);
+         for (Interval interval : numDomain.getIntervals()) {
+            isContained = isInInterval(number, interval);
+            if (isContained) {
+               break;
+            }
+         }
+         } catch (NumberFormatException e){
+            // if the String value cannot be parsed to a numerical representation, the value is not contained in the domain.
          }
       }
+      
       return isContained;
    }
 
+   
    private static boolean isInInterval(int number, Interval interval) {
       boolean isinbounds = false;
       int lowerBound = interval.getLowerBound();

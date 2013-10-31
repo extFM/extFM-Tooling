@@ -41,29 +41,29 @@ RULES {
 						
     // syntax definition for features and their configuration state
 	@SuppressWarnings(explicitSyntaxChoice) 					
-	Feature ::= configurationState[selected : "selected", deselected : "deselected", unbound : ""] #1 "feature" #1 name['"','"'] #1 id['<','>'] 
+	Feature ::= configurationState[selected : "selected", deselected : "deselected", unbound : ""] #1 "feature" #1 name['"','"'] #1 "<" id[] ">" 
 				(!1 (attributes | groups) )*; 
 	
     // syntax definition for groups
-	Group ::= "group" #1 id['<','>'] #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
+	Group ::= "group" #1 "<" id[] ">" #1 "(" minCardinality[INTEGER] ".." maxCardinality[INTEGER] ")" 
 						#1 "{" (!1 childFeatures)+ "}" !0;
 
     // syntax definition for attributes and their configuration state
-	Attribute ::= name[] #1 "["  domain[] "]" ("\\" "{" deselectedDomainValues['"','"'] ("," #1 deselectedDomainValues['"','"'])* "}")? 
+	Attribute ::= name[] #1 "["  domain[] "]" ("without" "{" deselectedDomainValues['"','"'] ("," #1 deselectedDomainValues['"','"'])* "}")? 
 	(#1 ":=" #1 (value['"','"']))? ;
 
     // syntax definition for attribute domains
-	NumericalDomain ::= "domain" #1 id['<','>'] #1 "[" intervals ("," #1 intervals)* "]" !0;
+	NumericalDomain ::= "domain" #1 "<" id[] ">" #1 "[" intervals ("," #1 intervals)* "]" !0;
 	Interval ::= lowerBound[INTEGER] ".." upperBound[INTEGER];
 
-	DiscreteDomain ::= "domain"  #1 id['<','>'] #1 "[" values ("," #1 values)* "]" !0;
+	DiscreteDomain ::= "domain"  #1 "<" id[] ">" #1 "[" values ("," #1 values)* "]" !0;
 	DomainValue ::= (name[] "=")? #0 int[INTEGER];
 
     // syntax definition for cross-tree constraints
-	Imply ::= "constraint" #1 id['<','>'] #1  leftOperand[] #1 "->" #1 rightOperand[] !0;
-	Exclude ::= "constraint" #1 id['<','>'] #1  leftOperand[] #1 "<->" #1 rightOperand[] !0;
+	Imply ::= "constraint" #1 "<" id[] ">" #1  leftOperand[] #1 "->" #1 rightOperand[] !0;
+	Exclude ::= "constraint" #1 "<" id[] ">" #1  leftOperand[] #1 "<->" #1 rightOperand[] !0;
 	
-	AttributeConstraint ::= "constraint" #1 id['<','>'] #1  
+	AttributeConstraint ::= "constraint" #1 "<" id[] ">" #1  
 			attribute1 #1 
 			operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] #1 
 			attribute2 !0;

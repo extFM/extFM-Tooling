@@ -7,7 +7,6 @@ Bundle-Activator: org.js.model.feature.quality.assurance.QAPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.js.model.feature.edit;bundle-version="1.0.0",
- org.js.model.feature.csp;bundle-version="1.0.0",
  org.eclipse.core.resources,
  org.js.model.feature,
  org.junit,

@@ -15,6 +15,7 @@ import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.Group;
+import org.js.model.feature.edit.FeatureModelHelper;
 import org.js.model.feature.edit.FeatureModelUtil;
 
 import choco.cp.solver.CPSolver;

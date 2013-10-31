@@ -3,7 +3,7 @@ package org.js.model.feature.quality.assurance.analyze;
 import java.util.Set;
 
 import org.js.model.feature.*;
-import org.js.model.feature.csp.FeatureModelHelper;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 public abstract class StructureAnalyzer {
 	

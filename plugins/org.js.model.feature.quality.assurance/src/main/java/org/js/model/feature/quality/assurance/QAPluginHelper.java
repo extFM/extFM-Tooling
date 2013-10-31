@@ -11,7 +11,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.js.model.feature.*;
-import org.js.model.feature.csp.FeatureModelHelper;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 /**
  * This class offers static functionalities to interact with Eclipse

@@ -9,6 +9,7 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 /**
  * A variant feature configuration.
