@@ -2,18 +2,14 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rbac" nsURI="http://www.tudresden.de/rbac" nsPrefix="rbac">
   <eClassifiers xsi:type="ecore:EClass" name="AccessControlModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="featureModels" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featureModel" lowerBound="1"
+        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
         eType="#//Role" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
         eType="#//Subject" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="accessControlModels" upperBound="-1"
-        eType="#//AccessControlModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//Group" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
-        eType="#//Permission" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Permission" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Nameable">
@@ -35,7 +31,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//Task" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
-        eType="#//Permission"/>
+        eType="#//Permission" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nameable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

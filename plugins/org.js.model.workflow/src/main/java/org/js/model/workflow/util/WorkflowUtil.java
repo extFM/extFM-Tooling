@@ -564,7 +564,7 @@ public class WorkflowUtil {
          // get original efm
          ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil.getAspectInstance(workflowModel, WorkflowConfUtil.ACM_ASPECT);
          AccessControlModel acm = acmConnector.getAcmref();
-         oldFM = acm.getFeatureModels().get(0);
+         oldFM = acm.getFeatureModel();
       } else {
          // get the efm of previous action
          EFMContainer efmContainer = (EFMContainer) WorkflowConfUtil.getAspectInstance(preAction, WorkflowConfUtil.EFM_ASPECT);

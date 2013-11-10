@@ -22,12 +22,11 @@ public class PermissionInitialization {
    public PermissionInitialization(AccessControlModel model) {
       this.model = model;
       this.rbacService = new RBACService();
-      this.allModelPermissions = rbacService.getAllModelPermissions(model);
+//      this.allModelPermissions = rbacService.getAllModelPermissions(model);
    }
 
    public void initPermissions() {
-      EList<FeatureModel> featureModels = model.getFeatureModels();
-      for (FeatureModel featureModel : featureModels) {
+      FeatureModel featureModel = model.getFeatureModel();
          Feature root = featureModel.getRoot();
          addSelectRootFeaturePermission(root);
          TreeIterator<EObject> treeIterator = root.eAllContents();
@@ -35,15 +34,14 @@ public class PermissionInitialization {
             EObject eObject = (EObject) treeIterator.next();
             createPermissions(eObject);
          }
-      }
    }
 
    private void addSelectRootFeaturePermission(Feature root) {
       FeatureOperation rootPermission = rbacService.getSelectFeaturePermission(root, allModelPermissions);
       if (rootPermission == null) {
          FeatureOperation selectFeature = RbacHelper.createSelectFeature(root);
-         EList<Permission> permissions = model.getPermissions();
-         permissions.add(selectFeature);
+//         EList<Permission> permissions = model.getPermissions();
+//         permissions.add(selectFeature);
       }
    }
 
@@ -62,8 +60,8 @@ public class PermissionInitialization {
       if (permission == null) {
          Feature feature = attribute.getFeature();
          permission = RbacHelper.createSetAttribute(feature, attribute);
-         EList<Permission> permissions = model.getPermissions();
-         permissions.add(permission);
+//         EList<Permission> permissions = model.getPermissions();
+//         permissions.add(permission);
       }
       Domain domain = attribute.getDomain();
       createDomainPermissions(permission, domain);
@@ -102,16 +100,16 @@ public class PermissionInitialization {
 
    private void createFeaturePermissions(Feature feature) {
       FeatureOperation permission = rbacService.getSelectFeaturePermission(feature, allModelPermissions);
-      EList<Permission> permissions = model.getPermissions();
-      if (permission == null) {
-         FeatureOperation selectFeature = RbacHelper.createSelectFeature(feature);
-         permissions.add(selectFeature);
-      }
-      FeatureOperation deselectPermission = rbacService.getDeselectFeaturePermission(feature, allModelPermissions);
-      if (deselectPermission == null) {
-         FeatureOperation deselectFeature = RbacHelper.createDeselectFeature(feature);
-         permissions.add(deselectFeature);
-      }
+//      EList<Permission> permissions = model.getPermissions();
+//      if (permission == null) {
+//         FeatureOperation selectFeature = RbacHelper.createSelectFeature(feature);
+//         permissions.add(selectFeature);
+//      }
+//      FeatureOperation deselectPermission = rbacService.getDeselectFeaturePermission(feature, allModelPermissions);
+//      if (deselectPermission == null) {
+//         FeatureOperation deselectFeature = RbacHelper.createDeselectFeature(feature);
+//         permissions.add(deselectFeature);
+//      }
    }
 
 }

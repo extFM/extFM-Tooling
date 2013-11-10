@@ -24,27 +24,28 @@ TOKENS {
  	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))* $ ;
  	DEFINE TEXT $('A'..'Z'|'a'..'z'|'0'..'9'|'_')+ $;
  	DEFINE LINEBREAK $ ('\r\n'|'\r'|'\n')+ $;
-    DEFINE WHITESPACE $ (' '|'\t'|'\f')+ $ ;
+ 	DEFINE WHITESPACE $ (' '|'\t'|'\f')+ $ ;
 }
 
 TOKENSTYLES {
 	"COMMENT" COLOR #AAAAAA;
+	"set" COLOR #147F87, BOLD; 
+	"select" COLOR #009E0F, BOLD; 
+	"deselect" COLOR #CE0000, BOLD; 
 }	
 	
 	RULES {
 	// syntax definition for container class 'AccessControlModel'
 	@SuppressWarnings(explicitSyntaxChoice) 
 	AccessControlModel   ::= "access control" #1 
-									("on" #1 featureModels['<','>'] (#1 "," #1 featureModels['<','>'])*) !0
-									("references" #1 accessControlModels['<','>'] (#1 "," #1 accessControlModels['<','>'])* )? !0
-									("permissions" #1 "{" !0 permissions ( ","!0 permissions)* !0 "}")* !0
+									("on" #1 featureModel['<','>']) !0
 									(roles | groups | subjects)* ; 
 	
 	// syntax definition for roles
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
 	Role ::= "role" #1 name['"','"']? #1 id['<','>'] #1 ("extends" #1 (parentRoles[]) (#1 "," #1 parentRoles[])*)? #1 
-			(("{" !1 ( permissions['"','"'] | tasks) #1 (","  #1 ( permissions['"','"'] | tasks) )* #1 
+			(("{" !1 ( permissions | tasks) #1 (","  #1 ( permissions | tasks) )* #1 
 			!0 "}") )? !0 ;
 
 	// syntax definition for feature configuration operations

@@ -47,20 +47,17 @@ public final class RBACResolverUtil {
    public static Feature findFeature(AccessControlModel model, String featureId) {
       Assert.isNotNull(featureId);
       Assert.isNotNull(model);
-
       Feature result = null;
-      EList<FeatureModel> featureModels = model.getFeatureModels();
-      for (FeatureModel featureModel : featureModels) {
-         TreeIterator<Object> allContents = EcoreUtil.getAllContents(featureModel, true);
-         while (allContents.hasNext()) {
-            Object next = allContents.next();
-            if (next instanceof Feature) {
-               Feature feature = (Feature) next;
-               String refFeatureId = EcoreUtil.getID(feature);
-               if (featureId.equals(refFeatureId)) {
-                  result = feature;
-                  break;
-               }
+      FeatureModel featureModel = model.getFeatureModel();
+      TreeIterator<Object> allContents = EcoreUtil.getAllContents(featureModel, true);
+      while (allContents.hasNext()) {
+         Object next = allContents.next();
+         if (next instanceof Feature) {
+            Feature feature = (Feature) next;
+            String refFeatureId = EcoreUtil.getID(feature);
+            if (featureId.equals(refFeatureId)) {
+               result = feature;
+               break;
             }
          }
       }
@@ -91,55 +88,55 @@ public final class RBACResolverUtil {
     * @return
     */
    public static Permission findPermission(AccessControlModel model, String identifier) {
-      List<Permission> permissions = new RBACService().getAllModelPermissions(model);
       Permission result = null;
-      String keyword = getKeyword(identifier);
-      String objectId = getObjectIdentifier(keyword, identifier);
-      boolean isSelectFeature = isSelectFeature(keyword, objectId);
-      boolean isDeselectFeature = isDeselectFeature(keyword, objectId);
-      if (isSelectFeature || isDeselectFeature) {
-         for (Permission permission : permissions) {
-            if (permission instanceof FeatureOperation) {
-               FeatureOperation featureOp = (FeatureOperation) permission;
-               if (RbacHelper.isSelectFeatureOperation(featureOp) == isSelectFeature) {
-                  String featureid = featureOp.getFeature().getId();
-                  if (objectId.equals(featureid)) {
-                     result = permission;
-                     break;
-                  }
-               }
-            }
-         }
-      } else if (isSetAttribute(keyword, objectId)) {
-         String[] split = splitObjectId(delimiter, objectId);
-         for (Permission permission : permissions) {
-            if (permission instanceof AttributeOperation) {
-               AttributeOperation setAttribute = (AttributeOperation) permission;
-               String featureId = setAttribute.getFeature().getId();
-               String attributeName = setAttribute.getAttribute().getName();
-               if (split[0].equals(featureId) && split[1].equals(attributeName)) {
-                  result = permission;
-                  break;
-               }
-            }
-         }
-      } else {
-         boolean isViewElement = isViewElement(keyword);
-         if (isViewElement || isModifyElement(keyword)) {
-            for (Permission permission : permissions) {
-               if (permission instanceof VisibilityRestriction) {
-                  VisibilityRestriction restriction = (VisibilityRestriction) permission;
-                  if (RbacHelper.isViewElement(restriction) == isViewElement) {
-                     String resourceId = restriction.getResourceId();
-                     if (objectId.equals(resourceId)) {
-                        result = restriction;
-                        break;
-                     }
-                  }
-               }
-            }
-         }
-      }
+      // List<Permission> permissions = new RBACService().getAllModelPermissions(model);
+      // String keyword = getKeyword(identifier);
+      // String objectId = getObjectIdentifier(keyword, identifier);
+      // boolean isSelectFeature = isSelectFeature(keyword, objectId);
+      // boolean isDeselectFeature = isDeselectFeature(keyword, objectId);
+      // if (isSelectFeature || isDeselectFeature) {
+      // for (Permission permission : permissions) {
+      // if (permission instanceof FeatureOperation) {
+      // FeatureOperation featureOp = (FeatureOperation) permission;
+      // if (RbacHelper.isSelectFeatureOperation(featureOp) == isSelectFeature) {
+      // String featureid = featureOp.getFeature().getId();
+      // if (objectId.equals(featureid)) {
+      // result = permission;
+      // break;
+      // }
+      // }
+      // }
+      // }
+      // } else if (isSetAttribute(keyword, objectId)) {
+      // String[] split = splitObjectId(delimiter, objectId);
+      // for (Permission permission : permissions) {
+      // if (permission instanceof AttributeOperation) {
+      // AttributeOperation setAttribute = (AttributeOperation) permission;
+      // String featureId = setAttribute.getFeature().getId();
+      // String attributeName = setAttribute.getAttribute().getName();
+      // if (split[0].equals(featureId) && split[1].equals(attributeName)) {
+      // result = permission;
+      // break;
+      // }
+      // }
+      // }
+      // } else {
+      // boolean isViewElement = isViewElement(keyword);
+      // if (isViewElement || isModifyElement(keyword)) {
+      // for (Permission permission : permissions) {
+      // if (permission instanceof VisibilityRestriction) {
+      // VisibilityRestriction restriction = (VisibilityRestriction) permission;
+      // if (RbacHelper.isViewElement(restriction) == isViewElement) {
+      // String resourceId = restriction.getResourceId();
+      // if (objectId.equals(resourceId)) {
+      // result = restriction;
+      // break;
+      // }
+      // }
+      // }
+      // }
+      // }
+      // }
       return result;
    }
 
@@ -303,7 +300,7 @@ public final class RBACResolverUtil {
          FeatureOperation featureOp = (FeatureOperation) permission;
          identifier = (RbacHelper.isSelectFeatureOperation(featureOp)) ? select : deselect;
          Feature feature = featureOp.getFeature();
-         identifier +=  " " + feature.getId();
+         identifier += " " + feature.getId();
       } else if (permission instanceof AttributeOperation) {
          AttributeOperation attrOp = (AttributeOperation) permission;
          identifier = set + " " + attrOp.getFeature().getId() + delimiter + attrOp.getAttribute().getName();

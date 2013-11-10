@@ -64,18 +64,16 @@ public abstract class AbstractTestRbac {
 
    protected Feature getFeature(String featureId) {
       Feature result = null;
-      EList<FeatureModel> featureModels = acModelUT.getFeatureModels();
-      for (FeatureModel featureModel : featureModels) {
-         TreeIterator<EObject> eAllContents = featureModel.eAllContents();
-         while (eAllContents.hasNext()) {
-            EObject next = eAllContents.next();
-            if (next instanceof Feature) {
-               Feature feature = (Feature) next;
-               String id = feature.getId();
-               if (featureId.equals(id)) {
-                  result = feature;
-                  break;
-               }
+      FeatureModel featureModel = acModelUT.getFeatureModel();
+      TreeIterator<EObject> eAllContents = featureModel.eAllContents();
+      while (eAllContents.hasNext()) {
+         EObject next = eAllContents.next();
+         if (next instanceof Feature) {
+            Feature feature = (Feature) next;
+            String id = feature.getId();
+            if (featureId.equals(id)) {
+               result = feature;
+               break;
             }
          }
       }

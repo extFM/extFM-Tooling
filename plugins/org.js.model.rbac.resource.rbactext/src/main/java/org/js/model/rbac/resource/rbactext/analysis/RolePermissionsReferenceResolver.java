@@ -20,7 +20,7 @@ public class RolePermissionsReferenceResolver implements
    public void resolve(String identifier, org.js.model.rbac.Role container, org.eclipse.emf.ecore.EReference reference, int position,
                        boolean resolveFuzzy,
                        final org.js.model.rbac.resource.rbactext.IRbactextReferenceResolveResult<org.js.model.rbac.Permission> result) {
-      // identifier looks like "+f2"
+      // identifier looks like "select f2"
       AccessControlModel model = (AccessControlModel) EcoreUtil.getRootContainer(container);
       Permission permission = RBACResolverUtil.findPermission(model, identifier);
       if (permission != null) {

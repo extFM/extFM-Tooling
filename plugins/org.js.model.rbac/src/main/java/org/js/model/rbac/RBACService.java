@@ -48,21 +48,21 @@ public class RBACService {
       }
    }
 
-   /**
-    * returns all permissions defined in the hierarchically referenced access control models.
-    * 
-    * @param model
-    * @return
-    */
-   public List<Permission> getAllModelPermissions(AccessControlModel model) {
-      List<Permission> result = new ArrayList<Permission>();
-      result.addAll(model.getPermissions());
-      EList<AccessControlModel> accessControlModels = model.getAccessControlModels();
-      for (AccessControlModel accessControlModel : accessControlModels) {
-         result.addAll(accessControlModel.getPermissions());
-      }
-      return result;
-   }
+//   /**
+//    * returns all permissions defined in the hierarchically referenced access control models.
+//    * 
+//    * @param model
+//    * @return
+//    */
+//   public List<Permission> getAllModelPermissions(AccessControlModel model) {
+//      List<Permission> result = new ArrayList<Permission>();
+//      result.addAll(model.getPermissions());
+//      EList<AccessControlModel> accessControlModels = model.getAccessControlModels();
+//      for (AccessControlModel accessControlModel : accessControlModels) {
+//         result.addAll(accessControlModel.getPermissions());
+//      }
+//      return result;
+//   }
 
    /**
     * get a subject's direct and indirect roles.
