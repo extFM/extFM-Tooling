@@ -128,6 +128,14 @@ public class FeatureModelHelper {
       // if value is -1, it is not found in domain value list
       int value = -1;
       Domain domain = attribute.getDomain();
+      value = getDomainValueForString(valueString, domain);
+      
+      return value;
+   }
+
+   
+   public static int getDomainValueForString(String valueString, Domain domain){
+      int value = -1;
       if (domain instanceof DiscreteDomain) {
          DiscreteDomain discreteDomain = (DiscreteDomain) domain;
          EList<DomainValue> values = discreteDomain.getValues();
@@ -143,7 +151,7 @@ public class FeatureModelHelper {
       }
       return value;
    }
-
+   
    /**
     * check if the given attribute value is contained in the given domain
     * 
