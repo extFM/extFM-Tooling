@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.AttributeConstraint;
+import org.js.model.feature.AttributeOperand;
+import org.js.model.feature.AttributeReference;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
 import org.js.model.feature.DomainValue;
@@ -86,6 +88,21 @@ public class FeatureModelHelper {
       }
    }
 
+   /**
+    * getFeature from Attribute Operand if the Operand is an AttributeReference, returns null otherwise.
+    * @param operand
+    * @return
+    */
+   public static Feature getAttributeOperandFeature(AttributeOperand operand){
+      Feature result = null;
+      if (operand instanceof AttributeReference) {
+        AttributeReference reference = (AttributeReference) operand;
+        result = reference.getFeature();
+     }
+      return result;
+   }
+   
+   
    private void sortFeature(Feature feature) {
       FeatureState configurationState = feature.getConfigurationState();
       if (FeatureState.SELECTED.equals(configurationState)) {
