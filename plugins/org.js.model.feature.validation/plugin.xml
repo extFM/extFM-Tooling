@@ -26,11 +26,6 @@
                <message>
                   message body text
                </message>
-               <target
-                     class="EObject">
-                  <event
-                        name="Set">
-                  </event></target>
             </constraint>
             <constraint
                   class="org.js.model.feature.validation.AttributeDomainValueRangeConstraint"
@@ -45,7 +40,7 @@
                   message body text
                </message>
                <target
-                     class="org.js.model.feature.Attribute">
+                     class="Attribute">
                   <event
                         name="Set">
                   </event></target>

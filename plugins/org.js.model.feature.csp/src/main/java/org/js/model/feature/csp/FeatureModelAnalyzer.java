@@ -224,7 +224,7 @@ public class FeatureModelAnalyzer {
             if (persistVariants) {
                FeatureVariant variant = createVariant(solver);
                save(variant, j);
-               log.info(j + ". variant found: '" + variant.toString() + "'");
+               log.debug(j + ". variant found: '" + variant.toString() + "'");
             } else {
                log.debug(j + ". variant found.");
             }

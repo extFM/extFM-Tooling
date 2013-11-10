@@ -29,7 +29,6 @@ import org.js.model.feature.FeatureState;
 import org.js.model.feature.Interval;
 import org.js.model.feature.NumericalDomain;
 
-import sun.org.mozilla.javascript.internal.ast.TryStatement;
 
 /**
  * 
