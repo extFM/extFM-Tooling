@@ -4,7 +4,7 @@
     editDirectory="/org.feature.multi.perspective.view.edit/src/gen/java" editorDirectory="/org.feature.multi.perspective.view.editor/src/gen/java"
     modelPluginID="org.feature.multi.perspective.view" modelName="View" testsDirectory="/org.feature.multi.perspective.view.tests/src/gen/java"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.featuremapper.models.feature/model/feature.genmodel#//feature ../../../../org.feature.multi.perspective.mapping/src/main/model/viewmapping.genmodel#//viewmapping ../../../../org.feature.multi.perspective.model/src/main/model/viewmodel.genmodel#//viewmodel">
+    usedGenPackages="../../../../org.feature.multi.perspective.mapping/src/main/model/viewmapping.genmodel#//viewmapping ../../../../org.feature.multi.perspective.model/src/main/model/viewmodel.genmodel#//viewmodel ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature">
   <foreignModel>View.ecore</foreignModel>
   <genPackages prefix="View" basePackage="org.feature.multi.perspective" disposableProviderFactory="true"
       ecorePackage="View.ecore#/">

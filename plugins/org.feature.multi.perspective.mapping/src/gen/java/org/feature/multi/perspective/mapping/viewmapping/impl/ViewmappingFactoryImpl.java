@@ -20,87 +20,91 @@ import org.feature.multi.perspective.mapping.viewmapping.*;
  */
 public class ViewmappingFactoryImpl extends EFactoryImpl implements ViewmappingFactory {
    /**
-    * Creates the default factory implementation.
-    * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public static ViewmappingFactory init() {
-      try {
-         ViewmappingFactory theViewmappingFactory = (ViewmappingFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.tudresden.de/viewmapping"); 
-         if (theViewmappingFactory != null) {
-            return theViewmappingFactory;
-         }
+    try
+    {
+      ViewmappingFactory theViewmappingFactory = (ViewmappingFactory)EPackage.Registry.INSTANCE.getEFactory(ViewmappingPackage.eNS_URI);
+      if (theViewmappingFactory != null)
+      {
+        return theViewmappingFactory;
       }
-      catch (Exception exception) {
-         EcorePlugin.INSTANCE.log(exception);
-      }
-      return new ViewmappingFactoryImpl();
-   }
+    }
+    catch (Exception exception)
+    {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new ViewmappingFactoryImpl();
+  }
 
    /**
-    * Creates an instance of the factory.
-    * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public ViewmappingFactoryImpl() {
-      super();
-   }
+    super();
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    @Override
    public EObject create(EClass eClass) {
-      switch (eClass.getClassifierID()) {
-         case ViewmappingPackage.MAPPING_MODEL: return createMappingModel();
-         case ViewmappingPackage.MAPPING: return createMapping();
-         default:
-            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-      }
-   }
+    switch (eClass.getClassifierID())
+    {
+      case ViewmappingPackage.MAPPING_MODEL: return createMappingModel();
+      case ViewmappingPackage.MAPPING: return createMapping();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public MappingModel createMappingModel() {
-      MappingModelImpl mappingModel = new MappingModelImpl();
-      return mappingModel;
-   }
+    MappingModelImpl mappingModel = new MappingModelImpl();
+    return mappingModel;
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public Mapping createMapping() {
-      MappingImpl mapping = new MappingImpl();
-      return mapping;
-   }
+    MappingImpl mapping = new MappingImpl();
+    return mapping;
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public ViewmappingPackage getViewmappingPackage() {
-      return (ViewmappingPackage)getEPackage();
-   }
+    return (ViewmappingPackage)getEPackage();
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @deprecated
-    * @generated
-    */
+   * @deprecated
+   * @generated
+   */
    @Deprecated
    public static ViewmappingPackage getPackage() {
-      return ViewmappingPackage.eINSTANCE;
-   }
+    return ViewmappingPackage.eINSTANCE;
+  }
 
 } //ViewmappingFactoryImpl

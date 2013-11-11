@@ -21,8 +21,8 @@ import org.feature.multi.perspective.model.viewmodel.Group;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
 import org.feature.multi.perspective.model.viewmodel.ViewPoint;
 import org.feature.multi.perspective.model.editor.editors.View;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
 
 /**
  * This class represent the BruteForceAlgorithm which validates the {@link ViewPoint}

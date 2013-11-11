@@ -3,7 +3,7 @@ FOR <http://www.tudresden.de/viewmapping> <optional/path/to/myLanguage.genmodel>
 START MappingModel
 
 OPTIONS {
-	additionalDependencies = "org.featuremapper.models.feature, org.feature.multi.perspective.model, org.feature.model.utilities";
+	additionalDependencies = "org.js.model.feature, org.feature.multi.perspective.model, org.feature.model.utilities, org.js.model.feature.edit";
 	reloadGeneratorModel = "true";
 	generateCodeFromGeneratorModel = "true";
 	overrideLaunchConfigurationDelegate = "false";
@@ -22,8 +22,10 @@ RULES {
 						#3 ("viewmodel" #1 viewModel['<','>']) !0!0
 						(mappings*);
 	
-	// syntax definition for class 'AnotherMetaClass'
+	// syntax definition for class 'Mapping'
 	Mapping ::= "view group" #1 viewgroup['"','"'] #1 "contains" !0
-				#3 (features['"','"'] #1)+ !0!0; 
+				#3 features['"','"']  (#1 "," #1 features['"','"'] )* !0!0; 
+	
+	  
 				
 }

@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.feature.multi.perspective.model.viewmodel.provider.ViewmodelEditPlugin;
 
-import org.featuremapper.models.feature.provider.FeatureEditPlugin;
+import org.js.model.feature.provider.FeatureEditPlugin;
 
 /**
  * This is the central singleton for the Viewmapping edit plugin.

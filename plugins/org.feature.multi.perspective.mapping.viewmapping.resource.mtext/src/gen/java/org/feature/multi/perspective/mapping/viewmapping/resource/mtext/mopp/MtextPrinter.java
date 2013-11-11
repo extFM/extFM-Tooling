@@ -166,7 +166,7 @@ public class MtextPrinter implements org.feature.multi.perspective.mapping.viewm
 			if (o != null) {
 				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver resolver = tokenResolverFactory.createTokenResolver("QUOTED_60_62");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingModelFeatureModelReferenceResolver().deResolve((org.featuremapper.models.feature.FeatureModel) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL)), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), element));
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingModelFeatureModelReferenceResolver().deResolve((org.js.model.feature.FeatureModel) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL)), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), element));
 				out.print(" ");
 			}
 			printCountingMap.put("featureModel", count - 1);
@@ -258,8 +258,26 @@ public class MtextPrinter implements org.feature.multi.perspective.mapping.viewm
 		out.print(localtab);
 		// DEFINITION PART BEGINS (WhiteSpaces)
 		out.print("   ");
+		// DEFINITION PART BEGINS (PlaceholderInQuotes)
+		count = printCountingMap.get("features");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
+			if (o != null) {
+				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver resolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
+				resolver.setOptions(getOptions());
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver().deResolve((org.js.model.feature.Feature) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES)), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), element));
+				out.print(" ");
+			}
+			printCountingMap.put("features", count - 1);
+		}
 		// DEFINITION PART BEGINS (CompoundDefinition)
-		print_org_feature_multi_perspective_mapping_viewmapping_Mapping_0(element, localtab, out, printCountingMap);
 		iterate = true;
 		while (iterate) {
 			sWriter = new java.io.StringWriter();
@@ -286,6 +304,12 @@ public class MtextPrinter implements org.feature.multi.perspective.mapping.viewm
 	
 	public void print_org_feature_multi_perspective_mapping_viewmapping_Mapping_0(org.feature.multi.perspective.mapping.viewmapping.Mapping element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		int count;
+		// DEFINITION PART BEGINS (WhiteSpaces)
+		out.print(" ");
+		// DEFINITION PART BEGINS (CsString)
+		out.print(",");
+		// DEFINITION PART BEGINS (WhiteSpaces)
+		out.print(" ");
 		// DEFINITION PART BEGINS (PlaceholderInQuotes)
 		count = printCountingMap.get("features");
 		if (count > 0) {
@@ -300,12 +324,11 @@ public class MtextPrinter implements org.feature.multi.perspective.mapping.viewm
 			if (o != null) {
 				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver resolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver().deResolve((org.featuremapper.models.feature.Feature) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES)), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), element));
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver().deResolve((org.js.model.feature.Feature) o, element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES)), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), element));
+				out.print(" ");
 			}
 			printCountingMap.put("features", count - 1);
 		}
-		// DEFINITION PART BEGINS (WhiteSpaces)
-		out.print(" ");
 	}
 	
 	

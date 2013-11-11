@@ -6,18 +6,17 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.feature.model.constraint.FeatureExpression;
-import org.feature.model.csp.TextExpressionParser;
-import org.feature.model.utilities.FeatureMappingUtil;
-import org.feature.model.utilities.GroupModelUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
+import org.feature.multi.perspective.utilities.FeatureMappingUtil;
+import org.feature.multi.perspective.utilities.GroupModelUtil;
 import org.feature.multi.perspective.view.View;
 import org.feature.multi.perspective.view.ViewContainer;
 import org.feature.multi.perspective.view.ViewFactory;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.js.model.feature.Constraint;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
 
 /**
  * create all views specified by the given viewmapping.
@@ -29,7 +28,7 @@ public class ViewBuilder {
 
    private ViewContainer viewContainer;
 
-   private Set<FeatureExpression> featureModelConstraints;
+   private List<Constraint> featureModelConstraints;
 
    private boolean considerViewHierarchy;
 
@@ -50,10 +49,10 @@ public class ViewBuilder {
    }
 
    private void initConstraints(FeatureModel featuremodel) {
-      featureModelConstraints = TextExpressionParser.getConstraints(featuremodel);
+      featureModelConstraints = featuremodel.getConstraints();
    }
 
-   public Set<FeatureExpression> getConstraints() {
+   public List<Constraint> getConstraints() {
       return featureModelConstraints;
    }
 

@@ -42,6 +42,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -108,7 +109,6 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.zest.core.viewers.ZoomContributionViewItem;
-import org.feature.model.utilities.GroupModelUtil;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
 import org.feature.multi.perspective.model.viewmodel.ViewPoint;
 import org.feature.multi.perspective.model.viewmodel.ViewPointContainer;
@@ -120,6 +120,7 @@ import org.feature.multi.perspective.model.editor.editors.listeners.ViewPointCom
 import org.feature.multi.perspective.model.editor.zest.model.Node;
 import org.feature.multi.perspective.model.editor.zest.model.NodeModelContentProvider;
 import org.feature.multi.perspective.model.editor.zest.view.ZestView;
+import org.feature.multi.perspective.utilities.GroupModelUtil;
 
 /**
  * MultiPage editor for a viewmodel and the mapping to a feature model
@@ -1353,18 +1354,18 @@ public class ViewmodelMultiPageEditor extends MultiPageEditorPart implements IEd
             refresh.setEnabled(true);
          }
          mappingResourcePath = mapping;
-         ResourceSet rst = getEditingDomain().getResourceSet();
+         ResourceSet rst = new ResourceSetImpl();
          mappingResource = rst.getResource(mappingResourcePath, true);
-         long timeStamp = mappingResource.getTimeStamp(); // compare timeStamp && URI with the one before
-         if (mappingTimeStamp == -1) {
+        // long timeStamp = mappingResource.getTimeStamp(); // compare timeStamp && URI with the one before
+        // if (mappingTimeStamp == -1) {
             mappingURI = mappingResourcePath;
-            mappingTimeStamp = timeStamp;
+        //    mappingTimeStamp = timeStamp;
             zestView.init(mappingResource);
-         } else if (mappingResourcePath.equals(mappingURI) && mappingTimeStamp == timeStamp) {
-            return;
-         }
+        // } else if (mappingResourcePath.equals(mappingURI) && mappingTimeStamp == timeStamp) {
+        //    return;
+        // }
          mappingURI = mappingResourcePath;
-         mappingTimeStamp = timeStamp;
+        // mappingTimeStamp = timeStamp;
          zestView.init(mappingResource);
       }
    }

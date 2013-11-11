@@ -24,10 +24,10 @@ Require-Bundle: org.eclipse.core.resources,
   org.feature.multi.perspective.mapping.viewmapping.resource.mtext,
   org.emftext.commons.antlr3_4_0,
   org.feature.multi.perspective.mapping,
-  org.featuremapper.models.feature,
+  org.js.model.feature,
   org.feature.multi.perspective.model
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui
 Bundle-Activator: org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextUIPlugin
 Import-Package: org.eclipse.ui.texteditor.spelling

@@ -18,7 +18,7 @@ public class MtextReferenceResolverSwitch implements org.feature.multi.perspecti
 	protected org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MappingViewgroupReferenceResolver mappingViewgroupReferenceResolver = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MappingViewgroupReferenceResolver();
 	protected org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MappingFeaturesReferenceResolver mappingFeaturesReferenceResolver = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MappingFeaturesReferenceResolver();
 	
-	public org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.featuremapper.models.feature.FeatureModel> getMappingModelFeatureModelReferenceResolver() {
+	public org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.js.model.feature.FeatureModel> getMappingModelFeatureModelReferenceResolver() {
 		return getResolverChain(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel_FeatureModel(), mappingModelFeatureModelReferenceResolver);
 	}
 	
@@ -30,7 +30,7 @@ public class MtextReferenceResolverSwitch implements org.feature.multi.perspecti
 		return getResolverChain(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping_Viewgroup(), mappingViewgroupReferenceResolver);
 	}
 	
-	public org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.featuremapper.models.feature.Feature> getMappingFeaturesReferenceResolver() {
+	public org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.js.model.feature.Feature> getMappingFeaturesReferenceResolver() {
 		return getResolverChain(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping_Features(), mappingFeaturesReferenceResolver);
 	}
 	
@@ -50,7 +50,7 @@ public class MtextReferenceResolverSwitch implements org.feature.multi.perspecti
 			return;
 		}
 		if (org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel().isInstance(container)) {
-			MtextFuzzyResolveResult<org.featuremapper.models.feature.FeatureModel> frr = new MtextFuzzyResolveResult<org.featuremapper.models.feature.FeatureModel>(result);
+			MtextFuzzyResolveResult<org.js.model.feature.FeatureModel> frr = new MtextFuzzyResolveResult<org.js.model.feature.FeatureModel>(result);
 			String referenceName = reference.getName();
 			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
 			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("featureModel")) {
@@ -74,7 +74,7 @@ public class MtextReferenceResolverSwitch implements org.feature.multi.perspecti
 			}
 		}
 		if (org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping().isInstance(container)) {
-			MtextFuzzyResolveResult<org.featuremapper.models.feature.Feature> frr = new MtextFuzzyResolveResult<org.featuremapper.models.feature.Feature>(result);
+			MtextFuzzyResolveResult<org.js.model.feature.Feature> frr = new MtextFuzzyResolveResult<org.js.model.feature.Feature>(result);
 			String referenceName = reference.getName();
 			org.eclipse.emf.ecore.EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
 			if (feature != null && feature instanceof org.eclipse.emf.ecore.EReference && referenceName != null && referenceName.equals("features")) {

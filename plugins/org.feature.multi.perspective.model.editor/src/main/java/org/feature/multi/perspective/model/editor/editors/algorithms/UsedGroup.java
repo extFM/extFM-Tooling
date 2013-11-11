@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
 import org.feature.multi.perspective.model.viewmodel.Group;
-import org.featuremapper.models.feature.Feature;
+import org.js.model.feature.Feature;
 
 /**
  * @author Tim Winkelmann

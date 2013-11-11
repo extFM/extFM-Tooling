@@ -11,7 +11,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.feature.model.utilities.FeatureMappingUtil;
 import org.feature.model.utilities.FeatureModelInit;
 import org.feature.multi.perspective.mapping.viewmapping.Mapping;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
@@ -19,8 +18,9 @@ import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
 import org.feature.multi.perspective.model.viewmodel.CoreGroup;
 import org.feature.multi.perspective.model.viewmodel.Group;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 /**
  * This class creates the views for every {@link Group} and the {@link CoreGroup} from the {@link GroupModel}.
@@ -46,7 +46,8 @@ public class ViewCreator {
    private void init(GroupModel groupModel, FeatureModel featureModel, MappingModel featureMapping){
       setMappings(featureMapping.getMappings());
       setCoreGroup(groupModel.getCoreGroup());
-      List<Feature> allFeatures = FeatureModelInit.getAllFeatures(featureModel);
+      FeatureModelHelper helper = new FeatureModelHelper(featureModel);
+      Set<Feature> allFeatures = helper.getAllFeatures();
       initViews(featureModel, allFeatures);
       
    }
@@ -57,7 +58,7 @@ public class ViewCreator {
       init(groupModel, featureModel, featureMapping);
    }
 
-   private void initViews(FeatureModel featureModel, List<Feature> allFeatures) {
+   private void initViews(FeatureModel featureModel, Set<Feature> allFeatures) {
       // <Name of Group, {@link Group}||{@link DefaultGroup}>
       List<EObject> listOfGroups = createMapOfGroups();
       views = createViews(listOfGroups, featureModel);
@@ -69,8 +70,9 @@ public class ViewCreator {
       }
    }
 
-   public List<Feature> getUnmappedFeatures(FeatureModel featureModel) {
-      List<Feature> unmapped = FeatureModelInit.getAllFeatures(featureModel);
+   public Set<Feature> getUnmappedFeatures(FeatureModel featureModel) {
+      FeatureModelHelper helper = new FeatureModelHelper(featureModel);
+      Set<Feature> unmapped = helper.getAllFeatures();
       unmapped.removeAll(mappedFeatures);
       return unmapped;
    }

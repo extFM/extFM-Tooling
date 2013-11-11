@@ -7,24 +7,25 @@
 package org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis;
 
 import org.feature.model.utilities.ResourceUtil;
+import org.js.model.feature.FeatureModel;
 
 public class MappingModelFeatureModelReferenceResolver
       implements
-      org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.featuremapper.models.feature.FeatureModel> {
+      org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.MappingModel, FeatureModel> {
 
-   private org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.featuremapper.models.feature.FeatureModel> delegate =
-      new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.featuremapper.models.feature.FeatureModel>();
+   private org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.MappingModel, FeatureModel> delegate =
+      new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.MappingModel,FeatureModel>();
 
    public void resolve(String identifier,
                        org.feature.multi.perspective.mapping.viewmapping.MappingModel container,
                        org.eclipse.emf.ecore.EReference reference,
                        int position,
                        boolean resolveFuzzy,
-                       final org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolveResult<org.featuremapper.models.feature.FeatureModel> result) {
+                       final org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolveResult<FeatureModel> result) {
       delegate.resolve(identifier, container, reference, position, resolveFuzzy, result);
    }
 
-   public String deResolve(org.featuremapper.models.feature.FeatureModel element,
+   public String deResolve(FeatureModel element,
                            org.feature.multi.perspective.mapping.viewmapping.MappingModel container,
                            org.eclipse.emf.ecore.EReference reference) {
       return ResourceUtil.getRelativeURI(element, container);

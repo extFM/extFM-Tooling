@@ -12,7 +12,7 @@ Export-Package: org.feature.multi.perspective.mapping.viewmapping,
  org.feature.multi.perspective.mapping.viewmapping.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.featuremapper.models.feature;visibility:=reexport,
- org.feature.multi.perspective.model;visibility:=reexport
+ org.feature.multi.perspective.model;visibility:=reexport,
+ org.js.model.feature;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.feature.multi.perspective.mapping.viewmapping.ViewmappingPlugin$Implementation

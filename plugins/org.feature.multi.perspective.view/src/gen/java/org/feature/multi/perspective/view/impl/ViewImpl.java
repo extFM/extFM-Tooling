@@ -20,8 +20,8 @@ import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
 
 import org.feature.multi.perspective.view.View;
 import org.feature.multi.perspective.view.ViewPackage;
+import org.js.model.feature.Feature;
 
-import org.featuremapper.models.feature.Feature;
 
 /**
  * <!-- begin-user-doc -->

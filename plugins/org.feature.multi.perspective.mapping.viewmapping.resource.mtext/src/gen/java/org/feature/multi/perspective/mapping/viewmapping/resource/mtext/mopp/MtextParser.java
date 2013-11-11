@@ -13,7 +13,7 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class MtextParser extends MtextANTLRParserBase {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LINEBREAK", "QUOTED_34_34", "QUOTED_60_62", "TEXT", "WHITESPACE", "'contains'", "'featuremodel'", "'view group'", "'viewmapping'", "'viewmodel'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LINEBREAK", "QUOTED_34_34", "QUOTED_60_62", "TEXT", "WHITESPACE", "','", "'contains'", "'featuremodel'", "'view group'", "'viewmapping'", "'viewmodel'"
     };
 
     public static final int EOF=-1;
@@ -22,6 +22,7 @@ public class MtextParser extends MtextANTLRParserBase {
     public static final int T__11=11;
     public static final int T__12=12;
     public static final int T__13=13;
+    public static final int T__14=14;
     public static final int LINEBREAK=4;
     public static final int QUOTED_34_34=5;
     public static final int QUOTED_60_62=6;
@@ -360,7 +361,7 @@ public class MtextParser extends MtextANTLRParserBase {
     				break;
     			}
     		}
-    		int followSetID = 15;
+    		int followSetID = 17;
     		int i;
     		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
     			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -610,7 +611,7 @@ public class MtextParser extends MtextANTLRParserBase {
             // Mtext.g:521:2: (a0= 'viewmapping' (a1= 'featuremodel' (a2= QUOTED_60_62 ) ) (a3= 'viewmodel' (a4= QUOTED_60_62 ) ) ( ( (a5_0= parse_org_feature_multi_perspective_mapping_viewmapping_Mapping ) )* ) )
             // Mtext.g:522:2: a0= 'viewmapping' (a1= 'featuremodel' (a2= QUOTED_60_62 ) ) (a3= 'viewmodel' (a4= QUOTED_60_62 ) ) ( ( (a5_0= parse_org_feature_multi_perspective_mapping_viewmapping_Mapping ) )* )
             {
-            a0=(Token)match(input,12,FOLLOW_12_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel115); if (state.failed) return element;
+            a0=(Token)match(input,13,FOLLOW_13_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel115); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -630,7 +631,7 @@ public class MtextParser extends MtextANTLRParserBase {
             // Mtext.g:536:2: (a1= 'featuremodel' (a2= QUOTED_60_62 ) )
             // Mtext.g:537:3: a1= 'featuremodel' (a2= QUOTED_60_62 )
             {
-            a1=(Token)match(input,10,FOLLOW_10_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel133); if (state.failed) return element;
+            a1=(Token)match(input,11,FOLLOW_11_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel133); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             			if (element == null) {
@@ -670,9 +671,9 @@ public class MtextParser extends MtextANTLRParserBase {
             						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
             					}
             					String resolved = (String) resolvedObject;
-            					org.featuremapper.models.feature.FeatureModel proxy = org.featuremapper.models.feature.FeatureFactory.eINSTANCE.createFeatureModel();
+            					org.js.model.feature.FeatureModel proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeatureModel();
             					collectHiddenTokens(element);
-            					registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.featuremapper.models.feature.FeatureModel>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingModelFeatureModelReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), resolved, proxy);
+            					registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.js.model.feature.FeatureModel>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingModelFeatureModelReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), resolved, proxy);
             					if (proxy != null) {
             						Object value = proxy;
             						element.eSet(element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), value);
@@ -704,7 +705,7 @@ public class MtextParser extends MtextANTLRParserBase {
             // Mtext.g:597:2: (a3= 'viewmodel' (a4= QUOTED_60_62 ) )
             // Mtext.g:598:3: a3= 'viewmodel' (a4= QUOTED_60_62 )
             {
-            a3=(Token)match(input,13,FOLLOW_13_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel193); if (state.failed) return element;
+            a3=(Token)match(input,14,FOLLOW_14_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel193); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             			if (element == null) {
@@ -784,7 +785,7 @@ public class MtextParser extends MtextANTLRParserBase {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==11) ) {
+                if ( (LA1_0==12) ) {
                     alt1=1;
                 }
 
@@ -866,7 +867,7 @@ public class MtextParser extends MtextANTLRParserBase {
 
 
     // $ANTLR start "parse_org_feature_multi_perspective_mapping_viewmapping_Mapping"
-    // Mtext.g:694:1: parse_org_feature_multi_perspective_mapping_viewmapping_Mapping returns [org.feature.multi.perspective.mapping.viewmapping.Mapping element = null] : a0= 'view group' (a1= QUOTED_34_34 ) a2= 'contains' ( ( (a3= QUOTED_34_34 ) ) )+ ;
+    // Mtext.g:694:1: parse_org_feature_multi_perspective_mapping_viewmapping_Mapping returns [org.feature.multi.perspective.mapping.viewmapping.Mapping element = null] : a0= 'view group' (a1= QUOTED_34_34 ) a2= 'contains' (a3= QUOTED_34_34 ) ( (a4= ',' (a5= QUOTED_34_34 ) ) )* ;
     public final org.feature.multi.perspective.mapping.viewmapping.Mapping parse_org_feature_multi_perspective_mapping_viewmapping_Mapping() throws RecognitionException {
         org.feature.multi.perspective.mapping.viewmapping.Mapping element =  null;
 
@@ -876,16 +877,18 @@ public class MtextParser extends MtextANTLRParserBase {
         Token a1=null;
         Token a2=null;
         Token a3=null;
+        Token a4=null;
+        Token a5=null;
 
 
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return element; }
 
-            // Mtext.g:697:2: (a0= 'view group' (a1= QUOTED_34_34 ) a2= 'contains' ( ( (a3= QUOTED_34_34 ) ) )+ )
-            // Mtext.g:698:2: a0= 'view group' (a1= QUOTED_34_34 ) a2= 'contains' ( ( (a3= QUOTED_34_34 ) ) )+
+            // Mtext.g:697:2: (a0= 'view group' (a1= QUOTED_34_34 ) a2= 'contains' (a3= QUOTED_34_34 ) ( (a4= ',' (a5= QUOTED_34_34 ) ) )* )
+            // Mtext.g:698:2: a0= 'view group' (a1= QUOTED_34_34 ) a2= 'contains' (a3= QUOTED_34_34 ) ( (a4= ',' (a5= QUOTED_34_34 ) ) )*
             {
-            a0=(Token)match(input,11,FOLLOW_11_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping319); if (state.failed) return element;
+            a0=(Token)match(input,12,FOLLOW_12_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping319); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -948,7 +951,7 @@ public class MtextParser extends MtextANTLRParserBase {
             		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[10]);
             	}
 
-            a2=(Token)match(input,9,FOLLOW_9_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping358); if (state.failed) return element;
+            a2=(Token)match(input,10,FOLLOW_10_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping358); if (state.failed) return element;
 
             if ( state.backtracking==0 ) {
             		if (element == null) {
@@ -965,29 +968,92 @@ public class MtextParser extends MtextANTLRParserBase {
             		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[11]);
             	}
 
-            // Mtext.g:766:2: ( ( (a3= QUOTED_34_34 ) ) )+
-            int cnt2=0;
+            // Mtext.g:766:2: (a3= QUOTED_34_34 )
+            // Mtext.g:767:3: a3= QUOTED_34_34
+            {
+            a3=(Token)match(input,QUOTED_34_34,FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping376); if (state.failed) return element;
+
+            if ( state.backtracking==0 ) {
+            			if (terminateParsing) {
+            				throw new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextTerminateParsingException();
+            			}
+            			if (element == null) {
+            				element = org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory.eINSTANCE.createMapping();
+            				startIncompleteElement(element);
+            			}
+            			if (a3 != null) {
+            				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
+            				tokenResolver.setOptions(getOptions());
+            				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolveResult result = getFreshTokenResolveResult();
+            				tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), result);
+            				Object resolvedObject = result.getResolvedToken();
+            				if (resolvedObject == null) {
+            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+            				}
+            				String resolved = (String) resolvedObject;
+            				org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
+            				collectHiddenTokens(element);
+            				registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.js.model.feature.Feature>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), resolved, proxy);
+            				if (proxy != null) {
+            					Object value = proxy;
+            					addObjectToList(element, org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES, value);
+            					completedElement(value, false);
+            				}
+            				collectHiddenTokens(element);
+            				retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_7, proxy, true);
+            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
+            			}
+            		}
+
+            }
+
+
+            if ( state.backtracking==0 ) {
+            		// expected elements (follow set)
+            		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[12]);
+            		addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[13]);
+            	}
+
+            // Mtext.g:807:2: ( (a4= ',' (a5= QUOTED_34_34 ) ) )*
             loop2:
             do {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==QUOTED_34_34) ) {
+                if ( (LA2_0==9) ) {
                     alt2=1;
                 }
 
 
                 switch (alt2) {
             	case 1 :
-            	    // Mtext.g:767:3: ( (a3= QUOTED_34_34 ) )
+            	    // Mtext.g:808:3: (a4= ',' (a5= QUOTED_34_34 ) )
             	    {
-            	    // Mtext.g:767:3: ( (a3= QUOTED_34_34 ) )
-            	    // Mtext.g:768:4: (a3= QUOTED_34_34 )
+            	    // Mtext.g:808:3: (a4= ',' (a5= QUOTED_34_34 ) )
+            	    // Mtext.g:809:4: a4= ',' (a5= QUOTED_34_34 )
             	    {
-            	    // Mtext.g:768:4: (a3= QUOTED_34_34 )
-            	    // Mtext.g:769:5: a3= QUOTED_34_34
+            	    a4=(Token)match(input,9,FOLLOW_9_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping406); if (state.failed) return element;
+
+            	    if ( state.backtracking==0 ) {
+            	    				if (element == null) {
+            	    					element = org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory.eINSTANCE.createMapping();
+            	    					startIncompleteElement(element);
+            	    				}
+            	    				collectHiddenTokens(element);
+            	    				retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_8_0_0_1, null, true);
+            	    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+            	    			}
+
+            	    if ( state.backtracking==0 ) {
+            	    				// expected elements (follow set)
+            	    				addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[14]);
+            	    			}
+
+            	    // Mtext.g:823:4: (a5= QUOTED_34_34 )
+            	    // Mtext.g:824:5: a5= QUOTED_34_34
             	    {
-            	    a3=(Token)match(input,QUOTED_34_34,FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping387); if (state.failed) return element;
+            	    a5=(Token)match(input,QUOTED_34_34,FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping432); if (state.failed) return element;
 
             	    if ( state.backtracking==0 ) {
             	    					if (terminateParsing) {
@@ -997,28 +1063,28 @@ public class MtextParser extends MtextANTLRParserBase {
             	    						element = org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory.eINSTANCE.createMapping();
             	    						startIncompleteElement(element);
             	    					}
-            	    					if (a3 != null) {
+            	    					if (a5 != null) {
             	    						org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
             	    						tokenResolver.setOptions(getOptions());
             	    						org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolveResult result = getFreshTokenResolveResult();
-            	    						tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), result);
+            	    						tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), result);
             	    						Object resolvedObject = result.getResolvedToken();
             	    						if (resolvedObject == null) {
-            	    							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+            	    							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
             	    						}
             	    						String resolved = (String) resolvedObject;
-            	    						org.featuremapper.models.feature.Feature proxy = org.featuremapper.models.feature.FeatureFactory.eINSTANCE.createFeature();
+            	    						org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
             	    						collectHiddenTokens(element);
-            	    						registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.featuremapper.models.feature.Feature>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), resolved, proxy);
+            	    						registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.js.model.feature.Feature>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), resolved, proxy);
             	    						if (proxy != null) {
             	    							Object value = proxy;
             	    							addObjectToList(element, org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES, value);
             	    							completedElement(value, false);
             	    						}
             	    						collectHiddenTokens(element);
-            	    						retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_7_0_0_0, proxy, true);
-            	    						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
-            	    						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
+            	    						retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_8_0_0_3, proxy, true);
+            	    						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+            	    						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, proxy);
             	    					}
             	    				}
 
@@ -1027,8 +1093,8 @@ public class MtextParser extends MtextANTLRParserBase {
 
             	    if ( state.backtracking==0 ) {
             	    				// expected elements (follow set)
-            	    				addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[12]);
-            	    				addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[13]);
+            	    				addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[15]);
+            	    				addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[16]);
             	    			}
 
             	    }
@@ -1038,20 +1104,15 @@ public class MtextParser extends MtextANTLRParserBase {
             	    break;
 
             	default :
-            	    if ( cnt2 >= 1 ) break loop2;
-            	    if (state.backtracking>0) {state.failed=true; return element;}
-                        EarlyExitException eee =
-                            new EarlyExitException(2, input);
-                        throw eee;
+            	    break loop2;
                 }
-                cnt2++;
             } while (true);
 
 
             if ( state.backtracking==0 ) {
             		// expected elements (follow set)
-            		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[14]);
-            		addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[15]);
+            		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[17]);
+            		addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[18]);
             	}
 
             }
@@ -1078,15 +1139,17 @@ public class MtextParser extends MtextANTLRParserBase {
 
     public static final BitSet FOLLOW_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel_in_start82 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_start89 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel115 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_10_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel133 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_QUOTED_60_62_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel155 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel193 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_QUOTED_60_62_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel215 = new BitSet(new long[]{0x0000000000000802L});
-    public static final BitSet FOLLOW_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel264 = new BitSet(new long[]{0x0000000000000802L});
-    public static final BitSet FOLLOW_11_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping319 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping337 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_9_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping358 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping387 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_13_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel115 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel133 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_QUOTED_60_62_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel155 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel193 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_QUOTED_60_62_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel215 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping_in_parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel264 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_12_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping319 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping337 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_10_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping358 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping376 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_9_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping406 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_QUOTED_34_34_in_parse_org_feature_multi_perspective_mapping_viewmapping_Mapping432 = new BitSet(new long[]{0x0000000000000202L});
 
 }

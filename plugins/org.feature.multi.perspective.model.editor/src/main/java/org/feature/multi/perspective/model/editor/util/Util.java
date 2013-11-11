@@ -3,6 +3,7 @@
  */
 package org.feature.multi.perspective.model.editor.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -22,19 +23,16 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.zest.core.widgets.GraphConnection;
 import org.eclipse.zest.core.widgets.GraphNode;
-import org.emftext.term.propositional.expression.FeatureRef;
-import org.emftext.term.propositional.expression.Nested;
-import org.emftext.term.propositional.expression.Not;
-import org.emftext.term.propositional.expression.Or;
-import org.emftext.term.propositional.expression.Term;
-import org.emftext.term.propositional.expression.resource.expression.mopp.ExpressionParser;
-import org.feature.model.csp.TextExpressionParser;
-import org.feature.model.csp.analyze.FeatureModelAnalyzer;
 import org.feature.model.utilities.FeatureModelInit;
-import org.featuremapper.models.feature.Constraint;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
-import org.featuremapper.models.feature.Group;
+import org.feature.model.utilities.ResourceUtil;
+import org.js.model.feature.AttributeConstraint;
+import org.js.model.feature.Constraint;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
+import org.js.model.feature.Group;
+import org.js.model.feature.Imply;
+import org.js.model.feature.csp.FeatureModelAnalyzer;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 /**
  * Utility class for the multi-perspective editor.
@@ -60,7 +58,8 @@ public class Util {
     * @return a view from a {@link FeatureModel}
     */
    public static FeatureModel createFeatureModel(FeatureModel featureModel, Set<Feature> features, Flag canBeConsistent) {
-      if (featureModel.getAllFeatures().size() == features.size()) {
+      FeatureModelHelper helper = new FeatureModelHelper(featureModel);
+      if (helper.getAllFeatures().size() == features.size()) {
          return featureModel;
       }
       URI uri = featureModel.eResource().getURI().trimFileExtension().trimFragment();
@@ -72,7 +71,8 @@ public class Util {
       Resource resource = resourceSet.createResource(uri);
       FeatureModel view = EcoreUtil.copy(featureModel);
       traverseFeatureModelAndRemoveFeatures(view.getRoot(), features);
-      if (view.getAllFeatures().size() == features.size()) {
+      FeatureModelHelper viewHelper = new FeatureModelHelper(view);
+      if (viewHelper.getAllFeatures().size() == features.size()) {
          removeUnusedConstraints(view, featureModel, canBeConsistent);
          resource.getContents().add(view);
       } else {
@@ -93,15 +93,16 @@ public class Util {
       // log.debug("view features:\t" + view.getAllFeatures().size());
       // log.debug("featureModel features:\t" +
       // featureModel.getAllFeatures().size());
+      
+      FeatureModelHelper viewHelper = new FeatureModelHelper(view);
       EList<Constraint> constraints = view.getConstraints();
-      List<org.emftext.term.propositional.expression.Term> orgConstraints = TextExpressionParser.parseExpressions(featureModel);
       Set<Constraint> constraintsToRemove = new HashSet<Constraint>();
-      for (org.emftext.term.propositional.expression.Term term : orgConstraints) {
-         Set<Feature> featuresFromTerm = TextExpressionParser.getFeaturesFromTerm(term);
+      for (Constraint constraint : constraints) {
+         Set<Feature> featuresFromTerm = FeatureModelHelper.getConstrainedFeatures(constraint);
          boolean allFeaturesMissing = true;
          boolean minOneFeatureIsMissig = false;
          for (Feature feature : featuresFromTerm) {
-            if (contains(feature, view.getAllFeatures())) {
+            if (contains(feature, viewHelper.getAllFeatures())) {
                allFeaturesMissing = false;
             } else {
                minOneFeatureIsMissig = true;
@@ -111,96 +112,26 @@ public class Util {
             if (featuresFromTerm.size() > 2) {
                canBeConsistent.setFlagged(true);
             } else {
-               Set<Feature> implication = isImplication(term);
-               if (implication.isEmpty()) {
-                  // exclusion
-                  // if (isExclusion(term)) {// remove constraint by
-                  // missing of one feature.
-                  // remove = true;
-                  // }
-               } else {// remove constraint by missing of the right
-                       // feature.
-                  for (Feature feature : implication) {
-                     if (!contains(feature, view.getAllFeatures())) {
+               if (constraint instanceof Imply){
+                  Imply implyConstraint = (Imply) constraint;
+                  Feature rightOperand = implyConstraint.getRightOperand();
+                     if (!contains(rightOperand, viewHelper.getAllFeatures())) {
                         canBeConsistent.setFlagged(true);
                      }
                   }
                }
-            }
          }
          if (allFeaturesMissing || minOneFeatureIsMissig) {// remove
-            // find constraint
-            Constraint constraint = constraints.get(orgConstraints.indexOf(term));
-            if (constraint != null) {
                // remove constraint
                constraintsToRemove.add(constraint);
-            } else {
-               log.warn("Could not find constraint for removal" + term);
-            }
          }
       }
       view.getConstraints().removeAll(constraintsToRemove);
       // log.debug("Constraints removed: " + constraintsToRemove.size());
    }
 
-   /**
-    * Checks if the {@link Term} is an exclusion.
-    * 
-    * @param term the {@link Term} to be checked.
-    * @return true if it is an exclusion.
-    */
-   private static boolean isExclusion(Term term) {
-      boolean isExclusion = false;
-      if (term instanceof Or) {
-         Or and = (Or) term;
-         Term operand1 = and.getOperand1();
-         Term operand2 = and.getOperand2();
-         if (operand1 instanceof Nested) {
-            Nested nested = (Nested) operand1;
-            operand1 = nested.getOperand();
-         }
-         if (operand2 instanceof Nested) {
-            Nested nested = (Nested) operand2;
-            operand2 = nested.getOperand();
-         }
-         if (operand1 instanceof Not && operand2 instanceof Not) {
-            Not not1 = (Not) operand1;
-            Not not2 = (Not) operand2;
-            if (not1.getOperand() instanceof FeatureRef && not2.getOperand() instanceof FeatureRef) {
-               isExclusion = true;
-            }
-         }
-      }
-      return isExclusion;
-   }
+   
 
-   /**
-    * Checks if the {@link Term} is an Implication.
-    * 
-    * @param term the {@link Term} to be checked.
-    * @return the right operand {@link Feature}.
-    */
-   private static Set<Feature> isImplication(Term term) {
-      Set<Feature> rightFeatures = new HashSet<Feature>();
-      if (term instanceof Or) {
-         Or or = (Or) term;
-         Term operand1 = or.getOperand1();
-         Term operand2 = or.getOperand2();
-         if (operand1 instanceof Nested) {
-            Nested nested = (Nested) operand1;
-            operand1 = nested.getOperand();
-         }
-         if (operand2 instanceof Nested) {
-            Nested nested = (Nested) operand2;
-            operand2 = nested.getOperand();
-         }
-         if (operand1 instanceof Not && operand2 instanceof FeatureRef) {
-            FeatureRef featureRef = (FeatureRef) operand2;
-            rightFeatures.add(featureRef.getFeature());
-         }
-      }
-      return rightFeatures;
-   }
 
    /**
     * removes all {@link Feature} from the {@link FeatureModel} which are not in the {@link Set}.
@@ -292,42 +223,57 @@ public class Util {
       return checkHierarchy(features) & checkCardinalities(features) & checkConstraints(features);
    }
 
+   
    /**
-    * checks every constraint from the features.
+    * Consistency requirements
+    * - f1 requires f2   : if f1 included in featureSet, f2 must also be included
+    * - f1 requires f2   : if f2 is included, f1 does not care  
+    * - f1 excludes f2   : does not care 
+    * -f1.a1 RelOp f2.a2 : if f1 included, f2 must also be included 
+    * -f1.a1 RelOp f2.a2 : if f2 included, f1 must also be included 
     * 
-    * @return true if every constraint related feature is in features
+    * @param feature
+    * @return
     */
-   private static boolean checkConstraints(Set<Feature> features) {
-      for (Feature feature : features) {
-         EList<Constraint> constraints = feature.getConstraints();
+   public static boolean checkConstraints(Set<Feature> featureSet){
+      boolean result = true;
+      FeatureModelHelper helper = null;
+      
+      for (Feature feature : featureSet) {
+         if (helper == null){
+            FeatureModel fm = (FeatureModel) EcoreUtil.getRootContainer(feature);
+            helper = new FeatureModelHelper(fm);
+         }
+         Set<Constraint> constraints = helper.getConstraintsRelatedToFeature(feature);
          for (Constraint constraint : constraints) {
-            // check constraint
-            // skip excludes
-            if (constraint.getExpression().toLowerCase().contains("not")) {
-               continue;
-            }
-            if (features.containsAll(constraint.getConstrainedFeatures())) {
-               if (constraint.getLanguage().equals(FeatureModelInit.csp_constraintLanguage)) {
-                  boolean exprCheck = false;
-                  for (Feature feature2 : features) {
-                     if (constraint.getExpression().contains(feature2.getName())) {
-                        exprCheck = true;
-                        break;
-                     }
-                  }
-                  if (!exprCheck) {
-                     // log.debug("Constraintcheck: expression doesnt fit");
-                     return false;
+            // only check Imply Constraints and Attribute Constraints
+            if (constraint instanceof Imply) {
+               Imply implyConstraint = (Imply) constraint;
+               Feature leftOperand = implyConstraint.getLeftOperand();
+               if (EcoreUtil.equals(leftOperand, feature)){
+                  Feature rightOperand = implyConstraint.getRightOperand();
+                  result = (featureSet.contains(rightOperand));
+                  if (result == false){
+                     break;
                   }
                }
-            } else {
-               // log.debug("Constraintcheck: missing feature");
-               return false;
+            } else if (constraint instanceof AttributeConstraint) {
+               AttributeConstraint attConstraint = (AttributeConstraint) constraint;
+               Set<Feature> attributeFeatures = FeatureModelHelper.getConstrainedFeatures(attConstraint);
+               result = (featureSet.containsAll(attributeFeatures));
+               if (result == false){
+                  break;
+               }
             }
          }
+         if (result == false){
+            break;
+         }
       }
-      return true;
+      
+      return result;
    }
+   
 
    /**
     * checks the cardinalities from the features.
@@ -336,8 +282,8 @@ public class Util {
     */
    private static boolean checkCardinalities(Set<Feature> features) {
       for (Feature feature : features) {
-         EList<org.featuremapper.models.feature.Group> groups = feature.getGroups();
-         for (org.featuremapper.models.feature.Group fGroup : groups) {
+         EList<Group> groups = feature.getGroups();
+         for (Group fGroup : groups) {
             if (fGroup.getMinCardinality() > 0) {
                EList<Feature> childFeatures = fGroup.getChildFeatures();
                int i = 0;
@@ -379,10 +325,10 @@ public class Util {
     * @return true if the hierarchy is complete
     */
    private static boolean checkAncestors(Feature feature, Set<Feature> features) {
-      if (feature.getParentGroup() == null) {
+      if (feature.eContainer() == null) {
          return true;// root feature
       }
-      Feature parentFeature = feature.getParentGroup().getParentFeature();
+      Feature parentFeature = FeatureModelHelper.getParentFeature(feature);
       if (features.contains(parentFeature)) {
          return checkAncestors(parentFeature, features);
       } else {

@@ -17,8 +17,8 @@ import org.feature.multi.perspective.view.View;
 import org.feature.multi.perspective.view.ViewContainer;
 import org.feature.multi.perspective.view.ViewFactory;
 import org.feature.multi.perspective.view.ViewPackage;
+import org.js.model.feature.FeaturePackage;
 
-import org.featuremapper.models.feature.FeaturePackage;
 
 /**
  * <!-- begin-user-doc -->

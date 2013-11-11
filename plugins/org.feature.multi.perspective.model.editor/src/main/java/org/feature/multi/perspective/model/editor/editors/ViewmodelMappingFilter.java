@@ -8,12 +8,13 @@ import java.util.List;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.feature.model.utilities.FeatureMappingUtil;
 import org.feature.model.utilities.ResourceUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
+import org.feature.multi.perspective.utilities.FeatureMappingUtil;
 
 /**
  * This filter displays only featuremappings that have a given viewmodel model
@@ -24,13 +25,11 @@ import org.feature.multi.perspective.model.viewmodel.GroupModel;
  */
 public class ViewmodelMappingFilter extends ViewerFilter {
 
-	private final ResourceSet resourceSet;
 	private final IFile groupmodelFile;
 	private List<String> extensions;
 
 	public ViewmodelMappingFilter(List<String> extensions, GroupModel groupmodel) {
 		this.extensions = extensions;
-		this.resourceSet = groupmodel.eResource().getResourceSet();
 		this.groupmodelFile = ResourceUtil.getFile(groupmodel.eResource());
 	}
 
@@ -39,9 +38,7 @@ public class ViewmodelMappingFilter extends ViewerFilter {
 		boolean result = false;
 		if (element instanceof IContainer){
 			result = true;
-		}
-		
-		if (element instanceof IFile) {
+		} else if (element instanceof IFile) {
 			IFile file = (IFile) element;
 			boolean select = hasCorrectExtension(file);
 			if (select) {
@@ -67,7 +64,7 @@ public class ViewmodelMappingFilter extends ViewerFilter {
 	private GroupModel getGroupModelFromFile(IFile file) {
 		GroupModel groupModel = null;
 		MappingModel mapping = FeatureMappingUtil.getFeatureMapping(file,
-				resourceSet);
+				new ResourceSetImpl());
 		if (mapping != null) {
 			groupModel = mapping.getViewModel();
 		}

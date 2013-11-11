@@ -11,7 +11,7 @@ package org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp;
  */
 public class MtextExpectationConstants {
 	
-	public final static int EXPECTATIONS[][] = new int[16][];
+	public final static int EXPECTATIONS[][] = new int[19][];
 	
 	public static void initialize0() {
 		EXPECTATIONS[0] = new int[2];
@@ -54,19 +54,29 @@ public class MtextExpectationConstants {
 		EXPECTATIONS[11][0] = 8;
 		EXPECTATIONS[11][1] = 12;
 		EXPECTATIONS[12] = new int[2];
-		EXPECTATIONS[12][0] = 8;
+		EXPECTATIONS[12][0] = 9;
 		EXPECTATIONS[12][1] = 13;
 		EXPECTATIONS[13] = new int[3];
 		EXPECTATIONS[13][0] = 5;
 		EXPECTATIONS[13][1] = 13;
 		EXPECTATIONS[13][2] = 3;
 		EXPECTATIONS[14] = new int[2];
-		EXPECTATIONS[14][0] = 8;
+		EXPECTATIONS[14][0] = 10;
 		EXPECTATIONS[14][1] = 14;
-		EXPECTATIONS[15] = new int[3];
-		EXPECTATIONS[15][0] = 5;
-		EXPECTATIONS[15][1] = 14;
-		EXPECTATIONS[15][2] = 4;
+		EXPECTATIONS[15] = new int[2];
+		EXPECTATIONS[15][0] = 9;
+		EXPECTATIONS[15][1] = 15;
+		EXPECTATIONS[16] = new int[3];
+		EXPECTATIONS[16][0] = 5;
+		EXPECTATIONS[16][1] = 15;
+		EXPECTATIONS[16][2] = 4;
+		EXPECTATIONS[17] = new int[2];
+		EXPECTATIONS[17][0] = 9;
+		EXPECTATIONS[17][1] = 16;
+		EXPECTATIONS[18] = new int[3];
+		EXPECTATIONS[18][0] = 5;
+		EXPECTATIONS[18][1] = 16;
+		EXPECTATIONS[18][2] = 5;
 	}
 	
 	public static void initialize() {

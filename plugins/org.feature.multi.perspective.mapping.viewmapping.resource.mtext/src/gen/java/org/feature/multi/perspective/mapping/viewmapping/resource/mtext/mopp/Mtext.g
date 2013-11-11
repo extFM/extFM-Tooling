@@ -334,7 +334,7 @@ options {
 				break;
 			}
 		}
-		int followSetID = 15;
+		int followSetID = 17;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
 			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
@@ -568,9 +568,9 @@ parse_org_feature_multi_perspective_mapping_viewmapping_MappingModel returns [or
 						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
 					}
 					String resolved = (String) resolvedObject;
-					org.featuremapper.models.feature.FeatureModel proxy = org.featuremapper.models.feature.FeatureFactory.eINSTANCE.createFeatureModel();
+					org.js.model.feature.FeatureModel proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeatureModel();
 					collectHiddenTokens(element);
-					registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.featuremapper.models.feature.FeatureModel>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingModelFeatureModelReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), resolved, proxy);
+					registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.MappingModel, org.js.model.feature.FeatureModel>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingModelFeatureModelReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), resolved, proxy);
 					if (proxy != null) {
 						Object value = proxy;
 						element.eSet(element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING_MODEL__FEATURE_MODEL), value);
@@ -764,9 +764,64 @@ parse_org_feature_multi_perspective_mapping_viewmapping_Mapping returns [org.fea
 	}
 	
 	(
+		a3 = QUOTED_34_34		
+		{
+			if (terminateParsing) {
+				throw new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextTerminateParsingException();
+			}
+			if (element == null) {
+				element = org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory.eINSTANCE.createMapping();
+				startIncompleteElement(element);
+			}
+			if (a3 != null) {
+				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
+				tokenResolver.setOptions(getOptions());
+				org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolveResult result = getFreshTokenResolveResult();
+				tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), result);
+				Object resolvedObject = result.getResolvedToken();
+				if (resolvedObject == null) {
+					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+				}
+				String resolved = (String) resolvedObject;
+				org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
+				collectHiddenTokens(element);
+				registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.js.model.feature.Feature>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), resolved, proxy);
+				if (proxy != null) {
+					Object value = proxy;
+					addObjectToList(element, org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES, value);
+					completedElement(value, false);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_7, proxy, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[12]);
+		addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[13]);
+	}
+	
+	(
 		(
+			a4 = ',' {
+				if (element == null) {
+					element = org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory.eINSTANCE.createMapping();
+					startIncompleteElement(element);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_8_0_0_1, null, true);
+				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+			}
+			{
+				// expected elements (follow set)
+				addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[14]);
+			}
+			
 			(
-				a3 = QUOTED_34_34				
+				a5 = QUOTED_34_34				
 				{
 					if (terminateParsing) {
 						throw new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextTerminateParsingException();
@@ -775,43 +830,43 @@ parse_org_feature_multi_perspective_mapping_viewmapping_Mapping returns [org.fea
 						element = org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory.eINSTANCE.createMapping();
 						startIncompleteElement(element);
 					}
-					if (a3 != null) {
+					if (a5 != null) {
 						org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("QUOTED_34_34");
 						tokenResolver.setOptions(getOptions());
 						org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextTokenResolveResult result = getFreshTokenResolveResult();
-						tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), result);
+						tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), result);
 						Object resolvedObject = result.getResolvedToken();
 						if (resolvedObject == null) {
-							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+							addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
 						}
 						String resolved = (String) resolvedObject;
-						org.featuremapper.models.feature.Feature proxy = org.featuremapper.models.feature.FeatureFactory.eINSTANCE.createFeature();
+						org.js.model.feature.Feature proxy = org.js.model.feature.FeatureFactory.eINSTANCE.createFeature();
 						collectHiddenTokens(element);
-						registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.featuremapper.models.feature.Feature>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), resolved, proxy);
+						registerContextDependentProxy(new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContextDependentURIFragmentFactory<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.js.model.feature.Feature>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getMappingFeaturesReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES), resolved, proxy);
 						if (proxy != null) {
 							Object value = proxy;
 							addObjectToList(element, org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.MAPPING__FEATURES, value);
 							completedElement(value, false);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_7_0_0_0, proxy, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, proxy);
+						retrieveLayoutInformation(element, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_8_0_0_3, proxy, true);
+						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, proxy);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[12]);
-				addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[13]);
+				addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[15]);
+				addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[16]);
 			}
 			
 		)
 		
-	)+	{
+	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[14]);
-		addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[15]);
+		addExpectedElement(null, org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[17]);
+		addExpectedElement(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMappingModel(), org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectationConstants.EXPECTATIONS[18]);
 	}
 	
 ;

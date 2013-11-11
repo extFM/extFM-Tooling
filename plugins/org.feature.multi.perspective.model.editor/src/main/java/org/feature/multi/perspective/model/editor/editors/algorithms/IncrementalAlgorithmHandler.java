@@ -13,11 +13,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
-import org.feature.model.utilities.FeatureMappingUtil;
 import org.feature.model.utilities.WorkbenchUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.viewmodel.ViewPoint;
 import org.feature.multi.perspective.model.editor.editors.ViewmodelMultiPageEditor;
+import org.feature.multi.perspective.utilities.FeatureMappingUtil;
 
 /**
  * Handler of the Incremental Algorithm

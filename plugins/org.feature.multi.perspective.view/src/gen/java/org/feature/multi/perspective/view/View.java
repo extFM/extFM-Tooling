@@ -3,12 +3,10 @@
 package org.feature.multi.perspective.view;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
+import org.js.model.feature.Feature;
 
-import org.featuremapper.models.feature.Feature;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +29,7 @@ import org.featuremapper.models.feature.Feature;
 public interface View extends EObject {
    /**
     * Returns the value of the '<em><b>Features</b></em>' reference list.
-    * The list contents are of type {@link org.featuremapper.models.feature.Feature}.
+    * The list contents are of type {@link org.js.model.feature.Feature}.
     * <!-- begin-user-doc -->
     * <p>
     * If the meaning of the '<em>Features</em>' reference list isn't clear,

@@ -27,7 +27,7 @@ public class ViewFactoryImpl extends EFactoryImpl implements ViewFactory {
     */
    public static ViewFactory init() {
       try {
-         ViewFactory theViewFactory = (ViewFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.conper.de/view"); 
+         ViewFactory theViewFactory = (ViewFactory)EPackage.Registry.INSTANCE.getEFactory(ViewPackage.eNS_URI);
          if (theViewFactory != null) {
             return theViewFactory;
          }

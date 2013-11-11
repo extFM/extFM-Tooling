@@ -21,7 +21,7 @@ import org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage;
 
 import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
 
-import org.featuremapper.models.feature.Feature;
+import org.js.model.feature.Feature;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,163 +39,170 @@ import org.featuremapper.models.feature.Feature;
  */
 public class MappingImpl extends EObjectImpl implements Mapping {
    /**
-    * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
-    * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @see #getFeatures()
-    * @generated
-    * @ordered
-    */
+   * @see #getFeatures()
+   * @generated
+   * @ordered
+   */
    protected EList<Feature> features;
 
    /**
-    * The cached value of the '{@link #getViewgroup() <em>Viewgroup</em>}' reference.
-    * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getViewgroup() <em>Viewgroup</em>}' reference.
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @see #getViewgroup()
-    * @generated
-    * @ordered
-    */
+   * @see #getViewgroup()
+   * @generated
+   * @ordered
+   */
    protected AbstractGroup viewgroup;
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    protected MappingImpl() {
-      super();
-   }
+    super();
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    @Override
    protected EClass eStaticClass() {
-      return ViewmappingPackage.Literals.MAPPING;
-   }
+    return ViewmappingPackage.Literals.MAPPING;
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public EList<Feature> getFeatures() {
-      if (features == null) {
-         features = new EObjectResolvingEList<Feature>(Feature.class, this, ViewmappingPackage.MAPPING__FEATURES);
-      }
-      return features;
-   }
+    if (features == null)
+    {
+      features = new EObjectResolvingEList<Feature>(Feature.class, this, ViewmappingPackage.MAPPING__FEATURES);
+    }
+    return features;
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public AbstractGroup getViewgroup() {
-      if (viewgroup != null && viewgroup.eIsProxy()) {
-         InternalEObject oldViewgroup = (InternalEObject)viewgroup;
-         viewgroup = (AbstractGroup)eResolveProxy(oldViewgroup);
-         if (viewgroup != oldViewgroup) {
-            if (eNotificationRequired())
-               eNotify(new ENotificationImpl(this, Notification.RESOLVE, ViewmappingPackage.MAPPING__VIEWGROUP, oldViewgroup, viewgroup));
-         }
+    if (viewgroup != null && viewgroup.eIsProxy())
+    {
+      InternalEObject oldViewgroup = (InternalEObject)viewgroup;
+      viewgroup = (AbstractGroup)eResolveProxy(oldViewgroup);
+      if (viewgroup != oldViewgroup)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ViewmappingPackage.MAPPING__VIEWGROUP, oldViewgroup, viewgroup));
       }
-      return viewgroup;
-   }
+    }
+    return viewgroup;
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public AbstractGroup basicGetViewgroup() {
-      return viewgroup;
-   }
+    return viewgroup;
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    public void setViewgroup(AbstractGroup newViewgroup) {
-      AbstractGroup oldViewgroup = viewgroup;
-      viewgroup = newViewgroup;
-      if (eNotificationRequired())
-         eNotify(new ENotificationImpl(this, Notification.SET, ViewmappingPackage.MAPPING__VIEWGROUP, oldViewgroup, viewgroup));
-   }
+    AbstractGroup oldViewgroup = viewgroup;
+    viewgroup = newViewgroup;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ViewmappingPackage.MAPPING__VIEWGROUP, oldViewgroup, viewgroup));
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    @Override
    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-      switch (featureID) {
-         case ViewmappingPackage.MAPPING__FEATURES:
-            return getFeatures();
-         case ViewmappingPackage.MAPPING__VIEWGROUP:
-            if (resolve) return getViewgroup();
-            return basicGetViewgroup();
-      }
-      return super.eGet(featureID, resolve, coreType);
-   }
+    switch (featureID)
+    {
+      case ViewmappingPackage.MAPPING__FEATURES:
+        return getFeatures();
+      case ViewmappingPackage.MAPPING__VIEWGROUP:
+        if (resolve) return getViewgroup();
+        return basicGetViewgroup();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    @SuppressWarnings("unchecked")
    @Override
    public void eSet(int featureID, Object newValue) {
-      switch (featureID) {
-         case ViewmappingPackage.MAPPING__FEATURES:
-            getFeatures().clear();
-            getFeatures().addAll((Collection<? extends Feature>)newValue);
-            return;
-         case ViewmappingPackage.MAPPING__VIEWGROUP:
-            setViewgroup((AbstractGroup)newValue);
-            return;
-      }
-      super.eSet(featureID, newValue);
-   }
+    switch (featureID)
+    {
+      case ViewmappingPackage.MAPPING__FEATURES:
+        getFeatures().clear();
+        getFeatures().addAll((Collection<? extends Feature>)newValue);
+        return;
+      case ViewmappingPackage.MAPPING__VIEWGROUP:
+        setViewgroup((AbstractGroup)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    @Override
    public void eUnset(int featureID) {
-      switch (featureID) {
-         case ViewmappingPackage.MAPPING__FEATURES:
-            getFeatures().clear();
-            return;
-         case ViewmappingPackage.MAPPING__VIEWGROUP:
-            setViewgroup((AbstractGroup)null);
-            return;
-      }
-      super.eUnset(featureID);
-   }
+    switch (featureID)
+    {
+      case ViewmappingPackage.MAPPING__FEATURES:
+        getFeatures().clear();
+        return;
+      case ViewmappingPackage.MAPPING__VIEWGROUP:
+        setViewgroup((AbstractGroup)null);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
    /**
-    * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
     * <!-- end-user-doc -->
-    * @generated
-    */
+   * @generated
+   */
    @Override
    public boolean eIsSet(int featureID) {
-      switch (featureID) {
-         case ViewmappingPackage.MAPPING__FEATURES:
-            return features != null && !features.isEmpty();
-         case ViewmappingPackage.MAPPING__VIEWGROUP:
-            return viewgroup != null;
-      }
-      return super.eIsSet(featureID);
-   }
+    switch (featureID)
+    {
+      case ViewmappingPackage.MAPPING__FEATURES:
+        return features != null && !features.isEmpty();
+      case ViewmappingPackage.MAPPING__VIEWGROUP:
+        return viewgroup != null;
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //MappingImpl

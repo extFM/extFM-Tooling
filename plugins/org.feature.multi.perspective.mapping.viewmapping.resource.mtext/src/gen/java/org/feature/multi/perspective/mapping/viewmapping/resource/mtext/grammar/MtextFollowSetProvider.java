@@ -12,11 +12,11 @@ package org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar
  */
 public class MtextFollowSetProvider {
 	
-	public final static org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextExpectedElement TERMINALS[] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextExpectedElement[9];
+	public final static org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextExpectedElement TERMINALS[] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextExpectedElement[11];
 	
 	public final static org.eclipse.emf.ecore.EStructuralFeature[] FEATURES = new org.eclipse.emf.ecore.EStructuralFeature[1];
 	
-	public final static org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[] LINKS = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[5];
+	public final static org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[] LINKS = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[6];
 	
 	public final static org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[] EMPTY_LINK_ARRAY = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[0];
 	
@@ -29,7 +29,9 @@ public class MtextFollowSetProvider {
 		TERMINALS[5] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedCsString(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_0);
 		TERMINALS[6] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_2);
 		TERMINALS[7] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedCsString(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_4);
-		TERMINALS[8] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_7_0_0_0);
+		TERMINALS[8] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_7);
+		TERMINALS[9] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedCsString(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_8_0_0_1);
+		TERMINALS[10] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextExpectedStructuralFeature(org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar.MtextGrammarInformationProvider.MTEXT_1_0_0_8_0_0_3);
 	}
 	
 	public static void initializeTerminals() {
@@ -50,6 +52,7 @@ public class MtextFollowSetProvider {
 		LINKS[2] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping(), FEATURES[0]);
 		LINKS[3] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping(), FEATURES[0]);
 		LINKS[4] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping(), FEATURES[0]);
+		LINKS[5] = new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping(), FEATURES[0]);
 	}
 	
 	public static void initializeLinks() {
@@ -65,8 +68,11 @@ public class MtextFollowSetProvider {
 		TERMINALS[5].addFollower(TERMINALS[6], EMPTY_LINK_ARRAY);
 		TERMINALS[6].addFollower(TERMINALS[7], EMPTY_LINK_ARRAY);
 		TERMINALS[7].addFollower(TERMINALS[8], EMPTY_LINK_ARRAY);
-		TERMINALS[8].addFollower(TERMINALS[8], EMPTY_LINK_ARRAY);
+		TERMINALS[8].addFollower(TERMINALS[9], EMPTY_LINK_ARRAY);
 		TERMINALS[8].addFollower(TERMINALS[5], new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[] {new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping(), FEATURES[0]), });
+		TERMINALS[9].addFollower(TERMINALS[10], EMPTY_LINK_ARRAY);
+		TERMINALS[10].addFollower(TERMINALS[9], EMPTY_LINK_ARRAY);
+		TERMINALS[10].addFollower(TERMINALS[5], new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature[] {new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextContainedFeature(org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage.eINSTANCE.getMapping(), FEATURES[0]), });
 	}
 	
 	public static void wire() {

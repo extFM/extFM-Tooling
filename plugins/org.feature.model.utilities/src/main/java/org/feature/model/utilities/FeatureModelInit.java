@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.AttributeConstraint;
 import org.js.model.feature.AttributeOperand;
+import org.js.model.feature.AttributeReference;
+import org.js.model.feature.AttributeValue;
 import org.js.model.feature.Constraint;
 import org.js.model.feature.Domain;
 import org.js.model.feature.Feature;
@@ -222,6 +224,19 @@ public final class FeatureModelInit {
    }
    
    
+   public static AttributeOperand createAttibuteOperand(Attribute attribute){
+      AttributeReference attributeReference = FeatureFactory.eINSTANCE.createAttributeReference();
+      attributeReference.setAttribute(attribute);
+      attributeReference.setFeature(attribute.getFeature());
+      return attributeReference;
+   }
+
+   public static AttributeOperand createAttibuteOperand(String value, int intValue){
+      AttributeValue attributeValue = FeatureFactory.eINSTANCE.createAttributeValue();
+      attributeValue.setName(value);
+      attributeValue.setInt(intValue);
+      return attributeValue;
+   }
    
    /**
     * save the feature model in the file system.

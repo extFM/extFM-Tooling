@@ -13,4 +13,12 @@
             genModel="model/viewmapping.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated viewmapping -->
+      <package
+            uri="http://www.tudresden.de/viewmapping"
+            class="org.feature.multi.perspective.mapping.viewmapping.ViewmappingPackage"
+            genModel="src/main/model/viewmapping.genmodel"/>
+   </extension>
+
 </plugin>

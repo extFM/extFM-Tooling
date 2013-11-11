@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.feature.model.utilities.FeatureMappingUtil;
 import org.feature.model.utilities.FeatureModelInit;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.editor.editors.algorithms.BruteForceAlgorithm;
@@ -23,8 +22,10 @@ import org.feature.multi.perspective.model.editor.editors.algorithms.Incremental
 import org.feature.multi.perspective.model.editor.util.Util;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
 import org.feature.multi.perspective.model.viewmodel.ViewPoint;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.feature.multi.perspective.utilities.FeatureMappingUtil;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 /**
  * create the filtered feature model and validates it. also validates all view points.
@@ -46,7 +47,8 @@ public class FilteredFeatureModel {
       this.multiPageEditor = multiPageEditor;
       MappingModel featureMappingModel = FeatureMappingUtil.getFeatureMapping(mappingResource);
       FeatureModel featureModel = featureMappingModel.getFeatureModel();
-      List<Feature> allFeatures = FeatureModelInit.getAllFeatures(featureModel);
+      FeatureModelHelper helper = new FeatureModelHelper(featureModel);
+      Set<Feature> allFeatures = helper.getAllFeatures();
 
       log.info("#allFeatures: " + allFeatures.size());
       // create views
@@ -117,19 +119,19 @@ public class FilteredFeatureModel {
       Map<String, Feature> featureMap = new HashMap<String, Feature>();
       Set<Feature> features = view.getFeatures();
       for (Feature feature : features) {
-         featureMap.put(feature.getName(), feature);
+         featureMap.put(feature.getId(), feature);
       }
       FeatureModel org = featureMappingModel.getFeatureModel();
       Filter filter = new Filter(org, featureMap);
 
-      log.debug(filter.fm);
+      log.debug(filter.newFeatureModel);
       String saveFileName =
          Util.save(featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".feature", multiPageEditor.getSite()
             .getShell());
       if (saveFileName != null && !saveFileName.isEmpty()) {
          ResourceSet rst = new ResourceSetImpl();
          Resource resource = rst.createResource(URI.createFileURI(saveFileName));
-         resource.getContents().add(filter.fm);
+         resource.getContents().add(filter.newFeatureModel);
          try {
             resource.save(Collections.EMPTY_MAP);
          } catch (IOException e) {

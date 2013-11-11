@@ -16,6 +16,7 @@ public class MtextLexer extends Lexer {
     public static final int T__11=11;
     public static final int T__12=12;
     public static final int T__13=13;
+    public static final int T__14=14;
     public static final int LINEBREAK=4;
     public static final int QUOTED_34_34=5;
     public static final int QUOTED_60_62=6;
@@ -51,12 +52,10 @@ public class MtextLexer extends Lexer {
         try {
             int _type = T__9;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:15:6: ( 'contains' )
-            // Mtext.g:15:8: 'contains'
+            // Mtext.g:15:6: ( ',' )
+            // Mtext.g:15:8: ','
             {
-            match("contains"); 
-
-
+            match(','); 
 
             }
 
@@ -74,10 +73,10 @@ public class MtextLexer extends Lexer {
         try {
             int _type = T__10;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:16:7: ( 'featuremodel' )
-            // Mtext.g:16:9: 'featuremodel'
+            // Mtext.g:16:7: ( 'contains' )
+            // Mtext.g:16:9: 'contains'
             {
-            match("featuremodel"); 
+            match("contains"); 
 
 
 
@@ -97,10 +96,10 @@ public class MtextLexer extends Lexer {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:17:7: ( 'view group' )
-            // Mtext.g:17:9: 'view group'
+            // Mtext.g:17:7: ( 'featuremodel' )
+            // Mtext.g:17:9: 'featuremodel'
             {
-            match("view group"); 
+            match("featuremodel"); 
 
 
 
@@ -120,10 +119,10 @@ public class MtextLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:18:7: ( 'viewmapping' )
-            // Mtext.g:18:9: 'viewmapping'
+            // Mtext.g:18:7: ( 'view group' )
+            // Mtext.g:18:9: 'view group'
             {
-            match("viewmapping"); 
+            match("view group"); 
 
 
 
@@ -143,10 +142,10 @@ public class MtextLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:19:7: ( 'viewmodel' )
-            // Mtext.g:19:9: 'viewmodel'
+            // Mtext.g:19:7: ( 'viewmapping' )
+            // Mtext.g:19:9: 'viewmapping'
             {
-            match("viewmodel"); 
+            match("viewmapping"); 
 
 
 
@@ -161,18 +160,41 @@ public class MtextLexer extends Lexer {
     }
     // $ANTLR end "T__13"
 
+    // $ANTLR start "T__14"
+    public final void mT__14() throws RecognitionException {
+        try {
+            int _type = T__14;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Mtext.g:20:7: ( 'viewmodel' )
+            // Mtext.g:20:9: 'viewmodel'
+            {
+            match("viewmodel"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__14"
+
     // $ANTLR start "TEXT"
     public final void mTEXT() throws RecognitionException {
         try {
             int _type = TEXT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:819:5: ( ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ ) )
-            // Mtext.g:820:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
+            // Mtext.g:874:5: ( ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ ) )
+            // Mtext.g:875:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
             {
-            // Mtext.g:820:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
-            // Mtext.g:820:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
+            // Mtext.g:875:2: ( ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+ )
+            // Mtext.g:875:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
             {
-            // Mtext.g:820:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
+            // Mtext.g:875:3: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '-' )+
             int cnt1=0;
             loop1:
             do {
@@ -232,8 +254,8 @@ public class MtextLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:823:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
-            // Mtext.g:824:2: ( ( ' ' | '\\t' | '\\f' ) )
+            // Mtext.g:878:11: ( ( ( ' ' | '\\t' | '\\f' ) ) )
+            // Mtext.g:879:2: ( ( ' ' | '\\t' | '\\f' ) )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
                 input.consume();
@@ -263,13 +285,13 @@ public class MtextLexer extends Lexer {
         try {
             int _type = LINEBREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:827:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
-            // Mtext.g:828:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Mtext.g:882:10: ( ( ( '\\r\\n' | '\\r' | '\\n' ) ) )
+            // Mtext.g:883:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
             {
-            // Mtext.g:828:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
-            // Mtext.g:828:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Mtext.g:883:2: ( ( '\\r\\n' | '\\r' | '\\n' ) )
+            // Mtext.g:883:3: ( '\\r\\n' | '\\r' | '\\n' )
             {
-            // Mtext.g:828:3: ( '\\r\\n' | '\\r' | '\\n' )
+            // Mtext.g:883:3: ( '\\r\\n' | '\\r' | '\\n' )
             int alt2=3;
             int LA2_0 = input.LA(1);
 
@@ -295,7 +317,7 @@ public class MtextLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // Mtext.g:828:4: '\\r\\n'
+                    // Mtext.g:883:4: '\\r\\n'
                     {
                     match("\r\n"); 
 
@@ -304,14 +326,14 @@ public class MtextLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Mtext.g:828:13: '\\r'
+                    // Mtext.g:883:13: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 3 :
-                    // Mtext.g:828:20: '\\n'
+                    // Mtext.g:883:20: '\\n'
                     {
                     match('\n'); 
 
@@ -342,21 +364,21 @@ public class MtextLexer extends Lexer {
         try {
             int _type = QUOTED_60_62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:831:13: ( ( ( '<' ) (~ ( '>' ) )* ( '>' ) ) )
-            // Mtext.g:832:2: ( ( '<' ) (~ ( '>' ) )* ( '>' ) )
+            // Mtext.g:886:13: ( ( ( '<' ) (~ ( '>' ) )* ( '>' ) ) )
+            // Mtext.g:887:2: ( ( '<' ) (~ ( '>' ) )* ( '>' ) )
             {
-            // Mtext.g:832:2: ( ( '<' ) (~ ( '>' ) )* ( '>' ) )
-            // Mtext.g:832:3: ( '<' ) (~ ( '>' ) )* ( '>' )
+            // Mtext.g:887:2: ( ( '<' ) (~ ( '>' ) )* ( '>' ) )
+            // Mtext.g:887:3: ( '<' ) (~ ( '>' ) )* ( '>' )
             {
-            // Mtext.g:832:3: ( '<' )
-            // Mtext.g:832:4: '<'
+            // Mtext.g:887:3: ( '<' )
+            // Mtext.g:887:4: '<'
             {
             match('<'); 
 
             }
 
 
-            // Mtext.g:832:8: (~ ( '>' ) )*
+            // Mtext.g:887:8: (~ ( '>' ) )*
             loop3:
             do {
                 int alt3=2;
@@ -390,8 +412,8 @@ public class MtextLexer extends Lexer {
             } while (true);
 
 
-            // Mtext.g:832:17: ( '>' )
-            // Mtext.g:832:18: '>'
+            // Mtext.g:887:17: ( '>' )
+            // Mtext.g:887:18: '>'
             {
             match('>'); 
 
@@ -417,21 +439,21 @@ public class MtextLexer extends Lexer {
         try {
             int _type = QUOTED_34_34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Mtext.g:834:13: ( ( ( '\"' ) (~ ( '\"' ) )* ( '\"' ) ) )
-            // Mtext.g:835:2: ( ( '\"' ) (~ ( '\"' ) )* ( '\"' ) )
+            // Mtext.g:889:13: ( ( ( '\"' ) (~ ( '\"' ) )* ( '\"' ) ) )
+            // Mtext.g:890:2: ( ( '\"' ) (~ ( '\"' ) )* ( '\"' ) )
             {
-            // Mtext.g:835:2: ( ( '\"' ) (~ ( '\"' ) )* ( '\"' ) )
-            // Mtext.g:835:3: ( '\"' ) (~ ( '\"' ) )* ( '\"' )
+            // Mtext.g:890:2: ( ( '\"' ) (~ ( '\"' ) )* ( '\"' ) )
+            // Mtext.g:890:3: ( '\"' ) (~ ( '\"' ) )* ( '\"' )
             {
-            // Mtext.g:835:3: ( '\"' )
-            // Mtext.g:835:4: '\"'
+            // Mtext.g:890:3: ( '\"' )
+            // Mtext.g:890:4: '\"'
             {
             match('\"'); 
 
             }
 
 
-            // Mtext.g:835:8: (~ ( '\"' ) )*
+            // Mtext.g:890:8: (~ ( '\"' ) )*
             loop4:
             do {
                 int alt4=2;
@@ -465,8 +487,8 @@ public class MtextLexer extends Lexer {
             } while (true);
 
 
-            // Mtext.g:835:17: ( '\"' )
-            // Mtext.g:835:18: '\"'
+            // Mtext.g:890:17: ( '\"' )
+            // Mtext.g:890:18: '\"'
             {
             match('\"'); 
 
@@ -488,174 +510,179 @@ public class MtextLexer extends Lexer {
     // $ANTLR end "QUOTED_34_34"
 
     public void mTokens() throws RecognitionException {
-        // Mtext.g:1:8: ( T__9 | T__10 | T__11 | T__12 | T__13 | TEXT | WHITESPACE | LINEBREAK | QUOTED_60_62 | QUOTED_34_34 )
-        int alt5=10;
+        // Mtext.g:1:8: ( T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | TEXT | WHITESPACE | LINEBREAK | QUOTED_60_62 | QUOTED_34_34 )
+        int alt5=11;
         switch ( input.LA(1) ) {
-        case 'c':
+        case ',':
             {
-            int LA5_1 = input.LA(2);
-
-            if ( (LA5_1=='o') ) {
-                int LA5_9 = input.LA(3);
-
-                if ( (LA5_9=='n') ) {
-                    int LA5_12 = input.LA(4);
-
-                    if ( (LA5_12=='t') ) {
-                        int LA5_15 = input.LA(5);
-
-                        if ( (LA5_15=='a') ) {
-                            int LA5_18 = input.LA(6);
-
-                            if ( (LA5_18=='i') ) {
-                                int LA5_22 = input.LA(7);
-
-                                if ( (LA5_22=='n') ) {
-                                    int LA5_26 = input.LA(8);
-
-                                    if ( (LA5_26=='s') ) {
-                                        int LA5_30 = input.LA(9);
-
-                                        if ( (LA5_30=='-'||(LA5_30 >= '0' && LA5_30 <= '9')||(LA5_30 >= 'A' && LA5_30 <= 'Z')||LA5_30=='_'||(LA5_30 >= 'a' && LA5_30 <= 'z')) ) {
-                                            alt5=6;
-                                        }
-                                        else {
-                                            alt5=1;
-                                        }
-                                    }
-                                    else {
-                                        alt5=6;
-                                    }
-                                }
-                                else {
-                                    alt5=6;
-                                }
-                            }
-                            else {
-                                alt5=6;
-                            }
-                        }
-                        else {
-                            alt5=6;
-                        }
-                    }
-                    else {
-                        alt5=6;
-                    }
-                }
-                else {
-                    alt5=6;
-                }
-            }
-            else {
-                alt5=6;
-            }
+            alt5=1;
             }
             break;
-        case 'f':
+        case 'c':
             {
             int LA5_2 = input.LA(2);
 
-            if ( (LA5_2=='e') ) {
+            if ( (LA5_2=='o') ) {
                 int LA5_10 = input.LA(3);
 
-                if ( (LA5_10=='a') ) {
+                if ( (LA5_10=='n') ) {
                     int LA5_13 = input.LA(4);
 
                     if ( (LA5_13=='t') ) {
                         int LA5_16 = input.LA(5);
 
-                        if ( (LA5_16=='u') ) {
+                        if ( (LA5_16=='a') ) {
                             int LA5_19 = input.LA(6);
 
-                            if ( (LA5_19=='r') ) {
+                            if ( (LA5_19=='i') ) {
                                 int LA5_23 = input.LA(7);
 
-                                if ( (LA5_23=='e') ) {
+                                if ( (LA5_23=='n') ) {
                                     int LA5_27 = input.LA(8);
 
-                                    if ( (LA5_27=='m') ) {
+                                    if ( (LA5_27=='s') ) {
                                         int LA5_31 = input.LA(9);
 
-                                        if ( (LA5_31=='o') ) {
-                                            int LA5_35 = input.LA(10);
-
-                                            if ( (LA5_35=='d') ) {
-                                                int LA5_38 = input.LA(11);
-
-                                                if ( (LA5_38=='e') ) {
-                                                    int LA5_41 = input.LA(12);
-
-                                                    if ( (LA5_41=='l') ) {
-                                                        int LA5_43 = input.LA(13);
-
-                                                        if ( (LA5_43=='-'||(LA5_43 >= '0' && LA5_43 <= '9')||(LA5_43 >= 'A' && LA5_43 <= 'Z')||LA5_43=='_'||(LA5_43 >= 'a' && LA5_43 <= 'z')) ) {
-                                                            alt5=6;
-                                                        }
-                                                        else {
-                                                            alt5=2;
-                                                        }
-                                                    }
-                                                    else {
-                                                        alt5=6;
-                                                    }
-                                                }
-                                                else {
-                                                    alt5=6;
-                                                }
-                                            }
-                                            else {
-                                                alt5=6;
-                                            }
+                                        if ( (LA5_31=='-'||(LA5_31 >= '0' && LA5_31 <= '9')||(LA5_31 >= 'A' && LA5_31 <= 'Z')||LA5_31=='_'||(LA5_31 >= 'a' && LA5_31 <= 'z')) ) {
+                                            alt5=7;
                                         }
                                         else {
-                                            alt5=6;
+                                            alt5=2;
                                         }
                                     }
                                     else {
-                                        alt5=6;
+                                        alt5=7;
                                     }
                                 }
                                 else {
-                                    alt5=6;
+                                    alt5=7;
                                 }
                             }
                             else {
-                                alt5=6;
+                                alt5=7;
                             }
                         }
                         else {
-                            alt5=6;
+                            alt5=7;
                         }
                     }
                     else {
-                        alt5=6;
+                        alt5=7;
                     }
                 }
                 else {
-                    alt5=6;
+                    alt5=7;
                 }
             }
             else {
-                alt5=6;
+                alt5=7;
+            }
+            }
+            break;
+        case 'f':
+            {
+            int LA5_3 = input.LA(2);
+
+            if ( (LA5_3=='e') ) {
+                int LA5_11 = input.LA(3);
+
+                if ( (LA5_11=='a') ) {
+                    int LA5_14 = input.LA(4);
+
+                    if ( (LA5_14=='t') ) {
+                        int LA5_17 = input.LA(5);
+
+                        if ( (LA5_17=='u') ) {
+                            int LA5_20 = input.LA(6);
+
+                            if ( (LA5_20=='r') ) {
+                                int LA5_24 = input.LA(7);
+
+                                if ( (LA5_24=='e') ) {
+                                    int LA5_28 = input.LA(8);
+
+                                    if ( (LA5_28=='m') ) {
+                                        int LA5_32 = input.LA(9);
+
+                                        if ( (LA5_32=='o') ) {
+                                            int LA5_36 = input.LA(10);
+
+                                            if ( (LA5_36=='d') ) {
+                                                int LA5_39 = input.LA(11);
+
+                                                if ( (LA5_39=='e') ) {
+                                                    int LA5_42 = input.LA(12);
+
+                                                    if ( (LA5_42=='l') ) {
+                                                        int LA5_44 = input.LA(13);
+
+                                                        if ( (LA5_44=='-'||(LA5_44 >= '0' && LA5_44 <= '9')||(LA5_44 >= 'A' && LA5_44 <= 'Z')||LA5_44=='_'||(LA5_44 >= 'a' && LA5_44 <= 'z')) ) {
+                                                            alt5=7;
+                                                        }
+                                                        else {
+                                                            alt5=3;
+                                                        }
+                                                    }
+                                                    else {
+                                                        alt5=7;
+                                                    }
+                                                }
+                                                else {
+                                                    alt5=7;
+                                                }
+                                            }
+                                            else {
+                                                alt5=7;
+                                            }
+                                        }
+                                        else {
+                                            alt5=7;
+                                        }
+                                    }
+                                    else {
+                                        alt5=7;
+                                    }
+                                }
+                                else {
+                                    alt5=7;
+                                }
+                            }
+                            else {
+                                alt5=7;
+                            }
+                        }
+                        else {
+                            alt5=7;
+                        }
+                    }
+                    else {
+                        alt5=7;
+                    }
+                }
+                else {
+                    alt5=7;
+                }
+            }
+            else {
+                alt5=7;
             }
             }
             break;
         case 'v':
             {
-            int LA5_3 = input.LA(2);
+            int LA5_4 = input.LA(2);
 
-            if ( (LA5_3=='i') ) {
-                int LA5_11 = input.LA(3);
+            if ( (LA5_4=='i') ) {
+                int LA5_12 = input.LA(3);
 
-                if ( (LA5_11=='e') ) {
-                    int LA5_14 = input.LA(4);
+                if ( (LA5_12=='e') ) {
+                    int LA5_15 = input.LA(4);
 
-                    if ( (LA5_14=='w') ) {
+                    if ( (LA5_15=='w') ) {
                         switch ( input.LA(5) ) {
                         case ' ':
                             {
-                            alt5=3;
+                            alt5=4;
                             }
                             break;
                         case 'm':
@@ -663,105 +690,105 @@ public class MtextLexer extends Lexer {
                             switch ( input.LA(6) ) {
                             case 'a':
                                 {
-                                int LA5_24 = input.LA(7);
+                                int LA5_25 = input.LA(7);
 
-                                if ( (LA5_24=='p') ) {
-                                    int LA5_28 = input.LA(8);
+                                if ( (LA5_25=='p') ) {
+                                    int LA5_29 = input.LA(8);
 
-                                    if ( (LA5_28=='p') ) {
-                                        int LA5_32 = input.LA(9);
+                                    if ( (LA5_29=='p') ) {
+                                        int LA5_33 = input.LA(9);
 
-                                        if ( (LA5_32=='i') ) {
-                                            int LA5_36 = input.LA(10);
+                                        if ( (LA5_33=='i') ) {
+                                            int LA5_37 = input.LA(10);
 
-                                            if ( (LA5_36=='n') ) {
-                                                int LA5_39 = input.LA(11);
+                                            if ( (LA5_37=='n') ) {
+                                                int LA5_40 = input.LA(11);
 
-                                                if ( (LA5_39=='g') ) {
-                                                    int LA5_42 = input.LA(12);
+                                                if ( (LA5_40=='g') ) {
+                                                    int LA5_43 = input.LA(12);
 
-                                                    if ( (LA5_42=='-'||(LA5_42 >= '0' && LA5_42 <= '9')||(LA5_42 >= 'A' && LA5_42 <= 'Z')||LA5_42=='_'||(LA5_42 >= 'a' && LA5_42 <= 'z')) ) {
-                                                        alt5=6;
+                                                    if ( (LA5_43=='-'||(LA5_43 >= '0' && LA5_43 <= '9')||(LA5_43 >= 'A' && LA5_43 <= 'Z')||LA5_43=='_'||(LA5_43 >= 'a' && LA5_43 <= 'z')) ) {
+                                                        alt5=7;
                                                     }
                                                     else {
-                                                        alt5=4;
+                                                        alt5=5;
                                                     }
                                                 }
                                                 else {
-                                                    alt5=6;
+                                                    alt5=7;
                                                 }
                                             }
                                             else {
-                                                alt5=6;
+                                                alt5=7;
                                             }
                                         }
                                         else {
-                                            alt5=6;
+                                            alt5=7;
                                         }
                                     }
                                     else {
-                                        alt5=6;
+                                        alt5=7;
                                     }
                                 }
                                 else {
-                                    alt5=6;
+                                    alt5=7;
                                 }
                                 }
                                 break;
                             case 'o':
                                 {
-                                int LA5_25 = input.LA(7);
+                                int LA5_26 = input.LA(7);
 
-                                if ( (LA5_25=='d') ) {
-                                    int LA5_29 = input.LA(8);
+                                if ( (LA5_26=='d') ) {
+                                    int LA5_30 = input.LA(8);
 
-                                    if ( (LA5_29=='e') ) {
-                                        int LA5_33 = input.LA(9);
+                                    if ( (LA5_30=='e') ) {
+                                        int LA5_34 = input.LA(9);
 
-                                        if ( (LA5_33=='l') ) {
-                                            int LA5_37 = input.LA(10);
+                                        if ( (LA5_34=='l') ) {
+                                            int LA5_38 = input.LA(10);
 
-                                            if ( (LA5_37=='-'||(LA5_37 >= '0' && LA5_37 <= '9')||(LA5_37 >= 'A' && LA5_37 <= 'Z')||LA5_37=='_'||(LA5_37 >= 'a' && LA5_37 <= 'z')) ) {
-                                                alt5=6;
+                                            if ( (LA5_38=='-'||(LA5_38 >= '0' && LA5_38 <= '9')||(LA5_38 >= 'A' && LA5_38 <= 'Z')||LA5_38=='_'||(LA5_38 >= 'a' && LA5_38 <= 'z')) ) {
+                                                alt5=7;
                                             }
                                             else {
-                                                alt5=5;
+                                                alt5=6;
                                             }
                                         }
                                         else {
-                                            alt5=6;
+                                            alt5=7;
                                         }
                                     }
                                     else {
-                                        alt5=6;
+                                        alt5=7;
                                     }
                                 }
                                 else {
-                                    alt5=6;
+                                    alt5=7;
                                 }
                                 }
                                 break;
                             default:
-                                alt5=6;
+                                alt5=7;
                             }
 
                             }
                             break;
                         default:
-                            alt5=6;
+                            alt5=7;
                         }
 
                     }
                     else {
-                        alt5=6;
+                        alt5=7;
                     }
                 }
                 else {
-                    alt5=6;
+                    alt5=7;
                 }
             }
             else {
-                alt5=6;
+                alt5=7;
             }
             }
             break;
@@ -827,30 +854,30 @@ public class MtextLexer extends Lexer {
         case 'y':
         case 'z':
             {
-            alt5=6;
+            alt5=7;
             }
             break;
         case '\t':
         case '\f':
         case ' ':
             {
-            alt5=7;
+            alt5=8;
             }
             break;
         case '\n':
         case '\r':
             {
-            alt5=8;
+            alt5=9;
             }
             break;
         case '<':
             {
-            alt5=9;
+            alt5=10;
             }
             break;
         case '\"':
             {
-            alt5=10;
+            alt5=11;
             }
             break;
         default:
@@ -903,39 +930,47 @@ public class MtextLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // Mtext.g:1:39: TEXT
+                // Mtext.g:1:39: T__14
+                {
+                mT__14(); 
+
+
+                }
+                break;
+            case 7 :
+                // Mtext.g:1:45: TEXT
                 {
                 mTEXT(); 
 
 
                 }
                 break;
-            case 7 :
-                // Mtext.g:1:44: WHITESPACE
+            case 8 :
+                // Mtext.g:1:50: WHITESPACE
                 {
                 mWHITESPACE(); 
 
 
                 }
                 break;
-            case 8 :
-                // Mtext.g:1:55: LINEBREAK
+            case 9 :
+                // Mtext.g:1:61: LINEBREAK
                 {
                 mLINEBREAK(); 
 
 
                 }
                 break;
-            case 9 :
-                // Mtext.g:1:65: QUOTED_60_62
+            case 10 :
+                // Mtext.g:1:71: QUOTED_60_62
                 {
                 mQUOTED_60_62(); 
 
 
                 }
                 break;
-            case 10 :
-                // Mtext.g:1:78: QUOTED_34_34
+            case 11 :
+                // Mtext.g:1:84: QUOTED_34_34
                 {
                 mQUOTED_34_34(); 
 

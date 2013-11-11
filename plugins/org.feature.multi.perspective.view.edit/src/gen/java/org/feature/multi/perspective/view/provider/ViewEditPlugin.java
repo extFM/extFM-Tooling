@@ -10,7 +10,6 @@ import org.feature.multi.perspective.mapping.viewmapping.provider.ViewmappingEdi
 
 import org.feature.multi.perspective.model.viewmodel.provider.ViewmodelEditPlugin;
 
-import org.featuremapper.models.feature.provider.FeatureEditPlugin;
 
 /**
  * This is the central singleton for the View edit plugin.
@@ -44,9 +43,9 @@ public final class ViewEditPlugin extends EMFPlugin {
    public ViewEditPlugin() {
       super
         (new ResourceLocator [] {
-           FeatureEditPlugin.INSTANCE,
            ViewmappingEditPlugin.INSTANCE,
            ViewmodelEditPlugin.INSTANCE,
+           org.js.model.feature.provider.FeatureEditPlugin.INSTANCE,
          });
    }
 

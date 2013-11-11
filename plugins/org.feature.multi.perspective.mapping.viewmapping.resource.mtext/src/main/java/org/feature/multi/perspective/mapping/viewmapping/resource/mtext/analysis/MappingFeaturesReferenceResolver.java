@@ -6,31 +6,31 @@
  */
 package org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 public class MappingFeaturesReferenceResolver
       implements
-      org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.featuremapper.models.feature.Feature> {
+      org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolver<org.feature.multi.perspective.mapping.viewmapping.Mapping, Feature> {
 
-   private org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.featuremapper.models.feature.Feature> delegate =
-      new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.Mapping, org.featuremapper.models.feature.Feature>();
+   private org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.Mapping, Feature> delegate =
+      new org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis.MtextDefaultResolverDelegate<org.feature.multi.perspective.mapping.viewmapping.Mapping, Feature>();
 
-   public void resolve(String identifier,
-                       org.feature.multi.perspective.mapping.viewmapping.Mapping container,
-                       org.eclipse.emf.ecore.EReference reference,
-                       int position,
-                       boolean resolveFuzzy,
-                       final org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolveResult<org.featuremapper.models.feature.Feature> result) {
+   public void resolve(String identifier, org.feature.multi.perspective.mapping.viewmapping.Mapping container,
+                       org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy,
+                       final org.feature.multi.perspective.mapping.viewmapping.resource.mtext.IMtextReferenceResolveResult<Feature> result) {
       EObject model = EcoreUtil.getRootContainer(container);
       if (model instanceof MappingModel) {
          MappingModel mappingModel = (MappingModel) model;
          FeatureModel featureModel = mappingModel.getFeatureModel();
-         EList<Feature> allFeatures = featureModel.getAllFeatures();
+         FeatureModelHelper helper = new FeatureModelHelper(featureModel);
+         Set<Feature> allFeatures = helper.getAllFeatures();
          for (Feature feature : allFeatures) {
             String featureId = EcoreUtil.getID(feature);
             if (identifier.equals(featureId)) {
@@ -43,9 +43,9 @@ public class MappingFeaturesReferenceResolver
       }
    }
 
-   public String deResolve(org.featuremapper.models.feature.Feature element,
-                           org.feature.multi.perspective.mapping.viewmapping.Mapping container, org.eclipse.emf.ecore.EReference reference) {
-         return element.getName();
+   public String deResolve(Feature element, org.feature.multi.perspective.mapping.viewmapping.Mapping container,
+                           org.eclipse.emf.ecore.EReference reference) {
+      return element.getName();
    }
 
    public void setOptions(java.util.Map< ? , ? > options) {

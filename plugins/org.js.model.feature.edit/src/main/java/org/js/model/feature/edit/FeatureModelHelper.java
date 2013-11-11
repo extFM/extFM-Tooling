@@ -19,6 +19,7 @@ import org.js.model.feature.Attribute;
 import org.js.model.feature.AttributeConstraint;
 import org.js.model.feature.AttributeOperand;
 import org.js.model.feature.AttributeReference;
+import org.js.model.feature.Constraint;
 import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
 import org.js.model.feature.DomainValue;
@@ -29,7 +30,6 @@ import org.js.model.feature.FeatureState;
 import org.js.model.feature.Group;
 import org.js.model.feature.Interval;
 import org.js.model.feature.NumericalDomain;
-
 
 /**
  * 
@@ -86,7 +86,7 @@ public class FeatureModelHelper {
          } else if (object instanceof AttributeConstraint) {
             AttributeConstraint attributeConstraint = (AttributeConstraint) object;
             getAllAttributeConstraints().add(attributeConstraint);
-         } else if (object instanceof Group){
+         } else if (object instanceof Group) {
             Group group = (Group) object;
             getAllGroups().add(group);
          }
@@ -95,19 +95,19 @@ public class FeatureModelHelper {
 
    /**
     * getFeature from Attribute Operand if the Operand is an AttributeReference, returns null otherwise.
+    * 
     * @param operand
     * @return
     */
-   public static Feature getAttributeOperandFeature(AttributeOperand operand){
+   public static Feature getAttributeOperandFeature(AttributeOperand operand) {
       Feature result = null;
       if (operand instanceof AttributeReference) {
-        AttributeReference reference = (AttributeReference) operand;
-        result = reference.getFeature();
-     }
+         AttributeReference reference = (AttributeReference) operand;
+         result = reference.getFeature();
+      }
       return result;
    }
-   
-   
+
    private void sortFeature(Feature feature) {
       FeatureState configurationState = feature.getConfigurationState();
       if (FeatureState.SELECTED.equals(configurationState)) {
@@ -151,12 +151,11 @@ public class FeatureModelHelper {
       int value = -1;
       Domain domain = attribute.getDomain();
       value = getDomainValueForString(valueString, domain);
-      
+
       return value;
    }
 
-   
-   public static int getDomainValueForString(String valueString, Domain domain){
+   public static int getDomainValueForString(String valueString, Domain domain) {
       int value = -1;
       if (domain instanceof DiscreteDomain) {
          DiscreteDomain discreteDomain = (DiscreteDomain) domain;
@@ -173,7 +172,7 @@ public class FeatureModelHelper {
       }
       return value;
    }
-   
+
    /**
     * check if the given attribute value is contained in the given domain
     * 
@@ -236,22 +235,22 @@ public class FeatureModelHelper {
       boolean isContained = false;
       if (value != null) {
          try {
-         int number = Integer.parseInt(value);
-         for (Interval interval : numDomain.getIntervals()) {
-            isContained = isInInterval(number, interval);
-            if (isContained) {
-               break;
+            int number = Integer.parseInt(value);
+            for (Interval interval : numDomain.getIntervals()) {
+               isContained = isInInterval(number, interval);
+               if (isContained) {
+                  break;
+               }
             }
-         }
-         } catch (NumberFormatException e){
-            // if the String value cannot be parsed to a numerical representation, the value is not contained in the domain.
+         } catch (NumberFormatException e) {
+            // if the String value cannot be parsed to a numerical representation, the value is not contained in the
+            // domain.
          }
       }
-      
+
       return isContained;
    }
 
-   
    private static boolean isInInterval(int number, Interval interval) {
       boolean isinbounds = false;
       int lowerBound = interval.getLowerBound();
@@ -500,6 +499,77 @@ public class FeatureModelHelper {
 
    public Set<Group> getAllGroups() {
       return allGroups;
+   }
+
+   public static Set<Feature> getConstrainedFeatures(Constraint constraint) {
+      Set<Feature> features = new HashSet<Feature>();
+      if (constraint instanceof FeatureConstraint) {
+         FeatureConstraint featureConstraint = (FeatureConstraint) constraint;
+         features.add(featureConstraint.getLeftOperand());
+         features.add(featureConstraint.getRightOperand());
+      } else {
+         Set<Attribute> constrainedAttributes = getConstrainedAttributes(constraint);
+         for (Attribute attribute : constrainedAttributes) {
+            Feature feature = attribute.getFeature();
+            features.add(feature);
+         }
+      }
+      return features;
+   }
+
+   private static Set<Attribute> getConstrainedAttributes(Constraint constraint) {
+      Set<Attribute> attributes = new HashSet<Attribute>();
+      if (constraint instanceof AttributeConstraint) {
+         AttributeConstraint attributeConstraint = (AttributeConstraint) constraint;
+         AttributeOperand attribute1 = attributeConstraint.getAttribute1();
+         Attribute attribute = getAttribute(attribute1);
+         if (attribute != null) {
+            attributes.add(attribute);
+         }
+         AttributeOperand attribute2 = attributeConstraint.getAttribute2();
+         Attribute secondattribute = getAttribute(attribute2);
+         if (secondattribute != null) {
+            attributes.add(secondattribute);
+         }
+      }
+      return attributes;
+   }
+
+   private static Attribute getAttribute(AttributeOperand operand) {
+      Attribute attribute = null;
+      if (attribute instanceof AttributeReference) {
+         AttributeReference attReference = (AttributeReference) attribute;
+         attribute = attReference.getAttribute();
+      }
+      return attribute;
+   }
+
+   public Set<Constraint> getConstraintsRelatedToFeature(Feature feature) {
+      Set<Constraint> related = new HashSet<Constraint>();
+      Set<Constraint> allConstraints = new HashSet<Constraint>();
+      allConstraints.addAll(allFeatureConstraints);
+      allConstraints.addAll(allAttributeConstraints);
+
+      for (Constraint featureConstraint : allConstraints) {
+         Set<Feature> constrainedFeatures = getConstrainedFeatures(featureConstraint);
+         for (Feature constrainedFeature : constrainedFeatures) {
+            if (EcoreUtil.equals(feature, constrainedFeature)) {
+               related.add(featureConstraint);
+               break;
+            }
+         }
+      }
+      return related;
+   }
+   
+   public static Feature getParentFeature(Feature feature){
+      Feature parent = null;
+      EObject eContainer = feature.eContainer();
+      if (eContainer != null && eContainer instanceof Group){
+         Group parentGroup = (Group)eContainer;
+         parent = (Feature) parentGroup.eContainer();
+      }
+      return parent;
    }
 
 }

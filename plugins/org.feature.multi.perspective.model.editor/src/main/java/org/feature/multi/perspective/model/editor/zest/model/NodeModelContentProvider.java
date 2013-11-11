@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.zest.core.widgets.Graph;
@@ -19,8 +20,9 @@ import org.feature.multi.perspective.model.viewmodel.Group;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
 import org.feature.multi.perspective.model.viewmodel.ViewPoint;
 import org.feature.multi.perspective.model.viewmodel.ViewPointContainer;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
+import org.js.model.feature.edit.FeatureModelHelper;
 
 /**
  * Transforms the {@link MappingModel} into a {@link Graph}.
@@ -141,7 +143,8 @@ public class NodeModelContentProvider {
     * @param featureModel the feature model
     */
    private void createFeatureNodes(FeatureModel featureModel) {
-      EList<Feature> children = featureModel.getAllFeatures();
+      FeatureModelHelper helper = new FeatureModelHelper(featureModel);
+      Set<Feature> children = helper.getAllFeatures();
       for (Feature feature : children) {
          FeatureNode featureNode = new FeatureNode(feature);
          featureNodes.put(feature, featureNode);
@@ -154,8 +157,8 @@ public class NodeModelContentProvider {
     * 
     * @param groups group of features
     */
-   private void createFeatureNodes(EList<org.featuremapper.models.feature.Group> groups) {
-      for (org.featuremapper.models.feature.Group group : groups) {
+   private void createFeatureNodes(EList<org.js.model.feature.Group> groups) {
+      for (org.js.model.feature.Group group : groups) {
          EList<Feature> childFeatures = group.getChildFeatures();
          for (Feature childFeature : childFeatures) {
             FeatureNode featureNode = new FeatureNode(childFeature);

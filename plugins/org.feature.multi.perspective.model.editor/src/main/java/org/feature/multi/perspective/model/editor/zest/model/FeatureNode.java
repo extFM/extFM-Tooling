@@ -3,7 +3,8 @@
  */
 package org.feature.multi.perspective.model.editor.zest.model;
 
-import org.featuremapper.models.feature.Feature;
+import org.js.model.feature.Feature;
+
 
 /**
  * @author winkelti

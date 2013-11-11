@@ -7,8 +7,8 @@ import org.feature.multi.perspective.model.viewmodel.Group;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
 import org.feature.multi.perspective.model.editor.util.Flag;
 import org.feature.multi.perspective.model.editor.util.Util;
-import org.featuremapper.models.feature.Feature;
-import org.featuremapper.models.feature.FeatureModel;
+import org.js.model.feature.Feature;
+import org.js.model.feature.FeatureModel;
 
 /**
  * This class represents a mapping between a {@link Group} from the {@link GroupModel} and a {@link Set} of

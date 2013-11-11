@@ -45,7 +45,7 @@ public class MtextMetaInformation implements org.feature.multi.perspective.mappi
 	}
 	
 	public String getPathToCSDefinition() {
-		return "org.feature.multi.perspective.mapping/model/viewmapping.cs";
+		return "org.feature.multi.perspective.mapping/src/main/model/viewmapping.cs";
 	}
 	
 	public String[] getTokenNames() {

@@ -5,13 +5,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//Mapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureModel" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.featuremapper.models.feature/model/feature.ecore#//FeatureModel"/>
+        eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//FeatureModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewModel" lowerBound="1"
         eType="ecore:EClass ../../../../org.feature.multi.perspective.model/src/main/model/viewmodel.ecore#//GroupModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.featuremapper.models.feature/model/feature.ecore#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass ../../../../org.js.model.feature/src/main/model/feature.ecore#//Feature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewgroup" lowerBound="1"
         eType="ecore:EClass ../../../../org.feature.multi.perspective.model/src/main/model/viewmodel.ecore#//AbstractGroup"/>
   </eClassifiers>
