@@ -48,7 +48,7 @@ public class FeatureModelAnalyzer {
 
    private FeatureModel model;
 
-   private boolean persistVariants = true;
+   private boolean persistVariants = false;
 
    private int numberOfVariantsToDerive = -1;
 

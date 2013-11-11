@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: org.js.model.feature.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.js.model.feature.test.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ org.eclipse.core.resources;bundle-version="3.8.0",
+ org.js.model.feature;bundle-version="1.0.0",
+ org.js.model.feature.resource.eft;bundle-version="1.0.0",
+ org.js.model.feature.csp
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy

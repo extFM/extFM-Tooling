@@ -33,7 +33,6 @@ public abstract class AbstractTestRbac {
       TestModel tm = new TestModel();
       acModelUT = tm.getACTestModel();
       rbacService = new RBACService();
-
    }
 
    protected Role getRole(String roleId) {
