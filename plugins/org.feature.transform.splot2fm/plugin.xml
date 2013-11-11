@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <separator
+               name="org.feature.transform.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.feature.transform.splot2fm"
+               icon="icons/obj16/transform.png"
+               label="Transform Splot2EFM"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.feature.transformSXFM.enable">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.feature.transform.splot2fm.makeUnique"
+               label="Make feature names unique"
+               style="push">
+         </command>
+         <separator
+               name="org.feature.transform.separator2"
+               visible="true">
+         </separator>
+      </menuContribution>
+   </extension>
+
+<extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.feature.transform.splot2fm.handler.TransformCommandHandler"
+            id="org.feature.transform.splot2fm"
+            name="Transform">
+      </command>
+      <command
+            defaultHandler="org.feature.transform.splot2fm.handler.MakeNamesUniqueCommandHandler"
+            id="org.feature.transform.splot2fm.makeUnique"
+            name="Make feature names unique">
+      </command>
+   </extension>
+   
+<extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.feature.transformSXFM.enable">
+         <iterate>
+            <and>
+               <adapt
+                     type="org.eclipse.core.resources.IResource">
+               </adapt>
+            </and>
+         </iterate>
+      </definition>
+   </extension>   
+</plugin>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.feature.multi.perspective.utilities.feature"
+      label="Feature Model Utilities"
+      version="0.4.0.qualifier"
+      provider-name="ST Group">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.feature.model.utilities" version="0.4.0" match="greaterOrEqual"/>
+      <import plugin="org.emftext.term.propositional.expression.resource.expression" version="0.4.0" match="greaterOrEqual"/>
+      <import plugin="org.emftext.term.propositional.edit" version="0.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.7.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.workspace" version="1.5.1" match="greaterOrEqual"/>
+      <import plugin="org.feature.multi.perspective.model" version="0.4.0" match="greaterOrEqual"/>
+      <import plugin="org.featuremapper.models.featuremapping"/>
+      <import plugin="org.featuremapper.models.feature"/>
+   </requires>
+
+   <plugin
+         id="org.feature.model.csp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.feature.model.utilities"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

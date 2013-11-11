@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.emftext.term.propositional;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.emftext.term.propositional.expression.PropositionalTermPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.emftext.term.propositional.expression,
+ org.emftext.term.propositional.expression.impl,
+ org.emftext.term.propositional.expression.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.js.model.feature;visibility:=reexport
+Bundle-ActivationPolicy: lazy

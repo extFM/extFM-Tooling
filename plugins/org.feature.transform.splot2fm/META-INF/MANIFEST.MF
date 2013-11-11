@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Transformation Splot2Fm
+Bundle-SymbolicName: org.feature.transform.splot2efm;singleton:=true
+Bundle-Version: 0.6.0.qualifier
+Bundle-Activator: org.feature.transform.splot2fm.TransformationPlugin
+Bundle-Vendor: Julia Schroeter
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.7.0",
+ org.eclipse.emf.workspace;bundle-version="1.5.1",
+ org.js.model.feature.editor;bundle-version="1.0.0",
+ org.feature.model.utilities;bundle-version="0.4.0",
+ org.emftext.term.propositional.expression.resource.expression;bundle-version="0.4.0",
+ org.emftext.term.propositional;bundle-version="0.4.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.js.model.feature.resource.eft,
+ org.js.model.feature.resource.eft.ui;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Bundle-ClassPath: .,
+ lib/sxfm.jar,
+ lib/commons-collections-3.2.1.jar,
+ lib/commons-lang3-3.1.jar,
+ lib/log4j-1.2.15.jar

@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: expression
+Bundle-SymbolicName: org.emftext.term.propositional.expression.resource.expression;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.change,
+ org.eclipse.emf.validation,
+ org.emftext.access;resolution:=optional,
+ org.emftext.term.propositional,
+ org.feature.model.utilities;bundle-version="0.4.0",
+ org.emftext.commons.antlr3_4_0;bundle-version="1.0.0",
+ org.js.model.feature.edit;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.emftext.term.propositional.expression.resource.expression,
+ org.emftext.term.propositional.expression.resource.expression.analysis,
+ org.emftext.term.propositional.expression.resource.expression.debug,
+ org.emftext.term.propositional.expression.resource.expression.grammar,
+ org.emftext.term.propositional.expression.resource.expression.launch,
+ org.emftext.term.propositional.expression.resource.expression.mopp,
+ org.emftext.term.propositional.expression.resource.expression.util
+Bundle-Activator: org.emftext.term.propositional.expression.resource.expression.mopp.ExpressionPlugin

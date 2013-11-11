@@ -15,7 +15,9 @@ public class FeatureConstraintLeftOperandReferenceResolver implements org.js.mod
 	}
 	
 	public String deResolve(org.js.model.feature.Feature element, org.js.model.feature.FeatureConstraint container, org.eclipse.emf.ecore.EReference reference) {
-		return delegate.deResolve(element, container, reference);
+		return element.getId();
+	   
+	   //return delegate.deResolve(element, container, reference);
 	}
 	
 	public void setOptions(java.util.Map<?,?> options) {

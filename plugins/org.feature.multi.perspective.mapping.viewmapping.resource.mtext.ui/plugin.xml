@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextUIMetaInformation" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="mtext" icon="icons/editor_icon.gif" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextEditor" name="EMFText mtext Editor">
+			<contentTypeBinding contentTypeId="org.feature.multi.perspective.mapping.viewmapping.resource.mtext">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="Mtext Text Editor" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextPreferencePage" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextSyntaxColoringPreferencePage" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextSyntaxColoringPreferencePage" category="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextPreferencePage">
+		</page>
+		<page name="Brackets" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextBracketPreferencePage" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextBracketPreferencePage" category="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextNewFileWizard" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextNewFileWizard" name="EMFText .mtext file">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextNewProjectWizard" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextNewProjectWizard" name="EMFText mtext project" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextMarkerResolutionGenerator" markerType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextAnnotationModelFactory" extensions="mtext">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext" name=".mtext File" base-type="org.eclipse.core.runtime.text" file-extensions="mtext">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="mtext" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.occurences">
+		</type>
+		<type name="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.occurences.declaration" super="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.occurences" label="Occurrences (in .mtext files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="mtext.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="mtext.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="mtext.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="mtext.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="mtext.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="mtext.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="mtext.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="mtext.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="mtext.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.occurences.declaration" label="Declarations (in .mtext files)" textPreferenceKey="mtext.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="mtext.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="mtext.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="mtext.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="mtext.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="mtext.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.launchConfigurationType" id="org.feature.multi.perspective.mapping.mtext.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.launchConfigurationType" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.launch.MtextLaunchConfigurationTabGroup" id="org.feature.multi.perspective.mapping.mtext.launchConfigurationTabGroup" helpContextId="org.feature.multi.perspective.mapping.mtext.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug mtext model.">
+			</launchMode>
+			<launchMode mode="run" description="Run mtext model.">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="mtext Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.feature.multi.perspective.mapping.mtext.launch" modes="run,debug" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.launch.MtextLaunchShortcut" description="Launch a mtext model" id="org.feature.multi.perspective.mapping.mtext.launchShortcut">
+			<description description="Run mtext model" mode="run">
+			</description>
+			<description description="Debug mtext model" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="org.feature.multi.perspective.mapping.mtext.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="org.feature.multi.perspective.mapping.mtext.PropertyTester" type="java.lang.Object" namespace="org.feature.multi.perspective.mapping.mtext" properties="isLaunchable" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextPropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.lineBreakpoint" markerType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.lineBreakpoint" label="Breakpoints (in .mtext files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextEditor" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.MtextAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.debug.MtextDebugVariable" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.MtextAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.debug.MtextDebugVariable" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.MtextAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.RulerPopupActions" targetID="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.EditorRuler">
+			<action id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.MtextEditor" id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.BreakpointRulerActions">
+			<action id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.debugModel" class="org.feature.multi.perspective.mapping.viewmapping.resource.mtext.ui.debug.MtextDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>

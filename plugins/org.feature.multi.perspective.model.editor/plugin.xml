@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.feature.multi.perspective.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.feature.multi.perspective.model.viewmodel.presentation.ViewmodelModelWizardID"
+            name="%_UI_ViewmodelModelWizard_label"
+            class="org.feature.multi.perspective.model.viewmodel.presentation.ViewmodelModelWizard"
+            category="org.feature.multi.perspective.category.ID"
+            icon="icons/full/obj16/ViewModelFile.gif">
+         <description>%_UI_ViewmodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            class="org.feature.multi.perspective.model.editor.editors.ViewmodelMultiPageEditor"
+            contributorClass="org.feature.multi.perspective.model.editor.editors.MultiPageActionBarContributor"
+            default="true"
+            extensions="viewmodel"
+            icon="icons/full/obj16/ViewModelFile.gif"
+            id="org.feature.multi.perspective.model.editor.editors.MultiPageEditor"
+            name="%_UI_ViewmodelEditor_label">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <command
+               commandId="org.feature.multi.perspective.model.editor.filterFeatureModel"
+               label="Create Perspective"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     operator="and">
+                  <instanceof
+                        value="org.feature.multi.perspective.model.viewmodel.ViewPoint">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="menu:org.eclipse.ui.main.menu?before=additions">
+         <menu
+               id="org.feature.multi.perspective.model.editor"
+               label="Multi-Perspective Editor">
+            <command
+                  commandId="org.feature.multi.perspective.model.editor.incAlg"
+                  label="Validate Viewpoints"
+                  style="push">
+               <visibleWhen>
+                  <reference
+                        definitionId="org.feature.multi.perspective.model.editor.activeViewmodelModelEditor">
+                  </reference>
+               </visibleWhen>
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.feature.multi.perspective.model.editor.category"
+            defaultHandler="org.feature.multi.perspective.model.editor.editors.FilterFeatureModelHandler"
+            id="org.feature.multi.perspective.model.editor.filterFeatureModel"
+            name="filterFeatureModel">
+      </command>
+      <category
+            id="org.feature.multi.perspective.model.editor.category"
+            name="filterFeatureModelCategory">
+      </category>
+      <command
+            categoryId="org.feature.multi.perspective.model.editor.algorithm"
+            defaultHandler="org.feature.multi.perspective.model.editor.editors.algorithms.IncrementalAlgorithmHandler"
+            description="Validate all Viewpoints"
+            id="org.feature.multi.perspective.model.editor.incAlg"
+            name="incrementalAlgorithm">
+      </command>
+      <category
+            id="org.feature.multi.perspective.model.editor.algorithm"
+            name="validationAlgorithms">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+<definition
+            id="org.feature.multi.perspective.model.editor.activeViewmodelModelEditor">
+         <with
+               variable="activeEditorId">
+            <equals
+                  value="org.feature.multi.perspective.model.editor.editors.MultiPageEditor">
+            </equals>
+         </with>
+      </definition>
+   </extension>
+
+</plugin>

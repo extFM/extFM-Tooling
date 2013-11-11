@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.feature.transform.splot2fm.feature"
+      label="Transformation Splot2Fm"
+      version="0.5.0.qualifier"
+      provider-name="Julia Schroeter">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="org.featuremapper.models.feature.edit" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.featuremapper.models.feature.editor" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.featuremapper.models.feature" version="0.8.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.feature.transform.splot2fm"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

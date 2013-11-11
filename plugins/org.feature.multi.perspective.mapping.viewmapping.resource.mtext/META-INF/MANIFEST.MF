@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: mtext
+Bundle-SymbolicName: org.feature.multi.perspective.mapping.viewmapping.resource.mtext;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.featuremapper.models.feature,
+   org.feature.multi.perspective.model,
+   org.feature.model.utilities,
+  org.emftext.commons.antlr3_4_0,
+  org.feature.multi.perspective.mapping,
+  org.feature.multi.perspective.model
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.feature.multi.perspective.mapping.viewmapping.resource.mtext,
+  org.feature.multi.perspective.mapping.viewmapping.resource.mtext.analysis,
+  org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp,
+  org.feature.multi.perspective.mapping.viewmapping.resource.mtext.debug,
+  org.feature.multi.perspective.mapping.viewmapping.resource.mtext.launch,
+  org.feature.multi.perspective.mapping.viewmapping.resource.mtext.grammar,
+  org.feature.multi.perspective.mapping.viewmapping.resource.mtext.util
+Bundle-Activator: org.feature.multi.perspective.mapping.viewmapping.resource.mtext.mopp.MtextPlugin

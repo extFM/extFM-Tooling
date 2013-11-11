@@ -26,6 +26,7 @@ import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
+import org.js.model.feature.Group;
 import org.js.model.feature.Interval;
 import org.js.model.feature.NumericalDomain;
 
@@ -45,6 +46,7 @@ public class FeatureModelHelper {
    Set<Feature> unboundFeatures;
    Set<Feature> deselectedFeatures;
 
+   private Set<Group> allGroups;
    private Set<Attribute> allAttributes;
    private Set<FeatureConstraint> allFeatureConstraints;
    private Set<AttributeConstraint> allAttributeConstraints;
@@ -62,6 +64,7 @@ public class FeatureModelHelper {
       selectedFeatures = new HashSet<Feature>();
       deselectedFeatures = new HashSet<Feature>();
       unboundFeatures = new HashSet<Feature>();
+      allGroups = new HashSet<Group>();
       setAllAttributes(new HashSet<Attribute>());
       setAllFeatureConstraints(new HashSet<FeatureConstraint>());
       setAllAttributeConstraints(new HashSet<AttributeConstraint>());
@@ -83,6 +86,9 @@ public class FeatureModelHelper {
          } else if (object instanceof AttributeConstraint) {
             AttributeConstraint attributeConstraint = (AttributeConstraint) object;
             getAllAttributeConstraints().add(attributeConstraint);
+         } else if (object instanceof Group){
+            Group group = (Group) object;
+            getAllGroups().add(group);
          }
       }
    }
@@ -490,6 +496,10 @@ public class FeatureModelHelper {
          }
       }
       return assignedAttributes;
+   }
+
+   public Set<Group> getAllGroups() {
+      return allGroups;
    }
 
 }
