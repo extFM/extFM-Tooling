@@ -34,7 +34,7 @@ public class RBACServiceTest extends AbstractTestRbac {
    public void getAllRolePermissionsMultiInheritance() {
       Role r4 = getRole("r6");
       Set<Permission> permissions = rbacService.getAllRolePermissions(r4);
-      assertTrue(permissions.size() == 9);
+      assertTrue(permissions.size() == 10);
 
       // Feature f5 = getFeature("f5");
       //
