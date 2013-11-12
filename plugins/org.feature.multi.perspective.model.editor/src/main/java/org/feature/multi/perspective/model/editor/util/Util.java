@@ -11,7 +11,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -340,4 +346,21 @@ public class Util {
       fd.setFileName(defaultFileName);
       return fd.open();
    }
+   
+   
+   public static IFile openSaveDialog(Shell parent, String defaultFileName) {
+      String title = "Save Perspective";
+      String message = "Please select a file to store the Perspective";
+     
+      IPath suggestedPath = Path.fromOSString(defaultFileName);
+      suggestedPath.append(defaultFileName);
+      IFile file = WorkspaceResourceDialog.openNewFile(parent, title, message, suggestedPath, null);
+      return file;
+   }
+
+
+
+   
+   
+   
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -16,6 +17,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.feature.model.utilities.FeatureModelInit;
+import org.feature.model.utilities.ResourceUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.editor.editors.algorithms.BruteForceAlgorithm;
 import org.feature.multi.perspective.model.editor.editors.algorithms.IncrementalAlgorithm;
@@ -125,18 +127,12 @@ public class FilteredFeatureModel {
       Filter filter = new Filter(org, featureMap);
 
       log.debug(filter.newFeatureModel);
-      String saveFileName =
-         Util.save(featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".eft", multiPageEditor.getSite()
-            .getShell());
-      if (saveFileName != null && !saveFileName.isEmpty()) {
-         ResourceSet rst = new ResourceSetImpl();
-         Resource resource = rst.createResource(URI.createFileURI(saveFileName));
-         resource.getContents().add(filter.newFeatureModel);
-         try {
-            resource.save(Collections.EMPTY_MAP);
-         } catch (IOException e) {
-            log.error(e.getMessage());
-         }
-      }
+      String defaultFileName = featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".eft";
+      
+      IFile saveFile = Util.openSaveDialog(getShell(), defaultFileName);
+      if (saveFile != null) {
+         ResourceUtil.persistModel(filter.newFeatureModel, saveFile);
+
+     }
    }
 }

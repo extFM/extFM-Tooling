@@ -38,22 +38,8 @@ public class FilterFeatureModelHandler extends AbstractHandler {
    public Object execute(ExecutionEvent event) throws ExecutionException {
       ViewmodelMultiPageEditor multiPageEditor = getActiveEditor();
       if (multiPageEditor != null) {
-       //  Shell shell = multiPageEditor.getSite().getShell();
-       //  IFile file = openSaveDialog(shell);
          multiPageEditor.createFilteredFeatureModel(viewPoint);
       }
-      return null;
-   }
-
-   private IFile openSaveDialog(Shell parent) {
-      String title = "Save Perspective";
-      String message = "Please select a file to store the Perspective";
-      IPath suggestedPath = getCurrentProjectPath();
-      IFile file = WorkspaceResourceDialog.openNewFile(parent, title, message, suggestedPath, null);
-      return file;
-   }
-
-   private IPath getCurrentProjectPath() {
       return null;
    }
 

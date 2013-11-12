@@ -203,6 +203,11 @@ public final class ResourceUtil {
       }
    }
 
+   public static void persistModel(EObject model, IFile file){
+      String locationUri = file.getLocationURI().normalize().getPath();
+      persistModel(model, locationUri);
+   }
+   
    /**
     * get a folder from the workspace that is a member if the given project
     * 
