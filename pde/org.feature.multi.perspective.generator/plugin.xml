@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+     <extension
+         point="org.eclipse.ui.menus">
+<menuContribution
+            allPopups="true"
+            locationURI="menu:org.eclipse.ui.main.menu?before=additions">
+         <menu
+               id="org.feature.multi.perspective.model.editor"
+               label="Multi-Perspective Editor">
+            <command
+                  commandId="org.feature.multi.perspective.model.generator.viewmodel"
+                  label="Generate Multi-Perspective"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+     <extension
+           point="org.eclipse.ui.commands">
+        <command
+              defaultHandler="org.feature.multi.perspective.generator.GeneratorCommandHandler"
+              id="org.feature.multi.perspective.model.generator.viewmodel"
+              name="Generate Viewmodels">
+        </command>
+     </extension>
+</plugin>

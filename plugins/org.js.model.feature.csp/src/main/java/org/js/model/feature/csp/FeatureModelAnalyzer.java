@@ -33,8 +33,6 @@ public class FeatureModelAnalyzer {
 
    private static Logger log = Logger.getLogger(FeatureModelAnalyzer.class);
 
-   
-
    int numberDerivableVariants = -1;
 
    Set<Feature> mandatoryFeatures;
@@ -49,8 +47,10 @@ public class FeatureModelAnalyzer {
    private FeatureModel model;
 
    private boolean persistVariants = false;
-
    private int numberOfVariantsToDerive = -1;
+
+   private boolean keepVariants = false;
+   Set<FeatureVariant> variants;
 
    /**
     * default constructor.
@@ -60,6 +60,11 @@ public class FeatureModelAnalyzer {
    public FeatureModelAnalyzer(FeatureModel model) {
       this.model = model;
       featureModelHelper = new FeatureModelHelper(model);
+      initSets();
+   }
+
+   private void initSets() {
+      variants = new HashSet<FeatureVariant>();
    }
 
    public FeatureModelAnalyzer(FeatureModel featureModel, boolean persistAllVariants) {
@@ -221,9 +226,14 @@ public class FeatureModelAnalyzer {
             if (numberOfVariantsToDerive != -1 && j > numberOfVariantsToDerive) {
                persistVariants = false;
             }
-            if (persistVariants) {
+            if (keepVariants || persistVariants) {
                FeatureVariant variant = createVariant(solver);
-               save(variant, j);
+               if (persistVariants) {
+                  save(variant, j);
+               }
+               if (keepVariants) {
+                  variants.add(variant);
+               }
                log.debug(j + ". variant found: '" + variant.toString() + "'");
             } else {
                log.debug(j + ". variant found.");
@@ -356,6 +366,18 @@ public class FeatureModelAnalyzer {
 
    public int getNumberOfAssignedAttributes() {
       return featureModelHelper.getAssignedAttributes().size();
+   }
+
+   public FeatureVariant getOneVariant() {
+      numberOfVariantsToDerive = 1;
+      keepVariants = true;
+      solveModel();
+      FeatureVariant aVariant = null;
+      for (FeatureVariant variant : variants) {
+         aVariant = variant;
+         break;
+      }
+      return aVariant;
    }
 
 }

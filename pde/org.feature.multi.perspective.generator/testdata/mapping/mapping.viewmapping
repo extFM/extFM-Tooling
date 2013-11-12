@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ASCII"?>
+<viewmapping:MappingModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:viewmapping="http://www.tudresden.de/viewmapping">
+  <mappings>
+    <features href="../feature/documentmanagement.feature#ImageType"/>
+    <features href="../feature/documentmanagement.feature#PDFType"/>
+    <viewgroup href="../viewmodel/documentmanagement.viewmodel#Basic"/>
+  </mappings>
+  <mappings>
+    <features href="../feature/documentmanagement.feature#PDFType"/>
+    <features href="../feature/documentmanagement.feature#MetaDataIndex"/>
+    <features href="../feature/documentmanagement.feature#TitelIndex"/>
+    <features href="../feature/documentmanagement.feature#ContentIndex"/>
+    <features href="../feature/documentmanagement.feature#MetaDataSearch"/>
+    <features href="../feature/documentmanagement.feature#TitleSearch"/>
+    <features href="../feature/documentmanagement.feature#ContentSearch"/>
+    <viewgroup href="../viewmodel/documentmanagement.viewmodel#Premium"/>
+  </mappings>
+  <mappings>
+    <features href="../feature/documentmanagement.feature#AuthorIndex"/>
+    <features href="../feature/documentmanagement.feature#AuthorSearch"/>
+    <viewgroup href="../viewmodel/documentmanagement.viewmodel#Silver"/>
+  </mappings>
+  <mappings>
+    <features href="../feature/documentmanagement.feature#ImageType"/>
+    <features href="../feature/documentmanagement.feature#OCR"/>
+    <features href="../feature/documentmanagement.feature#PDFOCR"/>
+    <features href="../feature/documentmanagement.feature#ImageOCR"/>
+    <viewgroup href="../viewmodel/documentmanagement.viewmodel#Gold"/>
+  </mappings>
+  <mappings>
+    <features href="../feature/documentmanagement.feature#UnicodeTextType"/>
+    <viewgroup href="../viewmodel/documentmanagement.viewmodel#Customized"/>
+  </mappings>
+  <mappings>
+    <features href="../feature/documentmanagement.feature#DocumentManagement"/>
+    <features href="../feature/documentmanagement.feature#DocumentType"/>
+    <features href="../feature/documentmanagement.feature#TextType"/>
+    <features href="../feature/documentmanagement.feature#Indexing"/>
+    <features href="../feature/documentmanagement.feature#GeneralIndex"/>
+    <features href="../feature/documentmanagement.feature#FileNameIndex"/>
+    <features href="../feature/documentmanagement.feature#Search"/>
+    <features href="../feature/documentmanagement.feature#GeneralSearch"/>
+    <features href="../feature/documentmanagement.feature#FileNameSearch"/>
+    <viewgroup href="../viewmodel/documentmanagement.viewmodel#Core"/>
+  </mappings>
+  <featureModel href="../feature/documentmanagement.feature#/"/>
+  <viewModel href="../viewmodel/documentmanagement.viewmodel#/"/>
+</viewmapping:MappingModel>

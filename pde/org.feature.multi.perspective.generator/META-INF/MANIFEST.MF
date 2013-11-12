@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Multi-Perspective Generator
+Bundle-SymbolicName: org.feature.multi.perspective.generator;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.feature.multi.perspective.generator.ClusterGeneratorPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.feature.model.utilities;bundle-version="0.4.0",
+ org.feature.multi.perspective.model.editor;bundle-version="0.4.0",
+ org.js.model.feature,
+ org.js.model.feature.csp,
+ org.feature.multi.perspective.mapping,
+ org.feature.multi.perspective.utilities,
+ org.js.model.feature.edit
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

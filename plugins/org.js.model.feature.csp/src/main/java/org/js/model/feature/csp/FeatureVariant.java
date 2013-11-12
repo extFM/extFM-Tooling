@@ -3,6 +3,8 @@
  */
 package org.js.model.feature.csp;
 
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.js.model.feature.Attribute;
@@ -27,6 +29,10 @@ public class FeatureVariant {
 
    public FeatureModel getModel(){
       return helper.getModel();
+   }
+   
+   public Set<Feature> getFeatures(){
+      return helper.getAllFeatures();
    }
    
    public void setAttributeValue(String attributeId) {
