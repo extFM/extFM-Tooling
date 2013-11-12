@@ -1,7 +1,5 @@
 package org.feature.multi.perspective.model.editor.editors;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +7,10 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.feature.model.utilities.FeatureModelInit;
 import org.feature.model.utilities.ResourceUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.editor.editors.algorithms.BruteForceAlgorithm;
@@ -66,21 +60,21 @@ public class FilteredFeatureModel {
 
       BruteForceAlgorithm bruteForce = new BruteForceAlgorithm(groupModel, views, featureMappingModel.getFeatureModel());
       View view = bruteForce.checkViewpoint(viewPoint);
-
+      boolean success = false;
       boolean consistent = view.isConsistent();
       // Find specific ViewPoint
       if (view != null && consistent) {
          log.debug("time: " + (System.currentTimeMillis() - timeMillis));
-         createFeatureModel(featureMappingModel, viewPoint, view);
+         success = createFeatureModel(featureMappingModel, viewPoint, view);
       } else {
          log.error("Could not create ViewPoint");
       }
-      showMessage(viewPoint, consistent);
+      showMessage(viewPoint, consistent, success);
    }
 
-   private void showMessage(ViewPoint viewpoint, boolean consistent) {
+   private void showMessage(ViewPoint viewpoint, boolean consistent, boolean success) {
       String msg = "";
-      if (consistent) {
+      if (consistent && success) {
          msg += "The perspective is created successfully.";
       } else {
          msg += "Could not create perspective ";
@@ -116,7 +110,8 @@ public class FilteredFeatureModel {
     * @param viewPoint the viewpoint
     * @param view the features to the viewpoint
     */
-   private void createFeatureModel(MappingModel featureMappingModel, ViewPoint viewPoint, View view) {
+   private boolean createFeatureModel(MappingModel featureMappingModel, ViewPoint viewPoint, View view) {
+      boolean successful = false;
       log.info("#Features for a ViewPoint:  " + view.getFeatures().size());
       Map<String, Feature> featureMap = new HashMap<String, Feature>();
       Set<Feature> features = view.getFeatures();
@@ -125,14 +120,18 @@ public class FilteredFeatureModel {
       }
       FeatureModel org = featureMappingModel.getFeatureModel();
       Filter filter = new Filter(org, featureMap);
-
+      FeatureModel newModel = filter.newFeatureModel;
+       if (newModel != null){  
       log.debug(filter.newFeatureModel);
-      String defaultFileName = featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".eft";
+     
+         String defaultFileName = featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".eft";
       
       IFile saveFile = Util.openSaveDialog(getShell(), defaultFileName);
       if (saveFile != null) {
          ResourceUtil.persistModel(filter.newFeatureModel, saveFile);
-
+         successful = true;
      }
+       }
+       return successful;
    }
 }

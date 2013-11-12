@@ -104,6 +104,7 @@ public class Util {
       Set<Feature> allFeatures = viewHelper.getAllFeatures();
       EList<Constraint> constraints = view.getConstraints();
       Set<Constraint> constraintsToRemove = new HashSet<Constraint>();
+      boolean isConsistent = false;
       for (Constraint constraint : constraints) {
          Set<Feature> featuresFromTerm = FeatureModelHelper.getConstrainedFeatures(constraint);
          boolean oneFeatureMissing = false;
@@ -117,13 +118,18 @@ public class Util {
             if (constraint instanceof Imply){
                Imply implyConstraint = (Imply) constraint;
                Feature rightOperand = implyConstraint.getRightOperand();
-               if (!contains(rightOperand, viewHelper.getAllFeatures())) {
-                  canBeConsistent.setFlagged(true);
+               Feature leftOperand = implyConstraint.getLeftOperand();
+               boolean isRightContained = contains(rightOperand, viewHelper.getAllFeatures());
+               boolean isLeftContained = contains(leftOperand, viewHelper.getAllFeatures());
+               // if only the left feature of an imply constrain is contained without the right, the model cannot become consistent
+               if (isLeftContained && !isRightContained) {
+                  isConsistent = true;
                }
             } 
             constraintsToRemove.add(constraint);
          }
       }  
+      canBeConsistent.setFlagged(isConsistent);
         
       view.getConstraints().removeAll(constraintsToRemove);
       // log.debug("Constraints removed: " + constraintsToRemove.size());
@@ -131,6 +137,8 @@ public class Util {
 
    
 
+
+   
 
    /**
     * removes all {@link Feature} from the {@link FeatureModel} which are not in the {@link Set}.

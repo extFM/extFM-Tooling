@@ -45,7 +45,7 @@ public class Filter {
       this.featureMap = featureMap;
       orgFeatureModel = org;
       Feature orgRoot = orgFeatureModel.getRoot();
-      if (featureMap.containsKey(orgRoot.getName())) {
+      if (featureMap.containsKey(orgRoot.getId())) {
          newFeatureModel = EcoreUtil.copy(orgFeatureModel);
          newFeatureModel.setRoot(copyFeature(orgRoot, null));
          FeatureModelHelper helper = new FeatureModelHelper(newFeatureModel);
