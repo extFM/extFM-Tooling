@@ -193,7 +193,7 @@ public class Util {
    private static boolean contains(Feature feature, Collection<Feature> features) {
       if (feature != null && feature.getName() != null) {
          for (Feature feature2 : features) {
-            if (feature2 != null && feature2.getName() != null) {
+            if (feature2 != null && feature2.getId() != null) {
                if (feature.getId().equals(feature2.getId())) {
                   return true;
                }

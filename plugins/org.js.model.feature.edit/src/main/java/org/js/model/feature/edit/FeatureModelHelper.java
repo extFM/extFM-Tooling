@@ -60,6 +60,11 @@ public class FeatureModelHelper {
       initModel(model);
    }
 
+   public void refresh(){
+      initLists();
+      initModel(model);
+   }
+   
    private void initLists() {
       selectedFeatures = new HashSet<Feature>();
       deselectedFeatures = new HashSet<Feature>();

@@ -12,11 +12,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.feature.model.utilities.WorkbenchUtil;
-import org.feature.multi.perspective.generator.viewmodel.AbstractGenerator;
 import org.feature.multi.perspective.generator.viewmodel.FeatureMappingGenerator;
 import org.feature.multi.perspective.generator.viewmodel.ViewModelGenerator;
 
@@ -28,11 +28,24 @@ import org.feature.multi.perspective.generator.viewmodel.ViewModelGenerator;
  */
 public class GeneratorCommandHandler extends AbstractHandler {
 
+   private GenerateProperties properties;
    private Job job;
 
    @Override
    public Object execute(ExecutionEvent event) throws ExecutionException {
-      createJob();
+      int result = showPropertiesDialog();
+      switch (result) {
+         case 0:
+            // ok pressed
+            createJob();
+            break;
+         case 1:
+            // cancel pressed
+            break;
+
+         default:
+            break;
+      }
       return null;
    }
 
@@ -82,25 +95,26 @@ public class GeneratorCommandHandler extends AbstractHandler {
    }
 
    private void generateMultiPerspectiveModel() {
-      boolean generateViewmodel = AbstractGenerator.generateViewmodel;
-      boolean generateConsistentMapping = AbstractGenerator.generateConsistentMapping;
-      boolean reuseMapping = AbstractGenerator.reuseMapping;
-
-      //boolean generateClassification = true;
       
-      if (generateViewmodel) {
+      if (properties.isGenerateViewmodel()) {
          ViewModelGenerator generator = new ViewModelGenerator();
          generator.generateViewModel();
       }
       FeatureMappingGenerator fmGenerator = new FeatureMappingGenerator();
-      fmGenerator.generateMapping(generateConsistentMapping, reuseMapping);
+      fmGenerator.generateMapping(properties);
       
-//      if (generateClassification){
-//        ClassificationGenerator clGenerator = new ClassificationGenerator();
-//        clGenerator.generateClassification();
-//      }
    }
 
+   private int showPropertiesDialog() {
+      properties = new GenerateProperties();
+      GeneratePropertiesDialog dialog = new GeneratePropertiesDialog(properties, null, "Generate Multi-Perspective Model",
+              null, "Please Specify Generate Properties",
+              MessageDialog.CONFIRM, new String[] { "Ok", "Cancel" }, 0);
+      int result = dialog.open();
+      return result;
+  }
+   
+   
    @Override
    public void dispose() {
       if (job != null) {

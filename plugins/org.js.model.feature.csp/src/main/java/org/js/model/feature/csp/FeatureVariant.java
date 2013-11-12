@@ -31,8 +31,9 @@ public class FeatureVariant {
       return helper.getModel();
    }
    
-   public Set<Feature> getFeatures(){
-      return helper.getAllFeatures();
+   public Set<Feature> getSelectedFeatures(){
+      helper.refresh();
+      return helper.getSelectedFeatures();
    }
    
    public void setAttributeValue(String attributeId) {

@@ -371,6 +371,7 @@ public class FeatureModelAnalyzer {
    public FeatureVariant getOneVariant() {
       numberOfVariantsToDerive = 1;
       keepVariants = true;
+      setFindAll(false);
       solveModel();
       FeatureVariant aVariant = null;
       for (FeatureVariant variant : variants) {

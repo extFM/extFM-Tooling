@@ -24,6 +24,8 @@ public class ViewModelGenerator extends AbstractGenerator {
 
    private static Logger log = Logger.getLogger(ViewModelGenerator.class);
 
+   public static String coreGroupName = "Core";
+   
    /**
     * create a new view model.
     */
@@ -69,7 +71,7 @@ public class ViewModelGenerator extends AbstractGenerator {
    private GroupModel generateCoreGroupModel(int maxHeight, int maxChildren) {
       GroupModel groupModel = ViewmodelFactory.eINSTANCE.createGroupModel();
       CoreGroup coreGroup = ViewmodelFactory.eINSTANCE.createCoreGroup();
-      coreGroup.setName("Core");
+      coreGroup.setName(coreGroupName);
       groupModel.setCoreGroup(coreGroup);
       // generate group hierarchy
       generateBalancedTree(coreGroup, maxHeight, maxChildren);

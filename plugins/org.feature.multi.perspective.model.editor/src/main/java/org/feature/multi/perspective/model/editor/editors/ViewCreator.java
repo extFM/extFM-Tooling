@@ -63,7 +63,7 @@ public class ViewCreator {
       List<EObject> listOfGroups = createMapOfGroups();
       views = createViews(listOfGroups, featureModel);
       for (View view : views) {
-         if (view.getGroup().equals(coreGroup)) {
+         if (EcoreUtil.equals(view.getGroup(),coreGroup)) {
             allFeatures.removeAll(mappedFeatures);
             view.getFeatures().addAll(allFeatures);
             break;

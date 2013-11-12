@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.feature.model.utilities.ResourceUtil;
+import org.feature.multi.perspective.generator.GenerateProperties;
 import org.feature.multi.perspective.mapping.viewmapping.Mapping;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.mapping.viewmapping.ViewmappingFactory;
@@ -52,16 +53,16 @@ public class FeatureMappingGenerator extends AbstractGenerator {
     * generate the mapping by combining all featuremodels with all clustermodels in the generated project. Be aware of
     * when creating consistent mappings, the groupmodelis modified and must be persisted afterwards.
     */
-   public void generateMapping(boolean consistent, boolean reuseFeatureMapping) {
+   public void generateMapping(GenerateProperties properties) {
       ResourceSet set = new ResourceSetImpl();
       List<FeatureModel> fms = getAllFeatureModels(set);
       List<GroupModel> vms = getAllViewModels(set);
       for (FeatureModel featureModel : fms) {
          FeatureModelAnalyzer analyzer = new FeatureModelAnalyzer(featureModel);
          for (int featuresPerGroup : assignedFeaturesPerGroup) {
-            if (reuseFeatureMapping) {
+            if (properties.isReuseMapping()) {
                // create the largest valid featuremapping and reuse it for all groupmodels
-               generateAndReuseFeatureMapping(set, featureModel, featuresPerGroup, analyzer, consistent);
+               generateAndReuseFeatureMapping(set, featureModel, featuresPerGroup, analyzer, properties.isGenerateConsistentMapping());
                if (isCanceled) {
                   log.info("No mapping created. The process was cancelled due to a time out.");
                   return;
@@ -69,7 +70,7 @@ public class FeatureMappingGenerator extends AbstractGenerator {
             } else {
                // generate a new featuremapping for every group model
                for (GroupModel groupModel : vms) {
-                  generateMapping(featureModel, groupModel, featuresPerGroup, analyzer, false, consistent);
+                  generateMapping(featureModel, groupModel, featuresPerGroup, analyzer, false, properties.isGenerateConsistentMapping());
                   if (isCanceled) {
                      log.info("No mapping created. The process was cancelled due to a time out.");
                      return;
@@ -231,9 +232,9 @@ public class FeatureMappingGenerator extends AbstractGenerator {
       FeatureVariant variant = analyzer.getOneVariant();
       log.info("Core Group Features " + variant);
 
-      Set<Feature> variantFeatures = variant.getFeatures();
+      Set<Feature> selectedFeatures = variant.getSelectedFeatures();
       CoreGroup coreGroup = groupModel.getCoreGroup();
-      Mapping coremapping = createCoreFeatureMapping(variantFeatures, coreGroup);
+      Mapping coremapping = createCoreFeatureMapping(selectedFeatures, coreGroup);
       featuremapping.getMappings().add(coremapping);
       boolean isCoreViewPointValid =
          isVPValidBruteforce(GroupModelUtil.getViewpointByName(coreViewpointName, groupModel), fm, groupModel, featuremapping);
@@ -316,8 +317,8 @@ public class FeatureMappingGenerator extends AbstractGenerator {
          isValid = isVPValidBruteforce(viewpoint, featureModel, groupModel, featureMapping);
       }
 
-      // time out set to 20 sek.
-      long endTimeMillis = System.currentTimeMillis() + 30000;
+      // time out set to 200 sek.
+      long endTimeMillis = System.currentTimeMillis() + 300000;
 
       while (!isValid && !isCanceled) {
         // saveFeatureMapping(featureMapping, featureModel, groupModel, 5);

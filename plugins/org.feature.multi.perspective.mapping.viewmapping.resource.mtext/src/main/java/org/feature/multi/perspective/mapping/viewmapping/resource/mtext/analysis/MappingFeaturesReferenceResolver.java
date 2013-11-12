@@ -45,7 +45,7 @@ public class MappingFeaturesReferenceResolver
 
    public String deResolve(Feature element, org.feature.multi.perspective.mapping.viewmapping.Mapping container,
                            org.eclipse.emf.ecore.EReference reference) {
-      return element.getName();
+      return EcoreUtil.getID(element);
    }
 
    public void setOptions(java.util.Map< ? , ? > options) {
