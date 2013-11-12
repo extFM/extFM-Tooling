@@ -154,24 +154,21 @@ public class Util {
                }
             }
             for (Feature feature : featuresToRemove) {
-               // if (feature.getMinCardinality() == 1) { //mandatory
-               // feature
-               // if (group.getMinCardinality() > 1) {
-               // group.setMinCardinality(group.getMinCardinality() -1);
-               // }
-               // }
-               // if (group.getMaxCardinality() > 1) {
-               // group.setMaxCardinality(group.getMaxCardinality() -1);
-               // }
+               int numberChildren = group.getChildFeatures().size();
                group.getChildFeatures().remove(feature);
+               int max = group.getMaxCardinality();
+               int min = group.getMinCardinality();
+               //reduce max and min cardinality accordingly
+               if (max == numberChildren){
+                  group.setMaxCardinality(numberChildren-1);
+               }
+               if (min == numberChildren){
+                  group.setMinCardinality(numberChildren-1);
+               }
             }
             if (group.getChildFeatures().isEmpty()) {
                groupsToRemove.add(group);
             }
-            // if (group.getMinCardinality() >
-            // group.getChildFeatures().size()) {
-            // group.setMinCardinality(group.getChildFeatures().size());
-            // }
          }
          for (Group group : groupsToRemove) {
             parentFeature.getGroups().remove(group);
@@ -190,7 +187,7 @@ public class Util {
       if (feature != null && feature.getName() != null) {
          for (Feature feature2 : features) {
             if (feature2 != null && feature2.getName() != null) {
-               if (feature.getName().equals(feature2.getName())) {
+               if (feature.getId().equals(feature2.getId())) {
                   return true;
                }
             }

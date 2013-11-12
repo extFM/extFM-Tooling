@@ -6,8 +6,12 @@ package org.feature.multi.perspective.model.editor.editors;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -34,8 +38,22 @@ public class FilterFeatureModelHandler extends AbstractHandler {
    public Object execute(ExecutionEvent event) throws ExecutionException {
       ViewmodelMultiPageEditor multiPageEditor = getActiveEditor();
       if (multiPageEditor != null) {
+       //  Shell shell = multiPageEditor.getSite().getShell();
+       //  IFile file = openSaveDialog(shell);
          multiPageEditor.createFilteredFeatureModel(viewPoint);
       }
+      return null;
+   }
+
+   private IFile openSaveDialog(Shell parent) {
+      String title = "Save Perspective";
+      String message = "Please select a file to store the Perspective";
+      IPath suggestedPath = getCurrentProjectPath();
+      IFile file = WorkspaceResourceDialog.openNewFile(parent, title, message, suggestedPath, null);
+      return file;
+   }
+
+   private IPath getCurrentProjectPath() {
       return null;
    }
 

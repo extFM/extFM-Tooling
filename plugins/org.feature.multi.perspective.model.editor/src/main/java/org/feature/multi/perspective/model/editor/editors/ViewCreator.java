@@ -66,6 +66,7 @@ public class ViewCreator {
          if (view.getGroup().equals(coreGroup)) {
             allFeatures.removeAll(mappedFeatures);
             view.getFeatures().addAll(allFeatures);
+            break;
          }
       }
    }

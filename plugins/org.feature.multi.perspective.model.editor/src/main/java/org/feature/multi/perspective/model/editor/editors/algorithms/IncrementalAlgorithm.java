@@ -13,6 +13,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.feature.multi.perspective.mapping.viewmapping.MappingModel;
 import org.feature.multi.perspective.model.editor.editors.View;
 import org.feature.multi.perspective.model.editor.editors.ViewCreator;
@@ -281,7 +282,7 @@ public class IncrementalAlgorithm {
       UsedGroup ugParent;
       if (group instanceof Group) {
          Group g = (Group) group;
-         if (g.getParentGroup().equals(groupModel.getCoreGroup())) {
+         if (EcoreUtil.equals(g.getParentGroup(),groupModel.getCoreGroup())) {
             ugParent = usedGroupCoreGroup;
          } else {
             ugParent = createMSG((Group) g.getParentGroup(), ugs);

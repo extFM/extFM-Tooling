@@ -215,12 +215,24 @@ public class Filter {
             removeGroupsList.add(group);
             continue;
          }
-         if (group.getMaxCardinality() > 0) { // max could be -1
-            group.setMaxCardinality(group.getMaxCardinality() - (numberOfOriginalFeatures - group.getChildFeatures().size()));
-            if (group.getMaxCardinality() < group.getMinCardinality()) {
-               group.setMaxCardinality(group.getMinCardinality());
-            }
+         
+         int numberCurrentChildFeatures = group.getChildFeatures().size();
+         int min = group.getMinCardinality();
+         int max = group.getMaxCardinality();
+         
+         if (numberOfOriginalFeatures == min){
+            group.setMinCardinality(numberCurrentChildFeatures);
          }
+         if (numberOfOriginalFeatures == max){
+            group.setMaxCardinality(numberCurrentChildFeatures);
+         }
+//         
+//         if (group.getMaxCardinality() >= 0) { // max could be -1
+//            group.setMaxCardinality(group.getMaxCardinality() - (numberOfOriginalFeatures - group.getChildFeatures().size()));
+//            if (group.getMaxCardinality() < group.getMinCardinality()) {
+//               group.setMaxCardinality(group.getMinCardinality());
+//            }
+//         }
          // System.out.println(group.getMinCardinality() + ":" + group.getMaxCardinality());
       }
       if (removeGroups) {

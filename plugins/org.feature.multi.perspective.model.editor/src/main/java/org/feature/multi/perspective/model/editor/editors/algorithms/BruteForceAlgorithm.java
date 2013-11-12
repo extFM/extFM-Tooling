@@ -5,6 +5,7 @@ package org.feature.multi.perspective.model.editor.editors.algorithms;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -15,6 +16,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.feature.multi.perspective.model.viewmodel.AbstractGroup;
 import org.feature.multi.perspective.model.viewmodel.CoreGroup;
 import org.feature.multi.perspective.model.viewmodel.Group;
@@ -101,7 +103,7 @@ public class BruteForceAlgorithm {
       EList<AbstractGroup> containedInGroup = viewPoint.getContainedInGroup();
       Set<Set<View>> setOfPaths = new HashSet<Set<View>>();
       for (AbstractGroup group : containedInGroup) {
-         List<EObject> groups = getGroupPath(group, coreGroup);
+         List<EObject> groups = getGroupPath(group);
          // log.debug("check path for: " + group.getName());
          viewMemory.clear(); // performance test without memory
          Set<View> path = new HashSet<View>();
@@ -161,7 +163,7 @@ public class BruteForceAlgorithm {
          }
          // find a view
          for (View v : views) {
-            if (v.getGroup().equals(group)) {
+            if (EcoreUtil.equals(v.getGroup(),group)) {
                view = v;
                break;
             }
@@ -192,43 +194,26 @@ public class BruteForceAlgorithm {
     * @param coreGroup the core group
     * @return the path from the coreGroup to the group
     */
-   private List<EObject> getGroupPath(AbstractGroup group, CoreGroup coreGroup) {
+   private List<EObject> getGroupPath(AbstractGroup group) {
       List<EObject> groups = new LinkedList<EObject>();
-      groups.add(coreGroup);
-      for (AbstractGroup childGroup : coreGroup.getGroups()) {
-         List<AbstractGroup> calcGroupPath = calcGroupPath(group, childGroup);
-         if (!calcGroupPath.isEmpty()) {
-            groups.addAll(calcGroupPath);
-            break;
-         }
-      }
+      groups.add(group);
+      getParentRecursively(group, groups);
+      Collections.reverse(groups);
       return groups;
    }
 
-   /**
-    * calculates path to group
-    * 
-    * @param target the target group
-    * @param source the current group
-    * @return the path or an empty list
-    */
-   private List<AbstractGroup> calcGroupPath(AbstractGroup target, AbstractGroup source) {
-      if (target.equals(source)) {
-         List<AbstractGroup> groups = new LinkedList<AbstractGroup>();
-         groups.add(target);
-         return groups;
-      } else {// check children
-         for (AbstractGroup group : source.getGroups()) {
-            List<AbstractGroup> calcGroupPath = calcGroupPath(target, group);
-            if (!calcGroupPath.isEmpty()) {
-               calcGroupPath.add(0, source);// the index used to be sorted!
-               return calcGroupPath;
-            }
-         }
-      }
-      return new LinkedList<AbstractGroup>();
-   }
 
+   
+   
+   private void getParentRecursively(AbstractGroup group,  List<EObject> groups ){
+      EObject eContainer = group.eContainer();
+      if (eContainer instanceof AbstractGroup){
+         AbstractGroup parent = (AbstractGroup) eContainer;
+         groups.add(parent);
+         getParentRecursively(parent, groups);
+      }
+   }
+   
    /**
     * @return the viewPoints
     */
