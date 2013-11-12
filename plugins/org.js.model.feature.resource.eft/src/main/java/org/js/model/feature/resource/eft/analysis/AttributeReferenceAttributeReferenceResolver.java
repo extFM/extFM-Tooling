@@ -23,7 +23,8 @@ public class AttributeReferenceAttributeReferenceResolver implements org.js.mode
 	}
 	
 	public String deResolve(org.js.model.feature.Attribute element, org.js.model.feature.AttributeReference container, org.eclipse.emf.ecore.EReference reference) {
-		return delegate.deResolve(element, container, reference);
+		return element.getName();
+	   //return delegate.deResolve(element, container, reference);
 		//return ReferenceResolverUtil.deresolveAttribute(element);
 	}
 	

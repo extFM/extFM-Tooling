@@ -126,7 +126,7 @@ public class FilteredFeatureModel {
 
       log.debug(filter.newFeatureModel);
       String saveFileName =
-         Util.save(featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".feature", multiPageEditor.getSite()
+         Util.save(featureMappingModel.getFeatureModel().getName() + "_" + viewPoint.getName() + ".eft", multiPageEditor.getSite()
             .getShell());
       if (saveFileName != null && !saveFileName.isEmpty()) {
          ResourceSet rst = new ResourceSetImpl();

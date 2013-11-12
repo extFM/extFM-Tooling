@@ -15,7 +15,8 @@ public class AttributeDomainReferenceResolver implements org.js.model.feature.re
 	}
 	
 	public String deResolve(org.js.model.feature.Domain element, org.js.model.feature.Attribute container, org.eclipse.emf.ecore.EReference reference) {
-		return delegate.deResolve(element, container, reference);
+		return element.getId();
+	   //return delegate.deResolve(element, container, reference);
 	}
 	
 	public void setOptions(java.util.Map<?,?> options) {

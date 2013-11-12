@@ -95,37 +95,30 @@ public class Util {
       // featureModel.getAllFeatures().size());
       
       FeatureModelHelper viewHelper = new FeatureModelHelper(view);
+      Set<Feature> allFeatures = viewHelper.getAllFeatures();
       EList<Constraint> constraints = view.getConstraints();
       Set<Constraint> constraintsToRemove = new HashSet<Constraint>();
       for (Constraint constraint : constraints) {
          Set<Feature> featuresFromTerm = FeatureModelHelper.getConstrainedFeatures(constraint);
-         boolean allFeaturesMissing = true;
-         boolean minOneFeatureIsMissig = false;
+         boolean oneFeatureMissing = false;
          for (Feature feature : featuresFromTerm) {
-            if (contains(feature, viewHelper.getAllFeatures())) {
-               allFeaturesMissing = false;
-            } else {
-               minOneFeatureIsMissig = true;
-            }
+            if (!contains(feature, allFeatures)) {
+               oneFeatureMissing = true;
+               break;
+            } 
          }
-         if (!allFeaturesMissing && minOneFeatureIsMissig) {
-            if (featuresFromTerm.size() > 2) {
-               canBeConsistent.setFlagged(true);
-            } else {
-               if (constraint instanceof Imply){
-                  Imply implyConstraint = (Imply) constraint;
-                  Feature rightOperand = implyConstraint.getRightOperand();
-                     if (!contains(rightOperand, viewHelper.getAllFeatures())) {
-                        canBeConsistent.setFlagged(true);
-                     }
-                  }
+         if (oneFeatureMissing){
+            if (constraint instanceof Imply){
+               Imply implyConstraint = (Imply) constraint;
+               Feature rightOperand = implyConstraint.getRightOperand();
+               if (!contains(rightOperand, viewHelper.getAllFeatures())) {
+                  canBeConsistent.setFlagged(true);
                }
+            } 
+            constraintsToRemove.add(constraint);
          }
-         if (allFeaturesMissing || minOneFeatureIsMissig) {// remove
-               // remove constraint
-               constraintsToRemove.add(constraint);
-         }
-      }
+      }  
+        
       view.getConstraints().removeAll(constraintsToRemove);
       // log.debug("Constraints removed: " + constraintsToRemove.size());
    }

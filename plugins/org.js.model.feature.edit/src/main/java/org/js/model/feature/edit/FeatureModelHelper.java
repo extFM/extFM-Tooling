@@ -537,8 +537,8 @@ public class FeatureModelHelper {
 
    private static Attribute getAttribute(AttributeOperand operand) {
       Attribute attribute = null;
-      if (attribute instanceof AttributeReference) {
-         AttributeReference attReference = (AttributeReference) attribute;
+      if (operand instanceof AttributeReference) {
+         AttributeReference attReference = (AttributeReference) operand;
          attribute = attReference.getAttribute();
       }
       return attribute;
