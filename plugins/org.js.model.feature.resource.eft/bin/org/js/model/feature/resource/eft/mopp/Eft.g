@@ -2645,7 +2645,7 @@ parse_org_js_model_feature_AttributeConstraint returns [org.js.model.feature.Att
 			if (a4_0 != null) {
 				if (a4_0 != null) {
 					Object value = a4_0;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1), value);
+					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__LEFT_OPERAND), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
@@ -2760,7 +2760,7 @@ parse_org_js_model_feature_AttributeConstraint returns [org.js.model.feature.Att
 			if (a13_0 != null) {
 				if (a13_0 != null) {
 					Object value = a13_0;
-					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2), value);
+					element.eSet(element.eClass().getEStructuralFeature(org.js.model.feature.FeaturePackage.ATTRIBUTE_CONSTRAINT__RIGHT_OPERAND), value);
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);

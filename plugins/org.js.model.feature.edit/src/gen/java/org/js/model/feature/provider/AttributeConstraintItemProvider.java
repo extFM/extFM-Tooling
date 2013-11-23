@@ -101,8 +101,8 @@ public class AttributeConstraintItemProvider
    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
       if (childrenFeatures == null) {
          super.getChildrenFeatures(object);
-         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1);
-         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2);
+         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__LEFT_OPERAND);
+         childrenFeatures.add(FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__RIGHT_OPERAND);
       }
       return childrenFeatures;
    }
@@ -192,8 +192,8 @@ public class AttributeConstraintItemProvider
          case FeaturePackage.ATTRIBUTE_CONSTRAINT__OPERATOR:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
-         case FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1:
-         case FeaturePackage.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2:
+         case FeaturePackage.ATTRIBUTE_CONSTRAINT__LEFT_OPERAND:
+         case FeaturePackage.ATTRIBUTE_CONSTRAINT__RIGHT_OPERAND:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
             return;
       }
@@ -213,22 +213,22 @@ public class AttributeConstraintItemProvider
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1,
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__LEFT_OPERAND,
              FeatureFactory.eINSTANCE.createAttributeReference()));
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1,
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__LEFT_OPERAND,
              FeatureFactory.eINSTANCE.createAttributeValue()));
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2,
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__RIGHT_OPERAND,
              FeatureFactory.eINSTANCE.createAttributeReference()));
 
       newChildDescriptors.add
          (createChildParameter
-            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2,
+            (FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__RIGHT_OPERAND,
              FeatureFactory.eINSTANCE.createAttributeValue()));
    }
 
@@ -244,8 +244,8 @@ public class AttributeConstraintItemProvider
       Object childObject = child;
 
       boolean qualify =
-         childFeature == FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE1 ||
-         childFeature == FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__ATTRIBUTE2;
+         childFeature == FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__LEFT_OPERAND ||
+         childFeature == FeaturePackage.Literals.ATTRIBUTE_CONSTRAINT__RIGHT_OPERAND;
 
       if (qualify) {
          return getString

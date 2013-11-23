@@ -101,10 +101,10 @@ public class FeatureModelAnalyzer {
       Set<Attribute> consAttribute = new HashSet<Attribute>();
       Set<AttributeConstraint> allAttributeConstraints = featureModelHelper.getAllAttributeConstraints();
       for (AttributeConstraint attributeCon : allAttributeConstraints) {
-         AttributeOperand attOp1 = attributeCon.getAttribute1();
-         addAttribute(attOp1, consAttribute);
-         AttributeOperand attOp2 = attributeCon.getAttribute2();
-         addAttribute(attOp2, consAttribute);
+         AttributeOperand leftOperand = attributeCon.getLeftOperand();
+         addAttribute(leftOperand, consAttribute);
+         AttributeOperand rightOperand = attributeCon.getRightOperand();
+         addAttribute(rightOperand, consAttribute);
 
       }
       int constrained = consAttribute.size();

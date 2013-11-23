@@ -113,11 +113,11 @@ public class Filter {
 
    private Constraint copyAttributeConstraint(AttributeConstraint origAttributeConstraint, Set<Feature> newFeatures) {
       Constraint copy = null;
-      AttributeOperand attribute1 = origAttributeConstraint.getAttribute1();
-      AttributeOperand attribute2 = origAttributeConstraint.getAttribute2();
+      AttributeOperand leftOperand = origAttributeConstraint.getLeftOperand();
+      AttributeOperand rightOperand = origAttributeConstraint.getRightOperand();
 
-      AttributeOperand newLeft = copyAttributeOperand(attribute1);
-      AttributeOperand newRight = copyAttributeOperand(attribute2);
+      AttributeOperand newLeft = copyAttributeOperand(leftOperand);
+      AttributeOperand newRight = copyAttributeOperand(rightOperand);
 
       String id = origAttributeConstraint.getId();
       Relop operator = origAttributeConstraint.getOperator();

@@ -302,10 +302,10 @@ public class TranslateFM2CSP {
       Constraint result = null;
 
       Constraint constraint = null;
-      AttributeOperand leftOperand = attributeConstraint.getAttribute1();
+      AttributeOperand leftOperand = attributeConstraint.getLeftOperand();
       IntegerVariable leftOperandVariable = getVariableForAttributeOperand(leftOperand);
 
-      AttributeOperand rightOperand = attributeConstraint.getAttribute2();
+      AttributeOperand rightOperand = attributeConstraint.getRightOperand();
       IntegerVariable rightOperandVariable = getVariableForAttributeOperand(rightOperand);
 
       Relop operator = attributeConstraint.getOperator();
@@ -422,12 +422,12 @@ public class TranslateFM2CSP {
       EObject container = operand.eContainer();
       if (container instanceof AttributeConstraint) {
          AttributeConstraint attConstraint = (AttributeConstraint) container;
-         AttributeOperand attribute1 = attConstraint.getAttribute1();
-         AttributeOperand attribute2 = attConstraint.getAttribute2();
-         if (EcoreUtil.equals(operand, attribute1)) {
-            other = attribute2;
+         AttributeOperand leftOperand = attConstraint.getLeftOperand();
+         AttributeOperand rightOperand = attConstraint.getRightOperand();
+         if (EcoreUtil.equals(operand, leftOperand)) {
+            other = rightOperand;
          } else {
-            other = attribute1;
+            other = leftOperand;
          }
       }
       return other;

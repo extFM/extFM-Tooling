@@ -65,8 +65,8 @@
     </genClasses>
     <genClasses ecoreClass="feature.ecore#//Constraint"/>
     <genClasses ecoreClass="feature.ecore#//AttributeConstraint">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeConstraint/attribute1"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeConstraint/attribute2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeConstraint/leftOperand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference feature.ecore#//AttributeConstraint/rightOperand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute feature.ecore#//AttributeConstraint/operator"/>
     </genClasses>
     <genClasses image="false" ecoreClass="feature.ecore#//AttributeOperand"/>

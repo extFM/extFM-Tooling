@@ -217,8 +217,8 @@ public final class FeatureModelInit {
    public static Constraint createAttributeConstraint(AttributeOperand left, AttributeOperand right, String id, Relop operator){
       AttributeConstraint constraint = FeatureFactory.eINSTANCE.createAttributeConstraint();
       constraint.setOperator(operator);
-      constraint.setAttribute1(left);
-      constraint.setAttribute2(right);
+      constraint.setLeftOperand(left);
+      constraint.setRightOperand(right);
       constraint.setId(id);
       return constraint;
    }

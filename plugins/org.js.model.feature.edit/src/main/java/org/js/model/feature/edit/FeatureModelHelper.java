@@ -526,13 +526,13 @@ public class FeatureModelHelper {
       Set<Attribute> attributes = new HashSet<Attribute>();
       if (constraint instanceof AttributeConstraint) {
          AttributeConstraint attributeConstraint = (AttributeConstraint) constraint;
-         AttributeOperand attribute1 = attributeConstraint.getAttribute1();
-         Attribute attribute = getAttribute(attribute1);
+         AttributeOperand leftOperand = attributeConstraint.getLeftOperand();
+         Attribute attribute = getAttribute(leftOperand);
          if (attribute != null) {
             attributes.add(attribute);
          }
-         AttributeOperand attribute2 = attributeConstraint.getAttribute2();
-         Attribute secondattribute = getAttribute(attribute2);
+         AttributeOperand rightOperand = attributeConstraint.getRightOperand();
+         Attribute secondattribute = getAttribute(rightOperand);
          if (secondattribute != null) {
             attributes.add(secondattribute);
          }

@@ -240,10 +240,10 @@ public final class FeatureModelUtil {
    public static String getLabel(AttributeConstraint constraint) {
       String id = constraint.getId();
       String label = "<" + id + ">";
-      AttributeOperand attribute1 = constraint.getAttribute1();
-      String att1Label = getLabel(attribute1);
-      AttributeOperand attribute2 = constraint.getAttribute2();
-      String att2Label = getLabel(attribute2);
+      AttributeOperand leftOperand = constraint.getLeftOperand();
+      String att1Label = getLabel(leftOperand);
+      AttributeOperand rightOperand = constraint.getRightOperand();
+      String att2Label = getLabel(rightOperand);
 
       Relop operator = constraint.getOperator();
       String operatorLabel = getLabel(operator);

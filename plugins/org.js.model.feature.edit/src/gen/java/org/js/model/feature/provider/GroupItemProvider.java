@@ -23,9 +23,9 @@ import org.js.model.feature.Group;
 import org.js.model.feature.edit.FeatureModelUtil;
 
 /**
- * This is the item provider adapter for a {@link org.js.model.feature.Group} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.js.model.feature.Group} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class GroupItemProvider extends
@@ -34,8 +34,8 @@ IdentifiableItemProvider implements IEditingDomainItemProvider, IStructuredItemC
       IItemLabelProvider, IItemPropertySource {
 
    /**
-    * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
+    * This constructs an instance from a factory and a notifier.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    public GroupItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ IdentifiableItemProvider implements IEditingDomainItemProvider, IStructuredItemC
    }
 
    /**
-    * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
+    * This returns the property descriptors for the adapted class.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    @Override
@@ -59,45 +59,57 @@ IdentifiableItemProvider implements IEditingDomainItemProvider, IStructuredItemC
    }
 
    /**
-    * This adds a property descriptor for the Min Cardinality feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
+    * This adds a property descriptor for the Min Cardinality feature.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    protected void addMinCardinalityPropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                               getResourceLocator(),
-                                                               getString("_UI_Group_minCardinality_feature"),
-                                                               getString("_UI_PropertyDescriptor_description",
-                                                                         "_UI_Group_minCardinality_feature", "_UI_Group_type"),
-                                                               FeaturePackage.Literals.GROUP__MIN_CARDINALITY, true, false, false,
-                                                               ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_Group_minCardinality_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_Group_minCardinality_feature", "_UI_Group_type"),
+             FeaturePackage.Literals.GROUP__MIN_CARDINALITY,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+             null,
+             null));
    }
 
    /**
-    * This adds a property descriptor for the Max Cardinality feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
+    * This adds a property descriptor for the Max Cardinality feature.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    protected void addMaxCardinalityPropertyDescriptor(Object object) {
-      itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                               getResourceLocator(),
-                                                               getString("_UI_Group_maxCardinality_feature"),
-                                                               getString("_UI_PropertyDescriptor_description",
-                                                                         "_UI_Group_maxCardinality_feature", "_UI_Group_type"),
-                                                               FeaturePackage.Literals.GROUP__MAX_CARDINALITY, true, false, false,
-                                                               ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+      itemPropertyDescriptors.add
+         (createItemPropertyDescriptor
+            (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+             getResourceLocator(),
+             getString("_UI_Group_maxCardinality_feature"),
+             getString("_UI_PropertyDescriptor_description", "_UI_Group_maxCardinality_feature", "_UI_Group_type"),
+             FeaturePackage.Literals.GROUP__MAX_CARDINALITY,
+             true,
+             false,
+             false,
+             ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+             null,
+             null));
    }
 
    /**
     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+    * <!-- begin-user-doc --> <!--
     * end-user-doc -->
-    * 
     * @generated
     */
    @Override
-   public Collection< ? extends EStructuralFeature> getChildrenFeatures(Object object) {
+   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
       if (childrenFeatures == null) {
          super.getChildrenFeatures(object);
          childrenFeatures.add(FeaturePackage.Literals.GROUP__CHILD_FEATURES);
@@ -107,7 +119,6 @@ IdentifiableItemProvider implements IEditingDomainItemProvider, IStructuredItemC
 
    /**
     * <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
     * @generated
     */
    @Override
@@ -119,8 +130,8 @@ IdentifiableItemProvider implements IEditingDomainItemProvider, IStructuredItemC
    }
 
    /**
-    * This returns Group.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
+    * This returns Group.gif.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    @Override
@@ -163,17 +174,19 @@ IdentifiableItemProvider implements IEditingDomainItemProvider, IStructuredItemC
    }
 
    /**
-    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created under
-    * this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-    * 
+    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+    * that can be created under this object.
+    * <!-- begin-user-doc --> <!-- end-user-doc -->
     * @generated
     */
    @Override
    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
       super.collectNewChildDescriptors(newChildDescriptors, object);
 
-      newChildDescriptors
-         .add(createChildParameter(FeaturePackage.Literals.GROUP__CHILD_FEATURES, FeatureFactory.eINSTANCE.createFeature()));
+      newChildDescriptors.add
+         (createChildParameter
+            (FeaturePackage.Literals.GROUP__CHILD_FEATURES,
+             FeatureFactory.eINSTANCE.createFeature()));
    }
 
 }

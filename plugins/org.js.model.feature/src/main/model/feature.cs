@@ -64,9 +64,9 @@ RULES {
 	Exclude ::= "constraint" #1 "<" id[] ">" #1  leftOperand[] #1 "<->" #1 rightOperand[] !0;
 	
 	AttributeConstraint ::= "constraint" #1 "<" id[] ">" #1  
-			attribute1 #1 
+			leftOperand #1 
 			operator[equal : "==", unequal : "!=", greaterThan : ">", greaterThanOrEqual : ">=", lessThan : "<", lessThanOrEqual : "<="] #1 
-			attribute2 !0;
+			rightOperand !0;
 
 	AttributeReference ::= feature[] #0 "." #0 attribute[];
 	
