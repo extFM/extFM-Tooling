@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.js.model.feature.*;
 import org.js.model.feature.edit.FeatureModelHelper;
+import org.js.model.feature.quality.assurance.popup.actions.FeatureLabelProvider;
 
 /**
  * This class offers static functionalities to interact with Eclipse
@@ -103,23 +104,20 @@ public class QAPluginHelper {
 		// extract all features
 		FeatureModelHelper modelhelper = new FeatureModelHelper(model);
 		Set<Feature> modelfeatures = modelhelper.getAllFeatures();
-		List<String> modelfeatures_ids = new ArrayList<String>();
-		for (Feature f : modelfeatures) {
-			modelfeatures_ids.add(f.getId().toString());
-		}
+		
 		// create and open a selection dialog
-		ElementListSelectionDialog selectFeatureDialog = new ElementListSelectionDialog(shell, new LabelProvider());
-		selectFeatureDialog.setElements(modelfeatures_ids.toArray());
+		ElementListSelectionDialog selectFeatureDialog = new ElementListSelectionDialog(shell, new FeatureLabelProvider());
+		selectFeatureDialog.setElements(modelfeatures.toArray());
 		selectFeatureDialog.setTitle("Quality Assurance");
-		selectFeatureDialog.setMessage("Please select the desired feature (ID) under test.");
+		selectFeatureDialog.setMessage("Please select the feature under test.");
 		selectFeatureDialog.setMultipleSelection(false);
 		if (selectFeatureDialog.open() != Window.OK) {
 			log.debug("No feature selected.");
 		    return null;
 		}
 		// return the selection
-		String result = (String)(selectFeatureDialog.getResult()[0]);
-		log.info("The feature " + result + " will be returned.");
-		return modelhelper.getFeature(result);
+		Feature result = (Feature)(selectFeatureDialog.getResult()[0]);
+		log.info("The feature \"" + new FeatureLabelProvider().getText(result) + "\" will be returned.");
+		return result;
 	}
 }

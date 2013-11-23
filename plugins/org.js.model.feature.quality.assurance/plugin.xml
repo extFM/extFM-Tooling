@@ -9,7 +9,7 @@
          <menu
                id="org.js.model.feature.quality.assurance.menuQA"
                label="Quality Assurance"
-               path="additions">
+               path="menu_fmanalysis">
             <separator
                   name="group1">
             </separator>

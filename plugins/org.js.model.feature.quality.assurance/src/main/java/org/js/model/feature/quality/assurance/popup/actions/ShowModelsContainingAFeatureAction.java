@@ -94,7 +94,7 @@ public class ShowModelsContainingAFeatureAction implements IObjectActionDelegate
 		
 		MessageDialog.openInformation(shell, 
 				"Quality Assurance", 
-				"There are " + results.size() + " configurations that contain the feature " + feature.getId() + ". " +
+				results.size() + " configurations contain the feature \"" + new FeatureLabelProvider().getText(feature) + "\". " +
 				"For further information, please have a look at the logger output.");
 	}
 

@@ -110,7 +110,7 @@ public class ShowFeatureDependenciesAction implements IObjectActionDelegate {
 		
 		MessageDialog.openInformation(shell, 
 				"Quality Assurance", 
-				"There are " + affectedConstraints.size() + " feature constraints that affect the feature " + feature.getName() + ". " +
+				affectedConstraints.size() + " feature constraints affect the feature " + new FeatureLabelProvider().getText(feature) + ". " +
 				"For further information, please have a look at the logger output.");
 	}
 

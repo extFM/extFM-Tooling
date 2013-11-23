@@ -70,16 +70,24 @@ public class ShowDeselectedFeaturesAction implements IObjectActionDelegate {
 		log.info("Quality Assurance - Plugin - ShowDeselectedFeaturesAction");
 		log.info("===================================================================");
 		log.info("Number of constantly deselected features found: " + results.size());
-		log.info("The following fetures are deselected throughout all configurations:");
+		log.info("The following features are deselected throughout all configurations:");
+		String deselected = "";
+		FeatureLabelProvider featureLabelProvider = new FeatureLabelProvider();
 		for (Feature feature : results) {
-			log.info("  * " + feature.getName() + " (" + feature.getId() + ")");
+		   if (deselected.length() > 0){
+		      deselected += ", ";
+		   }
+		   String featureText = featureLabelProvider.getText(feature);
+		   deselected += featureText;
+		   log.info("  * " + featureText);
 		}
 		log.info("===================================================================");
 		
 		MessageDialog.openInformation(shell, 
 				"Quality Assurance", 
-				"There are " + results.size() + " Features that are deselected in all configurations. " +
-				"For further information, please have a look at the logger output.");
+				results.size() + " features are deselected in all configurations." +
+				"\nThe following features are deselected : " + deselected +
+				"\nFor further information, please have a look at the logger output.");
 	}
 
 	/**
