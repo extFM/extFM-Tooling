@@ -92,6 +92,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
@@ -109,18 +111,21 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.zest.core.viewers.ZoomContributionViewItem;
+import org.feature.model.utilities.ResourceUtil;
+import org.feature.multi.perspective.model.editor.editors.listeners.ChooseFMSelectionListener;
+import org.feature.multi.perspective.model.editor.editors.listeners.ReloadMappingButtonListener;
+import org.feature.multi.perspective.model.editor.editors.listeners.ViewPointComboSelectionListener;
+import org.feature.multi.perspective.model.editor.util.Util;
+import org.feature.multi.perspective.model.editor.zest.model.Node;
+import org.feature.multi.perspective.model.editor.zest.model.NodeModelContentProvider;
+import org.feature.multi.perspective.model.editor.zest.view.ZestView;
 import org.feature.multi.perspective.model.viewmodel.GroupModel;
 import org.feature.multi.perspective.model.viewmodel.ViewPoint;
 import org.feature.multi.perspective.model.viewmodel.ViewPointContainer;
 import org.feature.multi.perspective.model.viewmodel.presentation.ViewmodelEditorPlugin;
 import org.feature.multi.perspective.model.viewmodel.provider.ViewmodelItemProviderAdapterFactory;
-import org.feature.multi.perspective.model.editor.editors.listeners.ChooseFMSelectionListener;
-import org.feature.multi.perspective.model.editor.editors.listeners.ReloadMappingButtonListener;
-import org.feature.multi.perspective.model.editor.editors.listeners.ViewPointComboSelectionListener;
-import org.feature.multi.perspective.model.editor.zest.model.Node;
-import org.feature.multi.perspective.model.editor.zest.model.NodeModelContentProvider;
-import org.feature.multi.perspective.model.editor.zest.view.ZestView;
 import org.feature.multi.perspective.utilities.GroupModelUtil;
+import org.js.model.feature.FeatureModel;
 
 /**
  * MultiPage editor for a viewmodel and the mapping to a feature model
@@ -702,14 +707,14 @@ public class ViewmodelMultiPageEditor extends MultiPageEditorPart implements IEd
    private String[] getViewPoints() {
       List<String> viewPointNames = new LinkedList<String>();
       GroupModel model = getGroupModel();
-      if (model != null){
-      ViewPointContainer viewpointContainer = model.getViewPointContainer();
-      if (viewpointContainer != null) {
-         EList<ViewPoint> viewPoints = viewpointContainer.getViewPoints();
-         for (ViewPoint viewPoint : viewPoints) {
-            viewPointNames.add(viewPoint.getName());
+      if (model != null) {
+         ViewPointContainer viewpointContainer = model.getViewPointContainer();
+         if (viewpointContainer != null) {
+            EList<ViewPoint> viewPoints = viewpointContainer.getViewPoints();
+            for (ViewPoint viewPoint : viewPoints) {
+               viewPointNames.add(viewPoint.getName());
+            }
          }
-      }
       }
       String[] viewPointNamesArray = new String[viewPointNames.size()];
       int i = 0;
@@ -893,10 +898,10 @@ public class ViewmodelMultiPageEditor extends MultiPageEditorPart implements IEd
 
       groupViewer.setLabelProvider(new AdapterFactoryLabelProvider.FontProvider(adapterFactory, groupViewer));
       GroupModel groupModel = getGroupModel();
-      if (groupModel != null){
+      if (groupModel != null) {
          groupViewer.setInput(groupModel.eResource());
       }
-      //groupViewer.setInput(editingDomain.getResourceSet());
+      // groupViewer.setInput(editingDomain.getResourceSet());
       groupViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 
       new AdapterFactoryTreeEditor(groupViewer.getTree(), adapterFactory);
@@ -1356,16 +1361,16 @@ public class ViewmodelMultiPageEditor extends MultiPageEditorPart implements IEd
          mappingResourcePath = mapping;
          ResourceSet rst = new ResourceSetImpl();
          mappingResource = rst.getResource(mappingResourcePath, true);
-        // long timeStamp = mappingResource.getTimeStamp(); // compare timeStamp && URI with the one before
-        // if (mappingTimeStamp == -1) {
-            mappingURI = mappingResourcePath;
-        //    mappingTimeStamp = timeStamp;
-            zestView.init(mappingResource);
-        // } else if (mappingResourcePath.equals(mappingURI) && mappingTimeStamp == timeStamp) {
-        //    return;
-        // }
+         // long timeStamp = mappingResource.getTimeStamp(); // compare timeStamp && URI with the one before
+         // if (mappingTimeStamp == -1) {
          mappingURI = mappingResourcePath;
-        // mappingTimeStamp = timeStamp;
+         // mappingTimeStamp = timeStamp;
+         zestView.init(mappingResource);
+         // } else if (mappingResourcePath.equals(mappingURI) && mappingTimeStamp == timeStamp) {
+         // return;
+         // }
+         mappingURI = mappingResourcePath;
+         // mappingTimeStamp = timeStamp;
          zestView.init(mappingResource);
       }
    }
@@ -1388,12 +1393,66 @@ public class ViewmodelMultiPageEditor extends MultiPageEditorPart implements IEd
    }
 
    /**
-    * creates a filteres feature model
+    * creates a filtered feature model
     * 
     * @param viewPoint
     */
-   public void createFilteredFeatureModel(ViewPoint viewPoint) {
-      new FilteredFeatureModel(mappingResource, viewPoint, this);
+   public void createFilteredFeatureModel(ViewPoint viewPoint, boolean filtered) {
+      FilteredFeatureModel filteredModel = new FilteredFeatureModel(mappingResource, viewPoint);
+      boolean isValid = filteredModel.createAndValidateView();
+      FeatureModel model = null;
+      if (isValid) {
+         model = deriveFeatureModel(filteredModel, filtered);
+      }
+      Shell shell = this.getSite().getShell();
+      boolean persistedSuccessfully = false;
+      if (model != null) {
+         String defaultFileName = model.getName() + "_" + viewPoint.getName() + ".eft";
+         IFile saveFile = Util.openSaveDialog(shell, defaultFileName);
+         if (saveFile != null) {
+            ResourceUtil.persistModel(model, saveFile);
+            persistedSuccessfully = true;
+         }
+      }
+      String viewpointName = filteredModel.getViewPointName();
+      showMessage(shell, viewpointName, isValid, persistedSuccessfully);
+   }
+
+ 
+   
+   private FeatureModel deriveFeatureModel(FilteredFeatureModel filteredModel, boolean filtered){
+      FeatureModel model = null;
+      if (filtered){
+         model = filteredModel.deriveFilteredFeaturemodel();
+      } else {
+         model = filteredModel.deriveDeselectedFeaturemodel();
+      }
+      return model;
+   }
+   
+   private void showMessage(Shell shell, String viewpointName, boolean consistent, boolean success) {
+      String msg = "";
+      if (consistent && success) {
+         msg += "The perspective is created successfully.";
+      } else {
+         msg += "Could not create perspective ";
+      }
+      if (!consistent) {
+         msg += "because viewpoint " + viewpointName + " is ";
+         msg += "inconsistent.";
+      }
+
+      int style = SWT.OK;
+      if (consistent) {
+         style = SWT.OK | SWT.ICON_INFORMATION;
+      } else {
+         style = SWT.OK | SWT.ICON_WARNING;
+      }
+
+      MessageBox msgBox = new MessageBox(shell, style);
+      msgBox.setText("Viewpoint Validation");
+      msgBox.setMessage(msg);
+      msgBox.open();
    }
 
    /**
@@ -1409,4 +1468,6 @@ public class ViewmodelMultiPageEditor extends MultiPageEditorPart implements IEd
    public URI getMappingResourcePath() {
       return mappingResourcePath;
    }
+
+
 }
