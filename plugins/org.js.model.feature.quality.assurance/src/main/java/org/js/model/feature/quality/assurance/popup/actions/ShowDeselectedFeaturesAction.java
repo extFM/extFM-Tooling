@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.js.model.feature.*;
+import org.js.model.feature.edit.FeatureLabelProvider;
 import org.js.model.feature.quality.assurance.*;
 import org.js.model.feature.quality.assurance.analyze.*;
 

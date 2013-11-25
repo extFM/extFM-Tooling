@@ -12,6 +12,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
+import org.js.model.feature.edit.FeatureLabelProvider;
 import org.js.model.feature.quality.assurance.QAPluginHelper;
 import org.js.model.feature.quality.assurance.analyze.FeatureBasedStructureAnalyzer;
 

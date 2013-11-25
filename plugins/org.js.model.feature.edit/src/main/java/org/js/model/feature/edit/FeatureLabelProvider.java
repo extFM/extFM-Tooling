@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.js.model.feature.quality.assurance.popup.actions;
+package org.js.model.feature.edit;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.js.model.feature.Feature;

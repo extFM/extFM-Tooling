@@ -14,6 +14,7 @@ import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureConstraint;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.Imply;
+import org.js.model.feature.edit.FeatureLabelProvider;
 import org.js.model.feature.quality.assurance.QAPluginHelper;
 import org.js.model.feature.quality.assurance.analyze.FeatureBasedStructureAnalyzer;
 
