@@ -7,7 +7,6 @@
  ***********************************************************/
 package org.js.model.rbac;
 
-import org.eclipse.ui.internal.quickaccess.ViewElement;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
@@ -20,18 +19,18 @@ import org.js.model.feature.Feature;
  */
 public final class RbacHelper {
 
-   public static DomainValueOperation createDeselectDomainValue(DomainValue value) {
-      DomainValueOperation domainValue = RbacFactory.eINSTANCE.createDomainValueOperation();
+   public static AttributeValueOperation createDeselectDomainValue(DomainValue value) {
+      AttributeValueOperation domainValue = RbacFactory.eINSTANCE.createAttributeValueOperation();
       domainValue.setType(ConfigurationType.DESELECT);
-      String name = value.getName();
+       int name = value.getInt();
       domainValue.setValue(name);
       return domainValue;
    }
 
-   public static DomainValueOperation createSelectDomainValue(DomainValue value) {
-      DomainValueOperation domainValue = RbacFactory.eINSTANCE.createDomainValueOperation();
+   public static AttributeValueOperation createSelectDomainValue(DomainValue value) {
+      AttributeValueOperation domainValue = RbacFactory.eINSTANCE.createAttributeValueOperation();
       domainValue.setType(ConfigurationType.SELECT);
-      String name = value.getName();
+      int name = value.getInt();
       domainValue.setValue(name);
       return domainValue;
    }
@@ -76,8 +75,8 @@ public final class RbacHelper {
 
    public static boolean isSelectDomainValueOperation(Permission permission) {
       boolean result = false;
-      if (permission instanceof DomainValueOperation) {
-         DomainValueOperation operation = (DomainValueOperation) permission;
+      if (permission instanceof AttributeValueOperation) {
+         AttributeValueOperation operation = (AttributeValueOperation) permission;
          result = ConfigurationType.SELECT.equals(operation.getType());
       }
       return result;
@@ -85,11 +84,15 @@ public final class RbacHelper {
 
    public static boolean isDeselectDomainValueOperation(Permission permission) {
       boolean result = false;
-      if (permission instanceof DomainValueOperation) {
-         DomainValueOperation operation = (DomainValueOperation) permission;
+      if (permission instanceof AttributeValueOperation) {
+         AttributeValueOperation operation = (AttributeValueOperation) permission;
          result = ConfigurationType.DESELECT.equals(operation.getType());
       }
       return result;
+   }
+   public static boolean isAbstractRole(Role role) {
+      RoleType type = role.getType();
+      return RoleType.ABSTRACT.equals(type);
    }
    
    public static boolean isViewElement(Permission permission){

@@ -15,24 +15,6 @@
          <constraints
                categories="org.js.model.rbac.validation.category1">
             <constraint
-                  class="org.js.model.rbac.validation.UniqueDomainValueConstraint"
-                  id="org.js.model.rbac.validation.constraint1"
-                  isEnabledByDefault="true"
-                  lang="Java"
-                  mode="Live"
-                  name="UniqueDomainValueConstraint"
-                  severity="ERROR"
-                  statusCode="1">
-               <message>
-                  message body text
-               </message>
-               <target
-                     class="Role">
-                  <event
-                        name="Set">
-                  </event></target>
-            </constraint>
-            <constraint
                   class="org.js.model.rbac.validation.DefinedDomainValueConstraint"
                   id="org.js.model.rbac.validation.constraint2"
                   isEnabledByDefault="true"

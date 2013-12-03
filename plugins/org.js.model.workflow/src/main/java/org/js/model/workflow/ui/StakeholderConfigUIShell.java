@@ -26,8 +26,8 @@ import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
 import org.js.model.feature.ReferenceResolverUtil;
 import org.js.model.rbac.AttributeOperation;
+import org.js.model.rbac.AttributeValueOperation;
 import org.js.model.rbac.ConfigurationOperation;
-import org.js.model.rbac.DomainValueOperation;
 import org.js.model.rbac.FeatureOperation;
 import org.js.model.rbac.Permission;
 import org.js.model.rbac.RBACService;
@@ -112,6 +112,7 @@ public class StakeholderConfigUIShell extends Shell {
       }
       // add radio button
       Button radioButton = new Button(configGroup, SWT.RADIO);
+      radioButton.setSelection(false);
       if (RbacHelper.isSelectFeatureOperation(operation)) {
          radioButton.setText("select");
       } else if (RbacHelper.isDeselectFeatureOperation(operation)) {
@@ -173,31 +174,31 @@ public class StakeholderConfigUIShell extends Shell {
          attributeMap.put(configGroup, configuredAttribute);
       }
 
-      for (DomainValueOperation attributeDec : operation.getValueOperations()) {
-         Button radioButton = new Button(configGroup, SWT.RADIO);
-         if (RbacHelper.isSelectDomainValueOperation(attributeDec)) {
-            radioButton.setText("select " + attributeDec.getValue());
-         } else if (RbacHelper.isDeselectDomainValueOperation(attributeDec)) {
-            radioButton.setText("deselect " + attributeDec.getValue());
-         }
-         // if configuration action is running, check whether the attribute is configured
-         if (StateEnum.RUNNING.equals(selectedState.getState())) {
-            if (configuredAttribute.getValue() == null || configuredAttribute.getValue().equals("")) {} else {
-               radioButton.setEnabled(false);
-               if (RbacHelper.isSelectDomainValueOperation(attributeDec) && attributeDec.getValue().equals(configuredAttribute.getValue())) {
-                  radioButton.setSelection(true);
-               }
-            }
-         }
-         // configuration action is finished
-         if (StateEnum.COMPLETED.equals(selectedState.getState())) {
-            radioButton.setEnabled(false);
-            if (log.getConfigurationOperations().contains(attributeDec)) {
-               radioButton.setSelection(true);
-            }
-         }
-         decisionMap.put(radioButton, (ConfigurationOperation) attributeDec);
-      }
+//      for (AttributeValueOperation attributeDec : operation.getValueOperations()) {
+//         Button radioButton = new Button(configGroup, SWT.RADIO);
+//         if (RbacHelper.isSelectDomainValueOperation(attributeDec)) {
+//            radioButton.setText("select " + attributeDec.getValue());
+//         } else if (RbacHelper.isDeselectDomainValueOperation(attributeDec)) {
+//            radioButton.setText("deselect " + attributeDec.getValue());
+//         }
+//         // if configuration action is running, check whether the attribute is configured
+//         if (StateEnum.RUNNING.equals(selectedState.getState())) {
+//            if (configuredAttribute.getValue() == null || configuredAttribute.getValue().equals("")) {} else {
+//               radioButton.setEnabled(false);
+//               if (RbacHelper.isSelectDomainValueOperation(attributeDec) && attributeDec.getValue().equals(configuredAttribute.getValue())) {
+//                  radioButton.setSelection(true);
+//               }
+//            }
+//         }
+//         // configuration action is finished
+//         if (StateEnum.COMPLETED.equals(selectedState.getState())) {
+//            radioButton.setEnabled(false);
+//            if (log.getConfigurationOperations().contains(attributeDec)) {
+//               radioButton.setSelection(true);
+//            }
+//         }
+//         decisionMap.put(radioButton, (ConfigurationOperation) attributeDec);
+//      }
    }
 
    private void checkSelectionStates(Model workflowModel) {

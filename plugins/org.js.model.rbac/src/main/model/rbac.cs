@@ -29,9 +29,10 @@ TOKENS {
 
 TOKENSTYLES {
 	"COMMENT" COLOR #AAAAAA;
-	"set" COLOR #147F87, BOLD; 
+	"assign" COLOR #147F87, BOLD; 
 	"select" COLOR #009E0F, BOLD; 
 	"deselect" COLOR #CE0000, BOLD; 
+	"abstract" COLOR #404040, BOLD; 
 }	
 	
 	RULES {
@@ -44,7 +45,7 @@ TOKENSTYLES {
 	// syntax definition for roles
 	@SuppressWarnings(nonContainmentOpposite) 
 	@SuppressWarnings(explicitSyntaxChoice) 
-	Role ::= "role" #1 name['"','"']? #1 id['<','>'] #1 ("extends" #1 (parentRoles[]) (#1 "," #1 parentRoles[])*)? #1 
+	Role ::= type[abstract: "abstract", concrete: ""] "role" #1 name['"','"']? #1 id['<','>'] #1 ("extends" #1 (parentRoles[]) (#1 "," #1 parentRoles[])*)? #1 
 			(("{" !1 ( permissions | tasks) #1 (","  #1 ( permissions | tasks) )* #1 
 			!0 "}") )? !0 ;
 
@@ -52,10 +53,9 @@ TOKENSTYLES {
 	FeatureOperation ::= #4 type[select : "select", deselect : "deselect"] #1 feature[TEXT] !0;
 	
 	// syntax definition for attribute configuration operations
-	AttributeOperation ::= #4 "set" feature[] #0 "." #0 attribute[TEXT]
-						(#1 "{" #1 valueOperations ("," #1 valueOperations)* "}")* ;
+	AttributeOperation ::= #4 "assign" feature[] #0 "." #0 attribute[TEXT]	;
 
-	DomainValueOperation ::= type[select : "select", deselect : "deselect"] #1 value[TEXT] !0;
+	AttributeValueOperation ::= type[select : "select", deselect : "deselect"] #1 feature[] #0 "." #0 attribute[TEXT] #0 "." #0 value[TEXT] !0;
 	
 	
 	// syntax definition for subjects

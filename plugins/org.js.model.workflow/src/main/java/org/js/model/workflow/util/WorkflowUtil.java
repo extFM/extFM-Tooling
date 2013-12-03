@@ -31,10 +31,11 @@ import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
 import org.js.model.feature.Imply;
 import org.js.model.feature.ReferenceResolverUtil;
+import org.js.model.feature.edit.FeatureModelHelper;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.AttributeOperation;
+import org.js.model.rbac.AttributeValueOperation;
 import org.js.model.rbac.ConfigurationOperation;
-import org.js.model.rbac.DomainValueOperation;
 import org.js.model.rbac.FeatureOperation;
 import org.js.model.rbac.RbacHelper;
 import org.js.model.rbac.Role;
@@ -330,12 +331,15 @@ public class WorkflowUtil {
            // handleFeatureLogic(feature, featureModel);
          } else {
             if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
-               Attribute oldAttribute = ((AttributeOperation) ((DomainValueOperation) configDecision).eContainer()).getAttribute();
+               AttributeValueOperation operation = ((AttributeValueOperation) configDecision);
+               Attribute oldAttribute = operation.getAttribute();
                String attributeName = oldAttribute.getName();
                String featureName = oldAttribute.getFeature().getId();
                Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
                Attribute newAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
-               newAttribute.setValue(((DomainValueOperation) configDecision).getValue());
+               int value = operation.getValue();
+               String valueString = FeatureModelHelper.getAttributeValue(value, operation.getAttribute());
+               newAttribute.setValue(valueString);
             }
          }
          try {

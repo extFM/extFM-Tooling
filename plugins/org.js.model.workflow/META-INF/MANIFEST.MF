@@ -15,7 +15,7 @@ Export-Package: org.js.model.workflow,
  org.js.model.workflow.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.jwt.we.conf.model;visibility:=reexport;bundle-version="1.2.0",
+ org.eclipse.jwt.we.conf.model;bundle-version="1.2.0";visibility:=reexport,
  org.js.model.feature;visibility:=reexport,
  org.js.graph.transformation;visibility:=reexport,
  org.js.model.rbac;visibility:=reexport,
@@ -32,7 +32,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.filesystem;bundle-version="1.3.200",
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.ui,
- org.aspectj.runtime;bundle-version="1.7.2"
+ org.aspectj.runtime;bundle-version="1.7.2",
+ org.js.model.feature.edit;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.junit

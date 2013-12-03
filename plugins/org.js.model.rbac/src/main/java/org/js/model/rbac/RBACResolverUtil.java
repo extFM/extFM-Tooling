@@ -34,7 +34,7 @@ public final class RBACResolverUtil {
 
    public static final String select = "select";
    public static final String deselect = "deselect";
-   public static final String set = "set";
+   public static final String set = "assign";
 
    public static final String view = "view";
    public static final String modify = "modify";
@@ -304,12 +304,13 @@ public final class RBACResolverUtil {
       } else if (permission instanceof AttributeOperation) {
          AttributeOperation attrOp = (AttributeOperation) permission;
          identifier = set + " " + attrOp.getFeature().getId() + delimiter + attrOp.getAttribute().getName();
-      } else if (permission instanceof DomainValueOperation) {
-         DomainValueOperation dvOp = (DomainValueOperation) permission;
+      } else if (permission instanceof AttributeValueOperation) {
+         AttributeValueOperation dvOp = (AttributeValueOperation) permission;
          identifier = (RbacHelper.isSelectDomainValueOperation(dvOp)) ? select : deselect;
-         identifier += " " + dvOp.getValue();
+         identifier += " " + dvOp.getFeature().getId() + delimiter + dvOp.getAttribute().getName() + delimiter + dvOp.getValue();
       }
       return identifier;
    }
 
+   
 }

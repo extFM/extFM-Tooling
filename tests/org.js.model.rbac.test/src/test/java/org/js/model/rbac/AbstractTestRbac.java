@@ -92,11 +92,11 @@ public abstract class AbstractTestRbac {
       return result;
    }
 
-   protected DomainValueOperation createDeselectDomainValue(DomainValue domainValue) {
+   protected AttributeValueOperation createDeselectDomainValue(DomainValue domainValue) {
       return RbacHelper.createDeselectDomainValue(domainValue);
    }
 
-   protected DomainValueOperation createSelectDomainValue(DomainValue domainValue) {
+   protected AttributeValueOperation createSelectDomainValue(DomainValue domainValue) {
       return RbacHelper.createSelectDomainValue(domainValue);
    }
 

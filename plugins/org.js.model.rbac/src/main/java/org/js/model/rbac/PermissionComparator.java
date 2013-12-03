@@ -33,10 +33,10 @@ public class PermissionComparator implements Comparator<Permission> {
             FeatureOperation o2FeatureOp = (FeatureOperation) o2;
             return compareFeatureOperations(o1FeatureOp, o2FeatureOp);
 
-         } else if (o1 instanceof DomainValueOperation && o2 instanceof DomainValueOperation) {
+         } else if (o1 instanceof AttributeValueOperation && o2 instanceof AttributeValueOperation) {
             // if permission is a DomainValueOperation than compare domain values and referenced attributes
-            DomainValueOperation o1DomainOp = (DomainValueOperation) o1;
-            DomainValueOperation o2DomainOp = (DomainValueOperation) o2;
+            AttributeValueOperation o1DomainOp = (AttributeValueOperation) o1;
+            AttributeValueOperation o2DomainOp = (AttributeValueOperation) o2;
             return compareDomainValueOperations(o1DomainOp, o2DomainOp);
          } else if (o1 instanceof AttributeOperation && o2 instanceof AttributeOperation) {
             // if both are set attribute permissions than check attribute and contained domain value permissions
@@ -44,8 +44,7 @@ public class PermissionComparator implements Comparator<Permission> {
             AttributeOperation o2SetOp = (AttributeOperation) o2;
             Attribute o1Attribute = o1SetOp.getAttribute();
             Attribute o2Attribute = o2SetOp.getAttribute();
-            if (EcoreUtil.equals(o1Attribute, o2Attribute)
-                && (o1SetOp.getValueOperations().size() == o2SetOp.getValueOperations().size())) {
+            if (EcoreUtil.equals(o1Attribute, o2Attribute)) {
                // TODO: check each domainValuePermission
                return isEqual;
             }
@@ -71,24 +70,21 @@ public class PermissionComparator implements Comparator<Permission> {
       return isNotEqual;
    }
 
-   private int compareDomainValueOperations(DomainValueOperation o1DomainOp, DomainValueOperation o2DomainOp) {
+   private int compareDomainValueOperations(AttributeValueOperation o1DomainOp, AttributeValueOperation o2DomainOp) {
       int equals = isNotEqual;
-      String o1Value = o1DomainOp.getValue();
-      String o2Value = o2DomainOp.getValue();
-      if (o1Value != null) {
-         int valueResult = o1Value.compareTo(o2Value);
-         if (isEqual == valueResult) {
+      int o1Value = o1DomainOp.getValue();
+      int o2Value = o2DomainOp.getValue();
+      if (o1Value == o2Value) {
             Attribute o1attribute = getAttributeFromDomainValueOp(o1DomainOp);
             Attribute o2attribute = getAttributeFromDomainValueOp(o2DomainOp);
             if (EcoreUtil.equals(o1attribute, o2attribute)) {
                equals = isEqual;
             }
          }
-      }
       return equals;
    }
 
-   private AttributeOperation getContainerAttribute(DomainValueOperation op) {
+   private AttributeOperation getContainerAttribute(AttributeValueOperation op) {
       AttributeOperation attrOp = null;
       EObject container = op.eContainer();
       if (container instanceof AttributeOperation) {
@@ -97,7 +93,7 @@ public class PermissionComparator implements Comparator<Permission> {
       return attrOp;
    }
 
-   private Attribute getAttributeFromDomainValueOp(DomainValueOperation op) {
+   private Attribute getAttributeFromDomainValueOp(AttributeValueOperation op) {
       Attribute attribute = null;
       AttributeOperation containerAttribute = getContainerAttribute(op);
       if (containerAttribute != null) {

@@ -18,6 +18,10 @@
       <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ModificationType/view"/>
       <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//ModificationType/modify"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbac.ecore#//RoleType">
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//RoleType/abstract"/>
+      <genEnumLiterals ecoreEnumLiteral="rbac.ecore#//RoleType/concrete"/>
+    </genEnums>
     <genClasses ecoreClass="rbac.ecore#//AccessControlModel">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/featureModel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AccessControlModel/roles"/>
@@ -39,6 +43,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//Role/tasks"/>
       <genFeatures notify="false" children="true" createChild="true" propertySortChoices="true"
           ecoreFeature="ecore:EReference rbac.ecore#//Role/permissions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Role/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="rbac.ecore#//Nameable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//Nameable/name"/>
@@ -49,19 +54,20 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//FeatureOperation/type"/>
     </genClasses>
     <genClasses ecoreClass="rbac.ecore#//AttributeOperation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeOperation/valueOperations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeOperation/attribute"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeOperation/feature"/>
     </genClasses>
-    <genClasses ecoreClass="rbac.ecore#//DomainValueOperation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//DomainValueOperation/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//DomainValueOperation/type"/>
+    <genClasses ecoreClass="rbac.ecore#//AttributeValueOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//AttributeValueOperation/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//AttributeValueOperation/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeValueOperation/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbac.ecore#//AttributeValueOperation/feature"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="rbac.ecore#//Task"/>
     <genClasses image="false" ecoreClass="rbac.ecore#//ConfigurationOperation"/>
     <genClasses ecoreClass="rbac.ecore#//VisibilityRestriction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//VisibilityRestriction/resourceId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbac.ecore#//VisibilityRestriction/visibility"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="rbac.ecore#//Task"/>
   </genPackages>
 </genmodel:GenModel>

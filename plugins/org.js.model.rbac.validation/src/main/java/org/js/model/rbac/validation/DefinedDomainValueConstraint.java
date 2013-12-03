@@ -13,7 +13,7 @@ import org.js.model.feature.DiscreteDomain;
 import org.js.model.feature.Domain;
 import org.js.model.feature.DomainValue;
 import org.js.model.rbac.AttributeOperation;
-import org.js.model.rbac.DomainValueOperation;
+import org.js.model.rbac.AttributeValueOperation;
 
 /**
  * @author <a href="mailto:julia.schroeter@tu-dresden.de">Julia Schroeter</a>
@@ -29,18 +29,18 @@ public class DefinedDomainValueConstraint extends AbstractAttributeConstraint {
     * @return
     */
    @Override
-   String checkAttributeConfiguration(AttributeOperation attributeConfig, DomainValueOperation operation) {
+   String checkAttributeConfiguration(AttributeOperation attributeConfig, AttributeValueOperation operation) {
       String msg = null;
       Attribute attribute = attributeConfig.getAttribute();
-      String value = operation.getValue();
+      int value = operation.getValue();
       Domain domain = attribute.getDomain();
       if (domain instanceof DiscreteDomain) {
          DiscreteDomain discreteDomain = (DiscreteDomain) domain;
          EList<DomainValue> domainValues = discreteDomain.getValues();
          boolean iscontained = false;
          for (DomainValue domainValue : domainValues) {
-            String name = domainValue.getName();
-            if (name != null && name.equals(value)) {
+            int name = domainValue.getInt();
+            if (value == name) {
                iscontained = true;
                break;
             }
