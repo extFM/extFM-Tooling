@@ -4,6 +4,7 @@
 package org.js.model.feature.edit;
 
 import org.eclipse.jface.viewers.LabelProvider;
+import org.js.model.feature.DomainValue;
 import org.js.model.feature.Feature;
 
 
@@ -24,6 +25,11 @@ public class FeatureLabelProvider extends LabelProvider {
          Feature feature = (Feature) element;
          label += feature.getName();
          label += " <" + feature.getId() + ">";
+      } else if (element instanceof DomainValue){
+         DomainValue value = (DomainValue) element;
+         String stringValue = value.getName();
+         int integerValue = value.getInt();
+         label = stringValue + " (" + integerValue +")";
       }
       return label;
    }

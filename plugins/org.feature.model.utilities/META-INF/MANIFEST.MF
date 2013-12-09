@@ -9,8 +9,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.100";visibility:=reexport,
  org.eclipse.emf.workspace;bundle-version="1.5.1";visibility:=reexport,
- org.eclipse.emf.compare;bundle-version="3.0.1",
- com.google.guava;bundle-version="10.0.0",
  org.js.model.feature;bundle-version="1.0.0",
  org.js.model.feature.edit;bundle-version="1.0.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1"

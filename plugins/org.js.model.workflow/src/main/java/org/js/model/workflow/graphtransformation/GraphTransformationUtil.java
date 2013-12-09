@@ -121,16 +121,14 @@ public class GraphTransformationUtil {
 			ArrayList<LeftSideRef> leftSideRefs, LeftSideRef leftSideRef,
 			LeftSide leftSide) {
 		if (parseRuleElement(node).equals(actNode.getClass())) {
-			if ((node instanceof SpecializationAction && !WorkflowModelUtil
-					.getActionName((Action) actNode).equals(
-							WorkflowModelUtil.SPECIALIZATION_ACTION))
-					|| (node instanceof IdleAction && !WorkflowModelUtil
-							.getActionName((Action) actNode).equals(
-									WorkflowModelUtil.IDLE_ACTION))) {
-				return false;
-			}
+//			if ((node instanceof SpecializationAction && !WorkflowModelUtil.getActionName((Action) actNode).equals(WorkflowModelUtil.SPECIALIZATION_ACTION))
+//					|| (node instanceof IdleAction && !WorkflowModelUtil.getActionName((Action) actNode).equals(WorkflowModelUtil.IDLE_ACTION))) {
+//				return false;
+//			}
 			leftSideRef.getNodes().add(actNode);
 			leftSideRef.getActivityNodesMap().put(node, actNode);
+			// beware if fork is included in left side without outgoing edges, but where an outgoing edge will be added in the transformation operation,
+			// the outgoing edge is already assigned due to the bidirectional references!!
 			if (node.getOut().size() != 0) {
 				for (Edge edge : node.getOut()) {
 					if (leftSide.getEdges().contains(edge)) {
@@ -143,6 +141,8 @@ public class GraphTransformationUtil {
 										newLeftSideRef, leftSide);
 							}
 						}
+					} else {
+					   leftSideRefs.add(leftSideRef);
 					}
 				}
 			} else {

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jwt.meta.model.core.Model;
 import org.eclipse.jwt.meta.model.processes.Action;
+import org.feature.model.utilities.ResourceUtil;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Constraint;
 import org.js.model.feature.Feature;
@@ -320,34 +321,31 @@ public class WorkflowUtil {
     * @param featureModel
     */
    public static void handleFM(Log log, FeatureModel featureModel) {
-      for (ConfigurationOperation configDecision : log.getConfigurationOperations()) {
-         if (configDecision instanceof FeatureOperation) {
-            Feature feature = ReferenceResolverUtil.findFeature(((FeatureOperation) configDecision).getFeature().getId(), featureModel);
-            if (RbacHelper.isSelectFeatureOperation(configDecision)) {
-               feature.setConfigurationState(FeatureState.SELECTED);
-            } else {
-               feature.setConfigurationState(FeatureState.DESELECTED);
-            }
-           // handleFeatureLogic(feature, featureModel);
-         } else {
-            if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
-               AttributeValueOperation operation = ((AttributeValueOperation) configDecision);
-               Attribute oldAttribute = operation.getAttribute();
-               String attributeName = oldAttribute.getName();
-               String featureName = oldAttribute.getFeature().getId();
-               Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
-               Attribute newAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
-               int value = operation.getValue();
-               String valueString = FeatureModelHelper.getAttributeValue(value, operation.getAttribute());
-               newAttribute.setValue(valueString);
-            }
-         }
-         try {
-            featureModel.eResource().save(null);
-         } catch (IOException e) {
-            e.printStackTrace();
-         }
-      }
+//      for (ConfigurationOperation configDecision : log.getConfigurationOperations()) {
+//         if (configDecision instanceof FeatureOperation) {
+//            Feature feature = ReferenceResolverUtil.findFeature(((FeatureOperation) configDecision).getFeature().getId(), featureModel);
+//            if (RbacHelper.isSelectFeatureOperation(configDecision)) {
+//               feature.setConfigurationState(FeatureState.SELECTED);
+//            } else {
+//               feature.setConfigurationState(FeatureState.DESELECTED);
+//            }
+//           // handleFeatureLogic(feature, featureModel);
+//         } else {
+//            if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
+//               AttributeValueOperation operation = ((AttributeValueOperation) configDecision);
+//               Attribute oldAttribute = operation.getAttribute();
+//               String attributeName = oldAttribute.getName();
+//               String featureName = oldAttribute.getFeature().getId();
+//               Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
+//               Attribute newAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
+//               int value = operation.getValue();
+//               String valueString = FeatureModelHelper.getAttributeValue(value, operation.getAttribute());
+//               newAttribute.setValue(valueString);
+//            }
+//         }
+//      }
+      URI uri = featureModel.eResource().getURI();
+      ResourceUtil.persistModel(featureModel, uri);
    }
 
    /**

@@ -33,7 +33,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.ui,
  org.aspectj.runtime;bundle-version="1.7.2",
- org.js.model.feature.edit;bundle-version="1.0.0"
+ org.js.model.feature.edit;bundle-version="1.0.0",
+ org.js.model.feature.csp;bundle-version="1.0.0",
+ org.feature.model.utilities;bundle-version="0.4.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.junit

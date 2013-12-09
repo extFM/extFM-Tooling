@@ -189,20 +189,31 @@ public final class ResourceUtil {
     * @param fileName
     */
    public static void persistModel(EObject model, String fileName) {
-      ResourceSet set = new ResourceSetImpl();
       URI modelURI = URI.createFileURI(fileName);
+      persistModel(model, modelURI);
+   }
+   /**
+    * save the feature model in the file system.
+    * 
+    * @param model
+    * @param fileName
+    */
+   public static void persistModel(EObject model, URI modelURI) {
+      ResourceSet set = new ResourceSetImpl();
       Resource modelResource = set.createResource(modelURI);
       modelResource.getContents().add(model);
       try {
          modelResource.save(null);
-         log.info("Model saved to " + fileName);
+         log.info("Model saved to " + modelURI);
          ResourceUtil.refreshModelResource(modelResource);
       } catch (IOException e) {
-         log.error("Could not save model to path " + fileName);
+         log.error("Could not save model to path " + modelURI);
          log.error(e.getMessage());
       }
    }
 
+   
+   
    public static void persistModel(EObject model, IFile file){
       String locationUri = file.getLocationURI().normalize().getPath();
       persistModel(model, locationUri);
