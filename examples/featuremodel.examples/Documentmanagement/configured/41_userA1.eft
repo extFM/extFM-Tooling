@@ -1,0 +1,115 @@
+featuremodel "Extended Document Management System"
+
+domain <avdomain>  [low=1, high=2, very_high=3]
+domain <encdomain>  [low=1, medium=2, strong=3]
+domain <amount> [1..10000]
+
+selected feature "Document Management System" <dms> 
+	group <DocumentTypeGroup> (1..1) {
+		selected feature "Document Type" <DocumentType>
+			group <TypesGroup> (1..4) {
+				selected feature "UnicodeText Type" <UnicodeTextType>
+				deselected feature "Text Type" <TextType>
+				selected feature "Image Type" <ImageType>
+				selected feature "PDF Type" <PDFType>
+		}
+	}
+	group <OCRGroup> (0..1) {
+		deselected feature "OCR" <OCR>
+			group <OCRTypes> (1..2) {
+				deselected feature "PDF OCR" <PDFOCR>
+				deselected feature "Image OCR" <ImageOCR>
+			}
+	}
+	group <IndexGroup> (1..1) {
+		selected feature "Indexing" <Indexing>
+			group <MetaIndexing> (0..1) {
+				selected feature "MetaData Index" <MetaDataIndex>
+					group <AuthorGroupIndex> (0..1) {
+						selected feature "Author Index" <AuthorIndex>
+					}
+					group <TitleGroupIndex> (1..1) {
+						selected feature "Title Index" <TitleIndex>
+					}
+					group <ContentGroupIndex> (1..1) {
+						selected feature "Content Index" <ContentIndex>
+					}
+				deselected feature "General Index" <GeneralIndex>
+			}
+			group <FileIndex> (0..1) {
+				selected feature "FileName Index" <FileNameIndex>
+			}
+	}
+	group <SearchGroup> (1..1) {
+		selected feature "Search" <Search>
+			group <MetaSearch> (0..1) {
+				selected feature "MetaData Search" <MetaDataSearch>
+					group <AuthorGroupSearch> (0..1) {
+						selected feature "Author Search" <AuthorSearch>
+					}
+					group <TitleGroupSearch> (1..1) {
+						selected feature "Title Search" <TitleSearch>
+					}
+					group <ContentGroupSearch> (1..1) {
+						selected feature "Content Search" <ContentSearch>
+					}
+				deselected feature "General Search" <GeneralSearch>
+			}
+			group <FileSearch> (0..1) {
+				selected feature "FileName Search" <FileNameSearch>
+			}
+	}
+	group <QoSGroup> (0..1) { 
+		selected feature "Quality of Service" <QoS> 
+			availability[avdomain] := "high"
+			encryption[encdomain] := "strong"
+			concurrentusers[amount] := "100"
+	}
+	group <platformGroup> (2..2){
+		selected feature "Application Server" <AppServer> 
+			group <apsgroup> (1..1) {
+				selected feature "SAPA HANA Cloud Platform" <HANACloud>
+				deselected feature "Eclipse Virgo" <Virgo>
+			}
+		selected feature "Database" <DB>
+			users[amount] := "1000"
+			group <dbgroup> (1..1) {
+				selected feature "SAP HANA" <HANA>
+				deselected feature "Oracle 12c" <Oracle>
+				deselected feature "MongoDB" <Mongo>
+			} 
+	}
+	group <LocationGroup> (1..1) { 
+		selected feature "Server Location" <Location> 
+			group <g91> (1..3) {
+				selected feature "European Union" <EU> 
+					group <EUDatacenter> (1..4) {
+						selected feature "Spain" <ESP> 
+						selected feature "Germany" <GER> 
+						selected feature "Norway" <NOR> 
+						deselected feature "Ireland" <IRL> 
+					}
+				deselected feature "United States" <US> 
+					group <USDatacenter> (1..5) {
+						deselected feature "California" <CA> 
+						deselected feature "Washington" <WA> 
+						deselected feature "Alaska" <AK> 
+						deselected feature "Texas" <TX> 
+						deselected feature "Nebraska" <NE> 
+					}
+				deselected feature "Asia" <AS> 
+					group <ASDatacenter> (1..2) {
+						deselected feature "Russia" <RUS> 
+						deselected feature "India" <IND> 
+					}
+			}
+	}
+
+constraint <c1> MetaDataSearch -> MetaDataIndex
+constraint <c2> GeneralSearch -> GeneralIndex
+constraint <c3> ImageOCR -> ImageType
+constraint <c4> PDFOCR -> PDFType
+constraint <c5> AuthorSearch -> AuthorIndex
+constraint <c6> TextType <-> UnicodeTextType
+constraint <c7> HANA -> HANACloud
+constraint <c8> QoS.concurrentusers <= DB.users

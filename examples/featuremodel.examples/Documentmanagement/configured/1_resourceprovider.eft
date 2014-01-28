@@ -1,0 +1,115 @@
+featuremodel "Extended Document Management System"
+
+domain <avdomain>  [low=1, high=2, very_high=3]
+domain <encdomain>  [low=1, medium=2, strong=3]
+domain <amount> [1..10000]
+
+feature "Document Management System" <dms> 
+	group <DocumentTypeGroup> (1..1) {
+		feature "Document Type" <DocumentType>
+			group <TypesGroup> (1..4) {
+				feature "UnicodeText Type" <UnicodeTextType>
+				feature "Text Type" <TextType>
+				feature "Image Type" <ImageType>
+				feature "PDF Type" <PDFType>
+		}
+	}
+	group <OCRGroup> (0..1) {
+		feature "OCR" <OCR>
+			group <OCRTypes> (1..2) {
+				feature "PDF OCR" <PDFOCR>
+				feature "Image OCR" <ImageOCR>
+			}
+	}
+	group <IndexGroup> (1..1) {
+		feature "Indexing" <Indexing>
+			group <MetaIndexing> (0..1) {
+				feature "MetaData Index" <MetaDataIndex>
+					group <AuthorGroupIndex> (0..1) {
+						feature "Author Index" <AuthorIndex>
+					}
+					group <TitleGroupIndex> (1..1) {
+						feature "Titel Index" <TitelIndex>
+					}
+					group <ContentGroupIndex> (1..1) {
+						feature "Content Index" <ContentIndex>
+					}
+				feature "General Index" <GeneralIndex>
+			}
+			group <FileIndex> (0..1) {
+				feature "FileName Index" <FileNameIndex>
+			}
+	}
+	group <SearchGroup> (1..1) {
+		feature "Search" <Search>
+			group <MetaSearch> (0..1) {
+				feature "MetaData Search" <MetaDataSearch>
+					group <AuthorGroupSearch> (0..1) {
+						feature "Author Search" <AuthorSearch>
+					}
+					group <TitleGroupSearch> (1..1) {
+						feature "Titel Search" <TitelSearch>
+					}
+					group <ContentGroupSearch> (1..1) {
+						feature "Content Search" <ContentSearch>
+					}
+				feature "General Search" <GeneralSearch>
+			}
+			group <FileSearch> (0..1) {
+				feature "FileName Search" <FileNameSearch>
+			}
+	}
+	group <QoSGroup> (0..1) { 
+		feature "Quality of Service" <QoS> 
+			availability[avdomain] 
+			encryption[encdomain] 
+			concurrentusers[amount] 
+	}
+	group <platformGroup> (2..2){
+		feature "Application Server" <AppServer> 
+			group <apsgroup> (1..1) {
+				feature "SAPA HANA Cloud Platform" <HANACloud>
+				feature "Eclipse Virgo" <Virgo>
+			}
+		feature "Database" <DB>
+			users[amount] 
+			group <dbgroup> (1..1) {
+				feature "SAP HANA" <HANA>
+				feature "Oracle 12c" <Oracle>
+				feature "MongoDB" <Mongo>
+			} 
+	}
+	group <LocationGroup> (1..1) { 
+		feature "Server Location" <Location> 
+			group <g91> (1..3) {
+				feature "European Union" <EU> 
+					group <EUDatacenter> (1..4) {
+						feature "Spain" <ESP> 
+						feature "Germany" <GER> 
+						feature "Norway" <NOR> 
+						feature "Ireland" <IRL> 
+					}
+				feature "United States" <US> 
+					group <USDatacenter> (1..5) {
+						feature "California" <CA> 
+						feature "Washington" <WA> 
+						feature "Alaska" <AK> 
+						feature "Texas" <TX> 
+						feature "Nebraska" <NE> 
+					}
+				feature "Asia" <AS> 
+					group <ASDatacenter> (1..2) {
+						feature "Russia" <RUS> 
+						feature "India" <IND> 
+					}
+			}
+	}
+
+constraint <c1> MetaDataSearch -> MetaDataIndex
+constraint <c2> GeneralSearch -> GeneralIndex
+constraint <c3> ImageOCR -> ImageType
+constraint <c4> PDFOCR -> PDFType
+constraint <c5> AuthorSearch -> AuthorIndex
+constraint <c6> TextType <-> UnicodeTextType
+constraint <c7> HANA -> HANACloud
+constraint <c8> QoS.concurrentusers <= DB.users

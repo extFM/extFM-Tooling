@@ -1,0 +1,28 @@
+featuremodel "Video Information System"
+
+feature "Video Information System" <vis>
+	group <g1> (1..1) { feature "Video player" <vp> group <g11> (1..2) {
+		feature "VLC media player" <vlc>
+		feature "AVS video player" <avs>
+	}}
+	group <g2> (1..1) { feature "Decoder" <dec> group <g21> (1..2) {
+		feature "Free Codec" <fc>	
+		feature "Commercial Codec" <cc>	
+	}}
+	group <g3> (1..1) { feature "Data provider" <dp> group <g31> (1..2) {
+		feature "URL" <url>	
+		feature "File" <file>	
+	}}
+	group <g4> (0..1) { feature "Water marker" <wm> group <g41> (1..2) {
+		feature "Transparent" <trans>	
+		feature "Classic" <classic>	
+	}}
+	group <g5> (0..1) { feature "Subtitle" <st> group <g51> (1..2) {
+		feature "Single language" <sl>	
+		feature "Multi language" <ml>	
+	}}
+	group <g6> (0..1) { feature "Video manager" <vm> group <g61> (1..3) {
+		feature "Basic" <basic>	
+		feature "Standard" <standard>	
+		feature "Professional" <prof>	
+	}}
