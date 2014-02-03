@@ -1,4 +1,4 @@
-featuremodel "Video Information System"
+featuremodel "Extended Video Information System"
 domain <vdomain>  [low=1, high=2, very_high=3]
 domain <edomain>  [low=1, medium=2, strong=3]
 

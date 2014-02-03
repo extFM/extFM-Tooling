@@ -1,4 +1,4 @@
-featuremodel "crm"
+featuremodel "unsat crm"
 
 domain <Storage> [125MB=1, 250MB=2, 500MB=3]
 
