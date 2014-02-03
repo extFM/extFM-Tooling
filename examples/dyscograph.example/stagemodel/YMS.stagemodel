@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stagemodel:StageModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:stagemodel="http://www.tudresden.de/stagemodel">
+  <stages name="Provider Stage" id="Provider" successor="Tenant"/>
+  <stages name="Tenant Stage" id="Tenant" predecessor="Provider" successor="User"/>
+  <stages name="User Stage" id="User" predecessor="Tenant"/>
+</stagemodel:StageModel>

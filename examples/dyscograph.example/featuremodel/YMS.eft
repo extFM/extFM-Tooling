@@ -1,0 +1,57 @@
+featuremodel "Yard Management System"
+domain <scheduleType> [next=1, fitting=2]
+
+feature "Yard Management System" <YMS>
+	group <Authentication_opt> (0..1) {
+       feature "Authentication" <Authentication>
+			group <JAAS_man> (1..1){
+				feature "Java Authentication and Authorization Service" <JAAS>
+			}
+	}
+	group <Persistence_man>(1..1){
+		feature "Persistence" <Persistence>
+			group <PersistenceValue_alt>(1..1){
+				feature "Java Database Connectivity" <JDBC>
+				feature "Java Persistence API" <JPA>
+				}
+	}	
+	group <Connectivity_man> (1..1){
+		feature "Connectivity" <Connectivity>
+			group <ConnectivityValue_alt>(1..1){
+				feature "RFC" <RFC>
+				feature "SOAP" <SOAP>
+				feature "REST" <REST>
+			}
+	}
+	group <YM_man> (1..1){ 
+		feature "Yard Management Service" <YM>
+				SchedulingType [scheduleType]
+			group <EnableShips_opt>(0..1) {
+				feature "Enable Ships" <EnableShips>
+			}
+			group <EnableTrains_opt>(0..1) {
+				feature "Enable Trains" <EnableTrains>
+			}
+			group <SpecialDocks_opt>(0..1) {
+				feature "Special Docks" <SpecialDocks> 
+			}
+	}
+	group <YJ_man> (1..1){
+		feature "Yard Jockey Service" <YJ>
+			group <LS_opt> (0..1){
+				feature "Location Service" <LS>
+					group <Coordinate_opt>(0..1){
+						feature "Coordinate" <Coordinate>	
+					}
+					group <RoadMap_opt>(0..1){
+						feature "Road Map" <RoadMap>
+							group <SatelliteMap_opt> (0..1){
+								feature "Satellite Map" <SatelliteMap>
+							}
+					}
+			}
+	}
+	group <MC_opt> (0..1){
+		feature "Mobile Communication Service" <MC>
+	}
+constraint <locationcs> LS -> MC

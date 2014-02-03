@@ -1,0 +1,28 @@
+access control on <../featuremodel/YMS.eft>
+
+abstract role "Provider" <Provider> {
+	    select YMS,     
+	    select Authentication,     deselect Authentication,     
+	    select Persistence,     deselect Persistence,     
+	    select Connectivity,     deselect Connectivity,     
+	    select JAAS,     deselect JAAS,     
+	    select JDBC,     deselect JDBC,     
+	    select JPA,     deselect JPA,     
+	    select RFC,     deselect RFC,     
+	    select SOAP,     deselect SOAP,     
+	    select REST,     deselect REST  }  
+
+abstract role "Tenant" <Tenant> {
+	    select YM,     deselect YM,     
+	    select YJ,     deselect YJ,     
+	    select MC,     deselect MC,     
+	    select LS,     deselect LS,
+		assign YM.SchedulingType,     
+		select EnableShips,     deselect EnableShips,     
+		select EnableTrains,     deselect EnableTrains,     
+		select SpecialDocks,     deselect SpecialDocks }  
+
+abstract role "User" <User> {
+	    select Coordinate,     deselect Coordinate,     
+	    select RoadMap,     deselect RoadMap,    
+	     select SatelliteMap,     deselect SatelliteMap }  

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>dyscograph.example</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.js.model.feature.resource.eft.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.js.model.rbac.resource.rbactext.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.js.model.feature.resource.eft.nature</nature>
+		<nature>org.js.model.rbac.resource.rbactext.nature</nature>
+	</natures>
+</projectDescription>
