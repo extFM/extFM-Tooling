@@ -1,0 +1,25 @@
+featuremodel "crm"
+
+domain <Storage> [125MB=1, 250MB=2, 500MB=3]
+
+selected feature "CRM" <f0>
+group <g0> (4..6){
+	selected feature "SalesForceAutomation"  <f1>
+		group <g1> (2..3){
+			feature "Accounts" <f11>
+			feature "Contacts" <f12>
+			feature "Leads" <f13>
+		}
+	feature "MarketingAutomation" <f2>
+	feature "CustomerSuppport" <f3>
+	feature "WorkflowManagement" <f4>
+	deselected feature "FileStorage" <f5>
+		group <g4> (1..1)	{
+			feature "File" <f6>
+			 storage [Storage] := "125MB"
+		}
+}
+
+constraint <c1> f1 -> f5
+constraint <c2> f2 -> f5
+constraint <c3> f3 -> f5
