@@ -1,164 +1,146 @@
 package org.js.model.workflow.actions;
 
-import java.io.IOException;
-import java.util.Collections;
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
+import org.feature.model.utilities.FeatureModelLoader;
+import org.js.graph.transform.stagemodel.StageModel;
 import org.js.graph.transformation.GraphTransformation;
 import org.js.model.rbac.AccessControlModel;
-import org.js.model.rbac.impl.AccessControlModelImpl;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.GraphTransConnector;
+import org.js.model.workflow.StagingConnector;
 import org.js.model.workflow.util.WorkflowConfUtil;
-import org.js.model.workflow.util.WorkflowUtil;
 
 public class ImportModelAction extends MyAction {
 
-	private final int OK = 0;
-	private final int CANCEL = 1;
-	private Shell shell;
-	private ResourceSet resourceSet;
-	private Resource rbacRes;
-	private Resource graphTransRes;
+   private final int CANCEL = 1;
+   private Shell shell;
+   private ResourceSet resourceSet;
 
-	public ImportModelAction() {
-	}
+   public ImportModelAction() {}
 
-	@Override
-	public ImageDescriptor getImage() {
-		return null;
-	}
+   @Override
+   public ImageDescriptor getImage() {
+      return null;
+   }
 
-	@Override
-	public void run() {
-		initialRes();
-		loadModel();
-//		setSHTypes();
-		save();
-		refresh();
+   @Override
+   public void run() {
+      initialRes();
+      loadModel();
+      // setSHTypes();
+      save();
+      refresh();
 
-	}
+   }
 
-	/**
-	 * select the model file and import it if it is a rbac model file.
-	 */
-	public void loadModel() {
-		shell = workflowEditor.getSite().getShell();
-		resourceSet = new ResourceSetImpl();
-		ResourceDialog resourceDiaglog = new ResourceDialog(shell,
-				"Load Model", SWT.OPEN);
-		int state = resourceDiaglog.open();
-		// acm model and contained elements
-		if (state != CANCEL) {
-			if (resourceDiaglog.getURIText() != "") {
-				URI uri = resourceDiaglog.getURIs().get(0);
-				if (uri.fileExtension().equals(
-						WorkflowConfUtil.ACM_FILE_EXTENSION_1)
-						|| uri.fileExtension().equals(
-								WorkflowConfUtil.ACM_FILE_EXTENSION_2)) {
-					rbacRes = resourceSet.getResource(resourceDiaglog.getURIs()
-							.get(0), true);
-					try {
-						rbacRes.load(Collections.EMPTY_MAP);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					loadACModel();
-				} else if (uri.fileExtension().equals(
-						WorkflowConfUtil.GT_FILE_EXTENSION_1)) {
-					graphTransRes = resourceSet.getResource(resourceDiaglog
-							.getURIs().get(0), true);
-					try {
-						graphTransRes.load(Collections.EMPTY_MAP);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					loadGTmodel();
-				} else {
-					String info = "Please selected rbac model file with the file extension "
-							+ WorkflowConfUtil.ACM_FILE_EXTENSION_1
-							+ ", "
-							+ WorkflowConfUtil.ACM_FILE_EXTENSION_2
-							+ " or "
-							+ WorkflowConfUtil.GT_FILE_EXTENSION_1 + ".";
+   /**
+    * select the model file and import it if it is a rbac model file.
+    */
+   public void loadModel() {
+      shell = workflowEditor.getSite().getShell();
+      resourceSet = new ResourceSetImpl();
+      ResourceDialog resourceDiaglog = new ResourceDialog(shell, "Load Model", SWT.OPEN);
+      int state = resourceDiaglog.open();
+      // acm model and contained elements
+      if (state != CANCEL) {
+         if (resourceDiaglog.getURIText() != "") {
+            URI uri = resourceDiaglog.getURIs().get(0);
+            if (isAccessControlModelUri(uri)) {
+               loadACModel(uri);
+            } else if (isGraphTransformationUri(uri)) {
+               loadGTmodel(uri);
+            } else if (isStageModelUri(uri)) {
+               loadStageModel(uri);
+            } else {
+               String info =
+                  "Please select an access control model file with the file extension " + WorkflowConfUtil.ACM_FILE_EXTENSION_1 + ", "
+                        + WorkflowConfUtil.ACM_FILE_EXTENSION_2 + " or a stage model file with extension"
+                        + WorkflowConfUtil.STAGEMODEL_FILE_EXTENSION + ".";
 
-					MessageDialog.openInformation(getActiveShell(), "Warning",
-							info);
-				}
-			}
-		}
-	}
+               MessageDialog.openInformation(getActiveShell(), "Warning", info);
+            }
+         }
+      }
+   }
 
-	/**
-	 * connect access control model to jwt model.
-	 */
-	public void loadACModel() {
-		TreeIterator<EObject> rbacIt = rbacRes.getAllContents();
-		AccessControlModel acm = null;
+   private boolean isAccessControlModelUri(URI uri) {
+      String extension = uri.fileExtension();
+      boolean result = WorkflowConfUtil.ACM_FILE_EXTENSION_1.equals(extension) || WorkflowConfUtil.ACM_FILE_EXTENSION_2.equals(extension);
+      return result;
+   }
 
-		while (rbacIt.hasNext()) {
-			EObject object = rbacIt.next();
-			if (object instanceof AccessControlModel) {
-				acm = (AccessControlModelImpl) object;
-			}
-		}
-		if (!WorkflowConfUtil.hasAspectInstance(workflowModel,
-				WorkflowConfUtil.ACM_ASPECT)) {
-			ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
-					.addAspectInstance(workflowModel,
-							WorkflowConfUtil.ACM_ASPECT);
-			WorkflowConfUtil.setACMRef(acmconnector, acm);
-		} else {
-			ACMConnector acmconnector = (ACMConnector) WorkflowConfUtil
-					.getAspectInstance(workflowModel,
-							WorkflowConfUtil.ACM_ASPECT);
-			WorkflowConfUtil.setACMRef(acmconnector, acm);
-		}
-	}
-	
-	/**
-	 * connect graph transformation model to jwt model.
-	 */
-	public void loadGTmodel(){
-		TreeIterator<EObject> graphTransIt = graphTransRes.getAllContents();
-		GraphTransformation graphTrans = null;
+   private boolean isGraphTransformationUri(URI uri) {
+      String extension = uri.fileExtension();
+      boolean result = WorkflowConfUtil.GT_FILE_EXTENSION_1.equals(extension);
+      return result;
+   }
 
-		while (graphTransIt.hasNext()) {
-			EObject object = graphTransIt.next();
-			if (object instanceof GraphTransformation) {
-				graphTrans = (GraphTransformation) object;
-			}
-		}
-		if (!WorkflowConfUtil.hasAspectInstance(workflowModel,
-				WorkflowConfUtil.GT_ASPECT)) {
-			GraphTransConnector gtConnector = (GraphTransConnector) WorkflowConfUtil
-					.addAspectInstance(workflowModel,
-							WorkflowConfUtil.GT_ASPECT);
-			WorkflowConfUtil.setGraphTrans(gtConnector, graphTrans);
-		} else {
-			GraphTransConnector gtConnector = (GraphTransConnector) WorkflowConfUtil
-					.getAspectInstance(workflowModel,
-							WorkflowConfUtil.GT_ASPECT);
-			WorkflowConfUtil.setGraphTrans(gtConnector, graphTrans);
-		}
-		
-	}
-//	
-//	public void setSHTypes(){
-//		SetStakeholerTypes sSHTypes = new SetStakeholerTypes();
-//		sSHTypes.run();
-//	}
-//	
-//	public void importGT(){
-//		
-//	}
+   private boolean isStageModelUri(URI uri) {
+      String extension = uri.fileExtension();
+      boolean result = WorkflowConfUtil.STAGEMODEL_FILE_EXTENSION.equals(extension);
+      return result;
+   }
+
+   /**
+    * connect access control model to jwt model.
+    */
+   public void loadACModel(URI uri) {
+      AccessControlModel accessControlModel = (AccessControlModel) FeatureModelLoader.load(uri, resourceSet);
+      ACMConnector acmconnector = null;
+      String aspect = WorkflowConfUtil.ACM_ASPECT;
+
+      if (!WorkflowConfUtil.hasAspectInstance(workflowModel, aspect)) {
+         acmconnector = (ACMConnector) WorkflowConfUtil.addAspectInstance(workflowModel, aspect);
+      } else {
+         acmconnector = (ACMConnector) WorkflowConfUtil.getAspectInstance(workflowModel, aspect);
+      }
+      WorkflowConfUtil.setACMRef(acmconnector, accessControlModel);
+   }
+
+   private void loadStageModel(URI uri) {
+      StageModel stageModel = (StageModel) FeatureModelLoader.load(uri, resourceSet);
+      StagingConnector smconnector = null;
+      String aspect = WorkflowConfUtil.STAGEMODEL_ASPECT;
+
+      if (!WorkflowConfUtil.hasAspectInstance(workflowModel, aspect)) {
+         smconnector = (StagingConnector) WorkflowConfUtil.addAspectInstance(workflowModel, aspect);
+      } else {
+         smconnector = (StagingConnector) WorkflowConfUtil.getAspectInstance(workflowModel, aspect);
+      }
+      WorkflowConfUtil.setStageModelRef(smconnector, stageModel);
+   }
+
+   /**
+    * connect graph transformation model to jwt model.
+    */
+   public void loadGTmodel(URI uri) {
+      GraphTransformation graphTransformationModel = (GraphTransformation) FeatureModelLoader.load(uri, resourceSet);
+
+      if (!WorkflowConfUtil.hasAspectInstance(workflowModel, WorkflowConfUtil.GT_ASPECT)) {
+         GraphTransConnector gtConnector =
+            (GraphTransConnector) WorkflowConfUtil.addAspectInstance(workflowModel, WorkflowConfUtil.GT_ASPECT);
+         WorkflowConfUtil.setGraphTrans(gtConnector, graphTransformationModel);
+      } else {
+         GraphTransConnector gtConnector =
+            (GraphTransConnector) WorkflowConfUtil.getAspectInstance(workflowModel, WorkflowConfUtil.GT_ASPECT);
+         WorkflowConfUtil.setGraphTrans(gtConnector, graphTransformationModel);
+      }
+
+   }
+   //
+   // public void setSHTypes(){
+   // SetStakeholerTypes sSHTypes = new SetStakeholerTypes();
+   // sSHTypes.run();
+   // }
+   //
+   // public void importGT(){
+   //
+   // }
 }

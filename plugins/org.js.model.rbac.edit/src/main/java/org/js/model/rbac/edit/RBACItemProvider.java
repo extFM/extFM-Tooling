@@ -5,7 +5,6 @@ package org.js.model.rbac.edit;
 
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Feature;
-import org.js.model.feature.edit.FeatureLabelProvider;
 import org.js.model.feature.edit.FeatureModelHelper;
 import org.js.model.rbac.AttributeOperation;
 import org.js.model.rbac.AttributeValueOperation;
@@ -13,7 +12,6 @@ import org.js.model.rbac.FeatureOperation;
 import org.js.model.rbac.RBACResolverUtil;
 import org.js.model.rbac.RbacHelper;
 import org.js.model.rbac.Role;
-import org.js.model.rbac.RoleType;
 
 /**
  * Provider to get Text and Images for Itemproviders.
@@ -56,7 +54,7 @@ public class RBACItemProvider {
       label += " " + featureId + RBACResolverUtil.delimiter + attributeId + RBACResolverUtil.delimiter + valueString;
       return label;
    }
-   
+
    public static String getText(FeatureOperation op) {
       String label = op.getType().getLiteral();
       Feature feature = op.getFeature();
@@ -87,5 +85,4 @@ public class RBACItemProvider {
       return imagePath;
    }
 
-   
 }

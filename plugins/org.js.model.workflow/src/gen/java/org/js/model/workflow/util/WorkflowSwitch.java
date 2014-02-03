@@ -117,6 +117,13 @@ public class WorkflowSwitch<T> extends Switch<T> {
             if (result == null) result = defaultCase(theEObject);
             return result;
          }
+         case WorkflowPackage.STAGING_CONNECTOR: {
+            StagingConnector stagingConnector = (StagingConnector)theEObject;
+            T result = caseStagingConnector(stagingConnector);
+            if (result == null) result = caseAspectInstance(stagingConnector);
+            if (result == null) result = defaultCase(theEObject);
+            return result;
+         }
          default: return defaultCase(theEObject);
       }
    }
@@ -227,6 +234,21 @@ public class WorkflowSwitch<T> extends Switch<T> {
    }
 
 	/**
+    * Returns the result of interpreting the object as an instance of '<em>Staging Connector</em>'.
+    * <!-- begin-user-doc -->
+    * This implementation returns null;
+    * returning a non-null result will terminate the switch.
+    * <!-- end-user-doc -->
+    * @param object the target of the switch.
+    * @return the result of interpreting the object as an instance of '<em>Staging Connector</em>'.
+    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+    * @generated
+    */
+   public T caseStagingConnector(StagingConnector object) {
+      return null;
+   }
+
+   /**
     * Returns the result of interpreting the object as an instance of '<em>Aspect Instance</em>'.
     * <!-- begin-user-doc -->
     * This implementation returns null;

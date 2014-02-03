@@ -381,6 +381,52 @@ public interface WorkflowPackage extends EPackage {
 	int GRAPH_TRANS_CONNECTOR_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
 
 	/**
+    * The meta object id for the '{@link org.js.model.workflow.impl.StagingConnectorImpl <em>Staging Connector</em>}' class.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @see org.js.model.workflow.impl.StagingConnectorImpl
+    * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStagingConnector()
+    * @generated
+    */
+   int STAGING_CONNECTOR = 7;
+
+   /**
+    * The feature id for the '<em><b>Id</b></em>' attribute.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int STAGING_CONNECTOR__ID = ConfPackage.ASPECT_INSTANCE__ID;
+
+   /**
+    * The feature id for the '<em><b>Target Model Element</b></em>' reference.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int STAGING_CONNECTOR__TARGET_MODEL_ELEMENT = ConfPackage.ASPECT_INSTANCE__TARGET_MODEL_ELEMENT;
+
+   /**
+    * The feature id for the '<em><b>Stage Model</b></em>' reference.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int STAGING_CONNECTOR__STAGE_MODEL = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 0;
+
+   /**
+    * The number of structural features of the '<em>Staging Connector</em>' class.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+   int STAGING_CONNECTOR_FEATURE_COUNT = ConfPackage.ASPECT_INSTANCE_FEATURE_COUNT + 1;
+
+   /**
     * The meta object id for the '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}' enum.
     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,7 +434,7 @@ public interface WorkflowPackage extends EPackage {
     * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStateEnum()
     * @generated
     */
-	int STATE_ENUM = 7;
+	int STATE_ENUM = 8;
 
 
 	/**
@@ -539,6 +585,27 @@ public interface WorkflowPackage extends EPackage {
 	EReference getGraphTransConnector_GraphTransref();
 
 	/**
+    * Returns the meta object for class '{@link org.js.model.workflow.StagingConnector <em>Staging Connector</em>}'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the meta object for class '<em>Staging Connector</em>'.
+    * @see org.js.model.workflow.StagingConnector
+    * @generated
+    */
+   EClass getStagingConnector();
+
+   /**
+    * Returns the meta object for the reference '{@link org.js.model.workflow.StagingConnector#getStageModel <em>Stage Model</em>}'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return the meta object for the reference '<em>Stage Model</em>'.
+    * @see org.js.model.workflow.StagingConnector#getStageModel()
+    * @see #getStagingConnector()
+    * @generated
+    */
+   EReference getStagingConnector_StageModel();
+
+   /**
     * Returns the meta object for enum '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}'.
     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -697,6 +764,24 @@ public interface WorkflowPackage extends EPackage {
 		EReference GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF = eINSTANCE.getGraphTransConnector_GraphTransref();
 
 		/**
+       * The meta object literal for the '{@link org.js.model.workflow.impl.StagingConnectorImpl <em>Staging Connector</em>}' class.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @see org.js.model.workflow.impl.StagingConnectorImpl
+       * @see org.js.model.workflow.impl.WorkflowPackageImpl#getStagingConnector()
+       * @generated
+       */
+      EClass STAGING_CONNECTOR = eINSTANCE.getStagingConnector();
+
+      /**
+       * The meta object literal for the '<em><b>Stage Model</b></em>' reference feature.
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      EReference STAGING_CONNECTOR__STAGE_MODEL = eINSTANCE.getStagingConnector_StageModel();
+
+      /**
        * The meta object literal for the '{@link org.js.model.workflow.StateEnum <em>State Enum</em>}' enum.
        * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

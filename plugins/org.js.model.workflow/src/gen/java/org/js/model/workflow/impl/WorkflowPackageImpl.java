@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.jwt.we.conf.model.ConfPackage;
 
+import org.js.graph.transform.stagemodel.StagemodelPackage;
 import org.js.graph.transformation.TransformationPackage;
 import org.js.model.feature.FeaturePackage;
 
@@ -22,6 +23,7 @@ import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.GraphTransConnector;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
+import org.js.model.workflow.StagingConnector;
 import org.js.model.workflow.StakeholderTypes;
 import org.js.model.workflow.State;
 import org.js.model.workflow.StateEnum;
@@ -86,6 +88,13 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
 	/**
     * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   private EClass stagingConnectorEClass = null;
+
+   /**
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
     * @generated
     */
@@ -140,6 +149,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
       // Initialize simple dependencies
       ConfPackage.eINSTANCE.eClass();
       TransformationPackage.eINSTANCE.eClass();
+      StagemodelPackage.eINSTANCE.eClass();
 
       // Create package meta-data objects
       theWorkflowPackage.createPackageContents();
@@ -284,6 +294,24 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
 	/**
     * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   public EClass getStagingConnector() {
+      return stagingConnectorEClass;
+   }
+
+   /**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   public EReference getStagingConnector_StageModel() {
+      return (EReference)stagingConnectorEClass.getEStructuralFeatures().get(0);
+   }
+
+   /**
+    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
     * @generated
     */
@@ -340,6 +368,9 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
       graphTransConnectorEClass = createEClass(GRAPH_TRANS_CONNECTOR);
       createEReference(graphTransConnectorEClass, GRAPH_TRANS_CONNECTOR__GRAPH_TRANSREF);
 
+      stagingConnectorEClass = createEClass(STAGING_CONNECTOR);
+      createEReference(stagingConnectorEClass, STAGING_CONNECTOR__STAGE_MODEL);
+
       // Create enums
       stateEnumEEnum = createEEnum(STATE_ENUM);
    }
@@ -372,6 +403,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
       RbacPackage theRbacPackage = (RbacPackage)EPackage.Registry.INSTANCE.getEPackage(RbacPackage.eNS_URI);
       FeaturePackage theFeaturePackage = (FeaturePackage)EPackage.Registry.INSTANCE.getEPackage(FeaturePackage.eNS_URI);
       TransformationPackage theTransformationPackage = (TransformationPackage)EPackage.Registry.INSTANCE.getEPackage(TransformationPackage.eNS_URI);
+      StagemodelPackage theStagemodelPackage = (StagemodelPackage)EPackage.Registry.INSTANCE.getEPackage(StagemodelPackage.eNS_URI);
 
       // Create type parameters
 
@@ -385,6 +417,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
       stateEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
       stakeholderTypesEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
       graphTransConnectorEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
+      stagingConnectorEClass.getESuperTypes().add(theConfPackage.getAspectInstance());
 
       // Initialize classes and features; add operations and parameters
       initEClass(acmConnectorEClass, ACMConnector.class, "ACMConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -407,6 +440,9 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
 
       initEClass(graphTransConnectorEClass, GraphTransConnector.class, "GraphTransConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
       initEReference(getGraphTransConnector_GraphTransref(), theTransformationPackage.getGraphTransformation(), null, "graphTransref", null, 0, 1, GraphTransConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+      initEClass(stagingConnectorEClass, StagingConnector.class, "StagingConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+      initEReference(getStagingConnector_StageModel(), theStagemodelPackage.getStageModel(), null, "stageModel", null, 0, 1, StagingConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
       // Initialize enums and add enum literals
       initEEnum(stateEnumEEnum, StateEnum.class, "StateEnum");

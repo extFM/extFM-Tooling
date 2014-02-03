@@ -42,7 +42,7 @@
             showInMenu="true"
             showInToolbar="true">
       </action>
-      <action
+      <!--<action
             class="org.js.model.workflow.actions.SetStakeholerTypes"
             description="set the stakeholder types"
             forceText="false"
@@ -50,7 +50,7 @@
             requiresOpenEditor="false"
             showInMenu="true"
             showInToolbar="true">
-      </action>
+      </action>-->
       <action
             class="org.js.model.workflow.actions.InitialAction"
             description="initial the configuration workflow"
@@ -70,10 +70,19 @@
             showInToolbar="true">
       </action>
       <action
+            class="org.js.model.workflow.actions.RemoveStakeholderAction"
+            description="remove a concrete stakeholder"
+            forceText="true"
+            name="Remove a Stakeholder"
+            requiresOpenEditor="true"
+            showInMenu="true"
+            showInToolbar="true">
+      </action>
+      <action
             class="org.js.model.workflow.actions.CleanAction"
             description="clean the configuration workflow"
             forceText="true"
-            name="clean"
+            name="Clean Workflow"
             requiresOpenEditor="true"
             showInMenu="true"
             showInToolbar="true">

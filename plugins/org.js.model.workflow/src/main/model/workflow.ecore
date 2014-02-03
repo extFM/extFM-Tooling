@@ -30,4 +30,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="GraphTransConnector" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="graphTransref" eType="ecore:EClass ../../../../org.js.graph.transformation/src/main/model/graphTransformation.ecore#//GraphTransformation"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StagingConnector" eSuperTypes="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.ecore#//AspectInstance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stageModel" eType="ecore:EClass ../../../../org.js.graph.transform/src/main/model/stagemodel.ecore#//StageModel"/>
+  </eClassifiers>
 </ecore:EPackage>

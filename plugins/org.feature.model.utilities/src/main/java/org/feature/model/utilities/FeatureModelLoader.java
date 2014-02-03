@@ -61,7 +61,7 @@ public class FeatureModelLoader {
 	 *            set of resources
 	 * @return feature model
 	 */
-	public EObject load(URI uri, ResourceSet resourceSet) {
+	public static EObject load(URI uri, ResourceSet resourceSet) {
 		// Get the resource
 		Resource resource = resourceSet.getResource(uri, true);
 

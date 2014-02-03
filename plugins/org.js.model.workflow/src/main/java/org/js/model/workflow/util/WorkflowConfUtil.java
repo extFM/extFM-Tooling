@@ -9,6 +9,7 @@ import org.eclipse.jwt.we.conf.model.AspectInstance;
 import org.eclipse.jwt.we.conf.model.ConfFactory;
 import org.eclipse.jwt.we.conf.model.Profile;
 import org.eclipse.jwt.we.conf.model.aspects.AspectManager;
+import org.js.graph.transform.stagemodel.StageModel;
 import org.js.graph.transformation.GraphTransformation;
 import org.js.model.feature.FeatureModel;
 import org.js.model.rbac.AccessControlModel;
@@ -19,6 +20,7 @@ import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.GraphTransConnector;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
+import org.js.model.workflow.StagingConnector;
 import org.js.model.workflow.State;
 import org.js.model.workflow.StateEnum;
 import org.js.model.workflow.WorkflowFactory;
@@ -36,6 +38,8 @@ public class WorkflowConfUtil {
    public static final String ACM_FILE_EXTENSION_1 = "rbac";
    public static final String ACM_FILE_EXTENSION_2 = "rbactext";
    public static final String GT_FILE_EXTENSION_1 = "transformation";
+   public static final String STAGEMODEL_FILE_EXTENSION = "stagemodel";
+
    public static final String WORKFLOW_PROFILE_NAME = "org.js.model.workflow.profile";
 
    public static final String ACM_ASPECT = "org.js.model.workflow.acmaspect";
@@ -45,6 +49,7 @@ public class WorkflowConfUtil {
    public static final String LOG_ASPECT = "org.js.model.workflow.logaspect";
    public static final String STATE_ASPECT = "org.js.model.workflow.stateaspect";
    public static final String EFM_ASPECT = "org.js.model.workflow.efmaspect";
+   public static final String STAGEMODEL_ASPECT = "org.js.model.workflow.stagingaspect";
 
    /**
     * add the aspect instance for the given model element.
@@ -81,6 +86,10 @@ public class WorkflowConfUtil {
 
    public static void setACMRef(ACMConnector acmconnector, AccessControlModel acm) {
       acmconnector.setAcmref(acm);
+   }
+
+   public static void setStageModelRef(StagingConnector smconnector, StageModel sm) {
+      smconnector.setStageModel(sm);
    }
 
    public static void setRoleRef(RoleConnector roleconnector, Role role) {

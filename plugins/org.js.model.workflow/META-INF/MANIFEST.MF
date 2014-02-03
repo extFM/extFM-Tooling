@@ -19,6 +19,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.js.model.feature;visibility:=reexport,
  org.js.graph.transformation;visibility:=reexport,
  org.js.model.rbac;visibility:=reexport,
+ org.js.graph.transform;visibility:=reexport,
  org.eclipse.jwt.meta;bundle-version="1.2.0",
  org.eclipse.jwt.we;bundle-version="1.2.0",
  org.eclipse.emf.common.ui;bundle-version="2.7.0",
@@ -35,7 +36,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.aspectj.runtime;bundle-version="1.7.2",
  org.js.model.feature.edit;bundle-version="1.0.0",
  org.js.model.feature.csp;bundle-version="1.0.0",
- org.feature.model.utilities;bundle-version="0.4.0"
+ org.feature.model.utilities;bundle-version="0.4.0",
+ org.js.graph.transform.edit;bundle-version="1.0.0",
+ org.eclipse.emf.compare;bundle-version="3.0.1",
+ org.js.model.rbac.edit
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.junit

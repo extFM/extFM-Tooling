@@ -85,6 +85,15 @@ public interface WorkflowFactory extends EFactory {
 	GraphTransConnector createGraphTransConnector();
 
 	/**
+    * Returns a new object of class '<em>Staging Connector</em>'.
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @return a new object of class '<em>Staging Connector</em>'.
+    * @generated
+    */
+   StagingConnector createStagingConnector();
+
+   /**
     * Returns the package supported by this factory.
     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

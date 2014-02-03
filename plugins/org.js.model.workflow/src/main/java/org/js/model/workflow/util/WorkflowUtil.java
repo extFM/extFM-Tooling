@@ -22,28 +22,25 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jwt.meta.model.core.Model;
+import org.eclipse.jwt.meta.model.core.PackageableElement;
 import org.eclipse.jwt.meta.model.processes.Action;
 import org.feature.model.utilities.ResourceUtil;
+import org.js.graph.transform.stagemodel.StageModel;
 import org.js.model.feature.Attribute;
 import org.js.model.feature.Constraint;
 import org.js.model.feature.Feature;
 import org.js.model.feature.FeatureModel;
 import org.js.model.feature.FeatureState;
 import org.js.model.feature.Imply;
-import org.js.model.feature.ReferenceResolverUtil;
-import org.js.model.feature.edit.FeatureModelHelper;
 import org.js.model.rbac.AccessControlModel;
-import org.js.model.rbac.AttributeOperation;
-import org.js.model.rbac.AttributeValueOperation;
-import org.js.model.rbac.ConfigurationOperation;
-import org.js.model.rbac.FeatureOperation;
-import org.js.model.rbac.RbacHelper;
 import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
 import org.js.model.workflow.EFMContainer;
 import org.js.model.workflow.Log;
 import org.js.model.workflow.RoleConnector;
+import org.js.model.workflow.StagingConnector;
 
 /**
  * This class is used as help methods.
@@ -127,6 +124,23 @@ public class WorkflowUtil {
       return newFileUri;
    }
 
+   public static org.eclipse.jwt.meta.model.organisations.Role getWorkflowRole(Role role, Model workflow) {
+      org.eclipse.jwt.meta.model.organisations.Role workflowRole = null;
+      EList<PackageableElement> workflowElements = workflow.getElements();
+      stop: for (PackageableElement packageableElement : workflowElements) {
+         if (packageableElement instanceof org.eclipse.jwt.meta.model.organisations.Role) {
+            org.eclipse.jwt.meta.model.organisations.Role jwtRole = (org.eclipse.jwt.meta.model.organisations.Role) packageableElement;
+            RoleConnector connector = (RoleConnector) WorkflowConfUtil.getAspectInstance(jwtRole, WorkflowConfUtil.ROLE_ASPECT);
+            Role referencedRole = connector.getRoleref();
+            if (EcoreUtil.equals(referencedRole, role)) {
+               workflowRole = jwtRole;
+               break stop;
+            }
+         }
+      }
+      return workflowRole;
+   }
+
    /**
     * store the stakeholder's inputs temporarily.
     * 
@@ -163,9 +177,21 @@ public class WorkflowUtil {
    }
 
    public static org.js.model.rbac.Role getRBACRole(Model model, String name) {
-      ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil.getAspectInstance(model, WorkflowConfUtil.ACM_ASPECT);
-      AccessControlModel acm = acmConnector.getAcmref();
+      AccessControlModel acm = getAccessControlModel(model);
       return getRBACRole(acm, name);
+   }
+
+   public static AccessControlModel getAccessControlModel(Model workflow) {
+      ACMConnector acmConnector = (ACMConnector) WorkflowConfUtil.getAspectInstance(workflow, WorkflowConfUtil.ACM_ASPECT);
+      AccessControlModel acm = acmConnector.getAcmref();
+      return acm;
+   }
+
+   public static StageModel getStageModel(Model workflow) {
+      StagingConnector stagingConnector =
+         (StagingConnector) WorkflowConfUtil.getAspectInstance(workflow, WorkflowConfUtil.STAGEMODEL_ASPECT);
+      StageModel sm = stagingConnector.getStageModel();
+      return sm;
    }
 
    /**
@@ -321,29 +347,30 @@ public class WorkflowUtil {
     * @param featureModel
     */
    public static void handleFM(Log log, FeatureModel featureModel) {
-//      for (ConfigurationOperation configDecision : log.getConfigurationOperations()) {
-//         if (configDecision instanceof FeatureOperation) {
-//            Feature feature = ReferenceResolverUtil.findFeature(((FeatureOperation) configDecision).getFeature().getId(), featureModel);
-//            if (RbacHelper.isSelectFeatureOperation(configDecision)) {
-//               feature.setConfigurationState(FeatureState.SELECTED);
-//            } else {
-//               feature.setConfigurationState(FeatureState.DESELECTED);
-//            }
-//           // handleFeatureLogic(feature, featureModel);
-//         } else {
-//            if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
-//               AttributeValueOperation operation = ((AttributeValueOperation) configDecision);
-//               Attribute oldAttribute = operation.getAttribute();
-//               String attributeName = oldAttribute.getName();
-//               String featureName = oldAttribute.getFeature().getId();
-//               Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
-//               Attribute newAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
-//               int value = operation.getValue();
-//               String valueString = FeatureModelHelper.getAttributeValue(value, operation.getAttribute());
-//               newAttribute.setValue(valueString);
-//            }
-//         }
-//      }
+      // for (ConfigurationOperation configDecision : log.getConfigurationOperations()) {
+      // if (configDecision instanceof FeatureOperation) {
+      // Feature feature = ReferenceResolverUtil.findFeature(((FeatureOperation) configDecision).getFeature().getId(),
+      // featureModel);
+      // if (RbacHelper.isSelectFeatureOperation(configDecision)) {
+      // feature.setConfigurationState(FeatureState.SELECTED);
+      // } else {
+      // feature.setConfigurationState(FeatureState.DESELECTED);
+      // }
+      // // handleFeatureLogic(feature, featureModel);
+      // } else {
+      // if (RbacHelper.isSelectDomainValueOperation(configDecision)) {
+      // AttributeValueOperation operation = ((AttributeValueOperation) configDecision);
+      // Attribute oldAttribute = operation.getAttribute();
+      // String attributeName = oldAttribute.getName();
+      // String featureName = oldAttribute.getFeature().getId();
+      // Feature newFeature = ReferenceResolverUtil.findFeature(featureName, featureModel);
+      // Attribute newAttribute = ReferenceResolverUtil.findAttributeForFeature(attributeName, newFeature);
+      // int value = operation.getValue();
+      // String valueString = FeatureModelHelper.getAttributeValue(value, operation.getAttribute());
+      // newAttribute.setValue(valueString);
+      // }
+      // }
+      // }
       URI uri = featureModel.eResource().getURI();
       ResourceUtil.persistModel(featureModel, uri);
    }
@@ -622,5 +649,14 @@ public class WorkflowUtil {
          }
       }
       return attributes;
+   }
+
+   public static org.eclipse.jwt.meta.model.organisations.Role getRole(Model workflow, Action action) {
+      org.eclipse.jwt.meta.model.organisations.Role workflowRole = null;
+      Role rbacRole = getRBACRole(action);
+      if (rbacRole != null) {
+         workflowRole = WorkflowModelUtil.getRole(workflow, rbacRole.getId());
+      }
+      return workflowRole;
    }
 }

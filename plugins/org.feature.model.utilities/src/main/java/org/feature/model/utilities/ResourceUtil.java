@@ -212,7 +212,11 @@ public final class ResourceUtil {
       }
    }
 
-   
+    
+   public static void saveModel(EObject model){
+      URI uri = model.eResource().getURI();
+      ResourceUtil.persistModel(model, uri);
+   }
    
    public static void persistModel(EObject model, IFile file){
       String locationUri = file.getLocationURI().normalize().getPath();

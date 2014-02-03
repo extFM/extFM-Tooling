@@ -4,7 +4,7 @@
     editorDirectory="/org.js.model.workflow.editor/src/gen/java" modelPluginID="org.js.model.workflow"
     forceOverwrite="true" modelName="Workflow" modelPluginClass="org.js.model.workflow.WorkflowPlugin"
     testsDirectory="/org.js.model.workflow.tests/src/gen/java" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="7.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.genmodel#//conf ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature ../../../../org.js.graph.transformation/src/main/model/graphTransformation.genmodel#//transformation ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    complianceLevel="7.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.jwt.we.conf.model/model/ConfMetaModel.genmodel#//conf platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../org.js.model.feature/src/main/model/feature.genmodel#//feature ../../../../org.js.graph.transformation/src/main/model/graphTransformation.genmodel#//transformation ../../../../org.js.model.rbac/src/main/model/rbac.genmodel#//rbac ../../../../org.js.graph.transform/src/main/model/stagemodel.genmodel#//stagemodel">
   <foreignModel>workflow.ecore</foreignModel>
   <genPackages prefix="Workflow" basePackage="org.js.model" disposableProviderFactory="true"
       ecorePackage="workflow.ecore#/">
@@ -34,6 +34,9 @@
     </genClasses>
     <genClasses ecoreClass="workflow.ecore#//GraphTransConnector">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//GraphTransConnector/graphTransref"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//StagingConnector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//StagingConnector/stageModel"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

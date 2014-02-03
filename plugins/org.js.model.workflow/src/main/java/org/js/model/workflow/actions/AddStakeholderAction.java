@@ -1,10 +1,15 @@
 package org.js.model.workflow.actions;
 
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jwt.we.conf.model.AspectInstance;
 import org.eclipse.swt.widgets.Display;
 import org.js.graph.transformation.GraphTransformation;
+import org.js.model.adaptation.AdaptationEngine;
+import org.js.model.adaptation.ui.AddRoleDialog;
+import org.js.model.adaptation.ui.UserInputAddRole;
 import org.js.model.rbac.AccessControlModel;
 import org.js.model.rbac.Role;
 import org.js.model.workflow.ACMConnector;
@@ -14,7 +19,6 @@ import org.js.model.workflow.graphtransformation.GraphTransformationUtil;
 import org.js.model.workflow.ui.StakeholderInputUIShell;
 import org.js.model.workflow.util.StakeholderInput;
 import org.js.model.workflow.util.WorkflowConfUtil;
-import org.js.model.workflow.util.WorkflowUtil;
 
 public class AddStakeholderAction extends MyAction {
 
@@ -26,12 +30,65 @@ public class AddStakeholderAction extends MyAction {
 	public void run() {
 
 		initialRes();
-		stakeholderInput();
+		//stakeholderInput();
+		addStakeholder();
 		save();
 		refresh();
 	}
 
-	public void stakeholderInput() {
+	private boolean isWorkflowInitialized(){
+	  return (WorkflowConfUtil.hasAspectInstance(workflowModel,WorkflowConfUtil.ACM_ASPECT) && 
+	   WorkflowConfUtil.hasAspectInstance(workflowModel,WorkflowConfUtil.STAGEMODEL_ASPECT));
+	}
+	
+	private void addStakeholder(){
+	   if (!isWorkflowInitialized()){
+	      String info = "Please import rbac as well as stage model files.";
+	      MessageDialog.openInformation(getActiveShell(), "Warning", info);
+	   } else {
+	      openAddStakeholderDialog();
+	   }
+	}
+	
+	private void openAddStakeholderDialog(){
+	   UserInputAddRole roleInput = new UserInputAddRole();
+	   AddRoleDialog dialog = new AddRoleDialog();
+	   dialog.setUserInput(roleInput);
+	   dialog.setWorkflow(workflowModel);
+	   int returnCode = dialog.open();
+	   if (returnCode == Window.OK){
+	     startAddTransformSequence(roleInput);	      
+	   }
+//	   try {
+//          Display display = Display.getDefault();
+//          StakeholderInputUIShell shell = new StakeholderInputUIShell(display,
+//                  acm, stakeholderTypes);
+//          shell.open();
+//          shell.layout();
+//          while (!shell.isDisposed()) {
+//              if (!display.readAndDispatch()) {
+//                  display.sleep();
+//              }
+//          }
+//          if(shell.getOk()){
+//              StakeholderInput stakeholderInput = shell.getStakeholderInput();
+//              // search valid rules and apply the change primitives
+//              GraphTransformationUtil.graphTransformation(stakeholderInput, gt,
+//                      workflowModel, activity, diagram);
+//          }
+//      } catch (Exception e) {
+//          e.printStackTrace();
+//      }
+	   
+	}
+	
+	
+	private void startAddTransformSequence(UserInputAddRole roleInput) {
+	   AdaptationEngine engine = new AdaptationEngine(getWorkflowModel());
+	   engine.integrateStakeholder(roleInput);
+   }
+
+   public void stakeholderInput() {
 		AspectInstance acmAspect = WorkflowConfUtil.getAspectInstance(
 				workflowModel, WorkflowConfUtil.ACM_ASPECT);
 		AspectInstance shTypesAspect = WorkflowConfUtil.getAspectInstance(

@@ -64,6 +64,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
          case WorkflowPackage.STATE: return createState();
          case WorkflowPackage.STAKEHOLDER_TYPES: return createStakeholderTypes();
          case WorkflowPackage.GRAPH_TRANS_CONNECTOR: return createGraphTransConnector();
+         case WorkflowPackage.STAGING_CONNECTOR: return createStagingConnector();
          default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
       }
@@ -170,6 +171,16 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
    }
 
 	/**
+    * <!-- begin-user-doc -->
+    * <!-- end-user-doc -->
+    * @generated
+    */
+   public StagingConnector createStagingConnector() {
+      StagingConnectorImpl stagingConnector = new StagingConnectorImpl();
+      return stagingConnector;
+   }
+
+   /**
     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
     * @generated
