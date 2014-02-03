@@ -1,0 +1,18 @@
+featuremodel "example"
+domain <domain1> [1..10]
+domain <domain2> [A=1,B=2]
+
+feature "root" <root>
+group <g1> (0..3) {
+	 selected feature "f1" <f1>
+		a11 [domain1] without {"3"} := "10" 
+		a12 [domain2] 
+	 feature "f2" <f2>
+		a21 [domain1]
+		a22 [domain1] 
+	 deselected feature "f3" <f3>
+	 	a31 [domain1]
+}
+constraint <c1> f3 -> f1
+constraint <c2> f1.a11 > f2.a22
+constraint <c3> f1.a12 != "B"

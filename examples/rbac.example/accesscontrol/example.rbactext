@@ -1,0 +1,21 @@
+access control on <../featuremodel/example.eft>
+
+abstract role <r1> {
+ select root,
+ select f2, deselect f2,
+ assign f2.a21,
+ assign f2.a22,
+ select f3, deselect f3
+}
+
+role <r2> extends r1 {
+ select f1, deselect f1,
+ assign f1.a11,
+ select f1.a12.1, deselect f1.a12.1, 
+ select f1.a12.2, deselect f1.a12.2
+}
+
+group "Group" <g1> of r1 has members r2
+
+subject "John Smith" <js> plays r1
+subject "Kim Tailor" <kt> plays r1, r2

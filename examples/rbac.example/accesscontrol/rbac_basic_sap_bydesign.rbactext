@@ -1,0 +1,46 @@
+access control on <../featuremodel/basic_sap_bydesign.eft>
+
+role "Application Provider" <ap> {
+	select bbd, select Stakeholders,
+	select Marketing, deselect Marketing,
+    select Purchasing, deselect Purchasing,
+    select SelfService_Procurement, deselect SelfService_Procurement,
+	select Supply_Chain_Setup_Management, deselect Supply_Chain_Setup_Management,
+	select Expense_and_Reimbursement_Management, deselect Expense_and_Reimbursement_Management,
+	select Product_Engineering, deselect Product_Engineering
+}
+
+role "Customer" <customer> {
+	assign Stakeholders.Employees,
+	assign Stakeholders.Users,
+	select Market_Development, deselect Market_Development,
+	select Campaign_Management, deselect Campaign_Management,
+	select Purchase_Request_and_Order_Management, deselect Purchase_Request_and_Order_Management,
+	select Supply_Chain_Design, deselect Supply_Chain_Design,
+	select Execution_Design, deselect Execution_Design,
+	select Production_Models, deselect Production_Models,
+	select Project_Management, deselect Project_Management,
+	select Project_Planning_and_Execution, deselect Project_Planning_and_Execution,
+	select Basic_Project_Planning, deselect Basic_Project_Planning,
+	select Payment_and_Liquidity_Management, deselect Payment_and_Liquidity_Management,
+	select Product_Development, deselect Product_Development
+}
+
+role "Department Choices" <dep> {
+	select Execution_Design, deselect Execution_Design,
+	select Production_Models, deselect Production_Models,
+	select Project_Management, deselect Project_Management,
+	select Project_Planning_and_Execution, deselect Project_Planning_and_Execution,
+	select Basic_Project_Planning, deselect Basic_Project_Planning,
+	select Payment_and_Liquidity_Management, deselect Payment_and_Liquidity_Management,
+	select Product_Development, deselect Product_Development
+}
+
+role "Customer AG" <c1> extends customer
+role "Department Sales" <d1> extends dep
+role "Department Finance" <d2> extends dep
+
+group "Customer Departments" <cds> of c1 has members d1, d2 
+
+role "Other Customer" <c2> extends customer
+
