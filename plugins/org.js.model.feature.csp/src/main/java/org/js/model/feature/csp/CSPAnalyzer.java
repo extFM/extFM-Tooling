@@ -142,6 +142,7 @@ public class CSPAnalyzer {
       FeatureModelAnalyzer analyzer = getAnalyzer(file);
       if (analyzer != null) {
          analyzer.setNumberOfVariantsToDerive(numberOfVariants);
+         analyzer.setPersistVariants(true);
          analyzer.setFindAll(findAll);
          analyze(analyzer);
       }

@@ -46,7 +46,7 @@ public class FeatureModelAnalyzer {
 
    private FeatureModel model;
 
-   private boolean persistVariants = false;
+   private boolean persistVariants = true;
    private int numberOfVariantsToDerive = -1;
 
    private boolean keepVariants = false;
@@ -61,6 +61,7 @@ public class FeatureModelAnalyzer {
       this.model = model;
       featureModelHelper = new FeatureModelHelper(model);
       initSets();
+      this.persistVariants = false;
    }
 
    private void initSets() {
