@@ -1,0 +1,39 @@
+access control on <../featuremodel/crm.eft>
+
+abstract role "Root" <rootRole> {
+ select f0
+}
+
+abstract role "Application Manager" <appManager> extends rootRole {
+ select f1, deselect f1,
+ select f11, deselect f11,
+ select f12, deselect f12,
+ select f13, deselect f13,
+ select f2, deselect f2
+}
+
+abstract role "Customer" <customer> {
+ select f3, deselect f3,
+ select f4, deselect f4,
+ select f5, deselect f5,
+ select f6, deselect f6
+}
+
+abstract role "User" <user> {
+ select f6, deselect f6,
+ assign f6.storage
+}
+
+role "Concrete Manager" <concreteManager> extends appManager
+
+role "Customer A" <customerA> extends customer
+role "Customer B" <customerB> extends customer
+
+role "User A.1" <userA1> extends user
+role "User A.2" <userA2> extends user
+
+role "User B.1" <userB1> extends user
+
+group "g1" <g1> of appManager has members customerA, customerB
+group "Company A" <groupCustomerA> of customerA has members userA1, userA2
+group "Company B" <groupCustomerB> of customerB has members userB1
