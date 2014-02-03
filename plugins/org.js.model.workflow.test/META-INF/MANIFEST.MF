@@ -8,6 +8,7 @@ Require-Bundle: org.eclipse.jwt.meta;bundle-version="1.2.0",
  org.eclipse.jwt.we;bundle-version="1.2.0",
  org.js.model.workflow;bundle-version="1.0.0",
  org.eclipse.core.runtime,
- org.eclipse.emf.common.ui;bundle-version="2.7.0"
+ org.eclipse.emf.common.ui;bundle-version="2.7.0",
+ org.junit 
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.junit;version="4.10.0"
