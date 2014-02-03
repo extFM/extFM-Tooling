@@ -6,12 +6,12 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
+   <!--extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.tudresden.de/viewmapping"
             class="viewmapping.ViewmappingPackage"
             genModel="model/viewmapping.genmodel"/>
-   </extension>
+   </extension-->
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated viewmapping -->
