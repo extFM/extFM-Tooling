@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated stagemodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.js.graph.transform.stagemodel.presentation.StagemodelModelWizardID"
+            name="%_UI_StagemodelModelWizard_label"
+            class="org.js.graph.transform.stagemodel.presentation.StagemodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StagemodelModelFile.gif">
+         <description>%_UI_StagemodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated stagemodel -->
+      <editor
+            id="org.js.graph.transform.stagemodel.presentation.StagemodelEditorID"
+            name="%_UI_StagemodelEditor_label"
+            icon="icons/full/obj16/StagemodelModelFile.gif"
+            extensions="stagemodel"
+            class="org.js.graph.transform.stagemodel.presentation.StagemodelEditor"
+            contributorClass="org.js.graph.transform.stagemodel.presentation.StagemodelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

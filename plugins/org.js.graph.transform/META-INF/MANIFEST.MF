@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.js.graph.transform;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.js.graph.transform.stagemodel,
+ org.js.graph.transform.stagemodel.impl,
+ org.js.graph.transform.stagemodel.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Bundle-ActivationPolicy: lazy
